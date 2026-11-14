@@ -1,8 +1,10 @@
 # App only (what Streamlit Community Cloud installs). Pipeline: requirements-pipeline.txt
-streamlit>=1.40,<2
-folium>=0.17
-streamlit-folium>=0.22
-plotly>=5.24
-pandas>=2.2
-numpy>=1.26
-Pillow>=10
+# Exact versions, the ones running on Streamlit Cloud on 14 Nov 2026: a restart during judging must
+# never pull a newer release that changes or removes something the app uses.
+streamlit==1.67.0
+folium==0.20.0
+streamlit-folium==0.27.4
+plotly==7.1.0
+pandas==3.1.1
+numpy==2.5.4
+Pillow==13.0.0

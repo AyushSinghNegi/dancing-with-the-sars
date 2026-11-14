@@ -23,11 +23,11 @@ with text:
     st.markdown(f"## {head}")
     st.markdown(f'<p class="ml-lede">{body}</p>', unsafe_allow_html=True)
     nav_b, nav_n = st.columns(2)
-    if nav_b.button(ui.t("back"), disabled=i == 0, use_container_width=True):
+    if nav_b.button(ui.t("back"), disabled=i == 0, width="stretch"):
         st.session_state.step = max(0, i - 1)
         st.rerun()
     if i < n - 1:
-        if nav_n.button(ui.t("next"), type="primary", use_container_width=True):
+        if nav_n.button(ui.t("next"), type="primary", width="stretch"):
             st.session_state.step = i + 1
             st.rerun()
     else:
@@ -37,7 +37,7 @@ with visual:
     if i == 0:
         rain = data.rainfall()
         if rain is not None:
-            st.plotly_chart(charts.rainfall(rain, before, after, passes=data.passes()), use_container_width=True,
+            st.plotly_chart(charts.rainfall(rain, before, after, passes=data.passes()), width="stretch",
                             config={"displayModeBar": False})
             st.caption(ui.t("rain_caption", src=rain["source"].iloc[0] if "source" in rain else "see Method"))
         else:
@@ -88,7 +88,7 @@ with visual:
             if len(misses):
                 st.markdown(f"**{ui.t('fell_short')}**")
                 st.dataframe(misses[["place", "type", "date", "result", "reason"]], hide_index=True,
-                             use_container_width=True)
+                             width="stretch")
         else:
             st.info("The validation table appears here once reported events (`data/reference/events.geojson`) "
                     "are added and the pipeline is re-run.")

@@ -1,0 +1,23 @@
+# Visit the live app every 6 hours so Streamlit Community Cloud never puts it to sleep
+# (it sleeps after 12 hours without visitors, and judges would then wait about a minute).
+name: Keep the app awake
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  visit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install playwright==1.65.2 && python -m playwright install --with-deps chromium
+      - run: python scripts/keep_awake.py https://monsoonlens.streamlit.app/

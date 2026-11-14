@@ -160,6 +160,13 @@ T = {
 }
 
 
+def english_only_note():
+    """Technical pages are in English only; say so in Marathi instead of switching silently."""
+    if lang() == "mr":
+        st.info("हे तांत्रिक पान सध्या बहुतांश इंग्रजीत आहे. आकडे आणि कथा मराठीत पाहण्यासाठी "
+                "मुख्य पान आणि कथा पाहा.")
+
+
 def lang() -> str:
     return st.session_state.get("lang", "en")
 

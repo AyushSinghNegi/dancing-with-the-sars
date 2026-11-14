@@ -13,6 +13,7 @@ th = m.get("thresholds", {})
 before, after = data.dates()
 
 st.markdown("# Method and limits")
+ui.english_only_note()
 st.markdown('<p class="ml-lede">Every number in this app comes from the pipeline in our public repository, '
             'run on the NISAR files listed below. Nothing is estimated by hand.</p>', unsafe_allow_html=True)
 
@@ -69,13 +70,13 @@ if rain is not None:
     src = str(rain["source"].iloc[0]) if "source" in rain else "daily rainfall"
     link = "https://power.larc.nasa.gov/" if "POWER" in src else "https://giovanni.gsfc.nasa.gov/"
     rows.append({"Data": "Daily rainfall", "File": src, "Valid share of box": "", "Link": link})
-st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True,
+st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch",
              column_config={"Link": st.column_config.LinkColumn("Link")})
 
 st.markdown("## Results with their sources")
 ws = data.table("water_stats.csv")
 if ws is not None:
-    st.dataframe(ws, hide_index=True, use_container_width=True)
+    st.dataframe(ws, hide_index=True, width="stretch")
 st.markdown(
     f"Sanity check: on {before} the radar saw **{(m.get('water', {}).get('permanent_water_seen_dark') or 0):.0%}** "
     "of the JRC permanent-water pixels as water. A low value would mean the threshold or the data is off.")
@@ -83,7 +84,7 @@ st.markdown(
 st.markdown("## Validation")
 val = data.table("validation.csv")
 if val is not None and len(val):
-    st.dataframe(val, hide_index=True, use_container_width=True,
+    st.dataframe(val, hide_index=True, width="stretch",
                  column_config={"source_url": st.column_config.LinkColumn("source")})
 else:
     st.info("Runs once `data/reference/events.geojson` exists.")
@@ -106,7 +107,7 @@ if xt:
          "Partial": "", "Not seen": "", "Not covered by track 106": "",
          "Found-again rate": f"{(ch.get('confirmed') or 0):.1%}"},
     ])
-    st.dataframe(tbl, hide_index=True, use_container_width=True)
+    st.dataframe(tbl, hide_index=True, width="stretch")
     if xt["lift"] is not None:
         pv = xt.get("p_value")
         ptxt = f" The chance of doing this well by luck alone is about {pv:.0%} (one-sided binomial test)." \

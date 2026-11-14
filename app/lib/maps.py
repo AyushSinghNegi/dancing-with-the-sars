@@ -59,7 +59,11 @@ def build(basemap="Light", opacity=0.85, show=None, location=None, zoom=10, heig
           zones=True, min_conf="medium", collapsed=False):
     """Return a folium.Map with every layer available in the layer switcher."""
     m = folium.Map(location=location or center(), zoom_start=zoom, tiles=None, control_scale=True,
-                   prefer_canvas=True)
+                   prefer_canvas=True, zoom_snap=0.25, zoom_delta=0.5)
+    b0 = data.bounds().get("bounds_latlon")
+    if location is None and b0:
+        # Fit the whole study box on any screen (a fixed zoom cut off the Western Ghats on phones).
+        m.fit_bounds(b0, padding=(6, 6))
     m.get_root().header.add_child(folium.Element(MAP_CSS))
     folium.map.CustomPane("labels", z_index=650, pointer_events=False).add_to(m)
     for name, (url, attr) in BASEMAPS.items():
