@@ -78,6 +78,8 @@ ss.place_r = r_km
 pt = ss.get("pt")
 if pt:
     st.query_params.clear()
+    if ui.lang() != "en":
+        st.query_params["lang"] = ui.lang()
     if pt.get("osm_id"):
         st.query_params.update({"place": str(pt["osm_id"]), "r": str(r_km)})
     else:
@@ -115,9 +117,10 @@ if pt:
         where = tr("the point you picked", "तुम्ही निवडलेला बिंदू")
     zoom = {2: 13, 5: 12, 10: 11}[r_km]
     m = maps.build(location=[lat, lon], zoom=zoom, min_conf="low", collapsed=True)
-    folium.Circle([lat, lon], radius=r_km * 1000, color=ui.INK, weight=2, fill=True, fill_opacity=0.04,
+    pin = maps.ink_for(maps.default_basemap())
+    folium.Circle([lat, lon], radius=r_km * 1000, color=pin, weight=2, fill=True, fill_opacity=0.05,
                   dash_array="6 6").add_to(m)
-    folium.CircleMarker([lat, lon], radius=6, color="#fff", weight=2, fill=True, fill_color=ui.INK,
+    folium.CircleMarker([lat, lon], radius=7, color="#fff", weight=2.5, fill=True, fill_color="#3d8ef0",
                         fill_opacity=1, tooltip=where).add_to(m)
 else:
     m = maps.build(min_conf="medium", collapsed=True)
@@ -125,7 +128,7 @@ else:
 left, right = st.columns([1.35, 1], gap="large")
 with left:
     out = st_folium(m, height=520, use_container_width=True, returned_objects=["last_clicked"],
-                    key=f"place_map_{pt['lat'] if pt else 0}_{pt['lon'] if pt else 0}_{r_km}")
+                    key=f"place_map_{pt['lat'] if pt else 0}_{pt['lon'] if pt else 0}_{r_km}_{ui.dark()}")
     st.caption(tr("Click the map to check any other point.", "दुसरा कोणताही बिंदू तपासण्यासाठी नकाशावर क्लिक करा."))
 clk = (out or {}).get("last_clicked")
 if clk and (not pt or abs(clk["lat"] - pt["lat"]) > 1e-6 or abs(clk["lng"] - pt["lon"]) > 1e-6):
@@ -157,9 +160,9 @@ with right:
              False),
             (ui.COLORS["rise"], ui.fmt_num(rise_ha, 1), "ha", tr("of new water as reservoirs and rivers rose",
                                                                  "धरणे आणि नद्या वाढल्याने नवीन पाणी"), False),
-            (ui.INK, str(len(e_near)), "", tr("reported floods or landslides", "नोंदवलेले पूर किंवा भूस्खलन"), False),
+            ("currentColor", str(len(e_near)), "", tr("reported floods or landslides", "नोंदवलेले पूर किंवा भूस्खलन"), False),
         ]
-        st.markdown('<div class="ml-grid" style="grid-template-columns:repeat(2,minmax(0,1fr))">' + "".join(
+        st.markdown(f'<div lang="{ui.lang()}" class="ml-grid" style="grid-template-columns:repeat(2,minmax(0,1fr))">' + "".join(
             f'<div class="ml-stat" style="--c:{c}"><div class="k">{html.escape(k)}<small>{html.escape(u)}</small></div>'
             f'<p class="lbl" style="margin-bottom:0">{html.escape(l)}</p></div>' for c, k, u, l, _ in tiles)
             + "</div>", unsafe_allow_html=True)

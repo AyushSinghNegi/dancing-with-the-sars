@@ -3,16 +3,35 @@ enableStaticServing = true
 headless = true
 
 [client]
-toolbarMode = "minimal"
+# "viewer" keeps the ⋮ menu, where Settings switches between light and dark.
+toolbarMode = "viewer"
 showSidebarNavigation = true
 
+# Two themes; the app follows the visitor's system setting, and ⋮ > Settings switches between them.
+# Page styling in app/lib/ui.py is written to work in both.
 [theme]
-base = "light"
-primaryColor = "#2a78d6"
-backgroundColor = "#fcfcfb"
-secondaryBackgroundColor = "#f3f2ee"
-textColor = "#0b0b0b"
 font = "sans serif"
+baseRadius = "0.7rem"
+
+[theme.light]
+primaryColor = "#1f6fd1"
+backgroundColor = "#f4f7fb"
+secondaryBackgroundColor = "#e7edf4"
+textColor = "#10213a"
+linkColor = "#1f6fd1"
+
+[theme.light.sidebar]
+backgroundColor = "#eaf0f6"
+
+[theme.dark]
+primaryColor = "#4ea4ff"
+backgroundColor = "#070c17"
+secondaryBackgroundColor = "#111c30"
+textColor = "#e6edf6"
+linkColor = "#7dbbff"
+
+[theme.dark.sidebar]
+backgroundColor = "#0a1222"
 
 [browser]
 gatherUsageStats = false

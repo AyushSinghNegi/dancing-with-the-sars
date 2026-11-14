@@ -15,7 +15,6 @@ before, after = data.dates()
 tr = ui.tr
 ss = st.session_state
 st.markdown(f"# {ui.t('explore')}")
-ui.english_only_note()
 
 seasons = data.season_dates()
 modes = ["change"] + (["season"] if len(seasons) >= 3 else [])
@@ -47,7 +46,7 @@ if mode == "season":
             "{d} रोजी, जिथे कधी ना कधी पाणी नोंदवले गेले आहे (JRC, १९८४ ते २०२१) अशा भागात उघडे पाणी", d=ui.date(d))
             + f"{delta}.</p>", unsafe_allow_html=True)
     ui.legend([(ui.COLORS["new_water"], tr("Open water on this pass", "या निरीक्षणातील उघडे पाणी"), "fill")])
-    st_folium(maps.season(d), height=600, use_container_width=True, returned_objects=[], key=f"season_{d}")
+    st_folium(maps.season(d), height=600, use_container_width=True, returned_objects=[], key=f"season_{d}_{ui.dark()}")
     if tl is not None and len(tl) > 1:
         st.plotly_chart(charts.timeline(tl), width="stretch", config={"displayModeBar": False})
         st.caption(ui.t("timeline_caption"))
@@ -62,7 +61,9 @@ st.markdown(f'<div class="ml-dates">' + tr(
     b=ui.day(before), a=ui.date(after)) + "</div>", unsafe_allow_html=True)
 
 c1, c2, c3 = st.columns([1, 1.2, 1])
-basemap = c1.selectbox(tr("Base map", "मूळ नकाशा"), list(maps.BASEMAPS), index=0)
+bm_keys = list(maps.BASEMAPS)
+basemap = c1.selectbox(tr("Base map", "मूळ नकाशा"), bm_keys, index=bm_keys.index(maps.default_basemap()),
+                       format_func=maps.basemap_name)
 opacity = c2.slider(tr("Layer opacity", "स्तराची पारदर्शकता"), 0.2, 1.0, 0.85, 0.05)
 conf = c3.selectbox(tr("Slide zones shown", "दाखवलेली भूस्खलन क्षेत्रे"), ["high", "medium", "low"], index=1,
                     format_func=lambda x: {"high": tr("High confidence only", "फक्त उच्च खात्री"),
@@ -73,7 +74,7 @@ ui.legend([(ui.COLORS["flood"], ui.t("legend_flood"), "fill"),
            (ui.COLORS["slide_zones"], ui.t("legend_slides"), "outline"),
            (ui.COLORS["brighter"], ui.t("legend_brighter"), "hatch"),
            (ui.COLORS["permanent"], ui.t("legend_permanent"), "fill"),
-           (ui.INK, ui.t("legend_events"), "dot")])
+           (None, ui.t("legend_events"), "dot")])
 focus = ss.get("explore_focus")          # ("zone"|"flood", id)
 fprops = None
 if focus:
@@ -81,11 +82,11 @@ if focus:
     fprops = next((p for p in pool if p.get("id") == focus[1]), None)
 loc = [fprops["lat"], fprops["lon"]] if fprops else None
 # Zoomed to one finding, satellite imagery says more than the plain base map.
-m = maps.build(basemap="Satellite" if fprops and basemap == "Light" else basemap, opacity=opacity,
+m = maps.build(basemap="Satellite" if fprops and basemap in ("Light", "Dark") else basemap, opacity=opacity,
                min_conf="low" if fprops else conf, location=loc,
                zoom=14 if fprops else 10, collapsed=True)
 st_folium(m, height=640, use_container_width=True, returned_objects=[],
-          key=f"explore_{basemap}_{opacity}_{conf}_{focus}")
+          key=f"explore_{basemap}_{opacity}_{conf}_{focus}_{ui.dark()}")
 if fprops:
     cA, cB = st.columns([4, 1])
     cA.markdown(f'<p class="ml-kicker">{html.escape(tr("Map zoomed to {i}", "नकाशा {i} वर केंद्रित", i=fprops["id"]))}</p>',
@@ -109,6 +110,13 @@ with tab_z:
             df["near"] = ""
         df["near"] = df["near"].fillna("")
         df["map"] = [f"https://www.google.com/maps/search/?api=1&query={a},{b}" for a, b in zip(df["lat"], df["lon"])]
+        df["confidence"] = df["confidence"].map({"high": tr("High", "उच्च"), "medium": tr("Medium", "मध्यम"),
+                                                 "low": tr("Low", "कमी")}).fillna(df["confidence"])
+        if "track106" in df:
+            df["track106"] = df["track106"].map({"confirmed": tr("found again", "पुन्हा सापडले"),
+                                                 "partial": tr("partly", "अंशतः"),
+                                                 "not seen": tr("not seen", "दिसले नाही"),
+                                                 "not covered": tr("outside view", "दृष्टीबाहेर")}).fillna("")
         cols = ["id", "near", "confidence", "score", "track106", "area_ha", "slope_deg", "hv_change_db",
                 "hh_change_db", "coherence", "coherence_vs_local", "lat", "lon", "map"]
         st.markdown(tr("{n} likely slide zones, sorted by score. Score adds three pieces of evidence: steepness, radar "
@@ -120,20 +128,23 @@ with tab_z:
         cc = st.column_config
         zev = st.dataframe(df[[c for c in cols if c in df]], hide_index=True, width="stretch", on_select="rerun",
                      selection_mode="single-row", key="explore_zone_table",
-                     column_config={"id": "Zone", "confidence": "Confidence",
-                                    "track106": cc.TextColumn("Second track", help="Did NISAR track 106 "
-                                                              "(3 to 15 July) find this zone too? See Method."),
-                                    "score": cc.ProgressColumn("Score", min_value=0, max_value=1, format="%.2f"),
-                                    "area_ha": cc.NumberColumn("Area (ha)", format="%.1f"),
-                                    "slope_deg": cc.NumberColumn("Slope (°)", format="%.0f"),
-                                    "hv_change_db": cc.NumberColumn("HV change (dB)", format="%.1f"),
-                                    "hh_change_db": cc.NumberColumn("HH change (dB)", format="%.1f"),
-                                    "coherence": cc.NumberColumn("Coherence", format="%.2f"),
-                                    "coherence_vs_local": cc.NumberColumn("Coherence vs 1 km", format="%.2f"),
+                     column_config={"id": tr("Zone", "क्षेत्र"), "confidence": tr("Confidence", "खात्री"),
+                                    "track106": cc.TextColumn(tr("2nd orbit", "दुसरी कक्षा"),
+                                                              help=tr("NISAR track 106, 3 to 15 July",
+                                                                      "निसार मार्ग १०६, ३ ते १५ जुलै")),
+                                    "score": cc.ProgressColumn(tr("Score", "गुण"), min_value=0, max_value=1,
+                                                               format="%.2f"),
+                                    "area_ha": cc.NumberColumn(tr("Area (ha)", "क्षेत्रफळ (हे.)"), format="%.1f"),
+                                    "slope_deg": cc.NumberColumn(tr("Slope (°)", "उतार (°)"), format="%.0f"),
+                                    "hv_change_db": cc.NumberColumn(tr("HV change (dB)", "HV बदल (dB)"), format="%.1f"),
+                                    "hh_change_db": cc.NumberColumn(tr("HH change (dB)", "HH बदल (dB)"), format="%.1f"),
+                                    "coherence": cc.NumberColumn(tr("Coherence", "कोहेरन्स"), format="%.2f"),
+                                    "coherence_vs_local": cc.NumberColumn(tr("Coherence vs 1 km", "कोहेरन्स, १ किमीच्या तुलनेत"),
+                                                                          format="%.2f"),
                                     "lat": cc.NumberColumn("Lat", format="%.4f"),
                                     "lon": cc.NumberColumn("Lon", format="%.4f"),
-                                    "near": "Nearest place",
-                                    "map": cc.LinkColumn("Map", display_text="Open")})
+                                    "near": tr("Nearest place", "जवळचे ठिकाण"),
+                                    "map": cc.LinkColumn(tr("Map", "नकाशा"), display_text=tr("Open", "उघडा"))})
         zsel = (zev.selection.rows if zev and hasattr(zev, "selection") else []) or []
         if zsel:
             zid = df.iloc[zsel[0]]["id"]
@@ -144,10 +155,11 @@ with tab_z:
         st.page_link("views/5_Field.py", label=tr("Field check list: print it, KML for phones, CSV",
                                                    "क्षेत्रीय तपासणी यादी: छपाई, फोनसाठी KML, CSV"),
                      icon=":material/checklist:")
-        st.caption("Place names: © OpenStreetMap contributors (Nominatim). Zones are leads to check, "
-                   "not confirmed landslides.")
+        st.caption(tr("Place names: © OpenStreetMap contributors (Nominatim). Zones are leads to check, not confirmed "
+                      "landslides.", "ठिकाणांची नावे: © OpenStreetMap योगदानकर्ते (Nominatim). क्षेत्रे तपासण्याचे संकेत "
+                      "आहेत, निश्चित भूस्खलने नाहीत."))
     else:
-        st.info("No slide zones in this run.")
+        st.info(tr("No slide zones in this run.", "या निकालात भूस्खलन क्षेत्रे नाहीत."))
 with tab_w:
     fl = data.flood_patches()
     if fl:
@@ -184,15 +196,20 @@ with tab_t:
     if rain is not None:
         st.plotly_chart(charts.rainfall(rain, before, after, passes=data.passes()), width="stretch", config={"displayModeBar": False})
     else:
-        st.info("Daily rainfall appears here once `data/reference/rainfall.csv` is added.")
+        st.info(tr("Rainfall chart appears here once `data/reference/rainfall.csv` is added.",
+                   "`data/reference/rainfall.csv` जोडल्यावर पावसाचा आलेख येथे दिसेल."))
     tl = data.table("timeline.csv")
     if tl is not None and len(tl) > 1:
-        st.markdown("**Surface area of Pune's rivers and reservoirs on each NISAR pass of this orbit**")
+        st.markdown("**" + tr("Surface area of Pune's rivers and reservoirs on each NISAR pass of this orbit",
+                              "या कक्षेतील प्रत्येक निसार निरीक्षणात पुण्याच्या नद्या आणि धरणांचे पृष्ठफळ") + "**")
         st.plotly_chart(charts.timeline(tl), width="stretch", config={"displayModeBar": False})
-        st.caption("Dark water on each date, counted inside the area where the JRC record has seen water at least "
-                   "once (1984 to 2021), so rain-soaked fields are left out. Every point is the same orbit and radar "
-                   "mode; NISAR used a different mode on this orbit from 27 August to 2 October, so those passes are "
-                   "not shown.")
+        st.caption(tr("Dark water on each date, counted inside the area where the JRC record has seen water at least "
+                      "once (1984 to 2021), so rain-soaked fields are left out. Every point is the same orbit and radar "
+                      "mode; NISAR used a different mode on this orbit from 27 August to 2 October, so those passes are "
+                      "not shown.", "प्रत्येक तारखेचे गडद पाणी, JRC नोंदीत (१९८४ ते २०२१) किमान एकदा पाणी दिसलेल्या "
+                      "भागात मोजलेले, त्यामुळे पावसाने भिजलेली शेते वगळली आहेत. प्रत्येक बिंदू एकाच कक्षेचा आणि रडार "
+                      "पद्धतीचा आहे; २७ ऑगस्ट ते २ ऑक्टोबर दरम्यान निसारने या कक्षेत वेगळी पद्धत वापरली, म्हणून ती "
+                      "निरीक्षणे दाखवलेली नाहीत."))
     else:
         st.info("The monsoon timeline appears once more NISAR dates are cropped (`python -m pipeline.crop --timeline`).")
 with tab_e:
@@ -204,7 +221,9 @@ with tab_e:
     else:
         st.info("Reported events appear here once `data/reference/events.geojson` is added.")
 with tab_d:
-    st.markdown("GeoTIFFs are on the analysis grid (UTM zone 43N, 40 m). GeoJSON is in WGS84.")
+    st.markdown(tr("GeoTIFFs are on the analysis grid (UTM zone 43N, 40 m). GeoJSON is in WGS84. File descriptions are "
+                   "in English.", "GeoTIFF विश्लेषण ग्रिडवर आहेत (UTM झोन 43N, 40 मी). GeoJSON WGS84 मध्ये आहे. "
+                   "फाइल वर्णने इंग्रजीत आहेत."))
     what = {"new_water.tif": "all new water (GeoTIFF)", "flooding.tif": "flooding only, never water before (GeoTIFF)",
             "possible_water_under_cover.tif": "possible water under trees or buildings (GeoTIFF)",
             "slide_zones.tif": "likely slide zones (GeoTIFF)", "hh_change_db.tif": "HH radar change in dB (GeoTIFF)",

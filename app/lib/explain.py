@@ -3,10 +3,12 @@ from __future__ import annotations
 
 from . import ui
 
-INK, MUTED, WATER, SLIDE, GROUND = ui.INK, ui.MUTED, "#2a78d6", "#eb6834", "#b9a98e"
+INK, MUTED, WATER, SLIDE, GROUND = ui.INK, ui.MUTED, "#3d8ef0", "#f0743a", "#b9a98e"
+LINE, WALL = "#d9dedd", "#8c979e"
 
 
-def _arrow(x1, y1, x2, y2, color=INK, w=2.5, dash=""):
+def _arrow(x1, y1, x2, y2, color=None, w=2.5, dash=""):
+    color = color or INK
     d = f' stroke-dasharray="{dash}"' if dash else ""
     return (f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{color}" stroke-width="{w}"{d} '
             f'marker-end="url(#ah-{color.strip("#")})"/>')
@@ -19,6 +21,9 @@ def _sat(x, y):
 
 
 def svg() -> str:
+    global INK, MUTED, LINE, WALL, GROUND        # drawn in the colours of the active light or dark theme
+    INK, MUTED, LINE = ui.ink(), ui.muted(), ui.hairline()
+    WALL, GROUND = ("#6f7d8c", "#8a7a62") if ui.dark() else ("#8c979e", "#b9a98e")
     tr = ui.tr
     panels = [
         (tr("Calm water looks dark", "शांत पाणी गडद दिसते"),
@@ -42,7 +47,7 @@ def svg() -> str:
     for k, (title, sub) in enumerate(panels):
         x0 = k * PW
         if k:
-            parts.append(f'<line x1="{x0}" y1="18" x2="{x0}" y2="{H - 18}" stroke="#d9dedd"/>')
+            parts.append(f'<line x1="{x0}" y1="18" x2="{x0}" y2="{H - 18}" stroke="{LINE}"/>')
         parts.append(_sat(x0 + 200, 34))
         gy = 150
         if k == 0:
@@ -58,7 +63,7 @@ def svg() -> str:
                 parts.append(_arrow(x0 + 125, gy - 8, x0 + 125 + dx, gy - 8 + dy, INK, 1.8))
         elif k == 2:
             parts.append(f'<rect x="{x0 + 20}" y="{gy}" width="210" height="16" rx="3" fill="{WATER}" opacity=".85"/>')
-            parts.append(f'<rect x="{x0 + 70}" y="{gy - 70}" width="22" height="72" fill="#8c979e"/>')
+            parts.append(f'<rect x="{x0 + 70}" y="{gy - 70}" width="22" height="72" fill="{WALL}"/>')
             parts.append(_arrow(x0 + 188, 46, x0 + 130, gy - 4))
             parts.append(_arrow(x0 + 130, gy - 4, x0 + 95, gy - 30))
             parts.append(_arrow(x0 + 95, gy - 30, x0 + 182, 50, INK, 3.5))

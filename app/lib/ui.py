@@ -7,129 +7,194 @@ import streamlit as st
 
 from . import data
 
-INK = "#1d3346"       # monsoon slate: text and buttons (blue is reserved for water)
+INK = "#1d3346"       # map ink (the map has its own light/dark styling); page text follows the theme
 MUTED = "#5d6b75"
 RADAR = "#7d878f"
 PAPER = "#f4f6f5"
 LINE = "#d9dedd"
-COLORS = {"new_water": "#2a78d6", "flood": "#1c5cab", "rise": "#6da7ec", "slide_zones": "#eb6834", "brighter": "#1baf7a", "permanent": "#b7d3f6"}
+COLORS = {"new_water": "#3d8ef0", "flood": "#2f6fd0", "rise": "#6da7ec", "slide_zones": "#f0743a", "brighter": "#1baf7a",
+          "permanent": "#9cc3f2"}
+SPACE = "#070c17"     # night sky behind the hero, in both themes
 
-CSS = f"""
+# Page styling works in Streamlit's light AND dark theme (.streamlit/config.toml): text inherits the theme's
+# colour, neutrals are translucent, and accents are mid-tone data colours that read on both.
+CSS = """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans+Devanagari:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
-html, body, .stApp, .stMarkdown, button, input, textarea, select, label, p, li, td, th {{
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans+Devanagari:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+:root {
+  --ml-line: rgba(128, 146, 172, .26);
+  --ml-panel: rgba(128, 150, 182, .07);
+  --ml-panel-2: rgba(128, 150, 182, .13);
+  --ml-water: #3d8ef0; --ml-flood: #2f6fd0; --ml-slide: #f0743a; --ml-beam: #6fe3ff;
+  --ml-space: #070c17; --ml-space-2: #0d1830;
+  --ml-shadow: 0 1px 2px rgba(5, 12, 30, .06), 0 8px 24px rgba(5, 12, 30, .07);
+}
+html, body, .stApp, .stMarkdown, button, input, textarea, select, label, p, li, td, th {
   font-family: 'IBM Plex Sans', 'IBM Plex Sans Devanagari', system-ui, sans-serif;
-}}
-[data-testid="stIconMaterial"], .material-symbols-rounded {{
-  font-family: 'Material Symbols Rounded' !important;
-}}
-.stApp {{ background: {PAPER}; color: {INK}; }}
-.block-container {{ padding-top: 2.2rem; max-width: 1180px; }}
-h1, h2, h3, .ml-display {{
-  font-family: 'IBM Plex Sans Condensed', 'IBM Plex Sans Devanagari', sans-serif;
-  color: {INK}; letter-spacing: -0.01em;
-}}
-h1 {{ font-size: 2.6rem; line-height: 1.05; font-weight: 700; }}
-h2 {{ font-size: 1.7rem; line-height: 1.15; font-weight: 700; margin-top: 1.6rem; }}
-h3 {{ font-size: 1.2rem; font-weight: 600; }}
-p, li {{ font-size: 1.02rem; line-height: 1.6; max-width: 72ch; }}
-.ml-lede {{ font-size: 1.18rem; line-height: 1.55; color: {INK}; max-width: 60ch; }}
-.ml-muted {{ color: {MUTED}; font-size: 0.93rem; }}
-.ml-hero {{ font-size: clamp(2rem, 3.1vw, 3.3rem); line-height: 1.03; font-weight: 700; margin: 0 0 0.6rem 0; text-wrap: balance; }}
-.ml-dates {{ font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; color: {RADAR};
-  font-size: 1.05rem; margin-bottom: 1.2rem; }}
-.ml-finding {{ display: grid; grid-template-columns: 18px 7.5rem 1fr; gap: 0.2rem 0.9rem;
-  align-items: baseline; padding: 0.7rem 0; border-top: 1px solid {LINE}; }}
-.ml-finding:last-child {{ border-bottom: 1px solid {LINE}; }}
-.ml-swatch {{ width: 14px; height: 14px; border-radius: 3px; display: inline-block; transform: translateY(2px); }}
-.ml-swatch.hatch {{ background-image: repeating-linear-gradient(45deg, currentColor 0 3px, transparent 3px 6px); }}
-.ml-num {{ font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 700; font-size: 1.6rem; color: {INK};
-  white-space: nowrap; }}
-.ml-num small {{ font-size: 0.95rem; font-weight: 600; color: {MUTED}; margin-left: 0.15rem; }}
-.ml-text {{ font-size: 1rem; line-height: 1.45; }}
-.ml-banner {{ background: #fff4d6; border: 1px solid #e9c46a; color: #5a4300; padding: 0.7rem 1rem;
-  border-radius: 6px; font-size: 0.95rem; margin-bottom: 1rem; }}
-.ml-banner b {{ color: #3d2e00; }}
-.ml-note {{ border-left: 3px solid {INK}; padding: 0.2rem 0 0.2rem 0.9rem; color: {INK}; margin: 0.8rem 0; }}
-.ml-legend {{ display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; font-size: 0.9rem; color: {INK}; margin: 0.4rem 0 0.6rem; }}
-.ml-legend span {{ display: inline-flex; align-items: center; gap: 0.4rem; }}
-.ml-step {{ font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; color: {RADAR}; font-size: 1rem; }}
-.ml-source {{ font-size: 0.82rem; color: {MUTED}; }}
-.ml-source a {{ color: {MUTED}; }}
-.stButton > button, .stLinkButton > a, .stPageLink a {{ border-radius: 6px; }}
-.stButton > button[kind="primary"] {{ background: {INK}; border-color: {INK}; }}
-[data-testid="stSidebar"] {{ background: #eaeeed; }}
-:focus-visible {{ outline: 3px solid #2a78d6 !important; outline-offset: 2px; }}
-@media (max-width: 640px) {{
-  .ml-finding {{ grid-template-columns: 16px 6rem 1fr; }}
-  .ml-num {{ font-size: 1.3rem; }}
-  h1 {{ font-size: 2rem; }}
-}}
-@media (prefers-reduced-motion: reduce) {{ * {{ animation: none !important; transition: none !important; }} }}
-/* evidence cards */
-.ml-card {{ background: #fff; border: 1px solid {LINE}; border-radius: 12px; padding: 14px 16px; margin: 0 0 14px; }}
-.ml-card-head {{ display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }}
-.ml-id {{ font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 700; font-size: 1.3rem; color: {INK}; }}
-.ml-card.flood .ml-id {{ color: #1c5cab; }}
-.ml-place {{ color: {MUTED}; flex: 1; min-width: 10rem; }}
-.ml-pill {{ font-size: 0.8rem; font-weight: 600; padding: 2px 10px; border-radius: 99px; background: #fbe3d8; color: #7a2f10; white-space: nowrap; }}
-.ml-pill.high {{ background: #eb6834; color: #fff; }}
-.ml-pill.low {{ background: #efebe8; color: {MUTED}; }}
-.ml-card-body {{ display: flex; gap: 16px; flex-wrap: wrap; }}
-.ml-chips {{ display: flex; gap: 8px; flex-wrap: wrap; }}
-.ml-chips figure {{ margin: 0; }}
-.ml-chips img {{ width: 150px; height: 150px; border-radius: 8px; display: block; image-rendering: pixelated; background: #0d1b26; }}
-.ml-chips figcaption {{ font-size: 0.78rem; color: {MUTED}; text-align: center; margin-top: 3px; }}
-.ml-facts {{ flex: 1; min-width: 260px; }}
-.ml-facts p, .ml-facts li {{ font-size: 0.95rem; line-height: 1.5; }}
-.ml-facts-h {{ font-weight: 600; color: {INK}; margin: 0 0 0.2rem !important; }}
-.ml-why {{ margin: 0 0 0.7rem; padding-left: 1.1rem; }}
-.ml-checks {{ list-style: none; margin: 0 0 0.7rem; padding-left: 0; }}
-.ml-checks li {{ display: flex; gap: 0.55rem; align-items: baseline; margin: 0.15rem 0; }}
-.ml-ck {{ display: inline-grid; place-items: center; width: 1.25rem; height: 1.25rem; border-radius: 50%;
-  font-size: 0.72rem; font-weight: 700; flex: none; transform: translateY(2px); }}
-.ml-ck.ok {{ background: {INK}; color: #fff; }}
-.ml-ck.no {{ border: 1.5px solid {MUTED}; color: {MUTED}; }}
-.ml-ck.na {{ border: 1.5px dashed #aab4ba; color: #8c979e; }}
-.ml-links {{ font-size: 0.9rem !important; color: {MUTED}; margin: 0; }}
-.ml-links a {{ color: #1c5cab; font-weight: 600; }}
-.ml-card-note {{ font-size: 0.8rem !important; color: {MUTED}; margin: 0.7rem 0 0; max-width: none; }}
+}
+[data-testid="stIconMaterial"], .material-symbols-rounded { font-family: 'Material Symbols Rounded' !important; }
+.block-container { padding-top: 3.8rem; max-width: 1200px; }
+h1, h2, h3, .ml-display {
+  font-family: 'IBM Plex Sans Condensed', 'IBM Plex Sans Devanagari', sans-serif; letter-spacing: -0.01em;
+}
+h1 { font-size: 2.6rem; line-height: 1.05; font-weight: 700; }
+h2 { font-size: 1.75rem; line-height: 1.15; font-weight: 700; margin-top: 1.8rem; }
+h3 { font-size: 1.2rem; font-weight: 600; }
+p, li { font-size: 1.02rem; line-height: 1.6; max-width: 74ch; }
+.ml-muted, .ml-source, .ml-dates, .ml-step, .ml-kicker, .ml-pathd, .ml-place, .ml-card-note, .ml-links,
+.ml-stat .sure, .ml-chips figcaption, [data-testid="stCaptionContainer"] {
+  color: color-mix(in srgb, currentColor 70%, transparent) !important;
+}
+.ml-lede { font-size: 1.16rem; line-height: 1.6; max-width: 62ch; }
+.ml-muted { font-size: 0.93rem; }
+.ml-dates { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; font-size: 1.05rem; margin-bottom: 1.1rem; }
+.ml-step, .ml-kicker { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; font-size: 1rem; margin: 0; }
+.ml-source { font-size: 0.82rem; } .ml-source a { color: inherit; }
+.ml-note { border-left: 3px solid currentColor; padding: 0.2rem 0 0.2rem 0.9rem; margin: 0.8rem 0; }
+.ml-banner { background: #fff4d6; border: 1px solid #e9c46a; color: #5a4300; padding: 0.7rem 1rem;
+  border-radius: 8px; font-size: 0.95rem; margin-bottom: 1rem; }
+.stButton > button, .stLinkButton > a, .stPageLink a { border-radius: 10px; transition: transform .15s ease, box-shadow .15s ease; }
+.stButton > button:hover { transform: translateY(-1px); box-shadow: var(--ml-shadow); }
+:focus-visible { outline: 3px solid var(--ml-water) !important; outline-offset: 2px; }
+iframe[title="streamlit_folium.st_folium"] { border-radius: 14px; box-shadow: var(--ml-shadow); }
 
-/* overview */
-.ml-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap: 14px; margin: 0.4rem 0 1.4rem; }}
-.ml-stat {{ background: #fff; border: 1px solid {LINE}; border-radius: 12px; padding: 16px 18px 14px 22px; position: relative; }}
-.ml-stat::before {{ content: ""; position: absolute; left: 0; top: 16px; bottom: 16px; width: 5px; border-radius: 0 4px 4px 0;
-  background: var(--c, {INK}); }}
-.ml-stat.hatch::before {{ background: repeating-linear-gradient(45deg, var(--c) 0 3px, transparent 3px 6px); }}
-.ml-stat .k {{ font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 700; font-size: 2.5rem; line-height: 1; color: {INK}; }}
-.ml-stat .k small {{ font-size: 1.05rem; font-weight: 600; color: {MUTED}; margin-left: 0.2rem; }}
-.ml-stat .lbl {{ margin: 0.45rem 0 0.6rem; font-size: 0.98rem; line-height: 1.45; }}
-.ml-stat .sure {{ font-size: 0.84rem; line-height: 1.45; color: {MUTED}; border-top: 1px dashed {LINE}; padding-top: 0.5rem; margin: 0; }}
-.ml-checkrow {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0; margin: 0.4rem 0 1.4rem;
-  background: {INK}; border-radius: 12px; overflow: hidden; }}
-.ml-check {{ padding: 16px 18px; color: #e8eef2; border-right: 1px solid #2c4a62; }}
-.ml-check:last-child {{ border-right: none; }}
-.ml-check .k {{ font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 700; font-size: 1.9rem; color: #fff; line-height: 1.05; }}
-.ml-check .t {{ font-weight: 600; color: #fff; margin: 0.3rem 0 0.25rem; font-size: 0.95rem; }}
-.ml-check p {{ font-size: 0.86rem; line-height: 1.45; color: #c3d0d9; margin: 0; }}
-.ml-pass {{ display: flex; gap: 0.8rem; align-items: center; background: #e7eef5; border-radius: 10px; padding: 10px 14px;
-  color: {INK}; font-size: 0.95rem; margin: 0.2rem 0 1.2rem; }}
-.ml-pass b {{ font-family: 'IBM Plex Sans Condensed', sans-serif; font-size: 1.05rem; }}
-[data-testid="stVerticalBlockBorderWrapper"] {{ border-radius: 12px; }}
-.ml-pathd {{ color: {MUTED}; font-size: 0.93rem; line-height: 1.45; margin: 0.1rem 0 0.4rem; }}
-.ml-dlrow {{ display: flex; flex-wrap: wrap; gap: 10px; margin: 0.2rem 0 1.2rem; }}
-.ml-dl {{ display: inline-flex; flex-direction: column; gap: 1px; padding: 9px 14px; border-radius: 8px; border: 1px solid {LINE};
-  background: #fff; color: {INK} !important; text-decoration: none !important; font-weight: 600; font-size: 0.93rem; }}
-.ml-dl small {{ font-weight: 400; color: {MUTED}; font-size: 0.78rem; }}
-.ml-dl.primary {{ background: {INK}; border-color: {INK}; color: #fff !important; }}
-.ml-dl.primary small {{ color: #c3d0d9; }}
-.ml-dl:hover {{ border-color: {INK}; }}
-.ml-kicker {{ font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; color: {RADAR}; font-size: 0.95rem; margin: 0; }}
-@media (max-width: 640px) {{
-  .ml-chips img {{ width: 28vw; height: 28vw; }}
-  .ml-stat .k {{ font-size: 2.1rem; }}
-  .ml-check {{ border-right: none; border-bottom: 1px solid #2c4a62; }}
-}}
+/* sidebar */
+[data-testid="stSidebar"] .ml-brand-sub { font-size: .82rem; line-height: 1.4; margin: .2rem 0 .6rem;
+  color: color-mix(in srgb, currentColor 65%, transparent); }
+[data-testid="stLogo"] { height: 2.6rem !important; max-width: 15rem !important; }
+
+/* hero: a night-sky panel in both themes */
+.st-key-hero { position: relative; overflow: hidden; border-radius: 22px; padding: 2.2rem 2.2rem 1.6rem 2.4rem;
+  background: radial-gradient(1200px 500px at 85% -10%, #16305c 0%, rgba(22,48,92,0) 60%),
+              radial-gradient(800px 400px at 0% 110%, #1b1f4a 0%, rgba(27,31,74,0) 55%),
+              linear-gradient(180deg, #070c17 0%, #0b1426 100%);
+  color: #e8eef7; box-shadow: 0 20px 60px rgba(4, 10, 25, .35); margin-bottom: .6rem; }
+.st-key-hero::before { content: ""; position: absolute; inset: -50%; pointer-events: none; opacity: .75;
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #fff 50%, transparent 51%), radial-gradient(1px 1px at 120px 80px, #cfe3ff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 200px 160px, #fff 50%, transparent 51%), radial-gradient(1px 1px at 330px 50px, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 420px 210px, #bcd6ff 50%, transparent 51%), radial-gradient(1.2px 1.2px at 520px 120px, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 610px 260px, #fff 50%, transparent 51%), radial-gradient(1px 1px at 70px 240px, #dbe8ff 50%, transparent 51%);
+  background-size: 640px 300px; animation: ml-drift 140s linear infinite; }
+@keyframes ml-drift { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-640px, 300px, 0); } }
+.st-key-hero > div { position: relative; z-index: 1; }
+.st-key-hero h1, .st-key-hero p, .st-key-hero .ml-dates, .st-key-hero .ml-kicker { color: #e8eef7 !important; }
+.st-key-hero .ml-dates, .st-key-hero .ml-kicker { color: #9fb7d8 !important; }
+.st-key-hero .ml-kicker { display: inline-flex; width: max-content; max-width: 100%; gap: .5rem; align-items: center; background: rgba(111, 227, 255, .10);
+  border: 1px solid rgba(111, 227, 255, .28); padding: .25rem .75rem; border-radius: 99px; font-size: .9rem; margin-bottom: .9rem; }
+.st-key-hero .ml-kicker i { width: .5rem; height: .5rem; border-radius: 50%; background: var(--ml-beam);
+  box-shadow: 0 0 10px var(--ml-beam); animation: ml-blink 2.4s ease-in-out infinite; }
+@keyframes ml-blink { 50% { opacity: .35; } }
+.ml-hero { font-size: clamp(2.1rem, 3.4vw, 3.5rem); line-height: 1.02; font-weight: 700; margin: 0 0 .7rem 0;
+  text-wrap: balance; color: #f2f6fc !important; }
+.st-key-herobtns { gap: .55rem !important; }
+.st-key-hero .stButton > button { border-radius: 99px; padding: .3rem .85rem !important; min-height: 2.3rem !important; }
+.st-key-hero .stButton > button[kind="secondary"] { background: rgba(255,255,255,.06); color: #e8eef7;
+  border-color: rgba(255,255,255,.28); }
+.st-key-hero [data-testid="stCaptionContainer"] { color: #8ea5c5 !important; }
+
+/* findings */
+.ml-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(172px, 1fr)); gap: 14px; margin: 0.4rem 0 1.4rem; }
+.ml-stat { background: var(--ml-panel); border: 1px solid var(--ml-line); border-radius: 16px; padding: 16px 18px 14px 22px;
+  position: relative; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  animation: ml-rise .6s cubic-bezier(.2, .7, .2, 1) both; }
+.ml-grid .ml-stat:nth-child(2) { animation-delay: .08s; } .ml-grid .ml-stat:nth-child(3) { animation-delay: .16s; }
+.ml-grid .ml-stat:nth-child(4) { animation-delay: .24s; } .ml-grid .ml-stat:nth-child(5) { animation-delay: .32s; }
+@keyframes ml-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.ml-stat:hover { transform: translateY(-2px); box-shadow: var(--ml-shadow); border-color: color-mix(in srgb, var(--c, #3d8ef0) 55%, transparent); }
+.ml-stat::before { content: ""; position: absolute; left: 0; top: 16px; bottom: 16px; width: 5px; border-radius: 0 4px 4px 0;
+  background: var(--c, currentColor); box-shadow: 0 0 14px color-mix(in srgb, var(--c, #3d8ef0) 60%, transparent); }
+.ml-stat.hatch::before { background: repeating-linear-gradient(45deg, var(--c) 0 3px, transparent 3px 6px); box-shadow: none; }
+.ml-stat .k { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 700; font-size: 2.5rem; line-height: 1; }
+.ml-stat .k small { font-size: 1.05rem; font-weight: 600; margin-left: 0.2rem; color: color-mix(in srgb, currentColor 65%, transparent); }
+.ml-stat .lbl { margin: 0.45rem 0 0.6rem; font-size: 0.98rem; line-height: 1.45; overflow-wrap: break-word; }
+[lang="de"] .ml-stat .lbl, [lang="de"] .ml-stat .sure { hyphens: auto; }   /* long German compounds */
+.ml-stat .sure { font-size: 0.84rem; line-height: 1.45; border-top: 1px dashed var(--ml-line); padding-top: 0.5rem; margin: 0; }
+.ml-checkrow { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0; margin: 0.4rem 0 1.4rem;
+  background: linear-gradient(135deg, #0b1630 0%, #13234a 100%); border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(111, 227, 255, .18); box-shadow: 0 12px 40px rgba(4, 10, 25, .25); }
+.ml-check { padding: 18px 18px; color: #e8eef2; border-right: 1px solid rgba(160, 190, 230, .16); }
+.ml-check:last-child { border-right: none; }
+.ml-check .k { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 700; font-size: 2rem; color: #fff; line-height: 1.05; }
+.ml-check .t { font-weight: 600; color: #9fe9ff; margin: 0.3rem 0 0.25rem; font-size: 0.95rem; }
+.ml-check p { font-size: 0.86rem; line-height: 1.45; color: #c3d0e0; margin: 0; }
+.ml-pass { display: flex; gap: 0.8rem; align-items: center; background: var(--ml-panel-2); border: 1px solid var(--ml-line);
+  border-radius: 12px; padding: 10px 14px; font-size: 0.95rem; margin: 0.2rem 0 1.2rem; }
+.ml-pass b { font-family: 'IBM Plex Sans Condensed', sans-serif; font-size: 1.05rem; }
+.ml-pass .orb { width: 34px; height: 34px; flex: none; }
+[data-testid="stVerticalBlockBorderWrapper"] { border-radius: 16px; }
+.st-key-paths [data-testid="stVerticalBlockBorderWrapper"] { transition: transform .2s ease, box-shadow .2s ease; background: var(--ml-panel); }
+.st-key-paths [data-testid="stVerticalBlockBorderWrapper"]:hover { transform: translateY(-3px); box-shadow: var(--ml-shadow); }
+.ml-pathd { font-size: 0.93rem; line-height: 1.45; margin: 0.1rem 0 0.4rem; }
+.ml-path-ic { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; margin-bottom: .4rem;
+  background: color-mix(in srgb, var(--c) 18%, transparent); color: var(--c); font-size: 1.3rem; }
+
+/* findings list (story) */
+.ml-finding { display: grid; grid-template-columns: 18px 7.5rem 1fr; gap: 0.2rem 0.9rem; align-items: baseline;
+  padding: 0.7rem 0; border-top: 1px solid var(--ml-line); }
+.ml-finding:last-child { border-bottom: 1px solid var(--ml-line); }
+.ml-swatch { width: 14px; height: 14px; border-radius: 3px; display: inline-block; transform: translateY(2px); }
+.ml-swatch.hatch { background-image: repeating-linear-gradient(45deg, currentColor 0 3px, transparent 3px 6px); }
+.ml-num { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 700; font-size: 1.6rem; white-space: nowrap; }
+.ml-num small { font-size: 0.95rem; font-weight: 600; margin-left: 0.15rem; color: color-mix(in srgb, currentColor 65%, transparent); }
+.ml-text { font-size: 1rem; line-height: 1.45; }
+.ml-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; font-size: 0.9rem; margin: 0.4rem 0 0.6rem; }
+.ml-legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+
+/* evidence cards */
+.ml-card { background: var(--ml-panel); border: 1px solid var(--ml-line); border-radius: 16px; padding: 14px 16px; margin: 0 0 14px;
+  transition: box-shadow .2s ease; }
+.ml-card:hover { box-shadow: var(--ml-shadow); }
+.ml-card-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.ml-id { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 700; font-size: 1.3rem; }
+.ml-card.flood .ml-id { color: var(--ml-water); }
+.ml-place { flex: 1; min-width: 10rem; }
+.ml-pill { font-size: 0.8rem; font-weight: 600; padding: 2px 10px; border-radius: 99px; white-space: nowrap;
+  background: color-mix(in srgb, var(--ml-slide) 20%, transparent); color: var(--ml-slide); }
+.ml-pill.high { background: var(--ml-slide); color: #fff; box-shadow: 0 0 14px color-mix(in srgb, var(--ml-slide) 55%, transparent); }
+.ml-pill.low { background: var(--ml-panel-2); color: inherit; }
+.ml-card-body { display: flex; gap: 16px; flex-wrap: wrap; }
+.ml-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.ml-chips figure { margin: 0; }
+.ml-chips img { width: 150px; height: 150px; border-radius: 10px; display: block; image-rendering: pixelated; background: #0d1b26;
+  border: 1px solid var(--ml-line); }
+.ml-chips figcaption { font-size: 0.78rem; text-align: center; margin-top: 3px; }
+.ml-facts { flex: 1; min-width: 260px; }
+.ml-facts p, .ml-facts li { font-size: 0.95rem; line-height: 1.5; }
+.ml-facts-h { font-weight: 600; margin: 0 0 0.2rem !important; }
+.ml-why { margin: 0 0 0.7rem; padding-left: 1.1rem; }
+.ml-checks { list-style: none; margin: 0 0 0.7rem; padding-left: 0; }
+.ml-checks li { display: flex; gap: 0.55rem; align-items: baseline; margin: 0.15rem 0; }
+.ml-ck { display: inline-grid; place-items: center; width: 1.25rem; height: 1.25rem; border-radius: 50%;
+  font-size: 0.72rem; font-weight: 700; flex: none; transform: translateY(2px); }
+.ml-ck.ok { background: var(--ml-water); color: #fff; }
+.ml-ck.no { border: 1.5px solid color-mix(in srgb, currentColor 55%, transparent); color: color-mix(in srgb, currentColor 70%, transparent); }
+.ml-ck.na { border: 1.5px dashed color-mix(in srgb, currentColor 40%, transparent); color: color-mix(in srgb, currentColor 55%, transparent); }
+.ml-links { font-size: 0.9rem !important; margin: 0; }
+.ml-links a { color: var(--ml-water); font-weight: 600; }
+.ml-card-note { font-size: 0.8rem !important; margin: 0.7rem 0 0; max-width: none; }
+
+/* downloads */
+.ml-dlrow { display: flex; flex-wrap: wrap; gap: 10px; margin: 0.2rem 0 1.2rem; }
+.ml-dl { display: inline-flex; flex-direction: column; gap: 1px; padding: 10px 15px; border-radius: 12px; border: 1px solid var(--ml-line);
+  background: var(--ml-panel); color: inherit !important; text-decoration: none !important; font-weight: 600; font-size: 0.93rem;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
+.ml-dl small { font-weight: 400; font-size: 0.78rem; color: color-mix(in srgb, currentColor 65%, transparent); }
+.ml-dl.primary { background: linear-gradient(135deg, #1f6fd1, #3d8ef0); border-color: transparent; color: #fff !important; }
+.ml-dl.primary small { color: #dbe9ff; }
+.ml-dl:hover { transform: translateY(-1px); box-shadow: var(--ml-shadow); border-color: var(--ml-water); }
+
+@media (max-width: 640px) {
+  .ml-finding { grid-template-columns: 16px 6rem 1fr; }
+  .ml-num { font-size: 1.3rem; }
+  h1 { font-size: 2rem; }
+  .st-key-hero { padding: 1.4rem 1.1rem 1rem; border-radius: 16px; }
+  .ml-chips img { width: 28vw; height: 28vw; }
+  .ml-stat .k { font-size: 2.1rem; }
+  .ml-grid { grid-template-columns: 1fr !important; }
+  .ml-check { border-right: none; border-bottom: 1px solid rgba(160, 190, 230, .16); }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; transition: none !important; } }
 </style>
 """
 
@@ -284,21 +349,27 @@ T = {
 
 
 def english_only_note():
-    """Technical pages are in English only; say so in Marathi instead of switching silently."""
+    """Technical pages are in English only; say so in the chosen language instead of switching silently."""
     if lang() == "mr":
         st.info("हे तांत्रिक पान सध्या बहुतांश इंग्रजीत आहे. आकडे आणि कथा मराठीत पाहण्यासाठी "
                 "मुख्य पान आणि कथा पाहा.")
+    elif lang() == "de":
+        st.info("Diese technische Seite ist auf Englisch. Zahlen und Geschichte gibt es auf den anderen Seiten auf "
+                "Deutsch.")
 
 
 MONTHS = {"en": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
                   "November", "December"],
           "mr": ["जानेवारी", "फेब्रुवारी", "मार्च", "एप्रिल", "मे", "जून", "जुलै", "ऑगस्ट", "सप्टेंबर", "ऑक्टोबर",
-                 "नोव्हेंबर", "डिसेंबर"]}
+                 "नोव्हेंबर", "डिसेंबर"],
+          "de": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober",
+                 "November", "Dezember"]}
 
 
 def day(iso: str) -> str:
-    """'5 July' or '5 जुलै', in the page language."""
-    return f"{int(iso[8:10])} {MONTHS.get(lang(), MONTHS['en'])[int(iso[5:7]) - 1]}"
+    """'5 July', '5 जुलै' or '5. Juli', in the page language."""
+    d = int(iso[8:10])
+    return f"{d}{'.' if lang() == 'de' else ''} {MONTHS.get(lang(), MONTHS['en'])[int(iso[5:7]) - 1]}"
 
 
 def date(iso: str) -> str:
@@ -311,26 +382,77 @@ def lang() -> str:
 
 
 def tr(en: str, mr: str, **kw) -> str:
-    """Inline two-language text for page-specific strings."""
-    s = mr if lang() == "mr" and mr else en
+    """Inline text for page-specific strings: English and Marathi here, German from i18n_de.DE."""
+    if lang() == "de":
+        from .i18n_de import DE
+        s = DE.get(en, en)
+    else:
+        s = mr if lang() == "mr" and mr else en
     return s.format(**kw) if kw else s
 
 
 def t(key: str, **kw) -> str:
-    s = T.get(key, {}).get(lang()) or T.get(key, {}).get("en", key)
+    if lang() == "de":
+        from .i18n_de import DE_T
+        s = DE_T.get(key) or T.get(key, {}).get("en", key)
+    else:
+        s = T.get(key, {}).get(lang()) or T.get(key, {}).get("en", key)
     return s.format(**kw) if kw else s
 
 
+LANGS = {"en": "English", "mr": "मराठी", "de": "Deutsch"}
+ASSETS = __import__("pathlib").Path(__file__).resolve().parents[1] / "assets"
+
+
+def dark() -> bool:
+    """True when the visitor sees Streamlit's dark theme (system setting or ⋮ > Settings)."""
+    try:
+        return (st.context.theme.type or "light") == "dark"
+    except Exception:
+        return False
+
+
+def ink() -> str:
+    """Text colour for SVG and chart text, matching the active theme."""
+    return "#e6edf6" if dark() else "#10213a"
+
+
+def muted() -> str:
+    return "#9fb0c6" if dark() else "#5d6b75"
+
+
+def surface() -> str:
+    """Page background, for rings that separate a mark from what is behind it."""
+    return "#070c17" if dark() else "#f4f7fb"
+
+
+def hairline() -> str:
+    return "rgba(230,237,246,.14)" if dark() else "#dde4ec"
+
+
 def setup(page_title: str):
-    st.set_page_config(page_title=f"MonsoonLens: {page_title}", page_icon="🛰️", layout="wide",
-                       initial_sidebar_state="auto")
+    st.set_page_config(page_title=f"MonsoonLens: {page_title}", page_icon=str(ASSETS / "logo_icon.png"),
+                       layout="wide", initial_sidebar_state="auto")
     st.markdown(CSS, unsafe_allow_html=True)
     data.publish_overlays()
+    if "lang" not in st.session_state:                    # ?lang=de or ?lang=mr opens the app in that language
+        q = st.query_params.get("lang")
+        st.session_state["lang"] = q if q in LANGS else "en"
+    st.logo(str(ASSETS / "logo.png"), icon_image=str(ASSETS / "logo_icon.png"), size="large")
     with st.sidebar:
-        choice = st.radio(t("lang"), ["English", "मराठी"], horizontal=True,
-                          index=0 if lang() == "en" else 1, key="lang_choice")
-        st.session_state["lang"] = "en" if choice == "English" else "mr"
-        st.caption("MonsoonLens, built by team iGenfinity for NASA Space Apps 2026")
+        st.markdown(f'<p class="ml-brand-sub">{tr("What NASA-ISRO NISAR radar saw through the 2026 Pune monsoon",
+                                                  "२०२६ च्या पुणे पावसाळ्यात नासा-इस्रो निसार रडारने काय पाहिले")}</p>',
+                    unsafe_allow_html=True)
+        names = list(LANGS.values())
+        choice = st.radio(t("lang"), names, horizontal=True, index=list(LANGS).index(lang()), key="lang_choice")
+        st.session_state["lang"] = list(LANGS)[names.index(choice)]
+        st.caption(tr("Light or dark: ⋮ menu (top right) › Settings.", "फिका किंवा गडद रंग: ⋮ मेनू (वर उजवीकडे) › Settings."))
+        st.caption(tr("Built by team iGenfinity for NASA Space Apps 2026", "नासा स्पेस ॲप्स २०२६ साठी iGenfinity टीमने बनवले"))
+    # Keep the language in the address, so a shared link opens in the language it was sent in.
+    if lang() != "en":
+        st.query_params["lang"] = lang()
+    elif "lang" in st.query_params:
+        del st.query_params["lang"]
 
 
 def demo_banner():
@@ -366,7 +488,7 @@ def legend(items):
         if kind == "hatch":
             sw = f'<span class="ml-swatch hatch" style="color:{color};border:1px solid {color}"></span>'
         elif kind == "dot":
-            sw = f'<span class="ml-swatch" style="background:#fff;border:2px solid {INK};border-radius:50%"></span>'
+            sw = f'<span class="ml-swatch" style="background:#fff;border:2px solid currentColor;border-radius:50%"></span>'
         elif kind == "outline":
             sw = f'<span class="ml-swatch" style="background:{color}55;border:2px solid {color}"></span>'
         else:
