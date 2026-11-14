@@ -8,8 +8,12 @@ from PIL import Image
 from . import data
 
 
-@st.cache_data(show_spinner=False)
 def hotspot(size=520):
+    return _hotspot(size, data.ver())
+
+
+@st.cache_data(show_spinner=False)
+def _hotspot(size, v):
     """Top-left pixel of the size x size window with the most new water + slide pixels."""
     nw = data.overlay_path("new_water")
     if not nw or not nw.exists():
@@ -29,8 +33,12 @@ def hotspot(size=520):
     return int(r * s), int(c * s)
 
 
-@st.cache_data(show_spinner=False)
 def pair(kind="hh", size=520, with_overlay=False):
+    return _pair(kind, size, with_overlay, data.ver())
+
+
+@st.cache_data(show_spinner=False)
+def _pair(kind, size, with_overlay, v):
     """PIL images (before, after) for the swipe, same window."""
     hs = hotspot(size)
     out = []

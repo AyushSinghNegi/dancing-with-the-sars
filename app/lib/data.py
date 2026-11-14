@@ -34,27 +34,54 @@ def _dir() -> Path | None:
     return Path(s["dir"]) if s["dir"] else None
 
 
-@st.cache_data(show_spinner=False)
+def ver() -> str:
+    """Changes whenever the pipeline output changes (a new deploy checks out new files), so cached
+    reads below are refreshed instead of serving numbers from an older run."""
+    d = _dir()
+    m = d / "metrics.json" if d else None
+    if not m or not m.exists():
+        return "none"
+    st_ = m.stat()
+    return f"{st_.st_mtime_ns}-{st_.st_size}"
+
+
 def metrics() -> dict:
+    return _metrics(ver())
+
+
+@st.cache_data(show_spinner=False)
+def _metrics(v: str) -> dict:
     d = _dir()
     return json.loads((d / "metrics.json").read_text()) if d else {}
 
 
-@st.cache_data(show_spinner=False)
 def bounds() -> dict:
+    return _bounds(ver())
+
+
+@st.cache_data(show_spinner=False)
+def _bounds(v: str) -> dict:
     d = _dir()
     return json.loads((d / "bounds.json").read_text()) if d else {}
 
 
-@st.cache_data(show_spinner=False)
 def geojson(name: str) -> dict | None:
+    return _geojson(name, ver())
+
+
+@st.cache_data(show_spinner=False)
+def _geojson(name: str, v: str) -> dict | None:
     d = _dir()
     p = d / name if d else None
     return json.loads(p.read_text()) if p and p.exists() else None
 
 
-@st.cache_data(show_spinner=False)
 def table(name: str) -> pd.DataFrame | None:
+    return _table(name, ver())
+
+
+@st.cache_data(show_spinner=False)
+def _table(name: str, v: str) -> pd.DataFrame | None:
     d = _dir()
     p = d / name if d else None
     return pd.read_csv(p) if p and p.exists() else None
@@ -76,8 +103,12 @@ def events() -> dict | None:
     return json.loads(p.read_text()) if p.exists() else None
 
 
-@st.cache_resource(show_spinner=False)
 def publish_overlays() -> str | None:
+    return _publish_overlays(ver())
+
+
+@st.cache_resource(show_spinner=False)
+def _publish_overlays(v: str) -> str | None:
     """Copy map images into app/static so the browser loads them by URL (fast, cached)."""
     s = source()
     if not s["dir"]:
