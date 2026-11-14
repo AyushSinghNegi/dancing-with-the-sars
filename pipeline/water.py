@@ -50,6 +50,7 @@ def run(write=True):
         mask = K.clean(valid & (hh_a < t_a + offset) & (hh_b >= t_a + offset) & ~perm)
         sensitivity.append({"offset_db": offset, "threshold_before_db": t_b + offset,
                             "threshold_after_db": t_a + offset,
+                            "classification_usable": usable,
                             "new_water_km2": float(mask.sum() * K.PIXEL_KM2)})
     areas = [r["new_water_km2"] for r in sensitivity]
     stats = [

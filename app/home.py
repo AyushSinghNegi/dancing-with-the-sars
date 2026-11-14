@@ -26,7 +26,7 @@ with right:
     if imgs:
         swipe.render(imgs[0], imgs[1], f"{ui.t('before')}: {data.nice_date(before, False)}",
                      f"{ui.t('after')}: {data.nice_date(after, False)}", height=430, start=50)
-        st.caption("Drag to compare. Dark is smooth: water. Bright is rough: buildings, trees, rock. "
+        st.caption("Drag to compare. Smooth water often appears dark. Buildings, trees and rock can appear bright. "
                    "Area shown: the part of the study box with the most change.")
 
 st.markdown(f"## {ui.t('found')}")

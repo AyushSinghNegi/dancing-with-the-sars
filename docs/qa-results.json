@@ -25,5 +25,7 @@
     "slides": "zero qualifying patches; not evidence of absence",
     "zones": "WorldCover 2021 desk review; 2026 conditions unverified"
   },
-  "live_browser": "water warning and unavailable estimates visibly verified"
+  "live_browser": "water warning and unavailable estimates visibly verified",
+  "csv_quality_status": "included in standalone water sensitivity and water timeline exports",
+  "synthetic_run": "2026-11-14T18:22:28+00:00"
 }

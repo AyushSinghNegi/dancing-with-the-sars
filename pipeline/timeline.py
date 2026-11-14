@@ -15,7 +15,7 @@ from . import nisar_io as io
 ZONE_COLUMNS = ["zone_id", "zone_name", "review_status", "date", "polarization",
                 "median_db", "valid_pixels", "zone_pixels", "granule_id"]
 WATER_COLUMNS = ["date", "mode", "pol", "same_mode_as_primary", "threshold_db",
-                 "valid_fraction", "water_km2", "water_outside_permanent_flat_km2", "granule_id"]
+                 "classification_usable", "valid_fraction", "water_km2", "water_outside_permanent_flat_km2", "granule_id"]
 
 
 def write_csv(path, columns, rows):
@@ -48,6 +48,7 @@ def run(write=True):
         water = valid & (hh < t)
         extra = K.clean(water & ~perm & flat)
         rows.append({"date": m["date"], "mode": m["mode"], "pol": m["pol"], "same_mode_as_primary": True,
+                     "classification_usable": bool(valid.any() and water.sum() / valid.sum() < C.WATER_MAX_DARK_FRACTION),
                      "threshold_db": round(t, 2), "valid_fraction": round(float(valid.mean()), 3),
                      "water_km2": round(float(water.sum() * K.PIXEL_KM2), 2),
                      "water_outside_permanent_flat_km2": round(float(extra.sum() * K.PIXEL_KM2), 2),

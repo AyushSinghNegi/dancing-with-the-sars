@@ -102,7 +102,7 @@ T = {
     "no_data": {"en": "Results are not built yet. Run `python -m pipeline.run_all`.",
                 "mr": "निकाल अजून तयार नाहीत."},
     "layers": {"en": "Layers", "mr": "स्तर"},
-    "legend_new_water": {"en": "New open water", "mr": "नवीन साचलेले पाणी"},
+    "legend_new_water": {"en": "Candidate new water", "mr": "संभाव्य नवीन पाणी"},
     "legend_slides": {"en": "Likely slide zone", "mr": "संभाव्य भूस्खलन क्षेत्र"},
     "legend_brighter": {"en": "Possible water under cover", "mr": "झाकलेले संभाव्य पाणी"},
     "legend_permanent": {"en": "Rivers and reservoirs", "mr": "नद्या आणि धरणे"},
@@ -166,6 +166,8 @@ def finding(color: str, number: str, unit: str, text: str, hatch=False):
 def legend(items):
     parts = []
     for color, label, kind in items:
+        if not data.water_usable() and color in {COLORS["new_water"], COLORS["brighter"]}:
+            continue
         if kind == "hatch":
             sw = f'<span class="ml-swatch hatch" style="color:{color};border:1px solid {color}"></span>'
         elif kind == "dot":
