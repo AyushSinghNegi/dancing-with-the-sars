@@ -38,6 +38,7 @@ python -m pytest -q
 | Path | What |
 |---|---|
 | `CONTEXT.md` | Project brief, rules, data paths, method: read first |
+| `plotholes.md` | Open points: unverified claims, inconsistencies and limits to fix or state before submission |
 | `pipeline/` | NISAR reading, cropping, water, slide zones, validation, timeline, rendering |
 | `app/` | Streamlit app (landing, story, explore map, method) |
 | `data/reference/` | Scene list, rainfall, reported events |
@@ -49,7 +50,12 @@ python -m pytest -q
 Following the Space Apps rules on AI disclosure:
 - Most of the pipeline and app code, the tests, the first drafts of the story text (English and Marathi) and the
   first pass of the reported-events research were written with **Claude (Anthropic)**, directed and reviewed by the
-  team. Every such commit carries a `Co-Authored-By: Claude` line in the history.
+  team. So were the source checks on the reported events, the style guide, the slide outline, the validation
+  table, the "couldn't see" text and `plotholes.md`.
+- Many of these commits carry a `Co-Authored-By: Claude` line or a "Claude" author name, but not all of them.
+  The commits on the `urvashi/content` branch (reference data, event checks, story, style, slide outline and
+  validation text) were made with Claude and carry no such line. The commit history therefore understates the
+  AI use; this section is the full statement.
 - No measurement is AI-generated. Every number in the app is computed by `pipeline/` from the NISAR files listed on
   the Method page, or comes from a linked source. Map images are rendered from radar data by our code.
 - `data/demo/` holds **synthetic** radar data in NISAR's file format, used only for development and tests; the app

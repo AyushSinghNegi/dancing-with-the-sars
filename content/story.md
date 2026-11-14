@@ -31,8 +31,8 @@ places where the ground stopped matching itself between passes and the radar sig
 events reported in the news; click one to see its source.
 
 ## What radar could not see
-Radar is not magic, and we show where it falls short. The heaviest rain fell on 5 to 7 July, between NISAR
-passes on 4 and 10 July, and flood releases into the Mutha river stopped on 9 July: most flood water had drained
+Radar is not magic, and we show where it falls short. The heaviest rain fell on 5 to 8 July, between NISAR
+passes on 4 and 10 July, and had all but stopped by 9 July: flood water had two days to drain
 before the radar came back. Of the reported floods radar could observe, {flood_hits} of {flood_observable} had a
 detection nearby; for landslides, {slide_hits} of {slide_observable}. Water between tall buildings hides in bright
 radar echoes, and slides narrower than our 40 m pixels can slip through. Knowing these limits is what makes the

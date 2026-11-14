@@ -1,6 +1,9 @@
 # CONTEXT.md: read this first (humans and AI assistants)
 
 Paste this file at the start of every Claude / ChatGPT chat about this project.
+Then read **`plotholes.md`**: the list of claims and results that are still unverified, inconsistent
+or open to challenge. Paste it too whenever the chat is about story text, slides, the video, the
+README or the project page.
 
 ## What we are building
 **MonsoonLens**: an open web app that shows what NASA-ISRO **NISAR** L-band radar saw
@@ -19,6 +22,8 @@ checked against reported events. NASA Space Apps Challenge 2026, challenge
    (`config.same_mode`). Mode is field 9 of a GCOV file name (`4005`); pol is field 10 (`DHDH`).
 4. Never commit `.h5` files, `.netrc`, tokens, or anything over 20 MB.
 5. Say "likely slide zone", never "landslide", for radar detections that no report confirms.
+6. **Check `plotholes.md` before any public text ships.** Do not repeat a claim listed there as open.
+   When you fix a point, move it to "Resolved"; when you find a new one, add it.
 
 ## Data (all real except `data/demo/`)
 | What | Where | Notes |
@@ -29,7 +34,7 @@ checked against reported events. NASA Space Apps Challenge 2026, challenge
 | Candidate NISAR scenes (49 Pune, 146 Brahmaputra backup) | `data/reference/candidate_scenes.csv` | from NASA CMR |
 | JRC Global Surface Water occurrence v1.4 | `data/crops/aux_jrc_occurrence.tif` | permanent water = occurrence >= 50% |
 | Copernicus GLO-30 DEM: elevation, slope | `data/crops/aux_elevation.tif`, `aux_slope.tif` | public, no login |
-| Daily rainfall (NASA POWER PRECTOTCORR now; GPM IMERG via Giovanni would replace it) | `data/reference/rainfall.csv` | Urvashi, U2 |
+| Daily rainfall (GPM IMERG Late Run daily, GPM_3IMERGDL v07, via Giovanni) | `data/reference/rainfall.csv` | Urvashi, U2; details in `data/reference/SOURCES.md` |
 | Reported events | `data/reference/events.geojson` | Urvashi, U3 (schema below) |
 
 Project box (WGS84): lon 73.30 to 74.10, lat 18.15 to 18.90. Analysis grid: UTM 43N (EPSG:32643), 40 m.
