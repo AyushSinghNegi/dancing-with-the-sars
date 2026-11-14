@@ -235,3 +235,6 @@ _netrc
 .streamlit/secrets.toml
 app/static/layers/
 data/demo/crops/
+
+# app helpers live in app/lib (the Python template above ignores lib/)
+!app/lib/
