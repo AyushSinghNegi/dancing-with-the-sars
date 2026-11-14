@@ -13,15 +13,14 @@ if not ui.require_results():
 tr = ui.tr
 before, after = data.dates()
 
-st.markdown(f"# {tr('Field check list', 'क्षेत्रीय तपासणी यादी')}")
-st.markdown('<p class="ml-lede">' + tr(
+ui.page_header(tr('Field check list', 'क्षेत्रीय तपासणी यादी'), tr(
     "Every likely slide zone NISAR found between {b} and {a}, ranked, with the radar images of the spot, why it "
     "was flagged and which independent checks it passed. For district teams: print it, open it in Google Earth or "
     "on a phone, and record what you find. These are leads to check, not confirmed landslides.",
     "{b} ते {a} दरम्यान निसारला सापडलेले प्रत्येक संभाव्य भूस्खलन क्षेत्र, क्रमवार, त्या जागेच्या रडार प्रतिमा, ते का "
     "निवडले आणि कोणत्या स्वतंत्र तपासण्यांत ते टिकले यासह. जिल्हा पथकांसाठी: छापा, गूगल अर्थ किंवा फोनवर उघडा, "
     "आणि जे आढळेल ते नोंदवा. हे तपासण्याचे संकेत आहेत, निश्चित भूस्खलने नाहीत.",
-    b=ui.day(before), a=ui.date(after)) + "</p>", unsafe_allow_html=True)
+    b=ui.day(before), a=ui.date(after)), tr("District disaster teams", "जिल्हा आपत्ती पथके"))
 
 files = data.field_files()
 names = {"html": tr("Printable list with radar images", "रडार प्रतिमांसह छापण्याजोगी यादी"),

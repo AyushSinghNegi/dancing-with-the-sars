@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 from streamlit_folium import st_folium
 
 from lib import charts, data, evidence, maps, story, swipe, ui
@@ -14,35 +15,60 @@ if "step" not in st.session_state:
     st.session_state.step = 0
 i = st.session_state.step = min(st.session_state.step, n - 1)
 before, after = data.dates()
+tr = ui.tr
+track = (data.metrics().get("sources") or [{}])[0].get("granule_id", "").split("_")[5:6]
+track = track[0] if track else ""
 
-st.markdown(f'<div class="ml-step">{ui.t("step", i=i + 1, n=n)}</div>', unsafe_allow_html=True)
-st.progress((i + 1) / n)
+SHORT = {"rain": tr("The rain", "पाऊस"), "cloud": tr("Cloud", "ढग"), "swipe": tr("Before and after", "आधी आणि नंतर"),
+         "changed": tr("What changed", "काय बदलले"), "weeks": tr("The weeks after", "नंतरचे आठवडे"),
+         "limits": tr("Limits", "मर्यादा")}
+INSTR = {"rain": tr("Rain measured from space: NASA GPM IMERG, daily", "अवकाशातून मोजलेला पाऊस: नासा GPM IMERG, रोजचा"),
+         "cloud": tr("What optical satellites saw: NASA Worldview", "प्रकाशीय उपग्रहांना काय दिसले: नासा वर्ल्डव्ह्यू"),
+         "swipe": tr("NISAR L-band radar, HH, track {t}", "निसार एल-बँड रडार, HH, मार्ग {t}", t=track),
+         "changed": tr("NISAR findings, {b} to {a}", "निसारचे निष्कर्ष, {b} ते {a}", b=ui.day(before), a=ui.day(after)),
+         "weeks": tr("NISAR, every pass of track {t} in the same radar mode", "निसार, एकाच रडार पद्धतीतील मार्ग {t} ची प्रत्येक निरीक्षणे",
+                     t=track),
+         "limits": tr("Reported events checked against the radar", "रडारशी ताडून पाहिलेल्या नोंदवलेल्या घटना")}
+
+
+def go(k):
+    st.session_state.step = k
+
+
+# ---------------------------------------------------------------- chapter rail: one stop per chapter on an orbit track
+with st.container(horizontal=True, key="rail"):
+    for k, (_, _, key_k) in enumerate(steps):
+        st.button(SHORT.get(key_k, str(k + 1)), key=f"rail_{k}", type="primary" if k == i else "secondary",
+                  on_click=go, args=(k,), width="stretch")
+done = (i / max(n - 1, 1)) * 100
+st.markdown(f"<style>.st-key-rail::before {{ background: linear-gradient(90deg, var(--ml-water) {done:.1f}%, "
+            f"var(--ml-line) {done:.1f}%); }}"
+            + "".join(f".st-key-rail_{k} button::before {{ background: var(--ml-water); border-color: var(--ml-water); }}"
+                      for k in range(i)) + "</style>", unsafe_allow_html=True)
+
 head, body, key = steps[i]
-text, visual = st.columns([0.9, 1.4], gap="large")
+with st.container(key=f"chapter{i}"):
+    text, visual = st.columns([0.9, 1.4], gap="large")
 with text:
+    st.markdown(f'<p class="ml-kicker">{ui.t("step", i=i + 1, n=n)}</p>', unsafe_allow_html=True)
     st.markdown(f"## {head}")
     st.markdown(f'<p class="ml-lede">{body}</p>', unsafe_allow_html=True)
     nav_b, nav_n = st.columns(2)
-    if nav_b.button(ui.t("back"), disabled=i == 0, width="stretch"):
-        st.session_state.step = max(0, i - 1)
-        st.rerun()
+    nav_b.button(ui.t("back"), disabled=i == 0, width="stretch", key="story_back", icon=":material/arrow_back:",
+                 on_click=go, args=(max(0, i - 1),))
     if i < n - 1:
-        if nav_n.button(ui.t("next"), type="primary", width="stretch"):
-            st.session_state.step = i + 1
-            st.rerun()
+        nav_n.button(ui.t("next"), type="primary", width="stretch", key="story_next",
+                     icon=":material/arrow_forward:", on_click=go, args=(i + 1,))
     else:
-        if nav_n.button(ui.tr("Check a place", "एखादे ठिकाण तपासा"), type="primary", width="stretch",
-                        icon=":material/location_on:"):
+        if nav_n.button(tr("Check a place", "एखादे ठिकाण तपासा"), type="primary", width="stretch",
+                        icon=":material/location_on:", key="story_next"):
             st.switch_page("views/4_Place.py")
-        st.markdown(f'<p class="ml-kicker" style="margin-top:1rem">{ui.tr("Where next", "पुढे कुठे")}</p>',
-                    unsafe_allow_html=True)
-        st.page_link("views/5_Field.py", label=ui.tr("Field check list for district teams",
-                                                     "जिल्हा पथकांसाठी क्षेत्रीय तपासणी यादी"), icon=":material/checklist:")
-        st.page_link("views/2_Explore.py", label=ui.t("explore"), icon=":material/map:")
-        st.page_link("views/3_Method.py", label=ui.tr("Method and limits", "पद्धत आणि मर्यादा"),
-                     icon=":material/science:")
+    st.markdown('<p class="ml-hint">' + tr("Tip: the ← and → keys move between chapters.",
+                                           "टीप: ← आणि → कळांनी प्रकरणांमध्ये पुढे-मागे जा.") + "</p>",
+                unsafe_allow_html=True)
 
-with visual:
+with visual, st.container(key="viz"):
+    st.markdown(f'<p class="ml-instr"><i></i>{INSTR.get(key, "")}</p>', unsafe_allow_html=True)
     if key == "rain":
         rain = data.rainfall()
         if rain is not None:
@@ -65,8 +91,8 @@ with visual:
     elif key == "swipe":
         imgs = swipe.pair("hh")
         if imgs:
-            swipe.render(imgs[0], imgs[1], f"{ui.t('before')}: {data.nice_date(before, False)}",
-                         f"{ui.t('after')}: {data.nice_date(after, False)}", height=500, start=35)
+            swipe.render(imgs[0], imgs[1], f"{ui.t('before')}: {ui.day(before)}",
+                         f"{ui.t('after')}: {ui.day(after)}", height=500, start=35)
     elif key == "changed":
         ui.legend([(ui.COLORS["flood"], ui.t("legend_flood"), "fill"),
                    (ui.COLORS["rise"], ui.t("legend_rise"), "fill"),
@@ -90,9 +116,10 @@ with visual:
         if val is not None and len(val):
             obs = val[val["observable"] == "yes"]
             rows = []
-            for key, label in (("flood", "matched_floods"), ("slide", "matched_slides")):
+            for key, label, col in (("flood", "matched_floods", ui.COLORS["flood"]),
+                                    ("slide", "matched_slides", ui.COLORS["slide_zones"])):
                 s = summ.get(key, {})
-                rows.append(ui.finding("currentColor", ui.t("x_of_y", x=s.get("hits", 0), y=s.get("observable", 0)), "",
+                rows.append(ui.finding(col, ui.t("x_of_y", x=s.get("hits", 0), y=s.get("observable", 0)), "",
                                        ui.t(label)))
             st.markdown("".join(rows), unsafe_allow_html=True)
             dc = data.metrics().get("dem_check") or {}
@@ -120,4 +147,42 @@ with visual:
         else:
             st.info("The validation table appears here once reported events (`data/reference/events.geojson`) "
                     "are added and the pipeline is re-run.")
+
+if i == n - 1:
+    st.markdown(f"## {tr('Where next', 'पुढे कुठे')}")
+    nxt = [(tr("District disaster teams", "जिल्हा आपत्ती पथके"),
+            tr("A ranked check list of likely slide zones with radar images of each spot, a printable sheet and KML for phones.",
+               "संभाव्य भूस्खलन क्षेत्रांची क्रमवार यादी, प्रत्येक जागेच्या रडार प्रतिमा, छापण्याजोगी यादी आणि फोनसाठी KML."),
+            "views/5_Field.py", tr("Field check list", "क्षेत्रीय तपासणी यादी"), ":material/checklist:"),
+           (tr("Everything on one map", "सर्व काही एकाच नकाशावर"),
+            tr("Every layer, the season slider and the radar evidence for each zone and flood patch.",
+               "प्रत्येक स्तर, हंगाम स्लायडर आणि प्रत्येक क्षेत्र व पुराच्या जागेचा रडार पुरावा."),
+            "views/2_Explore.py", ui.t("explore"), ":material/map:"),
+           (tr("Researchers and journalists", "संशोधक आणि पत्रकार"),
+            tr("Every number traced to its NISAR file, the checks behind it, and the maps as GeoTIFF and GeoJSON.",
+               "प्रत्येक आकडा त्याच्या निसार फाइलपर्यंत, त्यामागच्या तपासण्या, आणि नकाशे GeoTIFF व GeoJSON मध्ये."),
+            "views/3_Method.py", tr("Method and limits", "पद्धत आणि मर्यादा"), ":material/science:")]
+    with st.container(key="paths"):
+        cols = st.columns(3)
+    for c, (title, desc, page, label, icon) in zip(cols, nxt):
+        with c.container(border=True):
+            st.markdown(f"### {title}")
+            st.markdown(f'<p class="ml-pathd">{desc}</p>', unsafe_allow_html=True)
+            st.page_link(page, label=label, icon=icon)
+
+# ← and → move between chapters (ignored while typing or when a map or slider has the keyboard)
+with st.container(key="storykeys"):
+    components.html("""<script>
+const w = window.parent, d = w.document;
+if (!w.__mlStoryKeys) {
+  w.__mlStoryKeys = true;
+  d.addEventListener('keydown', e => {
+    const t = e.target, tag = t && t.tagName;
+    if (e.altKey || e.ctrlKey || e.metaKey || tag === 'INPUT' || tag === 'TEXTAREA' || (t && t.isContentEditable)) return;
+    const sel = e.key === 'ArrowRight' ? '.st-key-story_next button' : e.key === 'ArrowLeft' ? '.st-key-story_back button' : '';
+    const b = sel && d.querySelector(sel);
+    if (b && !b.disabled) { e.preventDefault(); b.click(); }
+  });
+}
+</script>""", height=0)
 ui.sources_line()

@@ -52,6 +52,10 @@ def rainfall(df: pd.DataFrame, before: str, after: str, events=("2026-07-03", "2
                                  hovertemplate=lab["pass"] + " %{x|%d %b} (%{customdata})<extra></extra>"))
         fig.update_yaxes(range=[-10, None])
     fig.update_yaxes(title_text=lab["y"])
+    # Month names in the page language, and a fixed window so long labels never stretch the axis.
+    ticks = [pd.Timestamp(t) for t in ("2026-06-15", "2026-06-29", "2026-07-13", "2026-07-27")]
+    fig.update_xaxes(range=[pd.Timestamp("2026-06-14 12:00"), pd.Timestamp("2026-08-01")], tickvals=ticks,
+                     ticktext=[ui.day_short(t.strftime("%Y-%m-%d")) for t in ticks])
     _layout(fig, 330)
     fig.update_layout(margin=dict(t=34))
     return fig
@@ -81,4 +85,5 @@ def timeline(df: pd.DataFrame):
     lo = max(0, float(d["water_km2"].min()) * 0.85)
     fig.update_yaxes(title_text=ui.tr("water surface, km²", "पाण्याचा पृष्ठभाग, चौ. किमी"),
                      range=[lo, float(d["water_km2"].max()) * 1.12])
+    fig.update_xaxes(tickvals=list(same["date"]), ticktext=[ui.day_short(t.strftime("%Y-%m-%d")) for t in same["date"]])
     return _layout(fig, 300)

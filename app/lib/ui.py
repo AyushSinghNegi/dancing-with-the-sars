@@ -64,7 +64,7 @@ iframe[title="streamlit_folium.st_folium"] { border-radius: 14px; box-shadow: va
 [data-testid="stLogo"] { height: 2.6rem !important; max-width: 15rem !important; }
 
 /* hero: a night-sky panel in both themes */
-.st-key-hero { position: relative; overflow: hidden; border-radius: 22px; padding: 2.2rem 2.2rem 1.6rem 2.4rem;
+.st-key-hero { position: relative; overflow: hidden; border-radius: 22px; padding: 2.2rem 2.2rem 2.6rem 2.4rem;
   background: radial-gradient(1200px 500px at 85% -10%, #16305c 0%, rgba(22,48,92,0) 60%),
               radial-gradient(800px 400px at 0% 110%, #1b1f4a 0%, rgba(27,31,74,0) 55%),
               linear-gradient(180deg, #070c17 0%, #0b1426 100%);
@@ -77,6 +77,11 @@ iframe[title="streamlit_folium.st_folium"] { border-radius: 14px; box-shadow: va
     radial-gradient(1px 1px at 610px 260px, #fff 50%, transparent 51%), radial-gradient(1px 1px at 70px 240px, #dbe8ff 50%, transparent 51%);
   background-size: 640px 300px; animation: ml-drift 140s linear infinite; }
 @keyframes ml-drift { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-640px, 300px, 0); } }
+.st-key-hero::after, .ml-band::after {   /* Earth's limb, lit by a thin band of atmosphere */
+  content: ""; position: absolute; left: -18%; right: -18%; height: 640px; bottom: -604px; border-radius: 50%;
+  pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse 60% 22% at 50% 2%, #2f7fd6 0%, #164a8c 30%, #0b2348 62%, #070c17 100%);
+  box-shadow: 0 -1px 0 rgba(160, 235, 255, .75), 0 -5px 16px rgba(90, 180, 255, .45), 0 -22px 60px rgba(61, 142, 240, .22); }
 .st-key-hero > div { position: relative; z-index: 1; }
 .st-key-hero h1, .st-key-hero p, .st-key-hero .ml-dates, .st-key-hero .ml-kicker { color: #e8eef7 !important; }
 .st-key-hero .ml-dates, .st-key-hero .ml-kicker { color: #9fb7d8 !important; }
@@ -184,7 +189,117 @@ iframe[title="streamlit_folium.st_folium"] { border-radius: 14px; box-shadow: va
 .ml-dl.primary small { color: #dbe9ff; }
 .ml-dl:hover { transform: translateY(-1px); box-shadow: var(--ml-shadow); border-color: var(--ml-water); }
 
+/* page header band: the same night sky as the Overview, with Earth's limb along the bottom */
+.ml-band { position: relative; overflow: hidden; isolation: isolate; border-radius: 20px; padding: 1.5rem 2rem 2.7rem;
+  margin: 0 0 1.3rem; color: #e8eef7;
+  background: radial-gradient(900px 320px at 92% -30%, #17325f 0%, rgba(23,50,95,0) 60%), linear-gradient(180deg, #070c17 0%, #0b1426 100%);
+  box-shadow: 0 16px 44px rgba(4, 10, 25, .28); }
+.ml-band::before { content: ""; position: absolute; inset: -50%; z-index: 0; pointer-events: none; opacity: .7;
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #fff 50%, transparent 51%), radial-gradient(1px 1px at 140px 70px, #cfe3ff 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 260px 20px, #fff 50%, transparent 51%), radial-gradient(1px 1px at 380px 95px, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 470px 40px, #bcd6ff 50%, transparent 51%), radial-gradient(1.2px 1.2px at 560px 110px, #fff 50%, transparent 51%);
+  background-size: 620px 150px; animation: ml-drift 160s linear infinite; }
+.ml-band > * { position: relative; z-index: 1; }
+.ml-band h1 { color: #f2f6fc !important; margin: .2rem 0 .5rem; padding: 0; font-size: clamp(2rem, 3vw, 2.8rem); }
+.ml-band p { color: #c9d6e8 !important; margin: 0; max-width: 70ch; font-size: 1.05rem; line-height: 1.6; }
+.ml-band .ml-kicker { color: #9fe9ff !important; font-size: .95rem; }
+
+/* sidebar: where NISAR is in its 12-day cycle */
+.ml-orbit { display: flex; gap: .7rem; align-items: center; margin: .9rem 0 .4rem; padding: .6rem .7rem; border-radius: 14px;
+  background: linear-gradient(135deg, rgba(11,22,48,.92), rgba(19,35,74,.92)); border: 1px solid rgba(111,227,255,.2);
+  color: #e6edf6; }
+.ml-orbit svg { width: 64px; height: 64px; flex: none; }
+.ml-orbit b { display: block; font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; font-size: .92rem; line-height: 1.25; }
+.ml-orbit span { display: block; font-size: .8rem; line-height: 1.35; color: #a9bdd8; margin-top: .15rem; }
+.ml-orbit .eta { display: inline; color: #9fe9ff; font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { .ml-orbit .sat { display: none; } }
+
+/* smoother reruns: keep the page readable instead of greying it out */
+[data-stale="true"], .stale-element { opacity: .9 !important; transition: opacity .3s ease !important; }
+html { scroll-behavior: smooth; }
+[data-testid="stDecoration"] { background: linear-gradient(90deg, #6fe3ff, #3d8ef0 55%, #f0743a) !important; height: 3px !important; }
+
+/* story: chapter rail along an orbit track */
+.st-key-rail { position: relative; gap: 0 !important; margin: 0 0 1.1rem; flex-wrap: nowrap !important; }
+.st-key-rail::before { content: ""; position: absolute; left: 0; right: 0; top: 11px; height: 2px; border-radius: 2px;
+  background: var(--ml-line); }
+.st-key-rail > div { flex: 1 1 0 !important; min-width: 0; }
+.st-key-rail button { width: 100%; background: transparent !important; border: none !important; box-shadow: none !important;
+  flex-direction: column !important; gap: .45rem; padding: 0 .2rem .2rem !important; min-height: 0 !important; color: inherit !important; }
+.st-key-rail button::before { content: ""; width: 12px; height: 12px; border-radius: 50%; margin-top: 5px;
+  background: var(--ml-panel-2); border: 2px solid color-mix(in srgb, currentColor 35%, transparent); transition: all .25s ease; }
+.st-key-rail button p { font-size: .82rem !important; line-height: 1.25; opacity: .7; white-space: normal; text-align: center; }
+.st-key-rail button:hover p { opacity: 1; }
+.st-key-rail button:hover::before { border-color: var(--ml-water); }
+.st-key-rail button[kind="primary"]::before, .st-key-rail [data-testid="stBaseButton-primary"]::before {
+  background: var(--ml-beam); border-color: #fff; box-shadow: 0 0 0 4px rgba(111,227,255,.18), 0 0 14px var(--ml-beam); }
+.st-key-rail button[kind="primary"] p, .st-key-rail [data-testid="stBaseButton-primary"] p { opacity: 1; font-weight: 600; }
+[class*="st-key-chapter"] { animation: ml-chapter .45s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes ml-chapter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.ml-hint { font-size: .8rem !important; margin: .6rem 0 0; color: color-mix(in srgb, currentColor 60%, transparent) !important; }
+.st-key-storykeys { position: absolute !important; height: 0 !important; overflow: hidden; }
+
+/* story visuals in an instrument frame: corner brackets and a source label */
+.st-key-viz { position: relative; padding: 14px 14px 12px !important; border-radius: 16px; background: var(--ml-panel);
+  border: 1px solid var(--ml-line);
+  background-image:
+    linear-gradient(var(--ml-water), var(--ml-water)), linear-gradient(var(--ml-water), var(--ml-water)),
+    linear-gradient(var(--ml-water), var(--ml-water)), linear-gradient(var(--ml-water), var(--ml-water)),
+    linear-gradient(var(--ml-water), var(--ml-water)), linear-gradient(var(--ml-water), var(--ml-water)),
+    linear-gradient(var(--ml-water), var(--ml-water)), linear-gradient(var(--ml-water), var(--ml-water));
+  background-size: 16px 2px, 2px 16px, 16px 2px, 2px 16px, 16px 2px, 2px 16px, 16px 2px, 2px 16px;
+  background-position: 8px 8px, 8px 8px, calc(100% - 8px) 8px, calc(100% - 8px) 8px,
+    8px calc(100% - 8px), 8px calc(100% - 8px), calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) calc(100% - 8px);
+  background-repeat: no-repeat; }
+.ml-instr { margin: 0 0 0 1.2rem !important; display: flex; gap: .45rem; align-items: center;
+  font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; font-size: .88rem;
+  color: color-mix(in srgb, currentColor 75%, transparent); }
+.ml-instr i { width: 7px; height: 7px; border-radius: 50%; background: var(--ml-beam); box-shadow: 0 0 8px var(--ml-beam); }
+
+/* method: phased pipeline */
+.ml-phase { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; font-size: 1.05rem; margin: 1.2rem 0 .4rem;
+  display: flex; align-items: center; gap: .6rem; }
+.ml-phase::after { content: ""; flex: 1; height: 1px; background: var(--ml-line); }
+.ml-steps { list-style: none; margin: 0; padding: 0; position: relative; }
+.ml-steps::before { content: ""; position: absolute; left: 17px; top: 8px; bottom: 8px; width: 2px; background: var(--ml-line); }
+.ml-steps li { position: relative; padding: 0 0 1rem 3.1rem; max-width: none; }
+.ml-steps .n { position: absolute; left: 0; top: 0; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center;
+  font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 700; font-size: 1rem; color: #fff;
+  background: linear-gradient(135deg, #1f6fd1, #3d8ef0); box-shadow: 0 0 0 4px var(--ml-panel-2); }
+.ml-steps .t { font-weight: 600; font-size: 1.05rem; margin: .35rem 0 .2rem; }
+.ml-steps .d { margin: 0; font-size: .97rem; line-height: 1.6; max-width: 80ch; }
+.ml-chips2 { display: flex; flex-wrap: wrap; gap: .35rem; margin: .45rem 0 0; }
+.ml-chips2 span { font-size: .8rem; padding: 2px 9px; border-radius: 99px; border: 1px solid var(--ml-line); background: var(--ml-panel);
+  white-space: nowrap; }
+.ml-flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; margin: .4rem 0 1rem; }
+.ml-flow div { flex: 1 1 120px; padding: .7rem .8rem; border: 1px solid var(--ml-line); background: var(--ml-panel); font-size: .9rem;
+  line-height: 1.35; position: relative; }
+.ml-flow div:first-child { border-radius: 12px 0 0 12px; } .ml-flow div:last-child { border-radius: 0 12px 12px 0; }
+.ml-flow div + div { border-left: none; }
+.ml-flow b { display: block; font-family: 'IBM Plex Sans Condensed', sans-serif; font-size: 1rem; color: var(--ml-water); }
+.ml-facts-card { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(111,227,255,.18); background: linear-gradient(135deg, #0b1630 0%, #13234a 100%); margin: .3rem 0 .4rem; }
+.ml-facts-card div { padding: .9rem 1rem; border-right: 1px solid rgba(160,190,230,.14); border-bottom: 1px solid rgba(160,190,230,.14); }
+.ml-facts-card dt { font-size: .8rem; color: #9fe9ff; margin: 0 0 .15rem; font-weight: 600; }
+.ml-facts-card dd { margin: 0; color: #e8eef7; font-size: .95rem; line-height: 1.4; }
+.ml-cardgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 12px; margin: .4rem 0 1.2rem; }
+.ml-cardgrid > div { background: var(--ml-panel); border: 1px solid var(--ml-line); border-radius: 14px; padding: .85rem 1rem; }
+.ml-cardgrid b { display: block; margin-bottom: .25rem; font-size: 1rem; }
+.ml-cardgrid p { margin: 0; font-size: .92rem; line-height: 1.55; max-width: none; }
+.ml-cardgrid .lim b::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: .45rem;
+  background: var(--ml-slide); transform: translateY(-1px); }
+.ml-toc { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 1rem; }
+.ml-toc a { font-size: .86rem; padding: 4px 11px; border-radius: 99px; border: 1px solid var(--ml-line); background: var(--ml-panel);
+  color: inherit !important; text-decoration: none !important; transition: border-color .15s ease, background .15s ease; }
+.ml-toc a:hover { border-color: var(--ml-water); background: var(--ml-panel-2); }
+
 @media (max-width: 640px) {
+  .ml-band { padding: 1.1rem 1.1rem 2.3rem; border-radius: 16px; }
+  .st-key-rail button p { display: none; }
+  .st-key-rail button[kind="primary"] p, .st-key-rail [data-testid="stBaseButton-primary"] p { display: block; font-size: .75rem !important; }
+  .ml-facts-card { grid-template-columns: 1fr; }
+  .ml-flow div { flex-basis: 45%; border-left: 1px solid var(--ml-line) !important; border-radius: 0 !important; }
   .ml-finding { grid-template-columns: 16px 6rem 1fr; }
   .ml-num { font-size: 1.3rem; }
   h1 { font-size: 2rem; }
@@ -194,7 +309,7 @@ iframe[title="streamlit_folium.st_folium"] { border-radius: 14px; box-shadow: va
   .ml-grid { grid-template-columns: 1fr !important; }
   .ml-check { border-right: none; border-bottom: 1px solid rgba(160, 190, 230, .16); }
 }
-@media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
 """
 
@@ -372,6 +487,17 @@ def day(iso: str) -> str:
     return f"{d}{'.' if lang() == 'de' else ''} {MONTHS.get(lang(), MONTHS['en'])[int(iso[5:7]) - 1]}"
 
 
+MONTHS_SHORT = {"en": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                "de": ["Jan.", "Feb.", "März", "Apr.", "Mai", "Juni", "Juli", "Aug.", "Sep.", "Okt.", "Nov.", "Dez."]}
+
+
+def day_short(iso: str) -> str:
+    """'5 Jul', '5. Juli' or '5 जुलै': for chart axes."""
+    lg = lang()
+    months = MONTHS_SHORT.get(lg) or MONTHS.get(lg, MONTHS["en"])
+    return f"{int(iso[8:10])}{'.' if lg == 'de' else ''} {months[int(iso[5:7]) - 1]}"
+
+
 def date(iso: str) -> str:
     """'5 July 2026' or '5 जुलै 2026', in the page language."""
     return f"{day(iso)} {iso[:4]}"
@@ -430,6 +556,46 @@ def hairline() -> str:
     return "rgba(230,237,246,.14)" if dark() else "#dde4ec"
 
 
+def page_header(title: str, lede: str = "", kicker: str = ""):
+    """A slim night-sky band with Earth's limb along the bottom, used at the top of every page but the Overview."""
+    k = f'<p class="ml-kicker">{kicker}</p>' if kicker else ""
+    p = f"<p>{lede}</p>" if lede else ""
+    st.markdown(f'<header class="ml-band">{k}<h1>{html.escape(title)}</h1>{p}</header>', unsafe_allow_html=True)
+
+
+ORBIT_SVG = """<svg viewBox="0 0 120 120" aria-hidden="true">
+<defs><radialGradient id="mlEarth" cx="36%" cy="32%" r="72%"><stop offset="0" stop-color="#5fb2ff"/>
+<stop offset=".5" stop-color="#1d63b3"/><stop offset="1" stop-color="#081f42"/></radialGradient></defs>
+<g transform="rotate(-62 60 60)"><path d="M108 60 A48 15 0 0 0 12 60" fill="none" stroke="#6fe3ff" stroke-opacity=".28"
+stroke-width="1.4" stroke-dasharray="3 3"/></g>
+<circle cx="60" cy="60" r="31" fill="#6fe3ff" opacity=".14"/>
+<circle cx="60" cy="60" r="28.5" fill="url(#mlEarth)"/>
+<path d="M47 49c4-3 9-3 12 0s2 7-2 9-5 6-9 5-6-5-4-8 1-4 3-6z M66 66c3-2 7-1 8 2s-1 6-4 6-6-1-6-4 0-3 2-4z"
+fill="#7fc8a0" opacity=".55"/>
+<path d="M60 31.5a28.5 28.5 0 0 1 0 57a22 28.5 0 0 0 0-57z" fill="#020814" opacity=".45"/>
+<g transform="rotate(-62 60 60)"><path id="mlOrbit" d="M108 60 A48 15 0 0 1 12 60 A48 15 0 0 1 108 60" fill="none"/>
+<path d="M108 60 A48 15 0 0 1 12 60" fill="none" stroke="#6fe3ff" stroke-opacity=".8" stroke-width="1.4"/>
+<g class="sat"><circle r="3.2" fill="#fff"/><circle r="6" fill="#6fe3ff" opacity=".35"/>
+<animateMotion dur="9s" repeatCount="indefinite" rotate="auto"><mpath href="#mlOrbit"/></animateMotion>
+<animate attributeName="opacity" dur="9s" repeatCount="indefinite" values="1;1;.2;.2;1" keyTimes="0;.47;.53;.97;1"/></g></g>
+</svg>"""
+
+
+def orbit_widget():
+    """Sidebar card: a small Earth with NISAR's orbit, and how many days until it is expected over Pune again."""
+    np_ = data.next_pass()
+    if not np_:
+        return
+    import pandas as pd
+    days = (pd.Timestamp(np_[1]) - pd.Timestamp.now(tz="Asia/Kolkata").tz_localize(None).normalize()).days
+    when = tr("tomorrow", "उद्या") if days == 1 else tr("in {n} days", "{n} दिवसांनी", n=days)
+    st.markdown(f'<div class="ml-orbit">{ORBIT_SVG}<div><b>'
+                + tr("Next expected NISAR pass over Pune", "पुण्यावरील पुढचे अपेक्षित निसार निरीक्षण")
+                + f'</b><span><span class="eta">{when}</span>, {date(np_[1])}</span><span>'
+                + tr("Every 12 days, cloud or not.", "दर १२ दिवसांनी, ढग असोत वा नसोत.")
+                + "</span></div></div>", unsafe_allow_html=True)
+
+
 def setup(page_title: str):
     st.set_page_config(page_title=f"MonsoonLens: {page_title}", page_icon=str(ASSETS / "logo_icon.png"),
                        layout="wide", initial_sidebar_state="auto")
@@ -446,6 +612,7 @@ def setup(page_title: str):
         names = list(LANGS.values())
         choice = st.radio(t("lang"), names, horizontal=True, index=list(LANGS).index(lang()), key="lang_choice")
         st.session_state["lang"] = list(LANGS)[names.index(choice)]
+        orbit_widget()
         st.caption(tr("Light or dark: ⋮ menu (top right) › Settings.", "फिका किंवा गडद रंग: ⋮ मेनू (वर उजवीकडे) › Settings."))
         st.caption(tr("Built by team iGenfinity for NASA Space Apps 2026", "नासा स्पेस ॲप्स २०२६ साठी iGenfinity टीमने बनवले"))
     # Keep the language in the address, so a shared link opens in the language it was sent in.

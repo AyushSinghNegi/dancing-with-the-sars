@@ -15,13 +15,12 @@ tr = ui.tr
 ss = st.session_state
 before, after = data.dates()
 
-st.markdown(f"# {tr('Check a place', 'एखादे ठिकाण तपासा')}")
-st.markdown('<p class="ml-lede">' + tr(
+ui.page_header(tr('Check a place', 'एखादे ठिकाण तपासा'), tr(
     "Pick a village or town, or click anywhere on the map, to see what NISAR radar found around it between "
     "{b} and {a}: likely slide zones, flood water, rising reservoirs, and the events people reported.",
     "एखादे गाव किंवा शहर निवडा, किंवा नकाशावर कुठेही क्लिक करा, आणि {b} ते {a} दरम्यान निसार रडारला त्याच्या "
     "आसपास काय सापडले ते पाहा: संभाव्य भूस्खलन क्षेत्रे, पुराचे पाणी, वाढलेली धरणे आणि लोकांनी नोंदवलेल्या घटना.",
-    b=ui.day(before), a=ui.day(after)) + "</p>", unsafe_allow_html=True)
+    b=ui.day(before), a=ui.day(after)), tr("People who live there", "तिथे राहणारे लोक"))
 
 places = data.places()
 b = data.bounds().get("bounds_latlon")
