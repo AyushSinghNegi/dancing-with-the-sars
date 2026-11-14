@@ -1,91 +1,100 @@
-# Slide outline: 8 slides (U4, built in U7)
+# Slide outline: 7 slides (U4, cut to the Submission Guide limit in U7)
+
+The 2026 Project Submission Guide allows a deck of **at most 7 slides, including the title and
+intro slides**; a longer deck is not eligible for Global Judging. The deck must be in English and
+must show the team name, the names of the team members and the challenge. This outline has exactly
+7 slides. Do not add an eighth: fold new material into an existing slide.
 
 One message per slide, few words, real screenshots where marked `[IMG]`. Style: `content/style.md`.
 
-**Before building the deck:** every number below was read from `data/derived/metrics.json`
-(generated 2026-11-14T13:38Z) and `data/derived/validation.csv`, or from a source that was opened.
-RSN's final run (R9) may change them, so recheck each number against the files on Sunday.
-Lines marked `[VERIFY]` come from the game plan and their source has not been opened yet:
-open the link before the line goes on a slide, or drop the line.
+**Before building the deck:** every number below was read from `data/derived/` (metrics.json
+generated 2026-11-14T19:01Z, `timeline.csv`, `dem_check.json`, `validation.csv`) or from a source the
+team opened. Recheck each number against the files after any new pipeline run. Open points are in
+`plotholes.md`.
+
+What changed from the 8-slide version: a title slide was added (the guide requires team and
+challenge), "Why radar" and "What we built" became one slide, "Demo" now carries the findings, and
+"Business model" and "Roadmap and team" became one slide.
 
 ---
 
-## 1. Problem
+## 1. Title
+
+**Headline:** MonsoonLens: NISAR sees what monsoon clouds hide
+
+- NASA Space Apps Challenge 2026, challenge "Dancing with the SARs"
+- Team iGenfinity, GDG Ahlen (virtual)
+- Ayush, RSN, Urvashi `[FULL NAMES as on the team page]`
+
+`[IMG]` Before/after radar swipe, full width, behind the title.
+
+| Fact | Source |
+|---|---|
+| Team name, local event, challenge | `README.md` |
+
+## 2. Problem
 
 **Headline:** Floods and landslides, hidden under monsoon cloud
 
 - Early July 2026: days of extreme rain over Pune and the Western Ghats.
-- 6 July: a landslide buried a house in Patan village, Maval; landslides blocked the
-  Mumbai-Pune railway and expressway.
-- Ordinary satellite cameras saw only cloud.
+- 22 landslides across Pune district; 4 people dead and 2 missing.
+- About 5,000 people moved to safety in Pimpri Chinchwad alone.
+- From 3 to 8 July, NASA's daily satellite images of the area showed only cloud.
 
-`[IMG]` Rainfall chart from the Story page (step 1).
+`[IMG]` Rain chart (`content/img/rain_chart.png`) beside the cloud contact sheet.
 
 | Fact | Source |
 |---|---|
 | Heaviest rain 5 to 8 July, peak about 180 mm/day on 5 July (box average) | `data/reference/rainfall.csv` (GPM IMERG Late Run) |
-| House buried at Patan village, Maval, 6 July; two killed | Siasat / PTI (E001, E017 source) |
-| Railway landslide between Khandala and Monkey Hill; expressway Missing Link landslide at Tunnel 2 exit, 6 July | News Arena India (E003); Free Press Journal (E002) |
-| 1,880 residents moved to shelters in Pimpri-Chinchwad, 6 July | Free Press Journal (E015 source) |
-| `[VERIFY]` 22 landslides, 4 dead and 2 missing in Pune district by 7 July | Punekar News (game plan); site blocked the check |
-| `[VERIFY]` 6,000+ people evacuated | game plan; source not opened |
+| 22 landslides, 4 dead, 2 missing; about 5,000 moved in Pimpri Chinchwad | Punekar News, 7 July 2026 (`?p=239349`), opened by the team; `plotholes.md` R22 |
+| Only cloud on 3 to 8 July: all 22 available images | `content/cloud_check.md`, `data/reference/cloud_check.json` |
 
-## 2. Why radar
+## 3. Why radar, and what we built
 
-**Headline:** NISAR sees what monsoon clouds hide
+**Headline:** Radar sees through cloud. We mapped one storm.
 
 - NISAR's L-band radar sends its own pulses, 24 cm long, through cloud and rain.
 - Smooth water looks dark. Rough ground, trees and buildings look bright.
-- Passes on 28 June and 10 July 2026 bracket the storm.
+- Two passes, 28 June and 10 July 2026, bracket the storm.
+- MonsoonLens: a story for the public, an explore map for experts, a method page with every file ID.
 
 `[IMG]` Before/after radar swipe (Story step 3).
 
 | Fact | Source |
 |---|---|
 | L-band SAR, 24 cm wavelength | NASA Science, NISAR mission page (science.nasa.gov/mission/nisar) |
-| Pass dates 28 Jun and 10 Jul 2026, track 034 | `data/derived/timeline.csv`, NISAR file IDs in `content/style.md` |
+| Pass dates 28 Jun and 10 Jul 2026, track 034 | `data/derived/timeline.csv`; NISAR file IDs in `content/project_page.md` |
+| Data: NISAR GCOV and GUNW; GPM IMERG; JRC Global Surface Water v1.4; Copernicus GLO-30 DEM; NASADEM (check only) | `CONTEXT.md`, `data/reference/SOURCES.md` |
 
-## 3. What we built
+## 4. Demo: what the radar found
 
-**Headline:** MonsoonLens: one storm, mapped and checked
+**Headline:** New water and 50 likely slide zones
 
-- A 5-step story for the public, an explore map for experts, a method page with every file ID.
-- New water: 8.9 km² (8.5 km² reservoirs and rivers rising, 0.36 km² flooding on ground never wet before).
-- 50 likely slide zones on steep slopes, 8 of them high confidence.
-- Open code, free data, runs on a laptop.
+- 8.5 km² of new water where reservoirs and rivers rose.
+- 0.36 km² of flood water still standing on 10 July, on ground never recorded wet between 1984 and 2021.
+- 50 likely slide zones on steep slopes, 8 of them high confidence: leads to check, not confirmed landslides.
+- Through the season, open water grew from 153 km² (28 June) to 191 km² (14 October).
+- Try it: https://monsoonlens.streamlit.app
 
 `[IMG]` Explore map with flood, slide-zone and reported-event layers on.
 
 | Fact | Source |
 |---|---|
-| New water 8.888 km²; rise 8.523 km²; flood 0.365 km² in 30 patches | `metrics.json` → `water` |
-| 50 zones, 8 high, 15 medium | `metrics.json` → `slides` |
-| Data: NISAR GCOV and GUNW; GPM IMERG; JRC Global Surface Water v1.4; Copernicus GLO-30 DEM; NASADEM (check only) | `CONTEXT.md`, `data/reference/SOURCES.md` |
-| Elevation-map check: 35 of 50 zones, 7 of 8 high; landslide matches 2 → 0 of 4 | `metrics.json` → `dem_check` |
-
-Note for the project page: slope comes from the Copernicus GLO-30 DEM (ESA). NASADEM (NASA) is used
-only for the elevation-map check. List both, and do not list Copernicus under NASA data.
-
-## 4. Demo
-
-**Headline:** See it in one minute
-
-- Live app: `[LINK: live app, from Ayush]`
-- Path to show: rain chart → swipe → slide zones → what radar could not see.
-
-`[IMG]` Full-width screenshot of the Story page, step 4.
-
-The 3-minute script is written in U7 from the game plan's table, with the real counts from slide 5.
+| Rise 8.523 km²; flood 0.365 km² in 30 patches | `metrics.json` → `water` |
+| 50 zones, 8 high confidence | `metrics.json` → `slides` |
+| 46 of 50 zones have no reported event within 2 km | `metrics.json` → `validation.unreported_slide_zones` |
+| Open water 153.0, 175.84, 183.19, 187.4, 190.99 km² on five passes | `data/derived/timeline.csv` |
+| Live app address | `README.md` |
 
 ## 5. Validation
 
 **Headline:** We publish our hits and our misses
 
 - 18 reported events, each with a linked source.
-- Floods: 4 of 10 that radar could observe had a detection nearby.
-- Landslides: 2 of 4, both matched to one zone 1.6 and 1.9 km away; neither holds with NASA's NASADEM elevation map.
-- With NASADEM instead of Copernicus, 35 of 50 zones are found again (7 of 8 high confidence).
-- A second NISAR track (106, 3 to 15 July) found 2 of 12 zones again: about 8 times chance.
+- Floods: 4 of 10 that radar could observe had a detection nearby. The 6 misses were all in built-up areas.
+- A second NISAR orbit (3 to 15 July) found 2 of 12 zones again: about 8 times chance.
+- With NASA's NASADEM elevation map, 35 of 50 zones are found again, 7 of the 8 high-confidence ones.
+- Landslides: 2 of the 4 radar could observe, both matched to one zone; that match does not hold with NASADEM.
 
 `[IMG]` Validation table (event, date, detected, reason if missed).
 
@@ -93,64 +102,53 @@ The 3-minute script is written in U7 from the game plan's table, with the real c
 |---|---|
 | 18 events; floods 11 reported, 10 observable, 4 hits; landslides 7 reported, 4 observable, 2 hits | `validation_summary.json` |
 | 6 flood misses: dense buildings hide street flooding | `validation.csv`, `reason` column |
-| 2 landslide misses: ground near the report gentler than the 15° slide search | `validation.csv` |
-| 2 not scored (location too vague), 1 outside the radar box, 1 after the radar pair | `validation.csv` |
-| Second track: 12 zones scored, 16.7% confirmed, lift 7.9, p = 0.026 | `metrics.json` → `crosstrack` |
+| 2 landslide misses: ground near the report gentler than the 15° slide search (one is Patan) | `validation.csv` |
+| Second orbit: 12 zones scored, 16.7% confirmed, lift 7.9, p = 0.026 | `metrics.json` → `crosstrack` |
+| NASADEM check: 35 of 50 found, 7 of 8 high; landslide matches 2 → 0 of 4 | `data/derived/dem_check.json` |
 
-Open points before this slide is final:
+Keep in mind for this slide:
 
-- 7 events cite Punekar News, which blocked our link check; open them by hand.
-- E016 (Pune-Nashik highway) counts as a hit on a town-centre point; the source places the
-  flooding near Waki Khurd. Confirm the location or say so on the slide.
-- Small samples: say "4 of 10" and "2 of 4", not percentages.
+- Lead with floods and the second orbit; the landslide match is the weakest result (`plotholes.md` R23).
+- E016 (Pune-Nashik highway) counts as a flood hit on a town-centre point; its true location is unconfirmed (P07). Floods would be 3 of 10 without it.
+- Small samples: say "4 of 10" and "2 of 4", never percentages (P11).
+- We located 7 of the 22 reported landslides; do not say we checked all 22 (P09).
 
-## 6. Impact
+## 6. Impact, and what radar could not see
 
 **Headline:** Changed ground, found without field access
 
 - NISAR came back on 10 July, two days after the heaviest rain.
-- Who it helps: district disaster office (where to send teams), road and rail operators on
+- Who it helps: the district disaster office (where to send teams), road and rail operators on
   ghat sections, residents and trekkers.
-- We show the blind spots, so nobody over-trusts the map.
-- The same method runs on any NISAR pair, for any district.
+- What radar could not see: flooded streets between buildings, water that came and went between
+  passes, slides smaller than a 40 m pixel.
+- We show these blind spots on the first page, so nobody over-trusts the map.
 
-`[IMG]` "What radar could not see" panel.
+`[IMG]` "What radar could not see" panel from the Overview page.
 
 | Fact | Source |
 |---|---|
 | Heavy rain ended 8 July; pass on 10 July | `rainfall.csv`; `timeline.csv` |
+| Limits | `content/couldnt_see.md` |
 | Users and needs | game plan, "Who it helps" |
 
-## 7. Business model
-
-**Headline:** Free and open core, paid services on top
-
-| Customer | Offer | How it pays |
-|---|---|---|
-| State and district disaster authorities | Dashboard refreshed after every NISAR pass | Pilot grant or CSR funding, then annual contract |
-| Road, rail and pipeline operators in the Ghats | Corridor watch report per route | Subscription per route |
-| Insurers and rural lenders | Flood-extent data per area and event | Pay per use |
-| NGOs, schools, researchers | Free app, open data and code | Free |
-
-- NISAR data is free and the pipeline runs on a laptop, so running costs stay low.
-- No revenue numbers: we have none we can back.
-
-Source: game plan, "Business model and sustainability".
-
-## 8. Roadmap and team
+## 7. What comes next
 
 **Headline:** From one storm to every monsoon pass
 
-- Now: one district, one storm, precomputed layers.
-- Next three months: run automatically on each new NISAR pass over the Western Ghats.
+- Next: run automatically on each new NISAR pass over the Western Ghats.
 - Later: ISRO's S-band data, alerts for subscribed users, more regions.
+- Free and open core. Paid services for those who must act after a storm: disaster authorities,
+  road and rail operators, insurers.
+- Free NASA data and code that runs on a laptop keep running costs low.
+- Code (MIT licence): https://github.com/AyushSinghNegi/dancing-with-the-sars
 
-Team iGenfinity:
+`[IMG]` Season timeline chart (Story step 5), small.
 
-- Ayush: app, integration, team lead
-- RSN: data and science
-- Urvashi: validation, story, pitch
+| Fact | Source |
+|---|---|
+| Roadmap phases | game plan, "Scalability in three phases" |
+| Customers and offers | game plan, "Business model and sustainability" |
+| Licence, repository | `LICENSE`, `README.md` |
 
-Code: MIT licence, `[LINK: public repo]`
-
-Source: game plan, "Scalability in three phases" and "Team roles"; `LICENSE`; `README.md`.
+No revenue numbers: we have none we can back.
