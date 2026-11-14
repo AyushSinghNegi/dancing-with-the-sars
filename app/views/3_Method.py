@@ -139,13 +139,23 @@ if xt:
 st.markdown("## Limits")
 st.markdown(f"""
 - **Provisional data.** These are NISAR provisional products (released from June 2026); calibration may still change.
-- **Two snapshots, twelve days apart.** Anything that flooded and drained between {before} and {after} is invisible.
+- **Two snapshots, twelve days apart.** Anything that flooded and drained between {data.nice_date(before, False)} and {data.nice_date(after)} is invisible.
 - **Cities.** Buildings make flooded streets bright, not dark. Our new-water map under-counts urban flooding.
 - **Pixel size.** {m['grid']['res_m']:.0f} m pixels. Slides narrower than about two pixels are easily missed.
 - **Same-mode rule.** From 27 August to 2 October NISAR imaged this track in a different mode (2005, quad-pol);
   14 October is back in the July mode. Brightness is only compared between passes with the same track, mode and
   polarisation.
-- **Leads, not verdicts.** Slide zones are places to check, not confirmed landslides.
+- **Water areas are underestimates.** On {data.nice_date(before)} only {(m.get('water', {}).get('permanent_water_seen_dark') or 0):.0%} of
+  the permanent rivers and reservoirs looked dark enough to pass our water test (wind and rain roughen the surface), so
+  some real water is missed on every date, new water included.
+- **Small samples.** Every check is counted, not turned into an "accuracy": floods
+  {m.get('validation', {}).get('flood', {}).get('hits', 0)} of {m.get('validation', {}).get('flood', {}).get('observable', 0)},
+  landslides {m.get('validation', {}).get('slide', {}).get('hits', 0)} of {m.get('validation', {}).get('slide', {}).get('observable', 0)},
+  and the second-track check covers only part of the area.
+- **Leads, not verdicts.** Slide zones are places to check, not confirmed landslides:
+  {m.get('validation', {}).get('unreported_slide_zones', 0)} of {m.get('slides', {}).get('zones', 0)} have no reported event within 2 km.
+- **Rainfall.** GPM IMERG Late Run, averaged over the whole study area per UTC day. It is lower than the single-station
+  totals quoted in the news, and may shift slightly when the Final Run is released.
 """)
 st.markdown("## Team")
 st.markdown("Team iGenfinity, NASA Space Apps Challenge 2026, GDG Ahlen: Ayush Singh Negi (app and integration), "

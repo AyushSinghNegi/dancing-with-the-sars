@@ -25,7 +25,7 @@ rivers and the low ground east of the Ghats.
 
 ## What changed
 Between the two passes, the reservoirs and rivers that feed Pune rose: {rise_km2} km² of new water along
-their edges. Where no water had been recorded since 1984, {flood_km2} km² of flood water was still standing
+their edges. Where no water was recorded between 1984 and 2021, {flood_km2} km² of flood water was still standing
 on {after}. On the steep slopes we found {slide_zones} likely slide zones, {slide_high} of them high confidence:
 places where the ground stopped matching itself between passes and the radar signal jumped. {crosstrack_sentence} White markers are
 events reported in the news; click one to see its source.

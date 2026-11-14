@@ -6,13 +6,15 @@ Clouds hide the ground during the monsoon, which is exactly when people need to 
 NASA-ISRO's **NISAR** L-band radar sees through cloud and rain. MonsoonLens uses two NISAR passes
 over Pune (28 June and 10 July 2026), bracketing the 3-8 July floods and landslides, to map:
 
-- **New flood water** on flat ground, separated from rivers and reservoirs that are always wet
+- **New water**, split into reservoirs and rivers rising and flooding where no water was recorded 1984 to 2021
 - **Likely slide zones** on the Western Ghats slopes, from lost radar coherence and vegetation loss
 - **What radar could not see** (dense city streets, water that drained, slides smaller than a pixel),
   checked against reported events
 
-> Status: pipeline and app are being built during the hackathon (14-15 Nov 2026).
-> Until the real NISAR crops are in, the app runs on clearly labelled **synthetic** data.
+> Live app: **https://monsoonlens.streamlit.app** (real NISAR results for Pune).
+> Results: 8.5 km² of reservoirs and rivers rising, 0.36 km² of flood water still standing on 10 July,
+> 50 likely slide zones, checked against 18 reported events and a second NISAR orbit. Every number is
+> explained on the app's Method page.
 
 ## Quick start
 ```bash
@@ -25,6 +27,7 @@ Rebuild the results from NISAR (needs a free NASA Earthdata login):
 pip install -r requirements-pipeline.txt
 python -m pipeline.ancillary          # JRC water + DEM slope (public, no login)
 python -m pipeline.crop --primary     # streams only the Pune box from the 3 NISAR files
+python -m pipeline.crop --granule ... # optional: the second-orbit pair and timeline dates (see pipeline/config.py)
 python -m pipeline.run_all            # water, slide zones, validation, timeline, map images
 ```
 
@@ -63,7 +66,9 @@ Following the Space Apps rules on AI disclosure:
 
 ## Data and credits
 NISAR L2 GCOV and GUNW provisional products, NASA/JPL-Caltech and ISRO, via ASF DAAC.
-JRC Global Surface Water (Pekel et al., 2016). Copernicus GLO-30 DEM (ESA). NASA POWER daily precipitation (PRECTOTCORR, from MERRA-2; NASA LaRC).
+JRC Global Surface Water (Pekel et al., 2016). Copernicus GLO-30 DEM (ESA). GPM IMERG Late Run daily precipitation (GPM_3IMERGDL v07, NASA GES DISC, via Giovanni; see
+`data/reference/SOURCES.md`). NASA Worldview / GIBS daily true-colour imagery for the cloud check
+(`content/cloud_check.md`).
 Method, limits and validation: see the app's Method page and `CONTEXT.md`.
 
 ## Licence

@@ -86,12 +86,14 @@ T = {
                   "mr": "नद्या आणि धरणांबाहेर, सपाट जमिनीवर नवीन साचलेले पाणी"},
     "rise": {"en": "of new water as Pune's reservoirs and rivers rose and filled",
              "mr": "पुण्याची धरणे आणि नद्या भरल्यामुळे वाढलेले नवीन पाणी"},
-    "flood": {"en": "of flood water still standing on 10 July where no water had been recorded since 1984",
-              "mr": "१९८४ पासून कधीही पाणी न नोंदवलेल्या ठिकाणी १० जुलैला अजूनही साचलेले पुराचे पाणी"},
-    "legend_flood": {"en": "Flooding (never water before)", "mr": "पूर (आधी कधीही पाणी नव्हते)"},
+    "flood": {"en": "of flood water still standing on 10 July where no water was recorded between 1984 and 2021",
+              "mr": "१९८४ ते २०२१ दरम्यान कधीही पाणी न नोंदवलेल्या ठिकाणी १० जुलैला अजूनही साचलेले पुराचे पाणी"},
+    "legend_flood": {"en": "Flooding (no water 1984 to 2021)", "mr": "पूर (१९८४ ते २०२१ पाणी नव्हते)"},
     "legend_rise": {"en": "Reservoirs and rivers rising", "mr": "धरणे आणि नद्या वाढल्या"},
-    "slides": {"en": "likely slide zones on slopes steeper than 15°, {high} of them high confidence",
-               "mr": "१५° पेक्षा जास्त उताराच्या भागात संभाव्य भूस्खलन क्षेत्रे, त्यापैकी {high} उच्च खात्रीची"},
+    "slides": {"en": "likely slide zones on slopes of {smin}° to {smax}°, {high} of them high confidence. They are "
+                     "leads to check: {unrep} have no reported event within 2 km",
+               "mr": "{smin}° ते {smax}° उताराच्या भागात संभाव्य भूस्खलन क्षेत्रे, त्यापैकी {high} उच्च खात्रीची. ही "
+                     "तपासण्याजोगी ठिकाणे आहेत: {unrep} क्षेत्रांच्या 2 किमी परिसरात कोणतीही घटना नोंदवलेली नाही"},
     "xt_good": {"en": "of the slide zones that a second NISAR track could see were found by it too, "
                       "{lift}× more often than chance",
                 "mr": "दुसऱ्या निसार मार्गाला दिसू शकलेल्या भूस्खलन क्षेत्रांपैकी तिथेही सापडलेली क्षेत्रे, योगायोगापेक्षा "
