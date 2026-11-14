@@ -34,11 +34,11 @@ def numbers() -> dict:
         "slide_observable": n(v("validation.slide.observable"), 0),
         "before": fmt_date(before), "after": fmt_date(after),
         "crosstrack_sentence": _crosstrack_sentence(fmt_date),
-        "cloud_sentence": _cloud_sentence(),
+        "cloud_sentence": cloud_sentence(),
     }
 
 
-def _cloud_sentence() -> str:
+def cloud_sentence() -> str:
     c = data.cloud_check()
     if not c:
         return ""

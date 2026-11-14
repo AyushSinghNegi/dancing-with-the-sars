@@ -1,6 +1,6 @@
 import streamlit as st
 
-from lib import data, swipe, ui
+from lib import data, story, swipe, ui
 
 ui.setup("Overview")
 ui.demo_banner()
@@ -13,9 +13,9 @@ v = data.value
 left, right = st.columns([1.05, 1], gap="large")
 with left:
     st.markdown(f'<h1 class="ml-hero">{ui.t("title")}</h1>', unsafe_allow_html=True)
-    st.markdown(f'<div class="ml-dates">NISAR L-band radar passes on {data.nice_date(before, False)} and '
-                f'{data.nice_date(after)}, Pune district, India</div>', unsafe_allow_html=True)
-    st.markdown(f'<p class="ml-lede">{ui.t("lede")}</p>', unsafe_allow_html=True)
+    st.markdown(f'<div class="ml-dates">{ui.t("dates_line", b=ui.day(before), a=ui.day(after), y=after[:4])}</div>',
+                unsafe_allow_html=True)
+    st.markdown(f'<p class="ml-lede">{ui.t("lede", cloud=story.cloud_sentence())}</p>', unsafe_allow_html=True)
     b1, b2 = st.columns(2)
     if b1.button(ui.t("start_story"), type="primary", icon=":material/auto_stories:", width="stretch"):
         st.switch_page("views/1_Story.py")
@@ -24,8 +24,8 @@ with left:
 with right:
     imgs = swipe.pair("hh")
     if imgs:
-        swipe.render(imgs[0], imgs[1], f"{ui.t('before')}: {data.nice_date(before, False)}",
-                     f"{ui.t('after')}: {data.nice_date(after, False)}", height=430, start=50)
+        swipe.render(imgs[0], imgs[1], f"{ui.t('before')}: {ui.day(before)}", f"{ui.t('after')}: {ui.day(after)}",
+                     height=430, start=50)
         st.caption(ui.t("swipe_caption"))
 
 st.markdown(f"## {ui.t('found')}")

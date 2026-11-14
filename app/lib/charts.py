@@ -52,17 +52,24 @@ def rainfall(df: pd.DataFrame, before: str, after: str, events=("2026-07-03", "2
 
 
 def timeline(df: pd.DataFrame):
+    """Open water on every same-orbit NISAR pass: one line, one axis (km²), each point labelled."""
+    mr = ui.lang() == "mr"
     d = df.copy()
     d["date"] = pd.to_datetime(d["date"])
+    d = d.sort_values("date")
     same = d[d["same_mode_as_primary"].astype(str).str.lower() == "true"]
     other = d[d["same_mode_as_primary"].astype(str).str.lower() != "true"]
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=same["date"], y=same["water_outside_permanent_flat_km2"], mode="lines+markers",
-                             line=dict(color="#2a78d6", width=2), marker=dict(size=9),
+    fig.add_trace(go.Scatter(x=same["date"], y=same["water_km2"], mode="lines+markers+text",
+                             line=dict(color="#2a78d6", width=2), marker=dict(size=9, color="#2a78d6"),
+                             text=[f"{v:.0f}" for v in same["water_km2"]], textposition="top center",
+                             textfont=dict(size=12, color=ui.INK), cliponaxis=False,
                              hovertemplate="%{x|%d %b}: %{y:.1f} km²<extra></extra>"))
     if len(other):
-        fig.add_trace(go.Scatter(x=other["date"], y=other["water_outside_permanent_flat_km2"], mode="markers",
+        fig.add_trace(go.Scatter(x=other["date"], y=other["water_km2"], mode="markers",
                                  marker=dict(size=9, color="white", line=dict(color="#2a78d6", width=2)),
                                  hovertemplate="%{x|%d %b}: %{y:.1f} km² (different radar mode)<extra></extra>"))
-    fig.update_yaxes(title_text="km² of water outside rivers and reservoirs", rangemode="tozero")
+    lo = max(0, float(d["water_km2"].min()) * 0.85)
+    fig.update_yaxes(title_text="खुले पाणी, चौ. किमी" if mr else "open water, km²",
+                     range=[lo, float(d["water_km2"].max()) * 1.12])
     return _layout(fig, 300)

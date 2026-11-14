@@ -84,7 +84,7 @@ with tab_t:
         st.info("Daily rainfall appears here once `data/reference/rainfall.csv` is added.")
     tl = data.table("timeline.csv")
     if tl is not None and len(tl) > 1:
-        st.markdown("**Water outside rivers and reservoirs, every NISAR pass on this track**")
+        st.markdown("**Open water in the study area on each NISAR pass of this orbit (rivers and reservoirs included)**")
         st.plotly_chart(charts.timeline(tl), width="stretch", config={"displayModeBar": False})
         st.caption("Hollow markers: radar mode or polarisation differs from the June pass, so brightness is not "
                    "directly comparable.")

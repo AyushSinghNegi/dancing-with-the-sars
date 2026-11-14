@@ -73,12 +73,14 @@ p, li {{ font-size: 1.02rem; line-height: 1.6; max-width: 72ch; }}
 T = {
     "title": {"en": "What NISAR radar saw in the 2026 Pune monsoon",
               "mr": "२०२६ च्या पुणे पावसाळ्यात निसार रडारने काय पाहिले"},
-    "lede": {"en": "Monsoon cloud hides the ground exactly when people most need to see it. NASA and ISRO's NISAR "
-                   "satellite sends radar through cloud and rain. We compared its passes over Pune before and after "
-                   "the floods and landslides of 3 to 8 July 2026.",
-             "mr": "पावसाळ्यातील ढग नेमके तेव्हाच जमीन झाकतात जेव्हा ती पाहण्याची सर्वात जास्त गरज असते. नासा आणि इस्रोचा "
-                   "निसार उपग्रह ढग आणि पावसातून रडार पाठवतो. ३ ते ८ जुलै २०२६ च्या पूर आणि भूस्खलनांच्या आधी आणि "
-                   "नंतरच्या पुण्यावरील निरीक्षणांची आम्ही तुलना केली."},
+    "lede": {"en": "Monsoon cloud hides the ground exactly when people most need to see it. {cloud} NASA and ISRO's "
+                   "NISAR satellite sends radar through cloud and rain. We compared its passes over Pune before and "
+                   "after the floods and landslides of 3 to 8 July 2026.",
+             "mr": "पावसाळ्यातील ढग नेमके तेव्हाच जमीन झाकतात जेव्हा ती पाहण्याची सर्वात जास्त गरज असते. {cloud} नासा "
+                   "आणि इस्रोचा निसार उपग्रह ढग आणि पावसातून रडार पाठवतो. ३ ते ८ जुलै २०२६ च्या पूर आणि भूस्खलनांच्या "
+                   "आधी आणि नंतरच्या पुण्यावरील निरीक्षणांची आम्ही तुलना केली."},
+    "dates_line": {"en": "NISAR L-band radar passes on {b} and {a} {y}, Pune district, India",
+                   "mr": "{b} आणि {a} {y} रोजीची निसार एल-बँड रडार निरीक्षणे, पुणे जिल्हा, भारत"},
     "found": {"en": "What the radar found", "mr": "रडारला काय सापडले"},
     "new_water": {"en": "of new open water on flat ground, outside rivers and reservoirs",
                   "mr": "नद्या आणि धरणांबाहेर, सपाट जमिनीवर नवीन साचलेले पाणी"},
