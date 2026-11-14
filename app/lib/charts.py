@@ -30,12 +30,13 @@ def rainfall(df: pd.DataFrame, before: str, after: str, events=("2026-07-03", "2
                            hovertemplate="%{x|%d %b}: %{y:.1f} mm<extra></extra>"))
     e0, e1 = pd.Timestamp(events[0]), pd.Timestamp(events[1]) + pd.Timedelta(days=1)
     fig.add_vrect(x0=e0, x1=e1, fillcolor="#eb6834", opacity=0.08, line_width=0)
-    fig.add_annotation(x=pd.Timestamp(after) + pd.Timedelta(days=1), y=0.93, yref="paper", text=lab["events"],
+    fig.add_annotation(x=pd.Timestamp(after) + pd.Timedelta(days=1), y=0.84, yref="paper", text=lab["events"],
                        showarrow=False, xanchor="left", font=dict(size=12, color=ui.MUTED))
-    for date, label in ((before, lab["p1"]), (after, lab["p2"])):
+    for date, label, side in ((before, lab["p1"], "right"), (after, lab["p2"], "left")):
         fig.add_vline(x=pd.Timestamp(date).timestamp() * 1000, line=dict(color=ui.INK, width=2, dash="dot"))
+        # Labels point away from each other so they never overlap on a narrow phone screen.
         fig.add_annotation(x=pd.Timestamp(date), y=1.0, yref="paper", text=label, showarrow=False, yanchor="bottom",
-                           font=dict(size=12, color=ui.INK))
+                           xanchor=side, xshift=-3 if side == "right" else 3, font=dict(size=12, color=ui.INK))
     fig.update_yaxes(title_text=lab["y"])
     _layout(fig, 330)
     fig.update_layout(margin=dict(t=34))
