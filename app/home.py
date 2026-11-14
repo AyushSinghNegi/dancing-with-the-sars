@@ -36,7 +36,11 @@ if v("water.flood_km2") is not None:
 else:
     rows.append(ui.finding(ui.COLORS["new_water"], ui.fmt_num(v("water.new_water_km2")), " km²", ui.t("new_water")))
 sz, hi = v("slides.zones"), v("slides.high")
-rows.append(ui.finding(ui.COLORS["slide_zones"], ui.fmt_num(sz, 0), "", ui.t("slides", high=ui.fmt_num(hi, 0))))
+th = data.metrics().get("thresholds", {})
+rows.append(ui.finding(ui.COLORS["slide_zones"], ui.fmt_num(sz, 0), "",
+                       ui.t("slides", high=ui.fmt_num(hi, 0), smin=ui.fmt_num(th.get("slide_min_slope_deg", 15), 0),
+                            smax=ui.fmt_num(th.get("slide_max_slope_deg", 45), 0),
+                            unrep=ui.fmt_num(v("validation.unreported_slide_zones") or 0, 0))))
 xt = data.crosstrack()
 if xt:
     rows.append(ui.finding(ui.INK, ui.t("x_of_y", x=xt["confirmed"], y=xt["scored"]), "",

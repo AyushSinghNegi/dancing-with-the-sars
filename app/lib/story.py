@@ -35,7 +35,28 @@ def numbers() -> dict:
         "before": fmt_date(before), "after": fmt_date(after),
         "crosstrack_sentence": _crosstrack_sentence(fmt_date),
         "cloud_sentence": cloud_sentence(),
+        **_timeline_numbers(fmt_date),
     }
+
+
+def timeline_rows():
+    """Same-mode timeline rows, oldest first, or None when there are fewer than 3 dates."""
+    tl = data.table("timeline.csv")
+    if tl is None or "water_in_jrc_extent_km2" not in tl:
+        return None
+    tl = tl[tl["same_mode_as_primary"].astype(str).str.lower() == "true"].sort_values("date")
+    return tl if len(tl) >= 3 else None
+
+
+def _timeline_numbers(fmt_date) -> dict:
+    tl = timeline_rows()
+    if tl is None:
+        return {}
+    first, peak, last = tl.iloc[0], tl.loc[tl["water_in_jrc_extent_km2"].idxmax()], tl.iloc[-1]
+    v = lambda r: ui.fmt_num(r["water_in_jrc_extent_km2"], 0)
+    clause = "" if last["date"] == peak["date"] else ui.t("res_last_clause", v=v(last), d=fmt_date(last["date"]))
+    return {"res_first": v(first), "res_first_date": fmt_date(first["date"]), "res_peak": v(peak),
+            "res_peak_date": fmt_date(peak["date"]), "res_last_clause": clause}
 
 
 def cloud_sentence() -> str:
@@ -55,17 +76,24 @@ def _crosstrack_sentence(fmt_date) -> str:
                 lift=ui.fmt_num(xt["lift"] or 0, 0), cov=xt["coverage"])
 
 
-def steps() -> list[tuple[str, str]]:
+# One key per "## " section of content/story.md, in order; the Story page picks each step's picture by key.
+KEYS = ["rain", "cloud", "swipe", "changed", "weeks", "limits"]
+
+
+def steps() -> list[tuple[str, str, str]]:
     path = CONTENT / ("story.mr.md" if ui.lang() == "mr" and (CONTENT / "story.mr.md").exists() else "story.md")
     text = re.sub(r"<!--.*?-->", "", path.read_text(encoding="utf-8"), flags=re.S)
     parts = re.split(r"^## ", text, flags=re.M)[1:]
     nums = numbers()
     out = []
-    for p in parts:
+    for i, p in enumerate(parts):
         head, _, body = p.partition("\n")
         body = " ".join(line.strip() for line in body.strip().splitlines())
         for k, val in nums.items():
             body = body.replace("{" + k + "}", str(val))
         body = re.sub(r"\s{2,}", " ", body).strip()
-        out.append((head.strip(), body))
+        key = KEYS[i] if i < len(KEYS) else f"extra{i}"
+        if key == "weeks" and "{res_" in body:      # no timeline yet: skip the step rather than show placeholders
+            continue
+        out.append((head.strip(), body, key))
     return out

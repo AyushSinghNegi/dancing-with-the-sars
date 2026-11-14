@@ -37,7 +37,7 @@ RASTERS = [
     ("permanent", "Rivers and reservoirs (JRC)", True),
     ("brighter", "Possible water under cover", True),
     ("rise", "Reservoirs and rivers rising", True),
-    ("flood", "Flooding (no water recorded here since 1984)", True),
+    ("flood", "Flooding (no water recorded here 1984 to 2021)", True),
 ]
 
 SLIDE_SVG = ('<svg width="18" height="18" viewBox="0 0 18 18"><path d="M9 2 L16.5 15.5 H1.5 Z" fill="#fff" '

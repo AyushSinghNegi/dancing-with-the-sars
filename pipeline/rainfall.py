@@ -2,8 +2,9 @@
 
 NASA POWER daily API, parameter PRECTOTCORR (MERRA-2 corrected precipitation,
 mm/day). We average a 3 x 3 grid of points across the box. GPM IMERG via
-Giovanni is finer and observation-based; if someone exports it, save it as
-data/reference/rainfall.csv with the same columns and it replaces this.
+Giovanni is finer and observation-based, and data/reference/rainfall.csv now holds
+IMERG Late Run (see data/reference/SOURCES.md). This script therefore writes
+data/reference/rainfall_power.csv for comparison and never touches rainfall.csv.
 
   python -m pipeline.rainfall
 """
@@ -44,7 +45,7 @@ def fetch(start="20260601", end="20261031"):
 def main():
     rows = fetch()
     C.REFERENCE.mkdir(parents=True, exist_ok=True)
-    with open(C.REFERENCE / "rainfall.csv", "w", newline="") as fh:
+    with open(C.REFERENCE / "rainfall_power.csv", "w", newline="") as fh:   # never overwrite the IMERG file
         w = csv.DictWriter(fh, fieldnames=list(rows[0]))
         w.writeheader()
         w.writerows(rows)
