@@ -104,10 +104,11 @@ water estimates. Raster/image/geometry/contract checks are recorded in
 `qa-results.json`. All eligible repository files are under 20 MB; raw files,
 credentials and preserved intermediate arrays are ignored.
 
-The three primary full HDF5 files are downloaded (13.858 GB total); three timeline
-originals are queued in the resumable local job. Cropped timeline data is already
-complete. Raw transport verification uses byte count and HDF5 signature, not an
-independent checksum. Local receipts are in ignored `data/raw/`.
+All six full HDF5 files are downloaded (31.013 GB total): the three primary
+files and three additional timeline GCOV files. Cropped timeline data is also
+complete. Byte counts, HDF5 signatures and readable HDF5 metadata were checked;
+no independent checksum was available. Local receipts are in ignored `data/raw/`;
+`data/crops/raw_download_status.json` records the verified inventory.
 
 The hand-off and video wording are in [RSN-HANDOFF.md](RSN-HANDOFF.md).
 Implementation is reviewable; scientific clearance of R5 and GitHub publishing

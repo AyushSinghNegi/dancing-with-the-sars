@@ -108,7 +108,7 @@ fractions must be taken from the crop manifest.
 
 Authenticated remote reads succeeded for all five configured GCOV dates and the
 28 June–10 July GUNW pair. Source files are inspected and streamed as windows;
-full HDF5 downloads are also queued locally to fulfill R2/R7. Use `pipeline.acquire` for real
+all six full HDF5 originals are also downloaded locally to fulfill R2/R7. Use `pipeline.acquire` for real
 acquisition, including quality checks; `pipeline.preflight --require-crops`
 checks the primary quality stamps before `pipeline.run_all`.
 

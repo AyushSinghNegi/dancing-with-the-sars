@@ -42,9 +42,11 @@ streamlit run app/streamlit_app.py
 ```
 
 This checkout's tested interpreter is `.venv311/bin/python`. The original `.venv`
-remains available for the resumable download job; it is not the tested app runtime.
+was used for the completed raw download job; it is not the tested app runtime.
 Raw downloads are ignored by Git, checked for HTTP byte count and HDF5 signature,
-and have local receipts. These are transport checks, not independent checksums.
+and have local receipts. All six originals are complete (31.013 GB total), with readable HDF5 metadata.
+`data/crops/raw_download_status.json` records their IDs, byte counts and verification.
+These are transport checks, not independent checksums.
 `data/crops/inspection_*.json` records actual dataset paths, shape, CRS and fill.
 
 ## Deliverables for Ayush and Urvashi
@@ -57,7 +59,7 @@ and have local receipts. These are transport checks, not independent checksums.
 | R4 | Four HH/HV PNGs, coherence PNG, GeoTIFFs, bounds.json; all source masks applied |
 | R5 | water_new_20260710.png, new_water.geojson, GeoTIFF, water_stats.csv, water_sensitivity.csv, water_threshold.json; diagnostic only, QC failed |
 | R6 | NASADEM elevation/slope/provenance, slide_zones.geojson/PNG, control_stats.csv; zero qualifying zones |
-| R7 | Remaining three full GCOV downloads queued; all five scene crops already processed; extra GUNW is optional |
+| R7 | All three additional full GCOV files downloaded; all five scene crops processed; extra GUNW is optional |
 | R8 | timeline.csv: four zones × HH/HV × five dates; zone_timeline.csv alias; water_timeline.csv is supplementary |
 | R9 | validation.csv: fixed 200 m primary result, separate precision-aware result, distances/reasons; rejected water not scored |
 | R10 | README, CONTEXT, source IDs, versions, this guide and REAL-DATA-RUN.md |

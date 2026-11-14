@@ -13,8 +13,8 @@ th = m.get("thresholds", {})
 before, after = data.dates()
 
 st.markdown("# Method and limits")
-st.markdown('<p class="ml-lede">Every number in this app comes from the pipeline in our public repository, '
-            'run on the NISAR files listed below. Nothing is estimated by hand.</p>', unsafe_allow_html=True)
+st.markdown('<p class="ml-lede">Radar results are computed by the project pipeline from the NISAR files '
+            'listed below. Reported-event locations are approximate reference points.</p>', unsafe_allow_html=True)
 
 st.markdown("## How it works")
 st.markdown(f"""
@@ -31,9 +31,9 @@ st.markdown(f"""
    outside permanent water (JRC occurrence ≥ {th.get('permanent_water_occurrence')}%), and part of a patch
    of at least {th.get('min_patch_pixels')} pixels. The shared threshold is varied by ±1 dB on both dates
    for the reported sensitivity range. This brief-defined layer has no additional slope or change gate.
-4. **Flag possible hidden water.** At L-band, water under trees or between buildings makes the radar bounce twice
-   and come back brighter. Flat ground that got {th.get('change_db')} dB brighter is shown as *possible* water,
-   never added to flood totals.
+4. **Flag possible hidden water.** At L-band, water under trees or between buildings can make the radar bounce twice
+   and come back brighter. Flat ground that got {th.get('change_db')} dB brighter is a *possible* water diagnostic,
+   never added to flood totals. This overlay is withheld when the water-quality check fails.
 5. **Find likely slide zones.** NASADEM slopes of {th.get('slide_min_slope_deg')}° or more must also have
    GUNW coherence below {th.get('coherence_low')} and HV dropping by at least {th.get('change_db')} dB.
    Patches need at least {th.get('slide_min_patch_pixels', 3)} pixels. HH change and local coherence contrast are diagnostics only.
