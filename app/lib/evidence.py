@@ -59,7 +59,11 @@ TYPE_WORD = {"landslide": {"en": "landslide", "mr": "भूस्खलन"}, "f
 
 
 def e(key: str, **kw) -> str:
-    s = E[key].get(ui.lang()) or E[key]["en"]
+    if ui.lang() == "de":
+        from .i18n_de import DE_E
+        s = DE_E.get(key) or E[key]["en"]
+    else:
+        s = E[key].get(ui.lang()) or E[key]["en"]
     return s.format(**kw) if kw else s
 
 
@@ -93,6 +97,9 @@ def checks(p: dict) -> list[tuple[str, bool | None, str]]:
         reason = (p.get("nasadem_reason") or "").replace(" in NASADEM", "")
         if ui.lang() == "mr":
             reason = REASON_MR.get(reason, reason)
+        elif ui.lang() == "de":
+            from .i18n_de import REASON
+            reason = REASON.get(reason, reason)
         out.append((e("dem"), ok, e("dem_found") if ok else e("dem_not", r=reason)))
     k = p.get("nearest_event_km")
     if k is not None:
@@ -169,4 +176,7 @@ def show_flood(p: dict):
 
 
 def type_word(t: str) -> str:
+    if ui.lang() == "de":
+        from .i18n_de import TYPE
+        return TYPE.get(t) or t.replace("_", " ")
     return TYPE_WORD.get(t, {}).get(ui.lang()) or t.replace("_", " ")

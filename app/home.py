@@ -2,7 +2,7 @@ import html
 
 import streamlit as st
 
-from lib import data, story, swipe, ui
+from lib import data, hero, story, swipe, ui
 
 ui.setup("Overview")
 ui.demo_banner()
@@ -16,23 +16,42 @@ m = data.metrics()
 th = m.get("thresholds", {})
 
 # ---------------------------------------------------------------- hero
-left, right = st.columns([1.05, 1], gap="large")
-with left:
-    st.markdown(f'<h1 class="ml-hero">{ui.t("title")}</h1>', unsafe_allow_html=True)
-    st.markdown(f'<div class="ml-dates">{ui.t("dates_line", b=ui.day(before), a=ui.day(after), y=after[:4])}</div>',
-                unsafe_allow_html=True)
-    st.markdown(f'<p class="ml-lede">{ui.t("lede", cloud=story.cloud_sentence())}</p>', unsafe_allow_html=True)
-    b1, b2 = st.columns(2)
-    if b1.button(ui.t("start_story"), type="primary", icon=":material/auto_stories:", width="stretch"):
-        st.switch_page("views/1_Story.py")
-    if b2.button(tr("Check a place", "एखादे ठिकाण तपासा"), icon=":material/location_on:", width="stretch"):
-        st.switch_page("views/4_Place.py")
-with right:
-    imgs = swipe.pair("hh")
-    if imgs:
-        swipe.render(imgs[0], imgs[1], f"{ui.t('before')}: {ui.day(before)}", f"{ui.t('after')}: {ui.day(after)}",
-                     height=430, start=50)
-        st.caption(ui.t("swipe_caption"))
+np_ = data.next_pass()
+with st.container(key="hero"):
+    left, right = st.columns([1.14, 1], gap="large", vertical_alignment="center")
+    with left:
+        if np_:
+            st.markdown(f'<p class="ml-kicker"><i></i>{tr("Next expected NISAR pass over Pune: {d}", "पुण्यावरील पुढचे अपेक्षित निसार निरीक्षण: {d}", d=ui.date(np_[1]))}</p>',
+                        unsafe_allow_html=True)
+        st.markdown(f'<h1 class="ml-hero">{ui.t("title")}</h1>', unsafe_allow_html=True)
+        st.markdown(f'<div class="ml-dates">{ui.t("dates_line", b=ui.day(before), a=ui.day(after), y=after[:4])}</div>',
+                    unsafe_allow_html=True)
+        st.markdown(f'<p class="ml-lede">{ui.t("lede", cloud=story.cloud_sentence())}</p>', unsafe_allow_html=True)
+        with st.container(horizontal=True, gap="small"):
+            if st.button(ui.t("start_story"), type="primary", icon=":material/auto_stories:", width="content"):
+                st.switch_page("views/1_Story.py")
+            if st.button(tr("Explore the map", "नकाशा पाहा"), icon=":material/map:", width="content"):
+                st.switch_page("views/2_Explore.py")
+            if st.button(tr("Check a place", "एखादे ठिकाण तपासा"), icon=":material/location_on:", width="content"):
+                st.switch_page("views/4_Place.py")
+    with right:
+        if not hero.render(after, height=440):
+            imgs = swipe.pair("hh")
+            if imgs:
+                swipe.render(imgs[0], imgs[1], f"{ui.t('before')}: {ui.day(before)}", f"{ui.t('after')}: {ui.day(after)}",
+                             height=430, start=50)
+
+
+ICONS = {  # simple 24 px line icons for the three audiences
+    ":material/location_on:": '<path d="M12 21s-6.5-6.6-6.5-11.5a6.5 6.5 0 0 1 13 0C18.5 14.4 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/>',
+    ":material/checklist:": '<path d="M4 6.5l1.6 1.6L8.5 5M4 12.5l1.6 1.6 2.9-3.1M4 18.5l1.6 1.6 2.9-3.1M11 7h9M11 13h9M11 19h9"/>',
+    ":material/science:": '<path d="M9.5 3h5M10.5 3v5.5L5 18.5A1.7 1.7 0 0 0 6.5 21h11a1.7 1.7 0 0 0 1.5-2.5L13.5 8.5V3M7.5 15h9"/>',
+}
+
+
+def icon_html(name):
+    return (f'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" '
+            f'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICONS.get(name, "")}</svg>')
 
 
 def card(color, number, unit, label, sure, hatch=False):
@@ -78,7 +97,7 @@ if tl is not None:
 cards.append(card(ui.COLORS["brighter"], ui.fmt_num(v("water.brighter_flat_km2")), "km²", ui.t("brighter"),
                   tr("Shown as possible water, never added to the flood figure.",
                      "संभाव्य पाणी म्हणून दाखवले, पुराच्या आकड्यात कधीच मिळवले नाही."), hatch=True))
-st.markdown(f'<div class="ml-grid">{"".join(cards)}</div>', unsafe_allow_html=True)
+st.markdown(f'<div lang="{ui.lang()}" class="ml-grid">{"".join(cards)}</div>', unsafe_allow_html=True)
 
 # ---------------------------------------------------------------- how we checked it
 st.markdown(f"## {tr('How we checked it', 'आम्ही कसे तपासले')}")
@@ -130,9 +149,11 @@ paths = [
         "प्रत्येक आकडा त्याच्या निसार फाइलपर्यंत, त्यामागच्या तपासण्या, आणि नकाशे GeoTIFF व GeoJSON मध्ये."),
      "views/3_Method.py", tr("Method and data", "पद्धत आणि डेटा"), ":material/science:"),
 ]
-cols = st.columns(3)
-for c, (title, desc, page, label, icon) in zip(cols, paths):
+with st.container(key="paths"):
+    cols = st.columns(3)
+for c, (title, desc, page, label, icon), col in zip(cols, paths, ("#3d8ef0", "#f0743a", "#6fe3ff")):
     with c.container(border=True):
+        st.markdown(f'<div class="ml-path-ic" style="--c:{col}"><span>{icon_html(icon)}</span></div>', unsafe_allow_html=True)
         st.markdown(f"### {title}")
         st.markdown(f'<p class="ml-pathd">{html.escape(desc)}</p>', unsafe_allow_html=True)
         st.page_link(page, label=label, icon=icon)
@@ -159,7 +180,6 @@ bullets.append(ui.t("lim_early"))
 st.markdown("\n".join(f"- {x}" for x in bullets))
 if lim["zones"]:
     st.markdown(ui.t("lim_lead", u=lim["unreported"], z=lim["zones"]))
-np_ = data.next_pass()
 if np_:
     st.markdown(f'<div class="ml-pass"><span>🛰️</span><span>' + tr(
         "NISAR passes over Pune every 12 days, cloud or not. Last pass in our data: <b>{l}</b>; if it keeps its 12-day "

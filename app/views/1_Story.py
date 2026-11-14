@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_folium import st_folium
 
-from lib import charts, data, maps, story, swipe, ui
+from lib import charts, data, evidence, maps, story, swipe, ui
 
 ui.setup("Story")
 ui.demo_banner()
@@ -60,9 +60,8 @@ with visual:
                             f=ui.day(c["from"]), t=ui.day(c["to"]), n=c["all_cloud"],
                             p1=ui.day(c["pass_days_broken_cloud"][0]), p2=ui.day(c["pass_days_broken_cloud"][-1]),
                             url=c.get("source_url", "https://worldview.earthdata.nasa.gov")))
-        st.caption("NISAR's L-band radar (wavelength about 24 cm) works day and night, through cloud and rain."
-                   if ui.lang() == "en" else
-                   "निसारचे एल-बँड रडार (तरंगलांबी सुमारे २४ सेंमी) दिवस-रात्र, ढग आणि पावसातूनही काम करते.")
+        st.caption(ui.tr("NISAR's L-band radar (wavelength about 24 cm) works day and night, through cloud and rain.",
+                         "निसारचे एल-बँड रडार (तरंगलांबी सुमारे २४ सेंमी) दिवस-रात्र, ढग आणि पावसातूनही काम करते."))
     elif key == "swipe":
         imgs = swipe.pair("hh")
         if imgs:
@@ -74,9 +73,9 @@ with visual:
                    (ui.COLORS["slide_zones"], ui.t("legend_slides"), "outline"),
                    (ui.COLORS["brighter"], ui.t("legend_brighter"), "hatch"),
                    (ui.COLORS["permanent"], ui.t("legend_permanent"), "fill"),
-                   (ui.INK, ui.t("legend_events"), "dot")])
-        m = maps.build(basemap="Light", zoom=10, collapsed=True)
-        st_folium(m, height=470, use_container_width=True, returned_objects=[], key="story_map")
+                   (None, ui.t("legend_events"), "dot")])
+        m = maps.build(zoom=10, collapsed=True)
+        st_folium(m, height=470, use_container_width=True, returned_objects=[], key=f"story_map_{ui.dark()}")
     elif key == "weeks":
         tl = story.timeline_rows()
         st.plotly_chart(charts.timeline(tl), width="stretch", config={"displayModeBar": False})
@@ -93,7 +92,7 @@ with visual:
             rows = []
             for key, label in (("flood", "matched_floods"), ("slide", "matched_slides")):
                 s = summ.get(key, {})
-                rows.append(ui.finding(ui.INK, ui.t("x_of_y", x=s.get("hits", 0), y=s.get("observable", 0)), "",
+                rows.append(ui.finding("currentColor", ui.t("x_of_y", x=s.get("hits", 0), y=s.get("observable", 0)), "",
                                        ui.t(label)))
             st.markdown("".join(rows), unsafe_allow_html=True)
             dc = data.metrics().get("dem_check") or {}
@@ -108,8 +107,16 @@ with visual:
             misses = val[val["result"].isin(["miss", "not observable"])]
             if len(misses):
                 st.markdown(f"**{ui.t('fell_short')}**")
-                st.dataframe(misses[["place", "type", "date", "result", "reason"]], hide_index=True,
-                             width="stretch")
+                tr = ui.tr
+                shown = misses[["place", "type", "date", "result", "reason"]].copy()
+                shown["type"] = shown["type"].astype(str).map(evidence.type_word)
+                shown["result"] = shown["result"].map({"miss": tr("radar missed it", "रडारला दिसले नाही"),
+                                                       "not observable": tr("radar could not observe it",
+                                                                            "रडारला पाहता आले नाही")}).fillna(shown["result"])
+                st.dataframe(shown, hide_index=True, width="stretch",
+                             column_config={"place": tr("Place", "ठिकाण"), "type": tr("Event", "घटना"),
+                                            "date": tr("Date", "तारीख"), "result": tr("Result", "निकाल"),
+                                            "reason": tr("Why (in English)", "कारण (इंग्रजीत)")})
         else:
             st.info("The validation table appears here once reported events (`data/reference/events.geojson`) "
                     "are added and the pipeline is re-run.")

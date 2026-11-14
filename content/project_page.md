@@ -111,8 +111,8 @@ Plotly, Pillow, pytest, GitHub, Streamlit Community Cloud. Code licence: MIT.
 
 Yes.
 
-- Most of the pipeline and app code, the tests, and the first drafts of the story text (English and
-  Marathi) were written with Claude (Anthropic), directed and reviewed by the team.
+- Most of the pipeline and app code, the tests, and the first drafts of the story text (English,
+  Marathi and German) were written with Claude (Anthropic), directed and reviewed by the team.
 - Claude was also used to check each reported event against its news source, to draft the style
   guide, the slide outline, the validation table text and this page, and to keep the list of open
   points (`plotholes.md`).

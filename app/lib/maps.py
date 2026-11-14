@@ -4,7 +4,7 @@ from __future__ import annotations
 import html
 
 import folium
-from folium.plugins import Fullscreen
+from folium.plugins import Fullscreen, MiniMap, MousePosition
 
 from . import data, ui
 
@@ -12,6 +12,8 @@ ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services"
 BASEMAPS = {
     "Light": (f"{ESRI}/Canvas/World_Light_Gray_Base/MapServer/tile/{{z}}/{{y}}/{{x}}",
               "Base map &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors"),
+    "Dark": (f"{ESRI}/Canvas/World_Dark_Gray_Base/MapServer/tile/{{z}}/{{y}}/{{x}}",
+             "Base map &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors"),
     "Satellite": (f"{ESRI}/World_Imagery/MapServer/tile/{{z}}/{{y}}/{{x}}",
                   "Imagery &copy; Esri, Maxar, Earthstar Geographics"),
     "Topographic": (f"{ESRI}/World_Topo_Map/MapServer/tile/{{z}}/{{y}}/{{x}}",
@@ -19,12 +21,79 @@ BASEMAPS = {
     "Streets": ("https://tile.openstreetmap.org/{z}/{x}/{y}.png", "&copy; OpenStreetMap contributors"),
 }
 LABELS = (f"{ESRI}/Canvas/World_Light_Gray_Reference/MapServer/tile/{{z}}/{{y}}/{{x}}", "Labels &copy; Esri")
-MAP_CSS = """<style>
-.leaflet-control-layers { font: 12.5px/1.35 'IBM Plex Sans', system-ui, sans-serif; color: #1d3346; }
-.leaflet-control-layers-expanded { padding: 6px 10px 6px 8px; max-height: 70%; overflow-y: auto; }
-.leaflet-control-layers label { margin: 1px 0; }
-.leaflet-popup-content { font: 13px/1.45 'IBM Plex Sans', system-ui, sans-serif; color: #1d3346; }
+LABELS_DARK = (f"{ESRI}/Canvas/World_Dark_Gray_Reference/MapServer/tile/{{z}}/{{y}}/{{x}}", "Labels &copy; Esri")
+NAMES = {"Light": ("Light", "फिका", "Hell"), "Dark": ("Dark", "गडद", "Dunkel"), "Satellite": ("Satellite", "उपग्रह", "Satellit"),
+         "Topographic": ("Topographic", "भूरचना", "Topografisch"), "Streets": ("Streets", "रस्ते", "Straßen")}
+
+
+def basemap_name(key: str) -> str:
+    n = NAMES.get(key, (key, key, key))
+    return {"en": n[0], "mr": n[1], "de": n[2]}.get(ui.lang(), n[0])
+
+
+def default_basemap() -> str:
+    return "Dark" if ui.dark() else "Light"
+
+
+def _dark_map(basemap: str) -> bool:
+    return basemap in ("Dark", "Satellite")
+
+
+def map_css(basemap: str) -> str:
+    """Layer switcher, popups and the pulsing markers, in the colours of the map underneath."""
+    dk = ui.dark()
+    panel, text, line = ("rgba(10,18,34,.92)", "#e6edf6", "rgba(160,190,230,.22)") if dk else \
+        ("rgba(255,255,255,.94)", "#1d3346", "rgba(29,51,70,.14)")
+    return f"""<style>
+.leaflet-container {{ background: {'#0b1220' if _dark_map(basemap) else '#eef1f4'}; font-family: 'IBM Plex Sans', system-ui, sans-serif; }}
+.leaflet-control-layers, .leaflet-bar a, .leaflet-control-mouseposition, .leaflet-control-scale-line {{
+  background: {panel} !important; color: {text} !important; border-color: {line} !important; }}
+.leaflet-control-layers {{ font: 12.5px/1.35 'IBM Plex Sans', system-ui, sans-serif; border-radius: 12px !important;
+  box-shadow: 0 6px 24px rgba(0,0,0,.18) !important; backdrop-filter: blur(6px); }}
+.leaflet-control-layers-expanded {{ padding: 8px 12px 8px 10px; max-height: 70%; overflow-y: auto; }}
+.leaflet-control-layers label {{ margin: 2px 0; }}
+.leaflet-control-layers-separator {{ border-top-color: {line} !important; }}
+.leaflet-bar {{ border-radius: 10px !important; overflow: hidden; border: 1px solid {line} !important; }}
+.leaflet-control-mouseposition {{ font: 11.5px/1.3 'IBM Plex Sans', system-ui, sans-serif; padding: 3px 8px;
+  border-radius: 8px; margin-bottom: 6px !important; }}
+.leaflet-control-attribution {{ font: 10.5px/1.4 'IBM Plex Sans', system-ui, sans-serif !important;
+  background: {panel} !important; color: {text} !important; border-radius: 8px 0 0 0; }}
+.leaflet-control-attribution a {{ color: {'#7dbbff' if dk else '#1f6fd1'} !important; }}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {{ background: {panel}; color: {text}; border-radius: 12px; }}
+.leaflet-popup-content {{ font: 13px/1.45 'IBM Plex Sans', system-ui, sans-serif; color: {text}; }}
+.leaflet-popup-content a {{ color: {'#7dbbff' if dk else '#1f6fd1'}; }}
+.leaflet-tooltip {{ font: 12.5px/1.35 'IBM Plex Sans', system-ui, sans-serif; border-radius: 8px; }}
+.leaflet-control-minimap {{ border-radius: 10px; border: 1px solid {line} !important; }}
+.ml-pulse {{ position: relative; width: 18px; height: 18px; }}
+.ml-pulse i {{ position: absolute; inset: 3px; border-radius: 50%; background: #f0743a; border: 2px solid #fff;
+  box-shadow: 0 0 10px rgba(240,116,58,.9); }}
+.ml-pulse::before, .ml-pulse::after {{ content: ""; position: absolute; inset: 0; border-radius: 50%;
+  border: 2px solid #f0743a; animation: ml-ping 2.4s cubic-bezier(0,.4,.4,1) infinite; }}
+.ml-pulse::after {{ animation-delay: 1.2s; }}
+@keyframes ml-ping {{ from {{ transform: scale(.6); opacity: .9; }} to {{ transform: scale(2.6); opacity: 0; }} }}
+@media (prefers-reduced-motion: reduce) {{ .ml-pulse::before, .ml-pulse::after {{ animation: none; opacity: 0; }} }}
 </style>"""
+
+
+def _ink(basemap: str) -> str:
+    return "#d7e6fa" if _dark_map(basemap) else ui.INK
+
+
+ink_for = _ink
+
+
+def _labels(basemap: str):
+    return LABELS_DARK if basemap == "Dark" else LABELS
+
+
+def _extras(m, basemap: str):
+    """Mini overview map and the cursor's latitude and longitude, for people who will go to the spot."""
+    url, attr = BASEMAPS["Dark" if _dark_map(basemap) else "Light"]
+    MiniMap(tile_layer=folium.TileLayer(url, attr=attr), position="bottomright", width=110, height=90,
+            zoom_level_offset=-5, toggle_display=True).add_to(m)
+    MousePosition(position="bottomleft", separator=", ", num_digits=5, prefix="", empty_string="",
+                  lat_formatter="function(n){return n.toFixed(5)+'° N'}",
+                  lng_formatter="function(n){return n.toFixed(5)+'° E'}").add_to(m)
 
 # name -> (label key or text, shown by default)
 RASTERS = [
@@ -55,16 +124,17 @@ def center():
     return [(b[0][0] + b[1][0]) / 2, (b[0][1] + b[1][1]) / 2]
 
 
-def build(basemap="Light", opacity=0.85, show=None, location=None, zoom=10, height=600, events=True,
+def build(basemap=None, opacity=0.85, show=None, location=None, zoom=10, height=600, events=True,
           zones=True, min_conf="medium", collapsed=False):
     """Return a folium.Map with every layer available in the layer switcher."""
+    basemap = basemap or default_basemap()
     m = folium.Map(location=location or center(), zoom_start=zoom, tiles=None, control_scale=True,
                    prefer_canvas=True, zoom_snap=0.25, zoom_delta=0.5)
     b0 = data.bounds().get("bounds_latlon")
     if location is None and b0:
         # Fit the whole study box on any screen (a fixed zoom cut off the Western Ghats on phones).
         m.fit_bounds(b0, padding=(6, 6))
-    m.get_root().header.add_child(folium.Element(MAP_CSS))
+    m.get_root().header.add_child(folium.Element(map_css(basemap)))
     folium.map.CustomPane("labels", z_index=650, pointer_events=False).add_to(m)
     for name, (url, attr) in BASEMAPS.items():
         folium.TileLayer(url, attr=attr, name=name, overlay=False, control=True, show=(name == basemap),
@@ -81,7 +151,8 @@ def build(basemap="Light", opacity=0.85, show=None, location=None, zoom=10, heig
                                                show=(name in show))
         ov.url = url
         ov.add_to(m)
-    folium.TileLayer(LABELS[0], attr=LABELS[1], name="Place names", overlay=True, control=True, show=True,
+    lab = _labels(basemap)
+    folium.TileLayer(lab[0], attr=lab[1], name="Place names", overlay=True, control=True, show=True,
                      pane="labels", max_zoom=18).add_to(m)
     if zones:
         add_slide_zones(m, min_conf)
@@ -89,10 +160,11 @@ def build(basemap="Light", opacity=0.85, show=None, location=None, zoom=10, heig
     if events:
         add_events(m)
     if b:
-        folium.Rectangle(b, color=ui.INK, weight=1, fill=False, dash_array="4 4", name="Study box",
+        folium.Rectangle(b, color=_ink(basemap), weight=1.2, fill=False, dash_array="4 4", name="Study box",
                          tooltip="Study box (NISAR crop)").add_to(m)
     folium.LayerControl(collapsed=collapsed, position="topright").add_to(m)
     Fullscreen(position="topleft").add_to(m)
+    _extras(m, basemap)
     return m
 
 
@@ -133,9 +205,14 @@ def add_slide_zones(m, min_conf="medium"):
         tip = f"{p['id']}: likely slide zone ({p['confidence']}), {p.get('near') or ''}"
         if both:
             tip += "; also found by a second NISAR track"
-        folium.CircleMarker([p["lat"], p["lon"]], radius=7 if p["confidence"] == "high" or both else 5,
-                            color=ui.COLORS["slide_zones"], weight=3.5 if both else 2, fill=True,
-                            fill_opacity=0.7 if both else 0.35, tooltip=tip).add_to(fg)
+        if p["confidence"] == "high":   # the few strongest leads pulse, so the eye finds them first
+            folium.Marker([p["lat"], p["lon"]], tooltip=tip,
+                          icon=folium.DivIcon(html='<div class="ml-pulse"><i></i></div>', icon_size=(18, 18),
+                                              icon_anchor=(9, 9), class_name="ml-pulse-wrap")).add_to(fg)
+        else:
+            folium.CircleMarker([p["lat"], p["lon"]], radius=6 if both else 5,
+                                color=ui.COLORS["slide_zones"], weight=3.5 if both else 2, fill=True,
+                                fill_opacity=0.7 if both else 0.35, tooltip=tip).add_to(fg)
     fg.add_to(m)
 
 
@@ -186,14 +263,15 @@ def add_events(m):
     fg.add_to(m)
 
 
-def season(date: str, basemap="Light", opacity=0.9):
+def season(date: str, basemap=None, opacity=0.9):
     """Open water on one NISAR pass (season slider), on a plain base map."""
+    basemap = basemap or default_basemap()
     m = folium.Map(location=center(), zoom_start=10, tiles=None, control_scale=True, prefer_canvas=True,
                    zoom_snap=0.25, zoom_delta=0.5)
     b = data.bounds().get("bounds_latlon")
     if b:
         m.fit_bounds(b, padding=(6, 6))
-    m.get_root().header.add_child(folium.Element(MAP_CSS))
+    m.get_root().header.add_child(folium.Element(map_css(basemap)))
     folium.map.CustomPane("labels", z_index=650, pointer_events=False).add_to(m)
     url, attr = BASEMAPS[basemap]
     folium.TileLayer(url, attr=attr, name=basemap, max_zoom=18).add_to(m)
@@ -203,10 +281,12 @@ def season(date: str, basemap="Light", opacity=0.9):
                                                opacity=opacity, interactive=False, cross_origin=False, zindex=2)
         ov.url = ov_url
         ov.add_to(m)
-    folium.TileLayer(LABELS[0], attr=LABELS[1], name="Place names", overlay=True, pane="labels",
+    lab = _labels(basemap)
+    folium.TileLayer(lab[0], attr=lab[1], name="Place names", overlay=True, pane="labels",
                      max_zoom=18).add_to(m)
     if b:
-        folium.Rectangle(b, color=ui.INK, weight=1, fill=False, dash_array="4 4",
+        folium.Rectangle(b, color=_ink(basemap), weight=1.2, fill=False, dash_array="4 4",
                          tooltip="Study box (NISAR crop)").add_to(m)
     Fullscreen(position="topleft").add_to(m)
+    _extras(m, basemap)
     return m

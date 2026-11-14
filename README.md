@@ -16,10 +16,14 @@ over Pune (28 June and 10 July 2026), bracketing the 3-8 July floods and landsli
 And it turns them into things people can use:
 
 - **Check a place**: pick any of 431 villages, towns and suburbs (or click the map) and see what NISAR found
-  within 2, 5 or 10 km, in English or Marathi, with a link you can share
+  within 2, 5 or 10 km, with a link you can share
+- **Three languages, light and dark**: English, Marathi (मराठी) and German (Deutsch), in light or dark mode
+  (open a page in a language with `?lang=mr` or `?lang=de`)
 - **Field check list**: every likely slide zone ranked, with NISAR image chips of the spot, why it was flagged and
   which independent checks it passed; as a printable page, KML for Google Earth and phones, CSV and GeoJSON
 - **Season slider**: open water on five NISAR passes of the same orbit, 28 June to 14 October
+- **Animated overview**: NISAR passes over Pune and its radar clears the monsoon cloud to show the real 10 July
+  radar image and findings (the cloud is drawn as an illustration and labelled as one)
 - **Every number checked**: 18 reported events, a second NISAR orbit, a second elevation map (NASA NASADEM), and
   the water threshold moved by 1 dB either way
 
@@ -63,7 +67,7 @@ python -m pytest -q
 
 ## Use of AI
 Following the Space Apps rules on AI disclosure:
-- Most of the pipeline and app code, the tests, the first drafts of the story text (English and Marathi) and the
+- Most of the pipeline and app code, the tests, the first drafts of the story text (English, Marathi and German) and the
   first pass of the reported-events research were written with **Claude (Anthropic)**, directed and reviewed by the
   team. So were the source checks on the reported events, the style guide, the slide outline, the validation
   table, the "couldn't see" text and `plotholes.md`.

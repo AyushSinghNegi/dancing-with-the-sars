@@ -43,6 +43,8 @@ if not zones:
 rows = []
 for rank, p in enumerate(zones, start=1):
     rows.append({"rank": rank, "id": p["id"], "near": p.get("near") or "", "confidence": p["confidence"],
+                 "conf_txt": {"high": tr("High", "उच्च"), "medium": tr("Medium", "मध्यम"),
+                              "low": tr("Low", "कमी")}.get(p["confidence"], p["confidence"]),
                  "score": p["score"], "orbit": {"confirmed": tr("found again", "पुन्हा सापडले"),
                                                 "partial": tr("partly", "अंशतः"),
                                                 "not seen": tr("not seen", "दिसले नाही"),
@@ -74,8 +76,9 @@ cc = st.column_config
 evt = st.dataframe(
     sel, hide_index=True, width="stretch", height=min(420, 38 + 35 * max(len(sel), 1)), on_select="rerun",
     selection_mode="single-row", key="field_table",
+    column_order=["rank", "id", "near", "conf_txt", "score", "orbit", "dem", "report", "slope", "map"],
     column_config={"rank": cc.NumberColumn("#", width="small"), "id": tr("Zone", "क्षेत्र"),
-                   "near": tr("Nearest place", "जवळचे ठिकाण"), "confidence": tr("Confidence", "खात्री"),
+                   "near": tr("Nearest place", "जवळचे ठिकाण"), "conf_txt": tr("Confidence", "खात्री"),
                    "score": cc.ProgressColumn(tr("Score", "गुण"), min_value=0, max_value=1, format="%.2f"),
                    "orbit": cc.TextColumn(tr("2nd orbit", "दुसरी कक्षा"),
                                           help=tr("NISAR track 106, 3 to 15 July", "निसार मार्ग १०६, ३ ते १५ जुलै")),

@@ -9,14 +9,17 @@ from . import data, ui
 CONTENT = Path(__file__).resolve().parents[2] / "content"
 MONTHS = {"en": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
           "mr": ["जानेवारी", "फेब्रुवारी", "मार्च", "एप्रिल", "मे", "जून", "जुलै", "ऑगस्ट", "सप्टेंबर", "ऑक्टोबर",
-                 "नोव्हेंबर", "डिसेंबर"]}
+                 "नोव्हेंबर", "डिसेंबर"],
+          "de": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober",
+                 "November", "Dezember"]}
 
 
 def numbers() -> dict:
     v = data.value
     before, after = data.dates()
     months = MONTHS.get(ui.lang(), MONTHS["en"])
-    fmt_date = lambda d: f"{int(d[8:10])} {months[int(d[5:7]) - 1]}"
+    dot = "." if ui.lang() == "de" else ""
+    fmt_date = lambda d: f"{int(d[8:10])}{dot} {months[int(d[5:7]) - 1]}"
     def n(x, digits=1):
         return "not available" if x is None else ui.fmt_num(x, digits)
     return {
@@ -81,7 +84,8 @@ KEYS = ["rain", "cloud", "swipe", "changed", "weeks", "limits"]
 
 
 def steps() -> list[tuple[str, str, str]]:
-    path = CONTENT / ("story.mr.md" if ui.lang() == "mr" and (CONTENT / "story.mr.md").exists() else "story.md")
+    local = CONTENT / f"story.{ui.lang()}.md"
+    path = local if ui.lang() != "en" and local.exists() else CONTENT / "story.md"
     text = re.sub(r"<!--.*?-->", "", path.read_text(encoding="utf-8"), flags=re.S)
     parts = re.split(r"^## ", text, flags=re.M)[1:]
     nums = numbers()
