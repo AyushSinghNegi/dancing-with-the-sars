@@ -79,4 +79,4 @@ The app reads only `data/derived/` (or `data/demo/derived/` with a banner). Run:
 
 ## How we work
 Branches `name/topic`, small pull requests into `main`, describe what changed and how you checked it.
-Before committing pipeline changes: `python -m pytest -q`.
+Before committing pipeline changes: `python -m pytest -q`. App packages: `requirements.txt`; pipeline: `requirements-pipeline.txt`.

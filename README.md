@@ -22,6 +22,7 @@ streamlit run app/streamlit_app.py
 
 Rebuild the results from NISAR (needs a free NASA Earthdata login):
 ```bash
+pip install -r requirements-pipeline.txt
 python -m pipeline.ancillary          # JRC water + DEM slope (public, no login)
 python -m pipeline.crop --primary     # streams only the Pune box from the 3 NISAR files
 python -m pipeline.run_all            # water, slide zones, validation, timeline, map images

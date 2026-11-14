@@ -1,0 +1,11 @@
+# Everything needed to rebuild data/derived from NISAR files (plus the app)
+-r requirements.txt
+h5py>=3.11
+rasterio>=1.3
+pyproj>=3.6
+shapely>=2.0
+scipy>=1.11
+earthaccess>=0.11
+fsspec>=2024.6
+aiohttp>=3.9
+pytest>=8
