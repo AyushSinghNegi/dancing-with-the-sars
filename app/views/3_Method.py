@@ -19,28 +19,28 @@ st.markdown('<p class="ml-lede">Every number in this app comes from the pipeline
 st.markdown("## How it works")
 st.markdown(f"""
 1. **Cut the radar to Pune.** NISAR's level-2 GCOV files hold radar brightness (gamma-nought, already
-   corrected for terrain) on a map grid. A full frame is about 5 GB per layer, so we stream only the
+   corrected for terrain) on a map grid. A primary GCOV file is about 5–6 GB, so we stream only the
    study box (lon {m['aoi']['west']} to {m['aoi']['east']}, lat {m['aoi']['south']} to {m['aoi']['north']})
    and average 2 × 2 or more native pixels into a {m['grid']['res_m']:.0f} m grid (UTM zone 43N). Averaging also
-   reduces radar speckle; a Lee filter removes more.
-2. **Find water on each date.** Smooth water reflects the radar away and looks dark in HH. The cut-off between
-   water and land is set separately for each date with Otsu's method, trained on pixels that the JRC Global
-   Surface Water record says are permanent water plus an equal number of land pixels, and kept between
-   {th.get('water_db_bounds', ['?', '?'])[0]} and {th.get('water_db_bounds', ['?', '?'])[1]} dB.
-3. **Keep only new water.** A pixel is new water if it is water on {after} but not on {before}, at least
-   {th.get('change_db')} dB darker, outside permanent water (JRC occurrence ≥ {th.get('permanent_water_occurrence')}%),
-   on ground flatter than {th.get('flood_max_slope_deg')}°, and part of a patch of at least
-   {th.get('min_patch_pixels')} pixels.
+   reduces radar speckle; a Lee filter removes more. Invalid source samples are excluded.
+   Coherence also excludes samples flagged with RSLC processing anomalies.
+2. **Find a shared water threshold.** Scikit-image Otsu splits the filtered {after} HH image in
+   linear power. That single threshold ({th.get('water_threshold_db', 0):.2f} dB) is used on both dates;
+   it is not clipped or fitted to the reference events. Dark pixels are candidate water, not confirmed water.
+3. **Keep newly dark pixels.** A pixel is candidate new water if it is dark on {after} but not on {before},
+   outside permanent water (JRC occurrence ≥ {th.get('permanent_water_occurrence')}%), and part of a patch
+   of at least {th.get('min_patch_pixels')} pixels. The shared threshold is varied by ±1 dB on both dates
+   for the reported sensitivity range. This brief-defined layer has no additional slope or change gate.
 4. **Flag possible hidden water.** At L-band, water under trees or between buildings makes the radar bounce twice
    and come back brighter. Flat ground that got {th.get('change_db')} dB brighter is shown as *possible* water,
    never added to flood totals.
-5. **Find likely slide zones.** On slopes of {th.get('slide_min_slope_deg')}° or more, a zone needs all of:
-   coherence (how well the ground matched itself between passes, from the NISAR GUNW product) below
-   {th.get('coherence_low')}; coherence under 0.6 × its own 1 km neighbourhood (monsoon vegetation lowers coherence
-   everywhere, so we look for local collapse); and HV dropping or HH rising by {th.get('change_db')} dB or more
-   (vegetation stripped, rough debris). Each zone gets a 0 to 1 score from slope, radar change and coherence loss.
-6. **Check against reports.** Reported floods and landslides (news and official sources, linked) are matched to
-   detections within 500 m (floods) or 750 m (slides), or the report's own location precision if larger.
+5. **Find likely slide zones.** NASADEM slopes of {th.get('slide_min_slope_deg')}° or more must also have
+   GUNW coherence below {th.get('coherence_low')} and HV dropping by at least {th.get('change_db')} dB.
+   Patches need at least {th.get('slide_min_patch_pixels', 3)} pixels. HH change and local coherence contrast are diagnostics only.
+   The 0–1 evidence score is a heuristic ranking, not a calibrated probability.
+6. **Check against reports.** Primary hits require a detection within {th.get('validation_radius_m')} m.
+   Reported location precision is retained, and a separate precision-aware result shows matches under
+   an expanded radius. Counts use only the fixed distance; approximate locations are not field truth.
 """)
 
 st.markdown("## Data")
@@ -50,12 +50,13 @@ rows = [{"Data": f"NISAR L2 {('GCOV' if s['role'] != 'pair' else 'GUNW')} ({s['r
 rows += [
     {"Data": "Permanent water", "File": "JRC Global Surface Water v1.4 occurrence (Pekel et al., 2016)",
      "Valid share of box": "", "Link": "https://global-surface-water.appspot.com/"},
-    {"Data": "Elevation and slope", "File": "Copernicus GLO-30 DEM (ESA)", "Valid share of box": "",
-     "Link": "https://registry.opendata.aws/copernicus-dem/"},
+    {"Data": "Elevation and slope", "File": "NASADEM_HGT.001 (NASA/USGS)", "Valid share of box": "",
+     "Link": "https://doi.org/10.5067/MEASURES/NASADEM/NASADEM_HGT.001"},
 ]
 if data.rainfall() is not None:
-    rows.append({"Data": "Daily rainfall", "File": "GPM IMERG daily (NASA GES DISC, via Giovanni)",
-                 "Valid share of box": "", "Link": "https://giovanni.gsfc.nasa.gov/"})
+    rows.append({"Data": "Daily rainfall", "File": "; ".join(data.rainfall()["source"].dropna().unique()),
+                 "Valid share of box": "", "Link": "https://power.larc.nasa.gov/" if data.rainfall()["source"].str.contains("POWER").any()
+                 else "https://giovanni.gsfc.nasa.gov/"})
 st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True,
              column_config={"Link": st.column_config.LinkColumn("Link")})
 
@@ -63,9 +64,16 @@ st.markdown("## Results with their sources")
 ws = data.table("water_stats.csv")
 if ws is not None:
     st.dataframe(ws, hide_index=True, use_container_width=True)
-st.markdown(
-    f"Sanity check: on {before} the radar saw **{(m.get('water', {}).get('permanent_water_seen_dark') or 0):.0%}** "
-    "of the JRC permanent-water pixels as water. A low value would mean the threshold or the data is off.")
+    if ws["meaning"].str.contains("otsu-clipped", na=False).any():
+        st.info("The calibrated water threshold reached a configured limit. Review the ±1 dB sensitivity "
+                "range in Explore when interpreting the detected area.")
+
+seen = m.get("water", {}).get("permanent_water_seen_dark")
+if seen is None:
+    st.info("Permanent-water sanity check: not available.")
+else:
+    st.markdown(f"Sanity check: on {before} the radar saw **{seen:.0%}** of the valid JRC "
+                "permanent-water pixels as water.")
 
 st.markdown("## Validation")
 val = data.table("validation.csv")
@@ -82,7 +90,7 @@ st.markdown(f"""
 - **Cities.** Buildings make flooded streets bright, not dark. Our new-water map under-counts urban flooding.
 - **Pixel size.** {m['grid']['res_m']:.0f} m pixels. Slides narrower than about two pixels are easily missed.
 - **Same-mode rule.** NISAR changed radar mode on this track from 27 August. Brightness is only compared between
-  passes with the same track, mode and polarisation.
+  passes with matching track, frame, direction, mode and polarisation; the selected 14 October file is mode 4005.
 - **Leads, not verdicts.** Slide zones are places to check, not confirmed landslides.
 """)
 st.markdown("## Team")

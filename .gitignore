@@ -238,3 +238,11 @@ data/demo/crops/
 
 # app helpers live in app/lib (the Python template above ignores lib/)
 !app/lib/
+
+# Real acquisition staging; promote completed crops into data/crops.
+data/staging/
+
+# Local runtimes and preserved scientific runs
+.venv311/
+.runtime-python/
+data/runs/

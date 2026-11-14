@@ -39,5 +39,11 @@ def steps() -> list[tuple[str, str]]:
         body = " ".join(line.strip() for line in body.strip().splitlines())
         for k, val in nums.items():
             body = body.replace("{" + k + "}", str(val))
+        if head.strip() == "What changed" and not data.water_usable():
+            body = ("The brief's global water threshold did not separate water from land in these scenes, "
+                    "so we are withholding a flood-area estimate. The independent slide screen found "
+                    f"{nums['slide_zones']} candidate zones at the configured 20° slope, HV-drop and coherence thresholds. "
+                    "A zero candidate count does not establish that no landslides occurred. "
+                    "White markers show reported events; open one to see its source.")
         out.append((head.strip(), body))
     return out

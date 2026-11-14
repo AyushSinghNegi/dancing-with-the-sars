@@ -42,6 +42,13 @@ sh, so = v("validation.slide.hits"), v("validation.slide.observable")
 if (fo or 0) + (so or 0) > 0:
     rows.append(ui.finding(ui.INK, f"{(fh or 0) + (sh or 0)} of {(fo or 0) + (so or 0)}", "", ui.t("matched")))
 st.markdown("".join(rows), unsafe_allow_html=True)
+if sz == 0:
+    st.caption("No slide patches pass all configured criteria; this does not establish that no landslides occurred.")
+lo, hi = v("water.new_water_sensitivity_min_km2"), v("water.new_water_sensitivity_max_km2")
+if lo is not None and hi is not None:
+    st.caption(f"New-water threshold sensitivity: {lo:.2f}–{hi:.2f} km² when the shared threshold on both dates changes by ±1 dB. "
+               "This range is not a confidence interval.")
+
 
 st.markdown(f"## {ui.t('couldnt')}")
 st.markdown(

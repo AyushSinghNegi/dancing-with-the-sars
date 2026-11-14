@@ -39,6 +39,10 @@ def gcov_crops():
 def load_pair(before_gid=None, after_gid=None):
     before_gid = before_gid or C.PRIMARY["before"]
     after_gid = after_gid or C.PRIMARY["after"]
+    before = C.parse_granule_id(before_gid)
+    after = C.parse_granule_id(after_gid)
+    if any(before[k] != after[k] for k in ("track", "mode", "pol", "direction", "frame")):
+        raise ValueError("Before/after GCOV files must share track, direction, frame, mode and polarization")
     out = {}
     for key, gid in (("before", before_gid), ("after", after_gid)):
         name = io.crop_name(gid)
@@ -85,27 +89,30 @@ def otsu(values, bins=256):
     return float(centers[best].mean())
 
 
-def water_threshold(hh_db, permanent, rng_seed=0):
-    """Otsu on a balanced sample: all permanent-water pixels plus as many land pixels.
+def water_threshold(hh_db, permanent=None, rng_seed=0):
+    """R5: Otsu on all finite, positive HH linear-power samples.
 
-    Using JRC permanent water as a reference makes the threshold calibrate
-    itself on each date instead of using a fixed number from the literature.
+    Input is dB for the crop contract; convert back before scikit-image Otsu.
+    JRC is used only to exclude permanent water from detections, not to train
+    the threshold. No clipping or quantile trimming is applied.
     """
-    rng = np.random.default_rng(rng_seed)
-    w = hh_db[permanent & np.isfinite(hh_db)]
-    land_idx = np.flatnonzero(~permanent & np.isfinite(hh_db))
-    if w.size < 200 or land_idx.size < 200:
-        return float(np.mean(C.WATER_DB_BOUNDS)), "fallback-midpoint"
-    land = hh_db.ravel()[rng.choice(land_idx, size=min(land_idx.size, w.size), replace=False)]
-    t = otsu(np.concatenate([w, land]))
-    lo, hi = C.WATER_DB_BOUNDS
-    if not np.isfinite(t):
-        return float((lo + hi) / 2), "fallback-midpoint"
-    return float(np.clip(t, lo, hi)), "otsu-balanced-jrc" if lo <= t <= hi else "otsu-clipped"
+    from skimage.filters import threshold_otsu
+    power = np.power(10.0, np.asarray(hh_db, dtype=np.float64) / 10.0)
+    values = power[np.isfinite(power) & (power > 0)]
+    if values.size < 100 or np.ptp(values) == 0:
+        raise ValueError("Not enough valid, varying HH samples for linear-power Otsu")
+    threshold = C.WATER_THRESHOLD_LINEAR
+    if threshold is None:
+        threshold = float(threshold_otsu(values, nbins=256))
+    if not np.isfinite(threshold) or threshold <= 0:
+        raise ValueError("The linear-power water threshold must be finite and positive")
+    return float(10 * np.log10(threshold)), "otsu-linear-power" if C.WATER_THRESHOLD_LINEAR is None else "configured-linear-power"
 
 
 def clean(mask, min_px=C.MIN_PATCH_PIXELS):
-    mask = ndi.binary_closing(mask, structure=np.ones((2, 2)))
+    # Remove small components only: closing can add pixels that fail the
+    # scientific criteria or bridge across nodata/permanent water.
+    mask = np.asarray(mask, dtype=bool)
     lab, n = ndi.label(mask, structure=np.ones((3, 3)))
     if n == 0:
         return mask
@@ -170,7 +177,17 @@ def lonlat_to_rowcol(lon, lat):
 # ------------------------------------------------------------------ outputs
 def write_json(path, obj):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, indent=2, default=lambda o: o.item() if hasattr(o, "item") else str(o)))
+    def normalize(value):
+        if isinstance(value, dict):
+            return {key: normalize(item) for key, item in value.items()}
+        if isinstance(value, (list, tuple)):
+            return [normalize(item) for item in value]
+        if isinstance(value, np.generic):
+            return normalize(value.item())
+        if isinstance(value, float) and not np.isfinite(value):
+            return None
+        return value
+    path.write_text(json.dumps(normalize(obj), indent=2, allow_nan=False))
 
 
 def now_iso():

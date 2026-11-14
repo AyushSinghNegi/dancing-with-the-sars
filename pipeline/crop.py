@@ -61,7 +61,7 @@ def main(argv=None):
     if a.timeline:
         primary = C.find(C.PRIMARY["before"])
         for g in C.load_candidates():
-            if g.product == "GCOV" and g.track == primary.track and g.date in C.TIMELINE_DATES \
+            if g.product == "GCOV" and C.same_mode(g, primary) and g.date in C.TIMELINE_DATES \
                     and g.granule_id not in gids:
                 gids.append(g.granule_id)
     for p in a.file:

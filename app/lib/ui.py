@@ -80,13 +80,13 @@ T = {
                    "निसार उपग्रह ढग आणि पावसातून रडार पाठवतो. ३ ते ८ जुलै २०२६ च्या पूर आणि भूस्खलनांच्या आधी आणि "
                    "नंतरच्या पुण्यावरील निरीक्षणांची आम्ही तुलना केली."},
     "found": {"en": "What the radar found", "mr": "रडारला काय सापडले"},
-    "new_water": {"en": "of new open water on flat ground, outside rivers and reservoirs",
-                  "mr": "नद्या आणि धरणांबाहेर, सपाट जमिनीवर नवीन साचलेले पाणी"},
-    "slides": {"en": "likely slide zones on slopes steeper than 15°, {high} of them high confidence",
-               "mr": "१५° पेक्षा जास्त उताराच्या भागात संभाव्य भूस्खलन क्षेत्रे, त्यापैकी {high} उच्च खात्रीची"},
+    "new_water": {"en": "of candidate new water outside permanent water; not confirmed flooding",
+                  "mr": "कायमस्वरूपी पाण्याबाहेर संभाव्य नवीन पाणी; पूर निश्चित नाही"},
+    "slides": {"en": "likely slide zones on slopes at least 20°, {high} of them high evidence score",
+               "mr": "किमान २०° उतारावर संभाव्य भूस्खलन क्षेत्रे; {high} क्षेत्रांचा पुरावा गुणांक उच्च"},
     "brighter": {"en": "where water may be hiding under trees or between buildings (not counted as flood)",
                  "mr": "जिथे झाडांखाली किंवा इमारतींमध्ये पाणी असू शकते (पुरात मोजलेले नाही)"},
-    "matched": {"en": "of reported events that radar could observe were matched by a detection",
+    "matched": {"en": "reported events that radar could observe were matched by a detection",
                 "mr": "रडारला दिसू शकणाऱ्या नोंदवलेल्या घटनांपैकी शोधलेल्या घटना"},
     "start_story": {"en": "Start the story", "mr": "कथा सुरू करा"},
     "explore": {"en": "Explore the map", "mr": "नकाशा पाहा"},
@@ -141,6 +141,10 @@ def require_results() -> bool:
     if not data.source()["dir"]:
         st.warning(t("no_data"))
         return False
+    if not data.water_usable():
+        st.warning("Water result unavailable: global linear-power Otsu classified almost the entire scene as dark. "
+                   "Water layers and flood matches are withheld; exported water values are diagnostics, not flood estimates. "
+                   "Radar imagery, zone timelines and slide screening remain available.")
     return True
 
 

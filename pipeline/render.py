@@ -32,13 +32,15 @@ OVERLAYS = {
     # name: (layer, style, legend)
     "hh_before": ("hh_before", "gray", "Radar HH, 28 Jun (dark = smooth/water, bright = rough/buildings)"),
     "hh_after": ("hh_after", "gray", "Radar HH, 10 Jul"),
+    "hv_before": ("hv_before", "gray_hv", "Radar HV, 28 Jun (dB; fixed -30 to -5 stretch)"),
+    "hv_after": ("hv_after", "gray_hv", "Radar HV, 10 Jul (dB; fixed -30 to -5 stretch)"),
     "rgb_before": (None, "rgb_before", "Radar colour, 28 Jun (red HH, green HV, blue HH/HV)"),
     "rgb_after": (None, "rgb_after", "Radar colour, 10 Jul"),
     "change": ("ratio", "diverging", "Change in HH, 28 Jun to 10 Jul (blue darker, red brighter)"),
-    "new_water": ("new_water", "new_water", "New open water on 10 Jul"),
+    "new_water": ("new_water", "new_water", "Candidate new water on 10 Jul"),
     "brighter": ("brighter", "brighter", "Possible water under trees or between buildings"),
     "permanent": ("permanent", "permanent", "Permanent water (JRC, rivers and reservoirs)"),
-    "coherence": ("coherence", "coherence", "Radar coherence, 28 Jun to 10 Jul (dark = surface changed)"),
+    "coherence": ("coherence", "coherence", "Radar coherence, 28 Jun to 10 Jul (dark = low similarity)"),
     "slide_raster": ("slide_zones", "slide_zones", "Likely slide zones"),
 }
 
@@ -86,8 +88,8 @@ def _hatch(shape, every=6):
 def rgba_for(style, a, layers=None):
     h, w = a.shape if a is not None else layers["hh_before"].shape
     img = np.zeros((h, w, 4), np.uint8)
-    if style == "gray":
-        g = _stretch(a, -25, 0)
+    if style in ("gray", "gray_hv"):
+        g = _stretch(a, -30, -5) if style == "gray_hv" else _stretch(a, -25, 0)
         v = np.isfinite(a)
         img[..., :3] = (np.nan_to_num(g) * 255).astype(np.uint8)[..., None]
         img[..., 3] = np.where(v, 255, 0)
@@ -121,10 +123,13 @@ def rgba_for(style, a, layers=None):
 
 
 def run(demo_flag=False):
+    import json
+    threshold_path = C.DERIVED / "water_threshold.json"
+    water_usable = json.loads(threshold_path.read_text()).get("classification_usable", False) if threshold_path.exists() else False
     out_dir = C.DERIVED / "overlays"
     out_dir.mkdir(parents=True, exist_ok=True)
     names = ("hh_before", "hh_after", "hv_before", "hv_after", "ratio", "new_water", "brighter",
-             "permanent", "coherence", "slide_zones")
+             "permanent", "coherence", "slide_zones", "valid")
     grid = {k: K.load_layer(k) for k in names}
     merc = {}
     for k, v in grid.items():
@@ -139,7 +144,7 @@ def run(demo_flag=False):
         if style.startswith("rgb") and not all(f"{p}_{style.split('_')[1]}" in merc for p in ("hh", "hv")):
             continue
         img = rgba_for(style, merc.get(layer) if layer else None, merc)
-        continuous = style in ("gray", "coherence", "diverging") or style.startswith("rgb")
+        continuous = style in ("gray", "gray_hv", "coherence", "diverging") or style.startswith("rgb")
         fname = f"{name}.webp" if continuous else f"{name}.png"
         for old in out_dir.glob(f"{name}.*"):
             old.unlink()
@@ -148,8 +153,13 @@ def run(demo_flag=False):
             im.save(out_dir / fname, "WEBP", quality=80, method=6)
         else:
             im.save(out_dir / fname, optimize=True)
+        if name in ("hh_before", "hh_after", "hv_before", "hv_after", "coherence"):
+            # Lossless R4 hand-off, alongside the compact browser image.
+            im.save(out_dir / f"{name}.png", optimize=True)
         written[name] = {"file": f"overlays/{fname}", "legend": legend,
                          "color": COLORS.get(style if style in COLORS else "", None)}
+    import shutil
+    shutil.copy2(out_dir / "new_water.png", C.DERIVED / "water_new_20260710.png")
     # GeoTIFF downloads on the analysis grid (UTM 43N, 40 m).
     gt = C.DERIVED / "geotiff"
     gt.mkdir(exist_ok=True)
@@ -164,8 +174,29 @@ def run(demo_flag=False):
         if kind == "mask":
             prof = io._profile("uint8", 255)
             with rasterio.open(p, "w", **prof) as d:
-                d.write(arr.astype(np.uint8), 1)
+                valid = grid["valid"].copy()
+                if name == "slide_zones" and grid["coherence"] is not None:
+                    valid &= np.isfinite(grid["coherence"])
+                d.write(np.where(valid, arr.astype(np.uint8), 255).astype(np.uint8), 1)
+                d.update_tags(demo=str(C.IS_DEMO), source_before=C.PRIMARY["before"],
+                              source_after=C.PRIMARY["after"], source_pair=C.PRIMARY["pair"])
+                if name in {"new_water", "possible_water_under_cover"}:
+                    d.update_tags(classification_usable=str(water_usable),
+                                  interpretation="candidate evidence" if water_usable else "REJECTED DIAGNOSTIC; not a flood estimate")
         else:
             io.save_db_int16(p, arr, {"layer": name})
         downloads[name] = f"geotiff/{name}.tif"
+    for role in ("before", "after"):
+        for pol in ("HH", "HV"):
+            source = C.CROPS / f"{io.crop_name(C.PRIMARY[role])}_{pol}.tif"
+            if source.exists():
+                name = f"{pol.lower()}_{role}"
+                import shutil
+                shutil.copy2(source, gt / f"{name}.tif")
+                downloads[name] = f"geotiff/{name}.tif"
+    coherence_source = C.CROPS / f"{io.crop_name(C.PRIMARY['pair'])}_COH.tif"
+    if coherence_source.exists():
+        import shutil
+        shutil.copy2(coherence_source, gt / "coherence.tif")
+        downloads["coherence"] = "geotiff/coherence.tif"
     return {"bounds_latlon": latlon_bounds(), "overlays": written, "downloads": downloads}

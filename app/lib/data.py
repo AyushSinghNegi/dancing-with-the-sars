@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 from pathlib import Path
 
@@ -21,12 +22,15 @@ def _has_results(d: Path) -> bool:
 
 @st.cache_data(show_spinner=False)
 def source() -> dict:
-    """Pick real results if they exist, otherwise the synthetic demo (with a banner)."""
-    if _has_results(REAL):
-        return {"dir": str(REAL), "demo": False, "key": "real"}
-    if _has_results(DEMO):
-        return {"dir": str(DEMO), "demo": True, "key": "demo"}
-    return {"dir": None, "demo": False, "key": None}
+    """Synthetic results require explicit opt-in; never fall back to them."""
+    demo = os.environ.get("MONSOONLENS_DEMO") == "1"
+    directory = DEMO if demo else REAL
+    if _has_results(directory):
+        metadata = json.loads((directory / "metrics.json").read_text())
+        if bool(metadata.get("demo")) != demo:
+            raise ValueError("Output provenance does not match the selected real/demo mode")
+        return {"dir": str(directory), "demo": demo, "key": "demo" if demo else "real"}
+    return {"dir": None, "demo": demo, "key": None}
 
 
 def _dir() -> Path | None:
@@ -62,8 +66,9 @@ def table(name: str) -> pd.DataFrame | None:
 
 @st.cache_data(show_spinner=False)
 def rainfall() -> pd.DataFrame | None:
-    p = REFERENCE / "rainfall.csv"
-    if not p.exists():
+    directory = _dir()
+    p = directory / "rainfall.csv" if directory else None
+    if p is None or not p.exists():
         return None
     df = pd.read_csv(p, parse_dates=["date"])
     return df if {"date", "precip_mm"} <= set(df.columns) and len(df) else None
@@ -72,8 +77,7 @@ def rainfall() -> pd.DataFrame | None:
 @st.cache_data(show_spinner=False)
 def events() -> dict | None:
     """Reported events. Demo mode uses synthetic events so real reports are never scored against fake radar."""
-    p = (ROOT / "data" / "demo" / "reference" / "events.geojson") if source()["demo"] else REFERENCE / "events.geojson"
-    return json.loads(p.read_text()) if p.exists() else None
+    return geojson("events.geojson")
 
 
 @st.cache_resource(show_spinner=False)
@@ -92,6 +96,8 @@ def publish_overlays() -> str | None:
 
 
 def overlay_url(name: str) -> str | None:
+    if name in {"new_water", "brighter"} and not water_usable():
+        return None
     base = publish_overlays()
     o = bounds().get("overlays", {}).get(name)
     if not base or not o:
@@ -113,12 +119,20 @@ def download_path(name: str) -> Path | None:
 
 def value(path: str, default=None):
     """metrics() lookup by dotted path, e.g. value('water.new_water_km2')."""
+    if path.startswith("water.") and not water_usable():
+        if path.split(".")[1] in {"new_water_km2", "new_water_patches", "brighter_flat_km2",
+                                  "new_water_sensitivity_min_km2", "new_water_sensitivity_max_km2"}:
+            return default
     cur = metrics()
     for part in path.split("."):
         if not isinstance(cur, dict) or part not in cur:
             return default
         cur = cur[part]
     return cur
+
+
+def water_usable() -> bool:
+    return bool(metrics().get("water", {}).get("classification_usable", True))
 
 
 def dates() -> tuple[str, str]:

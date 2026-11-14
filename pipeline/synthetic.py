@@ -188,7 +188,8 @@ def write_demo_events(t, rng, n_each=6):
 
 
 def build(seed=7):
-    assert C.IS_DEMO, "Run with MONSOONLENS_DEMO=1 so synthetic files stay in data/demo/"
+    if not C.IS_DEMO:
+        raise ValueError("Run with MONSOONLENS_DEMO=1 so synthetic files stay in data/demo/")
     rng = np.random.default_rng(seed)
     t = scene(seed)
     x, y, pad = _coords(t["perm"].shape)

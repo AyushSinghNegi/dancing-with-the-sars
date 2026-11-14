@@ -1,0 +1,29 @@
+{
+  "primary_run": "2026-11-14T18:18:36+00:00",
+  "pipeline_version": "0.5.0",
+  "python": "3.11.18",
+  "pytest_passed": 33,
+  "app": {
+    "pages": [
+      "Overview",
+      "Story",
+      "Explore",
+      "Method"
+    ],
+    "story_steps": 5,
+    "water_quality_warning_present": true
+  },
+  "checks": [
+    "9 metric-grid GeoTIFFs: aligned CRS/transform, mask/nodata codes, failed-water status tags",
+    "all previews decode and all output geometries are valid",
+    "metric area agrees; required PNG present; timeline has 40 HH/HV rows and alias agrees",
+    "all six source crops exclude invalid native-quality cells",
+    "every eligible repository file under 20 MB; no raw HDF5/credential paths"
+  ],
+  "science_acceptance": {
+    "water": "FAILED: global Otsu degeneracy; water claims and flood scoring withheld",
+    "slides": "zero qualifying patches; not evidence of absence",
+    "zones": "WorldCover 2021 desk review; 2026 conditions unverified"
+  },
+  "live_browser": "water warning and unavailable estimates visibly verified"
+}

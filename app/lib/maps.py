@@ -32,11 +32,13 @@ RASTERS = [
     ("rgb_after", "Radar colour, 10 Jul", False),
     ("hh_before", "Radar HH, 28 Jun", False),
     ("hh_after", "Radar HH, 10 Jul", False),
+    ("hv_before", "Radar HV, 28 Jun", False),
+    ("hv_after", "Radar HV, 10 Jul", False),
     ("change", "Change in HH (blue darker, red brighter)", False),
-    ("coherence", "Coherence 28 Jun to 10 Jul (dark = changed)", False),
+    ("coherence", "Coherence 28 Jun to 10 Jul (dark = low similarity)", False),
     ("permanent", "Rivers and reservoirs (JRC)", True),
     ("brighter", "Possible water under cover", True),
-    ("new_water", "New open water", True),
+    ("new_water", "Candidate new water", True),
 ]
 
 SLIDE_SVG = ('<svg width="18" height="18" viewBox="0 0 18 18"><path d="M9 2 L16.5 15.5 H1.5 Z" fill="#fff" '

@@ -50,3 +50,17 @@ def timeline(df: pd.DataFrame):
                                  hovertemplate="%{x|%d %b}: %{y:.1f} km² (different radar mode)<extra></extra>"))
     fig.update_yaxes(title_text="km² of water outside rivers and reservoirs", rangemode="tozero")
     return _layout(fig, 300)
+
+
+def zone_timeline(df: pd.DataFrame):
+    fig = go.Figure()
+    for pol, color in (("HH", "#2a78d6"), ("HV", "#b04b22")):
+        series = df[df["polarization"] == pol].sort_values("date")
+        fig.add_trace(go.Scatter(x=pd.to_datetime(series["date"]), y=series["median_db"],
+                                name=pol, mode="lines+markers", connectgaps=False,
+                                line=dict(color=color), customdata=series["valid_pixels"],
+                                hovertemplate="%{x|%d %b}: %{y:.2f} dB<br>%{customdata} valid pixels<extra>%{fullData.name}</extra>"))
+    _layout(fig, 300)
+    fig.update_layout(showlegend=True)
+    fig.update_yaxes(title_text="Median backscatter (dB)")
+    return fig

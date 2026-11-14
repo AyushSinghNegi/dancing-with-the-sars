@@ -43,12 +43,15 @@ PRIMARY = {
 TIMELINE_DATES = ["2026-06-28", "2026-07-10", "2026-07-22", "2026-08-15", "2026-10-14"]
 
 # Thresholds (documented on the Method page; tune only with a written reason).
-WATER_DB_BOUNDS = (-24.0, -14.0)   # Otsu threshold on HH dB is clipped to this range
+WATER_THRESHOLD_LINEAR = None     # None: scikit-image Otsu on filtered 10 July HH power; one value for every date
+WATER_MAX_DARK_FRACTION = 0.95     # reject a degenerate global split; does not alter Otsu
 CHANGE_DB = 3.0                    # |after - before| in dB that counts as real change
 PERMANENT_WATER_OCCURRENCE = 50    # JRC occurrence % treated as permanent water
-FLOOD_MAX_SLOPE_DEG = 5.0          # floods are mapped only on near-flat ground
-SLIDE_MIN_SLOPE_DEG = 15.0         # slide zones only on steep ground
+FLOOD_MAX_SLOPE_DEG = 5.0          # supplementary bright-water and water-timeline layers only
+SLIDE_MIN_SLOPE_DEG = 20.0         # brief R6 starting angle, NASADEM slope
+VALIDATION_RADIUS_M = 200.0       # brief R9: fixed primary matching distance
 COHERENCE_LOW = 0.35               # coherence below this is "lost"
+SLIDE_MIN_PATCH_PIXELS = 3          # remove isolated one/two-pixel slide candidates
 MIN_PATCH_PIXELS = 4               # 4 px at 40 m = 0.64 ha; smaller blobs are dropped
 
 

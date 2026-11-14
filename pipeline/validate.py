@@ -9,8 +9,7 @@ event with properties:
 For each event we decide:
   * observable? (inside the radar box with data, and happened between the two
     radar dates, 28 Jun and 10 Jul)
-  * hit / miss: is there a matching detection within max(precision_m, 500 m)
-    (floods) or max(precision_m, 750 m) (slides)?
+  * hit / miss: is there a matching detection within the configured 200 m radius?
   * for misses, the most likely reason radar could not see it.
 
   python -m pipeline.validate
@@ -30,7 +29,7 @@ from . import config as C
 
 FLOOD_TYPES = {"flood", "waterlogging", "river_overflow"}
 SLIDE_TYPES = {"landslide"}
-RADIUS = {"flood": 500, "slide": 750}
+RADIUS = {"flood": C.VALIDATION_RADIUS_M, "slide": C.VALIDATION_RADIUS_M}
 
 
 def events_path():
@@ -51,12 +50,18 @@ def _dist_m(mask):
     return ndi.distance_transform_edt(~mask) * C.GRID_RES
 
 
-def run(write=True):
+def run(write=True, water_usable=None):
+    if water_usable is None:
+        threshold_file = C.DERIVED / "water_threshold.json"
+        if not threshold_file.exists():
+            raise ValueError("Run pipeline.water first; water quality status is required for validation")
+        water_usable = json.loads(threshold_file.read_text())["classification_usable"]
     before = C.parse_granule_id(C.PRIMARY["before"])["date"]
     after = C.parse_granule_id(C.PRIMARY["after"])["date"]
     lay = {k: K.load_layer(k) for k in ("new_water", "brighter", "slide_zones", "valid", "hh_before")}
+    coherence = K.load_layer("coherence")
     slope = np.nan_to_num(ancillary.load()["slope"])
-    d_flood = _dist_m(lay["new_water"] | lay["brighter"])
+    d_flood = _dist_m(lay["new_water"])
     d_slide = _dist_m(lay["slide_zones"])
     rows = []
     for f in load_events():
@@ -68,14 +73,19 @@ def run(write=True):
         prec = float(p.get("precision_m") or 500)
         row = {"id": p.get("id"), "type": typ, "date": p.get("date", ""), "place": p.get("place", ""),
                "lon": lon, "lat": lat, "precision_m": int(prec), "observable": "no", "result": "",
-               "distance_m": "", "reason": "", "source_name": p.get("source_name", ""),
+               "distance_m": "", "match_radius_m": C.VALIDATION_RADIUS_M,
+               "precision_aware_result": "", "reason": "", "source_name": p.get("source_name", ""),
                "source_url": p.get("source_url", "")}
         inside = 0 <= r < shape[0] and 0 <= c < shape[1]
         if not inside:
             row.update(result="not observable", reason="outside the radar box")
         elif not lay["valid"][r, c]:
             row.update(result="not observable", reason="no radar data at this spot (edge of swath)")
-        elif row["date"] and not (before < row["date"] <= after):
+        elif group == "slide" and (coherence is None or not np.isfinite(coherence[r, c])):
+            row.update(result="not observable", reason="no valid coherence at this spot")
+        elif not row["date"]:
+            row.update(result="not scored", reason="event date not available")
+        elif not (before < row["date"] <= after):
             row.update(result="not observable",
                        reason=f"happened {'before' if row['date'] <= before else 'after'} the radar pair "
                               f"({before} to {after})")
@@ -84,10 +94,13 @@ def run(write=True):
                        reason=f"location in the report is too vague to score (about {prec / 1000:.0f} km)")
         elif group == "other":
             row.update(result="not scored", reason="event type has no radar layer (e.g. road closure)")
+        elif group == "flood" and not water_usable:
+            row.update(result="not scored", reason="water classifier failed global-separation quality check")
         else:
             row["observable"] = "yes"
             dist = (d_flood if group == "flood" else d_slide)[r, c]
-            radius = max(prec, RADIUS[group])
+            radius = RADIUS[group]
+            row["precision_aware_result"] = "hit" if dist <= max(prec, radius) else "miss"
             row["distance_m"] = "" if not np.isfinite(dist) else int(round(dist))
             if dist <= radius:
                 row.update(result="hit", reason="")
@@ -99,9 +112,9 @@ def run(write=True):
     if write:
         C.DERIVED.mkdir(parents=True, exist_ok=True)
         cols = ["id", "type", "date", "place", "lon", "lat", "precision_m", "observable", "result",
-                "distance_m", "reason", "source_name", "source_url"]
+                "distance_m", "match_radius_m", "precision_aware_result", "reason", "source_name", "source_url"]
         with open(C.DERIVED / "validation.csv", "w", newline="") as fh:
-            w = csv.DictWriter(fh, fieldnames=cols)
+            w = csv.DictWriter(fh, fieldnames=cols, lineterminator="\n")
             w.writeheader()
             w.writerows(rows)
         K.write_json(C.DERIVED / "validation_summary.json", summary)
@@ -112,24 +125,25 @@ def _why(group, row, r, c, lay, slope, after):
     win = (slice(max(0, r - 6), r + 7), slice(max(0, c - 6), c + 7))
     if group == "flood":
         if np.nanmedian(lay["hh_before"][win]) > -6:
-            return "dense buildings: radar bounces off walls, which hides street flooding"
+            return "possible explanation: bright built ground may hide street flooding"
         if row["date"] and row["date"] < after:
             return "water may have drained before the 10 Jul pass"
-        return "flooding smaller than our 40 m pixels or under thick canopy"
+        return "possible explanation: flooding below pixel size or under canopy; unconfirmed"
     if np.median(slope[win]) < C.SLIDE_MIN_SLOPE_DEG:
-        return "ground near the report is gentler than our 15 deg slide search"
-    return "slide smaller than a few 40 m pixels, or coherence lost everywhere nearby"
+        return f"ground near the report is gentler than our {C.SLIDE_MIN_SLOPE_DEG:g} deg slide search"
+    return "possible explanation: slide below pixel size or widespread coherence loss; unconfirmed"
 
 
 def _summary(rows, lay):
-    out = {"events": len(rows)}
+    out = {"events": len(rows), "matching_radius_m": C.VALIDATION_RADIUS_M,
+           "not_scored": sum(r["result"] == "not scored" for r in rows)}
     for group, types in (("flood", FLOOD_TYPES), ("slide", SLIDE_TYPES)):
         obs = [r for r in rows if r["type"] in types and r["observable"] == "yes"]
         hits = [r for r in obs if r["result"] == "hit"]
         out[group] = {"reported": sum(r["type"] in types for r in rows), "observable": len(obs),
-                      "hits": len(hits), "hit_rate": round(len(hits) / len(obs), 3) if obs else None}
+                      "hits": len(hits), "misses": len(obs) - len(hits)}
     # Detections with no report nearby: changes nobody reported (worth a look).
-    evs = [(r["lon"], r["lat"]) for r in rows]
+    evs = [(r["lon"], r["lat"]) for r in rows if r["type"] in SLIDE_TYPES and r["observable"] == "yes"]
     for name, layer, km in (("unreported_slide_zones", "slide_zones", 2.0),):
         lab, n = ndi.label(lay[layer], structure=np.ones((3, 3)))
         if n == 0 or not evs:

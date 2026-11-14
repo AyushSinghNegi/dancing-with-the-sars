@@ -1,17 +1,15 @@
-"""Public context layers on the analysis grid (no login needed).
+"""JRC permanent water and NASADEM elevation/slope on the common analysis grid.
 
-* JRC Global Surface Water occurrence (1984-2021, % of time water was seen):
-  separates rivers, lakes and reservoirs that are always wet from new flooding.
-* Copernicus GLO-30 DEM (30 m): elevation and slope. Floods are mapped on
-  flat ground only; slide zones on steep ground only.
-
-  python -m pipeline.ancillary
-
-Writes data/crops/aux_jrc_occurrence.tif, aux_elevation.tif, aux_slope.tif.
+python -m pipeline.ancillary --nasadem-only
+python -m pipeline.ancillary   # rebuild both JRC and NASADEM, Earthdata required
 """
 from __future__ import annotations
 
+import argparse
+import json
 import math
+from pathlib import Path
+from zipfile import ZipFile
 import urllib.request
 
 import numpy as np
@@ -23,12 +21,10 @@ from .nisar_io import _profile, analysis_grid
 
 JRC_URL = ("https://storage.googleapis.com/global-surface-water/downloads2021/occurrence/"
            "occurrence_{lon}E_{lat}Nv1_4_2021.tif")
-DEM_URL = ("https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N{lat:02d}_00_E{lon:03d}_00_DEM/"
-           "Copernicus_DSM_COG_10_N{lat:02d}_00_E{lon:03d}_00_DEM.tif")
 
 SOURCES = {
     "jrc": "Pekel et al. (2016) Nature 540:418-422; JRC Global Surface Water v1.4 (1984-2021), occurrence layer",
-    "dem": "Copernicus GLO-30 DEM (ESA / Airbus), distributed via AWS Open Data",
+    "dem": "NASADEM_HGT.001, NASA/USGS; doi:10.5067/MEASURES/NASADEM/NASADEM_HGT.001",
 }
 
 
@@ -68,43 +64,71 @@ def slope_degrees(elev, res=C.GRID_RES):
     return np.degrees(np.arctan(np.hypot(gx, gy)))
 
 
+def build_nasadem():
+    import earthaccess
+    root = C.ANCILLARY / "nasadem"
+    root.mkdir(parents=True, exist_ok=True)
+    paths = sorted(root.glob("*.hgt"))
+    if len(paths) < len(tiles()):
+        auth = earthaccess.login(strategy="netrc", persist=False)
+        if not auth.authenticated:
+            raise RuntimeError("Earthdata authentication required for NASADEM")
+        results = earthaccess.search_data(short_name="NASADEM_HGT", bounding_box=(
+            C.AOI["west"], C.AOI["south"], C.AOI["east"], C.AOI["north"]))
+        archives = earthaccess.download(results, root, threads=2, show_progress=False)
+        for archive in archives:
+            with ZipFile(archive) as zipped:
+                for name in zipped.namelist():
+                    if name.lower().endswith(".hgt"):
+                        if Path(name).name != name:
+                            raise ValueError("Unexpected NASADEM archive path")
+                        zipped.extract(name, root)
+        paths = sorted(root.glob("*.hgt"))
+    elev = _to_grid(paths, Resampling.bilinear, nodata=-32768)
+    if not np.isfinite(elev).any():
+        raise ValueError("NASADEM tiles have no coverage of the analysis grid")
+    C.AUX.mkdir(parents=True, exist_ok=True)
+    for name, arr, units in (("elevation", elev, "m"), ("slope", slope_degrees(elev), "degrees")):
+        with rasterio.open(C.AUX / f"aux_nasadem_{name}.tif", "w", **_profile("float32", np.nan)) as dst:
+            dst.write(arr.astype("float32"), 1)
+            dst.update_tags(source=SOURCES["dem"], units=units,
+                            method="bilinear elevation to 40m UTM grid; central-difference gradient")
+    (C.AUX / "nasadem_provenance.json").write_text(json.dumps({
+        "source": SOURCES["dem"], "tiles": [p.name for p in paths],
+        "grid_epsg": C.GRID_EPSG, "grid_res_m": C.GRID_RES,
+        "finite_fraction": float(np.isfinite(elev).mean()),
+        "slope_method": "degrees(arctan(hypot(dz/dx,dz/dy))); 40m central differences"
+    }, indent=2) + "\n")
+    return elev
+
+
 def build():
     jrc_paths = []
     for la, lo in tiles():
-        jlon, jlat = (lo // 10) * 10, (la // 10 + 1) * 10   # JRC tiles are named by top-left corner
-        url = JRC_URL.format(lon=jlon, lat=jlat)
+        url = JRC_URL.format(lon=(lo // 10) * 10, lat=(la // 10 + 1) * 10)
         jrc_paths.append(_download(url, C.ANCILLARY / url.rsplit("/", 1)[-1]))
-    jrc_paths = sorted(set(jrc_paths))
-    dem_paths = [_download(DEM_URL.format(lat=la, lon=lo), C.ANCILLARY / f"cop30_N{la}_E{lo:03d}.tif")
-                 for la, lo in tiles()]
-
-    occ = _to_grid(jrc_paths, Resampling.average, nodata=255)
+    occ = _to_grid(sorted(set(jrc_paths)), Resampling.average, nodata=255)
     occ[occ > 100] = np.nan
-    elev = _to_grid(dem_paths, Resampling.bilinear)
-    slope = slope_degrees(elev)
-
     C.AUX.mkdir(parents=True, exist_ok=True)
-    for name, arr, dtype, nod in (("aux_jrc_occurrence", occ, "uint8", 255),
-                                  ("aux_slope", slope, "uint8", 255),
-                                  ("aux_elevation", elev, "int16", -32768)):
-        a = np.where(np.isfinite(arr), np.round(arr), nod).astype(dtype)
-        with rasterio.open(C.AUX / f"{name}.tif", "w", **_profile(dtype, nod)) as d:
-            d.write(a, 1)
-            d.update_tags(source=SOURCES["jrc" if "jrc" in name else "dem"])
-    perm = np.nanmean(occ >= C.PERMANENT_WATER_OCCURRENCE) * 100
-    print(f"[ancillary] permanent water {perm:.2f}% of box; slope >= {C.SLIDE_MIN_SLOPE_DEG:.0f} deg on "
-          f"{np.nanmean(slope >= C.SLIDE_MIN_SLOPE_DEG) * 100:.1f}%; elevation {np.nanmin(elev):.0f}-{np.nanmax(elev):.0f} m")
+    with rasterio.open(C.AUX / "aux_jrc_occurrence.tif", "w", **_profile("uint8", 255)) as dst:
+        dst.write(np.where(np.isfinite(occ), np.round(occ), 255).astype("uint8"), 1)
+        dst.update_tags(source=SOURCES["jrc"])
+    build_nasadem()
 
 
 def load():
     out = {}
-    for name in ("aux_jrc_occurrence", "aux_slope", "aux_elevation"):
-        with rasterio.open(C.AUX / f"{name}.tif") as d:
+    for name in ("jrc_occurrence", "slope", "elevation"):
+        source = f"nasadem_{name}" if name in ("slope", "elevation") else name
+        with rasterio.open(C.AUX / f"aux_{source}.tif") as d:
             a = d.read(1).astype(np.float32)
             a[a == d.nodata] = np.nan
-        out[name.replace("aux_", "")] = a
+        out[name] = a
     return out
 
 
 if __name__ == "__main__":
-    build()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--nasadem-only", action="store_true")
+    args = parser.parse_args()
+    build_nasadem() if args.nasadem_only else build()

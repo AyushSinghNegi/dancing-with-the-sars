@@ -30,15 +30,14 @@ def test_otsu_splits_two_populations():
     assert -18 < K.otsu(v) < -13
 
 
-def test_water_threshold_is_clipped_and_reported():
-    rng = np.random.default_rng(1)
-    hh = rng.normal(-9, 1, (200, 200))
-    perm = np.zeros_like(hh, bool)
-    perm[:40, :40] = True
-    hh[perm] = rng.normal(-22, 1, perm.sum())
-    t, how = K.water_threshold(hh, perm)
-    lo, hi = C.WATER_DB_BOUNDS
-    assert lo <= t <= hi and how.startswith("otsu")
+def test_water_threshold_uses_linear_power_without_db_clipping():
+    # Equal constant populations: the low-valued mode's bin is selected by
+    # scikit-image. A dB-space histogram would give a different boundary.
+    hh = np.r_[np.full(1000, -20.), np.full(1000, 0.)].reshape(40, 50)
+    t, how = K.water_threshold(hh)
+    expected_power = 0.01 + (1.0 - 0.01) / 512
+    assert 10 ** (t / 10) == pytest.approx(expected_power)
+    assert how == "otsu-linear-power"
 
 
 def test_clean_drops_small_patches():

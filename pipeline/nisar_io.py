@@ -40,7 +40,7 @@ def analysis_grid(res: float = C.GRID_RES):
 
 
 # ---------------------------------------------------------------- opening files
-def open_h5(src: str):
+def open_h5(src: str, block_size=8 * 1024 * 1024):
     """Open a local path or an Earthdata HTTPS URL as an h5py.File.
 
     For URLs, authentication is the user's own: EARTHDATA_TOKEN in their
@@ -59,7 +59,7 @@ def open_h5(src: str):
         if not getattr(auth, "authenticated", True):
             raise PermissionError("Earthdata login failed: check your username/password at urs.earthdata.nasa.gov")
         fs = earthaccess.get_fsspec_https_session()
-    fobj = fs.open(src, mode="rb", block_size=8 * 1024 * 1024, cache_type="blockcache")
+    fobj = fs.open(src, mode="rb", block_size=block_size, cache_type="blockcache")
     return h5py.File(fobj, "r")
 
 
@@ -118,7 +118,7 @@ def _block_any(a, k):
 
 
 def read_to_grid(f: h5py.File, layers: dict, coord_group: str, invalid=None, strip=1024,
-                 resampling=Resampling.average):
+                 resampling=Resampling.average, value_transform=None):
     """Read named 2-D layers inside the box, multilook, and reproject to the analysis grid.
 
     layers: {"name": "/hdf5/path"}; values are linear (power or coherence).
@@ -128,6 +128,12 @@ def read_to_grid(f: h5py.File, layers: dict, coord_group: str, invalid=None, str
     epsg = _epsg(f[f"{coord_group}/projection"])
     x = f[f"{coord_group}/xCoordinates"][:]
     y = f[f"{coord_group}/yCoordinates"][:]
+    if len(x) < 2 or len(y) < 2:
+        raise ValueError("Coordinate arrays must contain at least two cell centres")
+    for axis in (x, y):
+        delta = np.diff(axis)
+        if not (np.all(delta > 0) or np.all(delta < 0)) or not np.allclose(delta, delta[0]):
+            raise ValueError("NISAR grid coordinates must be regularly spaced and monotonic")
     dx, dy = abs(float(x[1] - x[0])), abs(float(y[1] - y[0]))
     # Box corners in the file's own projection.
     t = Transformer.from_crs(C.GRID_EPSG, epsg, always_xy=True)
@@ -142,10 +148,17 @@ def read_to_grid(f: h5py.File, layers: dict, coord_group: str, invalid=None, str
     step = max(k, (strip // k) * k)
     for s in range(r0, r1, step):
         e = min(s + step, r1)
-        block = {n: np.asarray(f[p][s:e, c0:c1], dtype=np.float32) for n, p in layers.items()}
+        block = {n: np.asarray(f[p][s:e, c0:c1], dtype=None if value_transform else np.float32) for n, p in layers.items()}
+        if value_transform is not None:
+            block = value_transform(block)
         bad = np.zeros_like(next(iter(block.values())), dtype=bool)
-        for a in block.values():
+        for n, a in block.items():
             bad |= ~np.isfinite(a)
+            ds = f[layers[n]]
+            for key in ("_FillValue", "missing_value"):
+                if key in ds.attrs:
+                    for fill in np.asarray(ds.attrs[key]).ravel():
+                        bad |= a == fill
         if invalid is not None:
             bad |= invalid(block, s, e, c0, c1)
         for n, a in block.items():
@@ -153,10 +166,17 @@ def read_to_grid(f: h5py.File, layers: dict, coord_group: str, invalid=None, str
             a[bad] = np.nan
             out[n].append(_block_mean(a, k))
         bad_parts.append(_block_any(bad, k))
-    src_transform = from_origin(float(x[c0]) - dx / 2, float(y[r0]) + dy / 2, dx * k, dy * k)
+        if f.driver == "fileobj":
+            print(f"[read] native rows {e - r0}/{r1 - r0} loaded", flush=True)
+    src_transform = from_origin(float(min(x[c0], x[c1 - 1])) - dx / 2,
+                                float(max(y[r0], y[r1 - 1])) + dy / 2, dx * k, dy * k)
     result = {}
     for n, parts in out.items():
         src = np.vstack(parts)
+        if x[1] < x[0]:
+            src = src[:, ::-1]
+        if y[1] > y[0]:
+            src = src[::-1, :]
         dst = np.full(shape, np.nan, dtype=np.float32)
         reproject(src, dst, src_transform=src_transform, src_crs=f"EPSG:{epsg}", src_nodata=np.nan,
                   dst_transform=dst_transform, dst_crs=f"EPSG:{C.GRID_EPSG}", dst_nodata=np.nan,
@@ -170,6 +190,8 @@ def read_to_grid(f: h5py.File, layers: dict, coord_group: str, invalid=None, str
 def read_gcov(src: str):
     """HH and HV gamma0 (linear power) on the analysis grid, plus read metadata."""
     with open_h5(src) as f:
+        if "SYNTHETIC" in f.attrs and not C.IS_DEMO:
+            raise ValueError("Synthetic input requires MONSOONLENS_DEMO=1")
         g = GCOV_GRID
         layers = {n: f"{g}/{n}" for n in ("HHHH", "HVHV") if f"{g}/{n}" in f}
         if "HHHH" not in layers:
@@ -180,7 +202,7 @@ def read_gcov(src: str):
             bad = block["HHHH"] <= 0
             if has_mask:
                 m = f[f"{g}/mask"][s:e, c0:c1]
-                bad |= (m == 255)  # 255 = outside the radar swath (fill)
+                bad |= (m == 0) | (m == 255)  # source metadata: invalid/partially focused, or outside swath
             return bad
 
         arrays, meta = read_to_grid(f, layers, g, invalid=invalid)
@@ -190,9 +212,11 @@ def read_gcov(src: str):
 
 def read_coherence(src: str):
     with open_h5(src) as f:
+        if "SYNTHETIC" in f.attrs and not C.IS_DEMO:
+            raise ValueError("Synthetic input requires MONSOONLENS_DEMO=1")
         path, group, spacing = find_coherence(f)
         arrays, meta = read_to_grid(f, {"coherence": path}, group,
-                                    invalid=lambda b, *a: (b["coherence"] <= 0) | (b["coherence"] > 1))
+                                    invalid=lambda b, *a: (b["coherence"] < 0) | (b["coherence"] > 1))
         meta["coherence_path"] = path
     return arrays["coherence"], meta
 

@@ -38,7 +38,8 @@ with tab_z:
         cols = ["id", "confidence", "score", "area_ha", "slope_deg", "hv_change_db", "hh_change_db", "coherence",
                 "coherence_vs_local", "lat", "lon"]
         st.markdown(f"{len(df)} likely slide zones, sorted by score. Score adds three pieces of evidence: "
-                    "steepness, radar change, and coherence lost compared with the surrounding kilometre.")
+                    "steepness, radar change, and coherence lost compared with the surrounding kilometre. "
+                    "Confidence labels are heuristic rankings, not calibrated probabilities.")
         cc = st.column_config
         st.dataframe(df[[c for c in cols if c in df]], hide_index=True, use_container_width=True,
                      column_config={"id": "Zone", "confidence": "Confidence",
@@ -54,6 +55,14 @@ with tab_z:
     else:
         st.info("No slide zones in this run.")
 with tab_w:
+    sensitivity = data.table("water_sensitivity.csv")
+    if sensitivity is not None:
+        st.markdown("**Threshold sensitivity**")
+        st.caption("One shared threshold varied by ±1 dB on both dates; all other rules held fixed. "
+                   "This is a sensitivity range, not a confidence interval.")
+        st.dataframe(sensitivity, hide_index=True)
+    if not data.water_usable():
+        st.info("The figures below document a rejected classification and must not be quoted as flood area.")
     ws = data.table("water_stats.csv")
     if ws is not None:
         st.dataframe(ws, hide_index=True, use_container_width=True)
@@ -63,12 +72,19 @@ with tab_t:
         st.plotly_chart(charts.rainfall(rain, before, after), use_container_width=True, config={"displayModeBar": False})
     else:
         st.info("Daily rainfall (GPM IMERG) appears here once `data/reference/rainfall.csv` is added.")
-    tl = data.table("timeline.csv")
-    if tl is not None and len(tl) > 1:
+    zt = data.table("zone_timeline.csv")
+    if zt is not None and len(zt):
+        zone = st.selectbox("Radar timeline area", zt["zone_name"].unique())
+        selected = zt[zt["zone_name"] == zone]
+        st.plotly_chart(charts.zone_timeline(selected), use_container_width=True)
+        st.caption("; ".join(selected["review_status"].dropna().unique()))
+    tl = data.table("water_timeline.csv")
+    if data.water_usable() and tl is not None and len(tl) > 1:
         st.markdown("**Water outside rivers and reservoirs, every NISAR pass on this track**")
         st.plotly_chart(charts.timeline(tl), use_container_width=True, config={"displayModeBar": False})
-        st.caption("Hollow markers: radar mode or polarisation differs from the June pass, so brightness is not "
-                   "directly comparable.")
+        st.caption("Only acquisitions with the same track, frame, direction, mode and polarization are included.")
+    elif not data.water_usable():
+        st.info("Water-area timeline withheld because the shared water threshold failed its quality check.")
     else:
         st.info("The monsoon timeline appears once more NISAR dates are cropped (`python -m pipeline.crop --timeline`).")
 with tab_e:
@@ -87,7 +103,8 @@ with tab_d:
         if path is not None and path.exists():
             st.download_button(f"{key.replace('_', ' ')} (GeoTIFF)", path.read_bytes(), file_name=f"monsoonlens_{key}.tif",
                                key=f"dl_{key}")
-    for name in ("slide_zones.geojson", "new_water.geojson", "validation.csv", "water_stats.csv", "metrics.json"):
+    for name in ("slide_zones.geojson", "new_water.geojson", "validation.csv", "water_stats.csv", "water_sensitivity.csv",
+                 "zone_timeline.csv", "timeline.csv", "water_timeline.csv", "water_threshold.json", "control_stats.csv", "zones.geojson", "metrics.json"):
         p = data.source()["dir"] and (data.ROOT / data.source()["dir"] / name)
         if p and p.exists():
             st.download_button(name, p.read_bytes(), file_name=f"monsoonlens_{name}", key=f"dl_{name}")
