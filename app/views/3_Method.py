@@ -81,8 +81,9 @@ st.markdown(f"""
 - **Two snapshots, twelve days apart.** Anything that flooded and drained between {before} and {after} is invisible.
 - **Cities.** Buildings make flooded streets bright, not dark. Our new-water map under-counts urban flooding.
 - **Pixel size.** {m['grid']['res_m']:.0f} m pixels. Slides narrower than about two pixels are easily missed.
-- **Same-mode rule.** NISAR changed radar mode on this track from 27 August. Brightness is only compared between
-  passes with the same track, mode and polarisation.
+- **Same-mode rule.** From 27 August to 2 October NISAR imaged this track in a different mode (2005, quad-pol);
+  14 October is back in the July mode. Brightness is only compared between passes with the same track, mode and
+  polarisation.
 - **Leads, not verdicts.** Slide zones are places to check, not confirmed landslides.
 """)
 st.markdown("## Team")
