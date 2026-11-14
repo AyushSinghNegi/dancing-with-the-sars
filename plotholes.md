@@ -54,7 +54,6 @@ Last updated 14 Nov 2026, on branch `urvashi/content`.
 | # | Priority | Open point | Next step |
 |---|---|---|---|
 | P24 | High | **The video is out of date.** `video/make_video.py` labels the rain chart "(NASA POWER)", credits "Rain: NASA POWER", scales the chart to 160 mm/day (IMERG peaks near 180) and says "Most flood water drained before the radar came back". The rendered 30-second video was made with the old rainfall. | Ayush: update the four lines and re-render. |
-| P25 | High | **README says every AI-assisted commit carries a `Co-Authored-By: Claude` line.** The commits on `urvashi/content` were made with Claude and deliberately do not carry it. | Urvashi and Ayush: reword the README sentence so the AI disclosure stays true. |
 | P26 | Medium | **README credits and status are stale.** It credits "NASA POWER daily precipitation" and says the app runs on synthetic data until real crops are in. | Update to GPM IMERG and the current status. |
 | P27 | Medium | **Landing page panel is the old version.** `app/home.py` has a four-point "couldn't see" panel; the new five-point text is in `content/couldnt_see.md`. | Ayush: paste it in at U6. |
 | P28 | Medium | **Legends do not name the NISAR file.** The design rule asks for unit, date and file ID on every layer; map legends show labels only, and the page footer shortens the file IDs. | Accept the Method page as the full list, or add IDs to the legends. |
@@ -85,3 +84,4 @@ Last updated 14 Nov 2026, on branch `urvashi/content`.
 | R04 | Rainfall was NASA POWER, not GPM IMERG. | Replaced; see `data/reference/SOURCES.md`. |
 | R05 | "NISAR passes on 4 and 10 July" looked wrong. | It is right: track 113 passed on 4 July (`data/reference/candidate_scenes.csv`). |
 | R06 | E008 and E016 text did not match their sources. | Notes and place name corrected (E016's location itself is still open, P07). |
+| R07 | P25: README said every AI-assisted commit carries a `Co-Authored-By: Claude` line; the commits on `urvashi/content` were made with Claude and do not. | README "Use of AI" reworded: it now lists the content work as AI-assisted and says the commit history understates AI use. Recheck against the Submission Guide's AI rule (P33). |
