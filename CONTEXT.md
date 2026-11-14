@@ -29,7 +29,7 @@ checked against reported events. NASA Space Apps Challenge 2026, challenge
 | Candidate NISAR scenes (49 Pune, 146 Brahmaputra backup) | `data/reference/candidate_scenes.csv` | from NASA CMR |
 | JRC Global Surface Water occurrence v1.4 | `data/crops/aux_jrc_occurrence.tif` | permanent water = occurrence >= 50% |
 | Copernicus GLO-30 DEM: elevation, slope | `data/crops/aux_elevation.tif`, `aux_slope.tif` | public, no login |
-| Daily rainfall (NASA POWER PRECTOTCORR now; GPM IMERG via Giovanni would replace it) | `data/reference/rainfall.csv` | Urvashi, U2 |
+| Daily rainfall (GPM IMERG Late Run daily, GPM_3IMERGDL v07, via Giovanni) | `data/reference/rainfall.csv` | Urvashi, U2; details in `data/reference/SOURCES.md` |
 | Reported events | `data/reference/events.geojson` | Urvashi, U3 (schema below) |
 
 Project box (WGS84): lon 73.30 to 74.10, lat 18.15 to 18.90. Analysis grid: UTM 43N (EPSG:32643), 40 m.
