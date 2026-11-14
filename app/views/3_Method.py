@@ -36,11 +36,13 @@ st.markdown(f"""
 4. **Flag possible hidden water.** At L-band, water under trees or between buildings makes the radar bounce twice
    and come back brighter. Flat ground that got {th.get('change_db')} dB brighter is shown as *possible* water,
    never added to flood totals.
-5. **Find likely slide zones.** On slopes of {th.get('slide_min_slope_deg')}° or more, a zone needs all of:
-   coherence (how well the ground matched itself between passes, from the NISAR GUNW product) below
-   {th.get('coherence_low')}; coherence under 0.6 × its own 1 km neighbourhood (monsoon vegetation lowers coherence
-   everywhere, so we look for local collapse); and HV dropping or HH rising by {th.get('change_db')} dB or more
-   (vegetation stripped, rough debris). Each zone gets a 0 to 1 score from slope, radar change and coherence loss.
+5. **Find likely slide zones.** On slopes of {th.get('slide_min_slope_deg')}° to {th.get('slide_max_slope_deg', 45)}°,
+   outside the radar's layover and shadow, a zone needs all of: coherence (how well the ground matched itself
+   between passes, from the NISAR GUNW product) below {th.get('coherence_low')}; coherence under 0.6 × its own 1 km
+   neighbourhood (monsoon vegetation lowers coherence everywhere, so we look for local collapse); and HH rising by
+   {th.get('slide_hh_rise_db', 3)} dB or more (rough debris) or HV dropping by {th.get('slide_hv_drop_db', 2)} dB or
+   more (vegetation stripped), measured against the scene's own median change on dry land. Each zone gets a 0 to 1
+   score from slope, radar change and coherence loss.
 6. **Check against reports.** Reported floods and landslides (news and official sources, linked) are matched to
    detections within 500 m (floods) or 750 m (slides), or the report's own location precision if larger.
 7. **Check with a second track.** When the files are processed, the same slide rule runs on an independent NISAR
@@ -106,9 +108,27 @@ if xt:
     ])
     st.dataframe(tbl, hide_index=True, use_container_width=True)
     if xt["lift"] is not None:
-        st.markdown(f"Our zones were found again **{xt['lift']:.0f}× more often than chance**." if xt["good"] else
+        pv = xt.get("p_value")
+        ptxt = f" The chance of doing this well by luck alone is about {pv:.0%} (one-sided binomial test)." \
+            if pv is not None and pv >= 0.01 else (" The chance of doing this well by luck alone is under 1%."
+                                                    if pv is not None else "")
+        st.markdown((f"Our zones were found again **{xt['lift']:.0f}× more often than chance**." + ptxt)
+                    if xt["good"] else
                     f"Our zones were found again about as often as chance ({xt['lift']:.1f}×), so single-track "
                     "zones need ground checks before anyone relies on them.")
+    if xt.get("small"):
+        st.markdown(f"Track {xt['pair']['track']} sees only {xt['coverage']} of the study area, so only "
+                    f"{xt['scored']} of our zones could be checked. That is a small sample: treat it as support, "
+                    "not proof.")
+    sh = (xt.get("scene_shift_db") or {}).get("track106")
+    if sh:
+        st.markdown(f"Between {pb} and {pa} the whole scene got about {abs(sh['hh_db']):.1f} dB darker in HH and "
+                    f"{abs(sh['hv_db']):.1f} dB in HV, on flat and steep ground alike: ground and plants drying "
+                    "after the storm, or calibration of these provisional products. A landslide is a local change, "
+                    "so on both tracks we measure change against the scene's own median change on dry land.")
+    if xt.get("water_reliable") is False:
+        st.caption(f"Water areas from track {xt['pair']['track']} are not used: on {pb}, in heavy rain, the radar "
+                   "saw less than half of the permanent reservoirs as dark water, because rain roughens the surface.")
     by = xt.get("status_by_confidence") or {}
     if by:
         st.caption("By confidence: " + "; ".join(

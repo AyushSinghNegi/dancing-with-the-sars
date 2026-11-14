@@ -94,6 +94,16 @@ T = {
                       "{lift}× more often than chance",
                 "mr": "दुसऱ्या निसार मार्गाला दिसू शकलेल्या भूस्खलन क्षेत्रांपैकी तिथेही सापडलेली क्षेत्रे, योगायोगापेक्षा "
                       "{lift}× जास्त वेळा"},
+    "xt_good_small": {"en": "of the slide zones a second NISAR track could see were found by it too: {lift}× more often "
+                            "than chance, from a small sample, as that track covers {cov} of the area",
+                      "mr": "दुसऱ्या निसार मार्गाला दिसू शकलेल्या भूस्खलन क्षेत्रांपैकी तिथेही सापडलेली क्षेत्रे: योगायोगापेक्षा "
+                            "{lift}× जास्त वेळा; पण नमुना लहान आहे, कारण तो मार्ग क्षेत्राचा फक्त {cov} भाग पाहतो"},
+    "xt_story_good_small": {"en": "A second NISAR track, passing on {b} and {a} from a different orbit, sees {cov} of the "
+                                  "area. Of the {n} zones inside its view, it found {c} again on its own: {lift}× more "
+                                  "often than chance, though {n} is a small sample.",
+                            "mr": "{b} आणि {a} रोजी वेगळ्या कक्षेतून गेलेला दुसरा निसार मार्ग क्षेत्राचा {cov} भाग पाहतो. "
+                                  "त्याच्या दृष्टीतील {n} क्षेत्रांपैकी {c} त्याने स्वतंत्रपणे पुन्हा शोधली: योगायोगापेक्षा "
+                                  "{lift}× जास्त वेळा, पण {n} हा लहान नमुना आहे."},
     "xt_weak": {"en": "of the slide zones that a second NISAR track could see were found by it too, about what "
                       "chance would give: treat single-track zones with extra care",
                 "mr": "दुसऱ्या निसार मार्गाला दिसू शकलेल्या भूस्खलन क्षेत्रांपैकी तिथेही सापडलेली क्षेत्रे, साधारण "

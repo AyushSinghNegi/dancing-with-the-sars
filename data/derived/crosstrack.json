@@ -1,0 +1,128 @@
+{
+  "method": "coherence anomaly + backscatter change + slope",
+  "pair": {
+    "track": "106",
+    "before": "2026-07-03",
+    "after": "2026-07-15",
+    "granules": {
+      "before": "NISAR_L2_PR_GCOV_024_106_D_079_4005_DHDH_A_20260703T133420_20260703T133454_P05023_N_F_J_001",
+      "after": "NISAR_L2_PR_GCOV_025_106_D_079_4005_DHDH_A_20260715T133419_20260715T133454_P05023_N_F_J_001",
+      "pair": "NISAR_L2_PR_GUNW_024_106_D_079_025_4000_SH_20260703T133420_20260703T133454_20260715T133419_20260715T133454_P05023_N_F_J_001"
+    }
+  },
+  "buffer_m": 80.0,
+  "valid_fraction": 0.381,
+  "radar_facing_azimuth_deg": 285.0,
+  "zones_track034": 50,
+  "status_counts": {
+    "confirmed": 2,
+    "partial": 9,
+    "not seen": 1,
+    "not covered": 38
+  },
+  "status_by_confidence": {
+    "high": {
+      "confirmed": 0,
+      "partial": 1,
+      "not seen": 0,
+      "not covered": 7
+    },
+    "low": {
+      "confirmed": 1,
+      "partial": 7,
+      "not seen": 1,
+      "not covered": 18
+    },
+    "medium": {
+      "confirmed": 1,
+      "partial": 1,
+      "not seen": 0,
+      "not covered": 13
+    }
+  },
+  "real": {
+    "confirmed": 0.167,
+    "confirmed_or_partial": 0.917,
+    "zones_scored": 12
+  },
+  "chance": {
+    "confirmed": 0.021,
+    "confirmed_or_partial": 0.788,
+    "zones_scored": 472,
+    "trials": 300
+  },
+  "lift_confirmed": 7.9,
+  "p_value": 0.026,
+  "scene_shift_db": {
+    "track034": {
+      "hh_db": 0.27,
+      "hv_db": 0.1
+    },
+    "track106": {
+      "hh_db": -1.97,
+      "hv_db": -1.69
+    }
+  },
+  "water_reliable": false,
+  "zones_track106": 77,
+  "water": {
+    "valid_fraction": 0.381,
+    "threshold_before_db": -11.0,
+    "threshold_after_db": -12.315,
+    "permanent_water_km2": 172.066,
+    "permanent_water_seen_dark": 0.442,
+    "water_before_km2": 22.704,
+    "water_after_km2": 89.728,
+    "new_water_km2": 35.827,
+    "new_water_patches": 1404,
+    "rise_km2": 7.546,
+    "flood_km2": 28.282,
+    "flood_patches": 1238,
+    "receded_km2": 0.0,
+    "brighter_flat_km2": 0.846
+  },
+  "events": [
+    {
+      "id": "E001",
+      "place": "Patan village below Lohagad, Maval",
+      "date": "2026-07-06",
+      "result": "not observable"
+    },
+    {
+      "id": "E002",
+      "place": "Missing Link, Tunnel 2 exit (Pune-Mumbai lane), Khandala",
+      "date": "2026-07-06",
+      "result": "not observable"
+    },
+    {
+      "id": "E003",
+      "place": "Railway, Khandala to Monkey Hill (Bhor Ghat)",
+      "date": "2026-07-06",
+      "result": "not observable"
+    },
+    {
+      "id": "E004",
+      "place": "Lonavala to Rajmachi road",
+      "date": "2026-07-04",
+      "result": "not observable"
+    },
+    {
+      "id": "E005",
+      "place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+      "date": "2026-07-06",
+      "result": "not observable"
+    },
+    {
+      "id": "E006",
+      "place": "Pabe Ghat road, Velhe",
+      "date": "2026-07-07",
+      "result": "not observable"
+    },
+    {
+      "id": "E007",
+      "place": "Varandha Ghat near Shirgaon, Bhor",
+      "date": "2026-07-03",
+      "result": "not observable"
+    }
+  ]
+}

@@ -62,6 +62,7 @@ SLIDE_MIN_SLOPE_DEG = 15.0         # slide zones only on steep ground...
 SLIDE_MAX_SLOPE_DEG = 45.0         # ...but not on cliffs (bare rock, radar layover)
 SLIDE_HH_RISE_DB = 3.0             # fresh debris: HH rises (about the scene's top 1% on steep ground)
 SLIDE_HV_DROP_DB = 2.0             # stripped vegetation: HV drops (about the scene's bottom 1%)
+SLIDE_NORMALISE_SCENE_SHIFT = True  # change is measured against the scene's median change on dry land
 INCIDENCE_DEG = 40.0               # approximate NISAR incidence over Pune, for the layover/shadow mask
 COHERENCE_LOW = 0.35               # coherence below this is "lost"
 MIN_PATCH_PIXELS = 4               # new-water patches: 4 px at 40 m = 0.64 ha
