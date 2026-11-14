@@ -1,0 +1,13 @@
+{
+  "method": "otsu-linear-power",
+  "threshold_linear": 0.31080536046944396,
+  "threshold_db": -5.07511499516477,
+  "source_granule_id": "NISAR_L2_PR_GCOV_025_034_D_079_4005_DHDH_A_20260710T134239_20260710T134313_P05023_N_F_J_001",
+  "applied_to": "all compatible dates",
+  "histogram_bins": 256,
+  "classification_usable": false,
+  "after_dark_fraction": 0.9799811447048346,
+  "max_dark_fraction": 0.95,
+  "quality_note": "Global Otsu does not separate water from land in this scene",
+  "sensitivity": "shared threshold on both dates, -1/0/+1 dB"
+}

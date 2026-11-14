@@ -21,6 +21,16 @@
       "legend": "Radar HH, 10 Jul",
       "color": null
     },
+    "hv_before": {
+      "file": "overlays/hv_before.webp",
+      "legend": "Radar HV, 28 Jun (dB; fixed -30 to -5 stretch)",
+      "color": null
+    },
+    "hv_after": {
+      "file": "overlays/hv_after.webp",
+      "legend": "Radar HV, 10 Jul (dB; fixed -30 to -5 stretch)",
+      "color": null
+    },
     "rgb_before": {
       "file": "overlays/rgb_before.webp",
       "legend": "Radar colour, 28 Jun (red HH, green HV, blue HH/HV)",
@@ -38,7 +48,7 @@
     },
     "new_water": {
       "file": "overlays/new_water.png",
-      "legend": "New open water on 10 Jul",
+      "legend": "Candidate new water on 10 Jul",
       "color": "#2a78d6"
     },
     "brighter": {
@@ -53,7 +63,7 @@
     },
     "coherence": {
       "file": "overlays/coherence.webp",
-      "legend": "Radar coherence, 28 Jun to 10 Jul (dark = surface changed)",
+      "legend": "Radar coherence, 28 Jun to 10 Jul (dark = low similarity)",
       "color": null
     },
     "slide_raster": {

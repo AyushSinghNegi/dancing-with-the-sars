@@ -1,0 +1,15 @@
+{
+  "type": "FeatureCollection",
+  "summary": {
+    "method": "low coherence + HV drop + NASADEM slope",
+    "zones": 0,
+    "candidate_pixels_before_cleanup": 120,
+    "candidate_pixels_after_cleanup": 0,
+    "min_patch_pixels": 3,
+    "high": 0,
+    "medium": 0,
+    "area_ha": 0,
+    "steep_share": 0.126
+  },
+  "features": []
+}

@@ -1,0 +1,4227 @@
+{
+  "source": "NISAR_L2_PR_GCOV_028_034_D_079_4005_DHDH_A_20260815T134237_20260815T134311_P05023_N_F_J_001.h5",
+  "datasets": [
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/HHHH",
+      "shape": [
+        33768,
+        34344
+      ],
+      "dtype": "float32",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Covariance between HH and HH",
+        "long_name": "Geocoded polarimetric covariance term HHHH"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/HVHV",
+      "shape": [
+        33768,
+        34344
+      ],
+      "dtype": "float32",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Covariance between HV and HV",
+        "long_name": "Geocoded polarimetric covariance term HVHV"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/inputDataExceptionMask",
+      "shape": [
+        33768,
+        34344
+      ],
+      "dtype": "uint8",
+      "fill_values": {},
+      "chunks": [
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "description": "Bitwise OR of input data exception codes for each image pixel (0: no anomaly, 2: NISAR LSAR qFSP-H1 sample slip)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/listOfCovarianceTerms",
+      "shape": [
+        2
+      ],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "List of processed covariance terms"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/listOfPolarizations",
+      "shape": [
+        2
+      ],
+      "dtype": "|S2",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "List of processed polarization layers with frequency A"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/mask",
+      "shape": [
+        33768,
+        34344
+      ],
+      "dtype": "uint8",
+      "fill_values": {
+        "_FillValue": 255
+      },
+      "chunks": [
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+        "long_name": "Valid samples subswath mask"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/numberOfLooks",
+      "shape": [
+        33768,
+        34344
+      ],
+      "dtype": "float32",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Number of averaged radar-grid pixels for covariance estimation",
+        "long_name": "Number of radar looks"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/numberOfSubSwaths",
+      "shape": [],
+      "dtype": "uint8",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Number of swaths of continuous imagery, due to transmit gaps"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/projection",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product map grid projection: EPSG code, with additional projection information as HDF5 Attributes"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/rtcGammaToSigmaFactor",
+      "shape": [
+        33768,
+        34344
+      ],
+      "dtype": "float32",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Radiometric terrain correction (RTC) scaling factor to normalize backscatter coefficients from gamma0 to sigma0, accounting for local terrain",
+        "long_name": "Radiometric terrain correction area normalization factor gamma0 to sigma0"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/xCoordinateSpacing",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Nominal spacing in meters between consecutive pixels",
+        "long_name": "X coordinates spacing"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/xCoordinates",
+      "shape": [
+        34344
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "X coordinates in specified projection",
+        "long_name": "X coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/yCoordinateSpacing",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Nominal spacing in meters between consecutive lines",
+        "long_name": "Y coordinates spacing"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/yCoordinates",
+      "shape": [
+        33768
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Y coordinates in specified projection",
+        "long_name": "Y coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyB/HHHH",
+      "shape": [
+        4221,
+        4293
+      ],
+      "dtype": "float32",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Covariance between HH and HH",
+        "long_name": "Geocoded polarimetric covariance term HHHH"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyB/HVHV",
+      "shape": [
+        4221,
+        4293
+      ],
+      "dtype": "float32",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Covariance between HV and HV",
+        "long_name": "Geocoded polarimetric covariance term HVHV"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyB/inputDataExceptionMask",
+      "shape": [
+        33768,
+        34344
+      ],
+      "dtype": "uint8",
+      "fill_values": {},
+      "chunks": [
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "description": "Bitwise OR of input data exception codes for each image pixel (0: no anomaly, 2: NISAR LSAR qFSP-H1 sample slip)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyB/listOfCovarianceTerms",
+      "shape": [
+        2
+      ],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "List of processed covariance terms"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyB/listOfPolarizations",
+      "shape": [
+        2
+      ],
+      "dtype": "|S2",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "List of processed polarization layers with frequency B"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyB/mask",
+      "shape": [
+        4221,
+        4293
+      ],
+      "dtype": "uint8",
+      "fill_values": {
+        "_FillValue": 255
+      },
+      "chunks": [
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+        "long_name": "Valid samples subswath mask"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyB/numberOfLooks",
+      "shape": [
+        4221,
+        4293
+      ],
+      "dtype": "float32",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Number of averaged radar-grid pixels for covariance estimation",
+        "long_name": "Number of radar looks"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyB/numberOfSubSwaths",
+      "shape": [],
+      "dtype": "uint8",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Number of swaths of continuous imagery, due to transmit gaps"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyB/projection",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product map grid projection: EPSG code, with additional projection information as HDF5 Attributes"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyB/rtcGammaToSigmaFactor",
+      "shape": [
+        4221,
+        4293
+      ],
+      "dtype": "float32",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Radiometric terrain correction (RTC) scaling factor to normalize backscatter coefficients from gamma0 to sigma0, accounting for local terrain",
+        "long_name": "Radiometric terrain correction area normalization factor gamma0 to sigma0"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyB/xCoordinateSpacing",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Nominal spacing in meters between consecutive pixels",
+        "long_name": "X coordinates spacing"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyB/xCoordinates",
+      "shape": [
+        4293
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "X coordinates in specified projection",
+        "long_name": "X coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyB/yCoordinateSpacing",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Nominal spacing in meters between consecutive lines",
+        "long_name": "Y coordinates spacing"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyB/yCoordinates",
+      "shape": [
+        4221
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Y coordinates in specified projection",
+        "long_name": "Y coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/attitude/attitudeType",
+      "shape": [],
+      "dtype": "|S10",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Attitude type, either \"FRP\", \"NRP\", \"PRP, or \"Custom\", where \"FRP\" stands for Forecast Radar Pointing, \"NRP\" is Near Real-time Pointing, and \"PRP\" is Precise Radar Pointing"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/attitude/eulerAngles",
+      "shape": [
+        120,
+        3
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "degrees",
+        "description": "Attitude Euler angles (roll, pitch, yaw)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/attitude/quaternions",
+      "shape": [
+        120,
+        4
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Attitude quaternions (q0, q1, q2, q3)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/attitude/time",
+      "shape": [
+        120
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "seconds since 2026-08-15T00:00:00",
+        "description": "Time vector record. This record contains the time since UTC epoch corresponding to attitude and quaternion records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/crosstalk/projection",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product map grid projection: EPSG code, with additional projection information as HDF5 Attributes"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/crosstalk/rxHorizontalCrosspol",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "complex64",
+      "fill_values": {
+        "_FillValue": {
+          "real": null,
+          "imaginary": null
+        }
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Crosstalk in H-receive channel expressed as ratio rxV / rxH"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/crosstalk/rxVerticalCrosspol",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "complex64",
+      "fill_values": {
+        "_FillValue": {
+          "real": null,
+          "imaginary": null
+        }
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Crosstalk in V-receive channel expressed as ratio rxH / rxV"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/crosstalk/txHorizontalCrosspol",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "complex64",
+      "fill_values": {
+        "_FillValue": {
+          "real": null,
+          "imaginary": null
+        }
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Crosstalk in H-transmit channel expressed as ratio txV / txH"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/crosstalk/txVerticalCrosspol",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "complex64",
+      "fill_values": {
+        "_FillValue": {
+          "real": null,
+          "imaginary": null
+        }
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Crosstalk in V-transmit channel expressed as ratio txH / txV"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/crosstalk/xCoordinates",
+      "shape": [
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "X coordinates in specified projection",
+        "long_name": "X coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/crosstalk/yCoordinates",
+      "shape": [
+        339
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Y coordinates in specified projection",
+        "long_name": "Y coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/HH/differentialDelay",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Range delay correction applied to HH channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/HH/differentialPhase",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians",
+        "description": "Phase correction applied to HH channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/HH/rfiLikelihood",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Severity of radio frequency interference (RFI) contamination in the data. Value is in the interval [0,1], where 0: lowest severity, and 1: highest severity (or NaN if RFI detection was skipped)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/HH/scaleFactor",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Scale factor applied to HH channel complex amplitude (at antenna boresite)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/HH/scaleFactorSlope",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians^-1",
+        "description": "Slope of scale factor applied to HH channel complex amplitude with respect to elevation angle"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/HV/differentialDelay",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Range delay correction applied to HV channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/HV/differentialPhase",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians",
+        "description": "Phase correction applied to HV channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/HV/rfiLikelihood",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Severity of radio frequency interference (RFI) contamination in the data. Value is in the interval [0,1], where 0: lowest severity, and 1: highest severity (or NaN if RFI detection was skipped)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/HV/scaleFactor",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Scale factor applied to HV channel complex amplitude (at antenna boresite)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/HV/scaleFactorSlope",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians^-1",
+        "description": "Slope of scale factor applied to HV channel complex amplitude with respect to elevation angle"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/VH/differentialDelay",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Range delay correction applied to VH channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/VH/differentialPhase",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians",
+        "description": "Phase correction applied to VH channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/VH/scaleFactor",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Scale factor applied to VH channel complex amplitude (at antenna boresite)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/VH/scaleFactorSlope",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians^-1",
+        "description": "Slope of scale factor applied to VH channel complex amplitude with respect to elevation angle"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/VV/differentialDelay",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Range delay correction applied to VV channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/VV/differentialPhase",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians",
+        "description": "Phase correction applied to VV channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/VV/scaleFactor",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Scale factor applied to VV channel complex amplitude (at antenna boresite)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/VV/scaleFactorSlope",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians^-1",
+        "description": "Slope of scale factor applied to VV channel complex amplitude with respect to elevation angle"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/commonDelay",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Range delay correction applied to all polarimetric channels"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/elevationAntennaPattern/HH",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "complex64",
+      "fill_values": {
+        "_FillValue": {
+          "real": null,
+          "imaginary": null
+        }
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Complex two-way elevation antenna pattern"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/elevationAntennaPattern/HV",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "complex64",
+      "fill_values": {
+        "_FillValue": {
+          "real": null,
+          "imaginary": null
+        }
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Complex two-way elevation antenna pattern"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/elevationAntennaPattern/projection",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product map grid projection: EPSG code, with additional projection information as HDF5 Attributes"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/elevationAntennaPattern/xCoordinates",
+      "shape": [
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "X coordinates in specified projection",
+        "long_name": "X coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/elevationAntennaPattern/yCoordinates",
+      "shape": [
+        339
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Y coordinates in specified projection",
+        "long_name": "Y coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/faradayRotation",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians",
+        "description": "Faraday rotation correction applied in processing"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/noiseEquivalentBackscatter/HH",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Noise equivalent backscatter in linear scale (units of DN^2)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/noiseEquivalentBackscatter/HV",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Noise equivalent backscatter in linear scale (units of DN^2)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/noiseEquivalentBackscatter/projection",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product map grid projection: EPSG code, with additional projection information as HDF5 Attributes"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/noiseEquivalentBackscatter/xCoordinates",
+      "shape": [
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "X coordinates in specified projection",
+        "long_name": "X coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/noiseEquivalentBackscatter/yCoordinates",
+      "shape": [
+        339
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Y coordinates in specified projection",
+        "long_name": "Y coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/HH/differentialDelay",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Range delay correction applied to HH channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/HH/differentialPhase",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians",
+        "description": "Phase correction applied to HH channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/HH/rfiLikelihood",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Severity of radio frequency interference (RFI) contamination in the data. Value is in the interval [0,1], where 0: lowest severity, and 1: highest severity (or NaN if RFI detection was skipped)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/HH/scaleFactor",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Scale factor applied to HH channel complex amplitude (at antenna boresite)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/HH/scaleFactorSlope",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians^-1",
+        "description": "Slope of scale factor applied to HH channel complex amplitude with respect to elevation angle"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/HV/differentialDelay",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Range delay correction applied to HV channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/HV/differentialPhase",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians",
+        "description": "Phase correction applied to HV channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/HV/rfiLikelihood",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Severity of radio frequency interference (RFI) contamination in the data. Value is in the interval [0,1], where 0: lowest severity, and 1: highest severity (or NaN if RFI detection was skipped)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/HV/scaleFactor",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Scale factor applied to HV channel complex amplitude (at antenna boresite)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/HV/scaleFactorSlope",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians^-1",
+        "description": "Slope of scale factor applied to HV channel complex amplitude with respect to elevation angle"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/VH/differentialDelay",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Range delay correction applied to VH channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/VH/differentialPhase",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians",
+        "description": "Phase correction applied to VH channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/VH/scaleFactor",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Scale factor applied to VH channel complex amplitude (at antenna boresite)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/VH/scaleFactorSlope",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians^-1",
+        "description": "Slope of scale factor applied to VH channel complex amplitude with respect to elevation angle"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/VV/differentialDelay",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Range delay correction applied to VV channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/VV/differentialPhase",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians",
+        "description": "Phase correction applied to VV channel"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/VV/scaleFactor",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Scale factor applied to VV channel complex amplitude (at antenna boresite)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/VV/scaleFactorSlope",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians^-1",
+        "description": "Slope of scale factor applied to VV channel complex amplitude with respect to elevation angle"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/commonDelay",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Range delay correction applied to all polarimetric channels"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/elevationAntennaPattern/HH",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "complex64",
+      "fill_values": {
+        "_FillValue": {
+          "real": null,
+          "imaginary": null
+        }
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Complex two-way elevation antenna pattern"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/elevationAntennaPattern/HV",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "complex64",
+      "fill_values": {
+        "_FillValue": {
+          "real": null,
+          "imaginary": null
+        }
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Complex two-way elevation antenna pattern"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/elevationAntennaPattern/projection",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product map grid projection: EPSG code, with additional projection information as HDF5 Attributes"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/elevationAntennaPattern/xCoordinates",
+      "shape": [
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "X coordinates in specified projection",
+        "long_name": "X coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/elevationAntennaPattern/yCoordinates",
+      "shape": [
+        339
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Y coordinates in specified projection",
+        "long_name": "Y coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/faradayRotation",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "radians",
+        "description": "Faraday rotation correction applied in processing"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/noiseEquivalentBackscatter/HH",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Noise equivalent backscatter in linear scale (units of DN^2)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/noiseEquivalentBackscatter/HV",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "Noise equivalent backscatter in linear scale (units of DN^2)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/noiseEquivalentBackscatter/projection",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product map grid projection: EPSG code, with additional projection information as HDF5 Attributes"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/noiseEquivalentBackscatter/xCoordinates",
+      "shape": [
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "X coordinates in specified projection",
+        "long_name": "X coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/noiseEquivalentBackscatter/yCoordinates",
+      "shape": [
+        339
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Y coordinates in specified projection",
+        "long_name": "Y coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/ceosAnalysisReadyData/boundingBox",
+      "shape": [],
+      "dtype": "|S96",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "OGR compatible WKT representing the bounding box of the product (the union of the geocoded grid for available frequency A and frequency B image datasets). Horizontal coordinates are X and Y directions of the geocoded grid coordinate system, and the vertical coordinate is the height above the WGS84 ellipsoid in meters. The first point corresponds to the top left edge of the bounding box. The remaining points are traversed in counterclockwise order on the map. The fifth point closes the bounding box by repeating the first point"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/ceosAnalysisReadyData/ceosAnalysisReadyDataDocumentIdentifier",
+      "shape": [],
+      "dtype": "|S86",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "CEOS Analysis Ready Data (CARD) document identifier"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/ceosAnalysisReadyData/ceosAnalysisReadyDataProductType",
+      "shape": [],
+      "dtype": "|S34",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "CEOS Analysis Ready Data (CARD) product type"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/ceosAnalysisReadyData/geometricAccuracy/bias/x",
+      "shape": [],
+      "dtype": "float32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "An estimate of the localization error bias in the X/easting direction"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/ceosAnalysisReadyData/geometricAccuracy/bias/y",
+      "shape": [],
+      "dtype": "float32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "An estimate of the localization error bias in the Y/northing direction"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/ceosAnalysisReadyData/geometricAccuracy/standardDeviation/x",
+      "shape": [],
+      "dtype": "float32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "An estimate of the localization error standard deviation in the X/easting direction"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/ceosAnalysisReadyData/geometricAccuracy/standardDeviation/y",
+      "shape": [],
+      "dtype": "float32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "An estimate of the localization error standard deviation in the Y/northing direction"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/ceosAnalysisReadyData/outputBackscatterDecibelConversionFormula",
+      "shape": [],
+      "dtype": "|S21",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Formula to convert provided backscatter to decibel (dB)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/orbit/interpMethod",
+      "shape": [],
+      "dtype": "|S7",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Orbit interpolation method, either \"Hermite\" or \"Legendre\""
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/orbit/orbitType",
+      "shape": [],
+      "dtype": "|S3",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Orbit product type, either \"FOE\", \"NOE\", \"MOE\", \"POE\", or \"Custom\", where \"FOE\" stands for Forecast Orbit Ephemeris, \"NOE\" is Near real-time Orbit Ephemeris, \"MOE\" is Medium precision Orbit Ephemeris, and \"POE\" is Precise Orbit Ephemeris"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/orbit/position",
+      "shape": [
+        44,
+        3
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Position vector record. This record contains the platform position data with respect to WGS84 G1762 reference frame"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/orbit/time",
+      "shape": [
+        44
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "seconds since 2026-08-15T00:00:00",
+        "description": "Time vector record. This record contains the time since UTC epoch corresponding to position and velocity records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/orbit/velocity",
+      "shape": [
+        44,
+        3
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters / second",
+        "description": "Velocity vector record. This record contains the platform velocity data with respect to WGS84 G1762 reference frame"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/algorithms/demInterpolation",
+      "shape": [],
+      "dtype": "|S9",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "DEM interpolation method"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/algorithms/geocoding",
+      "shape": [],
+      "dtype": "|S92",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Geocoding algorithm"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/algorithms/geocodingAlgorithmReference",
+      "shape": [],
+      "dtype": "|S278",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Reference to the geocoding algorithm applied (if applicable)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/algorithms/polarimetricSymmetrization",
+      "shape": [],
+      "dtype": "|S8",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Polarimetric symmetrization algorithm"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/algorithms/radiometricTerrainCorrection",
+      "shape": [],
+      "dtype": "|S86",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Radiometric terrain correction (RTC) algorithm"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/algorithms/radiometricTerrainCorrectionAlgorithmReference",
+      "shape": [],
+      "dtype": "|S278",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Reference to the radiometric terrain correction (RTC) algorithm applied (if applicable)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/algorithms/softwareVersion",
+      "shape": [],
+      "dtype": "|S7",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Software version used for processing"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/inputs/configFiles",
+      "shape": [
+        1
+      ],
+      "dtype": "|S177",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "List of input config files used"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/inputs/demSource",
+      "shape": [],
+      "dtype": "|S1120",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Description of the input digital elevation model (DEM)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/inputs/l1SlcGranules",
+      "shape": [
+        1
+      ],
+      "dtype": "|S94",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "List of input L1 RSLC products used"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/inputs/orbitFiles",
+      "shape": [
+        1
+      ],
+      "dtype": "|S233",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "List of input orbit files used"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/inputs/tecFiles",
+      "shape": [
+        1
+      ],
+      "dtype": "|S234",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "List of input total electron content (TEC) files used"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/azimuthIonosphericGeolocationCorrectionApplied",
+      "shape": [],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if the azimuth ionospheric correction has been applied"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/dryTroposphericGeolocationCorrectionApplied",
+      "shape": [],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if the dry tropospheric correction was applied during the generation of the input RSLC to improve geolocation"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/faradayRotationApplied",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if the Faraday rotation correction has been applied"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/frequencyA/dopplerCentroid",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "hertz",
+        "description": "2D LUT of Doppler centroid for frequency A"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/frequencyA/projection",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product map grid projection: EPSG code, with additional projection information as HDF5 Attributes"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/frequencyA/xCoordinates",
+      "shape": [
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "X coordinates in specified projection",
+        "long_name": "X coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/frequencyA/yCoordinates",
+      "shape": [
+        339
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Y coordinates in specified projection",
+        "long_name": "Y coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/frequencyB/dopplerCentroid",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "hertz",
+        "description": "2D LUT of Doppler centroid for frequency B"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/frequencyB/projection",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product map grid projection: EPSG code, with additional projection information as HDF5 Attributes"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/frequencyB/xCoordinates",
+      "shape": [
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "X coordinates in specified projection",
+        "long_name": "X coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/frequencyB/yCoordinates",
+      "shape": [
+        339
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Y coordinates in specified projection",
+        "long_name": "Y coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/geo2rdr/convergenceThreshold",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Slant range convergence threshold for geo2rdr transformation"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/geo2rdr/deltaRange",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Step size for computing numerical gradient of Doppler in meters for geo2rdr transformation"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/geo2rdr/maxNumberOfIterations",
+      "shape": [],
+      "dtype": "uint64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Maximum number of iterations for geo2rdr transformation"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/geocoding/geogridUpsampling",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Geocoding geogrid upsampling"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/geocoding/isSourceDataUpsampled",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if the source data is upsampled for geocoding"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/geocoding/maxBlockSize",
+      "shape": [],
+      "dtype": "uint64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Maximum block size in megabytes (MB) per thread"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/geocoding/memoryMode",
+      "shape": [],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Geocoding memory mode"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/geocoding/minBlockSize",
+      "shape": [],
+      "dtype": "uint64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Minimum block size in megabytes (MB) per thread"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/isFullCovariance",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if the product is full-covariance"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/noiseCorrectionApplied",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if noise correction has been applied"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/polarimetricSymmetrizationApplied",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if the polarimetric symmetrization has been applied"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/polarizationOrientationCorrectionApplied",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if the polarization orientation correction has been applied"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/postProcessingFilteringApplied",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if the post-processing filtering has been applied"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/preprocessing/frequencyA/numberOfAzimuthLooks",
+      "shape": [],
+      "dtype": "uint64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Number of azimuth looks applied to the RSLC before geocoding"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/preprocessing/frequencyA/numberOfRangeLooks",
+      "shape": [],
+      "dtype": "uint64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Number of range looks applied to the RSLC before geocoding"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/preprocessing/frequencyB/numberOfAzimuthLooks",
+      "shape": [],
+      "dtype": "uint64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Number of azimuth looks applied to the RSLC before geocoding"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/preprocessing/frequencyB/numberOfRangeLooks",
+      "shape": [],
+      "dtype": "uint64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Number of range looks applied to the RSLC before geocoding"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/preprocessingMultilookingApplied",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if a preprocessing multilooking has been applied"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/projection",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product map grid projection: EPSG code, with additional projection information as HDF5 Attributes"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/radiometricTerrainCorrectionApplied",
+      "shape": [],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if the radiometric terrain correction has been applied"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/rangeIonosphericGeolocationCorrectionApplied",
+      "shape": [],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if the range ionospheric correction has been applied"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/referenceTerrainHeight",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "float32",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "meters",
+        "description": "Reference terrain height as a function of map coordinates"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/rfiMitigationApplied",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if radio frequency interference (RFI) mitigation was applied during the generation of the input RSLC"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/rtc/geogridUpsampling",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Radiometric terrain correction (RTC) geogrid upsampling"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/rtc/inputBackscatterNormalizationConvention",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Backscatter normalization convention of the source data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/rtc/memoryMode",
+      "shape": [],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Radiometric terrain correction (RTC) memory mode"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/rtc/minRtcAreaNormalizationFactorInDB",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Radiometric terrain correction (RTC) minimum area normalization factor value in dB computed as `10 * log10(area_out / area_in)` where `area_in` and `area_out` are the reference surfaces associated with the source data (input) and GCOV terms (output) backscatter conventions, respectively"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/rtc/outputBackscatterExpressionConvention",
+      "shape": [],
+      "dtype": "|S12",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Backscatter expression convention"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/rtc/outputBackscatterNormalizationConvention",
+      "shape": [],
+      "dtype": "|S6",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Backscatter normalization convention of the primary data associated with this product"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/runConfigurationContents",
+      "shape": [],
+      "dtype": "|S5828",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Contents of the run configuration file with parameters used for processing"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/shadowMaskingApplied",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if the shadow masking has been applied"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/validSamplesSubSwathMaskingApplied",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if the valid samples subswath masking has been applied"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/wetTroposphericGeolocationCorrectionApplied",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if the wet tropospheric correction was applied during the generation of the input RSLC to improve geolocation"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/xCoordinates",
+      "shape": [
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "X coordinates in specified projection",
+        "long_name": "X coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/yCoordinates",
+      "shape": [
+        339
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Y coordinates in specified projection",
+        "long_name": "Y coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/timingCorrections/frequencyA/azimuthIonosphere",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "seconds",
+        "description": "Azimuth ionospheric timing correction, derived from Total Electron Content (TEC) data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/timingCorrections/frequencyA/projection",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product map grid projection: EPSG code, with additional projection information as HDF5 Attributes"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/timingCorrections/frequencyA/slantRangeIonosphere",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "meters",
+        "description": "Slant range ionospheric timing correction, derived from Total Electron Content (TEC) data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/timingCorrections/frequencyA/xCoordinates",
+      "shape": [
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "X coordinates in specified projection",
+        "long_name": "X coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/timingCorrections/frequencyA/yCoordinates",
+      "shape": [
+        339
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Y coordinates in specified projection",
+        "long_name": "Y coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/timingCorrections/frequencyB/azimuthIonosphere",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "seconds",
+        "description": "Azimuth ionospheric timing correction, derived from Total Electron Content (TEC) data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/timingCorrections/frequencyB/projection",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product map grid projection: EPSG code, with additional projection information as HDF5 Attributes"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/timingCorrections/frequencyB/slantRangeIonosphere",
+      "shape": [
+        339,
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        339,
+        344
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "meters",
+        "description": "Slant range ionospheric timing correction, derived from Total Electron Content (TEC) data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/timingCorrections/frequencyB/xCoordinates",
+      "shape": [
+        344
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "X coordinates in specified projection",
+        "long_name": "X coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/timingCorrections/frequencyB/yCoordinates",
+      "shape": [
+        339
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Y coordinates in specified projection",
+        "long_name": "Y coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/radarGrid/alongTrackUnitVectorX",
+      "shape": [
+        21,
+        687,
+        699
+      ],
+      "dtype": "float32",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        1,
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "East component of the along-track unit vector at the target location, expressed in the east-north-up (ENU) coordinate system and projected onto the horizontal plane (i.e., excluding the up component)",
+        "long_name": "Along-track unit vector X"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/radarGrid/alongTrackUnitVectorY",
+      "shape": [
+        21,
+        687,
+        699
+      ],
+      "dtype": "float32",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        1,
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "North component of the along-track unit vector at the target location, expressed in the east-north-up (ENU) coordinate system and projected onto the horizontal plane (i.e., excluding the up component)",
+        "long_name": "Along-track unit vector Y"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/radarGrid/elevationAngle",
+      "shape": [
+        21,
+        687,
+        699
+      ],
+      "dtype": "float32",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        1,
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "degrees",
+        "description": "Elevation angle is defined as the angle between the LOS vector and the normal to the ellipsoid at the sensor",
+        "long_name": "Elevation angle"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/radarGrid/groundTrackVelocity",
+      "shape": [
+        21,
+        687,
+        699
+      ],
+      "dtype": "float64",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        1,
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "meters / second",
+        "description": "Absolute value of the platform velocity scaled at the target height",
+        "long_name": "Ground track velocity"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/radarGrid/heightAboveEllipsoid",
+      "shape": [
+        21
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Height values above WGS84 Ellipsoid corresponding to the radar grid"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/radarGrid/incidenceAngle",
+      "shape": [
+        21,
+        687,
+        699
+      ],
+      "dtype": "float32",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        1,
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "degrees",
+        "description": "Incidence angle is defined as the angle between the LOS vector and the normal to the ellipsoid at the target height",
+        "long_name": "Incidence angle"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/radarGrid/losUnitVectorX",
+      "shape": [
+        21,
+        687,
+        699
+      ],
+      "dtype": "float32",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        1,
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "East component of the line-of-sight (LOS) unit vector, defined from the target to the sensor, expressed in the east-north-up (ENU) coordinate system with its origin at the target location",
+        "long_name": "LOS unit vector X"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/radarGrid/losUnitVectorY",
+      "shape": [
+        21,
+        687,
+        699
+      ],
+      "dtype": "float32",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        1,
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "1",
+        "description": "North component of the line-of-sight (LOS) unit vector, defined from the target to the sensor, expressed in the east-north-up (ENU) coordinate system with its origin at the target location",
+        "long_name": "LOS unit vector Y"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/radarGrid/projection",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product map grid projection: EPSG code, with additional projection information as HDF5 Attributes"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/radarGrid/slantRange",
+      "shape": [
+        21,
+        687,
+        699
+      ],
+      "dtype": "float64",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        1,
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "meters",
+        "description": "Slant range in meters",
+        "long_name": "Slant range"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/radarGrid/xCoordinates",
+      "shape": [
+        699
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "X coordinates in specified projection",
+        "long_name": "X coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/radarGrid/yCoordinates",
+      "shape": [
+        687
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Y coordinates in specified projection",
+        "long_name": "Y coordinates of projection"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/radarGrid/zeroDopplerAzimuthTime",
+      "shape": [
+        21,
+        687,
+        699
+      ],
+      "dtype": "float64",
+      "fill_values": {
+        "_FillValue": null
+      },
+      "chunks": [
+        1,
+        512,
+        512
+      ],
+      "compression": "gzip",
+      "attributes": {
+        "units": "seconds since 2026-08-15T00:00:00",
+        "description": "Zero Doppler azimuth time in seconds since UTC epoch",
+        "long_name": "Zero Doppler azimuth time"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/granuleId",
+      "shape": [],
+      "dtype": "|S91",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Unique granule identification name of the source data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/lookDirection",
+      "shape": [],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Look direction, either \"Left\" or \"Right\""
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingCenter",
+      "shape": [],
+      "dtype": "|S1",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Source data processing center"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingDateTime",
+      "shape": [],
+      "dtype": "|S19",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Source data processing date and time (in UTC) in the format YYYY-mm-ddTHH:MM:SS"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/algorithms/azimuthCompression",
+      "shape": [],
+      "dtype": "|S26",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Algorithm for focusing the data in the azimuth direction corresponding to the source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/algorithms/azimuthPresumming",
+      "shape": [],
+      "dtype": "|S3",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Algorithm for regridding and filling gaps in the raw data in azimuth corresponding to the source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/algorithms/dopplerCentroidEstimation",
+      "shape": [],
+      "dtype": "|S9",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Algorithm for calculating Doppler centroid corresponding to the source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/algorithms/elevationAntennaPatternCorrection",
+      "shape": [],
+      "dtype": "|S7",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Algorithm for calibrating the antenna pattern corresponding to the source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/algorithms/rangeCompression",
+      "shape": [],
+      "dtype": "|S15",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Algorithm for focusing the data in the range direction corresponding to the source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/algorithms/rangeSpreadingLossCorrection",
+      "shape": [],
+      "dtype": "|S7",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Algorithm for calibrating range fading corresponding to the source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/algorithms/rfiDetection",
+      "shape": [],
+      "dtype": "|S9",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Algorithm used for radio frequency interference (RFI) detection corresponding to the source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/algorithms/rfiMitigation",
+      "shape": [],
+      "dtype": "|S9",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Algorithm used for radio frequency interference (RFI) mitigation corresponding to the source data processing information records, either \"ST-EVD\" or \"FDNF\" (or \"disabled\" if no RFI mitigation was applied)"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/algorithms/softwareVersion",
+      "shape": [],
+      "dtype": "|S7",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Software version used for processing the source data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/parameters/frequencyA/dopplerCentroid",
+      "shape": [
+        119,
+        108
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "hertz",
+        "description": "2D LUT of Doppler centroid for frequency A corresponding to the source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/parameters/frequencyA/slantRange",
+      "shape": [
+        108
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Slant range dimension corresponding to the source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/parameters/frequencyA/zeroDopplerTime",
+      "shape": [
+        119
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "seconds since 2026-08-15T00:00:00",
+        "description": "Vector of zero Doppler azimuth times, measured relative to a UTC epoch, corresponding to source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/parameters/frequencyB/dopplerCentroid",
+      "shape": [
+        119,
+        108
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "hertz",
+        "description": "2D LUT of Doppler centroid for frequency B corresponding to the source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/parameters/frequencyB/slantRange",
+      "shape": [
+        108
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Slant range dimension corresponding to source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/parameters/frequencyB/zeroDopplerTime",
+      "shape": [
+        119
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "seconds since 2026-08-15T00:00:00",
+        "description": "Vector of zero Doppler azimuth times, measured relative to a UTC epoch, corresponding to source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/parameters/referenceTerrainHeight",
+      "shape": [
+        119
+      ],
+      "dtype": "float32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Reference terrain height corresponding to the source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/parameters/runConfigurationContents",
+      "shape": [],
+      "dtype": "|S10528",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Contents of the run configuration file associated with the processing of the source data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/parameters/slantRange",
+      "shape": [
+        108
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Slant range dimension corresponding to source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/processingInformation/parameters/zeroDopplerTime",
+      "shape": [
+        119
+      ],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "seconds since 2026-08-15T00:00:00",
+        "description": "Vector of zero Doppler azimuth times, measured relative to a UTC epoch, corresponding to source data processing information records"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/productDoi",
+      "shape": [],
+      "dtype": "|S19",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Digital Object Identifier (DOI) of the source product"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/productGeometry",
+      "shape": [],
+      "dtype": "|S11",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Source data product geometry, either \"Slant range\" or \"Ground range\""
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/productLevel",
+      "shape": [],
+      "dtype": "|S2",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Source data product level. Product level. \"L0A\": Unprocessed instrument data; \"L0B\": Reformatted, unprocessed instrument data; \"L1\": Processed instrument data in radar coordinates system; and \"L2\": Processed instrument data in geocoded coordinates system"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/productType",
+      "shape": [],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product type of the source data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/productVersion",
+      "shape": [],
+      "dtype": "|S6",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product version of the source data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyA/acquiredRangeBandwidth",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "hertz",
+        "description": "Source data acquisition range bandwidth in hertz. In case of mode combination, this corresponds to mode with largest bandwidth"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyA/centerFrequency",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "hertz",
+        "description": "Center frequency of the processed source data image in hertz"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyA/farRangeIncidenceAngle",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "degrees",
+        "description": "Far-range incidence angle in degrees at the central azimuth line. The incidence angle is defined as the angle between the LOS vector and the normal to the ellipsoid at the target height"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyA/listOfPolarizations",
+      "shape": [
+        2
+      ],
+      "dtype": "|S2",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "List of polarization layers with frequency A within the source data product"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyA/nearRangeIncidenceAngle",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "degrees",
+        "description": "Near-range incidence angle in degrees at the central azimuth line. The incidence angle is defined as the angle between the LOS vector and the normal to the ellipsoid at the target height"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyA/numberOfRangeSamples",
+      "shape": [],
+      "dtype": "uint64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Number of slant range samples for each azimuth line within the source data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyA/processedAzimuthBandwidth",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "hertz",
+        "description": "Source data processed azimuth bandwidth in hertz"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyA/processedRangeBandwidth",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "hertz",
+        "description": "Source data processed range bandwidth in hertz"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyA/rangeResolution",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Nominal range resolution in meters of the source data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyA/sceneCenterAlongTrackResolution",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Nominal along-track resolution in meters of the source data at scene center"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyA/sceneCenterAlongTrackSpacing",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Nominal along-track spacing in meters between consecutive lines near mid swath of the source data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyA/sceneCenterGroundRangeSpacing",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Nominal ground range spacing in meters between consecutive pixels near mid swath of the source data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyA/slantRangeSpacing",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Slant range spacing of the source data in meters"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyA/slantRangeStart",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Source data slant range start distance"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyB/acquiredRangeBandwidth",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "hertz",
+        "description": "Source data acquisition range bandwidth in hertz. In case of mode combination, this corresponds to mode with largest bandwidth"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyB/centerFrequency",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "hertz",
+        "description": "Center frequency of the processed source data image in hertz"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyB/farRangeIncidenceAngle",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "degrees",
+        "description": "Far-range incidence angle in degrees at the central azimuth line. The incidence angle is defined as the angle between the LOS vector and the normal to the ellipsoid at the target height"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyB/listOfPolarizations",
+      "shape": [
+        2
+      ],
+      "dtype": "|S2",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "List of polarization layers with frequency B within the source data product"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyB/nearRangeIncidenceAngle",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "degrees",
+        "description": "Near-range incidence angle in degrees at the central azimuth line. The incidence angle is defined as the angle between the LOS vector and the normal to the ellipsoid at the target height"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyB/numberOfRangeSamples",
+      "shape": [],
+      "dtype": "uint64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "1",
+        "description": "Number of slant range samples for each azimuth line within the source data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyB/processedAzimuthBandwidth",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "hertz",
+        "description": "Source data processed azimuth bandwidth in hertz"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyB/processedRangeBandwidth",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "hertz",
+        "description": "Source data processed range bandwidth in hertz"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyB/rangeResolution",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Nominal range resolution in meters of the source data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyB/sceneCenterAlongTrackResolution",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Nominal along-track resolution in meters of the source data at scene center"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyB/sceneCenterAlongTrackSpacing",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Nominal along-track spacing in meters between consecutive lines near mid swath of the source data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyB/sceneCenterGroundRangeSpacing",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Nominal ground range spacing in meters between consecutive pixels near mid swath of the source data"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyB/slantRangeSpacing",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Slant range spacing of the source data in meters"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/frequencyB/slantRangeStart",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "meters",
+        "description": "Source data slant range start distance"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/numberOfAzimuthLines",
+      "shape": [],
+      "dtype": "uint64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "seconds",
+        "description": "Number of azimuth lines within the source data product"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/zeroDopplerEndTime",
+      "shape": [],
+      "dtype": "|S29",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Azimuth stop time (in UTC) of the source data product in the format YYYY-mm-ddTHH:MM:SS.sssssssss"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/zeroDopplerStartTime",
+      "shape": [],
+      "dtype": "|S29",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Azimuth start time (in UTC) of the source data product in the format YYYY-mm-ddTHH:MM:SS.sssssssss"
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/sourceData/swaths/zeroDopplerTimeSpacing",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "seconds",
+        "description": "Time interval in the along-track direction of the source data in seconds"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/absoluteOrbitNumber",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "units": "unitless",
+        "description": "Absolute orbit number"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/boundingPolygon",
+      "shape": [],
+      "dtype": "|S2112",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "OGR compatible WKT representing the bounding polygon of the image. Horizontal coordinates are WGS84 longitude followed by latitude (both in degrees), and the vertical coordinate is the height above the WGS84 ellipsoid in meters. The first point corresponds to the start-time, near-range radar coordinate, and the perimeter is traversed in counterclockwise order on the map. This means the traversal order in radar coordinates differs for left-looking and right-looking sensors. The polygon includes the four corners of the radar grid, with equal numbers of points distributed evenly in radar coordinates along each edge"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/compositeReleaseId",
+      "shape": [],
+      "dtype": "|S6",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Unique version identifier of the science data production system"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/diagnosticModeFlag",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Indicates if the radar operation mode is a diagnostic mode (1-2) or DBFed science (0): 0, 1, or 2"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/frameNumber",
+      "shape": [],
+      "dtype": "uint16",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Frame number"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/granuleId",
+      "shape": [],
+      "dtype": "|S91",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Unique granule identification name"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/hasInputDataException",
+      "shape": [],
+      "dtype": "uint8",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Indication of input data exceptions or anomalies present in this granule. Bitwise OR of instrument exception codes for all image pixels (0: no anomaly, 2: NISAR LSAR qFSP-H1 sample slip)"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/instrumentName",
+      "shape": [],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Name of the instrument used to collect the remote sensing data provided in this product"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/isDithered",
+      "shape": [],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "\"True\" if the pulse timing was varied (dithered) during acquisition, \"False\" otherwise"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/isFullFrame",
+      "shape": [],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "\"True\" if the product fully covers a NISAR frame, \"False\" if partial coverage"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/isGeocoded",
+      "shape": [],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag to indicate if the product data is in the radar geometry (\"False\") or in the map geometry (\"True\")"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/isJointObservation",
+      "shape": [],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "\"True\" if any portion of this product was acquired in a joint observation mode (e.g., L-band and S-band simultaneously), \"False\" otherwise"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/isMixedMode",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "\"True\" if this product is a composite of data collected in multiple radar modes, \"False\" otherwise"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/isUrgentObservation",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Flag indicating if observation is nominal (\"False\") or urgent (\"True\")"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/listOfFrequencies",
+      "shape": [
+        2
+      ],
+      "dtype": "|S1",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "List of frequency layers available in the product"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/listOfObservationModes",
+      "shape": [
+        1
+      ],
+      "dtype": "|S15",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "List of observation modes of the L0B granules used to generate the input RSLC (one mode per L0B)"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/lookDirection",
+      "shape": [],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Look direction, either \"Left\" or \"Right\""
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/missionId",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Mission identifier"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/orbitPassDirection",
+      "shape": [],
+      "dtype": "|S10",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Orbit direction, either \"Ascending\" or \"Descending\""
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/plannedDatatakeId",
+      "shape": [
+        1
+      ],
+      "dtype": "|S18",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "List of planned datatakes included in the product"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/plannedObservationId",
+      "shape": [
+        1
+      ],
+      "dtype": "|S17",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "List of planned observations included in the product"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/platformName",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Name of the platform used to collect the remote sensing data provided in this product"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/processingCenter",
+      "shape": [],
+      "dtype": "|S3",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Data processing center"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/processingDateTime",
+      "shape": [],
+      "dtype": "|S19",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Processing date and time (in UTC) in the format YYYY-mm-ddTHH:MM:SS"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/processingType",
+      "shape": [],
+      "dtype": "|S7",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Processing pipeline used to generate this granule. \"Nominal\": standard production system; \"Urgent\": time-sensitive processing in response to urgent response events; \"Custom\": user-initiated processing outside the nominal production system"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/productDoi",
+      "shape": [],
+      "dtype": "|S19",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Digital Object Identifier (DOI) for the product"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/productLevel",
+      "shape": [],
+      "dtype": "|S2",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product level. \"L0A\": Unprocessed instrument data; \"L0B\": Reformatted, unprocessed instrument data; \"L1\": Processed instrument data in radar coordinates system; and \"L2\": Processed instrument data in geocoded coordinates system"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/productSpecificationVersion",
+      "shape": [],
+      "dtype": "|S5",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product specification version which represents the schema of this product"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/productType",
+      "shape": [],
+      "dtype": "|S4",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product type"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/productVersion",
+      "shape": [],
+      "dtype": "|S6",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Product version which represents the structure of the product and the science content governed by the algorithm, input data, and processing parameters"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/radarBand",
+      "shape": [],
+      "dtype": "|S1",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Acquired frequency band, either \"L\" or \"S\""
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/staticLayersDataAccess",
+      "shape": [],
+      "dtype": "|S161",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Location of the static layers product associated with this product (URL or DOI)"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/trackNumber",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Track number"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/zeroDopplerEndTime",
+      "shape": [],
+      "dtype": "|S29",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Azimuth stop time (in UTC) of the product in the format YYYY-mm-ddTHH:MM:SS.sssssssss"
+      }
+    },
+    {
+      "path": "/science/LSAR/identification/zeroDopplerStartTime",
+      "shape": [],
+      "dtype": "|S29",
+      "fill_values": {},
+      "chunks": null,
+      "compression": null,
+      "attributes": {
+        "description": "Azimuth start time (in UTC) of the product in the format YYYY-mm-ddTHH:MM:SS.sssssssss"
+      }
+    }
+  ],
+  "grids": [
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA",
+      "epsg": 32643,
+      "shape": [
+        33768,
+        34344
+      ],
+      "x_spacing": 10.0,
+      "y_spacing": -10.0,
+      "x_extent": [
+        116645.0,
+        460075.0
+      ],
+      "y_extent": [
+        1911605.0,
+        2249275.0
+      ],
+      "box_fully_within_grid": true,
+      "box_intersects_grid": true,
+      "box_window": [
+        15866,
+        24227,
+        20352,
+        28858
+      ],
+      "mask_sampling": "up to nine 32x32 patches within box; not exhaustive",
+      "box_mask_sample_counts": {
+        "0": 28,
+        "1": 7164,
+        "255": 2024
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyB",
+      "epsg": 32643,
+      "shape": [
+        4221,
+        4293
+      ],
+      "x_spacing": 80.0,
+      "y_spacing": -80.0,
+      "x_extent": [
+        116680.0,
+        460040.0
+      ],
+      "y_extent": [
+        1911640.0,
+        2249240.0
+      ],
+      "box_fully_within_grid": true,
+      "box_intersects_grid": true,
+      "box_window": [
+        1983,
+        3028,
+        2544,
+        3607
+      ],
+      "mask_sampling": "up to nine 32x32 patches within box; not exhaustive",
+      "box_mask_sample_counts": {
+        "0": 616,
+        "1": 7459,
+        "255": 1141
+      }
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/crosstalk",
+      "epsg": 32643,
+      "shape": [
+        339,
+        344
+      ],
+      "x_spacing": 1000.0,
+      "y_spacing": -1000.0,
+      "x_extent": [
+        116500.0,
+        459500.0
+      ],
+      "y_extent": [
+        1911500.0,
+        2249500.0
+      ],
+      "box_fully_within_grid": true,
+      "box_intersects_grid": true,
+      "box_window": [
+        159,
+        243,
+        204,
+        289
+      ]
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/elevationAntennaPattern",
+      "epsg": 32643,
+      "shape": [
+        339,
+        344
+      ],
+      "x_spacing": 1000.0,
+      "y_spacing": -1000.0,
+      "x_extent": [
+        116500.0,
+        459500.0
+      ],
+      "y_extent": [
+        1911500.0,
+        2249500.0
+      ],
+      "box_fully_within_grid": true,
+      "box_intersects_grid": true,
+      "box_window": [
+        159,
+        243,
+        204,
+        289
+      ]
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyA/noiseEquivalentBackscatter",
+      "epsg": 32643,
+      "shape": [
+        339,
+        344
+      ],
+      "x_spacing": 1000.0,
+      "y_spacing": -1000.0,
+      "x_extent": [
+        116500.0,
+        459500.0
+      ],
+      "y_extent": [
+        1911500.0,
+        2249500.0
+      ],
+      "box_fully_within_grid": true,
+      "box_intersects_grid": true,
+      "box_window": [
+        159,
+        243,
+        204,
+        289
+      ]
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/elevationAntennaPattern",
+      "epsg": 32643,
+      "shape": [
+        339,
+        344
+      ],
+      "x_spacing": 1000.0,
+      "y_spacing": -1000.0,
+      "x_extent": [
+        116500.0,
+        459500.0
+      ],
+      "y_extent": [
+        1911500.0,
+        2249500.0
+      ],
+      "box_fully_within_grid": true,
+      "box_intersects_grid": true,
+      "box_window": [
+        159,
+        243,
+        204,
+        289
+      ]
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/calibrationInformation/frequencyB/noiseEquivalentBackscatter",
+      "epsg": 32643,
+      "shape": [
+        339,
+        344
+      ],
+      "x_spacing": 1000.0,
+      "y_spacing": -1000.0,
+      "x_extent": [
+        116500.0,
+        459500.0
+      ],
+      "y_extent": [
+        1911500.0,
+        2249500.0
+      ],
+      "box_fully_within_grid": true,
+      "box_intersects_grid": true,
+      "box_window": [
+        159,
+        243,
+        204,
+        289
+      ]
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters",
+      "epsg": 32643,
+      "shape": [
+        339,
+        344
+      ],
+      "x_spacing": 1000.0,
+      "y_spacing": -1000.0,
+      "x_extent": [
+        116500.0,
+        459500.0
+      ],
+      "y_extent": [
+        1911500.0,
+        2249500.0
+      ],
+      "box_fully_within_grid": true,
+      "box_intersects_grid": true,
+      "box_window": [
+        159,
+        243,
+        204,
+        289
+      ]
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/frequencyA",
+      "epsg": 32643,
+      "shape": [
+        339,
+        344
+      ],
+      "x_spacing": 1000.0,
+      "y_spacing": -1000.0,
+      "x_extent": [
+        116500.0,
+        459500.0
+      ],
+      "y_extent": [
+        1911500.0,
+        2249500.0
+      ],
+      "box_fully_within_grid": true,
+      "box_intersects_grid": true,
+      "box_window": [
+        159,
+        243,
+        204,
+        289
+      ]
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/parameters/frequencyB",
+      "epsg": 32643,
+      "shape": [
+        339,
+        344
+      ],
+      "x_spacing": 1000.0,
+      "y_spacing": -1000.0,
+      "x_extent": [
+        116500.0,
+        459500.0
+      ],
+      "y_extent": [
+        1911500.0,
+        2249500.0
+      ],
+      "box_fully_within_grid": true,
+      "box_intersects_grid": true,
+      "box_window": [
+        159,
+        243,
+        204,
+        289
+      ]
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/timingCorrections/frequencyA",
+      "epsg": 32643,
+      "shape": [
+        339,
+        344
+      ],
+      "x_spacing": 1000.0,
+      "y_spacing": -1000.0,
+      "x_extent": [
+        116500.0,
+        459500.0
+      ],
+      "y_extent": [
+        1911500.0,
+        2249500.0
+      ],
+      "box_fully_within_grid": true,
+      "box_intersects_grid": true,
+      "box_window": [
+        159,
+        243,
+        204,
+        289
+      ]
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/processingInformation/timingCorrections/frequencyB",
+      "epsg": 32643,
+      "shape": [
+        339,
+        344
+      ],
+      "x_spacing": 1000.0,
+      "y_spacing": -1000.0,
+      "x_extent": [
+        116500.0,
+        459500.0
+      ],
+      "y_extent": [
+        1911500.0,
+        2249500.0
+      ],
+      "box_fully_within_grid": true,
+      "box_intersects_grid": true,
+      "box_window": [
+        159,
+        243,
+        204,
+        289
+      ]
+    },
+    {
+      "path": "/science/LSAR/GCOV/metadata/radarGrid",
+      "epsg": 32643,
+      "shape": [
+        687,
+        699
+      ],
+      "x_spacing": 500.0,
+      "y_spacing": -500.0,
+      "x_extent": [
+        114250.0,
+        463250.0
+      ],
+      "y_extent": [
+        1908750.0,
+        2251750.0
+      ],
+      "box_fully_within_grid": true,
+      "box_intersects_grid": true,
+      "box_window": [
+        323,
+        490,
+        412,
+        582
+      ]
+    }
+  ],
+  "identification": {
+    "trackNumber": 34,
+    "frameNumber": 79,
+    "orbitPassDirection": "Descending",
+    "zeroDopplerStartTime": "2026-08-15T13:42:37.000000000",
+    "lookDirection": "Left"
+  },
+  "synthetic": false
+}

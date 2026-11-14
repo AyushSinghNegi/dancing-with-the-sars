@@ -1,0 +1,11 @@
+{
+  "source": "NASADEM_HGT.001, NASA/USGS; doi:10.5067/MEASURES/NASADEM/NASADEM_HGT.001",
+  "tiles": [
+    "n18e073.hgt",
+    "n18e074.hgt"
+  ],
+  "grid_epsg": 32643,
+  "grid_res_m": 40.0,
+  "finite_fraction": 1.0,
+  "slope_method": "degrees(arctan(hypot(dz/dx,dz/dy))); 40m central differences"
+}

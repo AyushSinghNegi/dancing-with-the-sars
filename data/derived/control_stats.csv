@@ -1,0 +1,2 @@
+zone_id,zone_name,review_status,valid_pixels,candidate_pixels,candidate_area_ha,median_coherence,median_hv_change_db
+Z03,Central Pune control,desk-reviewed against WorldCover 2021; 2026 land cover/stability unverified,2935,0,0.0,0.6320000290870667,0.15118932289858655

@@ -1,12 +1,16 @@
 metric,value,unit,meaning
+classification_usable,0,boolean,0: global Otsu failed the dark-fraction quality check; water outputs are diagnostic only
+after_dark_fraction,0.98,fraction,share of valid pixels below the shared threshold
+new_water_sensitivity_min_km2,1.3408,km2,minimum across shared-threshold -1/0/+1 dB
+new_water_sensitivity_max_km2,1.7984,km2,maximum across shared-threshold -1/0/+1 dB
 valid_fraction,1.0,fraction,share of the box with radar data on both dates
-threshold_before_db,-15.7787,dB,"HH water threshold, 28 Jun (otsu-balanced-jrc)"
-threshold_after_db,-15.4548,dB,"HH water threshold, 10 Jul (otsu-balanced-jrc)"
+threshold_before_db,-5.0751,dB,"HH water threshold, 28 Jun (otsu-linear-power)"
+threshold_after_db,-5.0751,dB,"HH water threshold, 10 Jul (otsu-linear-power)"
 permanent_water_km2,172.0656,km2,JRC occurrence >= 50%
-permanent_water_seen_dark,0.9939,fraction,share of JRC permanent water that radar sees as water on 28 Jun
-water_before_km2,171.0208,km2,"all dark-water pixels, 28 Jun"
-water_after_km2,209.3792,km2,"all dark-water pixels, 10 Jul"
-new_water_km2,39.6752,km2,"new open water on flat ground, outside permanent water"
-new_water_patches,1067,count,separate new-water patches
-receded_km2,0.0,km2,water on 28 Jun that is gone on 10 Jul (outside permanent water)
-brighter_flat_km2,1.4128,km2,possible water under trees or between buildings (not counted as flood)
+permanent_water_seen_dark,1.0,fraction,share of JRC permanent water that radar sees as water on 28 Jun
+water_before_km2,6976.2592,km2,"all dark-water pixels, 28 Jun"
+water_after_km2,6973.6352,km2,"all dark-water pixels, 10 Jul"
+new_water_km2,1.3408,km2,newly dark candidate water outside permanent water; unverified
+new_water_patches,28,count,separate new-water patches
+receded_km2,1.5904,km2,water on 28 Jun that is gone on 10 Jul (outside permanent water)
+brighter_flat_km2,1.2816,km2,possible water under trees or between buildings (not counted as flood)

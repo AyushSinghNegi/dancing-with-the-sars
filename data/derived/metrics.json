@@ -1,0 +1,226 @@
+{
+  "demo": false,
+  "demo_note": null,
+  "generated": "2026-11-14T18:18:36+00:00",
+  "pipeline_version": "0.5.0",
+  "python": "3.11.18",
+  "aoi": {
+    "west": 73.3,
+    "south": 18.15,
+    "east": 74.1,
+    "north": 18.9
+  },
+  "grid": {
+    "epsg": 32643,
+    "res_m": 40.0
+  },
+  "thresholds": {
+    "water_method": "otsu-linear-power-shared-after-date",
+    "water_threshold_linear": 1049.3384871418052,
+    "water_threshold_db": 30.209156020027045,
+    "dem": "NASADEM_HGT.001",
+    "validation_radius_m": 200.0,
+    "slide_min_patch_pixels": 3,
+    "water_max_dark_fraction": 0.95,
+    "change_db": 3.0,
+    "permanent_water_occurrence": 50,
+    "flood_max_slope_deg": 5.0,
+    "slide_min_slope_deg": 20.0,
+    "coherence_low": 0.35,
+    "min_patch_pixels": 4
+  },
+  "sources": [
+    {
+      "role": "before",
+      "granule_id": "NISAR_L2_PR_GCOV_024_034_D_079_4005_DHDH_A_20260628T134239_20260628T134314_P05023_N_F_J_001",
+      "valid_fraction": 0.9586,
+      "native_spacing_m": [
+        10.0,
+        10.0
+      ],
+      "multilook": 4,
+      "quality_rule": "fully-focused-native-support-v1",
+      "url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_024_034_D_079_4005_DHDH_A_20260628T134239_20260628T134314_P05023_N_F_J_001/NISAR_L2_PR_GCOV_024_034_D_079_4005_DHDH_A_20260628T134239_20260628T134314_P05023_N_F_J_001.h5"
+    },
+    {
+      "role": "after",
+      "granule_id": "NISAR_L2_PR_GCOV_025_034_D_079_4005_DHDH_A_20260710T134239_20260710T134313_P05023_N_F_J_001",
+      "valid_fraction": 0.9584,
+      "native_spacing_m": [
+        10.0,
+        10.0
+      ],
+      "multilook": 4,
+      "quality_rule": "fully-focused-native-support-v1",
+      "url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_025_034_D_079_4005_DHDH_A_20260710T134239_20260710T134313_P05023_N_F_J_001/NISAR_L2_PR_GCOV_025_034_D_079_4005_DHDH_A_20260710T134239_20260710T134313_P05023_N_F_J_001.h5"
+    },
+    {
+      "role": "pair",
+      "granule_id": "NISAR_L2_PR_GUNW_024_034_D_079_025_4000_SH_20260628T134239_20260628T134314_20260710T134239_20260710T134313_P05023_N_F_J_001",
+      "valid_fraction": 0.96,
+      "native_spacing_m": [
+        20.0,
+        20.0
+      ],
+      "multilook": 2,
+      "quality_rule": "valid-subswaths-no-rslc-anomalies-v1",
+      "url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GUNW_PROVISIONAL_V1/NISAR_L2_PR_GUNW_024_034_D_079_025_4000_SH_20260628T134239_20260628T134314_20260710T134239_20260710T134313_P05023_N_F_J_001/NISAR_L2_PR_GUNW_024_034_D_079_025_4000_SH_20260628T134239_20260628T134314_20260710T134239_20260710T134313_P05023_N_F_J_001.h5"
+    }
+  ],
+  "water": {
+    "classification_usable": 0,
+    "after_dark_fraction": 0.9999955409936403,
+    "new_water_sensitivity_min_km2": 0.0,
+    "new_water_sensitivity_max_km2": 0.0,
+    "valid_fraction": 0.9580628196558245,
+    "threshold_before_db": 30.209156020027045,
+    "threshold_after_db": 30.209156020027045,
+    "permanent_water_km2": 172.06560000000002,
+    "permanent_water_seen_dark": 1.0,
+    "water_before_km2": 6817.6256,
+    "water_after_km2": 6817.6320000000005,
+    "new_water_km2": 0.0,
+    "new_water_patches": 0,
+    "receded_km2": 0.0,
+    "brighter_flat_km2": 0.0
+  },
+  "slides": {
+    "method": "low coherence + HV drop + NASADEM slope",
+    "zones": 0,
+    "candidate_pixels_before_cleanup": 120,
+    "candidate_pixels_after_cleanup": 0,
+    "min_patch_pixels": 3,
+    "high": 0,
+    "medium": 0,
+    "area_ha": 0,
+    "steep_share": 0.126
+  },
+  "validation": {
+    "events": 18,
+    "matching_radius_m": 200.0,
+    "not_scored": 12,
+    "flood": {
+      "reported": 11,
+      "observable": 0,
+      "hits": 0,
+      "misses": 0
+    },
+    "slide": {
+      "reported": 7,
+      "observable": 4,
+      "hits": 0,
+      "misses": 4
+    },
+    "unreported_slide_zones": 0
+  },
+  "timeline_dates": 5,
+  "controls": [
+    {
+      "zone_id": "Z03",
+      "zone_name": "Central Pune control",
+      "review_status": "desk-reviewed against WorldCover 2021; 2026 land cover/stability unverified",
+      "valid_pixels": 2935,
+      "candidate_pixels": 0,
+      "candidate_area_ha": 0.0,
+      "median_coherence": 0.6320000290870667,
+      "median_hv_change_db": 0.15118932289858655
+    }
+  ],
+  "library_versions": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "h5py": "3.16.0",
+    "rasterio": "1.4.4",
+    "pyproj": "3.7.2",
+    "shapely": "2.2.0",
+    "scikit-image": "0.26.0",
+    "earthaccess": "0.17.0",
+    "xarray": "2026.9.0",
+    "rioxarray": "0.19.0",
+    "geopandas": "1.2.0",
+    "matplotlib": "3.11.2"
+  },
+  "bounds_latlon": [
+    [
+      18.144398141709033,
+      73.29252243906029
+    ],
+    [
+      18.905749508882934,
+      74.10422674600683
+    ]
+  ],
+  "overlays": {
+    "hh_before": {
+      "file": "overlays/hh_before.webp",
+      "legend": "Radar HH, 28 Jun (dark = smooth/water, bright = rough/buildings)",
+      "color": null
+    },
+    "hh_after": {
+      "file": "overlays/hh_after.webp",
+      "legend": "Radar HH, 10 Jul",
+      "color": null
+    },
+    "hv_before": {
+      "file": "overlays/hv_before.webp",
+      "legend": "Radar HV, 28 Jun (dB; fixed -30 to -5 stretch)",
+      "color": null
+    },
+    "hv_after": {
+      "file": "overlays/hv_after.webp",
+      "legend": "Radar HV, 10 Jul (dB; fixed -30 to -5 stretch)",
+      "color": null
+    },
+    "rgb_before": {
+      "file": "overlays/rgb_before.webp",
+      "legend": "Radar colour, 28 Jun (red HH, green HV, blue HH/HV)",
+      "color": null
+    },
+    "rgb_after": {
+      "file": "overlays/rgb_after.webp",
+      "legend": "Radar colour, 10 Jul",
+      "color": null
+    },
+    "change": {
+      "file": "overlays/change.webp",
+      "legend": "Change in HH, 28 Jun to 10 Jul (blue darker, red brighter)",
+      "color": null
+    },
+    "new_water": {
+      "file": "overlays/new_water.png",
+      "legend": "Candidate new water on 10 Jul",
+      "color": "#2a78d6"
+    },
+    "brighter": {
+      "file": "overlays/brighter.png",
+      "legend": "Possible water under trees or between buildings",
+      "color": "#1baf7a"
+    },
+    "permanent": {
+      "file": "overlays/permanent.png",
+      "legend": "Permanent water (JRC, rivers and reservoirs)",
+      "color": "#b7d3f6"
+    },
+    "coherence": {
+      "file": "overlays/coherence.webp",
+      "legend": "Radar coherence, 28 Jun to 10 Jul (dark = low similarity)",
+      "color": null
+    },
+    "slide_raster": {
+      "file": "overlays/slide_raster.png",
+      "legend": "Likely slide zones",
+      "color": "#eb6834"
+    }
+  },
+  "downloads": {
+    "new_water": "geotiff/new_water.tif",
+    "possible_water_under_cover": "geotiff/possible_water_under_cover.tif",
+    "slide_zones": "geotiff/slide_zones.tif",
+    "hh_change_db": "geotiff/hh_change_db.tif",
+    "hh_before": "geotiff/hh_before.tif",
+    "hv_before": "geotiff/hv_before.tif",
+    "hh_after": "geotiff/hh_after.tif",
+    "hv_after": "geotiff/hv_after.tif",
+    "coherence": "geotiff/coherence.tif"
+  }
+}

@@ -1,16 +1,18 @@
 {
   "events": 15,
+  "matching_radius_m": 200.0,
+  "not_scored": 7,
   "flood": {
     "reported": 8,
-    "observable": 7,
-    "hits": 4,
-    "hit_rate": 0.571
+    "observable": 0,
+    "hits": 0,
+    "misses": 0
   },
   "slide": {
     "reported": 7,
     "observable": 7,
-    "hits": 6,
-    "hit_rate": 0.857
+    "hits": 5,
+    "misses": 2
   },
-  "unreported_slide_zones": 38
+  "unreported_slide_zones": 44
 }

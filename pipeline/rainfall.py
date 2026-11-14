@@ -45,7 +45,7 @@ def main():
     rows = fetch()
     C.REFERENCE.mkdir(parents=True, exist_ok=True)
     with open(C.REFERENCE / "rainfall.csv", "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=list(rows[0]))
+        w = csv.DictWriter(fh, fieldnames=list(rows[0]), lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
     jul = [r for r in rows if "2026-07-01" <= r["date"] <= "2026-07-10"]

@@ -1,0 +1,153 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "Z01",
+        "name": "Ghats forest study area",
+        "control": false,
+        "review_status": "initial footprint; land cover and stability not yet reviewed",
+        "source": "Manually delineated analysis footprint for RSN R6/R8; not a reference label"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.4,
+              18.46
+            ],
+            [
+              73.43,
+              18.46
+            ],
+            [
+              73.43,
+              18.49
+            ],
+            [
+              73.4,
+              18.49
+            ],
+            [
+              73.4,
+              18.46
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "Z02",
+        "name": "Eastern farmland study area",
+        "control": false,
+        "review_status": "initial footprint; land cover and stability not yet reviewed",
+        "source": "Manually delineated analysis footprint for RSN R6/R8; not a reference label"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.0,
+              18.55
+            ],
+            [
+              74.03,
+              18.55
+            ],
+            [
+              74.03,
+              18.58
+            ],
+            [
+              74.0,
+              18.58
+            ],
+            [
+              74.0,
+              18.55
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "Z03",
+        "name": "Central Pune control",
+        "control": true,
+        "review_status": "initial footprint; land cover and stability not yet reviewed",
+        "source": "Manually delineated analysis footprint for RSN R6/R8; not a reference label"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.85,
+              18.5
+            ],
+            [
+              73.87,
+              18.5
+            ],
+            [
+              73.87,
+              18.52
+            ],
+            [
+              73.85,
+              18.52
+            ],
+            [
+              73.85,
+              18.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "Z04",
+        "name": "Mutha river study area",
+        "control": false,
+        "review_status": "initial footprint; land cover and stability not yet reviewed",
+        "source": "Manually delineated analysis footprint for RSN R6/R8; not a reference label"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.848,
+              18.521
+            ],
+            [
+              73.858,
+              18.521
+            ],
+            [
+              73.858,
+              18.527
+            ],
+            [
+              73.848,
+              18.527
+            ],
+            [
+              73.848,
+              18.521
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

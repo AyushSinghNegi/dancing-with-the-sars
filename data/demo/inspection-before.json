@@ -1,0 +1,121 @@
+{
+  "source": "NISAR_L2_PR_GCOV_024_034_D_079_4005_DHDH_A_20260628T134239_20260628T134314_P05023_N_F_J_001.h5",
+  "datasets": [
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/HHHH",
+      "shape": [
+        4262,
+        4334
+      ],
+      "dtype": "float32",
+      "fill_values": {}
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/HVHV",
+      "shape": [
+        4262,
+        4334
+      ],
+      "dtype": "float32",
+      "fill_values": {}
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/mask",
+      "shape": [
+        4262,
+        4334
+      ],
+      "dtype": "uint8",
+      "fill_values": {}
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/projection",
+      "shape": [],
+      "dtype": "uint32",
+      "fill_values": {}
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/xCoordinateSpacing",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {}
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/xCoordinates",
+      "shape": [
+        4334
+      ],
+      "dtype": "float64",
+      "fill_values": {}
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/yCoordinateSpacing",
+      "shape": [],
+      "dtype": "float64",
+      "fill_values": {}
+    },
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA/yCoordinates",
+      "shape": [
+        4262
+      ],
+      "dtype": "float64",
+      "fill_values": {}
+    },
+    {
+      "path": "/science/LSAR/identification/orbitPassDirection",
+      "shape": [],
+      "dtype": "object",
+      "fill_values": {}
+    },
+    {
+      "path": "/science/LSAR/identification/trackNumber",
+      "shape": [],
+      "dtype": "int64",
+      "fill_values": {}
+    },
+    {
+      "path": "/science/LSAR/identification/zeroDopplerStartTime",
+      "shape": [],
+      "dtype": "object",
+      "fill_values": {}
+    }
+  ],
+  "grids": [
+    {
+      "path": "/science/LSAR/GCOV/grids/frequencyA",
+      "epsg": 32643,
+      "shape": [
+        4262,
+        4334
+      ],
+      "x_spacing": 20.0,
+      "y_spacing": -20.0,
+      "x_extent": [
+        319370.0,
+        406030.0
+      ],
+      "y_extent": [
+        2006210.0,
+        2091430.0
+      ],
+      "box_fully_within_grid": true,
+      "box_intersects_grid": true,
+      "box_window": [
+        41,
+        4221,
+        40,
+        4293
+      ],
+      "box_mask_sample_counts": {
+        "1": 178068
+      }
+    }
+  ],
+  "identification": {
+    "trackNumber": 34,
+    "orbitPassDirection": "Descending",
+    "zeroDopplerStartTime": "2026-06-28T13:42:39"
+  },
+  "synthetic": true
+}

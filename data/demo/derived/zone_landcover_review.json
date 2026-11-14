@@ -1,0 +1,89 @@
+{
+  "source": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N18E072_Map.tif",
+  "doi": "https://doi.org/10.5281/zenodo.7254221",
+  "attribution": "\u00a9 ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+  "limitation": "Historical classified reference, not field truth or proof of 2026 stability",
+  "zones": [
+    {
+      "zone_id": "Z01",
+      "initial_class_percent": {
+        "10": 61.87,
+        "30": 35.69,
+        "40": 2.29,
+        "50": 0.14,
+        "80": 0.0
+      },
+      "id": "Z01",
+      "name": "Ghats forest study area",
+      "control": false,
+      "review_status": "desk-reviewed against WorldCover 2021; 2026 land cover/stability unverified",
+      "source": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N18E072_Map.tif",
+      "review_reference_year": 2021,
+      "reference_class": "tree cover",
+      "reference_target_percent": 100.0,
+      "delineation": "largest connected target-class patch inside initial footprint"
+    },
+    {
+      "zone_id": "Z02",
+      "initial_class_percent": {
+        "10": 1.9,
+        "20": 3.46,
+        "30": 26.62,
+        "40": 44.77,
+        "50": 19.78,
+        "60": 3.47
+      },
+      "id": "Z02",
+      "name": "Eastern farmland study area",
+      "control": false,
+      "review_status": "desk-reviewed against WorldCover 2021; 2026 land cover/stability unverified",
+      "source": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N18E072_Map.tif",
+      "review_reference_year": 2021,
+      "reference_class": "cropland",
+      "reference_target_percent": 100.0,
+      "delineation": "largest connected target-class patch inside initial footprint"
+    },
+    {
+      "zone_id": "Z03",
+      "initial_class_percent": {
+        "10": 14.66,
+        "20": 0.03,
+        "30": 0.57,
+        "40": 0.21,
+        "50": 83.4,
+        "60": 1.11,
+        "80": 0.01
+      },
+      "id": "Z03",
+      "name": "Central Pune control",
+      "control": true,
+      "review_status": "desk-reviewed against WorldCover 2021; 2026 land cover/stability unverified",
+      "source": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N18E072_Map.tif",
+      "review_reference_year": 2021,
+      "reference_class": "built-up",
+      "reference_target_percent": 83.4,
+      "delineation": "original city control boundary"
+    },
+    {
+      "zone_id": "Z04",
+      "initial_class_percent": {
+        "10": 34.28,
+        "20": 0.25,
+        "30": 1.92,
+        "40": 1.16,
+        "50": 55.61,
+        "60": 1.44,
+        "80": 5.34
+      },
+      "id": "Z04",
+      "name": "Mutha river study area",
+      "control": false,
+      "review_status": "desk-reviewed against WorldCover 2021; 2026 land cover/stability unverified",
+      "source": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N18E072_Map.tif",
+      "review_reference_year": 2021,
+      "reference_class": "permanent water",
+      "reference_target_percent": 100.0,
+      "delineation": "largest connected target-class patch inside initial footprint"
+    }
+  ]
+}
