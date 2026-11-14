@@ -52,15 +52,14 @@ Last updated 14 Nov 2026 (Urvashi on `urvashi/content`; Claude for Ayush on `cla
 
 | # | Priority | Open point | Next step |
 |---|---|---|---|
-| P41 | High | **The demo limit is 30 seconds or 7 slides.** The 2026 Submission Guide allows a video of 30 seconds or less, or a deck of at most 7 slides including title and intro; going over makes the project ineligible for Global Judging. `content/slides.md` has 8 slides, and the 3-minute script is not a submission format. | Pick one: the 30-second video (script in `content/demo_script.md`) or a 7-slide deck. Cut or merge one slide if the deck is used. Ask the Local Lead whether GDG Ahlen has a live pitch. |
+| P41 | High | **The built deck must also have 7 slides or fewer.** The 2026 Submission Guide allows a video of 30 seconds or less, or a deck of at most 7 slides including title and intro; going over makes the project ineligible for Global Judging. `content/slides.md` is now a 7-slide outline, but the deck built from the earlier 8-slide outline (in the team's Submission folder) has not been checked against it. The 3-minute script is not a submission format. | Ayush: count the slides in the built deck; if it is linked as the demo it must be 7 or fewer. Ask the Local Lead whether GDG Ahlen has a live pitch. |
 | P42 | High | **SI (AI) labelling rules.** The guide requires SI-generated images and videos to carry a visible watermark, and SI-generated code and data to be acknowledged in descriptive text and metadata. Our demo video is drawn by code from radar data, but that code was written with an AI assistant. | Ayush: decide whether the video needs a visible note. The README "Use of AI" section covers the code; check it still matches `content/project_page.md`. |
 | P43 | Medium | **English-only rule.** The guide says the project page and any linked materials must be in English. The live app has a Marathi option. | Keep English as the default language of the app, and say on the project page that Marathi is an extra. |
 | P44 | Medium | **Three items on the project page need a person:** the demo link, whether RSN used ChatGPT, and confirmation that the idea and choice of event were the team's own (the guide says SI must not come up with the idea). | Fill the `[SQUARE BRACKET]` items in `content/project_page.md`. |
 | P45 | Low | **Deadline is in the Local Event's time zone:** Sunday 15 Nov, 11:59 p.m. for GDG Ahlen. Local judging may have its own times. | Confirm with the Local Lead; the 10 PM IST target is earlier and safe. |
 | P35 | Medium | **Marathi text is unchecked.** `content/story.mr.md` and the Marathi strings in `app/lib/ui.py` were drafted by an assistant. | A Marathi speaker reads them before submission. |
-| P37 | Low | **Slide links are placeholders.** `[LINK: live app]` and `[LINK: public repo]` in `content/slides.md`. | Ayush supplies them. |
 | P38 | Low | **Cloud contact sheet is low resolution**, and NASA's acknowledgement wording has not been checked. | Remake it for the slide; add the credit. |
-| P39 | Low | **Slide numbers are a snapshot** of `metrics.json` from 14 Nov 13:38 UTC. | Recheck every number after RSN's final run. |
+| P39 | Low | **Slide and script numbers are a snapshot** of `metrics.json` from 14 Nov 19:01 UTC (`content/slides.md`, `content/demo_script.md`, `content/project_page.md`). | Recheck every number after any new pipeline run. |
 
 ## Resolved
 
@@ -91,3 +90,5 @@ Last updated 14 Nov 2026 (Urvashi on `urvashi/content`; Claude for Ayush on `cla
 | R23 | P40: both landslide matches rest on one zone. | The video, deck (validation slide and notes) and project page now lead with floods (4 of 10) and the second orbit, and say the 2 landslide matches point to one zone that NASADEM does not keep. |
 | R24 | P08: the demo script pointed at the Patan miss. | Our video and deck do not show Patan as a hit; the app lists it as a miss with its reason (ground gentler than 15°). |
 | R25 | P33: Submission Guide not read. | Read on the evening of 14 Nov, European time (spaceappschallenge.org/resources/project-submission-guide, dated 13 Nov 2026). Form fields, demo limits, language and SI rules are summarised in `content/project_page.md` and `content/demo_script.md`; what they change for us is P41 to P45. |
+| R26 | P37: slide links were placeholders. | `content/slides.md` now gives the live app and repository addresses from `README.md`. One placeholder remains on the title slide: the members' full names. |
+| R27 | `content/slides.md` had 8 slides, over the guide's limit (part of P41). | Cut to 7 including a title slide with team and challenge: "Why radar" and "What we built" merged, "Business model" and "Roadmap and team" merged. Slide 2 uses the figures from R22; no `[VERIFY]` lines remain. |
