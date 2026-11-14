@@ -18,7 +18,7 @@ th = m.get("thresholds", {})
 # ---------------------------------------------------------------- hero
 np_ = data.next_pass()
 with st.container(key="hero"):
-    left, right = st.columns([1.14, 1], gap="large", vertical_alignment="center")
+    left, right = st.columns([1.24, 1], gap="large", vertical_alignment="center")
     with left:
         if np_:
             st.markdown(f'<p class="ml-kicker"><i></i>{tr("Next expected NISAR pass over Pune: {d}", "पुण्यावरील पुढचे अपेक्षित निसार निरीक्षण: {d}", d=ui.date(np_[1]))}</p>',
@@ -27,7 +27,7 @@ with st.container(key="hero"):
         st.markdown(f'<div class="ml-dates">{ui.t("dates_line", b=ui.day(before), a=ui.day(after), y=after[:4])}</div>',
                     unsafe_allow_html=True)
         st.markdown(f'<p class="ml-lede">{ui.t("lede", cloud=story.cloud_sentence())}</p>', unsafe_allow_html=True)
-        with st.container(horizontal=True, gap="small"):
+        with st.container(horizontal=True, gap="small", key="herobtns"):
             if st.button(ui.t("start_story"), type="primary", icon=":material/auto_stories:", width="content"):
                 st.switch_page("views/1_Story.py")
             if st.button(tr("Explore the map", "नकाशा पाहा"), icon=":material/map:", width="content"):

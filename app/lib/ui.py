@@ -87,7 +87,8 @@ iframe[title="streamlit_folium.st_folium"] { border-radius: 14px; box-shadow: va
 @keyframes ml-blink { 50% { opacity: .35; } }
 .ml-hero { font-size: clamp(2.1rem, 3.4vw, 3.5rem); line-height: 1.02; font-weight: 700; margin: 0 0 .7rem 0;
   text-wrap: balance; color: #f2f6fc !important; }
-.st-key-hero .stButton > button { border-radius: 99px; }
+.st-key-herobtns { gap: .55rem !important; }
+.st-key-hero .stButton > button { border-radius: 99px; padding: .3rem .85rem !important; min-height: 2.3rem !important; }
 .st-key-hero .stButton > button[kind="secondary"] { background: rgba(255,255,255,.06); color: #e8eef7;
   border-color: rgba(255,255,255,.28); }
 .st-key-hero [data-testid="stCaptionContainer"] { color: #8ea5c5 !important; }

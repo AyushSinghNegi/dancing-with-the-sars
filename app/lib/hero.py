@@ -38,7 +38,8 @@ def _scene(size, v):
     # blue water and orange slide zones stand out against it.
     arr = np.asarray(base).astype(np.float32)
     lum = arr[..., :3].mean(-1, keepdims=True) / 255.0
-    lum = np.power(lum, 1.7) * 0.92
+    lo, hi = np.percentile(lum, (2, 99.5))
+    lum = np.power(np.clip((lum - lo) / max(hi - lo, 1e-6), 0, 1), 2.0) * 0.8
     arr[..., :3] = lum * np.array([205, 222, 240], np.float32) + np.array([8, 12, 22], np.float32)
     base = Image.fromarray(arr.clip(0, 255).astype(np.uint8), "RGBA")
     for name, rgb in (("rise", (109, 167, 236)), ("new_water", (61, 142, 240)), ("flood", (61, 142, 240)),
