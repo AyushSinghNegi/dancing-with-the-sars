@@ -38,6 +38,7 @@ python -m pytest -q
 | Path | What |
 |---|---|
 | `CONTEXT.md` | Project brief, rules, data paths, method: read first |
+| `plotholes.md` | Open points: unverified claims, inconsistencies and limits to fix or state before submission |
 | `pipeline/` | NISAR reading, cropping, water, slide zones, validation, timeline, rendering |
 | `app/` | Streamlit app (landing, story, explore map, method) |
 | `data/reference/` | Scene list, rainfall, reported events |

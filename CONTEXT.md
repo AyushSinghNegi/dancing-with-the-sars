@@ -1,6 +1,9 @@
 # CONTEXT.md: read this first (humans and AI assistants)
 
 Paste this file at the start of every Claude / ChatGPT chat about this project.
+Then read **`plotholes.md`**: the list of claims and results that are still unverified, inconsistent
+or open to challenge. Paste it too whenever the chat is about story text, slides, the video, the
+README or the project page.
 
 ## What we are building
 **MonsoonLens**: an open web app that shows what NASA-ISRO **NISAR** L-band radar saw
@@ -19,6 +22,8 @@ checked against reported events. NASA Space Apps Challenge 2026, challenge
    (`config.same_mode`). Mode is field 9 of a GCOV file name (`4005`); pol is field 10 (`DHDH`).
 4. Never commit `.h5` files, `.netrc`, tokens, or anything over 20 MB.
 5. Say "likely slide zone", never "landslide", for radar detections that no report confirms.
+6. **Check `plotholes.md` before any public text ships.** Do not repeat a claim listed there as open.
+   When you fix a point, move it to "Resolved"; when you find a new one, add it.
 
 ## Data (all real except `data/demo/`)
 | What | Where | Notes |
