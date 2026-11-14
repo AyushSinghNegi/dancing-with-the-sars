@@ -34,11 +34,15 @@ def run(write=True):
         t, how = K.water_threshold(hh, aux["jrc_occurrence"])
         water = valid & (hh < t)
         extra = K.clean(water & ~perm & flat)
+        ever = np.nan_to_num(aux["jrc_occurrence"]) >= 1          # anywhere JRC saw water in 1984-2021
+        seen_dark = float((water & perm).sum() / max(1, (valid & perm).sum()))
         same = m["mode"] == primary["mode"] and m["pol"] == primary["pol"]
         rows.append({"date": m["date"], "mode": m["mode"], "pol": m["pol"], "same_mode_as_primary": same,
                      "threshold_db": round(t, 2), "valid_fraction": round(float(valid.mean()), 3),
                      "water_km2": round(float(water.sum() * K.PIXEL_KM2), 2),
                      "water_outside_permanent_flat_km2": round(float(extra.sum() * K.PIXEL_KM2), 2),
+                     "water_in_jrc_extent_km2": round(float((water & ever).sum() * K.PIXEL_KM2), 2),
+                     "permanent_seen_dark": round(seen_dark, 3),
                      "granule_id": m["granule_id"]})
     if write and rows:
         C.DERIVED.mkdir(parents=True, exist_ok=True)

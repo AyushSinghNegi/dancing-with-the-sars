@@ -1,7 +1,7 @@
 {
   "demo": false,
   "demo_note": null,
-  "generated": "2026-11-14T17:15:55+00:00",
+  "generated": "2026-11-14T18:46:32+00:00",
   "pipeline_version": "0.4.0",
   "python": "3.13.18",
   "aoi": {
@@ -141,7 +141,7 @@
     },
     "unreported_slide_zones": 46
   },
-  "timeline_dates": 2,
+  "timeline_dates": 5,
   "crosstrack": {
     "pair": {
       "track": "106",
