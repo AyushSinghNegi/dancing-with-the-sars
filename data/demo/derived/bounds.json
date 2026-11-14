@@ -12,27 +12,27 @@
   "demo": true,
   "overlays": {
     "hh_before": {
-      "file": "overlays/hh_before.png",
+      "file": "overlays/hh_before.webp",
       "legend": "Radar HH, 28 Jun (dark = smooth/water, bright = rough/buildings)",
       "color": null
     },
     "hh_after": {
-      "file": "overlays/hh_after.png",
+      "file": "overlays/hh_after.webp",
       "legend": "Radar HH, 10 Jul",
       "color": null
     },
     "rgb_before": {
-      "file": "overlays/rgb_before.png",
+      "file": "overlays/rgb_before.webp",
       "legend": "Radar colour, 28 Jun (red HH, green HV, blue HH/HV)",
       "color": null
     },
     "rgb_after": {
-      "file": "overlays/rgb_after.png",
+      "file": "overlays/rgb_after.webp",
       "legend": "Radar colour, 10 Jul",
       "color": null
     },
     "change": {
-      "file": "overlays/change.png",
+      "file": "overlays/change.webp",
       "legend": "Change in HH, 28 Jun to 10 Jul (blue darker, red brighter)",
       "color": null
     },
@@ -52,7 +52,7 @@
       "color": "#b7d3f6"
     },
     "coherence": {
-      "file": "overlays/coherence.png",
+      "file": "overlays/coherence.webp",
       "legend": "Radar coherence, 28 Jun to 10 Jul (dark = surface changed)",
       "color": null
     },
