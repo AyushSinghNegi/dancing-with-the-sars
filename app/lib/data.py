@@ -13,6 +13,12 @@ REAL = ROOT / "data" / "derived"
 DEMO = ROOT / "data" / "demo" / "derived"
 REFERENCE = ROOT / "data" / "reference"
 STATIC = ROOT / "app" / "static" / "layers"
+# Static files are served at <app>/app/static/... locally but at <app>/~/+/app/static/... on Streamlit
+# Community Cloud, where every page runs under /~/+/. So URLs are RELATIVE: from a page (/field or
+# /~/+/field) "app/static/..." reaches the right place on both; from a component iframe such as the folium
+# map (/component/<name>/index.html or /~/+/component/<name>/index.html) the same file is "../../app/static/...".
+STATIC_URL = "app/static/layers"
+COMPONENT_UP = "../../"
 
 
 def _has_results(d: Path) -> bool:
@@ -125,7 +131,7 @@ def _publish_overlays(v: str) -> str | None:
         t = dst / f.name
         if not t.exists() or t.stat().st_mtime < f.stat().st_mtime or t.stat().st_size != f.stat().st_size:
             shutil.copy2(f, t)
-    return f"/app/static/layers/{s['key']}"
+    return f"{STATIC_URL}/{s['key']}"
 
 
 def downloads() -> list[tuple[str, str, int]]:
@@ -154,16 +160,17 @@ def _downloads(v: str) -> list[tuple[str, str, int]]:
         t = dst / f.name
         if not t.exists() or t.stat().st_size != f.stat().st_size or t.stat().st_mtime < f.stat().st_mtime:
             shutil.copy2(f, t)
-        out.append((f.name, f"/app/static/layers/{s['key']}/downloads/{f.name}", f.stat().st_size))
+        out.append((f.name, f"{STATIC_URL}/{s['key']}/downloads/{f.name}", f.stat().st_size))
     return out
 
 
 def overlay_url(name: str) -> str | None:
+    """URL of a map overlay as seen from inside the folium map's component iframe."""
     base = publish_overlays()
     o = bounds().get("overlays", {}).get(name)
     if not base or not o:
         return None
-    return f"{base}/{Path(o['file']).name}"
+    return f"{COMPONENT_UP}{base}/{Path(o['file']).name}"
 
 
 def overlay_path(name: str) -> Path | None:
@@ -314,7 +321,7 @@ def _publish_chips(v: str) -> str | None:
         t = dst / f.name
         if not t.exists() or t.stat().st_size != f.stat().st_size or t.stat().st_mtime < f.stat().st_mtime:
             shutil.copy2(f, t)
-    return f"/app/static/layers/{s['key']}/chips"
+    return f"{STATIC_URL}/{s['key']}/chips"
 
 
 def chip_url(fid: str, kind: str) -> str | None:
@@ -380,7 +387,7 @@ def _field_files(v: str) -> dict[str, tuple[str, int]]:
         t = dst / f.name
         if not t.exists() or t.stat().st_size != f.stat().st_size or t.stat().st_mtime < f.stat().st_mtime:
             shutil.copy2(f, t)
-        out[ext] = (f"/app/static/layers/{s['key']}/downloads/{f.name}", f.stat().st_size)
+        out[ext] = (f"{STATIC_URL}/{s['key']}/downloads/{f.name}", f.stat().st_size)
     return out
 
 
