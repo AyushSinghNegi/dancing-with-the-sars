@@ -159,3 +159,28 @@ def test_crosstrack_chance_is_low_for_sparse_second_track():
     counts = chance_rates(ids, 20, elig, z2, ev, cov, trials=40)
     # ...so moved 2+ km away the zones should almost never land on a second-track zone.
     assert counts[0] / counts[:3].sum() < 0.1
+
+
+def test_dem_check_reasons_follow_the_slope_band():
+    from pipeline import dem_check as D
+    m = np.zeros((4, 4), bool)
+    m[1:3, 1:3] = True
+    flat_ok = np.zeros((4, 4), bool)
+    assert D._why(m, np.full((4, 4), 50.0), flat_ok) == D.REASONS[0]
+    assert D._why(m, np.full((4, 4), 10.0), flat_ok) == D.REASONS[1]
+    bad = flat_ok.copy()
+    bad[1, 1] = True
+    assert D._why(m, np.full((4, 4), 30.0), bad) == D.REASONS[2]
+    assert D._why(m, np.full((4, 4), 30.0), flat_ok) == D.REASONS[3]
+
+
+def test_dem_check_output_adds_up():
+    import json
+    p = C.DERIVED / "dem_check.json"
+    if not p.exists():
+        pytest.skip("no elevation-map check in this output")
+    d = json.loads(p.read_text())
+    assert d["found"] + d["not_found"] == d["zones_main"]
+    assert sum(d["not_found_reasons"].values()) == d["not_found"]
+    assert sum(v["zones"] for v in d["by_confidence"].values()) == d["zones_main"]
+    assert d["reported_slide_hits"]["nasadem"] <= d["reported_slide_hits"]["scored"]

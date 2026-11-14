@@ -106,10 +106,16 @@ def add_slide_zones(m, min_conf="medium"):
         return
     fg = folium.FeatureGroup(name=f"Likely slide zones ({len(feats)})", show=True)
     xt = any("track106" in f["properties"] for f in feats)
+    dem = any("nasadem" in f["properties"] for f in feats)
+    if dem:   # one readable popup line: "found", or "not found: steeper than 45°"
+        feats = [{**f, "properties": {**f["properties"], "dem_txt": f["properties"].get("nasadem", "") + (
+            ": " + f["properties"]["nasadem_reason"].replace(" in NASADEM", "")
+            if f["properties"].get("nasadem_reason") else "")}} for f in feats]
     pop_f = ["id", "confidence", "score", "area_ha", "slope_deg", "hv_change_db", "hh_change_db", "coherence",
-             "coherence_vs_local"] + (["track106"] if xt else [])
+             "coherence_vs_local"] + (["track106"] if xt else []) + (["dem_txt"] if dem else [])
     pop_a = ["Zone", "Confidence", "Score (0-1)", "Area (ha)", "Mean slope (°)", "HV change (dB)", "HH change (dB)",
-             "Coherence", "Coherence vs 1 km area"] + (["Second NISAR track (3-15 Jul)"] if xt else [])
+             "Coherence", "Coherence vs 1 km area"] + (["Second NISAR track (3-15 Jul)"] if xt else []) + \
+        (["With NASA's NASADEM elevation map"] if dem else [])
     folium.GeoJson(
         {"type": "FeatureCollection", "features": feats},
         style_function=lambda f: {"color": ui.COLORS["slide_zones"], "weight": 2.5,

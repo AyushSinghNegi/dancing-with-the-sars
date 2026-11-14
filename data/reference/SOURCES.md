@@ -40,6 +40,17 @@ Fetched by `pipeline/ancillary.py`, not stored in this folder.
 | Tile | `occurrence_70E_20Nv1_4_2021.tif` |
 | Cropped to the box | `data/crops/aux_jrc_occurrence.tif` |
 
+## Elevation
+
+Fetched by `pipeline/ancillary.py` (Copernicus) or prepared by RSN (NASADEM); stored in `data/crops/`.
+
+| | Main run | Elevation-map check |
+|---|---|---|
+| Product | Copernicus GLO-30 DEM (ESA / Airbus), via AWS Open Data | NASADEM_HGT v001 (NASA / USGS), doi:10.5067/MEaSUREs/NASADEM/NASADEM_HGT.001 |
+| Tiles | N18 E073, N18 E074 | n18e073, n18e074 |
+| On the 40 m grid | `aux_elevation.tif` (bilinear), `aux_slope.tif` | `aux_nasadem_elevation.tif` (bilinear, by RSN on `rsn/pipeline`; whole metres) |
+| Slope | central differences on the 40 m grid, whole degrees | same, computed in `pipeline/dem_check.py` |
+
 ## Reported events: `events.geojson`
 
 Each event carries its own `source_name` and `source_url`.

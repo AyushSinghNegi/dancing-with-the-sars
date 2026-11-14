@@ -50,6 +50,8 @@ st.markdown(f"""
    pair from another orbit (track 106, 3 to 15 July, which also spans the rain peak). A real slope failure
    changes the ground for good, so it should show in both; speckle or a geometry artefact of one orbit usually
    does not. Chance level comes from moving every zone to random steep, dry places and repeating the test.
+8. **Check with a second elevation map.** Slope and slope direction come from the Copernicus GLO-30 elevation map.
+   We run the same slide rule again with NASA's NASADEM elevation map and record which zones it keeps.
 """)
 
 st.markdown("## Data")
@@ -65,6 +67,9 @@ rows += [
     {"Data": "Elevation and slope", "File": "Copernicus GLO-30 DEM (ESA)", "Valid share of box": "",
      "Link": "https://registry.opendata.aws/copernicus-dem/"},
 ]
+if m.get("dem_check"):
+    rows.append({"Data": "Elevation, second-map check", "File": "NASADEM_HGT v001 (NASA / USGS)",
+                 "Valid share of box": "", "Link": m["dem_check"]["check_dem_url"]})
 rain = data.rainfall()
 if rain is not None:
     src = str(rain["source"].iloc[0]) if "source" in rain else "daily rainfall"
@@ -136,6 +141,43 @@ if xt:
             f"{k}: {v.get('confirmed', 0)} of {v.get('confirmed', 0) + v.get('partial', 0) + v.get('not seen', 0)} "
             "found again" for k, v in sorted(by.items(), key=lambda kv: ["high", "medium", "low"].index(kv[0]))))
 
+dc = m.get("dem_check")
+if dc:
+    st.markdown("## Elevation-map check")
+    rs = dc["not_found_reasons"]
+    hi = dc["by_confidence"].get("high", {})
+    st.markdown(
+        f"Slope and slope direction decide where the slide rule looks, so we ran it again on the same radar pair "
+        f"with NASA's NASADEM elevation map instead of Copernicus. Overall the two slope maps agree closely "
+        f"(median difference {dc['slope']['median_abs_diff_deg']:.0f}°). Near the "
+        f"{th.get('slide_min_slope_deg', 15):.0f}° and {th.get('slide_max_slope_deg', 45):.0f}° limits they do not: "
+        f"of the ground that either map puts inside that band, the other map puts "
+        f"{1 - dc['slope']['band_agreement']:.0%} outside it.")
+    st.markdown(
+        f"**{dc['found']} of {dc['zones_main']}** zones are found again within {dc['buffer_m']:.0f} m, including "
+        f"**{hi.get('found', 0)} of {hi.get('zones', 0)}** high-confidence zones. "
+        f"NASADEM also finds {dc['new_in_nasadem']} zones of its own.")
+    st.dataframe(pd.DataFrame(
+        [{"Not found with NASADEM because": k[0].upper() + k[1:].replace(" in NASADEM", ""), "Zones": v}
+         for k, v in rs.items()]), hide_index=True, width="content")
+    rh = dc["reported_slide_hits"]
+    hits = [s for s in dc["reported_slides"] if s["main"] == "hit"]
+    if hits and rh["nasadem"] < rh["main"]:
+        dist = " and ".join(f"{s['main_distance_m'] / 1000:.1f} km" for s in hits)
+        same = len(rh["main_hit_zones"]) == 1
+        st.markdown(
+            (f"The {len(hits)} reported landslides we matched ({', '.join(s['id'] for s in hits)}) are "
+             f"{'both' if len(hits) == 2 else 'all'} matched to the same zone, {rh['main_hit_zones'][0]}, {dist} away. "
+             if same else
+             f"The {len(hits)} reported landslides we matched are {dist} from their nearest zone. ")
+            + f"With NASADEM, {rh['nasadem']} of {rh['scored']} reports have a zone within range. "
+              "So treat the landslide matches as weak support.")
+    both = [f["properties"]["id"] for f in (data.geojson("slide_zones.geojson") or {}).get("features", [])
+            if f["properties"].get("nasadem") == "found" and f["properties"].get("track106") == "confirmed"]
+    if both:
+        st.markdown(f"Passing both extra checks (found again by the second NISAR track and with NASADEM): "
+                    f"**{', '.join(both)}**.")
+
 st.markdown("## Limits")
 st.markdown(f"""
 - **Provisional data.** These are NISAR provisional products (released from June 2026); calibration may still change.
@@ -153,6 +195,8 @@ st.markdown(f"""
   {m.get('validation', {}).get('flood', {}).get('hits', 0)} of {m.get('validation', {}).get('flood', {}).get('observable', 0)},
   landslides {m.get('validation', {}).get('slide', {}).get('hits', 0)} of {m.get('validation', {}).get('slide', {}).get('observable', 0)},
   and the second-track check covers only part of the area.
+- **Slope near the limits.** Many zones sit close to the {th.get('slide_min_slope_deg', 15):.0f}° or {th.get('slide_max_slope_deg', 45):.0f}° limits, so a
+  different elevation map moves some of them in or out (see the elevation-map check above).
 - **Leads, not verdicts.** Slide zones are places to check, not confirmed landslides:
   {m.get('validation', {}).get('unreported_slide_zones', 0)} of {m.get('slides', {}).get('zones', 0)} have no reported event within 2 km.
 - **Rainfall.** GPM IMERG Late Run, averaged over the whole study area per UTC day. It is lower than the single-station
