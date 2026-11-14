@@ -1,0 +1,367 @@
+{
+ "type": "FeatureCollection",
+ "name": "reported_events_pune_july_2026",
+ "description": "Rain-related events reported in news and official sources, Pune district, July 2026. Coordinates geocoded from the place named in the source (OpenStreetMap Nominatim) or estimated where noted; precision_m says how exact.",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.4902,
+     18.7389
+    ]
+   },
+   "properties": {
+    "id": "E001",
+    "type": "landslide",
+    "date": "2026-07-06",
+    "place": "Patan village below Lohagad, Maval",
+    "precision_m": 1000,
+    "source_name": "Punekar News",
+    "source_url": "https://www.punekarnews.in/?p=239157",
+    "note": "House buried; police reported three landslides in the village. Point is the village centre."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.356,
+     18.765
+    ]
+   },
+   "properties": {
+    "id": "E002",
+    "type": "landslide",
+    "date": "2026-07-06",
+    "place": "Missing Link, Tunnel 2 exit (Pune-Mumbai lane), Khandala",
+    "precision_m": 2000,
+    "source_name": "Free Press Journal",
+    "source_url": "https://www.freepressjournal.in/mumbai/mumbai-pune-expressway-landslide-hits-missing-link-tunnel-near-khandala-mumbai-bound-lane-shut-amid-heavy-rain-video",
+    "note": "Approximate point between the tunnel exit and the cable-stayed bridge."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.352,
+     18.768
+    ]
+   },
+   "properties": {
+    "id": "E003",
+    "type": "landslide",
+    "date": "2026-07-06",
+    "place": "Railway, Khandala to Monkey Hill (Bhor Ghat)",
+    "precision_m": 2000,
+    "source_name": "News Arena India",
+    "source_url": "https://newsarenaindia.com/states/13-dead-as-maharashtra-rains-batter-mumbai-pune/81702",
+    "note": "Approximate point on the ghat railway section."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.4,
+     18.79
+    ]
+   },
+   "properties": {
+    "id": "E004",
+    "type": "landslide",
+    "date": "2026-07-04",
+    "place": "Lonavala to Rajmachi road",
+    "precision_m": 4000,
+    "source_name": "Free Press Journal",
+    "source_url": "https://www.freepressjournal.in/mumbai/heavy-rainfall-triggers-landslide-on-lonavalarajmachi-route-rescue-efforts-road-clearance-underway-video",
+    "note": "Report names the 16 km road, not the spot; too vague to score."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.4395,
+     18.4388
+    ]
+   },
+   "properties": {
+    "id": "E005",
+    "type": "landslide",
+    "date": "2026-07-06",
+    "place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+    "precision_m": 3000,
+    "source_name": "Free Press Journal",
+    "source_url": "https://www.freepressjournal.in/pune/punekolad-route-via-tamhini-ghat-closed-after-road-collapse-landslides-disrupt-connectivity",
+    "note": "Point is Tamhini village; exact spot on the ghat road not given."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.6652,
+     18.3213
+    ]
+   },
+   "properties": {
+    "id": "E006",
+    "type": "landslide",
+    "date": "2026-07-07",
+    "place": "Pabe Ghat road, Velhe",
+    "precision_m": 2000,
+    "source_name": "Deccan Chronicle",
+    "source_url": "https://www.deccanchronicle.com/amp/nation/heavy-rain-triggers-flooding-landslides-across-maharashtra-1969192",
+    "note": "Road closed after a landslide; point is Pabe village."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.6425,
+     18.0979
+    ]
+   },
+   "properties": {
+    "id": "E007",
+    "type": "landslide",
+    "date": "2026-07-03",
+    "place": "Varandha Ghat near Shirgaon, Bhor",
+    "precision_m": 1500,
+    "source_name": "Punekar News",
+    "source_url": "https://www.punekarnews.in/?p=238883",
+    "note": "South of the radar study box."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.8254,
+     18.4675
+    ]
+   },
+   "properties": {
+    "id": "E008",
+    "type": "river_overflow",
+    "date": "2026-07-08",
+    "place": "Ekta Nagar, Sinhagad Road (Mutha river)",
+    "precision_m": 800,
+    "source_name": "Free Press Journal",
+    "source_url": "https://www.freepressjournal.in/pune/same-situation-every-year-punes-low-lying-areas-flooded-after-khadakwasla-dam-discharge",
+    "note": "Khadakwasla release of 27,203 cusecs; discharge stopped on 9 July."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.7931,
+     18.467
+    ]
+   },
+   "properties": {
+    "id": "E009",
+    "type": "river_overflow",
+    "date": "2026-07-08",
+    "place": "Shivane (Mutha river)",
+    "precision_m": 1000,
+    "source_name": "Punekar News",
+    "source_url": "https://www.punekarnews.in/?p=239453",
+    "note": "Water entered homes after the Khadakwasla release."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.8184,
+     18.6825
+    ]
+   },
+   "properties": {
+    "id": "E010",
+    "type": "river_overflow",
+    "date": "2026-07-06",
+    "place": "Chikhli Defence Colony (Indrayani river)",
+    "precision_m": 1000,
+    "source_name": "Punekar News",
+    "source_url": "https://www.punekarnews.in/?p=239170",
+    "note": "About 100 families shifted."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.7784,
+     18.6263
+    ]
+   },
+   "properties": {
+    "id": "E011",
+    "type": "river_overflow",
+    "date": "2026-07-06",
+    "place": "Morya Gosavi Temple, Chinchwad (Pavana river)",
+    "precision_m": 300,
+    "source_name": "Newswav / ANI",
+    "source_url": "https://newswav.com/article/maharashtra-water-enters-pimpri-chinchwad-s-morya-gosavi-ganpati-temple-as-A2607_0zAVMA",
+    "note": "Water entered the temple premises."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.7451,
+     18.6433
+    ]
+   },
+   "properties": {
+    "id": "E012",
+    "type": "river_overflow",
+    "date": "2026-07-06",
+    "place": "Ravet barrage (Pavana river)",
+    "precision_m": 1000,
+    "source_name": "Punekar News",
+    "source_url": "https://www.punekarnews.in/?p=239170",
+    "note": "Barrage overflowed."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.7647,
+     18.6486
+    ]
+   },
+   "properties": {
+    "id": "E013",
+    "type": "waterlogging",
+    "date": "2026-07-06",
+    "place": "Akurdi",
+    "precision_m": 1500,
+    "source_name": "Punekar News",
+    "source_url": "https://www.punekarnews.in/?p=239170",
+    "note": "Water entered houses."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.796,
+     18.6025
+    ]
+   },
+   "properties": {
+    "id": "E014",
+    "type": "river_overflow",
+    "date": "2026-07-06",
+    "place": "Rahatani bridge",
+    "precision_m": 800,
+    "source_name": "Punekar News",
+    "source_url": "https://www.punekarnews.in/?p=239208",
+    "note": "Bridge closed due to flooding (traffic police advisory)."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.897,
+     18.677
+    ]
+   },
+   "properties": {
+    "id": "E015",
+    "type": "river_overflow",
+    "date": "2026-07-06",
+    "place": "Alandi bridges (Indrayani river)",
+    "precision_m": 800,
+    "source_name": "Free Press Journal",
+    "source_url": "https://www.freepressjournal.in/pune/pune-rains-flood-threat-grows-in-pimpri-chinchwad-1880-residents-shifted-to-temporary-shelters-watch-videos",
+    "note": "All four bridges over the Indrayani closed."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.8625,
+     18.7623
+    ]
+   },
+   "properties": {
+    "id": "E016",
+    "type": "waterlogging",
+    "date": "2026-07-06",
+    "place": "Pune-Nashik highway near Chakan",
+    "precision_m": 1500,
+    "source_name": "Free Press Journal",
+    "source_url": "https://www.freepressjournal.in/pune/videos-chakan-midc-hit-by-flooding-companies-shut-as-pune-nashik-highway-goes-under-water",
+    "note": "Highway and parts of Chakan MIDC flooded."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.6962,
+     18.7213
+    ]
+   },
+   "properties": {
+    "id": "E017",
+    "type": "waterlogging",
+    "date": "2026-07-06",
+    "place": "Near Ghorawadi railway station, Talegaon",
+    "precision_m": 500,
+    "source_name": "Siasat / PTI",
+    "source_url": "https://www.siasat.com/two-killed-as-landslide-buries-house-in-pune-after-heavy-rains-3502377/amp/",
+    "note": "NDRF rescued passengers from a stranded bus."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.8533,
+     18.5236
+    ]
+   },
+   "properties": {
+    "id": "E018",
+    "type": "river_overflow",
+    "date": "2026-07-31",
+    "place": "Near PMC headquarters (Mutha river)",
+    "precision_m": 300,
+    "source_name": "Free Press Journal",
+    "source_url": "https://freepressjournal.in/pune/pune-rains-flood-like-situation-across-city-as-heavy-rain-causes-massive-waterlogging-disrupts-traffic",
+    "note": "After the radar pair: shown for context, not scored."
+   }
+  }
+ ]
+}

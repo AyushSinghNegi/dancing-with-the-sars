@@ -1,0 +1,16 @@
+{
+  "events": 15,
+  "flood": {
+    "reported": 8,
+    "observable": 7,
+    "hits": 4,
+    "hit_rate": 0.571
+  },
+  "slide": {
+    "reported": 7,
+    "observable": 7,
+    "hits": 6,
+    "hit_rate": 0.857
+  },
+  "unreported_slide_zones": 38
+}
