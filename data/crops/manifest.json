@@ -1,0 +1,74 @@
+[
+  {
+    "name": "2026-06-28_2026-07-10_T034_4000",
+    "granule_id": "NISAR_L2_PR_GUNW_024_034_D_079_025_4000_SH_20260628T134239_20260628T134314_20260710T134239_20260710T134313_P05023_N_F_J_001",
+    "kind": "GUNW",
+    "valid_fraction": 0.972,
+    "created": "2026-11-14T11:59:19+00:00",
+    "source_epsg": 32643,
+    "source_spacing_m": [
+      20.0,
+      20.0
+    ],
+    "multilook": 2,
+    "window_rows": [
+      7924,
+      12122
+    ],
+    "window_cols": [
+      10168,
+      14438
+    ],
+    "coherence_path": "/science/LSAR/GUNW/grids/frequencyA/wrappedInterferogram/HH/coherenceMagnitude"
+  },
+  {
+    "name": "2026-06-28_T034_4005_DHDH",
+    "granule_id": "NISAR_L2_PR_GCOV_024_034_D_079_4005_DHDH_A_20260628T134239_20260628T134314_P05023_N_F_J_001",
+    "kind": "GCOV",
+    "valid_fraction": 0.96,
+    "created": "2026-11-14T12:07:58+00:00",
+    "source_epsg": 32643,
+    "source_spacing_m": [
+      10.0,
+      10.0
+    ],
+    "multilook": 4,
+    "window_rows": [
+      15848,
+      24244
+    ],
+    "window_cols": [
+      20336,
+      28876
+    ],
+    "layers": [
+      "HHHH",
+      "HVHV"
+    ]
+  },
+  {
+    "name": "2026-07-10_T034_4005_DHDH",
+    "granule_id": "NISAR_L2_PR_GCOV_025_034_D_079_4005_DHDH_A_20260710T134239_20260710T134313_P05023_N_F_J_001",
+    "kind": "GCOV",
+    "valid_fraction": 0.9603,
+    "created": "2026-11-14T12:15:25+00:00",
+    "source_epsg": 32643,
+    "source_spacing_m": [
+      10.0,
+      10.0
+    ],
+    "multilook": 4,
+    "window_rows": [
+      15848,
+      24244
+    ],
+    "window_cols": [
+      20336,
+      28876
+    ],
+    "layers": [
+      "HHHH",
+      "HVHV"
+    ]
+  }
+]

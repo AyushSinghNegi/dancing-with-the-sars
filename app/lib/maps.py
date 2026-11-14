@@ -36,7 +36,8 @@ RASTERS = [
     ("coherence", "Coherence 28 Jun to 10 Jul (dark = changed)", False),
     ("permanent", "Rivers and reservoirs (JRC)", True),
     ("brighter", "Possible water under cover", True),
-    ("new_water", "New open water", True),
+    ("rise", "Reservoirs and rivers rising", True),
+    ("flood", "Flooding (no water recorded here since 1984)", True),
 ]
 
 SLIDE_SVG = ('<svg width="18" height="18" viewBox="0 0 18 18"><path d="M9 2 L16.5 15.5 H1.5 Z" fill="#fff" '
@@ -80,6 +81,7 @@ def build(basemap="Light", opacity=0.85, show=None, location=None, zoom=10, heig
                      pane="labels", max_zoom=18).add_to(m)
     if zones:
         add_slide_zones(m, min_conf)
+    add_flood_patches(m)
     if events:
         add_events(m)
     if b:
@@ -99,6 +101,11 @@ def add_slide_zones(m, min_conf="medium"):
     if not feats:
         return
     fg = folium.FeatureGroup(name=f"Likely slide zones ({len(feats)})", show=True)
+    xt = any("track106" in f["properties"] for f in feats)
+    pop_f = ["id", "confidence", "score", "area_ha", "slope_deg", "hv_change_db", "hh_change_db", "coherence",
+             "coherence_vs_local"] + (["track106"] if xt else [])
+    pop_a = ["Zone", "Confidence", "Score (0-1)", "Area (ha)", "Mean slope (°)", "HV change (dB)", "HH change (dB)",
+             "Coherence", "Coherence vs 1 km area"] + (["Second NISAR track (3-15 Jul)"] if xt else [])
     folium.GeoJson(
         {"type": "FeatureCollection", "features": feats},
         style_function=lambda f: {"color": ui.COLORS["slide_zones"], "weight": 2.5,
@@ -107,12 +114,35 @@ def add_slide_zones(m, min_conf="medium"):
         highlight_function=lambda f: {"weight": 4, "fillOpacity": 0.6},
         tooltip=folium.GeoJsonTooltip(fields=["id", "confidence", "area_ha", "slope_deg"],
                                       aliases=["Zone", "Confidence", "Area (ha)", "Slope (°)"]),
-        popup=folium.GeoJsonPopup(fields=["id", "confidence", "score", "area_ha", "slope_deg", "hv_change_db",
-                                          "hh_change_db", "coherence", "coherence_vs_local"],
-                                  aliases=["Zone", "Confidence", "Score (0-1)", "Area (ha)", "Mean slope (°)",
-                                           "HV change (dB)", "HH change (dB)", "Coherence",
-                                           "Coherence vs 1 km area"]),
+        popup=folium.GeoJsonPopup(fields=pop_f, aliases=pop_a),
     ).add_to(fg)
+    # Zones are often under half a hectare: a marker at each centre keeps them visible at any zoom.
+    for f in feats:
+        p = f["properties"]
+        both = p.get("track106") == "confirmed"
+        tip = f"{p['id']}: likely slide zone ({p['confidence']}), {p.get('near') or ''}"
+        if both:
+            tip += "; also found by a second NISAR track"
+        folium.CircleMarker([p["lat"], p["lon"]], radius=7 if p["confidence"] == "high" or both else 5,
+                            color=ui.COLORS["slide_zones"], weight=3.5 if both else 2, fill=True,
+                            fill_opacity=0.7 if both else 0.35, tooltip=tip).add_to(fg)
+    fg.add_to(m)
+
+
+def add_flood_patches(m):
+    gj = data.geojson("new_water.geojson")
+    if not gj:
+        return
+    feats = [f for f in gj["features"] if f["properties"].get("kind") == "flood"]
+    if not feats:
+        return
+    fg = folium.FeatureGroup(name=f"Flood patches ({len(feats)})", show=True)
+    for f in feats:
+        p = f["properties"]
+        folium.CircleMarker([p["lat"], p["lon"]], radius=6, color=ui.COLORS["flood"], weight=2, fill=True,
+                            fill_opacity=0.4,
+                            tooltip=f"Flood water on 10 July: {p['area_ha']} ha, {p.get('drop_db', '')} dB darker"
+                                    + (f", near {p['near']}" if p.get("near") else "")).add_to(fg)
     fg.add_to(m)
 
 

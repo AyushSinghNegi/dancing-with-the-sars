@@ -2618,7 +2618,8 @@
         "area_ha": 41.44,
         "drop_db": -12.6,
         "lon": 73.32713,
-        "lat": 18.88188
+        "lat": 18.88188,
+        "near": "Tamnath, Raigad"
       },
       "geometry": {
         "type": "Polygon",
@@ -4994,7 +4995,8 @@
         "area_ha": 31.04,
         "drop_db": -7.3,
         "lon": 73.54176,
-        "lat": 18.86491
+        "lat": 18.86491,
+        "near": "Nagathali, Pune"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -15833,7 +15835,8 @@
         "area_ha": 36.32,
         "drop_db": -8.2,
         "lon": 74.03863,
-        "lat": 18.81533
+        "lat": 18.81533,
+        "near": "Thittewadi, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -19415,7 +19418,8 @@
         "area_ha": 55.04,
         "drop_db": -11.5,
         "lon": 73.30281,
-        "lat": 18.78271
+        "lat": 18.78271,
+        "near": "Mahad, Raigad"
       },
       "geometry": {
         "type": "Polygon",
@@ -22145,7 +22149,8 @@
         "area_ha": 115.68,
         "drop_db": -7.2,
         "lon": 73.39413,
-        "lat": 18.73636
+        "lat": 18.73636,
+        "near": "Khandala, Pune"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -24192,7 +24197,8 @@
         "area_ha": 28.32,
         "drop_db": -10.6,
         "lon": 73.7653,
-        "lat": 18.71497
+        "lat": 18.71497,
+        "near": "Pimpri-Chinchwad, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -28037,7 +28043,8 @@
         "area_ha": 35.68,
         "drop_db": -12.3,
         "lon": 73.91773,
-        "lat": 18.67801
+        "lat": 18.67801,
+        "near": "Alandi, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -28411,7 +28418,8 @@
         "area_ha": 77.44,
         "drop_db": -10.8,
         "lon": 73.69019,
-        "lat": 18.66867
+        "lat": 18.66867,
+        "near": "Salumbre, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -30103,7 +30111,8 @@
         "area_ha": 40.8,
         "drop_db": -11.5,
         "lon": 73.6941,
-        "lat": 18.65634
+        "lat": 18.65634,
+        "near": "Salumbre, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -31717,7 +31726,8 @@
         "area_ha": 64.96,
         "drop_db": -12.6,
         "lon": 73.96734,
-        "lat": 18.6479
+        "lat": 18.6479,
+        "near": "Khed, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -32214,7 +32224,8 @@
         "area_ha": 28.0,
         "drop_db": -12.4,
         "lon": 73.69833,
-        "lat": 18.64546
+        "lat": 18.64546,
+        "near": "Saangawade, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -38286,7 +38297,8 @@
         "area_ha": 34.72,
         "drop_db": -10.5,
         "lon": 73.87003,
-        "lat": 18.59589
+        "lat": 18.59589,
+        "near": "Dhanori, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -39047,7 +39059,8 @@
         "area_ha": 54.4,
         "drop_db": -9.0,
         "lon": 73.87806,
-        "lat": 18.59124
+        "lat": 18.59124,
+        "near": "Dhanori, Pune"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -40050,7 +40063,8 @@
         "area_ha": 74.4,
         "drop_db": -12.1,
         "lon": 73.95782,
-        "lat": 18.58201
+        "lat": 18.58201,
+        "near": "Kharadi, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -43438,7 +43452,8 @@
         "area_ha": 43.84,
         "drop_db": -15.4,
         "lon": 73.88287,
-        "lat": 18.55623
+        "lat": 18.55623,
+        "near": "Ward 16, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -44560,7 +44575,8 @@
         "area_ha": 90.56,
         "drop_db": -12.0,
         "lon": 74.03588,
-        "lat": 18.54493
+        "lat": 18.54493,
+        "near": "Theur, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -48108,7 +48124,8 @@
         "area_ha": 28.16,
         "drop_db": -11.4,
         "lon": 73.62641,
-        "lat": 18.52735
+        "lat": 18.52735,
+        "near": "Vitthalwadi Phata, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -53240,7 +53257,8 @@
         "area_ha": 54.56,
         "drop_db": -12.5,
         "lon": 74.02879,
-        "lat": 18.47541
+        "lat": 18.47541,
+        "near": "Loni Kalbhor, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -54151,7 +54169,8 @@
         "area_ha": 109.92,
         "drop_db": -7.8,
         "lon": 73.51912,
-        "lat": 18.46019
+        "lat": 18.46019,
+        "near": "Palase, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -58501,7 +58520,8 @@
         "area_ha": 32.48,
         "drop_db": -11.0,
         "lon": 73.3139,
-        "lat": 18.40249
+        "lat": 18.40249,
+        "near": "Kudali, Raigad"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -59678,7 +59698,8 @@
         "area_ha": 36.32,
         "drop_db": -7.9,
         "lon": 73.67168,
-        "lat": 18.39631
+        "lat": 18.39631,
+        "near": "Sonapur, Pune"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -61988,7 +62009,8 @@
         "area_ha": 32.32,
         "drop_db": -7.7,
         "lon": 73.46085,
-        "lat": 18.39264
+        "lat": 18.39264,
+        "near": "Mugaon, Pune"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -68138,7 +68160,8 @@
         "area_ha": 38.72,
         "drop_db": -11.2,
         "lon": 73.34751,
-        "lat": 18.35751
+        "lat": 18.35751,
+        "near": "Vile Bhagad MIDC, Raigad"
       },
       "geometry": {
         "type": "Polygon",
@@ -90324,7 +90347,8 @@
         "area_ha": 30.88,
         "drop_db": -10.1,
         "lon": 73.90253,
-        "lat": 18.16203
+        "lat": 18.16203,
+        "near": "Malwadi, Pune"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -90775,7 +90799,8 @@
         "area_ha": 56.48,
         "drop_db": -9.4,
         "lon": 73.99423,
-        "lat": 18.15764
+        "lat": 18.15764,
+        "near": "Vatharhinge, Pune"
       },
       "geometry": {
         "type": "Polygon",

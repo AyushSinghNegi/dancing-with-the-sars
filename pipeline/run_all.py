@@ -15,9 +15,9 @@ import time
 from . import common as K
 from . import config as C
 from . import nisar_io as io
-from . import render, slide_zones, timeline, validate, water
+from . import crosstrack, render, slide_zones, timeline, validate, water
 
-VERSION = "0.3.0"
+VERSION = "0.4.0"
 
 
 def main(argv=None):
@@ -39,8 +39,16 @@ def main(argv=None):
     wstats, layers = water.run()
     print("[run] slide zones", flush=True)
     sz, _ = slide_zones.run(layers)
+    print("[run] place names (OpenStreetMap)", flush=True)
+    try:
+        from . import places
+        places.run()
+    except Exception as e:  # names are a convenience; never block the science
+        print(f"      skipped: {e}")
     print("[run] validation", flush=True)
     vsum, _ = validate.run()
+    print("[run] second-track check (track 106)", flush=True)
+    xt = crosstrack.run()
     print("[run] timeline", flush=True)
     tl = timeline.run()
     print("[run] render", flush=True)
@@ -55,17 +63,28 @@ def main(argv=None):
             sources.append({"role": key, "granule_id": gid, "valid_fraction": m["valid_fraction"],
                             "native_spacing_m": m.get("source_spacing_m"), "multilook": m.get("multilook"),
                             "url": C.find(gid).url})
+    for key in ("before", "after", "pair") if xt else ():
+        gid = C.CROSSCHECK[key]
+        m = man.get(io.crop_name(gid))
+        if m:
+            sources.append({"role": f"check_{key}", "granule_id": gid, "valid_fraction": m["valid_fraction"],
+                            "native_spacing_m": m.get("source_spacing_m"), "multilook": m.get("multilook"),
+                            "url": C.find(gid).url})
     meta = {
         "demo": C.IS_DEMO,
         "demo_note": "SYNTHETIC radar values for development; not NISAR data" if C.IS_DEMO else None,
         "generated": K.now_iso(), "pipeline_version": VERSION, "python": platform.python_version(),
         "aoi": C.AOI, "grid": {"epsg": C.GRID_EPSG, "res_m": C.GRID_RES},
-        "thresholds": {"water_db_bounds": C.WATER_DB_BOUNDS, "change_db": C.CHANGE_DB,
+        "thresholds": {"water_db_bounds": C.WATER_DB_BOUNDS, "water_train_occurrence": C.WATER_TRAIN_OCCURRENCE,
+                       "change_db": C.CHANGE_DB,
                        "permanent_water_occurrence": C.PERMANENT_WATER_OCCURRENCE,
                        "flood_max_slope_deg": C.FLOOD_MAX_SLOPE_DEG, "slide_min_slope_deg": C.SLIDE_MIN_SLOPE_DEG,
                        "coherence_low": C.COHERENCE_LOW, "min_patch_pixels": C.MIN_PATCH_PIXELS},
         "sources": sources,
         "water": wstats, "slides": sz, "validation": vsum, "timeline_dates": len(tl),
+        "crosstrack": None if not xt else {k: xt[k] for k in ("pair", "status_counts", "status_by_confidence",
+                                                              "real", "chance", "lift_confirmed", "buffer_m",
+                                                              "zones_track106", "valid_fraction")},
         **rend,
     }
     K.write_json(C.DERIVED / "bounds.json", {"bounds_latlon": rend["bounds_latlon"], "demo": C.IS_DEMO,

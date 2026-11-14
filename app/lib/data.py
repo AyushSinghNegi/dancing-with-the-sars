@@ -135,3 +135,33 @@ def nice_date(iso: str, year=True) -> str:
               "November", "December"]
     d = f"{int(iso[8:10])} {months[int(iso[5:7]) - 1]}"
     return f"{d} {iso[:4]}" if year else d
+
+
+@st.cache_data(show_spinner=False)
+def passes() -> pd.DataFrame | None:
+    """Every NISAR GCOV pass over the study box (all tracks), from the CMR scene list."""
+    p = REFERENCE / "candidate_scenes.csv"
+    if not p.exists():
+        return None
+    df = pd.read_csv(p, dtype=str)
+    df = df[(df["aoi"] == "pune") & (df["product"] == "GCOV")].copy()
+    df["date"] = pd.to_datetime(df["date_reference"])
+    df["orbit"] = "track " + df["track"].str.lstrip("0") + " " + df["direction"]
+    return df[["date", "orbit", "track"]].drop_duplicates()
+
+
+XT_LIFT_MIN = 2.0   # below this the second track agrees about as often as chance: say so
+
+
+def crosstrack() -> dict | None:
+    """Second-track check summary (track 106), or None if that pair was not processed."""
+    xt = value("crosstrack")
+    if not xt or not xt.get("status_counts"):
+        return None
+    c = xt["status_counts"]
+    scored = c.get("confirmed", 0) + c.get("partial", 0) + c.get("not seen", 0)
+    if not scored:
+        return None
+    lift = xt.get("lift_confirmed")
+    return {**xt, "confirmed": c.get("confirmed", 0), "scored": scored, "lift": lift,
+            "good": lift is not None and lift >= XT_LIFT_MIN}

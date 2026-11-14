@@ -29,17 +29,19 @@ checked against reported events. NASA Space Apps Challenge 2026, challenge
 | Candidate NISAR scenes (49 Pune, 146 Brahmaputra backup) | `data/reference/candidate_scenes.csv` | from NASA CMR |
 | JRC Global Surface Water occurrence v1.4 | `data/crops/aux_jrc_occurrence.tif` | permanent water = occurrence >= 50% |
 | Copernicus GLO-30 DEM: elevation, slope | `data/crops/aux_elevation.tif`, `aux_slope.tif` | public, no login |
-| Daily rainfall (GPM IMERG via Giovanni) | `data/reference/rainfall.csv` | Urvashi, U2 |
+| Daily rainfall (NASA POWER PRECTOTCORR now; GPM IMERG via Giovanni would replace it) | `data/reference/rainfall.csv` | Urvashi, U2 |
 | Reported events | `data/reference/events.geojson` | Urvashi, U3 (schema below) |
 
 Project box (WGS84): lon 73.30 to 74.10, lat 18.15 to 18.90. Analysis grid: UTM 43N (EPSG:32643), 40 m.
 
 NISAR file layout (confirmed from ASF docs, check with `pipeline.inspect_h5` on the real file):
 - GCOV: `/science/LSAR/GCOV/grids/frequencyA/` holds `HHHH`, `HVHV` (gamma0, linear power),
-  `mask` (255 = outside swath), `numberOfLooks`, `rtcGammaToSigmaFactor`, `xCoordinates`,
+  `mask` (1..N valid subswath, 0 invalid, 255 fill), `numberOfLooks`, `rtcGammaToSigmaFactor`, `xCoordinates`,
   `yCoordinates`, `projection` (EPSG code). Full-frame layers are ~5 GB each, so we stream the box only.
 - GUNW: coherence at `.../frequencyA/unwrappedInterferogram/HH/coherenceMagnitude`
-  (the code finds the finest coherence layer automatically).
+  (the code finds the finest coherence layer automatically). GUNW `mask` is a 3-digit WRS code
+  (water flag, reference subswath, secondary subswath): valid where both subswath digits are non-zero
+  and mask != 255. The GUNW grid is about 80 m.
 
 ## Pipeline (python -m pipeline.<step>)
 | Step | Module | Output |
@@ -56,8 +58,9 @@ NISAR file layout (confirmed from ASF docs, check with `pipeline.inspect_h5` on 
 Crops are stored as int16 GeoTIFF (dB x 100); coherence as uint8 (x 250).
 
 ### Method in one paragraph
-Lee-filtered HH in dB. Water threshold per date = Otsu on a balanced sample of JRC
-permanent-water pixels and land pixels (self-calibrating), clipped to -24..-14 dB. New water =
+Lee-filtered HH in dB. Water threshold per date = Kittler-Illingworth (minimum error) on a balanced sample of
+JRC reservoir/river cores (occurrence >= 90%) and never-water land, clipped to -20..-11 dB. In the real Pune
+crops open water sits near -16 dB, dry land near -5 dB, nothing darker than about -19 dB. New water =
 water on 10 Jul, not on 28 Jun, at least 3 dB darker, outside permanent water, slope <= 5 deg,
 patch >= 4 px. "Possible water under cover" = >= 3 dB brighter on flat vegetated or built ground
 (L-band double bounce); shown, never counted. Slide zones = slope >= 15 deg AND coherence < 0.35
@@ -79,4 +82,4 @@ The app reads only `data/derived/` (or `data/demo/derived/` with a banner). Run:
 
 ## How we work
 Branches `name/topic`, small pull requests into `main`, describe what changed and how you checked it.
-Before committing pipeline changes: `python -m pytest -q`.
+Before committing pipeline changes: `python -m pytest -q`. App packages: `requirements.txt`; pipeline: `requirements-pipeline.txt`.

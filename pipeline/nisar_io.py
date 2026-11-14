@@ -153,10 +153,14 @@ def read_to_grid(f: h5py.File, layers: dict, coord_group: str, invalid=None, str
             a[bad] = np.nan
             out[n].append(_block_mean(a, k))
         bad_parts.append(_block_any(bad, k))
-    src_transform = from_origin(float(x[c0]) - dx / 2, float(y[r0]) + dy / 2, dx * k, dy * k)
+    north_up = float(y[1]) < float(y[0])
+    top = float(y[r0]) if north_up else float(y[r1 - 1])
+    src_transform = from_origin(float(x[c0]) - dx / 2, top + dy / 2, dx * k, dy * k)
     result = {}
     for n, parts in out.items():
         src = np.vstack(parts)
+        if not north_up:  # yCoordinates ascending: flip rows so row 0 is the northern edge
+            src = src[::-1]
         dst = np.full(shape, np.nan, dtype=np.float32)
         reproject(src, dst, src_transform=src_transform, src_crs=f"EPSG:{epsg}", src_nodata=np.nan,
                   dst_transform=dst_transform, dst_crs=f"EPSG:{C.GRID_EPSG}", dst_nodata=np.nan,
@@ -180,7 +184,8 @@ def read_gcov(src: str):
             bad = block["HHHH"] <= 0
             if has_mask:
                 m = f[f"{g}/mask"][s:e, c0:c1]
-                bad |= (m == 255)  # 255 = outside the radar swath (fill)
+                # GCOV mask: 1..N = valid subswath number, 0 = invalid/partially focused, 255 = fill
+                bad |= (m == 0) | (m == 255)
             return bad
 
         arrays, meta = read_to_grid(f, layers, g, invalid=invalid)
@@ -191,9 +196,20 @@ def read_gcov(src: str):
 def read_coherence(src: str):
     with open_h5(src) as f:
         path, group, spacing = find_coherence(f)
-        arrays, meta = read_to_grid(f, {"coherence": path}, group,
-                                    invalid=lambda b, *a: (b["coherence"] <= 0) | (b["coherence"] > 1))
+        mask_path = f"{group}/mask" if f"{group}/mask" in f else None
+
+        def invalid(b, s, e, c0, c1):
+            # Coherence of exactly 0 is valid (total loss); only impossible values are dropped.
+            bad = (b["coherence"] < 0) | (b["coherence"] > 1)
+            if mask_path:
+                m = f[mask_path][s:e, c0:c1].astype(np.int32)
+                # GUNW mask: 3-digit WRS (water flag, reference subswath, secondary subswath); 255 = fill
+                bad |= (m == 255) | ((m // 10) % 10 == 0) | (m % 10 == 0)
+            return bad
+
+        arrays, meta = read_to_grid(f, {"coherence": path}, group, invalid=invalid)
         meta["coherence_path"] = path
+        meta["mask_applied"] = bool(mask_path)
     return arrays["coherence"], meta
 
 

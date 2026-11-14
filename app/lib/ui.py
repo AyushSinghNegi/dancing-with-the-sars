@@ -12,7 +12,7 @@ MUTED = "#5d6b75"
 RADAR = "#7d878f"
 PAPER = "#f4f6f5"
 LINE = "#d9dedd"
-COLORS = {"new_water": "#2a78d6", "slide_zones": "#eb6834", "brighter": "#1baf7a", "permanent": "#b7d3f6"}
+COLORS = {"new_water": "#2a78d6", "flood": "#1c5cab", "rise": "#6da7ec", "slide_zones": "#eb6834", "brighter": "#1baf7a", "permanent": "#b7d3f6"}
 
 CSS = f"""
 <style>
@@ -35,7 +35,7 @@ h3 {{ font-size: 1.2rem; font-weight: 600; }}
 p, li {{ font-size: 1.02rem; line-height: 1.6; max-width: 72ch; }}
 .ml-lede {{ font-size: 1.18rem; line-height: 1.55; color: {INK}; max-width: 60ch; }}
 .ml-muted {{ color: {MUTED}; font-size: 0.93rem; }}
-.ml-hero {{ font-size: clamp(2.3rem, 5vw, 3.6rem); line-height: 1.0; font-weight: 700; margin: 0 0 0.6rem 0; }}
+.ml-hero {{ font-size: clamp(2rem, 3.1vw, 3.3rem); line-height: 1.03; font-weight: 700; margin: 0 0 0.6rem 0; text-wrap: balance; }}
 .ml-dates {{ font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; color: {RADAR};
   font-size: 1.05rem; margin-bottom: 1.2rem; }}
 .ml-finding {{ display: grid; grid-template-columns: 18px 7.5rem 1fr; gap: 0.2rem 0.9rem;
@@ -82,8 +82,31 @@ T = {
     "found": {"en": "What the radar found", "mr": "रडारला काय सापडले"},
     "new_water": {"en": "of new open water on flat ground, outside rivers and reservoirs",
                   "mr": "नद्या आणि धरणांबाहेर, सपाट जमिनीवर नवीन साचलेले पाणी"},
+    "rise": {"en": "of new water as Pune's reservoirs and rivers rose and filled",
+             "mr": "पुण्याची धरणे आणि नद्या भरल्यामुळे वाढलेले नवीन पाणी"},
+    "flood": {"en": "of flood water still standing on 10 July where no water had been recorded since 1984",
+              "mr": "१९८४ पासून कधीही पाणी न नोंदवलेल्या ठिकाणी १० जुलैला अजूनही साचलेले पुराचे पाणी"},
+    "legend_flood": {"en": "Flooding (never water before)", "mr": "पूर (आधी कधीही पाणी नव्हते)"},
+    "legend_rise": {"en": "Reservoirs and rivers rising", "mr": "धरणे आणि नद्या वाढल्या"},
     "slides": {"en": "likely slide zones on slopes steeper than 15°, {high} of them high confidence",
                "mr": "१५° पेक्षा जास्त उताराच्या भागात संभाव्य भूस्खलन क्षेत्रे, त्यापैकी {high} उच्च खात्रीची"},
+    "xt_good": {"en": "of the slide zones that a second NISAR track could see were found by it too, "
+                      "{lift}× more often than chance",
+                "mr": "दुसऱ्या निसार मार्गाला दिसू शकलेल्या भूस्खलन क्षेत्रांपैकी तिथेही सापडलेली क्षेत्रे, योगायोगापेक्षा "
+                      "{lift}× जास्त वेळा"},
+    "xt_weak": {"en": "of the slide zones that a second NISAR track could see were found by it too, about what "
+                      "chance would give: treat single-track zones with extra care",
+                "mr": "दुसऱ्या निसार मार्गाला दिसू शकलेल्या भूस्खलन क्षेत्रांपैकी तिथेही सापडलेली क्षेत्रे, साधारण "
+                      "योगायोगाइतकी: एकाच मार्गावरील क्षेत्रे काळजीपूर्वक तपासा"},
+    "xt_story_good": {"en": "A second NISAR track, passing on {b} and {a} from a different orbit, found {c} of the {n} "
+                            "zones it could see on its own: {lift}× more often than chance.",
+                      "mr": "{b} आणि {a} रोजी वेगळ्या कक्षेतून गेलेल्या दुसऱ्या निसार मार्गाने, त्याला दिसू शकलेल्या "
+                            "{n} पैकी {c} क्षेत्रे स्वतंत्रपणे शोधली: योगायोगापेक्षा {lift}× जास्त वेळा."},
+    "xt_story_weak": {"en": "A second NISAR track, passing on {b} and {a}, found only {c} of the {n} zones it could see, "
+                            "about what chance would give, so treat each zone as a lead to check.",
+                      "mr": "{b} आणि {a} रोजी गेलेल्या दुसऱ्या निसार मार्गाने त्याला दिसू शकलेल्या {n} पैकी फक्त {c} "
+                            "क्षेत्रे शोधली, साधारण योगायोगाइतकी; म्हणून प्रत्येक क्षेत्र तपासण्याजोगे समजा."},
+    "xt_col": {"en": "Second track", "mr": "दुसरा मार्ग"},
     "brighter": {"en": "where water may be hiding under trees or between buildings (not counted as flood)",
                  "mr": "जिथे झाडांखाली किंवा इमारतींमध्ये पाणी असू शकते (पुरात मोजलेले नाही)"},
     "matched": {"en": "of reported events that radar could observe were matched by a detection",
@@ -108,6 +131,22 @@ T = {
     "legend_permanent": {"en": "Rivers and reservoirs", "mr": "नद्या आणि धरणे"},
     "legend_events": {"en": "Reported event", "mr": "नोंदवलेली घटना"},
     "lang": {"en": "Language", "mr": "भाषा"},
+    "step": {"en": "Step {i} of {n}", "mr": "{n} पैकी टप्पा {i}"},
+    "back": {"en": "Back", "mr": "मागे"},
+    "next": {"en": "Next", "mr": "पुढे"},
+    "story_title": {"en": "Story", "mr": "कथा"},
+    "matched_floods": {"en": "reported floods that radar could observe had a detection nearby",
+                       "mr": "रडारला दिसू शकणाऱ्या नोंदवलेल्या पुरांजवळ शोध लागला"},
+    "matched_slides": {"en": "reported landslides that radar could observe had a detection nearby",
+                       "mr": "रडारला दिसू शकणाऱ्या नोंदवलेल्या भूस्खलनांजवळ शोध लागला"},
+    "x_of_y": {"en": "{x} of {y}", "mr": "{y} पैकी {x}"},
+    "fell_short": {"en": "Where radar fell short, and why", "mr": "रडार कुठे कमी पडले आणि का"},
+    "rain_caption": {"en": "Daily rainfall averaged over the study box. Source: {src}.",
+                     "mr": "अभ्यास क्षेत्रातील सरासरी रोजचा पाऊस. स्रोत: {src}."},
+    "swipe_caption": {"en": "Drag to compare. Dark is smooth: water. Bright is rough: buildings, trees, rock. "
+                            "Area shown: the part of the study box with the most change.",
+                      "mr": "तुलना करण्यासाठी ओढा. गडद म्हणजे गुळगुळीत पृष्ठभाग: पाणी. उजळ म्हणजे खडबडीत: इमारती, "
+                            "झाडे, खडक. दाखवलेला भाग: अभ्यास क्षेत्रातील सर्वात जास्त बदल झालेला भाग."},
 }
 
 
