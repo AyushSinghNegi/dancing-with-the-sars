@@ -66,6 +66,70 @@ p, li {{ font-size: 1.02rem; line-height: 1.6; max-width: 72ch; }}
   h1 {{ font-size: 2rem; }}
 }}
 @media (prefers-reduced-motion: reduce) {{ * {{ animation: none !important; transition: none !important; }} }}
+/* evidence cards */
+.ml-card {{ background: #fff; border: 1px solid {LINE}; border-radius: 12px; padding: 14px 16px; margin: 0 0 14px; }}
+.ml-card-head {{ display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }}
+.ml-id {{ font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 700; font-size: 1.3rem; color: {INK}; }}
+.ml-card.flood .ml-id {{ color: #1c5cab; }}
+.ml-place {{ color: {MUTED}; flex: 1; min-width: 10rem; }}
+.ml-pill {{ font-size: 0.8rem; font-weight: 600; padding: 2px 10px; border-radius: 99px; background: #fbe3d8; color: #7a2f10; white-space: nowrap; }}
+.ml-pill.high {{ background: #eb6834; color: #fff; }}
+.ml-pill.low {{ background: #efebe8; color: {MUTED}; }}
+.ml-card-body {{ display: flex; gap: 16px; flex-wrap: wrap; }}
+.ml-chips {{ display: flex; gap: 8px; flex-wrap: wrap; }}
+.ml-chips figure {{ margin: 0; }}
+.ml-chips img {{ width: 150px; height: 150px; border-radius: 8px; display: block; image-rendering: pixelated; background: #0d1b26; }}
+.ml-chips figcaption {{ font-size: 0.78rem; color: {MUTED}; text-align: center; margin-top: 3px; }}
+.ml-facts {{ flex: 1; min-width: 260px; }}
+.ml-facts p, .ml-facts li {{ font-size: 0.95rem; line-height: 1.5; }}
+.ml-facts-h {{ font-weight: 600; color: {INK}; margin: 0 0 0.2rem !important; }}
+.ml-why {{ margin: 0 0 0.7rem; padding-left: 1.1rem; }}
+.ml-checks {{ list-style: none; margin: 0 0 0.7rem; padding-left: 0; }}
+.ml-checks li {{ display: flex; gap: 0.55rem; align-items: baseline; margin: 0.15rem 0; }}
+.ml-ck {{ display: inline-grid; place-items: center; width: 1.25rem; height: 1.25rem; border-radius: 50%;
+  font-size: 0.72rem; font-weight: 700; flex: none; transform: translateY(2px); }}
+.ml-ck.ok {{ background: {INK}; color: #fff; }}
+.ml-ck.no {{ border: 1.5px solid {MUTED}; color: {MUTED}; }}
+.ml-ck.na {{ border: 1.5px dashed #aab4ba; color: #8c979e; }}
+.ml-links {{ font-size: 0.9rem !important; color: {MUTED}; margin: 0; }}
+.ml-links a {{ color: #1c5cab; font-weight: 600; }}
+.ml-card-note {{ font-size: 0.8rem !important; color: {MUTED}; margin: 0.7rem 0 0; max-width: none; }}
+
+/* overview */
+.ml-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap: 14px; margin: 0.4rem 0 1.4rem; }}
+.ml-stat {{ background: #fff; border: 1px solid {LINE}; border-radius: 12px; padding: 16px 18px 14px 22px; position: relative; }}
+.ml-stat::before {{ content: ""; position: absolute; left: 0; top: 16px; bottom: 16px; width: 5px; border-radius: 0 4px 4px 0;
+  background: var(--c, {INK}); }}
+.ml-stat.hatch::before {{ background: repeating-linear-gradient(45deg, var(--c) 0 3px, transparent 3px 6px); }}
+.ml-stat .k {{ font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 700; font-size: 2.5rem; line-height: 1; color: {INK}; }}
+.ml-stat .k small {{ font-size: 1.05rem; font-weight: 600; color: {MUTED}; margin-left: 0.2rem; }}
+.ml-stat .lbl {{ margin: 0.45rem 0 0.6rem; font-size: 0.98rem; line-height: 1.45; }}
+.ml-stat .sure {{ font-size: 0.84rem; line-height: 1.45; color: {MUTED}; border-top: 1px dashed {LINE}; padding-top: 0.5rem; margin: 0; }}
+.ml-checkrow {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0; margin: 0.4rem 0 1.4rem;
+  background: {INK}; border-radius: 12px; overflow: hidden; }}
+.ml-check {{ padding: 16px 18px; color: #e8eef2; border-right: 1px solid #2c4a62; }}
+.ml-check:last-child {{ border-right: none; }}
+.ml-check .k {{ font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 700; font-size: 1.9rem; color: #fff; line-height: 1.05; }}
+.ml-check .t {{ font-weight: 600; color: #fff; margin: 0.3rem 0 0.25rem; font-size: 0.95rem; }}
+.ml-check p {{ font-size: 0.86rem; line-height: 1.45; color: #c3d0d9; margin: 0; }}
+.ml-pass {{ display: flex; gap: 0.8rem; align-items: center; background: #e7eef5; border-radius: 10px; padding: 10px 14px;
+  color: {INK}; font-size: 0.95rem; margin: 0.2rem 0 1.2rem; }}
+.ml-pass b {{ font-family: 'IBM Plex Sans Condensed', sans-serif; font-size: 1.05rem; }}
+[data-testid="stVerticalBlockBorderWrapper"] {{ border-radius: 12px; }}
+.ml-pathd {{ color: {MUTED}; font-size: 0.93rem; line-height: 1.45; margin: 0.1rem 0 0.4rem; }}
+.ml-dlrow {{ display: flex; flex-wrap: wrap; gap: 10px; margin: 0.2rem 0 1.2rem; }}
+.ml-dl {{ display: inline-flex; flex-direction: column; gap: 1px; padding: 9px 14px; border-radius: 8px; border: 1px solid {LINE};
+  background: #fff; color: {INK} !important; text-decoration: none !important; font-weight: 600; font-size: 0.93rem; }}
+.ml-dl small {{ font-weight: 400; color: {MUTED}; font-size: 0.78rem; }}
+.ml-dl.primary {{ background: {INK}; border-color: {INK}; color: #fff !important; }}
+.ml-dl.primary small {{ color: #c3d0d9; }}
+.ml-dl:hover {{ border-color: {INK}; }}
+.ml-kicker {{ font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; color: {RADAR}; font-size: 0.95rem; margin: 0; }}
+@media (max-width: 640px) {{
+  .ml-chips img {{ width: 28vw; height: 28vw; }}
+  .ml-stat .k {{ font-size: 2.1rem; }}
+  .ml-check {{ border-right: none; border-bottom: 1px solid #2c4a62; }}
+}}
 </style>
 """
 
@@ -237,8 +301,19 @@ def day(iso: str) -> str:
     return f"{int(iso[8:10])} {MONTHS.get(lang(), MONTHS['en'])[int(iso[5:7]) - 1]}"
 
 
+def date(iso: str) -> str:
+    """'5 July 2026' or '5 जुलै 2026', in the page language."""
+    return f"{day(iso)} {iso[:4]}"
+
+
 def lang() -> str:
     return st.session_state.get("lang", "en")
+
+
+def tr(en: str, mr: str, **kw) -> str:
+    """Inline two-language text for page-specific strings."""
+    s = mr if lang() == "mr" and mr else en
+    return s.format(**kw) if kw else s
 
 
 def t(key: str, **kw) -> str:

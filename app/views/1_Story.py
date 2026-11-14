@@ -31,7 +31,16 @@ with text:
             st.session_state.step = i + 1
             st.rerun()
     else:
-        nav_n.page_link("views/2_Explore.py", label=ui.t("explore"), icon=":material/map:")
+        if nav_n.button(ui.tr("Check a place", "एखादे ठिकाण तपासा"), type="primary", width="stretch",
+                        icon=":material/location_on:"):
+            st.switch_page("views/4_Place.py")
+        st.markdown(f'<p class="ml-kicker" style="margin-top:1rem">{ui.tr("Where next", "पुढे कुठे")}</p>',
+                    unsafe_allow_html=True)
+        st.page_link("views/5_Field.py", label=ui.tr("Field check list for district teams",
+                                                     "जिल्हा पथकांसाठी क्षेत्रीय तपासणी यादी"), icon=":material/checklist:")
+        st.page_link("views/2_Explore.py", label=ui.t("explore"), icon=":material/map:")
+        st.page_link("views/3_Method.py", label=ui.tr("Method and limits", "पद्धत आणि मर्यादा"),
+                     icon=":material/science:")
 
 with visual:
     if key == "rain":
@@ -72,6 +81,10 @@ with visual:
         tl = story.timeline_rows()
         st.plotly_chart(charts.timeline(tl), width="stretch", config={"displayModeBar": False})
         st.caption(ui.t("timeline_caption"))
+        if data.season_dates() and st.button(ui.tr("Watch the water spread on the map", "नकाशावर पाणी पसरताना पाहा"),
+                                             icon=":material/play_circle:"):
+            st.session_state["explore_mode"] = "season"
+            st.switch_page("views/2_Explore.py")
     else:
         val = data.table("validation.csv")
         summ = data.metrics().get("validation", {})

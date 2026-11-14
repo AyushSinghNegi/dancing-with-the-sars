@@ -2,6 +2,8 @@
 
 NASA Space Apps Challenge 2026 · **Dancing with the SARs** · GDG Ahlen (virtual) · Team iGenfinity
 
+[![Tests](https://github.com/AyushSinghNegi/dancing-with-the-sars/actions/workflows/tests.yml/badge.svg)](https://github.com/AyushSinghNegi/dancing-with-the-sars/actions/workflows/tests.yml)
+
 Clouds hide the ground during the monsoon, which is exactly when people need to see it.
 NASA-ISRO's **NISAR** L-band radar sees through cloud and rain. MonsoonLens uses two NISAR passes
 over Pune (28 June and 10 July 2026), bracketing the 3-8 July floods and landslides, to map:
@@ -10,6 +12,16 @@ over Pune (28 June and 10 July 2026), bracketing the 3-8 July floods and landsli
 - **Likely slide zones** on the Western Ghats slopes, from lost radar coherence and vegetation loss
 - **What radar could not see** (dense city streets, water that drained, slides smaller than a pixel),
   checked against reported events
+
+And it turns them into things people can use:
+
+- **Check a place**: pick any of 431 villages, towns and suburbs (or click the map) and see what NISAR found
+  within 2, 5 or 10 km, in English or Marathi, with a link you can share
+- **Field check list**: every likely slide zone ranked, with NISAR image chips of the spot, why it was flagged and
+  which independent checks it passed; as a printable page, KML for Google Earth and phones, CSV and GeoJSON
+- **Season slider**: open water on five NISAR passes of the same orbit, 28 June to 14 October
+- **Every number checked**: 18 reported events, a second NISAR orbit, a second elevation map (NASA NASADEM), and
+  the water threshold moved by 1 dB either way
 
 > Live app: **https://monsoonlens.streamlit.app** (real NISAR results for Pune).
 > Results: 8.5 km² of reservoirs and rivers rising, 0.36 km² of flood water still standing on 10 July,
@@ -43,7 +55,7 @@ python -m pytest -q
 | `CONTEXT.md` | Project brief, rules, data paths, method: read first |
 | `plotholes.md` | Open points: unverified claims, inconsistencies and limits to fix or state before submission |
 | `pipeline/` | NISAR reading, cropping, water, slide zones, validation, timeline, rendering |
-| `app/` | Streamlit app (landing, story, explore map, method) |
+| `app/` | Streamlit app (overview, story, explore map, check a place, field check list, method) |
 | `data/reference/` | Scene list, rainfall, reported events |
 | `data/crops/` | Pune-box crops of NISAR files and public context layers |
 | `data/derived/` | Everything the app shows (small files, each traceable to a NISAR file ID) |

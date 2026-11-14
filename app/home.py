@@ -1,3 +1,5 @@
+import html
+
 import streamlit as st
 
 from lib import data, story, swipe, ui
@@ -7,9 +9,13 @@ ui.demo_banner()
 if not ui.require_results():
     st.stop()
 
+tr = ui.tr
 before, after = data.dates()
 v = data.value
+m = data.metrics()
+th = m.get("thresholds", {})
 
+# ---------------------------------------------------------------- hero
 left, right = st.columns([1.05, 1], gap="large")
 with left:
     st.markdown(f'<h1 class="ml-hero">{ui.t("title")}</h1>', unsafe_allow_html=True)
@@ -19,8 +25,8 @@ with left:
     b1, b2 = st.columns(2)
     if b1.button(ui.t("start_story"), type="primary", icon=":material/auto_stories:", width="stretch"):
         st.switch_page("views/1_Story.py")
-    if b2.button(ui.t("explore"), icon=":material/map:", width="stretch"):
-        st.switch_page("views/2_Explore.py")
+    if b2.button(tr("Check a place", "एखादे ठिकाण तपासा"), icon=":material/location_on:", width="stretch"):
+        st.switch_page("views/4_Place.py")
 with right:
     imgs = swipe.pair("hh")
     if imgs:
@@ -28,32 +34,110 @@ with right:
                      height=430, start=50)
         st.caption(ui.t("swipe_caption"))
 
+
+def card(color, number, unit, label, sure, hatch=False):
+    return (f'<div class="ml-stat{" hatch" if hatch else ""}" style="--c:{color}"><div class="k">{html.escape(number)}'
+            f'<small>{html.escape(unit)}</small></div><p class="lbl">{html.escape(label)}</p>'
+            + (f'<p class="sure">{html.escape(sure)}</p>' if sure else "") + "</div>")
+
+
+# ---------------------------------------------------------------- what the radar found
 st.markdown(f"## {ui.t('found')}")
-rows = []
+sens = (m.get("sensitivity") or {}).get("range", {})
+dc = m.get("dem_check") or {}
+cards = []
 if v("water.flood_km2") is not None:
-    rows.append(ui.finding(ui.COLORS["rise"], ui.fmt_num(v("water.rise_km2")), " km²", ui.t("rise")))
-    rows.append(ui.finding(ui.COLORS["flood"], ui.fmt_num(v("water.flood_km2"), 2), " km²", ui.t("flood")))
-else:
-    rows.append(ui.finding(ui.COLORS["new_water"], ui.fmt_num(v("water.new_water_km2")), " km²", ui.t("new_water")))
+    r = sens.get("rise_km2")
+    cards.append(card(ui.COLORS["rise"], ui.fmt_num(v("water.rise_km2")), "km²", ui.t("rise"),
+                      tr("With the water threshold 1 dB lower or higher: {a} to {b} km².",
+                         "पाण्याची मर्यादा १ dB कमी-जास्त केल्यास: {a} ते {b} चौ. किमी.", a=ui.fmt_num(r[0]),
+                         b=ui.fmt_num(r[1])) if r else ""))
+    f = sens.get("flood_km2")
+    cards.append(card(ui.COLORS["flood"], ui.fmt_num(v("water.flood_km2"), 2), "km²", ui.t("flood"),
+                      tr("Depends strongly on the water threshold: {a} to {b} km² with it moved 1 dB either way.",
+                         "पाण्याच्या मर्यादेवर खूप अवलंबून: ती १ dB कमी-जास्त केल्यास {a} ते {b} चौ. किमी.",
+                         a=ui.fmt_num(f[0], 2), b=ui.fmt_num(f[1], 1)) if f else ""))
 sz, hi = v("slides.zones"), v("slides.high")
-th = data.metrics().get("thresholds", {})
-rows.append(ui.finding(ui.COLORS["slide_zones"], ui.fmt_num(sz, 0), "",
-                       ui.t("slides", high=ui.fmt_num(hi, 0), smin=ui.fmt_num(th.get("slide_min_slope_deg", 15), 0),
-                            smax=ui.fmt_num(th.get("slide_max_slope_deg", 45), 0),
-                            unrep=ui.fmt_num(v("validation.unreported_slide_zones") or 0, 0))))
-xt = data.crosstrack()
-if xt:
-    rows.append(ui.finding(ui.INK, ui.t("x_of_y", x=xt["confirmed"], y=xt["scored"]), "",
-                           ui.t(("xt_good_small" if xt["small"] else "xt_good") if xt["good"] else "xt_weak",
-                                lift=ui.fmt_num(xt["lift"] or 0, 0), cov=xt["coverage"])))
-br = v("water.brighter_flat_km2")
-rows.append(ui.finding(ui.COLORS["brighter"], ui.fmt_num(br), " km²", ui.t("brighter"), hatch=True))
+cards.append(card(ui.COLORS["slide_zones"], ui.fmt_num(sz, 0), "",
+                  tr("likely slide zones on slopes of {a}° to {b}°, {h} of them high confidence",
+                     "{a}° ते {b}° उतारावरील संभाव्य भूस्खलन क्षेत्रे, त्यापैकी {h} उच्च खात्रीची",
+                     a=ui.fmt_num(th.get("slide_min_slope_deg", 15), 0), b=ui.fmt_num(th.get("slide_max_slope_deg", 45), 0),
+                     h=ui.fmt_num(hi, 0)),
+                  tr("Leads to check, not verdicts: {u} have no reported event within 2 km.",
+                     "तपासण्याचे संकेत, निर्णय नाहीत: {u} क्षेत्रांच्या २ किमी परिसरात कोणतीही घटना नोंदवलेली नाही.",
+                     u=ui.fmt_num(v("validation.unreported_slide_zones") or 0, 0))))
+tl = story.timeline_rows()
+if tl is not None:
+    first, last = tl.iloc[0], tl.iloc[-1]
+    cards.append(card(ui.COLORS["new_water"], ui.fmt_num(last["water_in_jrc_extent_km2"], 0), "km²",
+                      tr("of open water in rivers and reservoirs on {d}, up from {v} km² on {f}",
+                         "{d} रोजी नद्या आणि धरणांतील उघडे पाणी, {f} रोजी {v} चौ. किमी होते", d=ui.day(last["date"]),
+                         v=ui.fmt_num(first["water_in_jrc_extent_km2"], 0), f=ui.day(first["date"])),
+                      tr("{n} NISAR passes, same orbit and radar mode. Watch it on the map's season slider.",
+                         "{n} निसार निरीक्षणे, एकच कक्षा आणि रडार पद्धत. नकाशावरील हंगाम स्लायडरवर पाहा.", n=len(tl))))
+cards.append(card(ui.COLORS["brighter"], ui.fmt_num(v("water.brighter_flat_km2")), "km²", ui.t("brighter"),
+                  tr("Shown as possible water, never added to the flood figure.",
+                     "संभाव्य पाणी म्हणून दाखवले, पुराच्या आकड्यात कधीच मिळवले नाही."), hatch=True))
+st.markdown(f'<div class="ml-grid">{"".join(cards)}</div>', unsafe_allow_html=True)
+
+# ---------------------------------------------------------------- how we checked it
+st.markdown(f"## {tr('How we checked it', 'आम्ही कसे तपासले')}")
+checks = []
 fh, fo = v("validation.flood.hits"), v("validation.flood.observable")
 sh, so = v("validation.slide.hits"), v("validation.slide.observable")
-if (fo or 0) + (so or 0) > 0:
-    rows.append(ui.finding(ui.INK, f"{(fh or 0) + (sh or 0)} of {(fo or 0) + (so or 0)}", "", ui.t("matched")))
-st.markdown("".join(rows), unsafe_allow_html=True)
+if fo:
+    rh = dc.get("reported_slide_hits") or {}
+    weak = rh and rh.get("nasadem", 0) < rh.get("main", 0)
+    checks.append((ui.t("x_of_y", x=fh, y=fo), tr("Reported floods", "नोंदवलेले पूर"),
+                   tr("that radar could observe had a detection nearby. Landslides: {h} of {o}", "जे रडारला दिसू शकत "
+                      "होते त्यांच्याजवळ शोध लागला. भूस्खलने: {o} पैकी {h}", h=sh, o=so)
+                   + (tr(", both near one zone that a second elevation map does not keep.",
+                         ", दोन्ही एकाच क्षेत्राजवळ, जे दुसऱ्या उंची नकाशात टिकत नाही.") if weak else ".")))
+xt = data.crosstrack()
+if xt:
+    pv = xt.get("p_value")
+    checks.append((ui.t("x_of_y", x=xt["confirmed"], y=xt["scored"]), tr("Second NISAR orbit", "दुसरी निसार कक्षा"),
+                   tr("slide zones in its view found again, {l}× more often than chance{p}. A small sample.",
+                      "त्याच्या दृष्टीतील भूस्खलन क्षेत्रे पुन्हा सापडली, योगायोगापेक्षा {l}× जास्त{p}. लहान नमुना.",
+                      l=ui.fmt_num(xt["lift"] or 0, 0), p=f" (p ≈ {pv:.2f})" if pv is not None else "")))
+if dc:
+    checks.append((ui.t("x_of_y", x=dc["found"], y=dc["zones_main"]), tr("Second elevation map", "दुसरा उंची नकाशा"),
+                   tr("slide zones kept when slope comes from NASA's NASADEM instead of Copernicus.",
+                      "उतार कोपर्निकसऐवजी नासाच्या NASADEM मधून घेतल्यावर टिकलेली भूस्खलन क्षेत्रे.")))
+if sens:
+    checks.append(("±1 dB", tr("Water threshold moved", "पाण्याची मर्यादा बदलली"),
+                   tr("Reservoir rise stays between {a} and {b} km²; flooding swings from {c} to {d} km².",
+                      "धरणांची वाढ {a} ते {b} चौ. किमी राहते; पूर {c} ते {d} चौ. किमी इतका बदलतो.",
+                      a=ui.fmt_num(sens["rise_km2"][0]), b=ui.fmt_num(sens["rise_km2"][1]),
+                      c=ui.fmt_num(sens["flood_km2"][0], 2), d=ui.fmt_num(sens["flood_km2"][1], 1))))
+st.markdown('<div class="ml-checkrow">' + "".join(
+    f'<div class="ml-check"><div class="k">{html.escape(k)}</div><p class="t">{html.escape(t_)}</p>'
+    f'<p>{html.escape(p)}</p></div>' for k, t_, p in checks) + "</div>", unsafe_allow_html=True)
 
+# ---------------------------------------------------------------- who it is for
+st.markdown(f"## {tr('Who it is for', 'हे कोणासाठी')}")
+paths = [
+    (tr("People who live there", "तिथे राहणारे लोक"), tr(
+        "Pick your village or town and see what NISAR found within 2, 5 or 10 km, with a link you can send on.",
+        "तुमचे गाव किंवा शहर निवडा आणि निसारला २, ५ किंवा १० किमीच्या आत काय सापडले ते पाहा, पुढे पाठवता येईल अशा लिंकसह."),
+     "views/4_Place.py", tr("Check a place", "एखादे ठिकाण तपासा"), ":material/location_on:"),
+    (tr("District disaster teams", "जिल्हा आपत्ती पथके"), tr(
+        "A ranked check list of likely slide zones with radar images of each spot, a printable sheet and KML for phones.",
+        "संभाव्य भूस्खलन क्षेत्रांची क्रमवार यादी, प्रत्येक जागेच्या रडार प्रतिमा, छापण्याजोगी यादी आणि फोनसाठी KML."),
+     "views/5_Field.py", tr("Field check list", "क्षेत्रीय तपासणी यादी"), ":material/checklist:"),
+    (tr("Researchers and journalists", "संशोधक आणि पत्रकार"), tr(
+        "Every number traced to its NISAR file, the checks behind it, and the maps as GeoTIFF and GeoJSON.",
+        "प्रत्येक आकडा त्याच्या निसार फाइलपर्यंत, त्यामागच्या तपासण्या, आणि नकाशे GeoTIFF व GeoJSON मध्ये."),
+     "views/3_Method.py", tr("Method and data", "पद्धत आणि डेटा"), ":material/science:"),
+]
+cols = st.columns(3)
+for c, (title, desc, page, label, icon) in zip(cols, paths):
+    with c.container(border=True):
+        st.markdown(f"### {title}")
+        st.markdown(f'<p class="ml-pathd">{html.escape(desc)}</p>', unsafe_allow_html=True)
+        st.page_link(page, label=label, icon=icon)
+
+# ---------------------------------------------------------------- what radar could not see
 st.markdown(f"## {ui.t('couldnt')}")
 lim = data.limits()
 b_iso, a_iso = data.dates()
@@ -75,6 +159,15 @@ bullets.append(ui.t("lim_early"))
 st.markdown("\n".join(f"- {x}" for x in bullets))
 if lim["zones"]:
     st.markdown(ui.t("lim_lead", u=lim["unreported"], z=lim["zones"]))
-st.page_link("views/3_Method.py", label="See how each number was made, and the full validation table",
+np_ = data.next_pass()
+if np_:
+    st.markdown(f'<div class="ml-pass"><span>🛰️</span><span>' + tr(
+        "NISAR passes over Pune every 12 days, cloud or not. Last pass in our data: <b>{l}</b>; if it keeps its 12-day "
+        "repeat, the next is <b>{n}</b>. The same open code turns each new pass into these maps and lists.",
+        "निसार दर १२ दिवसांनी पुण्यावरून जातो, ढग असोत वा नसोत. आमच्या डेटातील शेवटचे निरीक्षण: <b>{l}</b>; १२ "
+        "दिवसांचे चक्र कायम राहिल्यास पुढचे <b>{n}</b>. तोच मुक्त कोड प्रत्येक नव्या निरीक्षणाचे हे नकाशे आणि याद्या बनवतो.",
+        l=ui.date(np_[0]), n=ui.date(np_[1])) + "</span></div>", unsafe_allow_html=True)
+st.page_link("views/3_Method.py", label=tr("See how each number was made, and the full validation table",
+                                          "प्रत्येक आकडा कसा तयार झाला आणि संपूर्ण पडताळणी तक्ता पाहा"),
              icon=":material/fact_check:")
 ui.sources_line()

@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-from lib import data, ui
+from lib import data, explain, ui
 
 ui.setup("Method and limits")
 ui.demo_banner()
@@ -16,6 +16,12 @@ st.markdown("# Method and limits")
 ui.english_only_note()
 st.markdown('<p class="ml-lede">Every number in this app comes from the pipeline in our public repository, '
             'run on the NISAR files listed below. Nothing is estimated by hand.</p>', unsafe_allow_html=True)
+
+st.markdown("## How radar sees through cloud")
+st.markdown(f'<div style="width:100%;max-width:1000px">{explain.svg()}</div>', unsafe_allow_html=True)
+st.caption("NISAR's L-band radar has a wavelength of about 24 cm: it passes through cloud and rain, and partly through "
+           "forest canopy. It sends two polarisations: HH (horizontal out, horizontal back) responds to surfaces and "
+           "structures, HV (horizontal out, vertical back) mostly to vegetation.")
 
 st.markdown("## How it works")
 st.markdown(f"""
@@ -52,6 +58,11 @@ st.markdown(f"""
    does not. Chance level comes from moving every zone to random steep, dry places and repeating the test.
 8. **Check with a second elevation map.** Slope and slope direction come from the Copernicus GLO-30 elevation map.
    We run the same slide rule again with NASA's NASADEM elevation map and record which zones it keeps.
+9. **Test the water threshold.** Both dates' water thresholds are moved 1 dB down and up and the water numbers are
+   recomputed, to show how much they depend on that one choice.
+10. **Package the evidence.** For every slide zone and flood patch the pipeline cuts small image chips of that spot
+   from the NISAR data (radar colour before and after, and coherence), notes the nearest reported event, and writes
+   the field check list as a printable page, KML, CSV and GeoJSON.
 """)
 
 st.markdown("## Data")
@@ -67,6 +78,8 @@ rows += [
     {"Data": "Elevation and slope", "File": "Copernicus GLO-30 DEM (ESA)", "Valid share of box": "",
      "Link": "https://registry.opendata.aws/copernicus-dem/"},
 ]
+rows.append({"Data": "Place names", "File": "OpenStreetMap villages, towns and suburbs (ODbL), via Overpass and "
+             "Nominatim", "Valid share of box": "", "Link": "https://www.openstreetmap.org/copyright"})
 if m.get("dem_check"):
     rows.append({"Data": "Elevation, second-map check", "File": "NASADEM_HGT v001 (NASA / USGS)",
                  "Valid share of box": "", "Link": m["dem_check"]["check_dem_url"]})
@@ -178,6 +191,37 @@ if dc:
         st.markdown(f"Passing both extra checks (found again by the second NISAR track and with NASADEM): "
                     f"**{', '.join(both)}**.")
 
+sens = m.get("sensitivity")
+if sens and sens.get("rows"):
+    st.markdown("## Water-threshold check")
+    r0 = sens["range"]
+    st.markdown(
+        "The water threshold is set from the radar itself on each date. Moving both dates' thresholds 1 dB down or up, "
+        f"and changing nothing else, keeps reservoir and river rise between **{r0['rise_km2'][0]:.1f} and "
+        f"{r0['rise_km2'][1]:.1f} km²** (we report {sens['base']['rise_km2']:.1f}). Flooding on ground that was never wet "
+        f"swings from **{r0['flood_km2'][0]:.2f} to {r0['flood_km2'][1]:.1f} km²** (we report "
+        f"{sens['base']['flood_km2']:.2f}): that figure depends heavily on the threshold, so read it as the order of "
+        "magnitude, not a precise area.")
+    st.dataframe(pd.DataFrame([{
+        "Threshold shift": f"{r['shift_db']:+.0f} dB" if r["shift_db"] else "as chosen",
+        "Threshold 28 Jun (dB)": round(r["threshold_before_db"], 1), "Threshold 10 Jul (dB)": round(r["threshold_after_db"], 1),
+        "New water (km²)": r["new_water_km2"], "Reservoir and river rise (km²)": r["rise_km2"],
+        "Flooding (km²)": r["flood_km2"], "Flood patches": r["flood_patches"],
+        "Permanent water seen dark": f"{r['permanent_water_seen_dark']:.0%}"} for r in sens["rows"]]),
+        hide_index=True, width="stretch")
+
+st.markdown("## Reproduce it")
+st.markdown("The code is public, and the Pune crops of every NISAR file above are in the repository (a few MB each), "
+            "so one command rebuilds every number, map and list in this app from them. Fetching the crops again from "
+            "NASA's archive needs a free Earthdata login.")
+st.code("pip install -r requirements-pipeline.txt\n"
+        "python -m pipeline.run_all        # water, slide zones, checks, evidence, maps, metrics.json\n"
+        "python -m pytest -q               # the pipeline's tests\n\n"
+        "# optional: fetch the crops again from NASA's archive (Earthdata login)\n"
+        "python -m pipeline.crop --primary --timeline\n"
+        "python -m pipeline.crop --granule <a track-106 file from the Data table>", language="bash")
+st.markdown("To point it at another place, change the study box and the NISAR files in `pipeline/config.py`.")
+
 st.markdown("## Limits")
 st.markdown(f"""
 - **Provisional data.** These are NISAR provisional products (released from June 2026); calibration may still change.
@@ -195,6 +239,8 @@ st.markdown(f"""
   {m.get('validation', {}).get('flood', {}).get('hits', 0)} of {m.get('validation', {}).get('flood', {}).get('observable', 0)},
   landslides {m.get('validation', {}).get('slide', {}).get('hits', 0)} of {m.get('validation', {}).get('slide', {}).get('observable', 0)},
   and the second-track check covers only part of the area.
+- **Flood area is threshold-sensitive.** See the water-threshold check above: the flood figure can move several-fold
+  with a 1 dB change, the reservoir rise much less.
 - **Slope near the limits.** Many zones sit close to the {th.get('slide_min_slope_deg', 15):.0f}° or {th.get('slide_max_slope_deg', 45):.0f}° limits, so a
   different elevation map moves some of them in or out (see the elevation-map check above).
 - **Leads, not verdicts.** Slide zones are places to check, not confirmed landslides:
