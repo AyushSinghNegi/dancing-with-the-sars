@@ -4,6 +4,7 @@
   MONSOONLENS_DEMO=1 python -m pipeline.run_all --synthetic   # synthetic, into data/demo only
 
 Order: water (R5) -> slide zones (R6) -> validation (R9) -> second-track and elevation-map checks ->
+threshold sensitivity -> evidence chips and field list ->
 timeline (R8) ->
 render overlays -> bounds.json + metrics.json (provenance for every number).
 """
@@ -16,9 +17,9 @@ import time
 from . import common as K
 from . import config as C
 from . import nisar_io as io
-from . import crosstrack, dem_check, render, slide_zones, timeline, validate, water
+from . import crosstrack, dem_check, evidence, render, sensitivity, slide_zones, timeline, validate, water
 
-VERSION = "0.5.0"
+VERSION = "0.6.0"
 
 
 def main(argv=None):
@@ -52,6 +53,10 @@ def main(argv=None):
     xt = crosstrack.run()
     print("[run] elevation-map check (NASADEM)", flush=True)
     dc = dem_check.run()
+    print("[run] water-threshold sensitivity (+/- 1 dB)", flush=True)
+    sens = sensitivity.run()
+    print("[run] evidence chips and field check list", flush=True)
+    ev = evidence.run()
     print("[run] timeline", flush=True)
     tl = timeline.run()
     print("[run] render", flush=True)
@@ -93,6 +98,7 @@ def main(argv=None):
                                                               "zones_track106", "valid_fraction",
                                                               "scene_shift_db", "water_reliable")},
         "dem_check": None if not dc else {k: v for k, v in dc.items() if k != "generated"},
+        "sensitivity": sens, "evidence": ev,
         **rend,
     }
     K.write_json(C.DERIVED / "bounds.json", {"bounds_latlon": rend["bounds_latlon"], "demo": C.IS_DEMO,

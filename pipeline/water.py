@@ -35,8 +35,9 @@ def run(write=True):
     return {m: v for m, v, *_ in stats}, layers
 
 
-def compute(d, aux, labels=("28 Jun", "10 Jul")):
-    """All water layers for one before/after pair. Used for the main pair and the second-track check."""
+def compute(d, aux, labels=("28 Jun", "10 Jul"), shift_db=0.0):
+    """All water layers for one before/after pair. Used for the main pair and the second-track check.
+    shift_db moves both dates' water thresholds by the same amount (sensitivity check only)."""
     occ, slope = aux["jrc_occurrence"], aux["slope"]
     perm = np.nan_to_num(occ) >= C.PERMANENT_WATER_OCCURRENCE
     flat = np.nan_to_num(slope, nan=90) <= C.FLOOD_MAX_SLOPE_DEG
@@ -47,6 +48,7 @@ def compute(d, aux, labels=("28 Jun", "10 Jul")):
 
     t_b, how_b = K.water_threshold(hh_b, occ)
     t_a, how_a = K.water_threshold(hh_a, occ)
+    t_b, t_a = t_b + shift_db, t_a + shift_db
     water_b = valid & (hh_b < t_b)
     water_a = valid & (hh_a < t_a)
     ratio = np.where(valid, hh_a - hh_b, np.nan)
