@@ -14,7 +14,12 @@ if not ui.require_results():
 before, after = data.dates()
 tr = ui.tr
 ss = st.session_state
-st.markdown(f"# {ui.t('explore')}")
+ui.page_header(ui.t("explore"), tr(
+    "Everything NISAR found around Pune on one map: flood water, rising reservoirs, likely slide zones, and the events "
+    "people reported. Pick a zone or a flood patch below to see its radar evidence.",
+    "निसारला पुण्याभोवती सापडलेले सर्व काही एकाच नकाशावर: पुराचे पाणी, वाढलेली धरणे, संभाव्य भूस्खलन क्षेत्रे आणि लोकांनी "
+    "नोंदवलेल्या घटना. रडार पुरावा पाहण्यासाठी खाली एखादे क्षेत्र किंवा पुराची जागा निवडा."),
+    tr("All findings on one map", "सर्व निष्कर्ष एकाच नकाशावर"))
 
 seasons = data.season_dates()
 modes = ["change"] + (["season"] if len(seasons) >= 3 else [])

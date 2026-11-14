@@ -233,6 +233,27 @@ DE = {
         "GeoTIFFs liegen im Analyseraster (UTM-Zone 43N, 40 m), GeoJSON in WGS84. Die Dateibeschreibungen sind auf "
         "Englisch.",
     "Place": "Ort", "Event": "Ereignis", "Date": "Datum", "Result": "Ergebnis", "Why (in English)": "Grund (Englisch)",
+    "Everything NISAR found around Pune on one map: flood water, rising reservoirs, likely slide zones, and the events "
+    "people reported. Pick a zone or a flood patch below to see its radar evidence.":
+        "Alles, was NISAR rund um Pune gefunden hat, auf einer Karte: Hochwasser, steigende Stauseen, wahrscheinliche "
+        "Rutschungszonen und die gemeldeten Ereignisse. Wählen Sie unten eine Zone oder Überschwemmungsfläche, um ihre "
+        "Radarbelege zu sehen.",
+    "All findings on one map": "Alle Ergebnisse auf einer Karte",
+    "Next expected NISAR pass over Pune": "Nächster erwarteter NISAR-Überflug über Pune",
+    "tomorrow": "morgen", "in {n} days": "in {n} Tagen",
+    "Every 12 days, cloud or not.": "Alle 12 Tage, mit oder ohne Wolken.",
+    "The rain": "Der Regen", "Cloud": "Wolken", "Before and after": "Vorher, nachher", "What changed": "Was sich änderte",
+    "The weeks after": "Die Wochen danach", "Limits": "Grenzen",
+    "Rain measured from space: NASA GPM IMERG, daily": "Regen, aus dem All gemessen: NASA GPM IMERG, täglich",
+    "What optical satellites saw: NASA Worldview": "Was optische Satelliten sahen: NASA Worldview",
+    "NISAR L-band radar, HH, track {t}": "NISAR-L-Band-Radar, HH, Spur {t}",
+    "NISAR findings, {b} to {a}": "NISAR-Ergebnisse, {b} bis {a}",
+    "NISAR, every pass of track {t} in the same radar mode": "NISAR, jeder Überflug auf Spur {t} im selben Radarmodus",
+    "Reported events checked against the radar": "Gemeldete Ereignisse, mit dem Radar abgeglichen",
+    "Tip: the ← and → keys move between chapters.": "Tipp: Mit den Tasten ← und → wechseln Sie die Kapitel.",
+    "Everything on one map": "Alles auf einer Karte",
+    "Every layer, the season slider and the radar evidence for each zone and flood patch.":
+        "Alle Ebenen, der Jahreszeit-Regler und die Radarbelege für jede Zone und Überschwemmungsfläche.",
     "HV change (dB)": "HV-Änderung (dB)", "HH change (dB)": "HH-Änderung (dB)",
     "Coherence": "Kohärenz", "Coherence vs 1 km": "Kohärenz ggü. 1 km",
     "Place names: © OpenStreetMap contributors (Nominatim). Zones are leads to check, not confirmed landslides.":
