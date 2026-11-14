@@ -45,6 +45,16 @@ python -m pytest -q
 | `data/derived/` | Everything the app shows (small files, each traceable to a NISAR file ID) |
 | `content/` | Story text and style |
 
+## Use of AI
+Following the Space Apps rules on AI disclosure:
+- Most of the pipeline and app code, the tests, the first drafts of the story text (English and Marathi) and the
+  first pass of the reported-events research were written with **Claude (Anthropic)**, directed and reviewed by the
+  team. Every such commit carries a `Co-Authored-By: Claude` line in the history.
+- No measurement is AI-generated. Every number in the app is computed by `pipeline/` from the NISAR files listed on
+  the Method page, or comes from a linked source. Map images are rendered from radar data by our code.
+- `data/demo/` holds **synthetic** radar data in NISAR's file format, used only for development and tests; the app
+  labels it and never mixes it with real results.
+
 ## Data and credits
 NISAR L2 GCOV and GUNW provisional products, NASA/JPL-Caltech and ISRO, via ASF DAAC.
 JRC Global Surface Water (Pekel et al., 2016). Copernicus GLO-30 DEM (ESA). GPM IMERG (NASA GES DISC).
