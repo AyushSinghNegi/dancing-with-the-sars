@@ -37,6 +37,12 @@ def detect(layers, coh, aux):
     d_hv = layers["hv_after"] - layers["hv_before"]
     d_hh = layers["hh_after"] - layers["hh_before"]
     not_water = ~layers["water_after"] & ~layers["permanent"] & layers["valid"]
+    # Scene-wide shift between the two dates (soil and canopy drying out, or calibration of provisional
+    # products) is not a landslide: measure change against the scene's own median change on dry land.
+    offset = {"hh_db": _median(d_hh, not_water), "hv_db": _median(d_hv, not_water)}
+    if C.SLIDE_NORMALISE_SCENE_SHIFT:
+        d_hh = d_hh - offset["hh_db"]
+        d_hv = d_hv - offset["hv_db"]
     bs_change = (d_hh >= C.SLIDE_HH_RISE_DB) | (d_hv <= -C.SLIDE_HV_DROP_DB)
     strong_bs = (d_hh >= 2 * C.SLIDE_HH_RISE_DB) | (d_hv <= -2 * C.SLIDE_HV_DROP_DB)
 
@@ -55,7 +61,12 @@ def detect(layers, coh, aux):
     zones = K.clean(cand, min_px=C.MIN_SLIDE_PIXELS)
     return dict(zones=zones, cand=cand, steep=steep, geom_bad=geom_bad, facing=facing, not_water=not_water,
                 bs_change=bs_change, coh_loss=coh_loss, anomaly=anomaly, slope=slope, d_hv=d_hv, d_hh=d_hh,
-                method=method)
+                method=method, scene_shift=offset)
+
+
+def _median(a, mask):
+    vals = a[mask & np.isfinite(a)]
+    return round(float(np.median(vals)), 2) if vals.size else 0.0
 
 
 def run(layers=None, write=True):

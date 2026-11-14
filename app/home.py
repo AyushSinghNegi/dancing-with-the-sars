@@ -40,7 +40,8 @@ rows.append(ui.finding(ui.COLORS["slide_zones"], ui.fmt_num(sz, 0), "", ui.t("sl
 xt = data.crosstrack()
 if xt:
     rows.append(ui.finding(ui.INK, ui.t("x_of_y", x=xt["confirmed"], y=xt["scored"]), "",
-                           ui.t("xt_good" if xt["good"] else "xt_weak", lift=ui.fmt_num(xt["lift"] or 0, 0))))
+                           ui.t(("xt_good_small" if xt["small"] else "xt_good") if xt["good"] else "xt_weak",
+                                lift=ui.fmt_num(xt["lift"] or 0, 0), cov=xt["coverage"])))
 br = v("water.brighter_flat_km2")
 rows.append(ui.finding(ui.COLORS["brighter"], ui.fmt_num(br), " km²", ui.t("brighter"), hatch=True))
 fh, fo = v("validation.flood.hits"), v("validation.flood.observable")

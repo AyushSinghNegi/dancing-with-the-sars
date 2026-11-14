@@ -1,7 +1,7 @@
 {
   "demo": false,
   "demo_note": null,
-  "generated": "2026-11-14T12:49:18+00:00",
+  "generated": "2026-11-14T13:38:04+00:00",
   "pipeline_version": "0.4.0",
   "python": "3.13.18",
   "aoi": {
@@ -24,6 +24,10 @@
     "permanent_water_occurrence": 50,
     "flood_max_slope_deg": 5.0,
     "slide_min_slope_deg": 15.0,
+    "slide_max_slope_deg": 45.0,
+    "slide_hh_rise_db": 3.0,
+    "slide_hv_drop_db": 2.0,
+    "slide_normalise_scene_shift": true,
     "coherence_low": 0.35,
     "min_patch_pixels": 4
   },
@@ -60,6 +64,39 @@
       ],
       "multilook": 2,
       "url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GUNW_PROVISIONAL_V1/NISAR_L2_PR_GUNW_024_034_D_079_025_4000_SH_20260628T134239_20260628T134314_20260710T134239_20260710T134313_P05023_N_F_J_001/NISAR_L2_PR_GUNW_024_034_D_079_025_4000_SH_20260628T134239_20260628T134314_20260710T134239_20260710T134313_P05023_N_F_J_001.h5"
+    },
+    {
+      "role": "check_before",
+      "granule_id": "NISAR_L2_PR_GCOV_024_106_D_079_4005_DHDH_A_20260703T133420_20260703T133454_P05023_N_F_J_001",
+      "valid_fraction": 0.3819,
+      "native_spacing_m": [
+        10.0,
+        10.0
+      ],
+      "multilook": 4,
+      "url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_024_106_D_079_4005_DHDH_A_20260703T133420_20260703T133454_P05023_N_F_J_001/NISAR_L2_PR_GCOV_024_106_D_079_4005_DHDH_A_20260703T133420_20260703T133454_P05023_N_F_J_001.h5"
+    },
+    {
+      "role": "check_after",
+      "granule_id": "NISAR_L2_PR_GCOV_025_106_D_079_4005_DHDH_A_20260715T133419_20260715T133454_P05023_N_F_J_001",
+      "valid_fraction": 0.3813,
+      "native_spacing_m": [
+        10.0,
+        10.0
+      ],
+      "multilook": 4,
+      "url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_025_106_D_079_4005_DHDH_A_20260715T133419_20260715T133454_P05023_N_F_J_001/NISAR_L2_PR_GCOV_025_106_D_079_4005_DHDH_A_20260715T133419_20260715T133454_P05023_N_F_J_001.h5"
+    },
+    {
+      "role": "check_pair",
+      "granule_id": "NISAR_L2_PR_GUNW_024_106_D_079_025_4000_SH_20260703T133420_20260703T133454_20260715T133419_20260715T133454_P05023_N_F_J_001",
+      "valid_fraction": 0.4866,
+      "native_spacing_m": [
+        20.0,
+        20.0
+      ],
+      "multilook": 2,
+      "url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GUNW_PROVISIONAL_V1/NISAR_L2_PR_GUNW_024_106_D_079_025_4000_SH_20260703T133420_20260703T133454_20260715T133419_20260715T133454_P05023_N_F_J_001/NISAR_L2_PR_GUNW_024_106_D_079_025_4000_SH_20260703T133420_20260703T133454_20260715T133419_20260715T133454_P05023_N_F_J_001.h5"
     }
   ],
   "water": {
@@ -80,10 +117,10 @@
   },
   "slides": {
     "method": "coherence anomaly + backscatter change + slope",
-    "zones": 54,
+    "zones": 50,
     "high": 8,
-    "medium": 16,
-    "area_ha": 22.9,
+    "medium": 15,
+    "area_ha": 20.2,
     "steep_share": 0.227,
     "radar_facing_azimuth_deg": 285.0,
     "layover_shadow_share_of_steep": 0.019
@@ -102,10 +139,74 @@
       "hits": 2,
       "hit_rate": 0.5
     },
-    "unreported_slide_zones": 50
+    "unreported_slide_zones": 46
   },
   "timeline_dates": 2,
-  "crosstrack": null,
+  "crosstrack": {
+    "pair": {
+      "track": "106",
+      "before": "2026-07-03",
+      "after": "2026-07-15",
+      "granules": {
+        "before": "NISAR_L2_PR_GCOV_024_106_D_079_4005_DHDH_A_20260703T133420_20260703T133454_P05023_N_F_J_001",
+        "after": "NISAR_L2_PR_GCOV_025_106_D_079_4005_DHDH_A_20260715T133419_20260715T133454_P05023_N_F_J_001",
+        "pair": "NISAR_L2_PR_GUNW_024_106_D_079_025_4000_SH_20260703T133420_20260703T133454_20260715T133419_20260715T133454_P05023_N_F_J_001"
+      }
+    },
+    "status_counts": {
+      "confirmed": 2,
+      "partial": 9,
+      "not seen": 1,
+      "not covered": 38
+    },
+    "status_by_confidence": {
+      "high": {
+        "confirmed": 0,
+        "partial": 1,
+        "not seen": 0,
+        "not covered": 7
+      },
+      "low": {
+        "confirmed": 1,
+        "partial": 7,
+        "not seen": 1,
+        "not covered": 18
+      },
+      "medium": {
+        "confirmed": 1,
+        "partial": 1,
+        "not seen": 0,
+        "not covered": 13
+      }
+    },
+    "real": {
+      "confirmed": 0.167,
+      "confirmed_or_partial": 0.917,
+      "zones_scored": 12
+    },
+    "chance": {
+      "confirmed": 0.021,
+      "confirmed_or_partial": 0.788,
+      "zones_scored": 472,
+      "trials": 300
+    },
+    "lift_confirmed": 7.9,
+    "p_value": 0.026,
+    "buffer_m": 80.0,
+    "zones_track106": 77,
+    "valid_fraction": 0.381,
+    "scene_shift_db": {
+      "track034": {
+        "hh_db": 0.27,
+        "hv_db": 0.1
+      },
+      "track106": {
+        "hh_db": -1.97,
+        "hv_db": -1.69
+      }
+    },
+    "water_reliable": false
+  },
   "bounds_latlon": [
     [
       18.144398141709033,

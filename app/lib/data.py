@@ -151,6 +151,7 @@ def passes() -> pd.DataFrame | None:
 
 
 XT_LIFT_MIN = 2.0   # below this the second track agrees about as often as chance: say so
+XT_SMALL_SAMPLE = 20  # fewer zones than this inside the second track's view: call it a small sample
 
 
 def crosstrack() -> dict | None:
@@ -163,5 +164,7 @@ def crosstrack() -> dict | None:
     if not scored:
         return None
     lift = xt.get("lift_confirmed")
+    cov = xt.get("valid_fraction")
     return {**xt, "confirmed": c.get("confirmed", 0), "scored": scored, "lift": lift,
-            "good": lift is not None and lift >= XT_LIFT_MIN}
+            "good": lift is not None and lift >= XT_LIFT_MIN, "small": scored < XT_SMALL_SAMPLE,
+            "coverage": f"{cov:.0%}" if cov is not None else "part"}

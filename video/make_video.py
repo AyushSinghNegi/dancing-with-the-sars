@@ -418,8 +418,9 @@ class Video:
         lift = xt.get("lift_confirmed")
         lines = ["Most flood water drained before the radar came back on 10 July; we say so in the app."]
         if scored and lift and lift >= 2:
-            lines.append(f"A second NISAR track found {sc['confirmed']} of {scored} slide zones again, "
-                         f"{lift:.0f}× more often than chance.")
+            lines.append(f"A second NISAR track, from another orbit, found {sc['confirmed']} of the {scored} slide "
+                         f"zones it could see again: {lift:.0f}× more often than chance"
+                         + (", from a small sample." if scored < 20 else "."))
         for k, ln in enumerate(lines):
             y = text_block(img, (tx, y), ln, F[(400, 30)], MUTED, 700, line_h=42, alpha=ramp(i, 60 + 24 * k, 16))
             y += 18

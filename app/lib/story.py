@@ -41,9 +41,10 @@ def _crosstrack_sentence(fmt_date) -> str:
     xt = data.crosstrack()
     if not xt:
         return ""
-    return ui.t("xt_story_good" if xt["good"] else "xt_story_weak", b=fmt_date(xt["pair"]["before"]),
-                a=fmt_date(xt["pair"]["after"]), c=ui.fmt_num(xt["confirmed"], 0), n=ui.fmt_num(xt["scored"], 0),
-                lift=ui.fmt_num(xt["lift"] or 0, 0))
+    key = ("xt_story_good_small" if xt["small"] else "xt_story_good") if xt["good"] else "xt_story_weak"
+    return ui.t(key, b=fmt_date(xt["pair"]["before"]), a=fmt_date(xt["pair"]["after"]),
+                c=ui.fmt_num(xt["confirmed"], 0), n=ui.fmt_num(xt["scored"], 0),
+                lift=ui.fmt_num(xt["lift"] or 0, 0), cov=xt["coverage"])
 
 
 def steps() -> list[tuple[str, str]]:

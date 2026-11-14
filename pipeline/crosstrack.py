@@ -95,6 +95,7 @@ def run(write=True):
     d2 = K.load_pair(C.CROSSCHECK["before"], C.CROSSCHECK["after"], C.CROSSCHECK["pair"])
     wstats2, lay2, _ = water.compute(d2, aux, labels=lab)
     det2 = slide_zones.detect(lay2, d2["coherence"], aux)
+    wstats_d = {m: v for m, v, *_ in wstats2}
 
     # Main pair, from the saved layers (same rule, track-034 geometry).
     lay1 = {k: K.load_layer(k) for k in ("hh_before", "hh_after", "hv_before", "hv_after",
@@ -119,9 +120,13 @@ def run(write=True):
                 "confirmed_or_partial": _r((c[0] + c[1]) / seen) if seen else None, "zones_scored": int(seen)}
 
     real_rates, rand_rates = rates(real), rates(rand) if rand is not None else {}
-    lift = None
+    lift = p_value = None
     if rand is not None and real[:3].sum() and rand[0] > 0:
-        lift = (real[0] / real[:3].sum()) / (rand[0] / rand[:3].sum())
+        p_chance = rand[0] / rand[:3].sum()
+        lift = (real[0] / real[:3].sum()) / p_chance
+        # How likely this many found-again zones would be by chance alone (one-sided binomial test).
+        from scipy.stats import binom
+        p_value = float(binom.sf(int(real[0]) - 1, int(real[:3].sum()), p_chance))
 
     # Per-zone status, written back into the zone file the app reads.
     gj_path = C.DERIVED / "slide_zones.geojson"
@@ -146,6 +151,11 @@ def run(write=True):
         "real": real_rates,
         "chance": {**rand_rates, "trials": C.CROSS_RANDOM_TRIALS},
         "lift_confirmed": None if lift is None else round(float(lift), 1),
+        "p_value": None if p_value is None else round(p_value, 3),
+        "scene_shift_db": {"track034": det1["scene_shift"], "track106": det2["scene_shift"]},
+        # During the storm (3 Jul) rain roughens water surfaces, so radar sees much open water as bright;
+        # track-106 water areas are kept for the record but not shown when this check fails.
+        "water_reliable": bool((wstats_d.get("permanent_water_seen_dark") or 0) >= 0.6),
         "zones_track106": int(ndi.label(det2["zones"], structure=np.ones((3, 3)))[1]),
         "water": {m: _r(v) if isinstance(v, float) else v for m, v, *_ in wstats2},
         "events": _events(det2["zones"], lay2["valid"], b, a),

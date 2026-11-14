@@ -2,10 +2,10 @@
   "type": "FeatureCollection",
   "summary": {
     "method": "coherence anomaly + backscatter change + slope",
-    "zones": 54,
+    "zones": 50,
     "high": 8,
-    "medium": 16,
-    "area_ha": 22.9,
+    "medium": 15,
+    "area_ha": 20.2,
     "steep_share": 0.227,
     "radar_facing_azimuth_deg": 285.0,
     "layover_shadow_share_of_steep": 0.019
@@ -17,8 +17,8 @@
         "kind": "slide_zone",
         "area_ha": 0.48,
         "slope_deg": 38.7,
-        "hv_change_db": 1.5,
-        "hh_change_db": 6.4,
+        "hv_change_db": 1.4,
+        "hh_change_db": 6.2,
         "coherence": 0.21,
         "coherence_vs_local": 0.46,
         "score": 0.86,
@@ -26,7 +26,8 @@
         "lon": 73.39186,
         "lat": 18.89501,
         "id": "SZ001",
-        "near": "Karjat Taluka, Raigad"
+        "near": "Karjat Taluka, Raigad",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -62,8 +63,8 @@
         "kind": "slide_zone",
         "area_ha": 0.32,
         "slope_deg": 39.5,
-        "hv_change_db": -5.6,
-        "hh_change_db": -2.5,
+        "hv_change_db": -5.7,
+        "hh_change_db": -2.7,
         "coherence": 0.16,
         "coherence_vs_local": 0.46,
         "score": 0.86,
@@ -71,7 +72,8 @@
         "lon": 73.56288,
         "lat": 18.19757,
         "id": "SZ002",
-        "near": "Dhangarwadi, Raigad"
+        "near": "Dhangarwadi, Raigad",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -107,8 +109,8 @@
         "kind": "slide_zone",
         "area_ha": 0.32,
         "slope_deg": 36.5,
-        "hv_change_db": -4.8,
-        "hh_change_db": 1.5,
+        "hv_change_db": -4.9,
+        "hh_change_db": 1.2,
         "coherence": 0.17,
         "coherence_vs_local": 0.46,
         "score": 0.86,
@@ -116,7 +118,8 @@
         "lon": 73.52673,
         "lat": 18.17851,
         "id": "SZ003",
-        "near": "Waki Budruk, Raigad"
+        "near": "Waki Budruk, Raigad",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -152,8 +155,8 @@
         "kind": "slide_zone",
         "area_ha": 0.32,
         "slope_deg": 32.0,
-        "hv_change_db": -5.3,
-        "hh_change_db": -0.5,
+        "hv_change_db": -5.4,
+        "hh_change_db": -0.8,
         "coherence": 0.18,
         "coherence_vs_local": 0.4,
         "score": 0.85,
@@ -161,7 +164,8 @@
         "lon": 73.40928,
         "lat": 18.47321,
         "id": "SZ004",
-        "near": "Dongerwadi, Pune"
+        "near": "Dongerwadi, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -223,8 +227,8 @@
         "kind": "slide_zone",
         "area_ha": 0.32,
         "slope_deg": 38.0,
-        "hv_change_db": -5.4,
-        "hh_change_db": -6.8,
+        "hv_change_db": -5.5,
+        "hh_change_db": -7.1,
         "coherence": 0.22,
         "coherence_vs_local": 0.48,
         "score": 0.85,
@@ -232,7 +236,8 @@
         "lon": 73.52241,
         "lat": 18.17594,
         "id": "SZ005",
-        "near": "Jholichakond, Raigad"
+        "near": "Jholichakond, Raigad",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -294,8 +299,8 @@
         "kind": "slide_zone",
         "area_ha": 0.48,
         "slope_deg": 38.3,
-        "hv_change_db": -5.4,
-        "hh_change_db": -3.1,
+        "hv_change_db": -5.5,
+        "hh_change_db": -3.4,
         "coherence": 0.23,
         "coherence_vs_local": 0.48,
         "score": 0.85,
@@ -303,7 +308,8 @@
         "lon": 73.72455,
         "lat": 18.15528,
         "id": "SZ006",
-        "near": "Mahuda, Pune"
+        "near": "Mahuda, Pune",
+        "track106": "partial"
       },
       "geometry": {
         "type": "Polygon",
@@ -347,8 +353,8 @@
         "kind": "slide_zone",
         "area_ha": 0.32,
         "slope_deg": 39.5,
-        "hv_change_db": 2.0,
-        "hh_change_db": 10.3,
+        "hv_change_db": 1.9,
+        "hh_change_db": 10.0,
         "coherence": 0.18,
         "coherence_vs_local": 0.49,
         "score": 0.84,
@@ -356,7 +362,8 @@
         "lon": 73.33264,
         "lat": 18.77902,
         "id": "SZ007",
-        "near": "Adoshi, Raigad"
+        "near": "Adoshi, Raigad",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -392,8 +399,8 @@
         "kind": "slide_zone",
         "area_ha": 0.32,
         "slope_deg": 38.5,
-        "hv_change_db": -5.1,
-        "hh_change_db": -6.9,
+        "hv_change_db": -5.2,
+        "hh_change_db": -7.1,
         "coherence": 0.22,
         "coherence_vs_local": 0.48,
         "score": 0.84,
@@ -401,7 +408,8 @@
         "lon": 73.52147,
         "lat": 18.17485,
         "id": "SZ008",
-        "near": "Jholichakond, Raigad"
+        "near": "Jholichakond, Raigad",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -437,16 +445,17 @@
         "kind": "slide_zone",
         "area_ha": 0.32,
         "slope_deg": 32.5,
-        "hv_change_db": 1.9,
-        "hh_change_db": 5.2,
+        "hv_change_db": 1.8,
+        "hh_change_db": 4.9,
         "coherence": 0.24,
         "coherence_vs_local": 0.48,
-        "score": 0.75,
+        "score": 0.73,
         "confidence": "medium",
         "lon": 73.48086,
         "lat": 18.73059,
         "id": "SZ009",
-        "near": "Karli, Pune"
+        "near": "Karli, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -481,133 +490,18 @@
       "properties": {
         "kind": "slide_zone",
         "area_ha": 0.32,
-        "slope_deg": 25.5,
-        "hv_change_db": 2.6,
-        "hh_change_db": 5.6,
-        "coherence": 0.14,
-        "coherence_vs_local": 0.41,
-        "score": 0.72,
-        "confidence": "medium",
-        "lon": 73.40159,
-        "lat": 18.66867,
-        "id": "SZ010",
-        "near": "Mulshi Subdistrict, Pune"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              73.40139851130418,
-              18.669029709550347
-            ],
-            [
-              73.40140528548689,
-              18.668306951942576
-            ],
-            [
-              73.40178443977186,
-              18.668310179784626
-            ],
-            [
-              73.40177766719418,
-              18.66903293752634
-            ],
-            [
-              73.40139851130418,
-              18.669029709550347
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "kind": "slide_zone",
-        "area_ha": 0.32,
-        "slope_deg": 36.0,
-        "hv_change_db": 5.0,
-        "hh_change_db": 4.9,
-        "coherence": 0.18,
-        "coherence_vs_local": 0.56,
-        "score": 0.72,
-        "confidence": "medium",
-        "lon": 73.39023,
-        "lat": 18.52618,
-        "id": "SZ011",
-        "near": "Adgaon, Pune"
-      },
-      "geometry": {
-        "type": "MultiPolygon",
-        "coordinates": [
-          [
-            [
-              [
-                73.39023209434332,
-                18.525816501427023
-              ],
-              [
-                73.3898532574557,
-                18.525813274155027
-              ],
-              [
-                73.38984987387107,
-                18.526174656371115
-              ],
-              [
-                73.39022871155395,
-                18.52617788371051
-              ],
-              [
-                73.39023209434332,
-                18.525816501427023
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                73.3902253286867,
-                18.526539265979604
-              ],
-              [
-                73.39060416724273,
-                18.526542492627705
-              ],
-              [
-                73.39060754931472,
-                18.526181110291226
-              ],
-              [
-                73.39022871155395,
-                18.52617788371051
-              ],
-              [
-                73.3902253286867,
-                18.526539265979604
-              ]
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "kind": "slide_zone",
-        "area_ha": 0.32,
         "slope_deg": 42.0,
-        "hv_change_db": -2.9,
-        "hh_change_db": -1.6,
+        "hv_change_db": -3.0,
+        "hh_change_db": -1.9,
         "coherence": 0.22,
         "coherence_vs_local": 0.44,
-        "score": 0.71,
+        "score": 0.72,
         "confidence": "medium",
         "lon": 73.37,
         "lat": 18.3003,
-        "id": "SZ012",
-        "near": "Jor, Raigad"
+        "id": "SZ010",
+        "near": "Jor, Raigad",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -642,62 +536,18 @@
       "properties": {
         "kind": "slide_zone",
         "area_ha": 0.32,
-        "slope_deg": 37.0,
-        "hv_change_db": 0.6,
-        "hh_change_db": 4.2,
+        "slope_deg": 37.5,
+        "hv_change_db": -3.2,
+        "hh_change_db": 2.1,
         "coherence": 0.2,
         "coherence_vs_local": 0.5,
         "score": 0.7,
         "confidence": "medium",
-        "lon": 73.39137,
-        "lat": 18.44397,
-        "id": "SZ013",
-        "near": "Patnus, Raigad"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              73.3909946083744,
-              18.44414373654256
-            ],
-            [
-              73.3909979735033,
-              18.44378235099734
-            ],
-            [
-              73.3917552874126,
-              18.44378877268982
-            ],
-            [
-              73.3917519238659,
-              18.444150158369684
-            ],
-            [
-              73.3909946083744,
-              18.44414373654256
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "kind": "slide_zone",
-        "area_ha": 0.32,
-        "slope_deg": 37.5,
-        "hv_change_db": -3.1,
-        "hh_change_db": 2.3,
-        "coherence": 0.2,
-        "coherence_vs_local": 0.5,
-        "score": 0.69,
-        "confidence": "medium",
         "lon": 73.3365,
         "lat": 18.69449,
-        "id": "SZ014",
-        "near": "Wave, Raigad"
+        "id": "SZ011",
+        "near": "Wave, Raigad",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -733,16 +583,17 @@
         "kind": "slide_zone",
         "area_ha": 0.32,
         "slope_deg": 38.5,
-        "hv_change_db": -2.4,
-        "hh_change_db": -0.5,
+        "hv_change_db": -2.5,
+        "hh_change_db": -0.8,
         "coherence": 0.16,
         "coherence_vs_local": 0.42,
-        "score": 0.69,
+        "score": 0.7,
         "confidence": "medium",
         "lon": 73.52837,
         "lat": 18.18665,
-        "id": "SZ015",
-        "near": "Waki Budruk, Raigad"
+        "id": "SZ012",
+        "near": "Waki Budruk, Raigad",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -777,62 +628,18 @@
       "properties": {
         "kind": "slide_zone",
         "area_ha": 0.32,
-        "slope_deg": 44.5,
-        "hv_change_db": 1.4,
-        "hh_change_db": 4.0,
-        "coherence": 0.24,
-        "coherence_vs_local": 0.49,
-        "score": 0.69,
-        "confidence": "medium",
-        "lon": 73.73245,
-        "lat": 18.15088,
-        "id": "SZ016",
-        "near": "Mahuda, Pune"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              73.73207498533813,
-              18.151053500344265
-            ],
-            [
-              73.7320775921535,
-              18.150692049405365
-            ],
-            [
-              73.73283374748658,
-              18.15069703221353
-            ],
-            [
-              73.73283114222482,
-              18.151058483258367
-            ],
-            [
-              73.73207498533813,
-              18.151053500344265
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "kind": "slide_zone",
-        "area_ha": 0.32,
         "slope_deg": 33.0,
-        "hv_change_db": -2.7,
-        "hh_change_db": -2.1,
+        "hv_change_db": -2.8,
+        "hh_change_db": -2.4,
         "coherence": 0.19,
         "coherence_vs_local": 0.42,
-        "score": 0.68,
+        "score": 0.69,
         "confidence": "medium",
         "lon": 73.35302,
         "lat": 18.71126,
-        "id": "SZ017",
-        "near": "Mawal Subdistrict, Pune"
+        "id": "SZ013",
+        "near": "Mawal Subdistrict, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -867,17 +674,64 @@
       "properties": {
         "kind": "slide_zone",
         "area_ha": 0.32,
+        "slope_deg": 25.5,
+        "hv_change_db": 2.5,
+        "hh_change_db": 5.3,
+        "coherence": 0.14,
+        "coherence_vs_local": 0.41,
+        "score": 0.69,
+        "confidence": "medium",
+        "lon": 73.40159,
+        "lat": 18.66867,
+        "id": "SZ014",
+        "near": "Mulshi Subdistrict, Pune",
+        "track106": "not covered"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.40139851130418,
+              18.669029709550347
+            ],
+            [
+              73.40140528548689,
+              18.668306951942576
+            ],
+            [
+              73.40178443977186,
+              18.668310179784626
+            ],
+            [
+              73.40177766719418,
+              18.66903293752634
+            ],
+            [
+              73.40139851130418,
+              18.669029709550347
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "kind": "slide_zone",
+        "area_ha": 0.32,
         "slope_deg": 39.5,
-        "hv_change_db": -2.9,
-        "hh_change_db": -2.4,
+        "hv_change_db": -3.0,
+        "hh_change_db": -2.7,
         "coherence": 0.17,
         "coherence_vs_local": 0.5,
-        "score": 0.67,
+        "score": 0.68,
         "confidence": "medium",
         "lon": 73.37719,
         "lat": 18.54269,
-        "id": "SZ018",
-        "near": "Adgaon, Pune"
+        "id": "SZ015",
+        "near": "Adgaon, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -938,41 +792,42 @@
       "properties": {
         "kind": "slide_zone",
         "area_ha": 0.32,
-        "slope_deg": 30.5,
-        "hv_change_db": 3.6,
-        "hh_change_db": 4.8,
-        "coherence": 0.22,
-        "coherence_vs_local": 0.52,
-        "score": 0.66,
+        "slope_deg": 37.0,
+        "hv_change_db": 0.5,
+        "hh_change_db": 3.9,
+        "coherence": 0.2,
+        "coherence_vs_local": 0.5,
+        "score": 0.68,
         "confidence": "medium",
-        "lon": 73.41104,
-        "lat": 18.5287,
-        "id": "SZ019",
-        "near": "Adgaon, Pune"
+        "lon": 73.39137,
+        "lat": 18.44397,
+        "id": "SZ016",
+        "near": "Patnus, Raigad",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              73.41066268054406,
-              18.528880734270505
+              73.3909946083744,
+              18.44414373654256
             ],
             [
-              73.41066602092683,
-              18.52851934847152
+              73.3909979735033,
+              18.44378235099734
             ],
             [
-              73.4114237144268,
-              18.52852571973272
+              73.3917552874126,
+              18.44378877268982
             ],
             [
-              73.41142037563488,
-              18.52888710566475
+              73.3917519238659,
+              18.444150158369684
             ],
             [
-              73.41066268054406,
-              18.528880734270505
+              73.3909946083744,
+              18.44414373654256
             ]
           ]
         ]
@@ -983,41 +838,88 @@
       "properties": {
         "kind": "slide_zone",
         "area_ha": 0.32,
-        "slope_deg": 29.0,
-        "hv_change_db": 1.8,
-        "hh_change_db": 4.7,
-        "coherence": 0.15,
+        "slope_deg": 44.5,
+        "hv_change_db": 1.3,
+        "hh_change_db": 3.8,
+        "coherence": 0.24,
         "coherence_vs_local": 0.49,
-        "score": 0.65,
+        "score": 0.67,
         "confidence": "medium",
-        "lon": 73.41306,
-        "lat": 18.67871,
-        "id": "SZ020",
-        "near": "Lonavala, Pune"
+        "lon": 73.73245,
+        "lat": 18.15088,
+        "id": "SZ017",
+        "near": "Mahuda, Pune",
+        "track106": "confirmed"
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              73.41268239008971,
-              18.67888349216238
+              73.73207498533813,
+              18.151053500344265
             ],
             [
-              73.41268575522378,
-              18.67852211175445
+              73.7320775921535,
+              18.150692049405365
             ],
             [
-              73.41344411346381,
-              18.67852852450022
+              73.73283374748658,
+              18.15069703221353
             ],
             [
-              73.41344074993583,
-              18.678889905041128
+              73.73283114222482,
+              18.151058483258367
             ],
             [
-              73.41268239008971,
-              18.67888349216238
+              73.73207498533813,
+              18.151053500344265
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "kind": "slide_zone",
+        "area_ha": 0.32,
+        "slope_deg": 34.5,
+        "hv_change_db": -2.3,
+        "hh_change_db": -1.2,
+        "coherence": 0.19,
+        "coherence_vs_local": 0.47,
+        "score": 0.64,
+        "confidence": "medium",
+        "lon": 73.40401,
+        "lat": 18.34649,
+        "id": "SZ018",
+        "near": "Boravali, Raigad",
+        "track106": "not covered"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.40363219729514,
+              18.346667757027156
+            ],
+            [
+              73.40363551709659,
+              18.34630636554135
+            ],
+            [
+              73.40439240993129,
+              18.34631270435256
+            ],
+            [
+              73.40438909170224,
+              18.346674095971867
+            ],
+            [
+              73.40363219729514,
+              18.346667757027156
             ]
           ]
         ]
@@ -1029,16 +931,17 @@
         "kind": "slide_zone",
         "area_ha": 0.48,
         "slope_deg": 37.3,
-        "hv_change_db": -1.4,
-        "hh_change_db": 2.6,
+        "hv_change_db": -1.5,
+        "hh_change_db": 2.3,
         "coherence": 0.19,
         "coherence_vs_local": 0.38,
-        "score": 0.65,
+        "score": 0.64,
         "confidence": "medium",
         "lon": 73.73228,
         "lat": 18.14907,
-        "id": "SZ021",
-        "near": "Mahuda, Pune"
+        "id": "SZ019",
+        "near": "Mahuda, Pune",
+        "track106": "partial"
       },
       "geometry": {
         "type": "Polygon",
@@ -1072,18 +975,111 @@
       "type": "Feature",
       "properties": {
         "kind": "slide_zone",
+        "area_ha": 0.32,
+        "slope_deg": 29.0,
+        "hv_change_db": 1.7,
+        "hh_change_db": 4.4,
+        "coherence": 0.15,
+        "coherence_vs_local": 0.49,
+        "score": 0.63,
+        "confidence": "medium",
+        "lon": 73.41306,
+        "lat": 18.67871,
+        "id": "SZ020",
+        "near": "Lonavala, Pune",
+        "track106": "not covered"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.41268239008971,
+              18.67888349216238
+            ],
+            [
+              73.41268575522378,
+              18.67852211175445
+            ],
+            [
+              73.41344411346381,
+              18.67852852450022
+            ],
+            [
+              73.41344074993583,
+              18.678889905041128
+            ],
+            [
+              73.41268239008971,
+              18.67888349216238
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "kind": "slide_zone",
+        "area_ha": 0.32,
+        "slope_deg": 30.5,
+        "hv_change_db": 3.5,
+        "hh_change_db": 4.5,
+        "coherence": 0.22,
+        "coherence_vs_local": 0.52,
+        "score": 0.63,
+        "confidence": "medium",
+        "lon": 73.41104,
+        "lat": 18.5287,
+        "id": "SZ021",
+        "near": "Adgaon, Pune",
+        "track106": "not covered"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.41066268054406,
+              18.528880734270505
+            ],
+            [
+              73.41066602092683,
+              18.52851934847152
+            ],
+            [
+              73.4114237144268,
+              18.52852571973272
+            ],
+            [
+              73.41142037563488,
+              18.52888710566475
+            ],
+            [
+              73.41066268054406,
+              18.528880734270505
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "kind": "slide_zone",
         "area_ha": 0.8,
         "slope_deg": 37.0,
-        "hv_change_db": -2.1,
-        "hh_change_db": 1.6,
+        "hv_change_db": -2.2,
+        "hh_change_db": 1.4,
         "coherence": 0.2,
         "coherence_vs_local": 0.48,
-        "score": 0.62,
+        "score": 0.63,
         "confidence": "medium",
         "lon": 73.47168,
         "lat": 18.29102,
         "id": "SZ022",
-        "near": "Warangi, Raigad"
+        "near": "Warangi, Raigad",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -1119,8 +1115,8 @@
         "kind": "slide_zone",
         "area_ha": 0.32,
         "slope_deg": 22.0,
-        "hv_change_db": 2.2,
-        "hh_change_db": 9.7,
+        "hv_change_db": 2.1,
+        "hh_change_db": 9.4,
         "coherence": 0.24,
         "coherence_vs_local": 0.52,
         "score": 0.61,
@@ -1128,7 +1124,8 @@
         "lon": 73.65559,
         "lat": 18.50819,
         "id": "SZ023",
-        "near": "Sutarwadi, Pune"
+        "near": "Sutarwadi, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -1163,17 +1160,136 @@
       "properties": {
         "kind": "slide_zone",
         "area_ha": 0.32,
+        "slope_deg": 25.0,
+        "hv_change_db": -4.4,
+        "hh_change_db": -4.7,
+        "coherence": 0.24,
+        "coherence_vs_local": 0.56,
+        "score": 0.59,
+        "confidence": "low",
+        "lon": 73.90851,
+        "lat": 18.88936,
+        "id": "SZ024",
+        "near": "Sandbhorwadi, Pune",
+        "track106": "partial"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.90813338366273,
+              18.889538684041717
+            ],
+            [
+              73.90813572665822,
+              18.88917723829368
+            ],
+            [
+              73.90889518244065,
+              18.889181697075337
+            ],
+            [
+              73.90889284107408,
+              18.88954314291497
+            ],
+            [
+              73.90813338366273,
+              18.889538684041717
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "kind": "slide_zone",
+        "area_ha": 0.32,
+        "slope_deg": 40.0,
+        "hv_change_db": -2.1,
+        "hh_change_db": -0.0,
+        "coherence": 0.26,
+        "coherence_vs_local": 0.53,
+        "score": 0.59,
+        "confidence": "low",
+        "lon": 73.54545,
+        "lat": 18.629,
+        "id": "SZ025",
+        "near": "Andhalegaon, Pune",
+        "track106": "not covered"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                73.54583407477695,
+                18.629001202687267
+              ],
+              [
+                73.54583714885143,
+                18.628639797946256
+              ],
+              [
+                73.54545805708393,
+                18.62863686694891
+              ],
+              [
+                73.54545498220875,
+                18.628998271628998
+              ],
+              [
+                73.54583407477695,
+                18.629001202687267
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                73.54507588971109,
+                18.628995339807318
+              ],
+              [
+                73.54507281396465,
+                18.629356744412092
+              ],
+              [
+                73.54545190726304,
+                18.629359676294712
+              ],
+              [
+                73.54545498220875,
+                18.628998271628998
+              ],
+              [
+                73.54507588971109,
+                18.628995339807318
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "kind": "slide_zone",
+        "area_ha": 0.32,
         "slope_deg": 31.0,
-        "hv_change_db": 4.1,
-        "hh_change_db": 4.3,
+        "hv_change_db": 4.0,
+        "hh_change_db": 4.0,
         "coherence": 0.31,
         "coherence_vs_local": 0.55,
-        "score": 0.61,
-        "confidence": "medium",
+        "score": 0.59,
+        "confidence": "low",
         "lon": 73.73804,
         "lat": 18.1623,
-        "id": "SZ024",
-        "near": "Mahuda, Pune"
+        "id": "SZ026",
+        "near": "Mahuda, Pune",
+        "track106": "partial"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1233,243 +1349,19 @@
       "type": "Feature",
       "properties": {
         "kind": "slide_zone",
-        "area_ha": 0.32,
-        "slope_deg": 38.5,
-        "hv_change_db": -1.6,
-        "hh_change_db": -2.7,
-        "coherence": 0.17,
-        "coherence_vs_local": 0.45,
-        "score": 0.6,
-        "confidence": "low",
-        "lon": 73.54221,
-        "lat": 18.18152,
-        "id": "SZ025",
-        "near": "Waki Budruk, Raigad"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              73.5420207043782,
-              18.18187537980187
-            ],
-            [
-              73.54202671016542,
-              18.181152537587757
-            ],
-            [
-              73.54240482336039,
-              18.18115540747793
-            ],
-            [
-              73.54239881912937,
-              18.1818782498139
-            ],
-            [
-              73.5420207043782,
-              18.18187537980187
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "kind": "slide_zone",
-        "area_ha": 0.64,
-        "slope_deg": 35.0,
-        "hv_change_db": 2.2,
-        "hh_change_db": 3.6,
-        "coherence": 0.24,
-        "coherence_vs_local": 0.59,
-        "score": 0.59,
-        "confidence": "low",
-        "lon": 73.75365,
-        "lat": 18.17433,
-        "id": "SZ026",
-        "near": "Mahuda, Pune"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              73.75345629173844,
-              18.175050278043372
-            ],
-            [
-              73.75346655732861,
-              18.173604465901477
-            ],
-            [
-              73.75384468738143,
-              18.173606918624877
-            ],
-            [
-              73.75383442490333,
-              18.175052730975136
-            ],
-            [
-              73.75345629173844,
-              18.175050278043372
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "kind": "slide_zone",
-        "area_ha": 0.32,
-        "slope_deg": 25.0,
-        "hv_change_db": -4.3,
-        "hh_change_db": -4.4,
-        "coherence": 0.24,
-        "coherence_vs_local": 0.56,
-        "score": 0.58,
-        "confidence": "low",
-        "lon": 73.90851,
-        "lat": 18.88936,
-        "id": "SZ027",
-        "near": "Sandbhorwadi, Pune"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              73.90813338366273,
-              18.889538684041717
-            ],
-            [
-              73.90813572665822,
-              18.88917723829368
-            ],
-            [
-              73.90889518244065,
-              18.889181697075337
-            ],
-            [
-              73.90889284107408,
-              18.88954314291497
-            ],
-            [
-              73.90813338366273,
-              18.889538684041717
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "kind": "slide_zone",
-        "area_ha": 0.32,
-        "slope_deg": 31.5,
-        "hv_change_db": 0.6,
-        "hh_change_db": 3.3,
-        "coherence": 0.19,
-        "coherence_vs_local": 0.49,
-        "score": 0.58,
-        "confidence": "low",
-        "lon": 73.37491,
-        "lat": 18.74235,
-        "id": "SZ028",
-        "near": "Khandala, Pune"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              73.37453302296356,
-              18.742525152252004
-            ],
-            [
-              73.37453648156679,
-              18.742163781078403
-            ],
-            [
-              73.37529510919883,
-              18.742170369470884
-            ],
-            [
-              73.37529165220806,
-              18.742531740780716
-            ],
-            [
-              73.37453302296356,
-              18.742525152252004
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "kind": "slide_zone",
-        "area_ha": 0.32,
-        "slope_deg": 30.0,
-        "hv_change_db": 2.0,
-        "hh_change_db": 4.2,
-        "coherence": 0.29,
-        "coherence_vs_local": 0.57,
-        "score": 0.57,
-        "confidence": "low",
-        "lon": 73.63691,
-        "lat": 18.85468,
-        "id": "SZ029",
-        "near": "Awrewada, Pune"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              73.63652844385909,
-              18.854854892105116
-            ],
-            [
-              73.63653136380674,
-              18.85449348192666
-            ],
-            [
-              73.6372905858759,
-              18.85449904021291
-            ],
-            [
-              73.63728766755294,
-              18.85486045050573
-            ],
-            [
-              73.63652844385909,
-              18.854854892105116
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "kind": "slide_zone",
         "area_ha": 0.48,
         "slope_deg": 32.0,
-        "hv_change_db": -2.0,
-        "hh_change_db": 1.8,
+        "hv_change_db": -2.1,
+        "hh_change_db": 1.5,
         "coherence": 0.25,
         "coherence_vs_local": 0.47,
-        "score": 0.57,
+        "score": 0.58,
         "confidence": "low",
         "lon": 73.3847,
         "lat": 18.78626,
-        "id": "SZ030",
-        "near": "Thakurwadi, Pune"
+        "id": "SZ027",
+        "near": "Thakurwadi, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -1505,16 +1397,17 @@
         "kind": "slide_zone",
         "area_ha": 0.32,
         "slope_deg": 17.5,
-        "hv_change_db": -6.0,
-        "hh_change_db": -4.0,
+        "hv_change_db": -6.1,
+        "hh_change_db": -4.2,
         "coherence": 0.18,
         "coherence_vs_local": 0.46,
         "score": 0.57,
         "confidence": "low",
         "lon": 73.55487,
         "lat": 18.2286,
-        "id": "SZ031",
-        "near": "Bhordi, Pune"
+        "id": "SZ028",
+        "near": "Bhordi, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1574,42 +1467,43 @@
       "type": "Feature",
       "properties": {
         "kind": "slide_zone",
-        "area_ha": 0.48,
-        "slope_deg": 33.7,
-        "hv_change_db": 1.7,
-        "hh_change_db": 3.5,
-        "coherence": 0.23,
+        "area_ha": 0.64,
+        "slope_deg": 35.0,
+        "hv_change_db": 2.1,
+        "hh_change_db": 3.3,
+        "coherence": 0.24,
         "coherence_vs_local": 0.59,
         "score": 0.56,
         "confidence": "low",
-        "lon": 73.73191,
-        "lat": 18.16266,
-        "id": "SZ032",
-        "near": "Mahuda, Pune"
+        "lon": 73.75365,
+        "lat": 18.17433,
+        "id": "SZ029",
+        "near": "Mahuda, Pune",
+        "track106": "partial"
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              73.73161082227642,
-              18.16297887919353
+              73.75345629173844,
+              18.175050278043372
             ],
             [
-              73.7316160414198,
-              18.16225597832722
+              73.75346655732861,
+              18.173604465901477
             ],
             [
-              73.73199414386194,
-              18.162258472541243
+              73.75384468738143,
+              18.173606918624877
             ],
             [
-              73.73236703033119,
-              18.16298386709036
+              73.75383442490333,
+              18.175052730975136
             ],
             [
-              73.73161082227642,
-              18.16297887919353
+              73.75345629173844,
+              18.175050278043372
             ]
           ]
         ]
@@ -1621,16 +1515,17 @@
         "kind": "slide_zone",
         "area_ha": 0.8,
         "slope_deg": 32.4,
-        "hv_change_db": -0.4,
-        "hh_change_db": 2.9,
+        "hv_change_db": -0.5,
+        "hh_change_db": 2.7,
         "coherence": 0.22,
         "coherence_vs_local": 0.5,
-        "score": 0.55,
+        "score": 0.53,
         "confidence": "low",
         "lon": 73.37012,
         "lat": 18.77122,
-        "id": "SZ033",
-        "near": "Khandala, Pune"
+        "id": "SZ030",
+        "near": "Khandala, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -1682,16 +1577,17 @@
         "kind": "slide_zone",
         "area_ha": 0.32,
         "slope_deg": 26.0,
-        "hv_change_db": 0.1,
-        "hh_change_db": 4.6,
+        "hv_change_db": 0.0,
+        "hh_change_db": 4.3,
         "coherence": 0.19,
         "coherence_vs_local": 0.54,
-        "score": 0.55,
+        "score": 0.53,
         "confidence": "low",
         "lon": 73.40519,
         "lat": 18.66906,
-        "id": "SZ034",
-        "near": "Mulshi Subdistrict, Pune"
+        "id": "SZ031",
+        "near": "Mulshi Subdistrict, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1753,16 +1649,17 @@
         "kind": "slide_zone",
         "area_ha": 0.32,
         "slope_deg": 24.0,
-        "hv_change_db": 3.7,
-        "hh_change_db": 4.4,
+        "hv_change_db": 3.6,
+        "hh_change_db": 4.1,
         "coherence": 0.2,
         "coherence_vs_local": 0.47,
-        "score": 0.55,
+        "score": 0.53,
         "confidence": "low",
         "lon": 73.6989,
         "lat": 18.23993,
-        "id": "SZ035",
-        "near": "Gunjavane, Pune"
+        "id": "SZ032",
+        "near": "Gunjavane, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -1796,50 +1693,43 @@
       "type": "Feature",
       "properties": {
         "kind": "slide_zone",
-        "area_ha": 1.6,
-        "slope_deg": 28.2,
-        "hv_change_db": 4.0,
+        "area_ha": 0.32,
+        "slope_deg": 32.0,
+        "hv_change_db": 2.9,
         "hh_change_db": 3.4,
-        "coherence": 0.2,
-        "coherence_vs_local": 0.49,
+        "coherence": 0.24,
+        "coherence_vs_local": 0.59,
         "score": 0.52,
         "confidence": "low",
-        "lon": 73.75478,
-        "lat": 18.17291,
-        "id": "SZ036",
-        "near": "Mahuda, Pune"
+        "lon": 73.7318,
+        "lat": 18.16262,
+        "id": "SZ033",
+        "near": "Mahuda, Pune",
+        "track106": "partial"
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              73.75422281749412,
-              18.17360937060457
+              73.73161082227642,
+              18.16297887919353
             ],
             [
-              73.75423307590265,
-              18.17216355782314
+              73.7316160414198,
+              18.16225597832722
             ],
             [
-              73.75498933008402,
-              18.172168459135023
+              73.73199414386194,
+              18.162258472541243
             ],
             [
-              73.75498420411115,
-              18.172891365761807
+              73.73198892627335,
+              18.162981373513556
             ],
             [
-              73.75574046164344,
-              18.17289626430721
-            ],
-            [
-              73.75573790012321,
-              18.173257717703745
-            ],
-            [
-              73.75422281749412,
-              18.17360937060457
+              73.73161082227642,
+              18.16297887919353
             ]
           ]
         ]
@@ -1851,16 +1741,17 @@
         "kind": "slide_zone",
         "area_ha": 0.48,
         "slope_deg": 26.0,
-        "hv_change_db": -3.3,
-        "hh_change_db": -0.9,
+        "hv_change_db": -3.4,
+        "hh_change_db": -1.1,
         "coherence": 0.19,
         "coherence_vs_local": 0.58,
-        "score": 0.5,
+        "score": 0.51,
         "confidence": "low",
         "lon": 73.37703,
         "lat": 18.4724,
-        "id": "SZ037",
-        "near": "Patnus, Raigad"
+        "id": "SZ034",
+        "near": "Patnus, Raigad",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1920,42 +1811,97 @@
       "type": "Feature",
       "properties": {
         "kind": "slide_zone",
-        "area_ha": 0.32,
-        "slope_deg": 37.0,
-        "hv_change_db": 0.6,
-        "hh_change_db": 1.5,
-        "coherence": 0.15,
-        "coherence_vs_local": 0.54,
-        "score": 0.47,
+        "area_ha": 0.64,
+        "slope_deg": 23.0,
+        "hv_change_db": 4.4,
+        "hh_change_db": 3.4,
+        "coherence": 0.17,
+        "coherence_vs_local": 0.41,
+        "score": 0.5,
         "confidence": "low",
-        "lon": 73.40757,
-        "lat": 18.39224,
-        "id": "SZ038",
-        "near": "Umbardi, Raigad"
+        "lon": 73.75451,
+        "lat": 18.17262,
+        "id": "SZ035",
+        "near": "Mahuda, Pune",
+        "track106": "confirmed"
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              73.40737397983031,
-              18.392599279889865
+              73.75422538218604,
+              18.173247917430114
             ],
             [
-              73.40738062156551,
-              18.39187649906385
+              73.75423307590265,
+              18.17216355782314
             ],
             [
-              73.40775916799574,
-              18.391879668977836
+              73.75498933008402,
+              18.172168459135023
             ],
             [
-              73.40775252783759,
-              18.392602449937094
+              73.75498676712749,
+              18.172529912455378
             ],
             [
-              73.40737397983031,
-              18.392599279889865
+              73.75460863922896,
+              18.172527462119216
+            ],
+            [
+              73.7546035115806,
+              18.17325036861405
+            ],
+            [
+              73.75422538218604,
+              18.173247917430114
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "kind": "slide_zone",
+        "area_ha": 0.32,
+        "slope_deg": 33.5,
+        "hv_change_db": 0.5,
+        "hh_change_db": 2.0,
+        "coherence": 0.19,
+        "coherence_vs_local": 0.51,
+        "score": 0.49,
+        "confidence": "low",
+        "lon": 73.46109,
+        "lat": 18.29076,
+        "id": "SZ036",
+        "near": "Warangi, Raigad",
+        "track106": "not covered"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.46089552512731,
+              18.291117468457273
+            ],
+            [
+              73.46090190578941,
+              18.29039466139213
+            ],
+            [
+              73.4612802410624,
+              18.290397708500848
+            ],
+            [
+              73.46127386196724,
+              18.29112051569469
+            ],
+            [
+              73.46089552512731,
+              18.291117468457273
             ]
           ]
         ]
@@ -1967,16 +1913,17 @@
         "kind": "slide_zone",
         "area_ha": 0.32,
         "slope_deg": 22.5,
-        "hv_change_db": -3.1,
-        "hh_change_db": -0.1,
+        "hv_change_db": -3.2,
+        "hh_change_db": -0.3,
         "coherence": 0.2,
         "coherence_vs_local": 0.54,
-        "score": 0.46,
+        "score": 0.47,
         "confidence": "low",
         "lon": 73.54031,
         "lat": 18.45403,
-        "id": "SZ039",
-        "near": "Lavasa, Pune"
+        "id": "SZ037",
+        "near": "Lavasa, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -2010,18 +1957,65 @@
       "type": "Feature",
       "properties": {
         "kind": "slide_zone",
+        "area_ha": 0.32,
+        "slope_deg": 37.0,
+        "hv_change_db": 0.5,
+        "hh_change_db": 1.2,
+        "coherence": 0.15,
+        "coherence_vs_local": 0.54,
+        "score": 0.47,
+        "confidence": "low",
+        "lon": 73.40757,
+        "lat": 18.39224,
+        "id": "SZ038",
+        "near": "Umbardi, Raigad",
+        "track106": "not covered"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.40737397983031,
+              18.392599279889865
+            ],
+            [
+              73.40738062156551,
+              18.39187649906385
+            ],
+            [
+              73.40775916799574,
+              18.391879668977836
+            ],
+            [
+              73.40775252783759,
+              18.392602449937094
+            ],
+            [
+              73.40737397983031,
+              18.392599279889865
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "kind": "slide_zone",
         "area_ha": 0.64,
         "slope_deg": 23.8,
-        "hv_change_db": -2.4,
-        "hh_change_db": -1.4,
+        "hv_change_db": -2.5,
+        "hh_change_db": -1.6,
         "coherence": 0.22,
         "coherence_vs_local": 0.49,
-        "score": 0.45,
+        "score": 0.46,
         "confidence": "low",
         "lon": 73.35244,
         "lat": 18.71234,
-        "id": "SZ040",
-        "near": "Mawal Subdistrict, Pune"
+        "id": "SZ039",
+        "near": "Mawal Subdistrict, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -2055,179 +2049,19 @@
       "type": "Feature",
       "properties": {
         "kind": "slide_zone",
-        "area_ha": 0.32,
-        "slope_deg": 25.0,
-        "hv_change_db": 2.8,
-        "hh_change_db": 3.1,
-        "coherence": 0.2,
-        "coherence_vs_local": 0.49,
-        "score": 0.45,
-        "confidence": "low",
-        "lon": 73.76142,
-        "lat": 18.17149,
-        "id": "SZ041",
-        "near": "Mahuda, Pune"
-      },
-      "geometry": {
-        "type": "MultiPolygon",
-        "coordinates": [
-          [
-            [
-              [
-                73.7618007261937,
-                18.171489528535815
-              ],
-              [
-                73.76180327496921,
-                18.17112807423961
-              ],
-              [
-                73.76142514910855,
-                18.171125637496342
-              ],
-              [
-                73.76142259955515,
-                18.17148709174079
-              ],
-              [
-                73.7618007261937,
-                18.171489528535815
-              ]
-            ]
-          ],
-          [
-            [
-              [
-                73.76104447297608,
-                18.17148465420215
-              ],
-              [
-                73.76104192258532,
-                18.1718461083809
-              ],
-              [
-                73.76142004994226,
-                18.171848545971315
-              ],
-              [
-                73.76142259955515,
-                18.17148709174079
-              ],
-              [
-                73.76104447297608,
-                18.17148465420215
-              ]
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "kind": "slide_zone",
-        "area_ha": 0.32,
-        "slope_deg": 17.0,
-        "hv_change_db": 2.0,
-        "hh_change_db": 3.4,
-        "coherence": 0.16,
-        "coherence_vs_local": 0.36,
-        "score": 0.43,
-        "confidence": "low",
-        "lon": 73.63796,
-        "lat": 18.84258,
-        "id": "SZ042",
-        "near": "Awrewada, Pune"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              73.63776352230288,
-              18.842936679370492
-            ],
-            [
-              73.63776935287711,
-              18.842213857702898
-            ],
-            [
-              73.63814893646888,
-              18.84221663296989
-            ],
-            [
-              73.63814310751809,
-              18.84293945475175
-            ],
-            [
-              73.63776352230288,
-              18.842936679370492
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "kind": "slide_zone",
-        "area_ha": 0.32,
-        "slope_deg": 27.0,
-        "hv_change_db": 1.9,
-        "hh_change_db": 3.0,
-        "coherence": 0.17,
-        "coherence_vs_local": 0.56,
-        "score": 0.43,
-        "confidence": "low",
-        "lon": 73.43642,
-        "lat": 18.63354,
-        "id": "SZ043",
-        "near": "Mawal Subdistrict, Pune"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              73.43622643353785,
-              18.633904541098715
-            ],
-            [
-              73.4362330467861,
-              18.633181768600547
-            ],
-            [
-              73.43661212949047,
-              18.63318492041025
-            ],
-            [
-              73.4366055178438,
-              18.63390769303942
-            ],
-            [
-              73.43622643353785,
-              18.633904541098715
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "kind": "slide_zone",
         "area_ha": 0.48,
         "slope_deg": 21.0,
-        "hv_change_db": -2.5,
-        "hh_change_db": -5.1,
+        "hv_change_db": -2.6,
+        "hh_change_db": -5.4,
         "coherence": 0.22,
         "coherence_vs_local": 0.49,
-        "score": 0.41,
+        "score": 0.42,
         "confidence": "low",
         "lon": 73.3929,
         "lat": 18.77298,
-        "id": "SZ044",
-        "near": "Thakurwadi, Pune"
+        "id": "SZ040",
+        "near": "Thakurwadi, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -2271,16 +2105,17 @@
         "kind": "slide_zone",
         "area_ha": 0.32,
         "slope_deg": 17.5,
-        "hv_change_db": -3.0,
-        "hh_change_db": -2.4,
+        "hv_change_db": -3.1,
+        "hh_change_db": -2.7,
         "coherence": 0.26,
         "coherence_vs_local": 0.49,
-        "score": 0.4,
+        "score": 0.41,
         "confidence": "low",
         "lon": 73.96972,
         "lat": 18.81615,
-        "id": "SZ045",
-        "near": "Gosasi, Pune"
+        "id": "SZ041",
+        "near": "Gosasi, Pune",
+        "track106": "not seen"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2340,42 +2175,51 @@
       "type": "Feature",
       "properties": {
         "kind": "slide_zone",
-        "area_ha": 0.32,
-        "slope_deg": 19.5,
-        "hv_change_db": 3.0,
-        "hh_change_db": 4.1,
-        "coherence": 0.21,
-        "coherence_vs_local": 0.57,
-        "score": 0.39,
+        "area_ha": 0.48,
+        "slope_deg": 24.0,
+        "hv_change_db": -1.5,
+        "hh_change_db": -2.7,
+        "coherence": 0.19,
+        "coherence_vs_local": 0.49,
+        "score": 0.38,
         "confidence": "low",
-        "lon": 73.7652,
-        "lat": 18.17205,
-        "id": "SZ046",
-        "near": "Mahuda, Pune"
+        "lon": 73.56818,
+        "lat": 18.8644,
+        "id": "SZ042",
+        "near": "Wadeshwar, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              73.76482065615879,
-              18.172231905503416
+              73.56811046868802,
+              18.864822550356397
             ],
             [
-              73.76482319882999,
-              18.171870450821558
+              73.56811353687048,
+              18.864461151150863
             ],
             [
-              73.76557945479152,
-              18.171875310386067
+              73.56773391463355,
+              18.8644582298971
             ],
             [
-              73.76557691367616,
-              18.172236765171142
+              73.56773698355896,
+              18.86409683073714
             ],
             [
-              73.76482065615879,
-              18.172231905503416
+              73.56849622647714,
+              18.86410267235076
+            ],
+            [
+              73.56849009180749,
+              18.864825470896434
+            ],
+            [
+              73.56811046868802,
+              18.864822550356397
             ]
           ]
         ]
@@ -2387,16 +2231,17 @@
         "kind": "slide_zone",
         "area_ha": 0.96,
         "slope_deg": 29.2,
-        "hv_change_db": 0.3,
-        "hh_change_db": 0.1,
+        "hv_change_db": 0.2,
+        "hh_change_db": -0.2,
         "coherence": 0.17,
         "coherence_vs_local": 0.53,
         "score": 0.38,
         "confidence": "low",
         "lon": 73.39851,
         "lat": 18.50523,
-        "id": "SZ047",
-        "near": "Nive, Pune"
+        "id": "SZ043",
+        "near": "Nive, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -2454,71 +2299,19 @@
       "type": "Feature",
       "properties": {
         "kind": "slide_zone",
-        "area_ha": 0.48,
-        "slope_deg": 24.0,
-        "hv_change_db": -1.4,
-        "hh_change_db": -2.4,
-        "coherence": 0.19,
-        "coherence_vs_local": 0.49,
-        "score": 0.37,
-        "confidence": "low",
-        "lon": 73.56818,
-        "lat": 18.8644,
-        "id": "SZ048",
-        "near": "Wadeshwar, Pune"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              73.56811046868802,
-              18.864822550356397
-            ],
-            [
-              73.56811353687048,
-              18.864461151150863
-            ],
-            [
-              73.56773391463355,
-              18.8644582298971
-            ],
-            [
-              73.56773698355896,
-              18.86409683073714
-            ],
-            [
-              73.56849622647714,
-              18.86410267235076
-            ],
-            [
-              73.56849009180749,
-              18.864825470896434
-            ],
-            [
-              73.56811046868802,
-              18.864822550356397
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "kind": "slide_zone",
         "area_ha": 0.64,
         "slope_deg": 24.0,
-        "hv_change_db": -1.3,
-        "hh_change_db": 0.7,
+        "hv_change_db": -1.4,
+        "hh_change_db": 0.5,
         "coherence": 0.17,
         "coherence_vs_local": 0.48,
-        "score": 0.37,
+        "score": 0.38,
         "confidence": "low",
         "lon": 73.4382,
         "lat": 18.46957,
-        "id": "SZ049",
-        "near": "Sarole, Pune"
+        "id": "SZ044",
+        "near": "Sarole, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -2560,50 +2353,43 @@
       "type": "Feature",
       "properties": {
         "kind": "slide_zone",
-        "area_ha": 0.8,
-        "slope_deg": 19.6,
-        "hv_change_db": 1.7,
-        "hh_change_db": 3.3,
-        "coherence": 0.24,
-        "coherence_vs_local": 0.54,
-        "score": 0.35,
+        "area_ha": 0.32,
+        "slope_deg": 19.5,
+        "hv_change_db": 2.9,
+        "hh_change_db": 3.8,
+        "coherence": 0.21,
+        "coherence_vs_local": 0.57,
+        "score": 0.37,
         "confidence": "low",
-        "lon": 73.6371,
-        "lat": 18.84463,
-        "id": "SZ050",
-        "near": "Awrewada, Pune"
+        "lon": 73.7652,
+        "lat": 18.17205,
+        "id": "SZ045",
+        "near": "Mahuda, Pune",
+        "track106": "partial"
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              73.63698393160585,
-              18.845461000870806
+              73.76482065615879,
+              18.172231905503416
             ],
             [
-              73.63699268363241,
-              18.844376768993907
+              73.76482319882999,
+              18.171870450821558
             ],
             [
-              73.63661309536921,
-              18.84437399106517
+              73.76557945479152,
+              18.171875310386067
             ],
             [
-              73.63661601339041,
-              18.844012580467833
+              73.76557691367616,
+              18.172236765171142
             ],
             [
-              73.6373751883596,
-              18.84401813543799
-            ],
-            [
-              73.637363522371,
-              18.84546377819805
-            ],
-            [
-              73.63698393160585,
-              18.845461000870806
+              73.76482065615879,
+              18.172231905503416
             ]
           ]
         ]
@@ -2615,16 +2401,17 @@
         "kind": "slide_zone",
         "area_ha": 0.32,
         "slope_deg": 16.5,
-        "hv_change_db": -2.7,
-        "hh_change_db": -1.6,
+        "hv_change_db": -2.8,
+        "hh_change_db": -1.9,
         "coherence": 0.26,
         "coherence_vs_local": 0.52,
-        "score": 0.33,
+        "score": 0.34,
         "confidence": "low",
         "lon": 73.98613,
         "lat": 18.8654,
-        "id": "SZ051",
-        "near": "Chichbaiwadi, Pune"
+        "id": "SZ046",
+        "near": "Chichbaiwadi, Pune",
+        "track106": "partial"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2685,17 +2472,64 @@
       "properties": {
         "kind": "slide_zone",
         "area_ha": 0.32,
+        "slope_deg": 18.0,
+        "hv_change_db": 1.1,
+        "hh_change_db": 3.1,
+        "coherence": 0.24,
+        "coherence_vs_local": 0.53,
+        "score": 0.31,
+        "confidence": "low",
+        "lon": 73.63699,
+        "lat": 18.8442,
+        "id": "SZ047",
+        "near": "Awrewada, Pune",
+        "track106": "not covered"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.63661309536921,
+              18.84437399106517
+            ],
+            [
+              73.63661601339041,
+              18.844012580467833
+            ],
+            [
+              73.6373751883596,
+              18.84401813543799
+            ],
+            [
+              73.63737227196202,
+              18.844379546149664
+            ],
+            [
+              73.63661309536921,
+              18.84437399106517
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "kind": "slide_zone",
+        "area_ha": 0.32,
         "slope_deg": 19.0,
-        "hv_change_db": -0.4,
-        "hh_change_db": 3.5,
+        "hv_change_db": -0.5,
+        "hh_change_db": 3.2,
         "coherence": 0.19,
         "coherence_vs_local": 0.57,
-        "score": 0.33,
+        "score": 0.31,
         "confidence": "low",
         "lon": 73.39632,
         "lat": 18.46226,
-        "id": "SZ052",
-        "near": "Patnus, Raigad"
+        "id": "SZ048",
+        "near": "Patnus, Raigad",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "Polygon",
@@ -2730,62 +2564,18 @@
       "properties": {
         "kind": "slide_zone",
         "area_ha": 0.32,
-        "slope_deg": 19.5,
-        "hv_change_db": 0.5,
-        "hh_change_db": 3.1,
-        "coherence": 0.23,
-        "coherence_vs_local": 0.55,
-        "score": 0.32,
-        "confidence": "low",
-        "lon": 73.50506,
-        "lat": 18.69573,
-        "id": "SZ053",
-        "near": "Bramhonoli, Pune"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              73.50468259960807,
-              18.695903052408735
-            ],
-            [
-              73.50468577284762,
-              18.69554165695656
-            ],
-            [
-              73.5054442397645,
-              18.695547703315818
-            ],
-            [
-              73.50544106813305,
-              18.695909098893278
-            ],
-            [
-              73.50468259960807,
-              18.695903052408735
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "kind": "slide_zone",
-        "area_ha": 0.32,
         "slope_deg": 17.0,
-        "hv_change_db": -0.1,
-        "hh_change_db": 1.3,
+        "hv_change_db": -0.2,
+        "hh_change_db": 1.0,
         "coherence": 0.17,
         "coherence_vs_local": 0.39,
         "score": 0.28,
         "confidence": "low",
         "lon": 73.69278,
         "lat": 18.39984,
-        "id": "SZ054",
-        "near": "Malkhed, Pune"
+        "id": "SZ049",
+        "near": "Malkhed, Pune",
+        "track106": "not covered"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2836,6 +2626,52 @@
                 73.69277878771258,
                 18.40019726971342
               ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "kind": "slide_zone",
+        "area_ha": 0.48,
+        "slope_deg": 16.7,
+        "hv_change_db": -1.9,
+        "hh_change_db": -0.9,
+        "coherence": 0.32,
+        "coherence_vs_local": 0.56,
+        "score": 0.25,
+        "confidence": "low",
+        "lon": 73.9643,
+        "lat": 18.42663,
+        "id": "SZ050",
+        "near": "Wadki, Pune",
+        "track106": "partial"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.96373114851556,
+              18.426809595672914
+            ],
+            [
+              73.96373331378432,
+              18.426448125596618
+            ],
+            [
+              73.9648694343904,
+              18.426454322279394
+            ],
+            [
+              73.96486727149453,
+              18.42681579248574
+            ],
+            [
+              73.96373114851556,
+              18.426809595672914
             ]
           ]
         ]
