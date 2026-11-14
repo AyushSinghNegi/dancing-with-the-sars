@@ -1,6 +1,6 @@
 import streamlit as st
 
-from lib import data, swipe, ui
+from lib import data, story, swipe, ui
 
 ui.setup("Overview")
 ui.demo_banner()
@@ -13,9 +13,9 @@ v = data.value
 left, right = st.columns([1.05, 1], gap="large")
 with left:
     st.markdown(f'<h1 class="ml-hero">{ui.t("title")}</h1>', unsafe_allow_html=True)
-    st.markdown(f'<div class="ml-dates">NISAR L-band radar passes on {data.nice_date(before, False)} and '
-                f'{data.nice_date(after)}, Pune district, India</div>', unsafe_allow_html=True)
-    st.markdown(f'<p class="ml-lede">{ui.t("lede")}</p>', unsafe_allow_html=True)
+    st.markdown(f'<div class="ml-dates">{ui.t("dates_line", b=ui.day(before), a=ui.day(after), y=after[:4])}</div>',
+                unsafe_allow_html=True)
+    st.markdown(f'<p class="ml-lede">{ui.t("lede", cloud=story.cloud_sentence())}</p>', unsafe_allow_html=True)
     b1, b2 = st.columns(2)
     if b1.button(ui.t("start_story"), type="primary", icon=":material/auto_stories:", width="stretch"):
         st.switch_page("views/1_Story.py")
@@ -24,8 +24,8 @@ with left:
 with right:
     imgs = swipe.pair("hh")
     if imgs:
-        swipe.render(imgs[0], imgs[1], f"{ui.t('before')}: {data.nice_date(before, False)}",
-                     f"{ui.t('after')}: {data.nice_date(after, False)}", height=430, start=50)
+        swipe.render(imgs[0], imgs[1], f"{ui.t('before')}: {ui.day(before)}", f"{ui.t('after')}: {ui.day(after)}",
+                     height=430, start=50)
         st.caption(ui.t("swipe_caption"))
 
 st.markdown(f"## {ui.t('found')}")
@@ -51,15 +51,26 @@ if (fo or 0) + (so or 0) > 0:
 st.markdown("".join(rows), unsafe_allow_html=True)
 
 st.markdown(f"## {ui.t('couldnt')}")
-st.markdown(
-    "- **Streets between tall buildings.** Radar bounces off walls and back to the satellite, so flooded city "
-    "streets can look bright, not dark. We mark those places as *possible water*, and never count them as flood.\n"
-    "- **Water that drained early.** The heaviest rain fell on 5 to 8 July, between NISAR passes on 4 and 10 July, "
-    "and had all but stopped by 9 July. Flood water had two days to drain before the radar came "
-    "back, so the map shows reservoirs filling and the flooding that was still standing.\n"
-    "- **Small slides.** Our map has 40 m pixels. A slide narrower than that can slip through.\n"
-    "- **Every detection is a lead, not a verdict.** Slide zones are places to check on the ground or in "
-    "local reports.")
+lim = data.limits()
+b_iso, a_iso = data.dates()
+bullets = []
+if lim["flood_miss"]:
+    built = ui.t("lim_built_all", n=lim["flood_miss"]) if lim["flood_miss_built"] == lim["flood_miss"] else \
+        ui.t("lim_built_some", k=lim["flood_miss_built"], n=lim["flood_miss"])
+    bullets.append(ui.t("lim_streets", built_sentence=built))
+if lim["peak"]:
+    bullets.append(ui.t("lim_timing", p1=ui.day(lim["peak"][0]), p2=ui.day(lim["peak"][1]), b=ui.day(b_iso),
+                        a=ui.day(a_iso)))
+if lim["res_m"]:
+    gentle = ui.t("lim_gentle", n=lim["slide_miss_gentle"]) if lim["slide_miss_gentle"] else ""
+    bullets.append(ui.t("lim_small", res=ui.fmt_num(lim["res_m"], 0), smin=ui.fmt_num(lim["slope_min"], 0),
+                        smax=ui.fmt_num(lim["slope_max"], 0), gentle_part=gentle))
+if lim["hidden_share"] is not None:
+    bullets.append(ui.t("lim_hidden", pct=ui.fmt_num(lim["hidden_share"] * 100, 0 if lim["hidden_share"] >= 0.1 else 1)))
+bullets.append(ui.t("lim_early"))
+st.markdown("\n".join(f"- {x}" for x in bullets))
+if lim["zones"]:
+    st.markdown(ui.t("lim_lead", u=lim["unreported"], z=lim["zones"]))
 st.page_link("views/3_Method.py", label="See how each number was made, and the full validation table",
              icon=":material/fact_check:")
 ui.sources_line()

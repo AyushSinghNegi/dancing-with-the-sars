@@ -84,7 +84,7 @@ with tab_t:
         st.info("Daily rainfall appears here once `data/reference/rainfall.csv` is added.")
     tl = data.table("timeline.csv")
     if tl is not None and len(tl) > 1:
-        st.markdown("**Water outside rivers and reservoirs, every NISAR pass on this track**")
+        st.markdown("**Open water in the study area on each NISAR pass of this orbit (rivers and reservoirs included)**")
         st.plotly_chart(charts.timeline(tl), width="stretch", config={"displayModeBar": False})
         st.caption("Hollow markers: radar mode or polarisation differs from the June pass, so brightness is not "
                    "directly comparable.")
@@ -100,14 +100,17 @@ with tab_e:
         st.info("Reported events appear here once `data/reference/events.geojson` is added.")
 with tab_d:
     st.markdown("GeoTIFFs are on the analysis grid (UTM zone 43N, 40 m). GeoJSON is in WGS84.")
-    files = [(k, data.download_path(k)) for k in data.metrics().get("downloads", {})]
-    files += [("slide_zones", None)]
-    for key, path in files:
-        if path is not None and path.exists():
-            st.download_button(f"{key.replace('_', ' ')} (GeoTIFF)", path.read_bytes(), file_name=f"monsoonlens_{key}.tif",
-                               key=f"dl_{key}")
-    for name in ("slide_zones.geojson", "new_water.geojson", "validation.csv", "water_stats.csv", "metrics.json"):
-        p = data.source()["dir"] and (data.ROOT / data.source()["dir"] / name)
-        if p and p.exists():
-            st.download_button(name, p.read_bytes(), file_name=f"monsoonlens_{name}", key=f"dl_{name}")
+    what = {"new_water.tif": "all new water (GeoTIFF)", "flooding.tif": "flooding only, never water before (GeoTIFF)",
+            "possible_water_under_cover.tif": "possible water under trees or buildings (GeoTIFF)",
+            "slide_zones.tif": "likely slide zones (GeoTIFF)", "hh_change_db.tif": "HH radar change in dB (GeoTIFF)",
+            "slide_zones.geojson": "slide zones with scores and nearest place (GeoJSON)",
+            "new_water.geojson": "new-water patches, flood and reservoir rise (GeoJSON)",
+            "validation.csv": "reported events, matched or missed, with reasons (CSV)",
+            "water_stats.csv": "water areas and thresholds (CSV)",
+            "crosstrack.json": "second-track check results (JSON)", "metrics.json": "every number in this app (JSON)"}
+    links = [f'<li><a href="{url}" download="monsoonlens_{name}">{what.get(name, name)}</a> '
+             f'<span class="ml-muted">{size / 1e6:.1f} MB</span></li>' if size >= 1e5 else
+             f'<li><a href="{url}" download="monsoonlens_{name}">{what.get(name, name)}</a> '
+             f'<span class="ml-muted">{max(size // 1000, 1)} KB</span></li>' for name, url, size in data.downloads()]
+    st.markdown("<ul class='ml-downloads'>" + "".join(links) + "</ul>", unsafe_allow_html=True)
 ui.sources_line()

@@ -43,22 +43,17 @@ with visual:
         else:
             st.info("Rainfall chart appears here once `data/reference/rainfall.csv` is added.")
     elif i == 1:
-        st.markdown(
-            f"""<svg viewBox="0 0 560 300" width="100%" role="img" aria-label="Radar pulses pass through cloud; a camera sees only cloud">
-  <rect width="560" height="300" fill="#eef1f0" rx="8"/>
-  <g fill="#c9d1d6"><ellipse cx="150" cy="120" rx="95" ry="32"/><ellipse cx="210" cy="104" rx="70" ry="30"/>
-  <ellipse cx="390" cy="118" rx="100" ry="34"/><ellipse cx="330" cy="102" rx="65" ry="28"/></g>
-  <rect x="245" y="22" width="70" height="22" rx="4" fill="{ui.INK}"/><rect x="205" y="28" width="36" height="10" fill="#7d878f"/>
-  <rect x="319" y="28" width="36" height="10" fill="#7d878f"/>
-  <text x="280" y="16" text-anchor="middle" font-size="13" fill="{ui.INK}" font-family="IBM Plex Sans">NISAR</text>
-  <path d="M265 44 L170 250" stroke="#2a78d6" stroke-width="3" stroke-dasharray="10 6"/>
-  <path d="M295 44 L390 250" stroke="#7d878f" stroke-width="3"/>
-  <text x="150" y="275" font-size="13" fill="{ui.INK}" font-family="IBM Plex Sans">L-band radar: through cloud</text>
-  <text x="372" y="275" font-size="13" fill="{ui.INK}" font-family="IBM Plex Sans">camera: stops at cloud</text>
-  <rect x="0" y="250" width="560" height="50" fill="#d6dcd2"/><path d="M60 250 Q120 238 200 250 Z" fill="#2a78d6"/>
-  <line x1="380" y1="132" x2="400" y2="132" stroke="#7d878f" stroke-width="3"/>
-</svg>""", unsafe_allow_html=True)
-        st.caption("NISAR's L-band radar (wavelength about 24 cm) works day and night, through cloud and rain.")
+        c = data.cloud_check()
+        if c and c.get("image_path"):
+            st.image(c["image_path"], width="stretch")
+            st.caption(ui.t("cloud_caption", sensors=", ".join(s.split()[0] if s.split()[0] != "Suomi" else "Suomi NPP"
+                                                               for s in c["sensors"]),
+                            f=ui.day(c["from"]), t=ui.day(c["to"]), n=c["all_cloud"],
+                            p1=ui.day(c["pass_days_broken_cloud"][0]), p2=ui.day(c["pass_days_broken_cloud"][-1]),
+                            url=c.get("source_url", "https://worldview.earthdata.nasa.gov")))
+        st.caption("NISAR's L-band radar (wavelength about 24 cm) works day and night, through cloud and rain."
+                   if ui.lang() == "en" else
+                   "निसारचे एल-बँड रडार (तरंगलांबी सुमारे २४ सेंमी) दिवस-रात्र, ढग आणि पावसातूनही काम करते.")
     elif i == 2:
         imgs = swipe.pair("hh")
         if imgs:

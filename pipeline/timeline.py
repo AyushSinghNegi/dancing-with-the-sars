@@ -1,7 +1,7 @@
 """Water area through the monsoon, one value per radar date (R8).
 
 Uses every GCOV crop on the primary track. The water threshold is set per
-date with the same JRC-balanced Otsu method as the flood map. Dates taken in a
+date with the same method as the flood map (Kittler-Illingworth trained on JRC reservoir cores). Dates taken in a
 different radar mode or polarisation are kept but flagged, because their
 brightness is not directly comparable.
 

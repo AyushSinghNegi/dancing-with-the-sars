@@ -38,11 +38,9 @@ def ver() -> str:
     """Changes whenever the pipeline output changes (a new deploy checks out new files), so cached
     reads below are refreshed instead of serving numbers from an older run."""
     d = _dir()
-    m = d / "metrics.json" if d else None
-    if not m or not m.exists():
-        return "none"
-    st_ = m.stat()
-    return f"{st_.st_mtime_ns}-{st_.st_size}"
+    files = [d / "metrics.json"] if d else []
+    files += [REFERENCE / n for n in ("rainfall.csv", "events.geojson", "candidate_scenes.csv", "cloud_check.json")]
+    return "|".join(f"{f.stat().st_mtime_ns}-{f.stat().st_size}" if f.exists() else "-" for f in files)
 
 
 def metrics() -> dict:
@@ -87,8 +85,12 @@ def _table(name: str, v: str) -> pd.DataFrame | None:
     return pd.read_csv(p) if p and p.exists() else None
 
 
-@st.cache_data(show_spinner=False)
 def rainfall() -> pd.DataFrame | None:
+    return _rainfall(ver())
+
+
+@st.cache_data(show_spinner=False)
+def _rainfall(v: str) -> pd.DataFrame | None:
     p = REFERENCE / "rainfall.csv"
     if not p.exists():
         return None
@@ -96,8 +98,12 @@ def rainfall() -> pd.DataFrame | None:
     return df if {"date", "precip_mm"} <= set(df.columns) and len(df) else None
 
 
-@st.cache_data(show_spinner=False)
 def events() -> dict | None:
+    return _events(ver())
+
+
+@st.cache_data(show_spinner=False)
+def _events(v: str) -> dict | None:
     """Reported events. Demo mode uses synthetic events so real reports are never scored against fake radar."""
     p = (ROOT / "data" / "demo" / "reference" / "events.geojson") if source()["demo"] else REFERENCE / "events.geojson"
     return json.loads(p.read_text()) if p.exists() else None
@@ -120,6 +126,36 @@ def _publish_overlays(v: str) -> str | None:
         if not t.exists() or t.stat().st_mtime < f.stat().st_mtime or t.stat().st_size != f.stat().st_size:
             shutil.copy2(f, t)
     return f"/app/static/layers/{s['key']}"
+
+
+def downloads() -> list[tuple[str, str, int]]:
+    """(file name, static URL, bytes) for every download, served as plain files.
+
+    st.download_button sends the whole file to the browser when the page loads (5.9 MB for the
+    change GeoTIFF alone), so downloads are static links instead: nothing moves until clicked."""
+    return _downloads(ver())
+
+
+@st.cache_resource(show_spinner=False)
+def _downloads(v: str) -> list[tuple[str, str, int]]:
+    s = source()
+    if not s["dir"]:
+        return []
+    d = Path(s["dir"])
+    files = [d / rel for rel in metrics().get("downloads", {}).values()]
+    files += [d / n for n in ("slide_zones.geojson", "new_water.geojson", "validation.csv", "water_stats.csv",
+                              "crosstrack.json", "metrics.json")]
+    dst = STATIC / s["key"] / "downloads"
+    dst.mkdir(parents=True, exist_ok=True)
+    out = []
+    for f in files:
+        if not f.exists():
+            continue
+        t = dst / f.name
+        if not t.exists() or t.stat().st_size != f.stat().st_size or t.stat().st_mtime < f.stat().st_mtime:
+            shutil.copy2(f, t)
+        out.append((f.name, f"/app/static/layers/{s['key']}/downloads/{f.name}", f.stat().st_size))
+    return out
 
 
 def overlay_url(name: str) -> str | None:
@@ -168,8 +204,12 @@ def nice_date(iso: str, year=True) -> str:
     return f"{d} {iso[:4]}" if year else d
 
 
-@st.cache_data(show_spinner=False)
 def passes() -> pd.DataFrame | None:
+    return _passes(ver())
+
+
+@st.cache_data(show_spinner=False)
+def _passes(v: str) -> pd.DataFrame | None:
     """Every NISAR GCOV pass over the study box (all tracks), from the CMR scene list."""
     p = REFERENCE / "candidate_scenes.csv"
     if not p.exists():
@@ -199,3 +239,56 @@ def crosstrack() -> dict | None:
     return {**xt, "confirmed": c.get("confirmed", 0), "scored": scored, "lift": lift,
             "good": lift is not None and lift >= XT_LIFT_MIN, "small": scored < XT_SMALL_SAMPLE,
             "coverage": f"{cov:.0%}" if cov is not None else "part"}
+
+
+def cloud_check() -> dict | None:
+    return _cloud_check(ver())
+
+
+@st.cache_data(show_spinner=False)
+def _cloud_check(v: str) -> dict | None:
+    """Urvashi's check of NASA's daily true-colour images for the storm week (content/cloud_check.md)."""
+    p = REFERENCE / "cloud_check.json"
+    if not p.exists():
+        return None
+    c = json.loads(p.read_text())
+    img = ROOT / c.get("image", "")
+    c["image_path"] = str(img) if img.exists() else None
+    return c
+
+
+def rain_peak(min_mm: float = 100.0) -> tuple[str, str] | None:
+    """First and last day of the run of days with at least min_mm of rain around the wettest day."""
+    r = rainfall()
+    if r is None or not len(r):
+        return None
+    r = r.sort_values("date").reset_index(drop=True)
+    k = int(r["precip_mm"].idxmax())
+    if r.loc[k, "precip_mm"] < min_mm:
+        return r.loc[k, "date"].strftime("%Y-%m-%d"), r.loc[k, "date"].strftime("%Y-%m-%d")
+    a = b = k
+    while a > 0 and r.loc[a - 1, "precip_mm"] >= min_mm:
+        a -= 1
+    while b < len(r) - 1 and r.loc[b + 1, "precip_mm"] >= min_mm:
+        b += 1
+    return r.loc[a, "date"].strftime("%Y-%m-%d"), r.loc[b, "date"].strftime("%Y-%m-%d")
+
+
+def limits() -> dict:
+    """Numbers for the "what radar could not see" panel, all from pipeline output or reference files."""
+    val = table("validation.csv")
+    out = {"flood_miss": 0, "flood_miss_built": 0, "slide_miss_gentle": 0}
+    if val is not None and len(val):
+        floods = val[val["type"].isin(["flood", "waterlogging", "river_overflow"]) & (val["result"] == "miss")]
+        out["flood_miss"] = int(len(floods))
+        out["flood_miss_built"] = int(floods["reason"].fillna("").str.startswith("dense buildings").sum())
+        slides = val[(val["type"] == "landslide") & (val["result"] == "miss")]
+        out["slide_miss_gentle"] = int(slides["reason"].fillna("").str.contains("gentler").sum())
+    m = metrics()
+    out.update(res_m=(m.get("grid") or {}).get("res_m"),
+               slope_min=(m.get("thresholds") or {}).get("slide_min_slope_deg"),
+               slope_max=(m.get("thresholds") or {}).get("slide_max_slope_deg"),
+               hidden_share=(m.get("slides") or {}).get("layover_shadow_share_of_steep"),
+               unreported=(m.get("validation") or {}).get("unreported_slide_zones"),
+               zones=(m.get("slides") or {}).get("zones"), peak=rain_peak())
+    return out
