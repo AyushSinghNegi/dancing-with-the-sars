@@ -66,7 +66,7 @@ Following the Space Apps rules on AI disclosure:
 
 ## Data and credits
 NISAR L2 GCOV and GUNW provisional products, NASA/JPL-Caltech and ISRO, via ASF DAAC.
-JRC Global Surface Water (Pekel et al., 2016). Copernicus GLO-30 DEM (ESA). GPM IMERG Late Run daily precipitation (GPM_3IMERGDL v07, NASA GES DISC, via Giovanni; see
+JRC Global Surface Water (Pekel et al., 2016). Copernicus GLO-30 DEM (ESA); NASADEM (NASA/USGS) for the elevation-map check. GPM IMERG Late Run daily precipitation (GPM_3IMERGDL v07, NASA GES DISC, via Giovanni; see
 `data/reference/SOURCES.md`). NASA Worldview / GIBS daily true-colour imagery for the cloud check
 (`content/cloud_check.md`).
 Method, limits and validation: see the app's Method page and `CONTEXT.md`.

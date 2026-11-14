@@ -27,7 +27,9 @@
         "lat": 18.89501,
         "id": "SZ001",
         "near": "Karjat Taluka, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "not found",
+        "nasadem_reason": "steeper than 45\u00b0 in NASADEM"
       },
       "geometry": {
         "type": "Polygon",
@@ -73,7 +75,8 @@
         "lat": 18.19757,
         "id": "SZ002",
         "near": "Dhangarwadi, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -119,7 +122,8 @@
         "lat": 18.17851,
         "id": "SZ003",
         "near": "Waki Budruk, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -165,7 +169,8 @@
         "lat": 18.47321,
         "id": "SZ004",
         "near": "Dongerwadi, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -237,7 +242,8 @@
         "lat": 18.17594,
         "id": "SZ005",
         "near": "Jholichakond, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -309,7 +315,8 @@
         "lat": 18.15528,
         "id": "SZ006",
         "near": "Mahuda, Pune",
-        "track106": "partial"
+        "track106": "partial",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -363,7 +370,8 @@
         "lat": 18.77902,
         "id": "SZ007",
         "near": "Adoshi, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -409,7 +417,8 @@
         "lat": 18.17485,
         "id": "SZ008",
         "near": "Jholichakond, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -455,7 +464,8 @@
         "lat": 18.73059,
         "id": "SZ009",
         "near": "Karli, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -501,7 +511,9 @@
         "lat": 18.3003,
         "id": "SZ010",
         "near": "Jor, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "not found",
+        "nasadem_reason": "steeper than 45\u00b0 in NASADEM"
       },
       "geometry": {
         "type": "Polygon",
@@ -547,7 +559,9 @@
         "lat": 18.69449,
         "id": "SZ011",
         "near": "Wave, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "not found",
+        "nasadem_reason": "steeper than 45\u00b0 in NASADEM"
       },
       "geometry": {
         "type": "Polygon",
@@ -593,7 +607,8 @@
         "lat": 18.18665,
         "id": "SZ012",
         "near": "Waki Budruk, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -639,7 +654,8 @@
         "lat": 18.71126,
         "id": "SZ013",
         "near": "Mawal Subdistrict, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -685,7 +701,8 @@
         "lat": 18.66867,
         "id": "SZ014",
         "near": "Mulshi Subdistrict, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -731,7 +748,9 @@
         "lat": 18.54269,
         "id": "SZ015",
         "near": "Adgaon, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "not found",
+        "nasadem_reason": "steeper than 45\u00b0 in NASADEM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -803,7 +822,8 @@
         "lat": 18.44397,
         "id": "SZ016",
         "near": "Patnus, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -849,7 +869,9 @@
         "lat": 18.15088,
         "id": "SZ017",
         "near": "Mahuda, Pune",
-        "track106": "confirmed"
+        "track106": "confirmed",
+        "nasadem": "not found",
+        "nasadem_reason": "steeper than 45\u00b0 in NASADEM"
       },
       "geometry": {
         "type": "Polygon",
@@ -895,7 +917,8 @@
         "lat": 18.34649,
         "id": "SZ018",
         "near": "Boravali, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -941,7 +964,8 @@
         "lat": 18.14907,
         "id": "SZ019",
         "near": "Mahuda, Pune",
-        "track106": "partial"
+        "track106": "partial",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -987,7 +1011,8 @@
         "lat": 18.67871,
         "id": "SZ020",
         "near": "Lonavala, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -1033,7 +1058,8 @@
         "lat": 18.5287,
         "id": "SZ021",
         "near": "Adgaon, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -1079,7 +1105,8 @@
         "lat": 18.29102,
         "id": "SZ022",
         "near": "Warangi, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -1125,7 +1152,9 @@
         "lat": 18.50819,
         "id": "SZ023",
         "near": "Sutarwadi, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "not found",
+        "nasadem_reason": "gentler than 15\u00b0 in NASADEM"
       },
       "geometry": {
         "type": "Polygon",
@@ -1171,7 +1200,8 @@
         "lat": 18.88936,
         "id": "SZ024",
         "near": "Sandbhorwadi, Pune",
-        "track106": "partial"
+        "track106": "partial",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -1217,7 +1247,8 @@
         "lat": 18.629,
         "id": "SZ025",
         "near": "Andhalegaon, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1289,7 +1320,8 @@
         "lat": 18.1623,
         "id": "SZ026",
         "near": "Mahuda, Pune",
-        "track106": "partial"
+        "track106": "partial",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1361,7 +1393,8 @@
         "lat": 18.78626,
         "id": "SZ027",
         "near": "Thakurwadi, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -1407,7 +1440,9 @@
         "lat": 18.2286,
         "id": "SZ028",
         "near": "Bhordi, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "not found",
+        "nasadem_reason": "gentler than 15\u00b0 in NASADEM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1479,7 +1514,8 @@
         "lat": 18.17433,
         "id": "SZ029",
         "near": "Mahuda, Pune",
-        "track106": "partial"
+        "track106": "partial",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -1525,7 +1561,9 @@
         "lat": 18.77122,
         "id": "SZ030",
         "near": "Khandala, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "not found",
+        "nasadem_reason": "radar layover or shadow in NASADEM"
       },
       "geometry": {
         "type": "Polygon",
@@ -1587,7 +1625,8 @@
         "lat": 18.66906,
         "id": "SZ031",
         "near": "Mulshi Subdistrict, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1659,7 +1698,8 @@
         "lat": 18.23993,
         "id": "SZ032",
         "near": "Gunjavane, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -1705,7 +1745,8 @@
         "lat": 18.16262,
         "id": "SZ033",
         "near": "Mahuda, Pune",
-        "track106": "partial"
+        "track106": "partial",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -1751,7 +1792,8 @@
         "lat": 18.4724,
         "id": "SZ034",
         "near": "Patnus, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1823,7 +1865,8 @@
         "lat": 18.17262,
         "id": "SZ035",
         "near": "Mahuda, Pune",
-        "track106": "confirmed"
+        "track106": "confirmed",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -1877,7 +1920,8 @@
         "lat": 18.29076,
         "id": "SZ036",
         "near": "Warangi, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -1923,7 +1967,9 @@
         "lat": 18.45403,
         "id": "SZ037",
         "near": "Lavasa, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "not found",
+        "nasadem_reason": "gentler than 15\u00b0 in NASADEM"
       },
       "geometry": {
         "type": "Polygon",
@@ -1969,7 +2015,9 @@
         "lat": 18.39224,
         "id": "SZ038",
         "near": "Umbardi, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "not found",
+        "nasadem_reason": "steeper than 45\u00b0 in NASADEM"
       },
       "geometry": {
         "type": "Polygon",
@@ -2015,7 +2063,8 @@
         "lat": 18.71234,
         "id": "SZ039",
         "near": "Mawal Subdistrict, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -2061,7 +2110,8 @@
         "lat": 18.77298,
         "id": "SZ040",
         "near": "Thakurwadi, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -2115,7 +2165,8 @@
         "lat": 18.81615,
         "id": "SZ041",
         "near": "Gosasi, Pune",
-        "track106": "not seen"
+        "track106": "not seen",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2187,7 +2238,8 @@
         "lat": 18.8644,
         "id": "SZ042",
         "near": "Wadeshwar, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -2241,7 +2293,9 @@
         "lat": 18.50523,
         "id": "SZ043",
         "near": "Nive, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "not found",
+        "nasadem_reason": "radar layover or shadow in NASADEM"
       },
       "geometry": {
         "type": "Polygon",
@@ -2311,7 +2365,8 @@
         "lat": 18.46957,
         "id": "SZ044",
         "near": "Sarole, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -2365,7 +2420,9 @@
         "lat": 18.17205,
         "id": "SZ045",
         "near": "Mahuda, Pune",
-        "track106": "partial"
+        "track106": "partial",
+        "nasadem": "not found",
+        "nasadem_reason": "gentler than 15\u00b0 in NASADEM"
       },
       "geometry": {
         "type": "Polygon",
@@ -2411,7 +2468,9 @@
         "lat": 18.8654,
         "id": "SZ046",
         "near": "Chichbaiwadi, Pune",
-        "track106": "partial"
+        "track106": "partial",
+        "nasadem": "not found",
+        "nasadem_reason": "gentler than 15\u00b0 in NASADEM"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2483,7 +2542,9 @@
         "lat": 18.8442,
         "id": "SZ047",
         "near": "Awrewada, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "not found",
+        "nasadem_reason": "near the edge of the slope band in NASADEM"
       },
       "geometry": {
         "type": "Polygon",
@@ -2529,7 +2590,8 @@
         "lat": 18.46226,
         "id": "SZ048",
         "near": "Patnus, Raigad",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "Polygon",
@@ -2575,7 +2637,8 @@
         "lat": 18.39984,
         "id": "SZ049",
         "near": "Malkhed, Pune",
-        "track106": "not covered"
+        "track106": "not covered",
+        "nasadem": "found"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2647,7 +2710,9 @@
         "lat": 18.42663,
         "id": "SZ050",
         "near": "Wadki, Pune",
-        "track106": "partial"
+        "track106": "partial",
+        "nasadem": "not found",
+        "nasadem_reason": "gentler than 15\u00b0 in NASADEM"
       },
       "geometry": {
         "type": "Polygon",

@@ -109,7 +109,8 @@ with tab_d:
             "new_water.geojson": "new-water patches, flood and reservoir rise (GeoJSON)",
             "validation.csv": "reported events, matched or missed, with reasons (CSV)",
             "water_stats.csv": "water areas and thresholds (CSV)",
-            "crosstrack.json": "second-track check results (JSON)", "metrics.json": "every number in this app (JSON)"}
+            "crosstrack.json": "second-track check results (JSON)",
+            "dem_check.json": "elevation-map check results (JSON)", "metrics.json": "every number in this app (JSON)"}
     links = [f'<li><a href="{url}" download="monsoonlens_{name}">{what.get(name, name)}</a> '
              f'<span class="ml-muted">{size / 1e6:.1f} MB</span></li>' if size >= 1e5 else
              f'<li><a href="{url}" download="monsoonlens_{name}">{what.get(name, name)}</a> '

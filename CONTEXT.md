@@ -34,6 +34,7 @@ checked against reported events. NASA Space Apps Challenge 2026, challenge
 | Candidate NISAR scenes (49 Pune, 146 Brahmaputra backup) | `data/reference/candidate_scenes.csv` | from NASA CMR |
 | JRC Global Surface Water occurrence v1.4 | `data/crops/aux_jrc_occurrence.tif` | permanent water = occurrence >= 50% |
 | Copernicus GLO-30 DEM: elevation, slope | `data/crops/aux_elevation.tif`, `aux_slope.tif` | public, no login |
+| NASADEM (NASA/USGS): elevation, for the elevation-map check only | `data/crops/aux_nasadem_elevation.tif` | RSN, from `rsn/pipeline`; `nasadem_provenance.json` |
 | Daily rainfall (GPM IMERG Late Run daily, GPM_3IMERGDL v07, via Giovanni) | `data/reference/rainfall.csv` | Urvashi, U2; details in `data/reference/SOURCES.md` |
 | Reported events | `data/reference/events.geojson` | Urvashi, U3 (schema below) |
 
