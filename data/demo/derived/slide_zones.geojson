@@ -23,7 +23,8 @@
         "confidence": "high",
         "lon": 73.52557,
         "lat": 18.216,
-        "id": "SZ001"
+        "id": "SZ001",
+        "near": "Panderi, Raigad"
       },
       "geometry": {
         "type": "Polygon",
@@ -115,7 +116,8 @@
         "confidence": "high",
         "lon": 73.36206,
         "lat": 18.70153,
-        "id": "SZ002"
+        "id": "SZ002",
+        "near": "Mawal Subdistrict, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -183,7 +185,8 @@
         "confidence": "high",
         "lon": 73.47291,
         "lat": 18.28086,
-        "id": "SZ003"
+        "id": "SZ003",
+        "near": "Warangi, Raigad"
       },
       "geometry": {
         "type": "Polygon",
@@ -291,7 +294,8 @@
         "confidence": "high",
         "lon": 73.41217,
         "lat": 18.8466,
-        "id": "SZ004"
+        "id": "SZ004",
+        "near": "Valvand, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -359,7 +363,8 @@
         "confidence": "high",
         "lon": 73.74094,
         "lat": 18.1542,
-        "id": "SZ005"
+        "id": "SZ005",
+        "near": "Mahuda, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -467,7 +472,8 @@
         "confidence": "high",
         "lon": 73.54357,
         "lat": 18.64475,
-        "id": "SZ006"
+        "id": "SZ006",
+        "near": "Shivali, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -535,7 +541,8 @@
         "confidence": "high",
         "lon": 73.52178,
         "lat": 18.22853,
-        "id": "SZ007"
+        "id": "SZ007",
+        "near": "Dapoli, Raigad"
       },
       "geometry": {
         "type": "Polygon",
@@ -627,7 +634,8 @@
         "confidence": "high",
         "lon": 73.82641,
         "lat": 18.22303,
-        "id": "SZ008"
+        "id": "SZ008",
+        "near": "Majgaon, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -679,7 +687,8 @@
         "confidence": "high",
         "lon": 73.56752,
         "lat": 18.61886,
-        "id": "SZ009"
+        "id": "SZ009",
+        "near": "Andhalegaon, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -747,7 +756,8 @@
         "confidence": "high",
         "lon": 73.46692,
         "lat": 18.45392,
-        "id": "SZ010"
+        "id": "SZ010",
+        "near": "Varak, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -807,7 +817,8 @@
         "confidence": "high",
         "lon": 73.44448,
         "lat": 18.55597,
-        "id": "SZ011"
+        "id": "SZ011",
+        "near": "Pomgaon, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -891,7 +902,8 @@
         "confidence": "high",
         "lon": 73.76243,
         "lat": 18.37879,
-        "id": "SZ012"
+        "id": "SZ012",
+        "near": "Atekar Vasti, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -991,7 +1003,8 @@
         "confidence": "high",
         "lon": 73.55408,
         "lat": 18.18267,
-        "id": "SZ013"
+        "id": "SZ013",
+        "near": "Waki Budruk, Raigad"
       },
       "geometry": {
         "type": "Polygon",
@@ -1067,7 +1080,8 @@
         "confidence": "high",
         "lon": 73.36318,
         "lat": 18.48563,
-        "id": "SZ014"
+        "id": "SZ014",
+        "near": "Nagshet, Raigad"
       },
       "geometry": {
         "type": "Polygon",
@@ -1135,7 +1149,8 @@
         "confidence": "high",
         "lon": 73.71109,
         "lat": 18.33722,
-        "id": "SZ015"
+        "id": "SZ015",
+        "near": "Khamgaon, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -1227,7 +1242,8 @@
         "confidence": "high",
         "lon": 73.89063,
         "lat": 18.33062,
-        "id": "SZ016"
+        "id": "SZ016",
+        "near": "Bhor, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -1287,7 +1303,8 @@
         "confidence": "high",
         "lon": 73.771,
         "lat": 18.32748,
-        "id": "SZ017"
+        "id": "SZ017",
+        "near": "Vangni, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -1379,7 +1396,8 @@
         "confidence": "high",
         "lon": 73.91426,
         "lat": 18.4093,
-        "id": "SZ018"
+        "id": "SZ018",
+        "near": "Askarwadi, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -1455,7 +1473,8 @@
         "confidence": "high",
         "lon": 73.59701,
         "lat": 18.62209,
-        "id": "SZ019"
+        "id": "SZ019",
+        "near": "Pusane, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -1555,7 +1574,8 @@
         "confidence": "high",
         "lon": 73.53189,
         "lat": 18.34715,
-        "id": "SZ020"
+        "id": "SZ020",
+        "near": "Bhalwqdi, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -1623,7 +1643,8 @@
         "confidence": "high",
         "lon": 73.79498,
         "lat": 18.2721,
-        "id": "SZ021"
+        "id": "SZ021",
+        "near": "Vitthalwadi, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -1723,7 +1744,8 @@
         "confidence": "high",
         "lon": 73.35849,
         "lat": 18.8857,
-        "id": "SZ022"
+        "id": "SZ022",
+        "near": "Tamnath, Raigad"
       },
       "geometry": {
         "type": "Polygon",
@@ -1799,7 +1821,8 @@
         "confidence": "high",
         "lon": 73.55708,
         "lat": 18.1847,
-        "id": "SZ023"
+        "id": "SZ023",
+        "near": "Waki Budruk, Raigad"
       },
       "geometry": {
         "type": "Polygon",
@@ -1859,7 +1882,8 @@
         "confidence": "medium",
         "lon": 73.43964,
         "lat": 18.79887,
-        "id": "SZ024"
+        "id": "SZ024",
+        "near": "Vehergaon, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -1927,7 +1951,8 @@
         "confidence": "medium",
         "lon": 73.47024,
         "lat": 18.49739,
-        "id": "SZ025"
+        "id": "SZ025",
+        "near": "Vandre, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -1987,7 +2012,8 @@
         "confidence": "high",
         "lon": 73.73477,
         "lat": 18.37309,
-        "id": "SZ026"
+        "id": "SZ026",
+        "near": "Chandewadi, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -2071,7 +2097,8 @@
         "confidence": "medium",
         "lon": 73.45356,
         "lat": 18.71478,
-        "id": "SZ027"
+        "id": "SZ027",
+        "near": "Aundholi, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -2147,7 +2174,8 @@
         "confidence": "medium",
         "lon": 73.53529,
         "lat": 18.29846,
-        "id": "SZ028"
+        "id": "SZ028",
+        "near": "Raidandwaadi, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -2247,7 +2275,8 @@
         "confidence": "medium",
         "lon": 73.60602,
         "lat": 18.57266,
-        "id": "SZ029"
+        "id": "SZ029",
+        "near": "Chaale, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -2339,7 +2368,8 @@
         "confidence": "medium",
         "lon": 73.49509,
         "lat": 18.55329,
-        "id": "SZ030"
+        "id": "SZ030",
+        "near": "Valane, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -2415,7 +2445,8 @@
         "confidence": "medium",
         "lon": 73.48515,
         "lat": 18.35817,
-        "id": "SZ031"
+        "id": "SZ031",
+        "near": "Lavasa, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -2483,7 +2514,8 @@
         "confidence": "medium",
         "lon": 73.82098,
         "lat": 18.16775,
-        "id": "SZ032"
+        "id": "SZ032",
+        "near": "Basarapur, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -2567,7 +2599,8 @@
         "confidence": "medium",
         "lon": 73.61435,
         "lat": 18.14834,
-        "id": "SZ033"
+        "id": "SZ033",
+        "near": "Kumbheshivtar, Raigad"
       },
       "geometry": {
         "type": "Polygon",
@@ -2611,7 +2644,8 @@
         "confidence": "medium",
         "lon": 73.74926,
         "lat": 18.35552,
-        "id": "SZ034"
+        "id": "SZ034",
+        "near": "Peth, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -2703,7 +2737,8 @@
         "confidence": "medium",
         "lon": 73.38104,
         "lat": 18.29794,
-        "id": "SZ035"
+        "id": "SZ035",
+        "near": "Jor, Raigad"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2813,7 +2848,8 @@
         "confidence": "medium",
         "lon": 73.44189,
         "lat": 18.2794,
-        "id": "SZ036"
+        "id": "SZ036",
+        "near": "Sandoshi, Raigad"
       },
       "geometry": {
         "type": "Polygon",
@@ -2873,7 +2909,8 @@
         "confidence": "medium",
         "lon": 73.44281,
         "lat": 18.26891,
-        "id": "SZ037"
+        "id": "SZ037",
+        "near": "Sandoshi, Raigad"
       },
       "geometry": {
         "type": "Polygon",
@@ -2957,7 +2994,8 @@
         "confidence": "medium",
         "lon": 73.88531,
         "lat": 18.20593,
-        "id": "SZ038"
+        "id": "SZ038",
+        "near": "Bhairavnath Nagar, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -3033,7 +3071,8 @@
         "confidence": "medium",
         "lon": 73.68678,
         "lat": 18.57104,
-        "id": "SZ039"
+        "id": "SZ039",
+        "near": "Maan, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -3117,7 +3156,8 @@
         "confidence": "medium",
         "lon": 73.98323,
         "lat": 18.28492,
-        "id": "SZ040"
+        "id": "SZ040",
+        "near": "Narayanpur, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -3209,7 +3249,8 @@
         "confidence": "medium",
         "lon": 74.09759,
         "lat": 18.26985,
-        "id": "SZ041"
+        "id": "SZ041",
+        "near": "Sakurde, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -3325,7 +3366,8 @@
         "confidence": "medium",
         "lon": 74.03861,
         "lat": 18.24649,
-        "id": "SZ042"
+        "id": "SZ042",
+        "near": "Khaigarwadi, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -3417,7 +3459,8 @@
         "confidence": "medium",
         "lon": 73.3223,
         "lat": 18.66567,
-        "id": "SZ043"
+        "id": "SZ043",
+        "near": "Pasalwadi, Raigad"
       },
       "geometry": {
         "type": "Polygon",
@@ -3485,7 +3528,8 @@
         "confidence": "medium",
         "lon": 73.49083,
         "lat": 18.44178,
-        "id": "SZ044"
+        "id": "SZ044",
+        "near": "Mugaon, Pune"
       },
       "geometry": {
         "type": "Polygon",
@@ -3593,7 +3637,8 @@
         "confidence": "medium",
         "lon": 73.38561,
         "lat": 18.88013,
-        "id": "SZ045"
+        "id": "SZ045",
+        "near": "Mangaon, Raigad"
       },
       "geometry": {
         "type": "Polygon",
@@ -3653,7 +3698,8 @@
         "confidence": "medium",
         "lon": 74.03668,
         "lat": 18.24826,
-        "id": "SZ046"
+        "id": "SZ046",
+        "near": "Panwadi, Pune"
       },
       "geometry": {
         "type": "Polygon",

@@ -12,7 +12,7 @@ if not ui.require_results():
 before, after = data.dates()
 st.markdown(f"# {ui.t('explore')}")
 st.markdown(f'<div class="ml-dates">NISAR passes on {data.nice_date(before, False)} and {data.nice_date(after)}. '
-            'Switch layers in the panel on the map; click a slide zone or a marker for details.</div>',
+            'Switch radar layers with the layer button at the top right of the map; click a slide zone or a marker for details.</div>',
             unsafe_allow_html=True)
 
 c1, c2, c3 = st.columns([1, 1.2, 1])
@@ -26,7 +26,7 @@ ui.legend([(ui.COLORS["new_water"], ui.t("legend_new_water"), "fill"),
            (ui.COLORS["brighter"], ui.t("legend_brighter"), "hatch"),
            (ui.COLORS["permanent"], ui.t("legend_permanent"), "fill"),
            (ui.INK, ui.t("legend_events"), "dot")])
-m = maps.build(basemap=basemap, opacity=opacity, min_conf=conf, zoom=10)
+m = maps.build(basemap=basemap, opacity=opacity, min_conf=conf, zoom=10, collapsed=True)
 st_folium(m, height=640, use_container_width=True, returned_objects=[], key=f"explore_{basemap}_{opacity}_{conf}")
 
 tab_z, tab_w, tab_t, tab_e, tab_d = st.tabs(["Slide zones", "Water", "Rain and timeline", "Reported events",
@@ -35,8 +35,12 @@ with tab_z:
     gj = data.geojson("slide_zones.geojson")
     if gj and gj["features"]:
         df = pd.DataFrame([f["properties"] for f in gj["features"]])
-        cols = ["id", "confidence", "score", "area_ha", "slope_deg", "hv_change_db", "hh_change_db", "coherence",
-                "coherence_vs_local", "lat", "lon"]
+        if "near" not in df:
+            df["near"] = ""
+        df["near"] = df["near"].fillna("")
+        df["map"] = [f"https://www.google.com/maps/search/?api=1&query={a},{b}" for a, b in zip(df["lat"], df["lon"])]
+        cols = ["id", "near", "confidence", "score", "area_ha", "slope_deg", "hv_change_db", "hh_change_db",
+                "coherence", "coherence_vs_local", "lat", "lon", "map"]
         st.markdown(f"{len(df)} likely slide zones, sorted by score. Score adds three pieces of evidence: "
                     "steepness, radar change, and coherence lost compared with the surrounding kilometre.")
         cc = st.column_config
@@ -50,7 +54,17 @@ with tab_z:
                                     "coherence": cc.NumberColumn("Coherence", format="%.2f"),
                                     "coherence_vs_local": cc.NumberColumn("Coherence vs 1 km", format="%.2f"),
                                     "lat": cc.NumberColumn("Lat", format="%.4f"),
-                                    "lon": cc.NumberColumn("Lon", format="%.4f")})
+                                    "lon": cc.NumberColumn("Lon", format="%.4f"),
+                                    "near": "Nearest place",
+                                    "map": cc.LinkColumn("Map", display_text="Open")})
+        field = df[["id", "near", "confidence", "score", "area_ha", "slope_deg", "lat", "lon", "map"]].rename(
+            columns={"near": "nearest_place", "map": "map_link"})
+        st.download_button("Download field check list (CSV)", field.to_csv(index=False).encode(),
+                           file_name="monsoonlens_slide_zones_field_checklist.csv", mime="text/csv",
+                           help="Every likely slide zone with its nearest named place and a map link, "
+                                "for teams checking on the ground.")
+        st.caption("Place names: © OpenStreetMap contributors (Nominatim). Zones are leads to check, "
+                   "not confirmed landslides.")
     else:
         st.info("No slide zones in this run.")
 with tab_w:

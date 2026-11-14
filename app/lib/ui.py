@@ -35,7 +35,7 @@ h3 {{ font-size: 1.2rem; font-weight: 600; }}
 p, li {{ font-size: 1.02rem; line-height: 1.6; max-width: 72ch; }}
 .ml-lede {{ font-size: 1.18rem; line-height: 1.55; color: {INK}; max-width: 60ch; }}
 .ml-muted {{ color: {MUTED}; font-size: 0.93rem; }}
-.ml-hero {{ font-size: clamp(2.3rem, 5vw, 3.6rem); line-height: 1.0; font-weight: 700; margin: 0 0 0.6rem 0; }}
+.ml-hero {{ font-size: clamp(2rem, 3.1vw, 3.3rem); line-height: 1.03; font-weight: 700; margin: 0 0 0.6rem 0; text-wrap: balance; }}
 .ml-dates {{ font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; color: {RADAR};
   font-size: 1.05rem; margin-bottom: 1.2rem; }}
 .ml-finding {{ display: grid; grid-template-columns: 18px 7.5rem 1fr; gap: 0.2rem 0.9rem;

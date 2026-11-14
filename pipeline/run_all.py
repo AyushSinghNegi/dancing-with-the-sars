@@ -39,6 +39,12 @@ def main(argv=None):
     wstats, layers = water.run()
     print("[run] slide zones", flush=True)
     sz, _ = slide_zones.run(layers)
+    print("[run] place names (OpenStreetMap)", flush=True)
+    try:
+        from . import places
+        places.run()
+    except Exception as e:  # names are a convenience; never block the science
+        print(f"      skipped: {e}")
     print("[run] validation", flush=True)
     vsum, _ = validate.run()
     print("[run] timeline", flush=True)
