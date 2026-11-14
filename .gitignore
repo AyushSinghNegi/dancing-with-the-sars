@@ -238,3 +238,6 @@ data/demo/crops/
 
 # app helpers live in app/lib (the Python template above ignores lib/)
 !app/lib/
+
+# rendered video (re-make with: python video/make_video.py)
+video/out/
