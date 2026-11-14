@@ -1,0 +1,1255 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.39186,
+          18.89501
+        ]
+      },
+      "properties": {
+        "rank": 1,
+        "zone": "SZ001",
+        "nearest_place": "Karjat Taluka, Raigad",
+        "confidence": "high",
+        "score": 0.86,
+        "area_ha": 0.48,
+        "slope_deg": 38.7,
+        "why": "Steep ground: 39\u00b0 on average. The ground stopped matching itself between passes: coherence 0.21, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 6.2 dB (rough debris).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "not kept (steeper than 45\u00b0 in NASADEM)",
+        "nearest_report": "Lonavala to Rajmachi road (landslide), 11.7 km",
+        "checks_passed": 0,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.89501,73.39186"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.56288,
+          18.19757
+        ]
+      },
+      "properties": {
+        "rank": 2,
+        "zone": "SZ002",
+        "nearest_place": "Dhangarwadi, Raigad",
+        "confidence": "high",
+        "score": 0.86,
+        "area_ha": 0.32,
+        "slope_deg": 39.5,
+        "why": "Steep ground: 40\u00b0 on average. The ground stopped matching itself between passes: coherence 0.16, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 5.7 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Varandha Ghat near Shirgaon, Bhor (landslide), 13.9 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.19757,73.56288"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.52673,
+          18.17851
+        ]
+      },
+      "properties": {
+        "rank": 3,
+        "zone": "SZ003",
+        "nearest_place": "Waki Budruk, Raigad",
+        "confidence": "high",
+        "score": 0.86,
+        "area_ha": 0.32,
+        "slope_deg": 36.5,
+        "why": "Steep ground: 36\u00b0 on average. The ground stopped matching itself between passes: coherence 0.17, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 4.9 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Varandha Ghat near Shirgaon, Bhor (landslide), 15.2 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.17851,73.52673"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.40928,
+          18.47321
+        ]
+      },
+      "properties": {
+        "rank": 4,
+        "zone": "SZ004",
+        "nearest_place": "Dongerwadi, Pune",
+        "confidence": "high",
+        "score": 0.85,
+        "area_ha": 0.32,
+        "slope_deg": 32.0,
+        "why": "Steep ground: 32\u00b0 on average. The ground stopped matching itself between passes: coherence 0.18, 0.4\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 5.4 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat (landslide), 5.0 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.47321,73.40928"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.52241,
+          18.17594
+        ]
+      },
+      "properties": {
+        "rank": 5,
+        "zone": "SZ005",
+        "nearest_place": "Jholichakond, Raigad",
+        "confidence": "high",
+        "score": 0.85,
+        "area_ha": 0.32,
+        "slope_deg": 38.0,
+        "why": "Steep ground: 38\u00b0 on average. The ground stopped matching itself between passes: coherence 0.22, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 5.5 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Varandha Ghat near Shirgaon, Bhor (landslide), 15.4 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.17594,73.52241"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.72455,
+          18.15528
+        ]
+      },
+      "properties": {
+        "rank": 6,
+        "zone": "SZ006",
+        "nearest_place": "Mahuda, Pune",
+        "confidence": "high",
+        "score": 0.85,
+        "area_ha": 0.48,
+        "slope_deg": 38.3,
+        "why": "Steep ground: 38\u00b0 on average. The ground stopped matching itself between passes: coherence 0.23, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 5.5 dB (vegetation stripped).",
+        "second_nisar_orbit": "no",
+        "nasadem_check": "kept",
+        "nearest_report": "Varandha Ghat near Shirgaon, Bhor (landslide), 10.8 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.15528,73.72455"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.33264,
+          18.77902
+        ]
+      },
+      "properties": {
+        "rank": 7,
+        "zone": "SZ007",
+        "nearest_place": "Adoshi, Raigad",
+        "confidence": "high",
+        "score": 0.84,
+        "area_ha": 0.32,
+        "slope_deg": 39.5,
+        "why": "Steep ground: 40\u00b0 on average. The ground stopped matching itself between passes: coherence 0.18, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 10.0 dB (rough debris).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Railway, Khandala to Monkey Hill (Bhor Ghat) (landslide), 2.4 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.77902,73.33264"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.52147,
+          18.17485
+        ]
+      },
+      "properties": {
+        "rank": 8,
+        "zone": "SZ008",
+        "nearest_place": "Jholichakond, Raigad",
+        "confidence": "high",
+        "score": 0.84,
+        "area_ha": 0.32,
+        "slope_deg": 38.5,
+        "why": "Steep ground: 38\u00b0 on average. The ground stopped matching itself between passes: coherence 0.22, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 5.2 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Varandha Ghat near Shirgaon, Bhor (landslide), 15.4 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.17485,73.52147"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.48086,
+          18.73059
+        ]
+      },
+      "properties": {
+        "rank": 9,
+        "zone": "SZ009",
+        "nearest_place": "Karli, Pune",
+        "confidence": "medium",
+        "score": 0.73,
+        "area_ha": 0.32,
+        "slope_deg": 32.5,
+        "why": "Steep ground: 32\u00b0 on average. The ground stopped matching itself between passes: coherence 0.24, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 4.9 dB (rough debris).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Patan village near the Bhaja Caves, Maval (landslide), 1.4 km",
+        "checks_passed": 2,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.73059,73.48086"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.37,
+          18.3003
+        ]
+      },
+      "properties": {
+        "rank": 10,
+        "zone": "SZ010",
+        "nearest_place": "Jor, Raigad",
+        "confidence": "medium",
+        "score": 0.72,
+        "area_ha": 0.32,
+        "slope_deg": 42.0,
+        "why": "Steep ground: 42\u00b0 on average. The ground stopped matching itself between passes: coherence 0.22, 0.4\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 3.0 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "not kept (steeper than 45\u00b0 in NASADEM)",
+        "nearest_report": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat (landslide), 17.1 km",
+        "checks_passed": 0,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.30030,73.37000"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.3365,
+          18.69449
+        ]
+      },
+      "properties": {
+        "rank": 11,
+        "zone": "SZ011",
+        "nearest_place": "Wave, Raigad",
+        "confidence": "medium",
+        "score": 0.7,
+        "area_ha": 0.32,
+        "slope_deg": 37.5,
+        "why": "Steep ground: 38\u00b0 on average. The ground stopped matching itself between passes: coherence 0.20, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 3.2 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "not kept (steeper than 45\u00b0 in NASADEM)",
+        "nearest_report": "Missing Link, Tunnel 2 exit (Pune-Mumbai lane), Khandala (landslide), 8.1 km",
+        "checks_passed": 0,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.69449,73.33650"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.52837,
+          18.18665
+        ]
+      },
+      "properties": {
+        "rank": 12,
+        "zone": "SZ012",
+        "nearest_place": "Waki Budruk, Raigad",
+        "confidence": "medium",
+        "score": 0.7,
+        "area_ha": 0.32,
+        "slope_deg": 38.5,
+        "why": "Steep ground: 38\u00b0 on average. The ground stopped matching itself between passes: coherence 0.16, 0.4\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 2.5 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Varandha Ghat near Shirgaon, Bhor (landslide), 15.6 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.18665,73.52837"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.35302,
+          18.71126
+        ]
+      },
+      "properties": {
+        "rank": 13,
+        "zone": "SZ013",
+        "nearest_place": "Mawal Subdistrict, Pune",
+        "confidence": "medium",
+        "score": 0.69,
+        "area_ha": 0.32,
+        "slope_deg": 33.0,
+        "why": "Steep ground: 33\u00b0 on average. The ground stopped matching itself between passes: coherence 0.19, 0.4\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 2.8 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Missing Link, Tunnel 2 exit (Pune-Mumbai lane), Khandala (landslide), 6.0 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.71126,73.35302"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.40159,
+          18.66867
+        ]
+      },
+      "properties": {
+        "rank": 14,
+        "zone": "SZ014",
+        "nearest_place": "Mulshi Subdistrict, Pune",
+        "confidence": "medium",
+        "score": 0.69,
+        "area_ha": 0.32,
+        "slope_deg": 25.5,
+        "why": "Steep ground: 26\u00b0 on average. The ground stopped matching itself between passes: coherence 0.14, 0.4\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 5.3 dB (rough debris).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Missing Link, Tunnel 2 exit (Pune-Mumbai lane), Khandala (landslide), 11.8 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.66867,73.40159"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.37719,
+          18.54269
+        ]
+      },
+      "properties": {
+        "rank": 15,
+        "zone": "SZ015",
+        "nearest_place": "Adgaon, Pune",
+        "confidence": "medium",
+        "score": 0.68,
+        "area_ha": 0.32,
+        "slope_deg": 39.5,
+        "why": "Steep ground: 40\u00b0 on average. The ground stopped matching itself between passes: coherence 0.17, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 3.0 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "not kept (steeper than 45\u00b0 in NASADEM)",
+        "nearest_report": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat (landslide), 13.3 km",
+        "checks_passed": 0,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.54269,73.37719"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.39137,
+          18.44397
+        ]
+      },
+      "properties": {
+        "rank": 16,
+        "zone": "SZ016",
+        "nearest_place": "Patnus, Raigad",
+        "confidence": "medium",
+        "score": 0.68,
+        "area_ha": 0.32,
+        "slope_deg": 37.0,
+        "why": "Steep ground: 37\u00b0 on average. The ground stopped matching itself between passes: coherence 0.20, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 3.9 dB (rough debris).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat (landslide), 5.1 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.44397,73.39137"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.73245,
+          18.15088
+        ]
+      },
+      "properties": {
+        "rank": 17,
+        "zone": "SZ017",
+        "nearest_place": "Mahuda, Pune",
+        "confidence": "medium",
+        "score": 0.67,
+        "area_ha": 0.32,
+        "slope_deg": 44.5,
+        "why": "Steep ground: 44\u00b0 on average. The ground stopped matching itself between passes: coherence 0.24, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 3.8 dB (rough debris).",
+        "second_nisar_orbit": "yes",
+        "nasadem_check": "not kept (steeper than 45\u00b0 in NASADEM)",
+        "nearest_report": "Varandha Ghat near Shirgaon, Bhor (landslide), 11.2 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.15088,73.73245"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.40401,
+          18.34649
+        ]
+      },
+      "properties": {
+        "rank": 18,
+        "zone": "SZ018",
+        "nearest_place": "Boravali, Raigad",
+        "confidence": "medium",
+        "score": 0.64,
+        "area_ha": 0.32,
+        "slope_deg": 34.5,
+        "why": "Steep ground: 34\u00b0 on average. The ground stopped matching itself between passes: coherence 0.19, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 2.3 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat (landslide), 10.9 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.34649,73.40401"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.73228,
+          18.14907
+        ]
+      },
+      "properties": {
+        "rank": 19,
+        "zone": "SZ019",
+        "nearest_place": "Mahuda, Pune",
+        "confidence": "medium",
+        "score": 0.64,
+        "area_ha": 0.48,
+        "slope_deg": 37.3,
+        "why": "Steep ground: 37\u00b0 on average. The ground stopped matching itself between passes: coherence 0.19, 0.4\u00d7 its surrounding kilometre. Radar brightness changed more than the rest of the scene did.",
+        "second_nisar_orbit": "no",
+        "nasadem_check": "kept",
+        "nearest_report": "Varandha Ghat near Shirgaon, Bhor (landslide), 11.1 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.14907,73.73228"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.41306,
+          18.67871
+        ]
+      },
+      "properties": {
+        "rank": 20,
+        "zone": "SZ020",
+        "nearest_place": "Lonavala, Pune",
+        "confidence": "medium",
+        "score": 0.63,
+        "area_ha": 0.32,
+        "slope_deg": 29.0,
+        "why": "Steep ground: 29\u00b0 on average. The ground stopped matching itself between passes: coherence 0.15, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 4.4 dB (rough debris).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Patan village near the Bhaja Caves, Maval (landslide), 10.5 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.67871,73.41306"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.41104,
+          18.5287
+        ]
+      },
+      "properties": {
+        "rank": 21,
+        "zone": "SZ021",
+        "nearest_place": "Adgaon, Pune",
+        "confidence": "medium",
+        "score": 0.63,
+        "area_ha": 0.32,
+        "slope_deg": 30.5,
+        "why": "Steep ground: 30\u00b0 on average. The ground stopped matching itself between passes: coherence 0.22, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 4.5 dB (rough debris).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat (landslide), 10.4 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.52870,73.41104"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.47168,
+          18.29102
+        ]
+      },
+      "properties": {
+        "rank": 22,
+        "zone": "SZ022",
+        "nearest_place": "Warangi, Raigad",
+        "confidence": "medium",
+        "score": 0.63,
+        "area_ha": 0.8,
+        "slope_deg": 37.0,
+        "why": "Steep ground: 37\u00b0 on average. The ground stopped matching itself between passes: coherence 0.20, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 2.2 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat (landslide), 16.8 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.29102,73.47168"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.65559,
+          18.50819
+        ]
+      },
+      "properties": {
+        "rank": 23,
+        "zone": "SZ023",
+        "nearest_place": "Sutarwadi, Pune",
+        "confidence": "medium",
+        "score": 0.61,
+        "area_ha": 0.32,
+        "slope_deg": 22.0,
+        "why": "Steep ground: 22\u00b0 on average. The ground stopped matching itself between passes: coherence 0.24, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 9.4 dB (rough debris).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "not kept (gentler than 15\u00b0 in NASADEM)",
+        "nearest_report": "Shivane (Mutha river) (river_overflow), 15.2 km",
+        "checks_passed": 0,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.50819,73.65559"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.90851,
+          18.88936
+        ]
+      },
+      "properties": {
+        "rank": 24,
+        "zone": "SZ024",
+        "nearest_place": "Sandbhorwadi, Pune",
+        "confidence": "low",
+        "score": 0.59,
+        "area_ha": 0.32,
+        "slope_deg": 25.0,
+        "why": "Steep ground: 25\u00b0 on average. The ground stopped matching itself between passes: coherence 0.24, 0.6\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 4.4 dB (vegetation stripped).",
+        "second_nisar_orbit": "no",
+        "nasadem_check": "kept",
+        "nearest_report": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan) (waterlogging), 14.9 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.88936,73.90851"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.54545,
+          18.629
+        ]
+      },
+      "properties": {
+        "rank": 25,
+        "zone": "SZ025",
+        "nearest_place": "Andhalegaon, Pune",
+        "confidence": "low",
+        "score": 0.59,
+        "area_ha": 0.32,
+        "slope_deg": 40.0,
+        "why": "Steep ground: 40\u00b0 on average. The ground stopped matching itself between passes: coherence 0.26, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 2.1 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Patan village near the Bhaja Caves, Maval (landslide), 13.6 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.62900,73.54545"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.73804,
+          18.1623
+        ]
+      },
+      "properties": {
+        "rank": 26,
+        "zone": "SZ026",
+        "nearest_place": "Mahuda, Pune",
+        "confidence": "low",
+        "score": 0.59,
+        "area_ha": 0.32,
+        "slope_deg": 31.0,
+        "why": "Steep ground: 31\u00b0 on average. The ground stopped matching itself between passes: coherence 0.31, 0.6\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 4.0 dB (rough debris).",
+        "second_nisar_orbit": "no",
+        "nasadem_check": "kept",
+        "nearest_report": "Varandha Ghat near Shirgaon, Bhor (landslide), 12.4 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.16230,73.73804"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.3847,
+          18.78626
+        ]
+      },
+      "properties": {
+        "rank": 27,
+        "zone": "SZ027",
+        "nearest_place": "Thakurwadi, Pune",
+        "confidence": "low",
+        "score": 0.58,
+        "area_ha": 0.48,
+        "slope_deg": 32.0,
+        "why": "Steep ground: 32\u00b0 on average. The ground stopped matching itself between passes: coherence 0.25, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 2.1 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Lonavala to Rajmachi road (landslide), 1.7 km",
+        "checks_passed": 2,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.78626,73.38470"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.55487,
+          18.2286
+        ]
+      },
+      "properties": {
+        "rank": 28,
+        "zone": "SZ028",
+        "nearest_place": "Bhordi, Pune",
+        "confidence": "low",
+        "score": 0.57,
+        "area_ha": 0.32,
+        "slope_deg": 17.5,
+        "why": "Steep ground: 18\u00b0 on average. The ground stopped matching itself between passes: coherence 0.18, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 6.1 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "not kept (gentler than 15\u00b0 in NASADEM)",
+        "nearest_report": "Pabe Ghat road, Velhe (landslide), 15.6 km",
+        "checks_passed": 0,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.22860,73.55487"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.75365,
+          18.17433
+        ]
+      },
+      "properties": {
+        "rank": 29,
+        "zone": "SZ029",
+        "nearest_place": "Mahuda, Pune",
+        "confidence": "low",
+        "score": 0.56,
+        "area_ha": 0.64,
+        "slope_deg": 35.0,
+        "why": "Steep ground: 35\u00b0 on average. The ground stopped matching itself between passes: coherence 0.24, 0.6\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 3.3 dB (rough debris).",
+        "second_nisar_orbit": "no",
+        "nasadem_check": "kept",
+        "nearest_report": "Varandha Ghat near Shirgaon, Bhor (landslide), 14.5 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.17433,73.75365"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.37012,
+          18.77122
+        ]
+      },
+      "properties": {
+        "rank": 30,
+        "zone": "SZ030",
+        "nearest_place": "Khandala, Pune",
+        "confidence": "low",
+        "score": 0.53,
+        "area_ha": 0.8,
+        "slope_deg": 32.4,
+        "why": "Steep ground: 32\u00b0 on average. The ground stopped matching itself between passes: coherence 0.22, 0.5\u00d7 its surrounding kilometre. Radar brightness changed more than the rest of the scene did.",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "not kept (radar layover or shadow in NASADEM)",
+        "nearest_report": "Missing Link, Tunnel 2 exit (Pune-Mumbai lane), Khandala (landslide), 1.6 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.77122,73.37012"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.40519,
+          18.66906
+        ]
+      },
+      "properties": {
+        "rank": 31,
+        "zone": "SZ031",
+        "nearest_place": "Mulshi Subdistrict, Pune",
+        "confidence": "low",
+        "score": 0.53,
+        "area_ha": 0.32,
+        "slope_deg": 26.0,
+        "why": "Steep ground: 26\u00b0 on average. The ground stopped matching itself between passes: coherence 0.19, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 4.3 dB (rough debris).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Patan village near the Bhaja Caves, Maval (landslide), 11.9 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.66906,73.40519"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.6989,
+          18.23993
+        ]
+      },
+      "properties": {
+        "rank": 32,
+        "zone": "SZ032",
+        "nearest_place": "Gunjavane, Pune",
+        "confidence": "low",
+        "score": 0.53,
+        "area_ha": 0.32,
+        "slope_deg": 24.0,
+        "why": "Steep ground: 24\u00b0 on average. The ground stopped matching itself between passes: coherence 0.20, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 4.1 dB (rough debris).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Pabe Ghat road, Velhe (landslide), 9.7 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.23993,73.69890"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.7318,
+          18.16262
+        ]
+      },
+      "properties": {
+        "rank": 33,
+        "zone": "SZ033",
+        "nearest_place": "Mahuda, Pune",
+        "confidence": "low",
+        "score": 0.52,
+        "area_ha": 0.32,
+        "slope_deg": 32.0,
+        "why": "Steep ground: 32\u00b0 on average. The ground stopped matching itself between passes: coherence 0.24, 0.6\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 3.4 dB (rough debris).",
+        "second_nisar_orbit": "no",
+        "nasadem_check": "kept",
+        "nearest_report": "Varandha Ghat near Shirgaon, Bhor (landslide), 11.9 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.16262,73.73180"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.37703,
+          18.4724
+        ]
+      },
+      "properties": {
+        "rank": 34,
+        "zone": "SZ034",
+        "nearest_place": "Patnus, Raigad",
+        "confidence": "low",
+        "score": 0.51,
+        "area_ha": 0.48,
+        "slope_deg": 26.0,
+        "why": "Steep ground: 26\u00b0 on average. The ground stopped matching itself between passes: coherence 0.19, 0.6\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 3.4 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat (landslide), 7.6 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.47240,73.37703"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.75451,
+          18.17262
+        ]
+      },
+      "properties": {
+        "rank": 35,
+        "zone": "SZ035",
+        "nearest_place": "Mahuda, Pune",
+        "confidence": "low",
+        "score": 0.5,
+        "area_ha": 0.64,
+        "slope_deg": 23.0,
+        "why": "Steep ground: 23\u00b0 on average. The ground stopped matching itself between passes: coherence 0.17, 0.4\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 3.4 dB (rough debris).",
+        "second_nisar_orbit": "yes",
+        "nasadem_check": "kept",
+        "nearest_report": "Varandha Ghat near Shirgaon, Bhor (landslide), 14.5 km",
+        "checks_passed": 2,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.17262,73.75451"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.46109,
+          18.29076
+        ]
+      },
+      "properties": {
+        "rank": 36,
+        "zone": "SZ036",
+        "nearest_place": "Warangi, Raigad",
+        "confidence": "low",
+        "score": 0.49,
+        "area_ha": 0.32,
+        "slope_deg": 33.5,
+        "why": "Steep ground: 34\u00b0 on average. The ground stopped matching itself between passes: coherence 0.19, 0.5\u00d7 its surrounding kilometre. Radar brightness changed more than the rest of the scene did.",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat (landslide), 16.6 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.29076,73.46109"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.54031,
+          18.45403
+        ]
+      },
+      "properties": {
+        "rank": 37,
+        "zone": "SZ037",
+        "nearest_place": "Lavasa, Pune",
+        "confidence": "low",
+        "score": 0.47,
+        "area_ha": 0.32,
+        "slope_deg": 22.5,
+        "why": "Steep ground: 22\u00b0 on average. The ground stopped matching itself between passes: coherence 0.20, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 3.2 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "not kept (gentler than 15\u00b0 in NASADEM)",
+        "nearest_report": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat (landslide), 10.8 km",
+        "checks_passed": 0,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.45403,73.54031"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.40757,
+          18.39224
+        ]
+      },
+      "properties": {
+        "rank": 38,
+        "zone": "SZ038",
+        "nearest_place": "Umbardi, Raigad",
+        "confidence": "low",
+        "score": 0.47,
+        "area_ha": 0.32,
+        "slope_deg": 37.0,
+        "why": "Steep ground: 37\u00b0 on average. The ground stopped matching itself between passes: coherence 0.15, 0.5\u00d7 its surrounding kilometre. Radar brightness changed more than the rest of the scene did.",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "not kept (steeper than 45\u00b0 in NASADEM)",
+        "nearest_report": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat (landslide), 6.2 km",
+        "checks_passed": 0,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.39224,73.40757"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.35244,
+          18.71234
+        ]
+      },
+      "properties": {
+        "rank": 39,
+        "zone": "SZ039",
+        "nearest_place": "Mawal Subdistrict, Pune",
+        "confidence": "low",
+        "score": 0.46,
+        "area_ha": 0.64,
+        "slope_deg": 23.8,
+        "why": "Steep ground: 24\u00b0 on average. The ground stopped matching itself between passes: coherence 0.22, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 2.5 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Missing Link, Tunnel 2 exit (Pune-Mumbai lane), Khandala (landslide), 5.9 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.71234,73.35244"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.3929,
+          18.77298
+        ]
+      },
+      "properties": {
+        "rank": 40,
+        "zone": "SZ040",
+        "nearest_place": "Thakurwadi, Pune",
+        "confidence": "low",
+        "score": 0.42,
+        "area_ha": 0.48,
+        "slope_deg": 21.0,
+        "why": "Steep ground: 21\u00b0 on average. The ground stopped matching itself between passes: coherence 0.22, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 2.6 dB (vegetation stripped).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Lonavala to Rajmachi road (landslide), 2.0 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.77298,73.39290"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.96972,
+          18.81615
+        ]
+      },
+      "properties": {
+        "rank": 41,
+        "zone": "SZ041",
+        "nearest_place": "Gosasi, Pune",
+        "confidence": "low",
+        "score": 0.41,
+        "area_ha": 0.32,
+        "slope_deg": 17.5,
+        "why": "Steep ground: 18\u00b0 on average. The ground stopped matching itself between passes: coherence 0.26, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 3.1 dB (vegetation stripped).",
+        "second_nisar_orbit": "no",
+        "nasadem_check": "kept",
+        "nearest_report": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan) (waterlogging), 12.8 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.81615,73.96972"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.56818,
+          18.8644
+        ]
+      },
+      "properties": {
+        "rank": 42,
+        "zone": "SZ042",
+        "nearest_place": "Wadeshwar, Pune",
+        "confidence": "low",
+        "score": 0.38,
+        "area_ha": 0.48,
+        "slope_deg": 24.0,
+        "why": "Steep ground: 24\u00b0 on average. The ground stopped matching itself between passes: coherence 0.19, 0.5\u00d7 its surrounding kilometre. Radar brightness changed more than the rest of the scene did.",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Patan village near the Bhaja Caves, Maval (landslide), 16.2 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.86440,73.56818"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.39851,
+          18.50523
+        ]
+      },
+      "properties": {
+        "rank": 43,
+        "zone": "SZ043",
+        "nearest_place": "Nive, Pune",
+        "confidence": "low",
+        "score": 0.38,
+        "area_ha": 0.96,
+        "slope_deg": 29.2,
+        "why": "Steep ground: 29\u00b0 on average. The ground stopped matching itself between passes: coherence 0.17, 0.5\u00d7 its surrounding kilometre. Radar brightness changed more than the rest of the scene did.",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "not kept (radar layover or shadow in NASADEM)",
+        "nearest_report": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat (landslide), 8.6 km",
+        "checks_passed": 0,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.50523,73.39851"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.4382,
+          18.46957
+        ]
+      },
+      "properties": {
+        "rank": 44,
+        "zone": "SZ044",
+        "nearest_place": "Sarole, Pune",
+        "confidence": "low",
+        "score": 0.38,
+        "area_ha": 0.64,
+        "slope_deg": 24.0,
+        "why": "Steep ground: 24\u00b0 on average. The ground stopped matching itself between passes: coherence 0.17, 0.5\u00d7 its surrounding kilometre. Radar brightness changed more than the rest of the scene did.",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat (landslide), 3.4 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.46957,73.43820"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.7652,
+          18.17205
+        ]
+      },
+      "properties": {
+        "rank": 45,
+        "zone": "SZ045",
+        "nearest_place": "Mahuda, Pune",
+        "confidence": "low",
+        "score": 0.37,
+        "area_ha": 0.32,
+        "slope_deg": 19.5,
+        "why": "Steep ground: 20\u00b0 on average. The ground stopped matching itself between passes: coherence 0.21, 0.6\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 3.8 dB (rough debris).",
+        "second_nisar_orbit": "no",
+        "nasadem_check": "not kept (gentler than 15\u00b0 in NASADEM)",
+        "nearest_report": "Varandha Ghat near Shirgaon, Bhor (landslide), 15.4 km",
+        "checks_passed": 0,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.17205,73.76520"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.98613,
+          18.8654
+        ]
+      },
+      "properties": {
+        "rank": 46,
+        "zone": "SZ046",
+        "nearest_place": "Chichbaiwadi, Pune",
+        "confidence": "low",
+        "score": 0.34,
+        "area_ha": 0.32,
+        "slope_deg": 16.5,
+        "why": "Steep ground: 16\u00b0 on average. The ground stopped matching itself between passes: coherence 0.26, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 2.8 dB (vegetation stripped).",
+        "second_nisar_orbit": "no",
+        "nasadem_check": "not kept (gentler than 15\u00b0 in NASADEM)",
+        "nearest_report": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan) (waterlogging), 17.4 km",
+        "checks_passed": 0,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.86540,73.98613"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.63699,
+          18.8442
+        ]
+      },
+      "properties": {
+        "rank": 47,
+        "zone": "SZ047",
+        "nearest_place": "Awrewada, Pune",
+        "confidence": "low",
+        "score": 0.31,
+        "area_ha": 0.32,
+        "slope_deg": 18.0,
+        "why": "Steep ground: 18\u00b0 on average. The ground stopped matching itself between passes: coherence 0.24, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 3.1 dB (rough debris).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "not kept (near the edge of the slope band in NASADEM)",
+        "nearest_report": "Near Ghorawadi railway station, Talegaon (waterlogging), 15.0 km",
+        "checks_passed": 0,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.84420,73.63699"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.39632,
+          18.46226
+        ]
+      },
+      "properties": {
+        "rank": 48,
+        "zone": "SZ048",
+        "nearest_place": "Patnus, Raigad",
+        "confidence": "low",
+        "score": 0.31,
+        "area_ha": 0.32,
+        "slope_deg": 19.0,
+        "why": "Steep ground: 19\u00b0 on average. The ground stopped matching itself between passes: coherence 0.19, 0.6\u00d7 its surrounding kilometre. Radar brightness changed: HH rose 3.2 dB (rough debris).",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat (landslide), 5.2 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.46226,73.39632"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.69278,
+          18.39984
+        ]
+      },
+      "properties": {
+        "rank": 49,
+        "zone": "SZ049",
+        "nearest_place": "Malkhed, Pune",
+        "confidence": "low",
+        "score": 0.28,
+        "area_ha": 0.32,
+        "slope_deg": 17.0,
+        "why": "Steep ground: 17\u00b0 on average. The ground stopped matching itself between passes: coherence 0.17, 0.4\u00d7 its surrounding kilometre. Radar brightness changed more than the rest of the scene did.",
+        "second_nisar_orbit": "outside its view",
+        "nasadem_check": "kept",
+        "nearest_report": "Pabe Ghat road, Velhe (landslide), 9.2 km",
+        "checks_passed": 1,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.39984,73.69278"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.9643,
+          18.42663
+        ]
+      },
+      "properties": {
+        "rank": 50,
+        "zone": "SZ050",
+        "nearest_place": "Wadki, Pune",
+        "confidence": "low",
+        "score": 0.25,
+        "area_ha": 0.48,
+        "slope_deg": 16.7,
+        "why": "Steep ground: 17\u00b0 on average. The ground stopped matching itself between passes: coherence 0.32, 0.6\u00d7 its surrounding kilometre. Radar brightness changed more than the rest of the scene did.",
+        "second_nisar_orbit": "no",
+        "nasadem_check": "not kept (gentler than 15\u00b0 in NASADEM)",
+        "nearest_report": "Ekta Nagar, Sinhagad Road (Mutha river) (river_overflow), 15.4 km",
+        "checks_passed": 0,
+        "map_link": "https://www.google.com/maps/search/?api=1&query=18.42663,73.96430"
+      }
+    }
+  ]
+}

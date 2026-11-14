@@ -154,6 +154,19 @@ def run(demo_flag=False):
             im.save(out_dir / fname, optimize=True)
         written[name] = {"file": f"overlays/{fname}", "legend": legend,
                          "color": COLORS.get(style if style in COLORS else "", None)}
+    # Season slider: open water on every same-mode date (timeline.py), one overlay per date.
+    for old in out_dir.glob("water_d*.png"):
+        old.unlink()
+    for f in sorted((C.DERIVED / "_layers").glob("water_d*.npy")):
+        date = f.stem[len("water_d"):]
+        w = to_mercator(np.load(f).astype(np.float32), categorical=True)
+        img = np.zeros((*w.shape, 4), np.uint8)
+        m = np.nan_to_num(w) > 0.5
+        img[..., :3] = _hex(COLORS["new_water"])
+        img[..., 3] = np.where(m, 235, 0)
+        Image.fromarray(img, "RGBA").save(out_dir / f"{f.stem}.png", optimize=True)
+        written[f.stem] = {"file": f"overlays/{f.stem}.png", "legend": f"Open water on {date}",
+                           "color": COLORS["new_water"], "date": date}
     # GeoTIFF downloads on the analysis grid (UTM 43N, 40 m).
     gt = C.DERIVED / "geotiff"
     gt.mkdir(exist_ok=True)

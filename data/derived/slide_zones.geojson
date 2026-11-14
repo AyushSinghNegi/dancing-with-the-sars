@@ -29,7 +29,13 @@
         "near": "Karjat Taluka, Raigad",
         "track106": "not covered",
         "nasadem": "not found",
-        "nasadem_reason": "steeper than 45\u00b0 in NASADEM"
+        "nasadem_reason": "steeper than 45\u00b0 in NASADEM",
+        "nearest_event": "E004",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Lonavala to Rajmachi road",
+        "nearest_event_km": 11.72,
+        "checks_passed": 0,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -76,7 +82,13 @@
         "id": "SZ002",
         "near": "Dhangarwadi, Raigad",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E007",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Varandha Ghat near Shirgaon, Bhor",
+        "nearest_event_km": 13.93,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -123,7 +135,13 @@
         "id": "SZ003",
         "near": "Waki Budruk, Raigad",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E007",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Varandha Ghat near Shirgaon, Bhor",
+        "nearest_event_km": 15.18,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -170,7 +188,13 @@
         "id": "SZ004",
         "near": "Dongerwadi, Pune",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E005",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+        "nearest_event_km": 4.99,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -243,7 +267,13 @@
         "id": "SZ005",
         "near": "Jholichakond, Raigad",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E007",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Varandha Ghat near Shirgaon, Bhor",
+        "nearest_event_km": 15.39,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -316,7 +346,13 @@
         "id": "SZ006",
         "near": "Mahuda, Pune",
         "track106": "partial",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E007",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Varandha Ghat near Shirgaon, Bhor",
+        "nearest_event_km": 10.78,
+        "checks_passed": 1,
+        "checks_possible": 3
       },
       "geometry": {
         "type": "Polygon",
@@ -371,7 +407,13 @@
         "id": "SZ007",
         "near": "Adoshi, Raigad",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E003",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Railway, Khandala to Monkey Hill (Bhor Ghat)",
+        "nearest_event_km": 2.38,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -418,7 +460,13 @@
         "id": "SZ008",
         "near": "Jholichakond, Raigad",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E007",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Varandha Ghat near Shirgaon, Bhor",
+        "nearest_event_km": 15.4,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -465,7 +513,13 @@
         "id": "SZ009",
         "near": "Karli, Pune",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E001",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Patan village near the Bhaja Caves, Maval",
+        "nearest_event_km": 1.35,
+        "checks_passed": 2,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -513,7 +567,13 @@
         "near": "Jor, Raigad",
         "track106": "not covered",
         "nasadem": "not found",
-        "nasadem_reason": "steeper than 45\u00b0 in NASADEM"
+        "nasadem_reason": "steeper than 45\u00b0 in NASADEM",
+        "nearest_event": "E005",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+        "nearest_event_km": 17.08,
+        "checks_passed": 0,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -561,7 +621,13 @@
         "near": "Wave, Raigad",
         "track106": "not covered",
         "nasadem": "not found",
-        "nasadem_reason": "steeper than 45\u00b0 in NASADEM"
+        "nasadem_reason": "steeper than 45\u00b0 in NASADEM",
+        "nearest_event": "E002",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Missing Link, Tunnel 2 exit (Pune-Mumbai lane), Khandala",
+        "nearest_event_km": 8.11,
+        "checks_passed": 0,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -608,7 +674,13 @@
         "id": "SZ012",
         "near": "Waki Budruk, Raigad",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E007",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Varandha Ghat near Shirgaon, Bhor",
+        "nearest_event_km": 15.6,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -655,7 +727,13 @@
         "id": "SZ013",
         "near": "Mawal Subdistrict, Pune",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E002",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Missing Link, Tunnel 2 exit (Pune-Mumbai lane), Khandala",
+        "nearest_event_km": 5.99,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -702,7 +780,13 @@
         "id": "SZ014",
         "near": "Mulshi Subdistrict, Pune",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E002",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Missing Link, Tunnel 2 exit (Pune-Mumbai lane), Khandala",
+        "nearest_event_km": 11.75,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -750,7 +834,13 @@
         "near": "Adgaon, Pune",
         "track106": "not covered",
         "nasadem": "not found",
-        "nasadem_reason": "steeper than 45\u00b0 in NASADEM"
+        "nasadem_reason": "steeper than 45\u00b0 in NASADEM",
+        "nearest_event": "E005",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+        "nearest_event_km": 13.31,
+        "checks_passed": 0,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -823,7 +913,13 @@
         "id": "SZ016",
         "near": "Patnus, Raigad",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E005",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+        "nearest_event_km": 5.12,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -871,7 +967,13 @@
         "near": "Mahuda, Pune",
         "track106": "confirmed",
         "nasadem": "not found",
-        "nasadem_reason": "steeper than 45\u00b0 in NASADEM"
+        "nasadem_reason": "steeper than 45\u00b0 in NASADEM",
+        "nearest_event": "E007",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Varandha Ghat near Shirgaon, Bhor",
+        "nearest_event_km": 11.2,
+        "checks_passed": 1,
+        "checks_possible": 3
       },
       "geometry": {
         "type": "Polygon",
@@ -918,7 +1020,13 @@
         "id": "SZ018",
         "near": "Boravali, Raigad",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E005",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+        "nearest_event_km": 10.94,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -965,7 +1073,13 @@
         "id": "SZ019",
         "near": "Mahuda, Pune",
         "track106": "partial",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E007",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Varandha Ghat near Shirgaon, Bhor",
+        "nearest_event_km": 11.08,
+        "checks_passed": 1,
+        "checks_possible": 3
       },
       "geometry": {
         "type": "Polygon",
@@ -1012,7 +1126,13 @@
         "id": "SZ020",
         "near": "Lonavala, Pune",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E001",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Patan village near the Bhaja Caves, Maval",
+        "nearest_event_km": 10.54,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -1059,7 +1179,13 @@
         "id": "SZ021",
         "near": "Adgaon, Pune",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E005",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+        "nearest_event_km": 10.45,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -1106,7 +1232,13 @@
         "id": "SZ022",
         "near": "Warangi, Raigad",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E005",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+        "nearest_event_km": 16.8,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -1154,7 +1286,13 @@
         "near": "Sutarwadi, Pune",
         "track106": "not covered",
         "nasadem": "not found",
-        "nasadem_reason": "gentler than 15\u00b0 in NASADEM"
+        "nasadem_reason": "gentler than 15\u00b0 in NASADEM",
+        "nearest_event": "E009",
+        "nearest_event_type": "river_overflow",
+        "nearest_event_place": "Shivane (Mutha river)",
+        "nearest_event_km": 15.22,
+        "checks_passed": 0,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -1201,7 +1339,13 @@
         "id": "SZ024",
         "near": "Sandbhorwadi, Pune",
         "track106": "partial",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E016",
+        "nearest_event_type": "waterlogging",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 14.95,
+        "checks_passed": 1,
+        "checks_possible": 3
       },
       "geometry": {
         "type": "Polygon",
@@ -1248,7 +1392,13 @@
         "id": "SZ025",
         "near": "Andhalegaon, Pune",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E001",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Patan village near the Bhaja Caves, Maval",
+        "nearest_event_km": 13.55,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1321,7 +1471,13 @@
         "id": "SZ026",
         "near": "Mahuda, Pune",
         "track106": "partial",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E007",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Varandha Ghat near Shirgaon, Bhor",
+        "nearest_event_km": 12.39,
+        "checks_passed": 1,
+        "checks_possible": 3
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1394,7 +1550,13 @@
         "id": "SZ027",
         "near": "Thakurwadi, Pune",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E004",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Lonavala to Rajmachi road",
+        "nearest_event_km": 1.67,
+        "checks_passed": 2,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -1442,7 +1604,13 @@
         "near": "Bhordi, Pune",
         "track106": "not covered",
         "nasadem": "not found",
-        "nasadem_reason": "gentler than 15\u00b0 in NASADEM"
+        "nasadem_reason": "gentler than 15\u00b0 in NASADEM",
+        "nearest_event": "E006",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pabe Ghat road, Velhe",
+        "nearest_event_km": 15.57,
+        "checks_passed": 0,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1515,7 +1683,13 @@
         "id": "SZ029",
         "near": "Mahuda, Pune",
         "track106": "partial",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E007",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Varandha Ghat near Shirgaon, Bhor",
+        "nearest_event_km": 14.51,
+        "checks_passed": 1,
+        "checks_possible": 3
       },
       "geometry": {
         "type": "Polygon",
@@ -1563,7 +1737,13 @@
         "near": "Khandala, Pune",
         "track106": "not covered",
         "nasadem": "not found",
-        "nasadem_reason": "radar layover or shadow in NASADEM"
+        "nasadem_reason": "radar layover or shadow in NASADEM",
+        "nearest_event": "E002",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Missing Link, Tunnel 2 exit (Pune-Mumbai lane), Khandala",
+        "nearest_event_km": 1.64,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -1626,7 +1806,13 @@
         "id": "SZ031",
         "near": "Mulshi Subdistrict, Pune",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E001",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Patan village near the Bhaja Caves, Maval",
+        "nearest_event_km": 11.87,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1699,7 +1885,13 @@
         "id": "SZ032",
         "near": "Gunjavane, Pune",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E006",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pabe Ghat road, Velhe",
+        "nearest_event_km": 9.73,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -1746,7 +1938,13 @@
         "id": "SZ033",
         "near": "Mahuda, Pune",
         "track106": "partial",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E007",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Varandha Ghat near Shirgaon, Bhor",
+        "nearest_event_km": 11.88,
+        "checks_passed": 1,
+        "checks_possible": 3
       },
       "geometry": {
         "type": "Polygon",
@@ -1793,7 +1991,13 @@
         "id": "SZ034",
         "near": "Patnus, Raigad",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E005",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+        "nearest_event_km": 7.58,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -1866,7 +2070,13 @@
         "id": "SZ035",
         "near": "Mahuda, Pune",
         "track106": "confirmed",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E007",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Varandha Ghat near Shirgaon, Bhor",
+        "nearest_event_km": 14.48,
+        "checks_passed": 2,
+        "checks_possible": 3
       },
       "geometry": {
         "type": "Polygon",
@@ -1921,7 +2131,13 @@
         "id": "SZ036",
         "near": "Warangi, Raigad",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E005",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+        "nearest_event_km": 16.64,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -1969,7 +2185,13 @@
         "near": "Lavasa, Pune",
         "track106": "not covered",
         "nasadem": "not found",
-        "nasadem_reason": "gentler than 15\u00b0 in NASADEM"
+        "nasadem_reason": "gentler than 15\u00b0 in NASADEM",
+        "nearest_event": "E005",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+        "nearest_event_km": 10.78,
+        "checks_passed": 0,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -2017,7 +2239,13 @@
         "near": "Umbardi, Raigad",
         "track106": "not covered",
         "nasadem": "not found",
-        "nasadem_reason": "steeper than 45\u00b0 in NASADEM"
+        "nasadem_reason": "steeper than 45\u00b0 in NASADEM",
+        "nearest_event": "E005",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+        "nearest_event_km": 6.18,
+        "checks_passed": 0,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -2064,7 +2292,13 @@
         "id": "SZ039",
         "near": "Mawal Subdistrict, Pune",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E002",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Missing Link, Tunnel 2 exit (Pune-Mumbai lane), Khandala",
+        "nearest_event_km": 5.87,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -2111,7 +2345,13 @@
         "id": "SZ040",
         "near": "Thakurwadi, Pune",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E004",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Lonavala to Rajmachi road",
+        "nearest_event_km": 2.04,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -2166,7 +2406,13 @@
         "id": "SZ041",
         "near": "Gosasi, Pune",
         "track106": "not seen",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E016",
+        "nearest_event_type": "waterlogging",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 12.79,
+        "checks_passed": 1,
+        "checks_possible": 3
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2239,7 +2485,13 @@
         "id": "SZ042",
         "near": "Wadeshwar, Pune",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E001",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Patan village near the Bhaja Caves, Maval",
+        "nearest_event_km": 16.21,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -2295,7 +2547,13 @@
         "near": "Nive, Pune",
         "track106": "not covered",
         "nasadem": "not found",
-        "nasadem_reason": "radar layover or shadow in NASADEM"
+        "nasadem_reason": "radar layover or shadow in NASADEM",
+        "nearest_event": "E005",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+        "nearest_event_km": 8.57,
+        "checks_passed": 0,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -2366,7 +2624,13 @@
         "id": "SZ044",
         "near": "Sarole, Pune",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E005",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+        "nearest_event_km": 3.43,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -2422,7 +2686,13 @@
         "near": "Mahuda, Pune",
         "track106": "partial",
         "nasadem": "not found",
-        "nasadem_reason": "gentler than 15\u00b0 in NASADEM"
+        "nasadem_reason": "gentler than 15\u00b0 in NASADEM",
+        "nearest_event": "E007",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Varandha Ghat near Shirgaon, Bhor",
+        "nearest_event_km": 15.38,
+        "checks_passed": 0,
+        "checks_possible": 3
       },
       "geometry": {
         "type": "Polygon",
@@ -2470,7 +2740,13 @@
         "near": "Chichbaiwadi, Pune",
         "track106": "partial",
         "nasadem": "not found",
-        "nasadem_reason": "gentler than 15\u00b0 in NASADEM"
+        "nasadem_reason": "gentler than 15\u00b0 in NASADEM",
+        "nearest_event": "E016",
+        "nearest_event_type": "waterlogging",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 17.36,
+        "checks_passed": 0,
+        "checks_possible": 3
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2544,7 +2820,13 @@
         "near": "Awrewada, Pune",
         "track106": "not covered",
         "nasadem": "not found",
-        "nasadem_reason": "near the edge of the slope band in NASADEM"
+        "nasadem_reason": "near the edge of the slope band in NASADEM",
+        "nearest_event": "E017",
+        "nearest_event_type": "waterlogging",
+        "nearest_event_place": "Near Ghorawadi railway station, Talegaon",
+        "nearest_event_km": 15.04,
+        "checks_passed": 0,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -2591,7 +2873,13 @@
         "id": "SZ048",
         "near": "Patnus, Raigad",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E005",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pune-Kolad road collapse near Dongarwadi, Tamhini Ghat",
+        "nearest_event_km": 5.25,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "Polygon",
@@ -2638,7 +2926,13 @@
         "id": "SZ049",
         "near": "Malkhed, Pune",
         "track106": "not covered",
-        "nasadem": "found"
+        "nasadem": "found",
+        "nearest_event": "E006",
+        "nearest_event_type": "landslide",
+        "nearest_event_place": "Pabe Ghat road, Velhe",
+        "nearest_event_km": 9.22,
+        "checks_passed": 1,
+        "checks_possible": 2
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2712,7 +3006,13 @@
         "near": "Wadki, Pune",
         "track106": "partial",
         "nasadem": "not found",
-        "nasadem_reason": "gentler than 15\u00b0 in NASADEM"
+        "nasadem_reason": "gentler than 15\u00b0 in NASADEM",
+        "nearest_event": "E008",
+        "nearest_event_type": "river_overflow",
+        "nearest_event_place": "Ekta Nagar, Sinhagad Road (Mutha river)",
+        "nearest_event_km": 15.36,
+        "checks_passed": 0,
+        "checks_possible": 3
       },
       "geometry": {
         "type": "Polygon",

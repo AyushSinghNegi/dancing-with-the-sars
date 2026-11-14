@@ -292,3 +292,119 @@ def limits() -> dict:
                unreported=(m.get("validation") or {}).get("unreported_slide_zones"),
                zones=(m.get("slides") or {}).get("zones"), peak=rain_peak())
     return out
+
+
+# ------------------------------------------------------------------ evidence, places, season
+def publish_chips() -> str | None:
+    return _publish_chips(ver())
+
+
+@st.cache_resource(show_spinner=False)
+def _publish_chips(v: str) -> str | None:
+    """Copy the evidence chips (pipeline/evidence.py) into app/static so pages load them by URL."""
+    s = source()
+    if not s["dir"]:
+        return None
+    src = Path(s["dir"]) / "chips"
+    if not src.exists():
+        return None
+    dst = STATIC / s["key"] / "chips"
+    dst.mkdir(parents=True, exist_ok=True)
+    for f in src.glob("*.webp"):
+        t = dst / f.name
+        if not t.exists() or t.stat().st_size != f.stat().st_size or t.stat().st_mtime < f.stat().st_mtime:
+            shutil.copy2(f, t)
+    return f"/app/static/layers/{s['key']}/chips"
+
+
+def chip_url(fid: str, kind: str) -> str | None:
+    base = publish_chips()
+    d = _dir()
+    if not base or not d or not (d / "chips" / f"{fid}_{kind}.webp").exists():
+        return None
+    return f"{base}/{fid}_{kind}.webp"
+
+
+def zones() -> list[dict]:
+    gj = geojson("slide_zones.geojson")
+    return [f["properties"] for f in gj["features"]] if gj else []
+
+
+def flood_patches() -> list[dict]:
+    gj = geojson("new_water.geojson")
+    return [f["properties"] for f in gj["features"] if f["properties"].get("kind") == "flood"] if gj else []
+
+
+def water_patches() -> list[dict]:
+    gj = geojson("new_water.geojson")
+    return [f["properties"] for f in gj["features"]] if gj else []
+
+
+def places() -> pd.DataFrame | None:
+    return _places(ver())
+
+
+@st.cache_data(show_spinner=False)
+def _places(v: str) -> pd.DataFrame | None:
+    """Villages, towns and suburbs in the box (OpenStreetMap, pipeline/gazetteer.py)."""
+    p = REFERENCE / "places_osm.csv"
+    if not p.exists():
+        return None
+    df = pd.read_csv(p, dtype={"name_mr": str}).fillna({"name_mr": ""})
+    return df
+
+
+def season_dates() -> list[str]:
+    """Dates with an open-water overlay for the season slider, oldest first."""
+    ov = bounds().get("overlays", {})
+    return sorted(o["date"] for k, o in ov.items() if k.startswith("water_d") and o.get("date"))
+
+
+def field_files() -> dict[str, tuple[str, int]]:
+    """Field check list downloads: name -> (static url, bytes)."""
+    return _field_files(ver())
+
+
+@st.cache_resource(show_spinner=False)
+def _field_files(v: str) -> dict[str, tuple[str, int]]:
+    s = source()
+    if not s["dir"]:
+        return {}
+    dst = STATIC / s["key"] / "downloads"
+    dst.mkdir(parents=True, exist_ok=True)
+    out = {}
+    for ext in ("html", "kml", "csv", "geojson"):
+        f = Path(s["dir"]) / f"field_list.{ext}"
+        if not f.exists():
+            continue
+        t = dst / f.name
+        if not t.exists() or t.stat().st_size != f.stat().st_size or t.stat().st_mtime < f.stat().st_mtime:
+            shutil.copy2(f, t)
+        out[ext] = (f"/app/static/layers/{s['key']}/downloads/{f.name}", f.stat().st_size)
+    return out
+
+
+def next_pass() -> tuple[str, str] | None:
+    """(last pass on the main track, next expected pass from NISAR's 12-day repeat), ISO dates."""
+    p = passes()
+    if p is None or not len(p):
+        return None
+    track = metrics().get("sources", [{}])[0].get("granule_id", "").split("_")[5:6]
+    if not track:
+        return None
+    mine = p[p["track"] == track[0]]
+    if not len(mine):
+        return None
+    last = mine["date"].max()
+    today = pd.Timestamp.now(tz="Asia/Kolkata").tz_localize(None).normalize()
+    nxt = last
+    while nxt <= today:
+        nxt = nxt + pd.Timedelta(days=12)
+    return last.strftime("%Y-%m-%d"), nxt.strftime("%Y-%m-%d")
+
+
+def km(lat1, lon1, lat2, lon2) -> float:
+    import math
+    dy = (lat2 - lat1) * 111.32
+    dx = (lon2 - lon1) * 111.32 * math.cos(math.radians((lat1 + lat2) / 2))
+    return math.hypot(dx, dy)

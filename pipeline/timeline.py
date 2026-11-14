@@ -6,7 +6,8 @@ different radar mode or polarisation are kept but flagged, because their
 brightness is not directly comparable.
 
   python -m pipeline.timeline
-Writes data/derived/timeline.csv.
+Writes data/derived/timeline.csv, and keeps each same-mode date's water mask (water_d<date>) for the
+map's season slider (render.py turns them into overlays).
 """
 from __future__ import annotations
 
@@ -26,6 +27,8 @@ def run(write=True):
     perm = np.nan_to_num(aux["jrc_occurrence"]) >= C.PERMANENT_WATER_OCCURRENCE
     flat = np.nan_to_num(aux["slope"], nan=90) <= C.FLOOD_MAX_SLOPE_DEG
     rows = []
+    for old in (C.DERIVED / "_layers").glob("water_d*.npy") if write else ():   # no dates from an older run
+        old.unlink()
     for m in K.gcov_crops():
         if m["track"] != primary["track"]:
             continue
@@ -37,6 +40,8 @@ def run(write=True):
         ever = np.nan_to_num(aux["jrc_occurrence"]) >= 1          # anywhere JRC saw water in 1984-2021
         seen_dark = float((water & perm).sum() / max(1, (valid & perm).sum()))
         same = m["mode"] == primary["mode"] and m["pol"] == primary["pol"]
+        if write and same:
+            K.save_layer(f"water_d{m['date']}", water)
         rows.append({"date": m["date"], "mode": m["mode"], "pol": m["pol"], "same_mode_as_primary": same,
                      "threshold_db": round(t, 2), "valid_fraction": round(float(valid.mean()), 3),
                      "water_km2": round(float(water.sum() * K.PIXEL_KM2), 2),

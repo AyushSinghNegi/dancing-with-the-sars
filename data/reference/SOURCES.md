@@ -51,6 +51,16 @@ Fetched by `pipeline/ancillary.py` (Copernicus) or prepared by RSN (NASADEM); st
 | On the 40 m grid | `aux_elevation.tif` (bilinear), `aux_slope.tif` | `aux_nasadem_elevation.tif` (bilinear, by RSN on `rsn/pipeline`; whole metres) |
 | Slope | central differences on the 40 m grid, whole degrees | same, computed in `pipeline/dem_check.py` |
 
+## Place names: `places_osm.csv`
+
+| | |
+|---|---|
+| Source | OpenStreetMap (© OpenStreetMap contributors, ODbL) |
+| What | every node tagged `place` = city, town, village or suburb inside the study box: 431 places, 244 with a Marathi name (`name:mr`) |
+| Fetched | 14 Nov 2026, Overpass API, query in `pipeline/gazetteer.py` |
+| Raw download, unedited | `osm_places_raw.json` |
+| Used for | the app's "Check a place" search |
+
 ## Reported events: `events.geojson`
 
 Each event carries its own `source_name` and `source_url`.

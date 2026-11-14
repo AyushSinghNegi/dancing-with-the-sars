@@ -1,0 +1,5313 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-14T19:41:01Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 16174445,
+  "lat": 18.5213738,
+  "lon": 73.8545071,
+  "tags": {
+    "capital": "5",
+    "name": "Pune",
+    "name:ar": "بونه",
+    "name:as": "পুনে",
+    "name:az": "Puna",
+    "name:azb": "پونه",
+    "name:ba": "Пуна",
+    "name:be": "Пуна",
+    "name:bg": "Пуна",
+    "name:bh": "पुणे",
+    "name:bn": "পুনে",
+    "name:ca": "Poona",
+    "name:ce": "Пуна",
+    "name:ckb": "پوونە",
+    "name:cs": "Puné",
+    "name:de": "Pune",
+    "name:el": "Πούνε",
+    "name:en": "Pune",
+    "name:eo": "Puneo",
+    "name:es": "Pune",
+    "name:et": "Pune",
+    "name:fa": "پونه",
+    "name:fr": "Pune",
+    "name:gu": "પુના",
+    "name:he": "פונה",
+    "name:hi": "पुणे",
+    "name:hr": "Pune",
+    "name:hu": "Púne",
+    "name:hy": "Պունա",
+    "name:ja": "プネー",
+    "name:ka": "პუნა",
+    "name:kn": "ಪುಣೆ",
+    "name:ko": "푸네",
+    "name:ks": "پوٗنے",
+    "name:ky": "Пуна",
+    "name:lt": "Puna",
+    "name:ml": "പൂണെ",
+    "name:mr": "पुणे",
+    "name:ne": "पुणे",
+    "name:nl": "Pune",
+    "name:oc": "Pona",
+    "name:or": "ପୁଣେ",
+    "name:os": "Пунæ",
+    "name:pa": "ਪੁਣੇ",
+    "name:pnb": "پونا",
+    "name:ps": "پونی",
+    "name:ru": "Пуне",
+    "name:sa": "पुण्यपुरम्",
+    "name:sat": "ᱯᱩᱬᱮ",
+    "name:sd": "پوني",
+    "name:sl": "Pune",
+    "name:sr": "Пуне",
+    "name:ta": "புனே",
+    "name:te": "పూణే",
+    "name:th": "ปุเณ",
+    "name:ug": "Puna",
+    "name:uk": "Пуне",
+    "name:ur": "پونے",
+    "name:uz": "Puna",
+    "name:zh": "浦那",
+    "old_name:ar": "بونا",
+    "old_name:en": "Poona",
+    "old_name:fa": "پونا",
+    "old_name:pnb": "پونا",
+    "place": "city",
+    "population": "3115431",
+    "postal_code": "411001",
+    "wikidata": "Q1538",
+    "wikipedia": "en:Pune",
+    "wikipedia:ur": "پونے"
+  }
+},
+{
+  "type": "node",
+  "id": 245645249,
+  "lat": 18.4536792,
+  "lon": 73.8563196,
+  "tags": {
+    "addr:city": "pune",
+    "name": "Katraj",
+    "name:en": "Katraj",
+    "name:mr": "कात्रज",
+    "place": "suburb",
+    "postal_code": "411046",
+    "wikidata": "Q6377847",
+    "wikimedia_commons": "Category:Katraj",
+    "wikipedia": "en:Katraj"
+  }
+},
+{
+  "type": "node",
+  "id": 245645689,
+  "lat": 18.5000153,
+  "lon": 73.5137370,
+  "tags": {
+    "name": "Mulshi",
+    "name:en": "Mulshi",
+    "name:mr": "मुळशी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 245645880,
+  "lat": 18.4900796,
+  "lon": 73.8475301,
+  "tags": {
+    "name": "Sahakar Nagar",
+    "name:mr": "सहकार नगर",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 245646391,
+  "lat": 18.5006978,
+  "lon": 73.8430106,
+  "tags": {
+    "AND_a_nosr_p": "10005752",
+    "name": "Dattawadi",
+    "name:en": "Dattawadi",
+    "name:mr": "दत्तवाडी",
+    "place": "suburb",
+    "source": "AND"
+  }
+},
+{
+  "type": "node",
+  "id": 245646553,
+  "lat": 18.5006768,
+  "lon": 73.8586255,
+  "tags": {
+    "AND_a_nosr_p": "10005722",
+    "is_in": "Pune",
+    "name": "Swargate",
+    "name:hi": "स्वारगेट",
+    "name:mr": "स्वारगेट",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 245646635,
+  "lat": 18.5092700,
+  "lon": 73.8441500,
+  "tags": {
+    "AND_a_nosr_p": "10005726",
+    "name": "Navi Peth",
+    "name:mr": "नवी पेठ",
+    "place": "suburb",
+    "source": "AND",
+    "wikidata": "Q16878505",
+    "wikipedia": "en:Navi Peth, Pune"
+  }
+},
+{
+  "type": "node",
+  "id": 245646887,
+  "lat": 18.5154218,
+  "lon": 73.8647366,
+  "tags": {
+    "AND_a_nosr_p": "10005710",
+    "name": "Ganesh Peth",
+    "name:en": "Ganesh Peth",
+    "name:mr": "गणेश पेठ",
+    "place": "suburb",
+    "source": "AND",
+    "wikidata": "Q15221364",
+    "wikimedia_commons": "Category:Ganesh Peth, Pune",
+    "wikipedia": "en:Ganesh Peth, Pune"
+  }
+},
+{
+  "type": "node",
+  "id": 245647083,
+  "lat": 18.5219113,
+  "lon": 73.8582677,
+  "tags": {
+    "name": "Kasba Peth",
+    "name:en": "Kasba Peth",
+    "name:mr": "कसबा पेठ",
+    "place": "suburb",
+    "source": "AND"
+  }
+},
+{
+  "type": "node",
+  "id": 245647977,
+  "lat": 18.5494884,
+  "lon": 73.8424051,
+  "tags": {
+    "name": "Mandalay Lines",
+    "name:en": "Mandalay Lines",
+    "name:mr": "मांडाले लाईन्स",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 245648364,
+  "lat": 18.5618834,
+  "lon": 73.8101957,
+  "tags": {
+    "name": "Aundh",
+    "name:en": "Aundh",
+    "name:mr": "औंध",
+    "place": "suburb",
+    "postal_code": "411027",
+    "source": "AND",
+    "wikidata": "Q4821875",
+    "wikimedia_commons": "Category:Aundh, Pune",
+    "wikipedia": "en:Aundh, Pune"
+  }
+},
+{
+  "type": "node",
+  "id": 245650826,
+  "lat": 18.7337107,
+  "lon": 73.6728593,
+  "tags": {
+    "name": "Talegaon Dabhade",
+    "name:mr": "तळेगाव दाभाडे",
+    "place": "town",
+    "postal_code": "410506",
+    "wikidata": "Q2719127",
+    "wikipedia": "en:Talegaon Dabhade"
+  }
+},
+{
+  "type": "node",
+  "id": 245652084,
+  "lat": 18.8315338,
+  "lon": 74.0536443,
+  "tags": {
+    "name": "Pabal",
+    "place": "village",
+    "wikidata": "Q7121516",
+    "wikimedia_commons": "Category:Pabal",
+    "wikipedia": "en:Pabal"
+  }
+},
+{
+  "type": "node",
+  "id": 245652319,
+  "lat": 18.8528676,
+  "lon": 73.8846758,
+  "tags": {
+    "name": "Khed",
+    "name:en": "Khed",
+    "name:hi": "खेड",
+    "name:kn": "ಖೆದ್",
+    "name:mr": "खेड",
+    "place": "town",
+    "population": "5000",
+    "postal_code": "412205"
+  }
+},
+{
+  "type": "node",
+  "id": 342117182,
+  "lat": 18.5243200,
+  "lon": 74.0464800,
+  "tags": {
+    "name": "Theur",
+    "name:en": "Theur",
+    "name:mr": "थेऊर",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 342117499,
+  "lat": 18.7355887,
+  "lon": 73.9484346,
+  "tags": {
+    "name": "Shel Pimpalgaon",
+    "name:en": "Shel Pimpalgaon",
+    "name:mr": "शेल पिंपळगाव",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 342117529,
+  "lat": 18.4886201,
+  "lon": 74.0506000,
+  "tags": {
+    "name": "Theur Phata",
+    "name:en": "Theur Phata",
+    "name:mr": "थेऊर फाटा",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 342118036,
+  "lat": 18.5806299,
+  "lon": 73.9833099,
+  "tags": {
+    "name": "Wagholi",
+    "name:en": "Wagholi",
+    "name:kn": "ವಾಘೋಲೀ",
+    "name:mr": "वाघोली",
+    "name:sat": "ᱣᱟᱜᱷᱚᱞᱤ",
+    "place": "town",
+    "population": "33400",
+    "wikidata": "Q7959561",
+    "wikipedia": "en:Wagholi, Satara"
+  }
+},
+{
+  "type": "node",
+  "id": 342118042,
+  "lat": 18.6452547,
+  "lon": 74.0579437,
+  "tags": {
+    "name": "Koregaon",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 342120600,
+  "lat": 18.3185649,
+  "lon": 73.3010913,
+  "tags": {
+    "name": "Nizampur",
+    "place": "village",
+    "postal_code": "402120"
+  }
+},
+{
+  "type": "node",
+  "id": 517126647,
+  "lat": 18.1508064,
+  "lon": 73.8430594,
+  "tags": {
+    "name": "Bhor",
+    "name:mr": "भोर",
+    "place": "town",
+    "population": "5000",
+    "postal_code": "412206",
+    "wikidata": "Q797462",
+    "wikipedia": "en:Bhor"
+  }
+},
+{
+  "type": "node",
+  "id": 517126667,
+  "lat": 18.3444347,
+  "lon": 74.0295234,
+  "tags": {
+    "name": "Saswad",
+    "name:hi": "सासवड़",
+    "name:kn": "ಸಾಸವಡ",
+    "name:ml": "സാസവഡ്",
+    "name:mr": "सासवड",
+    "place": "town",
+    "population": "31800",
+    "postal_code": "412300",
+    "wikidata": "Q2544796",
+    "wikipedia": "en:Saswad"
+  }
+},
+{
+  "type": "node",
+  "id": 517126671,
+  "lat": 18.2820299,
+  "lon": 73.9596299,
+  "tags": {
+    "name": "Chivhewadi",
+    "place": "village",
+    "postal_code": "412302"
+  }
+},
+{
+  "type": "node",
+  "id": 517126675,
+  "lat": 18.2488013,
+  "lon": 73.8881807,
+  "tags": {
+    "name": "Nasrapur",
+    "name:en": "Nasrapur",
+    "place": "village",
+    "postal_code": "412213"
+  }
+},
+{
+  "type": "node",
+  "id": 517150997,
+  "lat": 18.7404450,
+  "lon": 73.6375579,
+  "tags": {
+    "name": "Wadgaon",
+    "name:mr": "वडगाव",
+    "place": "village",
+    "postal_code": "412106",
+    "wikidata": "Q2719142",
+    "wikipedia": "en:Vadgaon Maval"
+  }
+},
+{
+  "type": "node",
+  "id": 517151003,
+  "lat": 18.7177449,
+  "lon": 73.5401901,
+  "tags": {
+    "name": "Bedsa",
+    "name:mr": "बेडसा",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 517151009,
+  "lat": 18.7592569,
+  "lon": 73.4801117,
+  "tags": {
+    "name": "Karli",
+    "name:en": "Karla",
+    "name:mr": "कारली",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 517151014,
+  "lat": 18.7548563,
+  "lon": 73.4016729,
+  "tags": {
+    "name": "Lonavala",
+    "name:ar": "لونافلا",
+    "name:en": "Lonavala",
+    "name:fa": "لوناولا",
+    "name:hi": "लोनावला",
+    "name:ja": "ローナーヴァラー",
+    "name:kn": "ಲೋಣಾವಳ",
+    "name:ml": "ലോണാവ്ല",
+    "name:mr": "लोणावळा",
+    "name:ru": "Лонавала",
+    "name:sat": "ᱞᱚᱱᱟᱣᱞᱟ",
+    "place": "town",
+    "population": "57700",
+    "postal_code": "410400",
+    "wikidata": "Q1929511",
+    "wikimedia_commons": "Category:Lonavala",
+    "wikipedia": "en:Lonavla"
+  }
+},
+{
+  "type": "node",
+  "id": 531363969,
+  "lat": 18.5681753,
+  "lon": 73.8507787,
+  "tags": {
+    "name": "Khadki",
+    "name:en": "Khadki",
+    "name:mr": "खडकी",
+    "old_name": "Kirkee",
+    "place": "town",
+    "wikidata": "Q2234392",
+    "wikipedia": "en:Khadki"
+  }
+},
+{
+  "type": "node",
+  "id": 567266384,
+  "lat": 18.4883683,
+  "lon": 73.8986672,
+  "tags": {
+    "addr:city": "Pune",
+    "addr:country": "IN",
+    "addr:state": "Maharashtra",
+    "alt_name": "Wanowrie",
+    "name": "Wanawadi",
+    "name:en": "Wanawadi",
+    "name:mr": "वानवडी",
+    "place": "suburb",
+    "wikidata": "Q24939818"
+  }
+},
+{
+  "type": "node",
+  "id": 572316839,
+  "lat": 18.8555378,
+  "lon": 73.8863954,
+  "tags": {
+    "name": "Rajgurunagar",
+    "name:en": "Rajgurunagar",
+    "name:mr": "राजगुरूनगर",
+    "place": "suburb",
+    "wikidata": "Q2719101",
+    "wikimedia_commons": "Category:Rajgurunagar (Khed)",
+    "wikipedia": "en:Rajgurunagar (Khed)"
+  }
+},
+{
+  "type": "node",
+  "id": 632358331,
+  "lat": 18.7877470,
+  "lon": 73.3438185,
+  "tags": {
+    "alt_name": "Campoolie",
+    "name": "Khopoli",
+    "name:ar": "خوبولي",
+    "name:en": "Khopoli",
+    "name:hi": "खोपोली",
+    "name:ml": "ഖോപോളി",
+    "name:mr": "खोपोली",
+    "name:ru": "Хополи",
+    "name:sat": "ᱠᱷᱚᱯᱚᱞᱤ",
+    "place": "town",
+    "wikidata": "Q12422734",
+    "wikimedia_commons": "Category:Khopoli",
+    "wikipedia": "en:Khopoli"
+  }
+},
+{
+  "type": "node",
+  "id": 638665220,
+  "lat": 18.5343218,
+  "lon": 73.9298264,
+  "tags": {
+    "name": "Mundhwa",
+    "name:en": "Mundhwa",
+    "name:mr": "मुंढवा",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 669519639,
+  "lat": 18.5109073,
+  "lon": 73.8851018,
+  "tags": {
+    "name": "Pune Cantonment",
+    "name:en": "Pune Cantonment",
+    "name:mr": "पुणे छावणी",
+    "place": "suburb",
+    "wikidata": "Q2936867",
+    "wikimedia_commons": "Category:Pune Cantonment",
+    "wikipedia": "en:Pune Camp"
+  }
+},
+{
+  "type": "node",
+  "id": 672156914,
+  "lat": 18.5155793,
+  "lon": 73.8510765,
+  "tags": {
+    "name": "Narayan Peth",
+    "name:mr": "नारायण पेठ",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 672691437,
+  "lat": 18.5045098,
+  "lon": 73.9021290,
+  "tags": {
+    "addr:city": "Pune",
+    "addr:country": "IN",
+    "addr:state": "Maharashtra",
+    "name": "Fatima Nagar",
+    "name:en": "Fatima Nagar",
+    "name:mr": "फातिमा नगर",
+    "place": "suburb",
+    "wikidata": "Q5437880",
+    "wikimedia_commons": "Category:Fatima Nagar",
+    "wikipedia": "en:Fatimanagar"
+  }
+},
+{
+  "type": "node",
+  "id": 674076717,
+  "lat": 18.5158926,
+  "lon": 73.8411600,
+  "tags": {
+    "AND_a_nosr_p": "10005718",
+    "name": "Deccan Gymkhana",
+    "name:en": "Deccan Gymkhana",
+    "name:mr": "डेक्कन जिमखाना",
+    "place": "suburb",
+    "postal_code": "411004",
+    "source": "AND",
+    "wikidata": "Q4991859",
+    "wikimedia_commons": "Category:Deccan Gymkhana",
+    "wikipedia": "en:Deccan Gymkhana"
+  }
+},
+{
+  "type": "node",
+  "id": 674922373,
+  "lat": 18.5268544,
+  "lon": 73.9000956,
+  "tags": {
+    "alt_name": "Ghorpadi",
+    "description": "a small in village in pune",
+    "name": "Ghorpuri",
+    "name:en": "Ghorpuri",
+    "name:mr": "घोरपडी",
+    "place": "suburb",
+    "population": "10lakh",
+    "population:date": "2007 28 3",
+    "source:population": "wikipedia"
+  }
+},
+{
+  "type": "node",
+  "id": 681267312,
+  "lat": 18.6134238,
+  "lon": 73.8029195,
+  "tags": {
+    "name": "Pimpri",
+    "name:azb": "پیمپری",
+    "name:be": "Пімпры",
+    "name:de": "Pimpri",
+    "name:el": "Πίμπρι",
+    "name:es": "Pimpri",
+    "name:ks": "پمپری",
+    "name:mr": "पिंपरी",
+    "name:sr": "Пимпри",
+    "name:uk": "Пімпрі",
+    "name:ur": "پمپری",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 681268678,
+  "lat": 18.6315806,
+  "lon": 73.7854601,
+  "tags": {
+    "name": "Chinchwad",
+    "name:azb": "چینچواد",
+    "name:be": "Чынчвад",
+    "name:el": "Τσιντσβάντ",
+    "name:es": "Chinchwad",
+    "name:fa": "چینچواد",
+    "name:hi": "चिंचवड",
+    "name:ks": "چنچواڑ",
+    "name:mr": "चिंचवड",
+    "name:sr": "Чинчвад",
+    "name:uk": "Чинчвад",
+    "name:ur": "چنچواڑ",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 681316519,
+  "lat": 18.6607674,
+  "lon": 73.7778262,
+  "tags": {
+    "name": "Nigdi",
+    "name:en": "Nigdi",
+    "name:mr": "निगडी",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 691256347,
+  "lat": 18.6382904,
+  "lon": 73.7461948,
+  "tags": {
+    "name": "Punawale",
+    "name:en": "Punawale",
+    "name:mr": "पुनावळे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 691259917,
+  "lat": 18.6012765,
+  "lon": 73.8236984,
+  "tags": {
+    "name": "Kasarwadi",
+    "name:mr": "कासारवाडी",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 761948629,
+  "lat": 18.5314302,
+  "lon": 73.8374513,
+  "tags": {
+    "is_in": "Pune",
+    "name": "Model Colony",
+    "name:en": "Model Colony",
+    "name:mr": "मॉडेल कॉलनी",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 761969935,
+  "lat": 18.5386704,
+  "lon": 73.7952542,
+  "tags": {
+    "is_in": "Pune",
+    "name": "Pashan",
+    "name:mr": "पाषाण",
+    "place": "suburb",
+    "wikidata": "Q6373883",
+    "wikimedia_commons": "Category:Pashan",
+    "wikipedia": "en:Pashan"
+  }
+},
+{
+  "type": "node",
+  "id": 761971236,
+  "lat": 18.5209541,
+  "lon": 73.7780873,
+  "tags": {
+    "is_in": "Pune",
+    "name": "Bavdhan",
+    "name:mr": "बावधन",
+    "place": "suburb",
+    "wikidata": "Q15197602",
+    "wikimedia_commons": "Category:Bavdhan",
+    "wikipedia": "en:Bavdhan"
+  }
+},
+{
+  "type": "node",
+  "id": 810308857,
+  "lat": 18.7657360,
+  "lon": 73.4073758,
+  "tags": {
+    "name": "Tungarli",
+    "name:mr": "तुंगरली",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 913492420,
+  "lat": 18.3857941,
+  "lon": 73.3410240,
+  "tags": {
+    "name": "Vile Bhagad MIDC",
+    "name:mr": "विळे भागड",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 914503722,
+  "lat": 18.7559917,
+  "lon": 73.3746932,
+  "tags": {
+    "name": "Khandala",
+    "name:en": "खंडाला",
+    "name:mr": "खंडाळा",
+    "name:ta": "கண்டாளா",
+    "place": "village",
+    "population": "5000",
+    "postal_code": "410300"
+  }
+},
+{
+  "type": "node",
+  "id": 960296095,
+  "lat": 18.8334254,
+  "lon": 73.3385677,
+  "tags": {
+    "name": "Jambrung",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 960296119,
+  "lat": 18.8401951,
+  "lon": 73.3418157,
+  "tags": {
+    "name": "Bid Khurd",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 974992870,
+  "lat": 18.5818209,
+  "lon": 73.5335824,
+  "tags": {
+    "ele": "616",
+    "name": "Kolvan",
+    "name:en": "Kolvan",
+    "name:mr": "कोळवण",
+    "place": "village",
+    "source": "GPS"
+  }
+},
+{
+  "type": "node",
+  "id": 1065064446,
+  "lat": 18.5230232,
+  "lon": 73.7224013,
+  "tags": {
+    "is_in": "Pune",
+    "name": "Lavale",
+    "name:en": "Lavale",
+    "name:mr": "लावले",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 1065705238,
+  "lat": 18.3015431,
+  "lon": 73.9748183,
+  "tags": {
+    "alt_name": "Datta Kshetra Narayanpur",
+    "is_in": "Pune District",
+    "name": "Narayanpur",
+    "name:mr": "नारायणपूर",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 1065737737,
+  "lat": 18.3500438,
+  "lon": 73.7647832,
+  "tags": {
+    "is_in": "Pune",
+    "name": "Kalyan Gaon",
+    "name:en": "Kalyan Gaon",
+    "name:mr": "कल्याण गाव",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 1065737746,
+  "lat": 18.2538485,
+  "lon": 73.7051594,
+  "tags": {
+    "is_in": "Pune District",
+    "name": "Gunjavane",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 1065737756,
+  "lat": 18.4045968,
+  "lon": 73.5041748,
+  "tags": {
+    "name": "Lavasa",
+    "name:en": "Lavasa",
+    "name:hi": "लवासा",
+    "name:mr": "लवासा",
+    "place": "town",
+    "postal_code": "412112",
+    "wikidata": "Q989925",
+    "wikimedia_commons": "Category:Lavasa",
+    "wikipedia": "en:Lavasa"
+  }
+},
+{
+  "type": "node",
+  "id": 1065783462,
+  "lat": 18.4010343,
+  "lon": 73.5004245,
+  "tags": {
+    "name": "Dasve",
+    "name:en": "Dasve",
+    "name:mr": "दासवे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 1065874216,
+  "lat": 18.7473270,
+  "lon": 73.4816468,
+  "tags": {
+    "name": "Malavli",
+    "name:en": "Malavli",
+    "name:mr": "मळवली",
+    "place": "town",
+    "wikidata": "Q6741450",
+    "wikimedia_commons": "Category:Malavli, Pune",
+    "wikipedia": "en:Malavli"
+  }
+},
+{
+  "type": "node",
+  "id": 1127921045,
+  "lat": 18.8258246,
+  "lon": 73.3946856,
+  "tags": {
+    "ele": "638",
+    "name": "Rajmachi village",
+    "name:mr": "उधेवाडी",
+    "place": "village",
+    "source": "GPS"
+  }
+},
+{
+  "type": "node",
+  "id": 1171659458,
+  "lat": 18.5741080,
+  "lon": 73.8203773,
+  "tags": {
+    "name": "Old Sangvi",
+    "name:en": "Old Sangvi",
+    "name:mr": "जुनी सांगवी",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1223050242,
+  "lat": 18.4739189,
+  "lon": 73.9178308,
+  "tags": {
+    "name": "Krushna Nagar",
+    "name:en": "Krushna Nagar",
+    "name:mr": "कृष्णा नगर",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1223071281,
+  "lat": 18.6092750,
+  "lon": 73.7729374,
+  "tags": {
+    "name": "Thergaon",
+    "name:en": "Thergaon",
+    "name:mr": "थेरगाव",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1224043292,
+  "lat": 18.4820444,
+  "lon": 73.8001705,
+  "tags": {
+    "name": "Warje",
+    "name:en": "Warje",
+    "name:mr": "वारजे",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1224903392,
+  "lat": 18.4576183,
+  "lon": 73.8865816,
+  "tags": {
+    "name": "Kondhwa Budruk",
+    "name:en": "Kondhwa Budruk",
+    "name:mr": "कोंढवा बुद्रुक",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 1226551292,
+  "lat": 18.6210093,
+  "lon": 73.8501298,
+  "tags": {
+    "name": "Bhosari",
+    "name:mr": "भोसरी",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1226586224,
+  "lat": 18.5927116,
+  "lon": 73.8625967,
+  "tags": {
+    "name": "Ganesh Nagar",
+    "name:en": "Ganesh Nagar",
+    "name:mr": "गणेश नगर",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1226589191,
+  "lat": 18.5906707,
+  "lon": 73.8913189,
+  "tags": {
+    "name": "Dhanori",
+    "name:en": "Dhanori",
+    "name:mr": "धानोरी",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1229112594,
+  "lat": 18.5733175,
+  "lon": 73.7558142,
+  "tags": {
+    "name": "Mahalunge",
+    "name:en": "Mahalunge",
+    "name:mr": "महाळुंगे",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1229121214,
+  "lat": 18.6022495,
+  "lon": 73.7644454,
+  "tags": {
+    "name": "Wakad",
+    "name:en": "Wakad",
+    "name:mr": "वाकड",
+    "place": "suburb",
+    "wikidata": "Q7960750",
+    "wikimedia_commons": "Category:Wakad",
+    "wikipedia": "en:Wakad"
+  }
+},
+{
+  "type": "node",
+  "id": 1229128806,
+  "lat": 18.5294586,
+  "lon": 73.8478247,
+  "tags": {
+    "name": "Shivajinagar",
+    "name:mr": "शिवाजीनगर",
+    "place": "suburb",
+    "wikidata": "Q26793755"
+  }
+},
+{
+  "type": "node",
+  "id": 1232209872,
+  "lat": 18.5220747,
+  "lon": 73.8652393,
+  "tags": {
+    "name": "Somwar Peth",
+    "name:en": "Somwar Peth",
+    "name:mr": "सोमवार पेठ",
+    "place": "suburb",
+    "wikidata": "Q7560549",
+    "wikimedia_commons": "Category:Somwar Peth, Pune",
+    "wikipedia": "en:Somwar Peth, Pune"
+  }
+},
+{
+  "type": "node",
+  "id": 1351334328,
+  "lat": 18.5550140,
+  "lon": 73.7054311,
+  "tags": {
+    "name": "Chande",
+    "name:en": "Chande",
+    "name:hi": "चांदे",
+    "name:mr": "चांदे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 1351334403,
+  "lat": 18.5541586,
+  "lon": 73.7539040,
+  "tags": {
+    "name": "Sus Gaon",
+    "name:en": "Sus Gaon",
+    "name:mr": "सुस गाव",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1351334462,
+  "lat": 18.5582929,
+  "lon": 73.7146340,
+  "tags": {
+    "name": "Nande",
+    "name:en": "Nande",
+    "name:mr": "नांदे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 1429383158,
+  "lat": 18.6337118,
+  "lon": 73.8140685,
+  "tags": {
+    "name": "Ajmera",
+    "name:en": "Ajmera",
+    "name:mr": "अजमेरा",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1430555600,
+  "lat": 18.6713079,
+  "lon": 73.7973278,
+  "tags": {
+    "name": "More Wasti",
+    "name:en": "More Wasti",
+    "name:mr": "मोरे वसती",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1432902742,
+  "lat": 18.5696605,
+  "lon": 73.7940510,
+  "tags": {
+    "name": "Pimple Nilakh",
+    "name:en": "Pimple Nilakh",
+    "name:mr": "पिंपळे निलख",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1600720975,
+  "lat": 18.6279288,
+  "lon": 73.8009829,
+  "tags": {
+    "alt_name:es": "Pimpri Chinchwad",
+    "alt_name:mr": "पिंपरी चिंचवड",
+    "alt_name:ur": "پمپری چنچواڑ",
+    "name": "Pimpri-Chinchwad",
+    "name:ar": "بيمبري شينشواد",
+    "name:azb": "پیمپری-چینچواد",
+    "name:be": "Пімпры-Чынчвад",
+    "name:cs": "Pimprí-Čiňčvad",
+    "name:de": "Pimpri-Chinchwad",
+    "name:el": "Πίμπρι-Τσιντσβάντ",
+    "name:en": "Pimpri-Chinchwad",
+    "name:es": "Pimpri-Chinchwad",
+    "name:fa": "پیمپری-چینچواد",
+    "name:fr": "Pimpri-Chinchwad",
+    "name:hi": "पिंपरी-चिंचवड",
+    "name:hr": "Pimpri-Chinchwad",
+    "name:hu": "Pimpri-Csincsvád",
+    "name:hy": "Պիմպրի-Չինչվադ",
+    "name:ja": "ピンプリ・チンチワッド",
+    "name:kn": "ಪಿಂಪ್ರಿ-ಚಿಂಚ್ವಡ್",
+    "name:ko": "핌프리친치와드",
+    "name:ks": "پمپری-چنچواڑ",
+    "name:ml": "പിംപ്രി ചിഞ്ച്വാഡ്",
+    "name:mr": "पिंपरी-चिंचवड",
+    "name:pnb": "پمپری چنچواڈ",
+    "name:ps": "پيمپري-چينچواد",
+    "name:ru": "Пимпри Чинчвад",
+    "name:sl": "Pimpri-Činčvad",
+    "name:sr": "Пимпри-Чинчвад",
+    "name:uk": "Пімпрі-Чинчвад",
+    "name:ur": "پمپری-چنچواڑ",
+    "name:zh": "賓布里-金傑沃德",
+    "place": "city",
+    "population": "1729320",
+    "short_name": "PCMC",
+    "wikidata": "Q119219",
+    "wikipedia": "en:Pimpri-Chinchwad"
+  }
+},
+{
+  "type": "node",
+  "id": 1645591500,
+  "lat": 18.5113589,
+  "lon": 73.8576197,
+  "tags": {
+    "name": "Guruwar Peth",
+    "name:en": "Guruwar Peth",
+    "name:mr": "सोमवार पेठ",
+    "place": "suburb",
+    "postal_code": "411002",
+    "source": "AND",
+    "wikidata": "Q15222330",
+    "wikimedia_commons": "Category:Guruwar Peth, Pune",
+    "wikipedia": "en:Guruwar Peth, Pune"
+  }
+},
+{
+  "type": "node",
+  "id": 1645591501,
+  "lat": 18.4883530,
+  "lon": 74.0221934,
+  "tags": {
+    "name": "Loni Kalbhor",
+    "name:en": "Loni Kalbhor",
+    "name:mr": "लोणी काळभोर",
+    "place": "village",
+    "postal_code": "412200",
+    "wikidata": "Q16894320",
+    "wikimedia_commons": "Category:Loni Kalbhor",
+    "wikipedia": "en:Loni Kalbhor"
+  }
+},
+{
+  "type": "node",
+  "id": 1645621271,
+  "lat": 18.5113537,
+  "lon": 73.8540109,
+  "tags": {
+    "AND_a_nosr_p": "10005716",
+    "name": "Shukrawar Peth",
+    "name:en": "Shukrawar Peth",
+    "name:mr": "सोमवार पेठ",
+    "place": "suburb",
+    "source": "AND"
+  }
+},
+{
+  "type": "node",
+  "id": 1645629886,
+  "lat": 18.5087486,
+  "lon": 73.8318432,
+  "tags": {
+    "AND_a_nosr_p": "10005723",
+    "name": "Erandwane",
+    "name:mr": "एरंडवणे",
+    "place": "suburb",
+    "source": "AND"
+  }
+},
+{
+  "type": "node",
+  "id": 1754044068,
+  "lat": 18.5322658,
+  "lon": 73.9383844,
+  "tags": {
+    "name": "Keshav Nagar",
+    "name:en": "Keshav Nagar",
+    "name:mr": "केशव नगर",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 1760904728,
+  "lat": 18.6952853,
+  "lon": 73.5629420,
+  "tags": {
+    "name": "Thugaon",
+    "name:mr": "थुगांव",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 1760951578,
+  "lat": 18.7629201,
+  "lon": 73.5576474,
+  "tags": {
+    "name": "Kamshet",
+    "name:en": "Kamshet",
+    "name:mr": "कामशेत",
+    "place": "town",
+    "wikidata": "Q6359724",
+    "wikimedia_commons": "Category:Kamshet",
+    "wikipedia": "en:Kamshet"
+  }
+},
+{
+  "type": "node",
+  "id": 1762799947,
+  "lat": 18.5112818,
+  "lon": 73.6790069,
+  "tags": {
+    "name": "Pirangut",
+    "name:mr": "पिरंगुट",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 1796628053,
+  "lat": 18.5512763,
+  "lon": 73.9416575,
+  "tags": {
+    "name": "Kharadi",
+    "name:mr": "खराडी",
+    "place": "suburb",
+    "wikidata": "Q6400523",
+    "wikimedia_commons": "Category:Kharadi",
+    "wikipedia": "en:Kharadi"
+  }
+},
+{
+  "type": "node",
+  "id": 1998625324,
+  "lat": 18.4779905,
+  "lon": 73.8940627,
+  "tags": {
+    "addr:city": "Pune",
+    "addr:country": "IN",
+    "addr:postcode": "411018",
+    "addr:state": "Maharashtra",
+    "name": "Kondhwa",
+    "name:en": "Kondhwa",
+    "name:mr": "कोंढवा",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 2013558692,
+  "lat": 18.7623111,
+  "lon": 73.8625448,
+  "tags": {
+    "name": "Chakan",
+    "name:kn": "ಚಾಕಣ",
+    "name:mr": "चाकण",
+    "place": "town",
+    "population": "41100",
+    "postal_code": "410500",
+    "wikidata": "Q1020740",
+    "wikipedia": "en:Chakan, Pune"
+  }
+},
+{
+  "type": "node",
+  "id": 2222457722,
+  "lat": 18.6699367,
+  "lon": 73.9954427,
+  "tags": {
+    "name": "Tulapur",
+    "name:en": "Tulapur",
+    "name:mr": "तुळापूर",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 2258420056,
+  "lat": 18.5243388,
+  "lon": 73.8592081,
+  "tags": {
+    "AND_a_nosr_p": "10005734",
+    "name": "Mangalwar Peth",
+    "name:mr": "मंगळवार पेठ",
+    "place": "suburb",
+    "postal_code": "411011",
+    "source": "AND"
+  }
+},
+{
+  "type": "node",
+  "id": 2266580378,
+  "lat": 18.5107764,
+  "lon": 73.8502149,
+  "tags": {
+    "AND_a_nosr_p": "10005717",
+    "name": "Sadashiv Peth",
+    "name:en": "Sadashiv Peth",
+    "name:mr": "सदाशिव पेठ",
+    "place": "suburb",
+    "postal_code": "411030",
+    "source": "AND",
+    "wikidata": "Q16878337",
+    "wikimedia_commons": "Category:Sadashiv Peth",
+    "wikipedia": "en:Sadashiv Peth, Pune"
+  }
+},
+{
+  "type": "node",
+  "id": 2266580379,
+  "lat": 18.5192839,
+  "lon": 73.8524863,
+  "tags": {
+    "AND_a_nosr_p": "10005729",
+    "name": "Shaniwar Peth",
+    "name:en": "Shaniwar Peth",
+    "name:mr": "शनिवार पेठ",
+    "place": "suburb",
+    "source": "AND",
+    "wikidata": "Q7488655",
+    "wikimedia_commons": "Category:Shaniwar Peth, Pune",
+    "wikipedia": "en:Shaniwar Peth, Pune"
+  }
+},
+{
+  "type": "node",
+  "id": 2298617426,
+  "lat": 18.5766376,
+  "lon": 73.8936578,
+  "tags": {
+    "name": "Tingrenagar",
+    "name:mr": "टिंगरेनगर",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 2306317987,
+  "lat": 18.1619655,
+  "lon": 73.3208095,
+  "tags": {
+    "name": "Lonere",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 2306334393,
+  "lat": 18.4464749,
+  "lon": 73.3737831,
+  "tags": {
+    "name": "Patnus",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 2309359181,
+  "lat": 18.2518849,
+  "lon": 73.3565226,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 2309360260,
+  "lat": 18.2741771,
+  "lon": 73.4027264,
+  "tags": {
+    "name": "Punade",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 2309360267,
+  "lat": 18.2578861,
+  "lon": 73.3952189,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 2327929372,
+  "lat": 18.1690791,
+  "lon": 73.5054289,
+  "tags": {
+    "name": "Jholichakond",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 2327929394,
+  "lat": 18.1731617,
+  "lon": 73.4931551,
+  "tags": {
+    "name": "Valan Budruk",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 2327950119,
+  "lat": 18.1588997,
+  "lon": 73.6223972,
+  "tags": {
+    "name": "Kumbheshivtar",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 2380993626,
+  "lat": 18.5478200,
+  "lon": 73.5359625,
+  "tags": {
+    "name": "Bhadas",
+    "name:en": "Bhadas",
+    "name:mr": "भडास",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 2380993696,
+  "lat": 18.5491881,
+  "lon": 73.5427971,
+  "tags": {
+    "name": "Gavadewadi",
+    "name:en": "Gavadewadi",
+    "name:mr": "गावडेवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 2511213212,
+  "lat": 18.2396212,
+  "lon": 73.3531563,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 2550515283,
+  "lat": 18.4209497,
+  "lon": 73.7557921,
+  "tags": {
+    "name": "Gorhe",
+    "name:mr": "गोऱ्हे",
+    "place": "village",
+    "population": "2829"
+  }
+},
+{
+  "type": "node",
+  "id": 2663034074,
+  "lat": 18.1709082,
+  "lon": 73.8359339,
+  "tags": {
+    "name": "Basarapur",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 2722780155,
+  "lat": 18.2920405,
+  "lon": 73.3375566,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 2723116335,
+  "lat": 18.3579244,
+  "lon": 73.4021653,
+  "tags": {
+    "name": "Jite",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 2877309247,
+  "lat": 18.2340881,
+  "lon": 73.4968393,
+  "tags": {
+    "name": "Dapoli",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 3018215933,
+  "lat": 18.2977502,
+  "lon": 73.6363161,
+  "tags": {
+    "name": "Velhe",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 3147833520,
+  "lat": 18.6432690,
+  "lon": 73.7450557,
+  "tags": {
+    "addr:city": "Pimpri Chinchwad, Pune",
+    "addr:city_1": "Pune",
+    "addr:country": "IN",
+    "addr:state": "Maharashtra",
+    "name": "Ravet",
+    "name:mr": "रावेत",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 3189580891,
+  "lat": 18.1503693,
+  "lon": 73.7601871,
+  "tags": {
+    "name": "Mahuda",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 3237435456,
+  "lat": 18.6772446,
+  "lon": 73.8981129,
+  "tags": {
+    "name": "Alandi",
+    "name:en": "Alandi",
+    "name:mr": "आळंदी",
+    "place": "village",
+    "postal_code": "412105",
+    "wikidata": "Q589653",
+    "wikimedia_commons": "Category:Alandi",
+    "wikipedia": "en:Alandi"
+  }
+},
+{
+  "type": "node",
+  "id": 3375006656,
+  "lat": 18.8944183,
+  "lon": 73.7785387,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 3375010551,
+  "lat": 18.8963877,
+  "lon": 73.7439492,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 3385571866,
+  "lat": 18.4392428,
+  "lon": 73.7757659,
+  "tags": {
+    "name": "Khadakwasla",
+    "name:mr": "खडकवासला",
+    "place": "village",
+    "wikidata": "Q26787499"
+  }
+},
+{
+  "type": "node",
+  "id": 3385571867,
+  "lat": 18.4670411,
+  "lon": 73.7930648,
+  "tags": {
+    "name": "Shivane",
+    "name:mr": "शिवणे",
+    "place": "suburb",
+    "wikidata": "Q28405765",
+    "wikipedia": "en:Shivane, Maval"
+  }
+},
+{
+  "type": "node",
+  "id": 3399572612,
+  "lat": 18.7110695,
+  "lon": 73.3016822,
+  "tags": {
+    "name": "Anandnagar",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 3494918055,
+  "lat": 18.3391133,
+  "lon": 73.8392736,
+  "tags": {
+    "name": "Khed Shivapur",
+    "name:mr": "शिवापुर",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 3494918056,
+  "lat": 18.3431252,
+  "lon": 73.8441811,
+  "tags": {
+    "name": "Shriramnagar",
+    "name:mr": "श्रीरामनगर",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 3645664490,
+  "lat": 18.4894205,
+  "lon": 73.8213470,
+  "tags": {
+    "name": "Karve Nagar",
+    "name:en": "Karve Nagar",
+    "name:mr": "कर्वे नगर",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 3824586716,
+  "lat": 18.4373984,
+  "lon": 73.8190432,
+  "tags": {
+    "name": "Dhayari",
+    "name:kn": "ಧಾಯರೀ",
+    "name:mr": "धायरी",
+    "place": "town",
+    "wikipedia": "en:Dhayari"
+  }
+},
+{
+  "type": "node",
+  "id": 3879749775,
+  "lat": 18.8817974,
+  "lon": 73.9898571,
+  "tags": {
+    "name": "Wafgaon",
+    "name:en": "Wafgaon",
+    "name:mr": "वाफगाव",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 3879750497,
+  "lat": 18.8599705,
+  "lon": 74.0064064,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 3909470178,
+  "lat": 18.2603383,
+  "lon": 73.9379888,
+  "tags": {
+    "name": "Ketkawale",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 3909470228,
+  "lat": 18.2663520,
+  "lon": 73.9499091,
+  "tags": {
+    "name": "Misalwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 3909478318,
+  "lat": 18.1948650,
+  "lon": 74.0869437,
+  "tags": {
+    "name": "Parinche",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 3940990685,
+  "lat": 18.7739596,
+  "lon": 73.7385140,
+  "tags": {
+    "fixme": "source of the name?",
+    "name": "Shinde",
+    "name:en": "Shinde",
+    "name:mr": "शिंदे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 3940995148,
+  "lat": 18.7682711,
+  "lon": 73.7706211,
+  "tags": {
+    "name": "Chakan Industrial Area",
+    "name:en": "Chakan Industrial Area",
+    "name:mr": "चाकण औद्योगिक क्षेत्र",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 3942856106,
+  "lat": 18.5015672,
+  "lon": 74.0922030,
+  "tags": {
+    "name": "Peth",
+    "name:en": "Peth",
+    "name:mr": "पेठ",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 4082315378,
+  "lat": 18.5218660,
+  "lon": 73.7651314,
+  "tags": {
+    "name": "Bavdhan Budruk",
+    "name:en": "Bavdhan Budruk",
+    "name:mr": "बावधन बुद्रुक",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 4092086140,
+  "lat": 18.6214342,
+  "lon": 73.3784206,
+  "tags": {
+    "name": "Ambevane",
+    "name:en": "Ambevane",
+    "name:mr": "अंबेवणे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 4369649402,
+  "lat": 18.8719423,
+  "lon": 73.3417381,
+  "tags": {
+    "addr:street": "Mohili",
+    "name": "Mohili",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 4382388435,
+  "lat": 18.5853217,
+  "lon": 73.7829378,
+  "tags": {
+    "name": "Vishal Nagar",
+    "name:mr": "विशाल नगर",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 4625718771,
+  "lat": 18.8945415,
+  "lon": 73.8127002,
+  "tags": {
+    "name": "Kadus",
+    "name:en": "Kadus",
+    "name:mr": "कडूस",
+    "place": "village",
+    "wikidata": "Q6345782",
+    "wikipedia": "en:Kadus"
+  }
+},
+{
+  "type": "node",
+  "id": 4676242400,
+  "lat": 18.4006615,
+  "lon": 73.7318306,
+  "tags": {
+    "name": "Khanapur",
+    "name:en": "Khanapur",
+    "name:mr": "खानापूर",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 4693618012,
+  "lat": 18.5097371,
+  "lon": 73.4263350,
+  "tags": {
+    "name": "Pimpri",
+    "name:en": "Pimpri",
+    "name:mr": "पिंपरी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 4693623854,
+  "lat": 18.5205629,
+  "lon": 73.4587873,
+  "tags": {
+    "name": "Vandre",
+    "name:en": "Vandre",
+    "name:mr": "वांद्रे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 4714951302,
+  "lat": 18.5981553,
+  "lon": 73.7977661,
+  "tags": {
+    "int_name": "Pimple Saudagar",
+    "name": "Pimple Saudagar",
+    "name:mr": "पिंपळे सौदागर",
+    "place": "suburb",
+    "wikidata": "Q7194714",
+    "wikimedia_commons": "Category:Pimple Saudagar",
+    "wikipedia": "en:Pimple Saudagar"
+  }
+},
+{
+  "type": "node",
+  "id": 4717857720,
+  "lat": 18.5258016,
+  "lon": 73.9920372,
+  "tags": {
+    "name": "Manjari Khurd",
+    "name:en": "Manjari Khurd",
+    "name:mr": "मांजरी खुर्द",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 4870011854,
+  "lat": 18.8840895,
+  "lon": 73.3443082,
+  "tags": {
+    "name": "Tamnath",
+    "place": "village",
+    "postal_code": "410201"
+  }
+},
+{
+  "type": "node",
+  "id": 4873216704,
+  "lat": 18.8647875,
+  "lon": 73.3755223,
+  "tags": {
+    "name": "Buddhawadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 4893157473,
+  "lat": 18.4775193,
+  "lon": 73.4904381,
+  "tags": {
+    "addr:postcode": "412108",
+    "ele": "611",
+    "name": "Palase",
+    "name:en": "Palase",
+    "name:mr": "पळसे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 4896345608,
+  "lat": 18.4897570,
+  "lon": 73.4865391,
+  "tags": {
+    "name": "Shirgaon",
+    "name:en": "Shirgaon",
+    "name:mr": "शिरगाव",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 4907360894,
+  "lat": 18.4452326,
+  "lon": 73.4280974,
+  "tags": {
+    "name": "Tamhini",
+    "name:en": "Tamhini",
+    "name:mr": "ताम्हिणी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 4907360896,
+  "lat": 18.5302947,
+  "lon": 73.5308978,
+  "tags": {
+    "name": "Disli",
+    "name:en": "Disli",
+    "name:mr": "दिसली",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 4907360897,
+  "lat": 18.4647548,
+  "lon": 73.4089519,
+  "tags": {
+    "name": "Dongerwadi",
+    "name:en": "Dongerwadi",
+    "name:mr": "डोंगरवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 5027441894,
+  "lat": 18.5726300,
+  "lon": 73.8782500,
+  "tags": {
+    "name": "Vishrantwadi",
+    "name:en": "Vishrantwadi",
+    "name:mr": "विश्रांतवाडी",
+    "place": "suburb",
+    "wikidata": "Q7936018",
+    "wikimedia_commons": "Category:Vishrantwadi",
+    "wikipedia": "en:Vishrantwadi"
+  }
+},
+{
+  "type": "node",
+  "id": 5033970628,
+  "lat": 18.3911383,
+  "lon": 73.6708681,
+  "tags": {
+    "name": "Sonapur",
+    "name:en": "Sonapur",
+    "name:mr": "सोनपूर",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 5433901476,
+  "lat": 18.8722781,
+  "lon": 73.4021234,
+  "tags": {
+    "name": "Sandshi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 5697466013,
+  "lat": 18.4738006,
+  "lon": 73.8277026,
+  "tags": {
+    "name": "Tukai Nagar",
+    "name:en": "Tukai Nagar",
+    "name:mr": "तुकाई नगर",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 5697466014,
+  "lat": 18.4748850,
+  "lon": 73.8210842,
+  "tags": {
+    "name": "Manik Baug",
+    "name:en": "Manik Baug",
+    "name:mr": "माणिक बाग",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 5697466015,
+  "lat": 18.4674971,
+  "lon": 73.8253650,
+  "tags": {
+    "name": "Vadgaon Budruk",
+    "name:en": "Vadgaon Budruk",
+    "name:mr": "वडगाव बुद्रुक",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 5827491558,
+  "lat": 18.8889874,
+  "lon": 73.6817890,
+  "tags": {
+    "name": "Torne Budruk",
+    "name:en": "Torne Budruk",
+    "name:mr": "तोरणे बुद्रुक",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 5910356789,
+  "lat": 18.8521985,
+  "lon": 73.3758616,
+  "tags": {
+    "name": "Kondane",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 5913741257,
+  "lat": 18.2365558,
+  "lon": 73.4206063,
+  "tags": {
+    "name": "Pachad",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 5914312824,
+  "lat": 18.2295857,
+  "lon": 73.4355998,
+  "tags": {
+    "name": "Hirkaniwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6033638496,
+  "lat": 18.8569400,
+  "lon": 73.9095274,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6184356293,
+  "lat": 18.3592640,
+  "lon": 73.7114903,
+  "tags": {
+    "name": "Kondgaon",
+    "name:en": "Kondgaon",
+    "name:mr": "कोंडगाव",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6184356294,
+  "lat": 18.3719716,
+  "lon": 73.7118980,
+  "tags": {
+    "name": "Vaswewadi",
+    "name:en": "Vaswewadi",
+    "name:mr": "वसवेवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6184356295,
+  "lat": 18.3394472,
+  "lon": 73.6855694,
+  "tags": {
+    "name": "Khamgaon",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6433493600,
+  "lat": 18.4917787,
+  "lon": 73.4259224,
+  "tags": {
+    "name": "Nive",
+    "name:en": "Nive",
+    "name:mr": "निवे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6433493615,
+  "lat": 18.4752539,
+  "lon": 73.4423375,
+  "tags": {
+    "name": "Sarole",
+    "name:en": "Sarole",
+    "name:mr": "सरोळे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6433493616,
+  "lat": 18.4627167,
+  "lon": 73.4437966,
+  "tags": {
+    "name": "Chachivali",
+    "name:en": "Chachivali",
+    "name:mr": "चाचिवळी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6433493712,
+  "lat": 18.4660343,
+  "lon": 73.4673357,
+  "tags": {
+    "name": "Varak",
+    "name:en": "Varak",
+    "name:mr": "वरक",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6433498288,
+  "lat": 18.3748498,
+  "lon": 73.4002588,
+  "tags": {
+    "name": "Umbardi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6433498289,
+  "lat": 18.5074066,
+  "lon": 73.4582376,
+  "tags": {
+    "name": "Vandre",
+    "name:en": "Vandre",
+    "name:mr": "वांद्रे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6433499128,
+  "lat": 18.4179846,
+  "lon": 73.4729254,
+  "tags": {
+    "name": "Mugaon",
+    "name:en": "Mugaon",
+    "name:mr": "मुगाव",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6449291169,
+  "lat": 18.2318378,
+  "lon": 73.8439071,
+  "tags": {
+    "name": "Hatve Khurd",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6449292479,
+  "lat": 18.2515548,
+  "lon": 73.7938678,
+  "tags": {
+    "name": "Vitthalwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6451216074,
+  "lat": 18.2716610,
+  "lon": 73.7287257,
+  "tags": {
+    "name": "Ghavar",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6451216089,
+  "lat": 18.2658916,
+  "lon": 73.7161753,
+  "tags": {
+    "name": "Chirmodi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6451216090,
+  "lat": 18.2654840,
+  "lon": 73.7031827,
+  "tags": {
+    "name": "Avali",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6451216091,
+  "lat": 18.2832209,
+  "lon": 73.7408731,
+  "tags": {
+    "name": "Khambawadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6466189238,
+  "lat": 18.2971302,
+  "lon": 73.6772406,
+  "tags": {
+    "name": "Khariv",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6466189792,
+  "lat": 18.2913340,
+  "lon": 73.6902869,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6466462427,
+  "lat": 18.7860904,
+  "lon": 73.7641100,
+  "tags": {
+    "name": "Bhamboli",
+    "name:en": "Bhamboli",
+    "name:mr": "भांबोली",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6467925032,
+  "lat": 18.8563965,
+  "lon": 73.7099681,
+  "tags": {
+    "name": "Rondhalwadi",
+    "name:en": "Rondhalwadi",
+    "name:mr": "रोंधळवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6467925033,
+  "lat": 18.8788315,
+  "lon": 73.7217343,
+  "tags": {
+    "name": "Pait",
+    "name:en": "Pait",
+    "name:mr": "पैट",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6467925034,
+  "lat": 18.8794558,
+  "lon": 73.6983025,
+  "tags": {
+    "name": "Ahire",
+    "name:en": "Ahire",
+    "name:mr": "अहिरे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6468041035,
+  "lat": 18.8981424,
+  "lon": 73.5618590,
+  "tags": {
+    "name": "Parithewadi",
+    "name:mr": "परिथेवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6472967423,
+  "lat": 18.8633921,
+  "lon": 73.6574829,
+  "tags": {
+    "name": "Deshmukhwadi",
+    "name:en": "Deshmukhwadi",
+    "name:mr": "देशमुखवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6473010369,
+  "lat": 18.8256354,
+  "lon": 73.7703180,
+  "tags": {
+    "name": "Askhed Budruk",
+    "name:en": "Askhed Budruk",
+    "name:mr": "आसखेड बुद्रुक",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6473010370,
+  "lat": 18.8496805,
+  "lon": 73.8034486,
+  "tags": {
+    "name": "Kiwale",
+    "name:en": "Kiwale",
+    "name:mr": "किवळे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6473010371,
+  "lat": 18.8523000,
+  "lon": 73.7842226,
+  "tags": {
+    "name": "Kurkundi",
+    "name:en": "Kurkundi",
+    "name:mr": "कुरकुंडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6501723868,
+  "lat": 18.6278038,
+  "lon": 73.6754816,
+  "tags": {
+    "name": "Kasarsai",
+    "name:en": "Kasarsai",
+    "name:mr": "कासारसाई",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6505735228,
+  "lat": 18.5000084,
+  "lon": 73.7501119,
+  "tags": {
+    "name": "Bhugaon",
+    "name:en": "Bhugaon",
+    "name:mr": "भूगाव",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6505735229,
+  "lat": 18.5074203,
+  "lon": 73.7674068,
+  "tags": {
+    "name": "Bavdhan",
+    "name:en": "Bavdhan",
+    "name:mr": "बावधान",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6505735230,
+  "lat": 18.4945396,
+  "lon": 73.7214015,
+  "tags": {
+    "name": "Bhukum",
+    "name:en": "Bhukum",
+    "name:mr": "भुकुम",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6538743751,
+  "lat": 18.8578120,
+  "lon": 73.6017631,
+  "tags": {
+    "name": "Awrewada",
+    "name:mr": "आव्रेवाडा",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6538862009,
+  "lat": 18.8897711,
+  "lon": 73.4942791,
+  "tags": {
+    "name": "Kambre",
+    "name:mr": "कांबरे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6538862010,
+  "lat": 18.8803415,
+  "lon": 73.5212719,
+  "tags": {
+    "name": "Vahangaon",
+    "name:mr": "वहानगाव",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6538862011,
+  "lat": 18.8558465,
+  "lon": 73.5504743,
+  "tags": {
+    "name": "Wadeshwar",
+    "name:mr": "वाडेश्वर",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6538862013,
+  "lat": 18.8153655,
+  "lon": 73.6054353,
+  "tags": {
+    "name": "Bhoyre",
+    "name:mr": "भोयरे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6538862016,
+  "lat": 18.8638283,
+  "lon": 73.5982684,
+  "tags": {
+    "name": "Bhiyere",
+    "name:mr": "भियेरे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6538862017,
+  "lat": 18.8888965,
+  "lon": 73.5844283,
+  "tags": {
+    "name": "Kiwle",
+    "name:mr": "किवळे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6538866251,
+  "lat": 18.8062255,
+  "lon": 73.6086521,
+  "tags": {
+    "name": "Takve",
+    "name:mr": "टाकवे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6552939055,
+  "lat": 18.8254070,
+  "lon": 74.0096520,
+  "tags": {
+    "name": "Kanhersar",
+    "name:en": "Kanhersar",
+    "name:mr": "कन्हेरसर",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6552939056,
+  "lat": 18.8328555,
+  "lon": 73.9817839,
+  "tags": {
+    "name": "Gosasi",
+    "name:en": "Gosasi",
+    "name:mr": "गोसासी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6552939057,
+  "lat": 18.8559451,
+  "lon": 73.9697891,
+  "tags": {
+    "name": "Gulani",
+    "name:en": "Gulani",
+    "name:mr": "गुलानी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6552966923,
+  "lat": 18.8796743,
+  "lon": 73.9780550,
+  "tags": {
+    "name": "Chichbaiwadi",
+    "name:en": "Chichbaiwadi",
+    "name:mr": "चिचबाईवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6554849424,
+  "lat": 18.7358367,
+  "lon": 73.9202559,
+  "tags": {
+    "name": "Bhose",
+    "name:en": "Bhose",
+    "name:mr": "भोसे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6555690707,
+  "lat": 18.7618538,
+  "lon": 73.9190362,
+  "tags": {
+    "name": "Kalus",
+    "name:en": "Kalus",
+    "name:mr": "कलूस",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6559757159,
+  "lat": 18.7447194,
+  "lon": 74.0985051,
+  "tags": {
+    "name": "Mukhai",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6559776007,
+  "lat": 18.7916803,
+  "lon": 74.0964840,
+  "tags": {
+    "name": "Dhamari",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6616602606,
+  "lat": 18.5589937,
+  "lon": 73.7845232,
+  "tags": {
+    "name": "Baner",
+    "name:en": "Baner",
+    "name:hi": "बाणेर",
+    "name:mr": "बाणेर",
+    "place": "suburb",
+    "wikidata": "Q4801087",
+    "wikimedia_commons": "Category:Baner",
+    "wikipedia": "en:Baner"
+  }
+},
+{
+  "type": "node",
+  "id": 6616669384,
+  "lat": 18.5820266,
+  "lon": 73.7689831,
+  "tags": {
+    "name": "Balewadi",
+    "name:en": "Balewadi",
+    "name:hi": "बालेवाडी",
+    "name:mr": "बालेवाडी",
+    "place": "suburb",
+    "wikidata": "Q4850734",
+    "wikimedia_commons": "Category:Balewadi",
+    "wikipedia": "en:Balewadi"
+  }
+},
+{
+  "type": "node",
+  "id": 6814013981,
+  "lat": 18.3996063,
+  "lon": 73.6768122,
+  "tags": {
+    "name": "Sangrun",
+    "name:en": "Sangrun",
+    "name:mr": "संगरूण",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6814024073,
+  "lat": 18.3890744,
+  "lon": 73.6565615,
+  "tags": {
+    "name": "Jambhali",
+    "name:en": "Jambhali",
+    "name:mr": "जांभळी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6874104993,
+  "lat": 18.5311083,
+  "lon": 73.4367920,
+  "tags": {
+    "name": "Ahirwadi",
+    "name:en": "Ahirwadi",
+    "name:mr": "अहिरवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6874104996,
+  "lat": 18.5449068,
+  "lon": 73.3974954,
+  "tags": {
+    "fixme": "there is no village",
+    "name": "Adgaon",
+    "name:en": "Adgaon",
+    "name:mr": "आडगाव",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6884245090,
+  "lat": 18.3018498,
+  "lon": 73.8997199,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6885883072,
+  "lat": 18.2781971,
+  "lon": 73.9156186,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6895038126,
+  "lat": 18.3444925,
+  "lon": 73.9793753,
+  "tags": {
+    "name": "Kodit Budruk",
+    "name:mr": "कोडीत बुद्रुक",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6895038127,
+  "lat": 18.3499712,
+  "lon": 73.9290678,
+  "tags": {
+    "name": "Garade",
+    "name:en": "Garade",
+    "name:mr": "गराडे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6895317489,
+  "lat": 18.3989993,
+  "lon": 73.8247775,
+  "tags": {
+    "name": "Sanas Nagar",
+    "name:en": "Sanas Nagar",
+    "name:mr": "सणस नगर",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6898535943,
+  "lat": 18.4043584,
+  "lon": 74.0214401,
+  "tags": {
+    "name": "Kalewadi",
+    "name:mr": "काळेवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6898577016,
+  "lat": 18.4153139,
+  "lon": 74.0141179,
+  "tags": {
+    "name": "Jhenderwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6901444698,
+  "lat": 18.2933148,
+  "lon": 73.6723530,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6904656213,
+  "lat": 18.2396771,
+  "lon": 73.7510933,
+  "tags": {
+    "name": "Kambare Budruk",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6917403212,
+  "lat": 18.2974708,
+  "lon": 73.7941682,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6917403988,
+  "lat": 18.3032693,
+  "lon": 73.7714580,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6917411944,
+  "lat": 18.3285194,
+  "lon": 73.8168665,
+  "tags": {
+    "name": "Kusgaon",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6917411961,
+  "lat": 18.3485895,
+  "lon": 73.7940449,
+  "tags": {
+    "name": "Kondanpur",
+    "name:en": "Kondanpur",
+    "name:mr": "कोंडणपूर",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6917417129,
+  "lat": 18.2881602,
+  "lon": 73.8092154,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6917489171,
+  "lat": 18.2009030,
+  "lon": 73.9440627,
+  "tags": {
+    "name": "Kikvi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6919758042,
+  "lat": 18.4300188,
+  "lon": 73.9807514,
+  "tags": {
+    "name": "Wadki",
+    "name:en": "Wadki",
+    "name:mr": "वडकी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6919758043,
+  "lat": 18.4656502,
+  "lon": 73.9618740,
+  "tags": {
+    "name": "Manter Wadi",
+    "name:en": "Manter Wadi",
+    "name:mr": "मन्टर वाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6923910620,
+  "lat": 18.3676779,
+  "lon": 74.0234017,
+  "tags": {
+    "name": "Chandan Tekdi",
+    "name:mr": "चाकण टेकडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6926072123,
+  "lat": 18.2514802,
+  "lon": 73.9697759,
+  "tags": {
+    "name": "Bandalwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6926072124,
+  "lat": 18.2483823,
+  "lon": 73.9865383,
+  "tags": {
+    "name": "Kaldari",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6926136821,
+  "lat": 18.3138813,
+  "lon": 74.0231086,
+  "tags": {
+    "name": "Supe Khurd",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6926183790,
+  "lat": 18.3695141,
+  "lon": 73.9756288,
+  "tags": {
+    "name": "Chambli",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6926194404,
+  "lat": 18.3903623,
+  "lon": 73.9318495,
+  "tags": {
+    "name": "Bhiwari",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6934787394,
+  "lat": 18.4101755,
+  "lon": 74.0038337,
+  "tags": {
+    "name": "Jadhavwadi",
+    "name:mr": "जाधववाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6934806235,
+  "lat": 18.4389434,
+  "lon": 73.9399714,
+  "tags": {
+    "name": "Holkarwadi",
+    "name:en": "Holkarwadi",
+    "name:mr": "होळकरवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6961196545,
+  "lat": 18.1533961,
+  "lon": 73.8958883,
+  "tags": {
+    "name": "Kahandala",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6961206687,
+  "lat": 18.1592478,
+  "lon": 73.9161014,
+  "tags": {
+    "name": "Wing",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6968058496,
+  "lat": 18.1867139,
+  "lon": 73.9404187,
+  "tags": {
+    "name": "Kenjal",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6977375389,
+  "lat": 18.8560604,
+  "lon": 73.4491676,
+  "tags": {
+    "name": "Shirde",
+    "name:mr": "शिरडे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6977375391,
+  "lat": 18.8187004,
+  "lon": 73.5038052,
+  "tags": {
+    "name": "Kolwadi",
+    "name:mr": "कोलवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 6977375392,
+  "lat": 18.8301411,
+  "lon": 73.5112400,
+  "tags": {
+    "name": "Uksan",
+    "name:mr": "उक्सन",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7006222450,
+  "lat": 18.3388406,
+  "lon": 73.4971505,
+  "tags": {
+    "name": "Ghodkhal",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7006222453,
+  "lat": 18.3401958,
+  "lon": 73.5099439,
+  "tags": {
+    "name": "Kasedi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7006222455,
+  "lat": 18.3374979,
+  "lon": 73.5397027,
+  "tags": {
+    "name": "Thangaon",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7006222456,
+  "lat": 18.3437630,
+  "lon": 73.5318875,
+  "tags": {
+    "name": "Bhalwqdi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7006222458,
+  "lat": 18.3295457,
+  "lon": 73.5296835,
+  "tags": {
+    "name": "Mangaon",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7006222461,
+  "lat": 18.3929632,
+  "lon": 73.7010459,
+  "tags": {
+    "name": "Malkhed",
+    "name:en": "Malkhed",
+    "name:mr": "मलखेड",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7006222462,
+  "lat": 18.3382722,
+  "lon": 73.4869117,
+  "tags": {
+    "name": "Godarval",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7006222463,
+  "lat": 18.3558883,
+  "lon": 73.5470307,
+  "tags": {
+    "name": "Kambegi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7006222464,
+  "lat": 18.3445305,
+  "lon": 73.5733819,
+  "tags": {
+    "name": "Givshi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7006222468,
+  "lat": 18.3351033,
+  "lon": 73.5629725,
+  "tags": {
+    "name": "Shirkoli",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7238962670,
+  "lat": 18.1533989,
+  "lon": 74.0882730,
+  "tags": {
+    "name": "Veer",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7239241329,
+  "lat": 18.2557741,
+  "lon": 73.4539651,
+  "tags": {
+    "name": "Warangi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7242758029,
+  "lat": 18.2777560,
+  "lon": 73.4231040,
+  "tags": {
+    "name": "Sandoshi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7242771573,
+  "lat": 18.2496392,
+  "lon": 73.4804912,
+  "tags": {
+    "name": "Pane",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7410991684,
+  "lat": 18.2191082,
+  "lon": 74.0746558,
+  "tags": {
+    "name": "Hargude",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7415025194,
+  "lat": 18.3780079,
+  "lon": 74.0802496,
+  "tags": {
+    "name": "Udachiwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7415025195,
+  "lat": 18.3734261,
+  "lon": 74.0663665,
+  "tags": {
+    "name": "Vanpuri",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7434209915,
+  "lat": 18.2773516,
+  "lon": 73.8271487,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7614256190,
+  "lat": 18.2981941,
+  "lon": 74.0896833,
+  "tags": {
+    "name": "Shivari",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7682557800,
+  "lat": 18.5870203,
+  "lon": 74.0795557,
+  "tags": {
+    "name": "Wadebolai",
+    "name:en": "Wadebolai",
+    "name:mr": "वाडेबोलाई",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7682592686,
+  "lat": 18.6318500,
+  "lon": 74.0643068,
+  "tags": {
+    "name": "Perane",
+    "name:en": "Perane",
+    "name:mr": "पेरणे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7834197812,
+  "lat": 18.3213235,
+  "lon": 73.6651950,
+  "tags": {
+    "name": "Pabe",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7877690673,
+  "lat": 18.8837718,
+  "lon": 73.6384465,
+  "tags": {
+    "name": "Awlewadi",
+    "name:en": "Awlewadi",
+    "name:mr": "आवळेवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7877690675,
+  "lat": 18.8633642,
+  "lon": 73.6591974,
+  "tags": {
+    "name": "Wahagaon",
+    "name:en": "Wahagaon",
+    "name:mr": "वहागाव",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7889105046,
+  "lat": 18.8209782,
+  "lon": 73.5855174,
+  "tags": {
+    "name": "Ghonshet",
+    "name:mr": "घोंशेत",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7896338214,
+  "lat": 18.1675813,
+  "lon": 74.0111781,
+  "tags": {
+    "name": "Nhavi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 7896338215,
+  "lat": 18.1588396,
+  "lon": 74.0105665,
+  "tags": {
+    "name": "Vatharhinge",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8079994342,
+  "lat": 18.2602518,
+  "lon": 73.8414823,
+  "tags": {
+    "name": "Jambhli",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8079994343,
+  "lat": 18.2838767,
+  "lon": 73.7417905,
+  "tags": {
+    "name": "Margasani",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8094341449,
+  "lat": 18.3883757,
+  "lon": 73.6270078,
+  "tags": {
+    "name": "Kuran Budruk",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8146818925,
+  "lat": 18.5044776,
+  "lon": 73.5818644,
+  "tags": {
+    "name": "Andeshe",
+    "name:en": "Andeshe",
+    "name:mr": "अंडेशे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8255415833,
+  "lat": 18.5236232,
+  "lon": 73.9871692,
+  "tags": {
+    "name": "Manjari",
+    "name:en": "Manjari",
+    "name:mr": "मांजरी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8256715250,
+  "lat": 18.5097262,
+  "lon": 73.9650893,
+  "tags": {
+    "name": "Gopalpatti",
+    "name:en": "Gopalpatti",
+    "name:mr": "गोपाळपट्टी",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 8336270652,
+  "lat": 18.2141057,
+  "lon": 73.4986898,
+  "tags": {
+    "name": "Panderi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8380950693,
+  "lat": 18.6922903,
+  "lon": 73.6659810,
+  "tags": {
+    "name": "Dhamane",
+    "name:en": "Dhamane",
+    "name:mr": "धामणे",
+    "place": "village",
+    "wikidata": "Q24884999",
+    "wikipedia": "en:Dhamane"
+  }
+},
+{
+  "type": "node",
+  "id": 8509750183,
+  "lat": 18.4050877,
+  "lon": 74.0938718,
+  "tags": {
+    "name": "Gurholi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8589551377,
+  "lat": 18.8094546,
+  "lon": 73.3024300,
+  "tags": {
+    "name": "Mahad",
+    "name:en": "Mahad",
+    "name:hi": "महाड",
+    "name:mr": "महाड",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8696876560,
+  "lat": 18.5560689,
+  "lon": 74.0658057,
+  "tags": {
+    "name": "Wadegaon",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8722520851,
+  "lat": 18.2600370,
+  "lon": 74.0558512,
+  "tags": {
+    "name": "Khaigarwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8725859153,
+  "lat": 18.1919971,
+  "lon": 73.8594505,
+  "tags": {
+    "name": "Narhe",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8725859154,
+  "lat": 18.1969022,
+  "lon": 73.8359034,
+  "tags": {
+    "name": "Harnas",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8725859155,
+  "lat": 18.2130867,
+  "lon": 73.8111949,
+  "tags": {
+    "name": "Jogawadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8725859156,
+  "lat": 18.2097440,
+  "lon": 73.8205719,
+  "tags": {
+    "name": "Majgaon",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8725903363,
+  "lat": 18.1883863,
+  "lon": 73.8729957,
+  "tags": {
+    "name": "Sangamner",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8725903364,
+  "lat": 18.1797732,
+  "lon": 73.8767910,
+  "tags": {
+    "name": "Malwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8849791610,
+  "lat": 18.3365896,
+  "lon": 73.6183596,
+  "tags": {
+    "name": "Kadve Khind",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8849791611,
+  "lat": 18.3107405,
+  "lon": 73.6287665,
+  "tags": {
+    "name": "Dhanep",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8849791612,
+  "lat": 18.3087237,
+  "lon": 73.6334872,
+  "tags": {
+    "name": "Kondhawale",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8998906053,
+  "lat": 18.7596562,
+  "lon": 73.3302319,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 8999059058,
+  "lat": 18.8332412,
+  "lon": 73.3055556,
+  "tags": {
+    "name": "Khandroli",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9083672800,
+  "lat": 18.7636340,
+  "lon": 73.4527542,
+  "tags": {
+    "name": "Waksai",
+    "name:mr": "वाकसई",
+    "place": "village",
+    "wikipedia": "mr:वाकसई"
+  }
+},
+{
+  "type": "node",
+  "id": 9141122967,
+  "lat": 18.8017697,
+  "lon": 74.0483531,
+  "tags": {
+    "name": "Thittewadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9159833858,
+  "lat": 18.6158881,
+  "lon": 73.5625378,
+  "tags": {
+    "name": "Andhalegaon",
+    "name:mr": "अंधाळेगाव",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9159855552,
+  "lat": 18.5746155,
+  "lon": 73.7092529,
+  "tags": {
+    "name": "Maan",
+    "name:en": "Maan",
+    "name:mr": "माण",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9161678313,
+  "lat": 18.7846362,
+  "lon": 74.0360522,
+  "tags": {
+    "name": "Kedur",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9163954995,
+  "lat": 18.2406114,
+  "lon": 73.4277248,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9163993380,
+  "lat": 18.1771688,
+  "lon": 73.5790872,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9163993381,
+  "lat": 18.1639984,
+  "lon": 73.6209404,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9207339800,
+  "lat": 18.5536672,
+  "lon": 73.7527270,
+  "tags": {
+    "name": "Sus",
+    "name:mr": "सुस",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 9455603476,
+  "lat": 18.5927532,
+  "lon": 73.7382151,
+  "tags": {
+    "alt_name": "Hinjavadi",
+    "name": "Hinjawadi",
+    "name:en": "Hinjawadi",
+    "name:mr": "हिंजवडी",
+    "place": "suburb",
+    "population": "11459",
+    "postal_code": "411057",
+    "wikidata": "Q3524535",
+    "wikimedia_commons": "Category:Hinjawadi",
+    "wikipedia": "en:Hinjawadi"
+  }
+},
+{
+  "type": "node",
+  "id": 9506591369,
+  "lat": 18.6504513,
+  "lon": 73.6853763,
+  "tags": {
+    "name": "Darumbre",
+    "name:en": "Darumbre",
+    "name:mr": "दरुंब्रे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9506647457,
+  "lat": 18.6664848,
+  "lon": 73.6924014,
+  "tags": {
+    "name": "Salumbre",
+    "name:en": "Salumbre",
+    "name:mr": "साळुंब्रे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9506688798,
+  "lat": 18.6116702,
+  "lon": 73.7156487,
+  "tags": {
+    "name": "Marunji",
+    "name:en": "Marunji",
+    "name:mr": "मारुंजी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9506703023,
+  "lat": 18.6788722,
+  "lon": 73.6868794,
+  "tags": {
+    "name": "Shirgaon",
+    "name:en": "Shirgaav",
+    "name:mr": "शिरगाव",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9506703035,
+  "lat": 18.6668233,
+  "lon": 73.7020767,
+  "tags": {
+    "name": "Gahunje",
+    "name:en": "Gahunje",
+    "name:mr": "गहुंजे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9506703056,
+  "lat": 18.6337128,
+  "lon": 73.6956843,
+  "tags": {
+    "name": "Nere",
+    "name:en": "Nere",
+    "name:mr": "नेरे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9704552491,
+  "lat": 18.2761824,
+  "lon": 73.7250908,
+  "tags": {
+    "name": "Sakhar",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9817088663,
+  "lat": 18.4826984,
+  "lon": 73.6636357,
+  "tags": {
+    "name": "Urawade",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9837799382,
+  "lat": 18.5400844,
+  "lon": 73.6869457,
+  "tags": {
+    "name": "Mulkhed",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9837810381,
+  "lat": 18.5380241,
+  "lon": 73.6856111,
+  "tags": {
+    "name": "Ainalwasti",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9935589028,
+  "lat": 18.5151266,
+  "lon": 73.6558357,
+  "tags": {
+    "name": "Sutarwadi",
+    "name:en": "Sutarwadi",
+    "name:mr": "सुतारवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 9981162574,
+  "lat": 18.3937664,
+  "lon": 74.0038741,
+  "tags": {
+    "name": "Jadhavgad",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10012620764,
+  "lat": 18.5633197,
+  "lon": 73.4672249,
+  "tags": {
+    "name": "Pomgaon",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10051699500,
+  "lat": 18.2975704,
+  "lon": 73.7226045,
+  "tags": {
+    "name": "Winjhar",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10227581960,
+  "lat": 18.4574484,
+  "lon": 73.6981872,
+  "tags": {
+    "name": "Khadewadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10227581966,
+  "lat": 18.4203087,
+  "lon": 73.7139088,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10252853325,
+  "lat": 18.6069696,
+  "lon": 73.7835393,
+  "tags": {
+    "name": "Kalewadi",
+    "name:en": "Kalewadi",
+    "name:mr": "काळेवाडी",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 10252853326,
+  "lat": 18.6024826,
+  "lon": 73.7959899,
+  "tags": {
+    "name": "Rahatani",
+    "name:en": "Rahatani",
+    "name:mr": "रहाटणी",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 10310549704,
+  "lat": 18.4726271,
+  "lon": 73.9791077,
+  "tags": {
+    "name": "Fursungi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10560896136,
+  "lat": 18.8107451,
+  "lon": 73.5132685,
+  "tags": {
+    "name": "Vadavali",
+    "name:mr": "वडवली",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10561641579,
+  "lat": 18.8051009,
+  "lon": 73.5174018,
+  "tags": {
+    "name": "Govitri",
+    "name:mr": "गोवित्री",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10603861013,
+  "lat": 18.7096113,
+  "lon": 73.5471260,
+  "tags": {
+    "name": "Karunj",
+    "name:mr": "करुंज",
+    "place": "village",
+    "population": "1722"
+  }
+},
+{
+  "type": "node",
+  "id": 10692810644,
+  "lat": 18.6581521,
+  "lon": 73.5995125,
+  "tags": {
+    "name": "Aadhale Budruk",
+    "name:mr": "आढले बुद्रुक",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10709232877,
+  "lat": 18.3542404,
+  "lon": 73.4014177,
+  "tags": {
+    "name": "Boravali",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10709232878,
+  "lat": 18.3560326,
+  "lon": 73.4055054,
+  "tags": {
+    "name": "Sakalyachiwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10711590707,
+  "lat": 18.2906051,
+  "lon": 73.4831285,
+  "tags": {
+    "name": "Khanu",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10711633364,
+  "lat": 18.3302577,
+  "lon": 73.5245097,
+  "tags": {
+    "name": "Pole",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10713536328,
+  "lat": 18.1777804,
+  "lon": 73.5789156,
+  "tags": {
+    "name": "Ranwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10713536329,
+  "lat": 18.1844875,
+  "lon": 73.5623503,
+  "tags": {
+    "name": "Dhangarwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10713536330,
+  "lat": 18.1847220,
+  "lon": 73.5840976,
+  "tags": {
+    "name": "Karanavdi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10713546988,
+  "lat": 18.1823062,
+  "lon": 73.5497546,
+  "tags": {
+    "name": "Waki Budruk",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10718237439,
+  "lat": 18.2471632,
+  "lon": 73.4636664,
+  "tags": {
+    "name": "Vagheri",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10720491857,
+  "lat": 18.8714074,
+  "lon": 73.3802604,
+  "tags": {
+    "name": "Mulgaon",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10720491860,
+  "lat": 18.8735597,
+  "lon": 73.3956670,
+  "tags": {
+    "name": "Mangaon",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10720795027,
+  "lat": 18.2018759,
+  "lon": 73.4877205,
+  "tags": {
+    "name": "Mangrun",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10720795028,
+  "lat": 18.2069719,
+  "lon": 73.4647822,
+  "tags": {
+    "name": "Vagholi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10720795033,
+  "lat": 18.3111812,
+  "lon": 73.3616352,
+  "tags": {
+    "name": "Manjurne",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10720795038,
+  "lat": 18.2588602,
+  "lon": 73.4036493,
+  "tags": {
+    "name": "Kondaranwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10720795039,
+  "lat": 18.2620798,
+  "lon": 73.4156656,
+  "tags": {
+    "name": "Dhangarwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10720795046,
+  "lat": 18.2947409,
+  "lon": 73.5830784,
+  "tags": {
+    "name": "Nivi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10720795079,
+  "lat": 18.3411751,
+  "lon": 73.7572396,
+  "tags": {
+    "name": "Bhilwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10720795080,
+  "lat": 18.3466844,
+  "lon": 73.7576580,
+  "tags": {
+    "name": "Peth",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10720795088,
+  "lat": 18.3771304,
+  "lon": 73.8564062,
+  "tags": {
+    "name": "Shindewadi",
+    "name:mr": "शिंदेवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10720795089,
+  "lat": 18.4064447,
+  "lon": 73.8319873,
+  "tags": {
+    "name": "Kolewadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10720795094,
+  "lat": 18.4008724,
+  "lon": 73.8988709,
+  "tags": {
+    "name": "Askarwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10721513123,
+  "lat": 18.8978009,
+  "lon": 73.4798026,
+  "tags": {
+    "name": "Dahuli",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10738809801,
+  "lat": 18.5150980,
+  "lon": 73.3017254,
+  "tags": {
+    "name": "Asanchiwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10738809804,
+  "lat": 18.5559499,
+  "lon": 73.3056092,
+  "tags": {
+    "name": "Bairampada",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10738822305,
+  "lat": 18.5512915,
+  "lon": 73.3013284,
+  "tags": {
+    "name": "Dhondase",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10738822307,
+  "lat": 18.5756196,
+  "lon": 73.3055448,
+  "tags": {
+    "name": "Thanale",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10738822320,
+  "lat": 18.5288927,
+  "lon": 73.3063602,
+  "tags": {
+    "name": "Pachchapur",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10738822322,
+  "lat": 18.5156677,
+  "lon": 73.3234298,
+  "tags": {
+    "name": "Thakurwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10738822324,
+  "lat": 18.4927148,
+  "lon": 73.3306932,
+  "tags": {
+    "name": "Nanavli",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10738822444,
+  "lat": 18.4855006,
+  "lon": 73.3461213,
+  "tags": {
+    "name": "Nagshet",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10738822446,
+  "lat": 18.4448864,
+  "lon": 73.3636522,
+  "tags": {
+    "name": "Mhasewadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10738822452,
+  "lat": 18.4143302,
+  "lon": 73.3612704,
+  "tags": {
+    "name": "Kolawadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10738822453,
+  "lat": 18.4187888,
+  "lon": 73.3622789,
+  "tags": {
+    "name": "Bhavuchiali",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10738822455,
+  "lat": 18.4106758,
+  "lon": 73.3714306,
+  "tags": {
+    "name": "Sanaswadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10771744900,
+  "lat": 18.7368988,
+  "lon": 73.7162018,
+  "tags": {
+    "name": "Induri",
+    "place": "village",
+    "wikidata": "Q24894384",
+    "wikimedia_commons": "Category:Induri",
+    "wikipedia": "en:Induri"
+  }
+},
+{
+  "type": "node",
+  "id": 10796620139,
+  "lat": 18.8218314,
+  "lon": 74.0961795,
+  "tags": {
+    "name": "Khairenagar",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10854299708,
+  "lat": 18.5874457,
+  "lon": 73.8213076,
+  "tags": {
+    "name": "Pimple Gurav",
+    "name:en": "Pimple Gurav",
+    "name:mr": "पिंपळे गुरव",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739069,
+  "lat": 18.6124917,
+  "lon": 73.6575580,
+  "tags": {
+    "name": "Kusgaav",
+    "name:mr": "कुसगाव",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739070,
+  "lat": 18.6328056,
+  "lon": 73.6147070,
+  "tags": {
+    "name": "Pusane",
+    "name:mr": "पुसाणे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739071,
+  "lat": 18.6236352,
+  "lon": 73.6350059,
+  "tags": {
+    "name": "Pachane",
+    "name:mr": "पाचाणे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739072,
+  "lat": 18.7034480,
+  "lon": 73.6805820,
+  "tags": {
+    "name": "Somatane",
+    "name:mr": "सोमाटणे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739073,
+  "lat": 18.7076754,
+  "lon": 73.5992682,
+  "tags": {
+    "name": "Ozharde",
+    "name:mr": "ओझर्डे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739074,
+  "lat": 18.6988749,
+  "lon": 73.6132586,
+  "tags": {
+    "name": "Aadhe Khurd",
+    "name:mr": "आढे खुर्द",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739075,
+  "lat": 18.7039968,
+  "lon": 73.6391258,
+  "tags": {
+    "name": "Urse",
+    "name:mr": "उर्से",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739076,
+  "lat": 18.6980517,
+  "lon": 73.6596393,
+  "tags": {
+    "name": "Parandawadi",
+    "name:mr": "परंदवडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739077,
+  "lat": 18.6905516,
+  "lon": 73.6117566,
+  "tags": {
+    "name": "Pimplekute",
+    "name:mr": "पिंपळकुटे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739078,
+  "lat": 18.6916797,
+  "lon": 73.6473226,
+  "tags": {
+    "name": "Bebed Ovhal",
+    "name:mr": "बेबेड ओव्हळ",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739079,
+  "lat": 18.6508603,
+  "lon": 73.6244702,
+  "tags": {
+    "name": "Aadhale Khurd",
+    "name:mr": "आढले खुर्द",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739080,
+  "lat": 18.6482986,
+  "lon": 73.6488247,
+  "tags": {
+    "name": "Chandkhed",
+    "name:mr": "चांदखेड",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739081,
+  "lat": 18.6693197,
+  "lon": 73.6802816,
+  "tags": {
+    "name": "Godumbre",
+    "name:mr": "गोडुंब्रे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739082,
+  "lat": 18.6521310,
+  "lon": 73.7081766,
+  "tags": {
+    "name": "Saangawade",
+    "name:mr": "सांगावडे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739083,
+  "lat": 18.6418535,
+  "lon": 73.7231540,
+  "tags": {
+    "name": "Jaambe",
+    "name:mr": "जांबे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739084,
+  "lat": 18.6153997,
+  "lon": 73.7501907,
+  "tags": {
+    "name": "Tathawade",
+    "name:mr": "ताथवडे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10855739085,
+  "lat": 18.6218254,
+  "lon": 73.6906886,
+  "tags": {
+    "name": "Dattawadi",
+    "name:mr": "दत्तवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 10861953492,
+  "lat": 18.5896317,
+  "lon": 73.7610024,
+  "tags": {
+    "name": "Wakad Chowk",
+    "name:en": "Wakad Chowk",
+    "name:mr": "वाकड गाव",
+    "place": "suburb",
+    "source": "local knowledge"
+  }
+},
+{
+  "type": "node",
+  "id": 11033786507,
+  "lat": 18.5495873,
+  "lon": 73.6625567,
+  "tags": {
+    "name": "Ghotawade",
+    "name:en": "Ghotawade",
+    "name:mr": "घोटावडे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11034031157,
+  "lat": 18.5532810,
+  "lon": 73.5980642,
+  "tags": {
+    "name": "Chaale",
+    "name:en": "Chaale",
+    "name:mr": "चाले",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11265410723,
+  "lat": 18.7063042,
+  "lon": 73.5707487,
+  "tags": {
+    "name": "Baur",
+    "name:en": "Baur",
+    "name:hi": "बौर",
+    "name:mr": "बौर",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11295597405,
+  "lat": 18.4164425,
+  "lon": 73.3106786,
+  "tags": {
+    "name": "Kudali",
+    "name:mr": "कुडाळि",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11379820057,
+  "lat": 18.4544526,
+  "lon": 73.5911060,
+  "tags": {
+    "name": "Kharwade",
+    "place": "village",
+    "wikidata": "Q31739614"
+  }
+},
+{
+  "type": "node",
+  "id": 11391375777,
+  "lat": 18.1723880,
+  "lon": 74.0225932,
+  "tags": {
+    "name": "Penjalwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11391375778,
+  "lat": 18.1572675,
+  "lon": 74.0547837,
+  "tags": {
+    "name": "Tondal",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11391375780,
+  "lat": 18.1529628,
+  "lon": 74.0324450,
+  "tags": {
+    "name": "Taprewadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11391394533,
+  "lat": 18.1878257,
+  "lon": 74.0564454,
+  "tags": {
+    "name": "Mahur",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11391394534,
+  "lat": 18.1820641,
+  "lon": 73.9680076,
+  "tags": {
+    "name": "Savardare",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11391394535,
+  "lat": 18.1623469,
+  "lon": 73.9821938,
+  "tags": {
+    "name": "Rajapur",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11391394536,
+  "lat": 18.1872116,
+  "lon": 74.0010819,
+  "tags": {
+    "name": "Bhongwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11404837867,
+  "lat": 18.6817321,
+  "lon": 73.3450161,
+  "tags": {
+    "name": "Mangaon Budruk",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11404863170,
+  "lat": 18.6744264,
+  "lon": 73.3355314,
+  "tags": {
+    "name": "Wave",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11404879094,
+  "lat": 18.6529909,
+  "lon": 73.3301390,
+  "tags": {
+    "name": "Pasalwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11404881057,
+  "lat": 18.6658576,
+  "lon": 73.3382812,
+  "tags": {
+    "name": "Vasonde",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11404896999,
+  "lat": 18.2188771,
+  "lon": 73.4537109,
+  "tags": {
+    "name": "Vagholi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11445829682,
+  "lat": 18.4952174,
+  "lon": 73.8662236,
+  "tags": {
+    "name": "Mukund Nagar",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 11516508280,
+  "lat": 18.6852443,
+  "lon": 73.7226120,
+  "tags": {
+    "name": "Mamurdi",
+    "name:mr": "मामुर्डी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11582230675,
+  "lat": 18.3933974,
+  "lon": 73.7389040,
+  "tags": {
+    "name": "Sambarewadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11582230707,
+  "lat": 18.3814855,
+  "lon": 73.7166524,
+  "tags": {
+    "name": "Thopatewadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11582230708,
+  "lat": 18.3825278,
+  "lon": 73.7294868,
+  "tags": {
+    "name": "Manerwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11582230709,
+  "lat": 18.3856140,
+  "lon": 73.6989391,
+  "tags": {
+    "name": "Wasavewadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11582230710,
+  "lat": 18.3789809,
+  "lon": 73.6893851,
+  "tags": {
+    "name": "Nigde Mose",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11582230711,
+  "lat": 18.3484614,
+  "lon": 73.7182698,
+  "tags": {
+    "name": "Mogarwadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11582230712,
+  "lat": 18.3526442,
+  "lon": 73.7208125,
+  "tags": {
+    "name": "Chandewadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11582230713,
+  "lat": 18.3554573,
+  "lon": 73.6799839,
+  "tags": {
+    "name": "Ambed",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 11936937637,
+  "lat": 18.7295195,
+  "lon": 73.7016405,
+  "tags": {
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 12307120865,
+  "lat": 18.6740344,
+  "lon": 73.5318316,
+  "tags": {
+    "name": "Shivali",
+    "name:en": "Shivali",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 12361503272,
+  "lat": 18.4784152,
+  "lon": 73.8240754,
+  "tags": {
+    "addr:city": "Pune",
+    "addr:postcode": "411051",
+    "addr:street": "Tanaji Malusare Road",
+    "name": "Anandnagar",
+    "place": "town"
+  }
+},
+{
+  "type": "node",
+  "id": 12757261659,
+  "lat": 18.5242717,
+  "lon": 73.6155138,
+  "tags": {
+    "name": "Paud",
+    "name:en": "Paud",
+    "name:kn": "ಪೌಡ್",
+    "name:mr": "पौड",
+    "place": "town",
+    "postal_code": "412108",
+    "wikidata": "Q4801215",
+    "wikipedia": "en:Paud"
+  }
+},
+{
+  "type": "node",
+  "id": 12759394741,
+  "lat": 18.5350346,
+  "lon": 73.6071842,
+  "tags": {
+    "name": "Karmoli",
+    "name:mr": "कर्मोळी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 12761614559,
+  "lat": 18.5305401,
+  "lon": 73.5981760,
+  "tags": {
+    "name": "Hulawalewadi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 12761614560,
+  "lat": 18.5446169,
+  "lon": 73.5946187,
+  "tags": {
+    "name": "Savargaon",
+    "name:en": "Savargaon",
+    "name:mr": "सावरगाव",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 12761614561,
+  "lat": 18.5304590,
+  "lon": 73.5856725,
+  "tags": {
+    "alt_name": "Raode",
+    "name": "Ravade",
+    "name:en": "Ravade",
+    "name:mr": "रावडे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 12761614562,
+  "lat": 18.5440793,
+  "lon": 73.5710715,
+  "tags": {
+    "name": "Khubavali",
+    "name:en": "Khubavali",
+    "name:mr": "खुबावली",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 12761614563,
+  "lat": 18.5417445,
+  "lon": 73.5602559,
+  "tags": {
+    "name": "Asade",
+    "name:mr": "आसदे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 12761614564,
+  "lat": 18.5420078,
+  "lon": 73.5481862,
+  "tags": {
+    "name": "Shileshwar",
+    "name:mr": "शिलेश्वर",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 12765564035,
+  "lat": 18.5137559,
+  "lon": 73.5932612,
+  "tags": {
+    "name": "Kondhawale",
+    "name:mr": "कोंढावाले",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 12765564036,
+  "lat": 18.5206552,
+  "lon": 73.6247964,
+  "tags": {
+    "name": "Vitthalwadi Phata",
+    "name:mr": "विट्ठलवाड़ी फाटा",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 12765564037,
+  "lat": 18.5119344,
+  "lon": 73.6214627,
+  "tags": {
+    "name": "Vitthalwadi",
+    "name:mr": "विठ्ठलवाडी",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 12866376980,
+  "lat": 18.5703877,
+  "lon": 73.9133336,
+  "tags": {
+    "name": "Viman Nagar",
+    "name:en": "Viman Nagar",
+    "name:hi": "विमान नगर",
+    "name:mr": "विमान नगर",
+    "old_name": "Dunkirk Lines",
+    "old_name:en": "Dunkirk Lines",
+    "place": "suburb",
+    "wikidata": "Q36123",
+    "wikipedia": "en:Vimannagar"
+  }
+},
+{
+  "type": "node",
+  "id": 12866376981,
+  "lat": 18.5586854,
+  "lon": 73.8954953,
+  "tags": {
+    "name": "Yerawada",
+    "name:en": "Yerawada",
+    "name:hi": "येरवडा",
+    "name:mr": "येरवडा",
+    "place": "suburb",
+    "wikidata": "Q142526",
+    "wikipedia": "en:Yerawada"
+  }
+},
+{
+  "type": "node",
+  "id": 12942413820,
+  "lat": 18.5978001,
+  "lon": 73.7607529,
+  "tags": {
+    "name": "Bhujbal Chowk",
+    "name:en": "Bhujbal Chowk",
+    "name:mr": "भुजबळ चौक",
+    "place": "suburb"
+  }
+},
+{
+  "type": "node",
+  "id": 13135740444,
+  "lat": 18.6269629,
+  "lon": 73.3221449,
+  "tags": {
+    "name": "Kalamb",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13185637522,
+  "lat": 18.3189118,
+  "lon": 73.6048043,
+  "tags": {
+    "name": "antroli",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13185637523,
+  "lat": 18.3240603,
+  "lon": 73.6185962,
+  "tags": {
+    "name": "vihir",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13336803447,
+  "lat": 18.8216640,
+  "lon": 73.7247684,
+  "tags": {
+    "name": "Karanjvihire",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13359544205,
+  "lat": 18.6822690,
+  "lon": 73.3579822,
+  "tags": {
+    "name": "Bheliv",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13626677736,
+  "lat": 18.5726953,
+  "lon": 74.0219361,
+  "tags": {
+    "name": "Kesnand",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13648926274,
+  "lat": 18.8372166,
+  "lon": 73.7389858,
+  "tags": {
+    "name": "Dhamane",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13649014297,
+  "lat": 18.6820524,
+  "lon": 73.3580315,
+  "tags": {
+    "name": "Bheliv",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13649033344,
+  "lat": 18.3246407,
+  "lon": 73.4731162,
+  "tags": {
+    "name": "Tekpole",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13649044845,
+  "lat": 18.1771957,
+  "lon": 73.6119007,
+  "tags": {
+    "name": "Ambenali",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13649049126,
+  "lat": 18.7589100,
+  "lon": 73.3305150,
+  "tags": {
+    "name": "Adoshi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13649051825,
+  "lat": 18.6751934,
+  "lon": 73.3514571,
+  "tags": {
+    "name": "Mangaon Khurd",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13649054559,
+  "lat": 18.6909530,
+  "lon": 73.3540177,
+  "tags": {
+    "name": "Phalyan",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13649058016,
+  "lat": 18.1636027,
+  "lon": 73.6208605,
+  "tags": {
+    "name": "Ambeshivtar",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13649060701,
+  "lat": 18.3479507,
+  "lon": 73.3842139,
+  "tags": {
+    "name": "Titve",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13676864089,
+  "lat": 18.7257695,
+  "lon": 73.4515360,
+  "tags": {
+    "name": "Aundholi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13676864090,
+  "lat": 18.7269912,
+  "lon": 73.4459065,
+  "tags": {
+    "alt_name": "Aawandhe",
+    "name": "Aundhe",
+    "name:en": "Aundhe",
+    "name:hi": "औंढे",
+    "name:mr": "औंढे",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13676887353,
+  "lat": 18.7045804,
+  "lon": 73.4644345,
+  "tags": {
+    "name": "Dudhivare",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13676887354,
+  "lat": 18.6888440,
+  "lon": 73.4745596,
+  "tags": {
+    "name": "Shindgaon",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13681024520,
+  "lat": 18.5360231,
+  "lon": 73.5198819,
+  "tags": {
+    "name": "Sambhave",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13681024521,
+  "lat": 18.5406018,
+  "lon": 73.5166360,
+  "tags": {
+    "name": "Valane",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13681055621,
+  "lat": 18.6758506,
+  "lon": 73.5020726,
+  "tags": {
+    "name": "Bramhonoli",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13717780057,
+  "lat": 18.3029267,
+  "lon": 73.7710072,
+  "tags": {
+    "name": "Vangni",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13717800227,
+  "lat": 18.3041573,
+  "lon": 73.7566453,
+  "tags": {
+    "name": "Kolavdi",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13717807317,
+  "lat": 18.7843580,
+  "lon": 73.4651229,
+  "tags": {
+    "name": "Vehergaon",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13717808762,
+  "lat": 18.8739727,
+  "lon": 73.5280507,
+  "tags": {
+    "name": "Nagathali",
+    "place": "village"
+  }
+},
+{
+  "type": "node",
+  "id": 13717813941,
+  "lat": 18.3408427,
+  "lon": 73.7937488,
+  "tags": {
+    "name": "Rahatved",
+    "place": "village"
+  }
+}
+
+  ]
+}

@@ -1093,7 +1093,11 @@
         "area_ha": 0.96,
         "drop_db": -4.5,
         "lon": 74.00963,
-        "lat": 18.88999
+        "lat": 18.88999,
+        "id": "FP17",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 21.03
       },
       "geometry": {
         "type": "Polygon",
@@ -1646,7 +1650,11 @@
         "area_ha": 0.64,
         "drop_db": -4.4,
         "lon": 74.03439,
-        "lat": 18.87551
+        "lat": 18.87551,
+        "id": "FP29",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 22.07
       },
       "geometry": {
         "type": "Polygon",
@@ -2821,7 +2829,11 @@
         "area_ha": 0.8,
         "drop_db": -2.9,
         "lon": 74.0853,
-        "lat": 18.85836
+        "lat": 18.85836,
+        "id": "FP22",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 25.8
       },
       "geometry": {
         "type": "Polygon",
@@ -3017,7 +3029,11 @@
         "area_ha": 4.0,
         "drop_db": -3.4,
         "lon": 74.08276,
-        "lat": 18.85695
+        "lat": 18.85695,
+        "id": "FP02",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 25.49
       },
       "geometry": {
         "type": "Polygon",
@@ -3480,7 +3496,11 @@
         "area_ha": 1.76,
         "drop_db": -3.8,
         "lon": 74.08611,
-        "lat": 18.8518
+        "lat": 18.8518,
+        "id": "FP06",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 25.58
       },
       "geometry": {
         "type": "Polygon",
@@ -3768,7 +3788,11 @@
         "area_ha": 0.96,
         "drop_db": -5.1,
         "lon": 74.07962,
-        "lat": 18.84908
+        "lat": 18.84908,
+        "id": "FP16",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 24.84
       },
       "geometry": {
         "type": "Polygon",
@@ -3850,7 +3874,11 @@
         "area_ha": 0.64,
         "drop_db": -3.5,
         "lon": 74.07374,
-        "lat": 18.84778
+        "lat": 18.84778,
+        "id": "FP28",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 24.21
       },
       "geometry": {
         "type": "Polygon",
@@ -3887,7 +3915,11 @@
         "area_ha": 1.92,
         "drop_db": -5.0,
         "lon": 74.07922,
-        "lat": 18.84721
+        "lat": 18.84721,
+        "id": "FP05",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 24.72
       },
       "geometry": {
         "type": "Polygon",
@@ -4106,7 +4138,11 @@
         "area_ha": 0.8,
         "drop_db": -3.7,
         "lon": 74.07679,
-        "lat": 18.84617
+        "lat": 18.84617,
+        "id": "FP21",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 24.44
       },
       "geometry": {
         "type": "Polygon",
@@ -4180,7 +4216,11 @@
         "area_ha": 1.44,
         "drop_db": -3.4,
         "lon": 74.07236,
-        "lat": 18.84567
+        "lat": 18.84567,
+        "id": "FP08",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 23.98
       },
       "geometry": {
         "type": "Polygon",
@@ -4341,7 +4381,11 @@
         "area_ha": 1.44,
         "drop_db": -4.3,
         "lon": 74.04099,
-        "lat": 18.84362
+        "lat": 18.84362,
+        "id": "FP07",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 20.87
       },
       "geometry": {
         "type": "Polygon",
@@ -4402,7 +4446,11 @@
         "area_ha": 0.64,
         "drop_db": -3.6,
         "lon": 74.01967,
-        "lat": 18.84353
+        "lat": 18.84353,
+        "id": "FP27",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 18.87
       },
       "geometry": {
         "type": "Polygon",
@@ -4571,7 +4619,11 @@
         "area_ha": 0.96,
         "drop_db": -6.6,
         "lon": 74.04891,
-        "lat": 18.84301
+        "lat": 18.84301,
+        "id": "FP15",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 21.6
       },
       "geometry": {
         "type": "Polygon",
@@ -4934,7 +4986,11 @@
         "area_ha": 0.96,
         "drop_db": -4.6,
         "lon": 74.0784,
-        "lat": 18.83848
+        "lat": 18.83848,
+        "id": "FP14",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 24.28
       },
       "geometry": {
         "type": "Polygon",
@@ -5386,7 +5442,11 @@
         "area_ha": 0.64,
         "drop_db": -6.6,
         "lon": 74.02148,
-        "lat": 18.83062
+        "lat": 18.83062,
+        "id": "FP26",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 18.4
       },
       "geometry": {
         "type": "Polygon",
@@ -5675,7 +5735,11 @@
         "area_ha": 4.0,
         "drop_db": -3.2,
         "lon": 74.07431,
-        "lat": 18.82453
+        "lat": 18.82453,
+        "id": "FP01",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 23.37
       },
       "geometry": {
         "type": "Polygon",
@@ -5892,7 +5956,11 @@
         "area_ha": 0.64,
         "drop_db": -3.4,
         "lon": 74.07294,
-        "lat": 18.82175
+        "lat": 18.82175,
+        "id": "FP25",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 23.14
       },
       "geometry": {
         "type": "Polygon",
@@ -6841,7 +6909,11 @@
         "area_ha": 0.8,
         "drop_db": -3.3,
         "lon": 74.06538,
-        "lat": 18.81061
+        "lat": 18.81061,
+        "id": "FP20",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 22.05
       },
       "geometry": {
         "type": "Polygon",
@@ -7672,7 +7744,11 @@
         "area_ha": 0.8,
         "drop_db": -2.9,
         "lon": 74.07779,
-        "lat": 18.80135
+        "lat": 18.80135,
+        "id": "FP19",
+        "nearest_event": "E016",
+        "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+        "nearest_event_km": 23.1
       },
       "geometry": {
         "type": "Polygon",
@@ -9025,7 +9101,11 @@
         "area_ha": 1.12,
         "drop_db": -3.7,
         "lon": 73.46642,
-        "lat": 18.76782
+        "lat": 18.76782,
+        "id": "FP11",
+        "nearest_event": "E017",
+        "nearest_event_place": "Near Ghorawadi railway station, Talegaon",
+        "nearest_event_km": 24.77
       },
       "geometry": {
         "type": "Polygon",
@@ -9070,7 +9150,11 @@
         "area_ha": 0.96,
         "drop_db": -3.4,
         "lon": 73.4815,
-        "lat": 18.76535
+        "lat": 18.76535,
+        "id": "FP13",
+        "nearest_event": "E017",
+        "nearest_event_place": "Near Ghorawadi railway station, Talegaon",
+        "nearest_event_km": 23.16
       },
       "geometry": {
         "type": "Polygon",
@@ -9123,7 +9207,11 @@
         "area_ha": 0.64,
         "drop_db": -4.8,
         "lon": 73.45723,
-        "lat": 18.76209
+        "lat": 18.76209,
+        "id": "FP24",
+        "nearest_event": "E017",
+        "nearest_event_place": "Near Ghorawadi railway station, Talegaon",
+        "nearest_event_km": 25.6
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -9265,7 +9353,11 @@
         "area_ha": 0.64,
         "drop_db": -6.1,
         "lon": 73.45963,
-        "lat": 18.754
+        "lat": 18.754,
+        "id": "FP23",
+        "nearest_event": "E017",
+        "nearest_event_place": "Near Ghorawadi railway station, Talegaon",
+        "nearest_event_km": 25.2
       },
       "geometry": {
         "type": "Polygon",
@@ -21194,7 +21286,11 @@
         "area_ha": 1.92,
         "drop_db": -8.5,
         "lon": 73.30768,
-        "lat": 18.42811
+        "lat": 18.42811,
+        "id": "FP04",
+        "nearest_event": "E009",
+        "nearest_event_place": "Shivane (Mutha river)",
+        "nearest_event_km": 51.44
       },
       "geometry": {
         "type": "Polygon",
@@ -26040,7 +26136,11 @@
         "area_ha": 1.12,
         "drop_db": -8.4,
         "lon": 73.5572,
-        "lat": 18.25033
+        "lat": 18.25033,
+        "id": "FP10",
+        "nearest_event": "E009",
+        "nearest_event_place": "Shivane (Mutha river)",
+        "nearest_event_km": 34.68
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26111,7 +26211,11 @@
         "area_ha": 0.8,
         "drop_db": -6.4,
         "lon": 73.55414,
-        "lat": 18.23022
+        "lat": 18.23022,
+        "id": "FP18",
+        "nearest_event": "E009",
+        "nearest_event_place": "Shivane (Mutha river)",
+        "nearest_event_km": 36.5
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -26222,7 +26326,11 @@
         "area_ha": 1.28,
         "drop_db": -8.5,
         "lon": 73.55722,
-        "lat": 18.22993
+        "lat": 18.22993,
+        "id": "FP09",
+        "nearest_event": "E009",
+        "nearest_event_place": "Shivane (Mutha river)",
+        "nearest_event_km": 36.3
       },
       "geometry": {
         "type": "Polygon",
@@ -29397,7 +29505,11 @@
         "area_ha": 1.92,
         "drop_db": -5.9,
         "lon": 73.31498,
-        "lat": 18.15351
+        "lat": 18.15351,
+        "id": "FP03",
+        "nearest_event": "E009",
+        "nearest_event_place": "Shivane (Mutha river)",
+        "nearest_event_km": 61.41
       },
       "geometry": {
         "type": "Polygon",
@@ -29574,7 +29686,11 @@
         "area_ha": 0.96,
         "drop_db": -6.3,
         "lon": 73.31582,
-        "lat": 18.15165
+        "lat": 18.15165,
+        "id": "FP12",
+        "nearest_event": "E009",
+        "nearest_event_place": "Shivane (Mutha river)",
+        "nearest_event_km": 61.45
       },
       "geometry": {
         "type": "Polygon",

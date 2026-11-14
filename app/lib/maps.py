@@ -184,3 +184,29 @@ def add_events(m):
                       tooltip=f"{p.get('place', '')} ({typ.replace('_', ' ')})",
                       popup=folium.Popup(body, max_width=280)).add_to(fg)
     fg.add_to(m)
+
+
+def season(date: str, basemap="Light", opacity=0.9):
+    """Open water on one NISAR pass (season slider), on a plain base map."""
+    m = folium.Map(location=center(), zoom_start=10, tiles=None, control_scale=True, prefer_canvas=True,
+                   zoom_snap=0.25, zoom_delta=0.5)
+    b = data.bounds().get("bounds_latlon")
+    if b:
+        m.fit_bounds(b, padding=(6, 6))
+    m.get_root().header.add_child(folium.Element(MAP_CSS))
+    folium.map.CustomPane("labels", z_index=650, pointer_events=False).add_to(m)
+    url, attr = BASEMAPS[basemap]
+    folium.TileLayer(url, attr=attr, name=basemap, max_zoom=18).add_to(m)
+    ov_url = data.overlay_url(f"water_d{date}")
+    if ov_url and b:
+        ov = folium.raster_layers.ImageOverlay(image="data:image/png;base64,", bounds=b, name=f"Open water, {date}",
+                                               opacity=opacity, interactive=False, cross_origin=False, zindex=2)
+        ov.url = ov_url
+        ov.add_to(m)
+    folium.TileLayer(LABELS[0], attr=LABELS[1], name="Place names", overlay=True, pane="labels",
+                     max_zoom=18).add_to(m)
+    if b:
+        folium.Rectangle(b, color=ui.INK, weight=1, fill=False, dash_array="4 4",
+                         tooltip="Study box (NISAR crop)").add_to(m)
+    Fullscreen(position="topleft").add_to(m)
+    return m

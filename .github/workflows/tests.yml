@@ -1,0 +1,28 @@
+# Run the pipeline's tests on every push to main and every pull request.
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: pip install -r requirements-pipeline.txt pytest
+      - name: Pipeline tests
+        run: python -m pytest -q
+      - name: App files parse
+        run: python -c "import ast, glob; [ast.parse(open(f, encoding='utf-8').read(), f) for f in glob.glob('app/**/*.py', recursive=True)]"

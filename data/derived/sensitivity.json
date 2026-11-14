@@ -1,0 +1,58 @@
+{
+  "shifts_db": [
+    -1.0,
+    0.0,
+    1.0
+  ],
+  "rows": [
+    {
+      "shift_db": -1.0,
+      "threshold_before_db": -14.03,
+      "threshold_after_db": -14.644,
+      "new_water_km2": 4.941,
+      "rise_km2": 4.907,
+      "flood_km2": 0.034,
+      "flood_patches": 4,
+      "permanent_water_seen_dark": 0.59
+    },
+    {
+      "shift_db": 0.0,
+      "threshold_before_db": -13.03,
+      "threshold_after_db": -13.644,
+      "new_water_km2": 8.888,
+      "rise_km2": 8.523,
+      "flood_km2": 0.365,
+      "flood_patches": 30,
+      "permanent_water_seen_dark": 0.703
+    },
+    {
+      "shift_db": 1.0,
+      "threshold_before_db": -12.03,
+      "threshold_after_db": -12.644,
+      "new_water_km2": 12.136,
+      "rise_km2": 10.402,
+      "flood_km2": 1.734,
+      "flood_patches": 105,
+      "permanent_water_seen_dark": 0.785
+    }
+  ],
+  "range": {
+    "new_water_km2": [
+      4.941,
+      12.136
+    ],
+    "rise_km2": [
+      4.907,
+      10.402
+    ],
+    "flood_km2": [
+      0.034,
+      1.734
+    ]
+  },
+  "base": {
+    "new_water_km2": 8.888,
+    "rise_km2": 8.523,
+    "flood_km2": 0.365
+  }
+}

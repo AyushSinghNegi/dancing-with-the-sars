@@ -184,3 +184,39 @@ def test_dem_check_output_adds_up():
     assert sum(d["not_found_reasons"].values()) == d["not_found"]
     assert sum(v["zones"] for v in d["by_confidence"].values()) == d["zones_main"]
     assert d["reported_slide_hits"]["nasadem"] <= d["reported_slide_hits"]["scored"]
+
+
+def test_evidence_checks_and_reasons():
+    from pipeline import evidence as E
+    p = {"slope_deg": 32.4, "coherence": 0.2, "coherence_vs_local": 0.45, "hv_change_db": -3.1, "hh_change_db": 0.4,
+         "track106": "not covered", "nasadem": "found", "nearest_event_km": 1.2}
+    ck = E.checks(p)
+    assert ck == {"second_orbit": None, "nasadem": True, "report_nearby": True}
+    why = " ".join(E.why_slide(p))
+    assert "32°" in why and "HV fell 3.1 dB" in why and "HH rose" not in why
+    assert E.checks({**p, "track106": "confirmed", "nearest_event_km": 5})["second_orbit"] is True
+
+
+def test_field_list_matches_zones():
+    import csv
+    import json
+    z, f = C.DERIVED / "slide_zones.geojson", C.DERIVED / "field_list.csv"
+    if not (z.exists() and f.exists()):
+        pytest.skip("no field list in this output")
+    zones = json.loads(z.read_text())["features"]
+    rows = list(csv.DictReader(open(f, encoding="utf-8")))
+    assert len(rows) == len(zones)
+    assert [float(r["score"]) for r in rows] == sorted((float(r["score"]) for r in rows), reverse=True)
+    assert all(r["map_link"].startswith("https://www.google.com/maps/") for r in rows)
+
+
+def test_gazetteer_inside_box():
+    import csv
+    p = C.REFERENCE / "places_osm.csv"
+    if not p.exists():
+        pytest.skip("no gazetteer")
+    rows = list(csv.DictReader(open(p, encoding="utf-8")))
+    assert len(rows) > 100
+    assert all(C.AOI["south"] <= float(r["lat"]) <= C.AOI["north"] and C.AOI["west"] <= float(r["lon"]) <= C.AOI["east"]
+               for r in rows)
+    assert any(r["name"] == "Pune" for r in rows)

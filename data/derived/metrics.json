@@ -1,8 +1,8 @@
 {
   "demo": false,
   "demo_note": null,
-  "generated": "2026-11-14T19:01:33+00:00",
-  "pipeline_version": "0.5.0",
+  "generated": "2026-11-14T19:47:51+00:00",
+  "pipeline_version": "0.6.0",
   "python": "3.13.18",
   "aoi": {
     "west": 73.3,
@@ -292,6 +292,70 @@
       ]
     }
   },
+  "sensitivity": {
+    "shifts_db": [
+      -1.0,
+      0.0,
+      1.0
+    ],
+    "rows": [
+      {
+        "shift_db": -1.0,
+        "threshold_before_db": -14.03,
+        "threshold_after_db": -14.644,
+        "new_water_km2": 4.941,
+        "rise_km2": 4.907,
+        "flood_km2": 0.034,
+        "flood_patches": 4,
+        "permanent_water_seen_dark": 0.59
+      },
+      {
+        "shift_db": 0.0,
+        "threshold_before_db": -13.03,
+        "threshold_after_db": -13.644,
+        "new_water_km2": 8.888,
+        "rise_km2": 8.523,
+        "flood_km2": 0.365,
+        "flood_patches": 30,
+        "permanent_water_seen_dark": 0.703
+      },
+      {
+        "shift_db": 1.0,
+        "threshold_before_db": -12.03,
+        "threshold_after_db": -12.644,
+        "new_water_km2": 12.136,
+        "rise_km2": 10.402,
+        "flood_km2": 1.734,
+        "flood_patches": 105,
+        "permanent_water_seen_dark": 0.785
+      }
+    ],
+    "range": {
+      "new_water_km2": [
+        4.941,
+        12.136
+      ],
+      "rise_km2": [
+        4.907,
+        10.402
+      ],
+      "flood_km2": [
+        0.034,
+        1.734
+      ]
+    },
+    "base": {
+      "new_water_km2": 8.888,
+      "rise_km2": 8.523,
+      "flood_km2": 0.365
+    }
+  },
+  "evidence": {
+    "zones": 50,
+    "flood_patches": 29,
+    "chips": 208,
+    "chip_km": 1.92
+  },
   "bounds_latlon": [
     [
       18.144398141709033,
@@ -362,6 +426,36 @@
       "file": "overlays/slide_raster.png",
       "legend": "Likely slide zones",
       "color": "#eb6834"
+    },
+    "water_d2026-06-28": {
+      "file": "overlays/water_d2026-06-28.png",
+      "legend": "Open water on 2026-06-28",
+      "color": "#2a78d6",
+      "date": "2026-06-28"
+    },
+    "water_d2026-07-10": {
+      "file": "overlays/water_d2026-07-10.png",
+      "legend": "Open water on 2026-07-10",
+      "color": "#2a78d6",
+      "date": "2026-07-10"
+    },
+    "water_d2026-07-22": {
+      "file": "overlays/water_d2026-07-22.png",
+      "legend": "Open water on 2026-07-22",
+      "color": "#2a78d6",
+      "date": "2026-07-22"
+    },
+    "water_d2026-08-15": {
+      "file": "overlays/water_d2026-08-15.png",
+      "legend": "Open water on 2026-08-15",
+      "color": "#2a78d6",
+      "date": "2026-08-15"
+    },
+    "water_d2026-10-14": {
+      "file": "overlays/water_d2026-10-14.png",
+      "legend": "Open water on 2026-10-14",
+      "color": "#2a78d6",
+      "date": "2026-10-14"
     }
   },
   "downloads": {

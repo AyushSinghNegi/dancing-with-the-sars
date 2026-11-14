@@ -1,0 +1,109 @@
+"""Field check list: every likely slide zone, ranked, with its evidence, for district teams."""
+import html
+
+import pandas as pd
+import streamlit as st
+
+from lib import data, evidence as ev, ui
+
+ui.setup("Field check list")
+ui.demo_banner()
+if not ui.require_results():
+    st.stop()
+tr = ui.tr
+before, after = data.dates()
+
+st.markdown(f"# {tr('Field check list', 'क्षेत्रीय तपासणी यादी')}")
+st.markdown('<p class="ml-lede">' + tr(
+    "Every likely slide zone NISAR found between {b} and {a}, ranked, with the radar images of the spot, why it "
+    "was flagged and which independent checks it passed. For district teams: print it, open it in Google Earth or "
+    "on a phone, and record what you find. These are leads to check, not confirmed landslides.",
+    "{b} ते {a} दरम्यान निसारला सापडलेले प्रत्येक संभाव्य भूस्खलन क्षेत्र, क्रमवार, त्या जागेच्या रडार प्रतिमा, ते का "
+    "निवडले आणि कोणत्या स्वतंत्र तपासण्यांत ते टिकले यासह. जिल्हा पथकांसाठी: छापा, गूगल अर्थ किंवा फोनवर उघडा, "
+    "आणि जे आढळेल ते नोंदवा. हे तपासण्याचे संकेत आहेत, निश्चित भूस्खलने नाहीत.",
+    b=ui.day(before), a=ui.date(after)) + "</p>", unsafe_allow_html=True)
+
+files = data.field_files()
+names = {"html": tr("Printable list with radar images", "रडार प्रतिमांसह छापण्याजोगी यादी"),
+         "kml": tr("KML for Google Earth and phone maps", "गूगल अर्थ आणि फोन नकाशांसाठी KML"),
+         "csv": tr("Spreadsheet (CSV)", "स्प्रेडशीट (CSV)"), "geojson": "GeoJSON (GIS)"}
+if files:
+    btns = "".join(
+        f'<a class="ml-dl{" primary" if k == "html" else ""}" href="{u}" '
+        f'{"target=_blank" if k == "html" else f"download=monsoonlens_field_list.{k}"}>{html.escape(names[k])}'
+        f'<small>{max(sz // 1000, 1)} KB</small></a>'
+        for k, (u, sz) in files.items())
+    st.markdown(f'<div class="ml-dlrow">{btns}</div>', unsafe_allow_html=True)
+
+zones = sorted(data.zones(), key=lambda p: (-p["score"], p["id"]))
+if not zones:
+    st.info(tr("No slide zones in this run.", "या निकालात भूस्खलन क्षेत्रे नाहीत."))
+    st.stop()
+
+rows = []
+for rank, p in enumerate(zones, start=1):
+    rows.append({"rank": rank, "id": p["id"], "near": p.get("near") or "", "confidence": p["confidence"],
+                 "score": p["score"], "orbit": {"confirmed": tr("found again", "पुन्हा सापडले"),
+                                                "partial": tr("partly", "अंशतः"),
+                                                "not seen": tr("not seen", "दिसले नाही"),
+                                                "not covered": tr("outside view", "दृष्टीबाहेर")}.get(p.get("track106"), ""),
+                 "dem": tr("kept", "टिकले") if p.get("nasadem") == "found" else tr("not kept", "टिकले नाही"),
+                 "report": (f'{p["nearest_event_km"]:.1f} km' if p.get("nearest_event_km") is not None else ""),
+                 "slope": p["slope_deg"], "map": ev.maps_link(p["lat"], p["lon"])})
+df = pd.DataFrame(rows)
+
+c1, c2, c3 = st.columns([1.3, 1.2, 1.5])
+conf = c1.segmented_control(tr("Confidence", "खात्री"), ["high", "medium", "low"], selection_mode="multi",
+                            default=["high", "medium", "low"],
+                            format_func=lambda c: {"high": tr("High", "उच्च"), "medium": tr("Medium", "मध्यम"),
+                                                   "low": tr("Low", "कमी")}[c], key="field_conf")
+extra = c2.toggle(tr("Only zones an extra check backs", "फक्त अतिरिक्त तपासणीने पुष्टी झालेली"), value=False,
+                  help=tr("Found again by the second NISAR orbit, kept with NASADEM, or a reported event within 2 km.",
+                          "दुसऱ्या निसार कक्षेत पुन्हा सापडलेली, NASADEM सह टिकलेली, किंवा २ किमीच्या आत नोंदवलेली घटना."))
+q = c3.text_input(tr("Near a place", "ठिकाणाजवळ"), placeholder=tr("e.g. Mulshi", "उदा. मुळशी"))
+sel = df[df["confidence"].isin(conf or [])]
+if extra:
+    keep = {p["id"] for p in zones if p.get("checks_passed", 0) > 0}
+    sel = sel[sel["id"].isin(keep)]
+if q.strip():
+    sel = sel[sel["near"].str.contains(q.strip(), case=False, regex=False)]
+
+st.markdown(tr("{n} of {t} zones. Select a row to see its radar evidence.",
+               "{t} पैकी {n} क्षेत्रे. रडार पुरावा पाहण्यासाठी एक ओळ निवडा.", n=len(sel), t=len(df)))
+cc = st.column_config
+evt = st.dataframe(
+    sel, hide_index=True, width="stretch", height=min(420, 38 + 35 * max(len(sel), 1)), on_select="rerun",
+    selection_mode="single-row", key="field_table",
+    column_config={"rank": cc.NumberColumn("#", width="small"), "id": tr("Zone", "क्षेत्र"),
+                   "near": tr("Nearest place", "जवळचे ठिकाण"), "confidence": tr("Confidence", "खात्री"),
+                   "score": cc.ProgressColumn(tr("Score", "गुण"), min_value=0, max_value=1, format="%.2f"),
+                   "orbit": cc.TextColumn(tr("2nd orbit", "दुसरी कक्षा"),
+                                          help=tr("NISAR track 106, 3 to 15 July", "निसार मार्ग १०६, ३ ते १५ जुलै")),
+                   "dem": cc.TextColumn("NASADEM", help=tr("Slide rule re-run with NASA's NASADEM elevation map",
+                                                           "नासाच्या NASADEM उंची नकाशासह पुन्हा तपासणी")),
+                   "report": cc.TextColumn(tr("Nearest report", "जवळची नोंद"),
+                                           help=tr("Distance to the nearest reported flood or landslide",
+                                                   "सर्वात जवळच्या नोंदवलेल्या पूर किंवा भूस्खलनाचे अंतर")),
+                   "slope": cc.NumberColumn(tr("Slope (°)", "उतार (°)"), format="%.0f"),
+                   "map": cc.LinkColumn(tr("Map", "नकाशा"), display_text=tr("Open", "उघडा"))})
+rows_sel = (evt.selection.rows if evt and hasattr(evt, "selection") else []) or []
+pick = sel.iloc[rows_sel[0]]["id"] if rows_sel and len(sel) else (sel.iloc[0]["id"] if len(sel) else None)
+if pick:
+    p = next(z for z in zones if z["id"] == pick)
+    st.markdown(f"### {tr('Evidence for', 'पुरावा:')} {pick}")
+    ev.show_zone(p)
+
+np_ = data.next_pass()
+if np_:
+    st.markdown(f'<div class="ml-pass"><span>🛰️</span><span>' + tr(
+        "This list comes from one pair of NISAR passes. NISAR returns every 12 days: the last pass in our data is "
+        "<b>{l}</b>, and if it keeps its repeat the next is <b>{n}</b>. The same code rebuilds the list from each "
+        "new pass.",
+        "ही यादी निसारच्या एका जोडी निरीक्षणांवरून बनली आहे. निसार दर १२ दिवसांनी परत येतो: आमच्या डेटातील शेवटचे "
+        "निरीक्षण <b>{l}</b>, आणि चक्र कायम राहिल्यास पुढचे <b>{n}</b>. तोच कोड प्रत्येक नव्या निरीक्षणावरून यादी "
+        "पुन्हा तयार करतो.", l=ui.date(np_[0]), n=ui.date(np_[1])) + "</span></div>", unsafe_allow_html=True)
+st.markdown('<p class="ml-source">' + tr(
+    "Nearest place names © OpenStreetMap contributors (Nominatim). Score: steepness, radar change and coherence loss, "
+    "each up to a third.", "जवळच्या ठिकाणांची नावे © OpenStreetMap योगदानकर्ते. गुण: उतार, रडार बदल आणि कोहेरन्समधील घट, "
+    "प्रत्येकी एक तृतीयांशपर्यंत.") + "</p>", unsafe_allow_html=True)
+ui.sources_line()
