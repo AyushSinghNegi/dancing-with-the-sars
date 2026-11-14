@@ -17,9 +17,9 @@ with left:
                 f'{data.nice_date(after)}, Pune district, India</div>', unsafe_allow_html=True)
     st.markdown(f'<p class="ml-lede">{ui.t("lede")}</p>', unsafe_allow_html=True)
     b1, b2 = st.columns(2)
-    if b1.button(ui.t("start_story"), type="primary", icon=":material/auto_stories:", use_container_width=True):
+    if b1.button(ui.t("start_story"), type="primary", icon=":material/auto_stories:", width="stretch"):
         st.switch_page("views/1_Story.py")
-    if b2.button(ui.t("explore"), icon=":material/map:", use_container_width=True):
+    if b2.button(ui.t("explore"), icon=":material/map:", width="stretch"):
         st.switch_page("views/2_Explore.py")
 with right:
     imgs = swipe.pair("hh")

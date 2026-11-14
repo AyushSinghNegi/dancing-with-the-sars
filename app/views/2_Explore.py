@@ -11,6 +11,7 @@ if not ui.require_results():
 
 before, after = data.dates()
 st.markdown(f"# {ui.t('explore')}")
+ui.english_only_note()
 st.markdown(f'<div class="ml-dates">NISAR passes on {data.nice_date(before, False)} and {data.nice_date(after)}. '
             'Switch radar layers with the layer button at the top right of the map; click a slide zone or a marker for details.</div>',
             unsafe_allow_html=True)
@@ -45,7 +46,7 @@ with tab_z:
         st.markdown(f"{len(df)} likely slide zones, sorted by score. Score adds three pieces of evidence: "
                     "steepness, radar change, and coherence lost compared with the surrounding kilometre.")
         cc = st.column_config
-        st.dataframe(df[[c for c in cols if c in df]], hide_index=True, use_container_width=True,
+        st.dataframe(df[[c for c in cols if c in df]], hide_index=True, width="stretch",
                      column_config={"id": "Zone", "confidence": "Confidence",
                                     "track106": cc.TextColumn("Second track", help="Did NISAR track 106 "
                                                               "(3 to 15 July) find this zone too? See Method."),
@@ -74,17 +75,17 @@ with tab_z:
 with tab_w:
     ws = data.table("water_stats.csv")
     if ws is not None:
-        st.dataframe(ws, hide_index=True, use_container_width=True)
+        st.dataframe(ws, hide_index=True, width="stretch")
 with tab_t:
     rain = data.rainfall()
     if rain is not None:
-        st.plotly_chart(charts.rainfall(rain, before, after, passes=data.passes()), use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(charts.rainfall(rain, before, after, passes=data.passes()), width="stretch", config={"displayModeBar": False})
     else:
         st.info("Daily rainfall appears here once `data/reference/rainfall.csv` is added.")
     tl = data.table("timeline.csv")
     if tl is not None and len(tl) > 1:
         st.markdown("**Water outside rivers and reservoirs, every NISAR pass on this track**")
-        st.plotly_chart(charts.timeline(tl), use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(charts.timeline(tl), width="stretch", config={"displayModeBar": False})
         st.caption("Hollow markers: radar mode or polarisation differs from the June pass, so brightness is not "
                    "directly comparable.")
     else:
@@ -93,7 +94,7 @@ with tab_e:
     val = data.table("validation.csv")
     if val is not None and len(val):
         st.dataframe(val[["id", "type", "date", "place", "observable", "result", "distance_m", "reason",
-                          "source_name", "source_url"]], hide_index=True, use_container_width=True,
+                          "source_name", "source_url"]], hide_index=True, width="stretch",
                      column_config={"source_url": st.column_config.LinkColumn("source")})
     else:
         st.info("Reported events appear here once `data/reference/events.geojson` is added.")
