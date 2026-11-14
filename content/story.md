@@ -2,7 +2,7 @@
 Story text for the app's Story page (Urvashi owns this file; U4/U6).
 Rules: one "## " heading per step, in order. Keep each step under 90 words.
 Numbers ONLY as {placeholders}; the app fills them from data/derived/metrics.json.
-Available: {crosstrack_sentence} (a whole sentence, empty when there is no second-track check) {new_water_km2} {new_water_patches} {rise_km2} {flood_km2} {flood_patches} {slide_zones} {slide_high} {brighter_km2}
+Available: {crosstrack_sentence} {cloud_sentence} (whole sentences, empty when that check is missing) {new_water_km2} {new_water_patches} {rise_km2} {flood_km2} {flood_patches} {slide_zones} {slide_high} {brighter_km2}
 {flood_hits} {flood_observable} {slide_hits} {slide_observable} {before} {after}
 -->
 
@@ -13,7 +13,7 @@ across Pune district. This chart shows the daily rainfall over our study area, w
 NISAR satellite passed overhead.
 
 ## Clouds hide the ground. Radar does not.
-Ordinary satellite cameras saw only cloud for most of that week. NISAR carries an L-band radar: it sends
+{cloud_sentence} NISAR carries an L-band radar: it sends
 its own microwave pulses, about 24 cm long, which pass through cloud and rain and come back from the
 ground. Smooth water reflects the pulse away, so it looks dark. Rough ground, trees and buildings send
 it back, so they look bright. That simple contrast is what we measure.

@@ -1,0 +1,13 @@
+{
+  "from": "2026-07-03",
+  "to": "2026-07-08",
+  "images_possible": 24,
+  "images_available": 22,
+  "all_cloud": 22,
+  "sensors": ["Terra MODIS", "Aqua MODIS", "Suomi NPP VIIRS", "NOAA-20 VIIRS"],
+  "pass_days_broken_cloud": ["2026-06-28", "2026-07-10"],
+  "image": "content/img/cloud_check_contact_sheet.jpg",
+  "source": "NASA Worldview Snapshots (GIBS), true-colour daily imagery, opened 14 Nov 2026",
+  "source_url": "https://worldview.earthdata.nasa.gov",
+  "details": "content/cloud_check.md (method, per-sensor table and how to repeat it)"
+}
