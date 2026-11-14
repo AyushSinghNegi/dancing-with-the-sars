@@ -130,7 +130,8 @@ def load():
     zones = json.loads((DER / "slide_zones.geojson").read_text())["features"]
     water = json.loads((DER / "new_water.geojson").read_text())["features"]
     val = pd.read_csv(DER / "validation.csv")
-    return m, b, rain, zones, water, val
+    cloud = json.loads((REF / "cloud_check.json").read_text())
+    return m, b, rain, zones, water, val, cloud
 
 
 class Geo:
@@ -169,7 +170,10 @@ def tint(mask_img, color, alpha=255, grow=0):
 # ------------------------------------------------------------------ scenes
 class Video:
     def __init__(self, data):
-        self.m, self.bounds, self.rain, self.zones, self.water, self.val = data
+        self.m, self.bounds, self.rain, self.zones, self.water, self.val, self.cloud = data
+        src = str(self.rain["source"].iloc[0]) if "source" in self.rain else ""
+        if "IMERG" not in src:
+            sys.exit("rainfall.csv is not GPM IMERG; the video credits IMERG.")
         self.hh_b = Image.open(LAYERS / "hh_before.webp").convert("RGBA")
         self.hh_a = Image.open(LAYERS / "hh_after.webp").convert("RGBA")
         self.geo = Geo(self.bounds, self.hh_a.size)
@@ -238,12 +242,13 @@ class Video:
         img = Image.new("RGB", (W, H), BG)
         d = ImageDraw.Draw(img, "RGBA")
         r = self.rain[(self.rain.date >= "2026-06-20") & (self.rain.date <= "2026-07-20")].reset_index(drop=True)
-        x0, x1, yb, yt, top = 170, 1760, 760, 290, 160.0
+        x0, x1, yb, yt = 170, 1760, 760, 290
+        top = 50.0 * math.ceil(r.precip_mm.max() / 50 + 0.15)   # headroom above the peak
         a_hdr = ramp(i, 0, 14)
         text_block(img, (170, 104), "Pune, July 2026", F[(600, 64)], WHITE, 1500, alpha=a_hdr)
-        text_block(img, (170, 190), "Rain over the study area, mm per day (NASA POWER)", F[(400, 30)], MUTED, 1500,
-                   alpha=a_hdr)
-        for v in (50, 100, 150):
+        text_block(img, (170, 190), "Rain averaged over the study area, mm per day (NASA GPM IMERG, Late Run)",
+                   F[(400, 30)], MUTED, 1500, alpha=a_hdr)
+        for v in range(50, int(top), 50):
             y = yb - v / top * (yb - yt)
             d.line((x0, y, x1, y), fill=(255, 255, 255, int(28 * a_hdr)), width=1)
             d.text((x0 - 12, y), f"{v}", font=F[(400, 26)], fill=(*MUTED, int(255 * a_hdr)), anchor="rm")
@@ -280,6 +285,17 @@ class Video:
         py = yb - pk.precip_mm / top * (yb - yt)
         d.text((cx + 34, py + 8), f"{pk.precip_mm:.0f} mm on {pk.date.strftime('%-d %B')}", font=F[(600, 34)],
                fill=(255, 255, 255, int(255 * a_pk)), anchor="lm")
+        # cloud check (Urvashi): NASA's daily images over the same days
+        c = self.cloud
+        if c.get("all_cloud") and c.get("all_cloud") == c.get("images_available"):
+            a_cl = ramp(i, 132, 18)
+            k0 = int(np.flatnonzero(r.date == c["from"])[0])
+            k1 = int(np.flatnonzero(r.date == c["to"])[0])
+            bx0, bx1 = x0 + k0 * step, x0 + (k1 + 1) * step
+            d.rectangle((bx0, yt - 20, bx1, yb), fill=(255, 255, 255, int(18 * a_cl)))
+            d.line((bx0, yt - 20, bx1, yt - 20), fill=(255, 255, 255, int(150 * a_cl)), width=2)
+            d.text((bx0, yt - 30), f"3 to 8 July: all {c['images_available']} NASA daily satellite images show "
+                   "only cloud", font=F[(500, 30)], fill=(255, 255, 255, int(255 * a_cl)), anchor="lb")
         return img
 
     # ---- scene 2: radar swipe on the window with the most new water
@@ -358,9 +374,9 @@ class Video:
         rows = [
             (C_RISE, w["rise_km2"], 1, " km²", "of new water as Pune's reservoirs and rivers rose", 16),
             (C_FLOOD, w["flood_km2"], 2, " km²", "of flood water still standing where no water was recorded "
-                                                 "since 1984", 66),
-            (C_SLIDE, sz["zones"], 0, "", f"likely slide zones on steep slopes, {sz['high']} of them high "
-                                          "confidence", 110),
+                                                 "between 1984 and 2021", 66),
+            (C_SLIDE, sz["zones"], 0, "", f"likely slide zones on steep slopes, {sz['high']} high confidence: "
+                                          "leads to check on the ground", 110),
         ]
         d = ImageDraw.Draw(img, "RGBA")
         for color, val, dig, unit, text, start in rows:
@@ -384,8 +400,7 @@ class Video:
     def s4(self, i, n):
         img = self.map_frame(1, 1, len(self.zones), labels_a=1, dim=0.55)
         d = ImageDraw.Draw(img, "RGBA")
-        obs = self.val[self.val.observable == "yes"]
-        hits = obs[obs.result == "hit"]
+        obs = self.val[(self.val.observable == "yes") & self.val.type.isin(["flood", "waterlogging", "river_overflow"])]
         for k, row in enumerate(obs.itertuples()):
             a = ramp(i, 10 + k * 3, 10)
             if a <= 0:
@@ -400,29 +415,37 @@ class Video:
                 d.ellipse((x - rr, y - rr, x + rr, y + rr), outline=(255, 255, 255, int(255 * a)), width=3)
         tx = 1100
         a = ramp(i, 4, 16)
-        cnt = int(round(len(hits) * ramp(i, 20, 40)))
-        d.text((tx, 96), f"{cnt} of {len(obs)}", font=F[(600, 92)], fill=(255, 255, 255, int(255 * a)))
-        y = text_block(img, (tx, 214), "reported floods and landslides that the radar could observe had a "
-                       "detection nearby", F[(400, 32)], MUTED, 700, line_h=44, alpha=a)
+        vs = self.m["validation"]
+        fl, sl = vs["flood"], vs["slide"]
+        cnt = int(round(fl["hits"] * ramp(i, 20, 40)))
+        d.text((tx, 96), f"{cnt} of {fl['observable']}", font=F[(600, 92)], fill=(255, 255, 255, int(255 * a)))
+        y = text_block(img, (tx, 214), "reported floods that the radar could observe had a detection nearby",
+                       F[(400, 32)], MUTED, 700, line_h=44, alpha=a)
         d = ImageDraw.Draw(img, "RGBA")
-        a2 = ramp(i, 40, 16)
+        a2 = ramp(i, 30, 16)
         y += 30
         d.ellipse((tx, y + 8, tx + 26, y + 34), fill=(255, 255, 255, int(255 * a2)))
         d.text((tx + 44, y + 2), "matched", font=F[(500, 28)], fill=(255, 255, 255, int(255 * a2)))
         d.ellipse((tx + 220, y + 8, tx + 246, y + 34), outline=(255, 255, 255, int(255 * a2)), width=3)
         d.text((tx + 264, y + 2), "missed, with the reason", font=F[(500, 28)], fill=(255, 255, 255, int(255 * a2)))
         y += 76
+        lines = []
+        dc = self.m.get("dem_check") or {}
+        rh = dc.get("reported_slide_hits") or {}
+        if rh and rh.get("nasadem", 0) < rh.get("main", 0) and len(rh.get("main_hit_zones", [])) == 1:
+            lines.append(f"Landslides: {sl['hits']} of {sl['observable']}, both near the same zone, and that match "
+                         "does not hold with a second elevation map.")
+        else:
+            lines.append(f"Landslides: {sl['hits']} of {sl['observable']}.")
         xt = self.m.get("crosstrack") or {}
         sc = xt.get("status_counts") or {}
         scored = sum(sc.get(k, 0) for k in ("confirmed", "partial", "not seen"))
         lift = xt.get("lift_confirmed")
-        lines = ["Most flood water drained before the radar came back on 10 July; we say so in the app."]
         if scored and lift and lift >= 2:
-            lines.append(f"A second NISAR track, from another orbit, found {sc['confirmed']} of the {scored} slide "
-                         f"zones it could see again: {lift:.0f}× more often than chance"
-                         + (", from a small sample." if scored < 20 else "."))
+            lines.append(f"A second NISAR track found {sc['confirmed']} of the {scored} slide zones it could see "
+                         f"again: {lift:.0f}× more often than chance" + (", from a small sample." if scored < 20 else "."))
         for k, ln in enumerate(lines):
-            y = text_block(img, (tx, y), ln, F[(400, 30)], MUTED, 700, line_h=42, alpha=ramp(i, 60 + 24 * k, 16))
+            y = text_block(img, (tx, y), ln, F[(400, 30)], MUTED, 700, line_h=42, alpha=ramp(i, 50 + 30 * k, 16))
             y += 18
         return img
 
@@ -443,17 +466,20 @@ class Video:
         a3 = ramp(i, 24, 18)
         d.text((W / 2, 650), "Team iGenfinity, NASA Space Apps Challenge 2026", font=F[(600, 34)],
                fill=(255, 255, 255, int(255 * a3)), anchor="mm")
-        d.text((W / 2, 712), "NISAR data: NASA and ISRO via ASF DAAC. Rain: NASA POWER. Water history: JRC. "
-               "Terrain: Copernicus DEM.", font=F[(400, 26)], fill=(*MUTED, int(255 * a3)), anchor="mm")
+        d.text((W / 2, 712), "Radar: NISAR (NASA and ISRO, via ASF DAAC). Rain: NASA GPM IMERG. "
+               "Cloud check: NASA Worldview.", font=F[(400, 26)], fill=(*MUTED, int(255 * a3)), anchor="mm")
+        d.text((W / 2, 752), "Water history: JRC Global Surface Water. Terrain: Copernicus DEM (ESA), "
+               "checked with NASA NASADEM.", font=F[(400, 26)], fill=(*MUTED, int(255 * a3)), anchor="mm")
         return img
 
 
 SCENES = [  # (method, frames, subtitle)
-    ("s1", 180, "Early July 2026: days of extreme rain over Pune. Thick cloud hid the ground from ordinary "
-                "satellites."),
-    ("s2", 210, "NISAR's radar sees through cloud. Between 28 June and 10 July, Pune's reservoirs spread."),
-    ("s3", 210, "We mapped what changed: rising reservoirs, flood water still standing, and slopes that gave way."),
-    ("s4", 165, "Every result is checked against news reports, and the app shows what radar missed, and why."),
+    ("s1", 180, "Early July 2026: days of extreme rain over Pune. From 3 to 8 July, NASA's daily satellite "
+                "images saw only cloud."),
+    ("s2", 195, "NISAR's radar sees through cloud. Between 28 June and 10 July, Pune's reservoirs spread."),
+    ("s3", 195, "We mapped what changed: rising reservoirs, flood water still standing, and likely slide zones "
+                "to check."),
+    ("s4", 195, "Every result is checked against news reports, and the app shows what radar missed, and why."),
     ("s5", 120, "Open the map, see every source, and check it yourself."),
 ]
 
