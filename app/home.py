@@ -54,8 +54,8 @@ st.markdown(f"## {ui.t('couldnt')}")
 st.markdown(
     "- **Streets between tall buildings.** Radar bounces off walls and back to the satellite, so flooded city "
     "streets can look bright, not dark. We mark those places as *possible water*, and never count them as flood.\n"
-    "- **Water that drained early.** The heaviest rain fell on 5 to 7 July, between NISAR passes on 4 and 10 July, "
-    "and flood releases into the Mutha river stopped on 9 July. Most flood water had drained before the radar came "
+    "- **Water that drained early.** The heaviest rain fell on 5 to 8 July, between NISAR passes on 4 and 10 July, "
+    "and had all but stopped by 9 July. Flood water had two days to drain before the radar came "
     "back, so the map shows reservoirs filling and the flooding that was still standing.\n"
     "- **Small slides.** Our map has 40 m pixels. A slide narrower than that can slip through.\n"
     "- **Every detection is a lead, not a verdict.** Slide zones are places to check on the ground or in "
