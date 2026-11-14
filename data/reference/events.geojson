@@ -120,7 +120,7 @@
     "precision_m": 2000,
     "source_name": "Deccan Chronicle",
     "source_url": "https://www.deccanchronicle.com/amp/nation/heavy-rain-triggers-flooding-landslides-across-maharashtra-1969192",
-    "note": "Road closed after a landslide; point is Pabe village."
+    "note": "Road closed after a landslide; point is Pabe village. The source says the landslide was in Velhe village and gives no event date, so the date is the report date."
    }
   },
   {
@@ -160,7 +160,7 @@
     "precision_m": 800,
     "source_name": "Free Press Journal",
     "source_url": "https://www.freepressjournal.in/pune/same-situation-every-year-punes-low-lying-areas-flooded-after-khadakwasla-dam-discharge",
-    "note": "Khadakwasla release of 27,203 cusecs; discharge stopped on 9 July."
+    "note": "Khadakwasla release of 27,203 cusecs at around 5.30 am on 8 July."
    }
   },
   {
@@ -316,11 +316,11 @@
     "id": "E016",
     "type": "waterlogging",
     "date": "2026-07-06",
-    "place": "Pune-Nashik highway near Chakan",
+    "place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
     "precision_m": 1500,
     "source_name": "Free Press Journal",
     "source_url": "https://www.freepressjournal.in/pune/videos-chakan-midc-hit-by-flooding-companies-shut-as-pune-nashik-highway-goes-under-water",
-    "note": "Highway and parts of Chakan MIDC flooded."
+    "note": "Highway flooded near Waki Khurd village; parts of Chakan MIDC flooded. Point is Chakan town centre: Waki Khurd was not found in OpenStreetMap."
    }
   },
   {
