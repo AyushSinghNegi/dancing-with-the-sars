@@ -108,6 +108,22 @@ T = {
     "legend_permanent": {"en": "Rivers and reservoirs", "mr": "नद्या आणि धरणे"},
     "legend_events": {"en": "Reported event", "mr": "नोंदवलेली घटना"},
     "lang": {"en": "Language", "mr": "भाषा"},
+    "step": {"en": "Step {i} of {n}", "mr": "{n} पैकी टप्पा {i}"},
+    "back": {"en": "Back", "mr": "मागे"},
+    "next": {"en": "Next", "mr": "पुढे"},
+    "story_title": {"en": "Story", "mr": "कथा"},
+    "matched_floods": {"en": "reported floods that radar could observe had a detection nearby",
+                       "mr": "रडारला दिसू शकणाऱ्या नोंदवलेल्या पुरांजवळ शोध लागला"},
+    "matched_slides": {"en": "reported landslides that radar could observe had a detection nearby",
+                       "mr": "रडारला दिसू शकणाऱ्या नोंदवलेल्या भूस्खलनांजवळ शोध लागला"},
+    "x_of_y": {"en": "{x} of {y}", "mr": "{y} पैकी {x}"},
+    "fell_short": {"en": "Where radar fell short, and why", "mr": "रडार कुठे कमी पडले आणि का"},
+    "rain_caption": {"en": "Daily rainfall averaged over the study box. Source: {src}.",
+                     "mr": "अभ्यास क्षेत्रातील सरासरी रोजचा पाऊस. स्रोत: {src}."},
+    "swipe_caption": {"en": "Drag to compare. Dark is smooth: water. Bright is rough: buildings, trees, rock. "
+                            "Area shown: the part of the study box with the most change.",
+                      "mr": "तुलना करण्यासाठी ओढा. गडद म्हणजे गुळगुळीत पृष्ठभाग: पाणी. उजळ म्हणजे खडबडीत: इमारती, "
+                            "झाडे, खडक. दाखवलेला भाग: अभ्यास क्षेत्रातील सर्वात जास्त बदल झालेला भाग."},
 }
 
 

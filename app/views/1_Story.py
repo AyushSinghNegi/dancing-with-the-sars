@@ -15,7 +15,7 @@ if "step" not in st.session_state:
 i = st.session_state.step
 before, after = data.dates()
 
-st.markdown(f'<div class="ml-step">Step {i + 1} of {n}</div>', unsafe_allow_html=True)
+st.markdown(f'<div class="ml-step">{ui.t("step", i=i + 1, n=n)}</div>', unsafe_allow_html=True)
 st.progress((i + 1) / n)
 head, body = steps[i]
 text, visual = st.columns([0.9, 1.4], gap="large")
@@ -23,11 +23,11 @@ with text:
     st.markdown(f"## {head}")
     st.markdown(f'<p class="ml-lede">{body}</p>', unsafe_allow_html=True)
     nav_b, nav_n = st.columns(2)
-    if nav_b.button("Back", disabled=i == 0, use_container_width=True):
+    if nav_b.button(ui.t("back"), disabled=i == 0, use_container_width=True):
         st.session_state.step = max(0, i - 1)
         st.rerun()
     if i < n - 1:
-        if nav_n.button("Next", type="primary", use_container_width=True):
+        if nav_n.button(ui.t("next"), type="primary", use_container_width=True):
             st.session_state.step = i + 1
             st.rerun()
     else:
@@ -39,7 +39,7 @@ with visual:
         if rain is not None:
             st.plotly_chart(charts.rainfall(rain, before, after), use_container_width=True,
                             config={"displayModeBar": False})
-            st.caption(f"Daily rainfall averaged over the study box. Source: {rain['source'].iloc[0] if 'source' in rain else 'GPM IMERG'}.")
+            st.caption(ui.t("rain_caption", src=rain["source"].iloc[0] if "source" in rain else "GPM IMERG"))
         else:
             st.info("Rainfall chart appears here once `data/reference/rainfall.csv` (GPM IMERG daily) is added.")
     elif i == 1:
@@ -78,14 +78,14 @@ with visual:
         if val is not None and len(val):
             obs = val[val["observable"] == "yes"]
             rows = []
-            for key, label in (("flood", "reported floods"), ("slide", "reported landslides")):
+            for key, label in (("flood", "matched_floods"), ("slide", "matched_slides")):
                 s = summ.get(key, {})
-                rows.append(ui.finding(ui.INK, f"{s.get('hits', 0)} of {s.get('observable', 0)}", "",
-                                       f"{label} that radar could observe had a detection nearby"))
+                rows.append(ui.finding(ui.INK, ui.t("x_of_y", x=s.get("hits", 0), y=s.get("observable", 0)), "",
+                                       ui.t(label)))
             st.markdown("".join(rows), unsafe_allow_html=True)
             misses = val[val["result"].isin(["miss", "not observable"])]
             if len(misses):
-                st.markdown("**Where radar fell short, and why**")
+                st.markdown(f"**{ui.t('fell_short')}**")
                 st.dataframe(misses[["place", "type", "date", "result", "reason"]], hide_index=True,
                              use_container_width=True)
         else:
