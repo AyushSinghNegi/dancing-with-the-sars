@@ -9,7 +9,7 @@ We collected 18 reported events, each with a linked source. Of the 10 reported f
 
 | ID | Event | Type | Date | Detected | Reason if missed or not checked | Source |
 |---|---|---|---|---|---|---|
-| E001 | Patan village below Lohagad, Maval | Landslide | 6 Jul 2026 | No | Ground near the report is gentler than our 15 deg slide search | [Punekar News](https://www.punekarnews.in/?p=239157) |
+| E001 | Patan village near the Bhaja Caves, Maval | Landslide | 6 Jul 2026 | No | Ground near the report is gentler than our 15 deg slide search | [Punekar News](https://www.punekarnews.in/?p=239157) |
 | E002 | Missing Link, Tunnel 2 exit (Pune-Mumbai lane), Khandala | Landslide | 6 Jul 2026 | Yes |  | [Free Press Journal](https://www.freepressjournal.in/mumbai/mumbai-pune-expressway-landslide-hits-missing-link-tunnel-near-khandala-mumbai-bound-lane-shut-amid-heavy-rain-video) |
 | E003 | Railway, Khandala to Monkey Hill (Bhor Ghat) | Landslide | 6 Jul 2026 | Yes |  | [News Arena India](https://newsarenaindia.com/states/13-dead-as-maharashtra-rains-batter-mumbai-pune/81702) |
 | E004 | Lonavala to Rajmachi road | Landslide | 4 Jul 2026 | Could not check | Location in the report is too vague to score (about 4 km) | [Free Press Journal](https://www.freepressjournal.in/mumbai/heavy-rainfall-triggers-landslide-on-lonavalarajmachi-route-rescue-efforts-road-clearance-underway-video) |

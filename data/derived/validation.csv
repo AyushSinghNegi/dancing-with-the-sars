@@ -1,5 +1,5 @@
 id,type,date,place,lon,lat,precision_m,observable,result,distance_m,reason,source_name,source_url
-E001,landslide,2026-07-06,"Patan village below Lohagad, Maval",73.4902,18.7389,1000,yes,miss,1330,ground near the report is gentler than our 15 deg slide search,Punekar News,https://www.punekarnews.in/?p=239157
+E001,landslide,2026-07-06,"Patan village near the Bhaja Caves, Maval",73.4902,18.7389,1000,yes,miss,1330,ground near the report is gentler than our 15 deg slide search,Punekar News,https://www.punekarnews.in/?p=239157
 E002,landslide,2026-07-06,"Missing Link, Tunnel 2 exit (Pune-Mumbai lane), Khandala",73.356,18.765,2000,yes,hit,1612,,Free Press Journal,https://www.freepressjournal.in/mumbai/mumbai-pune-expressway-landslide-hits-missing-link-tunnel-near-khandala-mumbai-bound-lane-shut-amid-heavy-rain-video
 E003,landslide,2026-07-06,"Railway, Khandala to Monkey Hill (Bhor Ghat)",73.352,18.768,2000,yes,hit,1901,,News Arena India,https://newsarenaindia.com/states/13-dead-as-maharashtra-rains-batter-mumbai-pune/81702
 E004,landslide,2026-07-04,Lonavala to Rajmachi road,73.4,18.79,4000,no,not scored,,location in the report is too vague to score (about 4 km),Free Press Journal,https://www.freepressjournal.in/mumbai/heavy-rainfall-triggers-landslide-on-lonavalarajmachi-route-rescue-efforts-road-clearance-underway-video
