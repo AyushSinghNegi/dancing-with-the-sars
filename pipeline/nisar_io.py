@@ -55,7 +55,9 @@ def open_h5(src: str):
         fs = fsspec.filesystem("https", client_kwargs={"headers": {"Authorization": f"Bearer {token}"}})
     else:
         import earthaccess
-        earthaccess.login(strategy="netrc") or earthaccess.login(strategy="interactive")
+        auth = earthaccess.login()  # tries env vars, then ~/.netrc, then asks in the terminal
+        if not getattr(auth, "authenticated", True):
+            raise PermissionError("Earthdata login failed: check your username/password at urs.earthdata.nasa.gov")
         fs = earthaccess.get_fsspec_https_session()
     fobj = fs.open(src, mode="rb", block_size=8 * 1024 * 1024, cache_type="blockcache")
     return h5py.File(fobj, "r")
