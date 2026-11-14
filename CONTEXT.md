@@ -36,10 +36,12 @@ Project box (WGS84): lon 73.30 to 74.10, lat 18.15 to 18.90. Analysis grid: UTM 
 
 NISAR file layout (confirmed from ASF docs, check with `pipeline.inspect_h5` on the real file):
 - GCOV: `/science/LSAR/GCOV/grids/frequencyA/` holds `HHHH`, `HVHV` (gamma0, linear power),
-  `mask` (255 = outside swath), `numberOfLooks`, `rtcGammaToSigmaFactor`, `xCoordinates`,
+  `mask` (1..N valid subswath, 0 invalid, 255 fill), `numberOfLooks`, `rtcGammaToSigmaFactor`, `xCoordinates`,
   `yCoordinates`, `projection` (EPSG code). Full-frame layers are ~5 GB each, so we stream the box only.
 - GUNW: coherence at `.../frequencyA/unwrappedInterferogram/HH/coherenceMagnitude`
-  (the code finds the finest coherence layer automatically).
+  (the code finds the finest coherence layer automatically). GUNW `mask` is a 3-digit WRS code
+  (water flag, reference subswath, secondary subswath): valid where both subswath digits are non-zero
+  and mask != 255. The GUNW grid is about 80 m.
 
 ## Pipeline (python -m pipeline.<step>)
 | Step | Module | Output |

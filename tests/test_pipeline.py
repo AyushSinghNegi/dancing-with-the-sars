@@ -75,3 +75,46 @@ def test_events_file_schema():
         assert pr["type"] in {"flood", "waterlogging", "river_overflow", "landslide", "road_closure"}
         lon, lat = f["geometry"]["coordinates"][:2]
         assert 72 < lon < 75 and 17 < lat < 20
+
+
+def _tiny_gcov(path, ascending=False, mask_value=1, spacing=80.0):
+    """GCOV-layout file over the study box with a bright square in the NE corner."""
+    import h5py
+    from pipeline.nisar_io import analysis_grid
+    t, (h, w) = analysis_grid()
+    nx, ny = int(w * C.GRID_RES / spacing) + 4, int(h * C.GRID_RES / spacing) + 4
+    x = t.c - spacing + spacing / 2 + spacing * np.arange(nx)
+    y = t.f + spacing - spacing / 2 - spacing * np.arange(ny)
+    hh = np.full((ny, nx), 0.05, np.float32)
+    hh[2:40, -40:-2] = 1.0           # north-east corner (row 0 = north)
+    mask = np.full((ny, nx), mask_value, np.uint8)
+    if ascending:
+        y, hh, mask = y[::-1], hh[::-1], mask[::-1]
+    with h5py.File(path, "w") as f:
+        g = f.create_group("/science/LSAR/GCOV/grids/frequencyA")
+        g["HHHH"], g["HVHV"], g["mask"] = hh, hh * 0.1, mask
+        g["xCoordinates"], g["yCoordinates"] = x, y
+        g["projection"] = np.uint32(C.GRID_EPSG)
+
+
+@pytest.mark.parametrize("ascending", [False, True])
+def test_crop_geometry_keeps_north_up(tmp_path, ascending):
+    from pipeline import nisar_io as io
+    p = tmp_path / "g.h5"
+    _tiny_gcov(p, ascending=ascending)
+    arrays, meta = io.read_gcov(str(p))
+    hh = arrays["HHHH"]
+    h, w = hh.shape
+    rows, cols = np.nonzero(np.nan_to_num(hh) > 0.5)
+    assert rows.size > 0
+    # Bright square must land in the north-east quarter: a flip would put it south or west.
+    assert rows.mean() < h / 4 and cols.mean() > 3 * w / 4, (rows.mean(), cols.mean(), h, w)
+
+
+def test_gcov_mask_zero_and_255_are_dropped(tmp_path):
+    from pipeline import nisar_io as io
+    for value in (0, 255):
+        p = tmp_path / f"m{value}.h5"
+        _tiny_gcov(p, mask_value=value)
+        arrays, _ = io.read_gcov(str(p))
+        assert np.isnan(arrays["HHHH"]).all()
