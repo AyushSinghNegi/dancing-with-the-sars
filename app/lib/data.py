@@ -148,3 +148,20 @@ def passes() -> pd.DataFrame | None:
     df["date"] = pd.to_datetime(df["date_reference"])
     df["orbit"] = "track " + df["track"].str.lstrip("0") + " " + df["direction"]
     return df[["date", "orbit", "track"]].drop_duplicates()
+
+
+XT_LIFT_MIN = 2.0   # below this the second track agrees about as often as chance: say so
+
+
+def crosstrack() -> dict | None:
+    """Second-track check summary (track 106), or None if that pair was not processed."""
+    xt = value("crosstrack")
+    if not xt or not xt.get("status_counts"):
+        return None
+    c = xt["status_counts"]
+    scored = c.get("confirmed", 0) + c.get("partial", 0) + c.get("not seen", 0)
+    if not scored:
+        return None
+    lift = xt.get("lift_confirmed")
+    return {**xt, "confirmed": c.get("confirmed", 0), "scored": scored, "lift": lift,
+            "good": lift is not None and lift >= XT_LIFT_MIN}

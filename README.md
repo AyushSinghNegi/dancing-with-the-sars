@@ -57,7 +57,7 @@ Following the Space Apps rules on AI disclosure:
 
 ## Data and credits
 NISAR L2 GCOV and GUNW provisional products, NASA/JPL-Caltech and ISRO, via ASF DAAC.
-JRC Global Surface Water (Pekel et al., 2016). Copernicus GLO-30 DEM (ESA). GPM IMERG (NASA GES DISC).
+JRC Global Surface Water (Pekel et al., 2016). Copernicus GLO-30 DEM (ESA). NASA POWER daily precipitation (PRECTOTCORR, from MERRA-2; NASA LaRC).
 Method, limits and validation: see the app's Method page and `CONTEXT.md`.
 
 ## Licence

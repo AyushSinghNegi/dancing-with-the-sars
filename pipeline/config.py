@@ -39,6 +39,16 @@ PRIMARY = {
     "pair": "NISAR_L2_PR_GUNW_024_034_D_079_025_4000_SH_20260628T134239_20260628T134314_20260710T134239_20260710T134313_P05023_N_F_J_001",
 }
 
+# Second, independent pair for the cross-track check (R10): track 106, descending, same frame and mode.
+# Its pair (3 Jul -> 15 Jul) also spans the 5-7 Jul rain peak, from a different orbit and incidence.
+CROSSCHECK = {
+    "before": "NISAR_L2_PR_GCOV_024_106_D_079_4005_DHDH_A_20260703T133420_20260703T133454_P05023_N_F_J_001",
+    "after": "NISAR_L2_PR_GCOV_025_106_D_079_4005_DHDH_A_20260715T133419_20260715T133454_P05023_N_F_J_001",
+    "pair": "NISAR_L2_PR_GUNW_024_106_D_079_025_4000_SH_20260703T133420_20260703T133454_20260715T133419_20260715T133454_P05023_N_F_J_001",
+}
+CROSS_BUFFER_PX = 2                # 80 m: allowed offset between the two tracks (geocoding and DEM error)
+CROSS_RANDOM_TRIALS = 300          # random placements of the zones, for the chance level
+
 # Extra same-track dates for the timeline (R7/R8). Mode is checked from the file name.
 TIMELINE_DATES = ["2026-06-28", "2026-07-10", "2026-07-22", "2026-08-15", "2026-10-14"]
 

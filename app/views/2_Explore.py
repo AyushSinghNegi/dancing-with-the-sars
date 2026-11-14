@@ -40,13 +40,15 @@ with tab_z:
             df["near"] = ""
         df["near"] = df["near"].fillna("")
         df["map"] = [f"https://www.google.com/maps/search/?api=1&query={a},{b}" for a, b in zip(df["lat"], df["lon"])]
-        cols = ["id", "near", "confidence", "score", "area_ha", "slope_deg", "hv_change_db", "hh_change_db",
-                "coherence", "coherence_vs_local", "lat", "lon", "map"]
+        cols = ["id", "near", "confidence", "score", "track106", "area_ha", "slope_deg", "hv_change_db",
+                "hh_change_db", "coherence", "coherence_vs_local", "lat", "lon", "map"]
         st.markdown(f"{len(df)} likely slide zones, sorted by score. Score adds three pieces of evidence: "
                     "steepness, radar change, and coherence lost compared with the surrounding kilometre.")
         cc = st.column_config
         st.dataframe(df[[c for c in cols if c in df]], hide_index=True, use_container_width=True,
                      column_config={"id": "Zone", "confidence": "Confidence",
+                                    "track106": cc.TextColumn("Second track", help="Did NISAR track 106 "
+                                                              "(3 to 15 July) find this zone too? See Method."),
                                     "score": cc.ProgressColumn("Score", min_value=0, max_value=1, format="%.2f"),
                                     "area_ha": cc.NumberColumn("Area (ha)", format="%.1f"),
                                     "slope_deg": cc.NumberColumn("Slope (°)", format="%.0f"),
@@ -58,8 +60,9 @@ with tab_z:
                                     "lon": cc.NumberColumn("Lon", format="%.4f"),
                                     "near": "Nearest place",
                                     "map": cc.LinkColumn("Map", display_text="Open")})
-        field = df[["id", "near", "confidence", "score", "area_ha", "slope_deg", "lat", "lon", "map"]].rename(
-            columns={"near": "nearest_place", "map": "map_link"})
+        field = df[[c for c in ["id", "near", "confidence", "score", "track106", "area_ha", "slope_deg", "lat",
+                                "lon", "map"] if c in df]].rename(
+            columns={"near": "nearest_place", "map": "map_link", "track106": "second_track"})
         st.download_button("Download field check list (CSV)", field.to_csv(index=False).encode(),
                            file_name="monsoonlens_slide_zones_field_checklist.csv", mime="text/csv",
                            help="Every likely slide zone with its nearest named place and a map link, "
@@ -77,7 +80,7 @@ with tab_t:
     if rain is not None:
         st.plotly_chart(charts.rainfall(rain, before, after, passes=data.passes()), use_container_width=True, config={"displayModeBar": False})
     else:
-        st.info("Daily rainfall (GPM IMERG) appears here once `data/reference/rainfall.csv` is added.")
+        st.info("Daily rainfall appears here once `data/reference/rainfall.csv` is added.")
     tl = data.table("timeline.csv")
     if tl is not None and len(tl) > 1:
         st.markdown("**Water outside rivers and reservoirs, every NISAR pass on this track**")

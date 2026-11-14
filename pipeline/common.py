@@ -36,16 +36,17 @@ def gcov_crops():
     return sorted(out, key=lambda m: m["date"])
 
 
-def load_pair(before_gid=None, after_gid=None):
+def load_pair(before_gid=None, after_gid=None, pair_gid=None):
     before_gid = before_gid or C.PRIMARY["before"]
     after_gid = after_gid or C.PRIMARY["after"]
+    pair_gid = pair_gid or C.PRIMARY["pair"]
     out = {}
     for key, gid in (("before", before_gid), ("after", after_gid)):
         name = io.crop_name(gid)
         out[f"hh_{key}"] = io.load_db(C.CROPS / f"{name}_HH.tif")
         hv = C.CROPS / f"{name}_HV.tif"
         out[f"hv_{key}"] = io.load_db(hv) if hv.exists() else np.full_like(out[f"hh_{key}"], np.nan)
-    coh = C.CROPS / f"{io.crop_name(C.PRIMARY['pair'])}_COH.tif"
+    coh = C.CROPS / f"{io.crop_name(pair_gid)}_COH.tif"
     out["coherence"] = io.load_unit(coh) if coh.exists() else None
     return out
 

@@ -19,19 +19,16 @@ These are LIKELY zones for people to check, not confirmed landslides.
 from __future__ import annotations
 
 import numpy as np
+from scipy import ndimage as ndi
 
 from . import ancillary
 from . import common as K
 from . import config as C
 
 
-def run(layers=None, write=True):
-    if layers is None:
-        layers = {k: K.load_layer(k) for k in ("hh_before", "hh_after", "hv_before", "hv_after",
-                                                 "water_after", "permanent", "valid")}
-    d = K.load_pair()
-    coh = d["coherence"]
-    aux = ancillary.load()
+def detect(layers, coh, aux):
+    """Slide-zone rule on one before/after pair. Returns every intermediate mask, so the second-track
+    check can ask which piece of evidence a zone has, not only whether it passed."""
     slope = np.nan_to_num(aux["slope"])
     aspect = K.aspect_degrees(aux["elevation"])
     facing = K.radar_facing_azimuth(layers["hh_before"], slope, aspect)
@@ -56,6 +53,20 @@ def run(layers=None, write=True):
         cand = steep & not_water & strong_bs
         method = "backscatter change + slope only (no GUNW coherence available)"
     zones = K.clean(cand, min_px=C.MIN_SLIDE_PIXELS)
+    return dict(zones=zones, cand=cand, steep=steep, geom_bad=geom_bad, facing=facing, not_water=not_water,
+                bs_change=bs_change, coh_loss=coh_loss, anomaly=anomaly, slope=slope, d_hv=d_hv, d_hh=d_hh,
+                method=method)
+
+
+def run(layers=None, write=True):
+    if layers is None:
+        layers = {k: K.load_layer(k) for k in ("hh_before", "hh_after", "hv_before", "hv_after",
+                                                 "water_after", "permanent", "valid")}
+    coh = K.load_pair()["coherence"]
+    det = detect(layers, coh, ancillary.load())
+    zones, slope, d_hv, d_hh, anomaly = det["zones"], det["slope"], det["d_hv"], det["d_hh"], det["anomaly"]
+    steep, geom_bad, facing, method = det["steep"], det["geom_bad"], det["facing"], det["method"]
+    zone_lab = ndi.label(zones, structure=np.ones((3, 3)))[0]
 
     def props(r):
         s = float(np.mean(slope[r]))
@@ -74,12 +85,15 @@ def run(layers=None, write=True):
                 "hv_change_db": round(dhv, 1), "hh_change_db": round(dhh, 1),
                 "coherence": None if c is None else round(c, 2),
                 "coherence_vs_local": None if a is None else round(a, 2),
-                "score": round(score, 2), "confidence": conf}
+                "score": round(score, 2), "confidence": conf, "_lab": int(zone_lab[r][0])}
 
     feats = K.patches_to_features(zones, props)
     feats.sort(key=lambda f: -f["properties"]["score"])
+    # Zone ids as a raster too (1 = SZ001), so later checks can look up each zone's pixels.
+    zone_ids = np.zeros(zones.shape, dtype=np.int16)
     for i, f in enumerate(feats, start=1):
         f["properties"]["id"] = f"SZ{i:03d}"
+        zone_ids[zone_lab == f["properties"].pop("_lab")] = i
     summary = {
         "method": method,
         "zones": len(feats),
@@ -94,6 +108,7 @@ def run(layers=None, write=True):
         K.write_json(C.DERIVED / "slide_zones.geojson", {"type": "FeatureCollection", "summary": summary,
                                                          "features": feats})
         K.save_layer("slide_zones", zones)
+        K.save_layer("slide_zone_ids", zone_ids)
         if coh is not None:
             K.save_layer("coherence", coh)
             K.save_layer("coherence_anomaly", anomaly)

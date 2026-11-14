@@ -29,8 +29,14 @@ from . import config as C
 
 
 def run(write=True):
-    d = K.load_pair()
-    aux = ancillary.load()
+    stats, layers, near_seen = compute(K.load_pair(), ancillary.load())
+    if write:
+        _write(stats, layers, near_seen)
+    return {m: v for m, v, *_ in stats}, layers
+
+
+def compute(d, aux, labels=("28 Jun", "10 Jul")):
+    """All water layers for one before/after pair. Used for the main pair and the second-track check."""
     occ, slope = aux["jrc_occurrence"], aux["slope"]
     perm = np.nan_to_num(occ) >= C.PERMANENT_WATER_OCCURRENCE
     flat = np.nan_to_num(slope, nan=90) <= C.FLOOD_MAX_SLOPE_DEG
@@ -67,39 +73,42 @@ def run(write=True):
 
     stats = [
         ("valid_fraction", float(valid.mean()), "fraction", "share of the box with radar data on both dates"),
-        ("threshold_before_db", t_b, "dB", f"HH water threshold, 28 Jun ({how_b})"),
-        ("threshold_after_db", t_a, "dB", f"HH water threshold, 10 Jul ({how_a})"),
+        ("threshold_before_db", t_b, "dB", f"HH water threshold, {labels[0]} ({how_b})"),
+        ("threshold_after_db", t_a, "dB", f"HH water threshold, {labels[1]} ({how_a})"),
         ("permanent_water_km2", float(perm.sum() * K.PIXEL_KM2), "km2", "JRC occurrence >= 50%"),
-        ("permanent_water_seen_dark", perm_seen, "fraction", "share of JRC permanent water that radar sees as water on 28 Jun"),
-        ("water_before_km2", float(water_b.sum() * K.PIXEL_KM2), "km2", "all dark-water pixels, 28 Jun"),
-        ("water_after_km2", float(water_a.sum() * K.PIXEL_KM2), "km2", "all dark-water pixels, 10 Jul"),
+        ("permanent_water_seen_dark", perm_seen, "fraction", f"share of JRC permanent water that radar sees as water on {labels[0]}"),
+        ("water_before_km2", float(water_b.sum() * K.PIXEL_KM2), "km2", f"all dark-water pixels, {labels[0]}"),
+        ("water_after_km2", float(water_a.sum() * K.PIXEL_KM2), "km2", f"all dark-water pixels, {labels[1]}"),
         ("new_water_km2", float(new_water.sum() * K.PIXEL_KM2), "km2", "new open water on flat ground, outside permanent water"),
         ("new_water_patches", int(_count(new_water)), "count", "separate new-water patches"),
         ("rise_km2", float(rise.sum() * K.PIXEL_KM2), "km2", "reservoirs and rivers rising into ground JRC has seen wet before"),
         ("flood_km2", float(flood.sum() * K.PIXEL_KM2), "km2", "new water where JRC never recorded water (1984-2021)"),
         ("flood_patches", int(_count(flood)), "count", "separate flood patches"),
-        ("receded_km2", float(receded.sum() * K.PIXEL_KM2), "km2", "water on 28 Jun that is gone on 10 Jul (outside permanent water)"),
+        ("receded_km2", float(receded.sum() * K.PIXEL_KM2), "km2", f"water on {labels[0]} that is gone on {labels[1]} (outside permanent water)"),
         ("brighter_flat_km2", float(brighter.sum() * K.PIXEL_KM2), "km2", "possible water under trees or between buildings (not counted as flood)"),
     ]
     layers = dict(hh_before=hh_b, hh_after=hh_a, hv_before=hv_b, hv_after=hv_a, ratio=ratio,
                   water_before=water_b, water_after=water_a, new_water=new_water, rise=rise, flood=flood,
                   receded=receded,
                   brighter=brighter, permanent=perm, valid=valid)
-    if write:
-        C.DERIVED.mkdir(parents=True, exist_ok=True)
-        with open(C.DERIVED / "water_stats.csv", "w", newline="") as fh:
-            w = csv.writer(fh)
-            w.writerow(["metric", "value", "unit", "meaning"])
-            for m, v, u, why in stats:
-                w.writerow([m, round(v, 4) if isinstance(v, float) else v, u, why])
-        for k, v in layers.items():
-            K.save_layer(k, v)
-        feats = K.patches_to_features(new_water, lambda r: {
-            "kind": "flood" if not (r & near_seen).any() else "rise",
-            "area_ha": round(float(r.sum() * K.PIXEL_HA), 2),
-            "drop_db": round(float(np.nanmean(ratio[r])), 1)})
-        K.write_json(C.DERIVED / "new_water.geojson", {"type": "FeatureCollection", "features": feats})
-    return {m: v for m, v, *_ in stats}, layers
+    return stats, layers, near_seen
+
+
+def _write(stats, layers, near_seen):
+    new_water, ratio = layers["new_water"], layers["ratio"]
+    C.DERIVED.mkdir(parents=True, exist_ok=True)
+    with open(C.DERIVED / "water_stats.csv", "w", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["metric", "value", "unit", "meaning"])
+        for m, v, u, why in stats:
+            w.writerow([m, round(v, 4) if isinstance(v, float) else v, u, why])
+    for k, v in layers.items():
+        K.save_layer(k, v)
+    feats = K.patches_to_features(new_water, lambda r: {
+        "kind": "flood" if not (r & near_seen).any() else "rise",
+        "area_ha": round(float(r.sum() * K.PIXEL_HA), 2),
+        "drop_db": round(float(np.nanmean(ratio[r])), 1)})
+    K.write_json(C.DERIVED / "new_water.geojson", {"type": "FeatureCollection", "features": feats})
 
 
 def _count(mask):

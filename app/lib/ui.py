@@ -90,6 +90,23 @@ T = {
     "legend_rise": {"en": "Reservoirs and rivers rising", "mr": "धरणे आणि नद्या वाढल्या"},
     "slides": {"en": "likely slide zones on slopes steeper than 15°, {high} of them high confidence",
                "mr": "१५° पेक्षा जास्त उताराच्या भागात संभाव्य भूस्खलन क्षेत्रे, त्यापैकी {high} उच्च खात्रीची"},
+    "xt_good": {"en": "of the slide zones that a second NISAR track could see were found by it too, "
+                      "{lift}× more often than chance",
+                "mr": "दुसऱ्या निसार मार्गाला दिसू शकलेल्या भूस्खलन क्षेत्रांपैकी तिथेही सापडलेली क्षेत्रे, योगायोगापेक्षा "
+                      "{lift}× जास्त वेळा"},
+    "xt_weak": {"en": "of the slide zones that a second NISAR track could see were found by it too, about what "
+                      "chance would give: treat single-track zones with extra care",
+                "mr": "दुसऱ्या निसार मार्गाला दिसू शकलेल्या भूस्खलन क्षेत्रांपैकी तिथेही सापडलेली क्षेत्रे, साधारण "
+                      "योगायोगाइतकी: एकाच मार्गावरील क्षेत्रे काळजीपूर्वक तपासा"},
+    "xt_story_good": {"en": "A second NISAR track, passing on {b} and {a} from a different orbit, found {c} of the {n} "
+                            "zones it could see on its own: {lift}× more often than chance.",
+                      "mr": "{b} आणि {a} रोजी वेगळ्या कक्षेतून गेलेल्या दुसऱ्या निसार मार्गाने, त्याला दिसू शकलेल्या "
+                            "{n} पैकी {c} क्षेत्रे स्वतंत्रपणे शोधली: योगायोगापेक्षा {lift}× जास्त वेळा."},
+    "xt_story_weak": {"en": "A second NISAR track, passing on {b} and {a}, found only {c} of the {n} zones it could see, "
+                            "about what chance would give, so treat each zone as a lead to check.",
+                      "mr": "{b} आणि {a} रोजी गेलेल्या दुसऱ्या निसार मार्गाने त्याला दिसू शकलेल्या {n} पैकी फक्त {c} "
+                            "क्षेत्रे शोधली, साधारण योगायोगाइतकी; म्हणून प्रत्येक क्षेत्र तपासण्याजोगे समजा."},
+    "xt_col": {"en": "Second track", "mr": "दुसरा मार्ग"},
     "brighter": {"en": "where water may be hiding under trees or between buildings (not counted as flood)",
                  "mr": "जिथे झाडांखाली किंवा इमारतींमध्ये पाणी असू शकते (पुरात मोजलेले नाही)"},
     "matched": {"en": "of reported events that radar could observe were matched by a detection",

@@ -2,7 +2,7 @@
 Story text for the app's Story page (Urvashi owns this file; U4/U6).
 Rules: one "## " heading per step, in order. Keep each step under 90 words.
 Numbers ONLY as {placeholders}; the app fills them from data/derived/metrics.json.
-Available: {new_water_km2} {new_water_patches} {rise_km2} {flood_km2} {flood_patches} {slide_zones} {slide_high} {brighter_km2}
+Available: {crosstrack_sentence} (a whole sentence, empty when there is no second-track check) {new_water_km2} {new_water_patches} {rise_km2} {flood_km2} {flood_patches} {slide_zones} {slide_high} {brighter_km2}
 {flood_hits} {flood_observable} {slide_hits} {slide_observable} {before} {after}
 -->
 
@@ -27,7 +27,7 @@ rivers and the low ground east of the Ghats.
 Between the two passes, the reservoirs and rivers that feed Pune rose: {rise_km2} km² of new water along
 their edges. Where no water had been recorded since 1984, {flood_km2} km² of flood water was still standing
 on {after}. On the steep slopes we found {slide_zones} likely slide zones, {slide_high} of them high confidence:
-places where the ground stopped matching itself between passes and the radar signal jumped. White markers are
+places where the ground stopped matching itself between passes and the radar signal jumped. {crosstrack_sentence} White markers are
 events reported in the news; click one to see its source.
 
 ## What radar could not see

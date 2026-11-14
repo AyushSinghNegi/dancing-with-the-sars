@@ -33,7 +33,17 @@ def numbers() -> dict:
         "slide_hits": n(v("validation.slide.hits"), 0),
         "slide_observable": n(v("validation.slide.observable"), 0),
         "before": fmt_date(before), "after": fmt_date(after),
+        "crosstrack_sentence": _crosstrack_sentence(fmt_date),
     }
+
+
+def _crosstrack_sentence(fmt_date) -> str:
+    xt = data.crosstrack()
+    if not xt:
+        return ""
+    return ui.t("xt_story_good" if xt["good"] else "xt_story_weak", b=fmt_date(xt["pair"]["before"]),
+                a=fmt_date(xt["pair"]["after"]), c=ui.fmt_num(xt["confirmed"], 0), n=ui.fmt_num(xt["scored"], 0),
+                lift=ui.fmt_num(xt["lift"] or 0, 0))
 
 
 def steps() -> list[tuple[str, str]]:
@@ -47,5 +57,6 @@ def steps() -> list[tuple[str, str]]:
         body = " ".join(line.strip() for line in body.strip().splitlines())
         for k, val in nums.items():
             body = body.replace("{" + k + "}", str(val))
+        body = re.sub(r"\s{2,}", " ", body).strip()
         out.append((head.strip(), body))
     return out

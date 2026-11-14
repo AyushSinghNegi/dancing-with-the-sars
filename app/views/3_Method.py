@@ -43,10 +43,17 @@ st.markdown(f"""
    (vegetation stripped, rough debris). Each zone gets a 0 to 1 score from slope, radar change and coherence loss.
 6. **Check against reports.** Reported floods and landslides (news and official sources, linked) are matched to
    detections within 500 m (floods) or 750 m (slides), or the report's own location precision if larger.
+7. **Check with a second track.** When the files are processed, the same slide rule runs on an independent NISAR
+   pair from another orbit (track 106, 3 to 15 July, which also spans the rain peak). A real slope failure
+   changes the ground for good, so it should show in both; speckle or a geometry artefact of one orbit usually
+   does not. Chance level comes from moving every zone to random steep, dry places and repeating the test.
 """)
 
 st.markdown("## Data")
-rows = [{"Data": f"NISAR L2 {('GCOV' if s['role'] != 'pair' else 'GUNW')} ({s['role']})",
+ROLE = {"before": "before, track 034", "after": "after, track 034", "pair": "coherence, track 034",
+        "check_before": "second-track check, before, track 106", "check_after": "second-track check, after, track 106",
+        "check_pair": "second-track check, coherence, track 106"}
+rows = [{"Data": f"NISAR L2 {'GUNW' if s['role'].endswith('pair') else 'GCOV'} ({ROLE.get(s['role'], s['role'])})",
          "File": s["granule_id"], "Valid share of box": f"{s['valid_fraction']:.0%}", "Link": s["url"]}
         for s in m.get("sources", [])]
 rows += [
@@ -55,9 +62,11 @@ rows += [
     {"Data": "Elevation and slope", "File": "Copernicus GLO-30 DEM (ESA)", "Valid share of box": "",
      "Link": "https://registry.opendata.aws/copernicus-dem/"},
 ]
-if data.rainfall() is not None:
-    rows.append({"Data": "Daily rainfall", "File": "GPM IMERG daily (NASA GES DISC, via Giovanni)",
-                 "Valid share of box": "", "Link": "https://giovanni.gsfc.nasa.gov/"})
+rain = data.rainfall()
+if rain is not None:
+    src = str(rain["source"].iloc[0]) if "source" in rain else "daily rainfall"
+    link = "https://power.larc.nasa.gov/" if "POWER" in src else "https://giovanni.gsfc.nasa.gov/"
+    rows.append({"Data": "Daily rainfall", "File": src, "Valid share of box": "", "Link": link})
 st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True,
              column_config={"Link": st.column_config.LinkColumn("Link")})
 
@@ -76,6 +85,35 @@ if val is not None and len(val):
                  column_config={"source_url": st.column_config.LinkColumn("source")})
 else:
     st.info("Runs once `data/reference/events.geojson` exists.")
+
+xt = data.crosstrack()
+if xt:
+    st.markdown("## Second-track check")
+    c, ch = xt["status_counts"], xt.get("chance", {})
+    pb, pa = (data.nice_date(xt["pair"][k], False) for k in ("before", "after"))
+    st.markdown(
+        f"Same slide rule, run on NISAR track {xt['pair']['track']} ({pb} to {pa}). A track-034 zone counts as "
+        f"**found again** when a track-{xt['pair']['track']} zone lies within {xt['buffer_m']:.0f} m (allowing for "
+        "small position differences between orbits). **Partial** means only one piece of the evidence is there "
+        "(coherence loss or the backscatter jump): that alone is common in the monsoon, so we do not count it.")
+    tbl = pd.DataFrame([
+        {"": "Our zones", "Found again": str(c.get("confirmed", 0)), "Partial": str(c.get("partial", 0)),
+         "Not seen": str(c.get("not seen", 0)), "Not covered by track 106": str(c.get("not covered", 0)),
+         "Found-again rate": f"{xt['real']['confirmed']:.0%}"},
+        {"": f"Same zones moved to random steep places ({ch.get('trials', 0)} trials)", "Found again": "",
+         "Partial": "", "Not seen": "", "Not covered by track 106": "",
+         "Found-again rate": f"{(ch.get('confirmed') or 0):.1%}"},
+    ])
+    st.dataframe(tbl, hide_index=True, use_container_width=True)
+    if xt["lift"] is not None:
+        st.markdown(f"Our zones were found again **{xt['lift']:.0f}× more often than chance**." if xt["good"] else
+                    f"Our zones were found again about as often as chance ({xt['lift']:.1f}×), so single-track "
+                    "zones need ground checks before anyone relies on them.")
+    by = xt.get("status_by_confidence") or {}
+    if by:
+        st.caption("By confidence: " + "; ".join(
+            f"{k}: {v.get('confirmed', 0)} of {v.get('confirmed', 0) + v.get('partial', 0) + v.get('not seen', 0)} "
+            "found again" for k, v in sorted(by.items(), key=lambda kv: ["high", "medium", "low"].index(kv[0]))))
 
 st.markdown("## Limits")
 st.markdown(f"""

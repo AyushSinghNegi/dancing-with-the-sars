@@ -39,9 +39,9 @@ with visual:
         if rain is not None:
             st.plotly_chart(charts.rainfall(rain, before, after, passes=data.passes()), use_container_width=True,
                             config={"displayModeBar": False})
-            st.caption(ui.t("rain_caption", src=rain["source"].iloc[0] if "source" in rain else "GPM IMERG"))
+            st.caption(ui.t("rain_caption", src=rain["source"].iloc[0] if "source" in rain else "see Method"))
         else:
-            st.info("Rainfall chart appears here once `data/reference/rainfall.csv` (GPM IMERG daily) is added.")
+            st.info("Rainfall chart appears here once `data/reference/rainfall.csv` is added.")
     elif i == 1:
         st.markdown(
             f"""<svg viewBox="0 0 560 300" width="100%" role="img" aria-label="Radar pulses pass through cloud; a camera sees only cloud">

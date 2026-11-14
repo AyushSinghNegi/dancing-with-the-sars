@@ -128,3 +128,34 @@ def test_gcov_mask_zero_and_255_are_dropped(tmp_path):
         _tiny_gcov(p, mask_value=value)
         arrays, _ = io.read_gcov(str(p))
         assert np.isnan(arrays["HHHH"]).all()
+
+
+def test_crosstrack_classify_statuses():
+    from pipeline.crosstrack import STATUSES, classify
+    ids = np.zeros((20, 20), np.int64)
+    ids[2:4, 2:4] = 1        # second track has a zone here      -> confirmed
+    ids[2:4, 10:12] = 2      # only one piece of evidence         -> partial
+    ids[10:12, 2:4] = 3      # good data, nothing                 -> not seen
+    ids[10:12, 10:12] = 4    # no second-track data               -> not covered
+    z2 = np.zeros((20, 20), bool); z2[3, 3] = True
+    ev = np.zeros((20, 20), bool); ev[2, 11] = True; ev[3, 3] = True
+    cov = np.ones((20, 20), bool); cov[10:12, 10:12] = False
+    st, size = classify(ids, 4, z2, ev, cov)
+    assert [STATUSES[s] for s in st] == ["confirmed", "partial", "not seen", "not covered"]
+    assert list(size) == [4, 4, 4, 4]
+
+
+def test_crosstrack_chance_is_low_for_sparse_second_track():
+    from pipeline.crosstrack import chance_rates
+    rng = np.random.default_rng(0)
+    ids = np.zeros((200, 200), np.int64)
+    for i in range(1, 21):
+        r, c = rng.integers(5, 195, 2)
+        ids[r:r + 2, c:c + 2] = i
+    z2 = ids > 0                     # second track agrees exactly at the real places...
+    ev = z2.copy()
+    cov = np.ones_like(z2)
+    elig = np.ones_like(z2)
+    counts = chance_rates(ids, 20, elig, z2, ev, cov, trials=40)
+    # ...so moved 2+ km away the zones should almost never land on a second-track zone.
+    assert counts[0] / counts[:3].sum() < 0.1

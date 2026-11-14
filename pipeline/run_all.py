@@ -15,9 +15,9 @@ import time
 from . import common as K
 from . import config as C
 from . import nisar_io as io
-from . import render, slide_zones, timeline, validate, water
+from . import crosstrack, render, slide_zones, timeline, validate, water
 
-VERSION = "0.3.0"
+VERSION = "0.4.0"
 
 
 def main(argv=None):
@@ -47,6 +47,8 @@ def main(argv=None):
         print(f"      skipped: {e}")
     print("[run] validation", flush=True)
     vsum, _ = validate.run()
+    print("[run] second-track check (track 106)", flush=True)
+    xt = crosstrack.run()
     print("[run] timeline", flush=True)
     tl = timeline.run()
     print("[run] render", flush=True)
@@ -61,6 +63,13 @@ def main(argv=None):
             sources.append({"role": key, "granule_id": gid, "valid_fraction": m["valid_fraction"],
                             "native_spacing_m": m.get("source_spacing_m"), "multilook": m.get("multilook"),
                             "url": C.find(gid).url})
+    for key in ("before", "after", "pair") if xt else ():
+        gid = C.CROSSCHECK[key]
+        m = man.get(io.crop_name(gid))
+        if m:
+            sources.append({"role": f"check_{key}", "granule_id": gid, "valid_fraction": m["valid_fraction"],
+                            "native_spacing_m": m.get("source_spacing_m"), "multilook": m.get("multilook"),
+                            "url": C.find(gid).url})
     meta = {
         "demo": C.IS_DEMO,
         "demo_note": "SYNTHETIC radar values for development; not NISAR data" if C.IS_DEMO else None,
@@ -73,6 +82,9 @@ def main(argv=None):
                        "coherence_low": C.COHERENCE_LOW, "min_patch_pixels": C.MIN_PATCH_PIXELS},
         "sources": sources,
         "water": wstats, "slides": sz, "validation": vsum, "timeline_dates": len(tl),
+        "crosstrack": None if not xt else {k: xt[k] for k in ("pair", "status_counts", "status_by_confidence",
+                                                              "real", "chance", "lift_confirmed", "buffer_m",
+                                                              "zones_track106", "valid_fraction")},
         **rend,
     }
     K.write_json(C.DERIVED / "bounds.json", {"bounds_latlon": rend["bounds_latlon"], "demo": C.IS_DEMO,
