@@ -77,8 +77,8 @@ that could not be independently read. All coordinates remain approximate supplie
 locations. The Patan report has an unresolved Lohagad/Visapur naming difference.
 Neither nearby detections nor missing detections establish a cause or absence of damage.
 
-The supplied rainfall is NASA POWER/MERRA-2. IMERG replacement is Urvashi's input
-work and has not been represented as complete. The optional 10–22 July GUNW is not
+This branch's recorded run uses NASA POWER/MERRA-2. Current main now contains
+Urvashi's IMERG input; it has not yet been integrated or rerun on this branch. The optional 10–22 July GUNW is not
 required for the primary case and is not part of this run.
 
 ## Method details
@@ -112,8 +112,10 @@ these limits so viewers can see what the data supports.
 ## Team delivery
 
 `data/derived/` is the app hand-off; `docs/PULL_REQUEST.md` contains the prepared
-review description. GitHub push/PR requires local write authentication, requested
-from the user. No direct team message or email has been sent.
+review description. Branch `rsn/pipeline` is published in
+[draft PR #9](https://github.com/AyushSinghNegi/dancing-with-the-sars/pull/9).
+Current main has advanced with other pipeline, app and content changes; integration
+and combined validation remain outstanding. No direct team message or email has been sent.
 
 Editable diagrams: [pipeline](rsn-pipeline.drawio), [radar through cloud](radar-clouds.drawio).
 The Story SVG is exported from draw.io with the editable model embedded:

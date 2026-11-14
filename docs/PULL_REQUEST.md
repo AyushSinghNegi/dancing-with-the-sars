@@ -26,3 +26,17 @@ Remaining review limitations: R5 water calibration, approximate report locations
 rainfall is correctly labeled POWER/MERRA-2; an IMERG replacement is not included.
 
 Review docs/RSN-HANDOFF.md and docs/REAL-DATA-RUN.md before interpreting figures.
+
+## Integration status against current main
+
+This branch was implemented from commit `33d867d`. At publication, `main` had
+advanced to `dce5fa0` with app hardening/content integration, IMERG rainfall,
+Kittler–Illingworth water classification and a second-track check. Those changes
+have not been integrated or tested with this branch. The POWER rainfall limitation
+above describes this branch's recorded run, not the current main branch.
+
+Keep this PR in draft until overlapping pipeline, generated data and app changes
+are reconciled and the combined implementation is rerun. Do not combine the
+scientific results from the two methods or discard upstream content during merging.
+All six required raw originals are downloaded locally (31.013 GB); only their
+verification inventory and eligible cropped/derived outputs are committed.

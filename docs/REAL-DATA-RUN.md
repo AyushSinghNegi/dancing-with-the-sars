@@ -111,6 +111,7 @@ no independent checksum was available. Local receipts are in ignored `data/raw/`
 `data/crops/raw_download_status.json` records the verified inventory.
 
 The hand-off and video wording are in [RSN-HANDOFF.md](RSN-HANDOFF.md).
-Implementation is reviewable; scientific clearance of R5 and GitHub publishing
-remain outstanding. Optional secondary GUNW is not processed; supplied rainfall
-remains correctly labelled NASA POWER/MERRA-2, not IMERG.
+Implementation is published in [draft PR #9](https://github.com/AyushSinghNegi/dancing-with-the-sars/pull/9).
+Scientific clearance of R5 and reconciliation with newer main-branch changes
+remain outstanding. Optional secondary GUNW is not processed. This recorded run
+uses NASA POWER/MERRA-2; the newer IMERG input on main has not been integrated here.
