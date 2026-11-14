@@ -1,0 +1,86 @@
+{
+  "generated": "2026-11-14T19:00:50+00:00",
+  "main_dem": "Copernicus GLO-30 DEM (ESA / Airbus), distributed via AWS Open Data",
+  "check_dem": "NASADEM_HGT.001 (NASA/USGS), doi:10.5067/MEASURES/NASADEM/NASADEM_HGT.001; tiles n18e073, n18e074; on the 40 m analysis grid (prepared by RSN, rsn/pipeline)",
+  "check_dem_url": "https://doi.org/10.5067/MEaSUREs/NASADEM/NASADEM_HGT.001",
+  "buffer_m": 80.0,
+  "slope": {
+    "median_abs_diff_deg": 1.0,
+    "correlation": 0.966,
+    "band_agreement": 0.82,
+    "band_share_main": 0.235,
+    "band_share_nasadem": 0.216
+  },
+  "zones_main": 50,
+  "zones_nasadem": 68,
+  "found": 35,
+  "not_found": 15,
+  "not_found_reasons": {
+    "steeper than 45\u00b0 in NASADEM": 6,
+    "gentler than 15\u00b0 in NASADEM": 6,
+    "radar layover or shadow in NASADEM": 2,
+    "near the edge of the slope band in NASADEM": 1
+  },
+  "by_confidence": {
+    "high": {
+      "found": 7,
+      "zones": 8
+    },
+    "medium": {
+      "found": 10,
+      "zones": 15
+    },
+    "low": {
+      "found": 18,
+      "zones": 27
+    }
+  },
+  "new_in_nasadem": 33,
+  "found_and_second_track": 1,
+  "reported_slides": [
+    {
+      "id": "E001",
+      "place": "Patan village near the Bhaja Caves, Maval",
+      "main": "miss",
+      "main_nearest_zone": "SZ009",
+      "main_distance_m": 1330,
+      "nasadem": "miss",
+      "nasadem_distance_m": 1330
+    },
+    {
+      "id": "E002",
+      "place": "Missing Link, Tunnel 2 exit (Pune-Mumbai lane), Khandala",
+      "main": "hit",
+      "main_nearest_zone": "SZ030",
+      "main_distance_m": 1612,
+      "nasadem": "miss",
+      "nasadem_distance_m": 2896
+    },
+    {
+      "id": "E003",
+      "place": "Railway, Khandala to Monkey Hill (Bhor Ghat)",
+      "main": "hit",
+      "main_nearest_zone": "SZ030",
+      "main_distance_m": 1901,
+      "nasadem": "miss",
+      "nasadem_distance_m": 2367
+    },
+    {
+      "id": "E006",
+      "place": "Pabe Ghat road, Velhe",
+      "main": "miss",
+      "main_nearest_zone": "SZ049",
+      "main_distance_m": 9133,
+      "nasadem": "miss",
+      "nasadem_distance_m": 5195
+    }
+  ],
+  "reported_slide_hits": {
+    "main": 2,
+    "nasadem": 0,
+    "scored": 4,
+    "main_hit_zones": [
+      "SZ030"
+    ]
+  }
+}

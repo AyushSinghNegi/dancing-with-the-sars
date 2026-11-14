@@ -201,6 +201,14 @@ T = {
     "matched_slides": {"en": "reported landslides that radar could observe had a detection nearby",
                        "mr": "रडारला दिसू शकणाऱ्या नोंदवलेल्या भूस्खलनांजवळ शोध लागला"},
     "x_of_y": {"en": "{x} of {y}", "mr": "{y} पैकी {x}"},
+    "and_join": {"en": "{a} and {b}", "mr": "{a} आणि {b}"},
+    "slide_fragile_one": {"en": "Both landslide matches are to the same zone, {d} km from the reports, and neither holds "
+                                "when the slide rule uses NASA's NASADEM elevation map instead (see Method).",
+                          "mr": "दोन्ही भूस्खलन जुळण्या एकाच क्षेत्राशी आहेत, नोंदींपासून {d} किमी अंतरावर, आणि त्याऐवजी "
+                                "नासाचा NASADEM उंची नकाशा वापरल्यास त्यापैकी एकही टिकत नाही (पद्धत पान पाहा)."},
+    "slide_fragile": {"en": "With NASA's NASADEM elevation map instead, {k} of {n} landslide matches hold (see Method).",
+                      "mr": "त्याऐवजी नासाचा NASADEM उंची नकाशा वापरल्यास {n} पैकी {k} भूस्खलन जुळण्या टिकतात "
+                            "(पद्धत पान पाहा)."},
     "fell_short": {"en": "Where radar fell short, and why", "mr": "रडार कुठे कमी पडले आणि का"},
     "rain_caption": {"en": "Daily rainfall averaged over the study box. Source: {src}.",
                      "mr": "अभ्यास क्षेत्रातील सरासरी रोजचा पाऊस. स्रोत: {src}."},

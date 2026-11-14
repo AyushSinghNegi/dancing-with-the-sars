@@ -3,7 +3,8 @@
   python -m pipeline.run_all                     # real crops in data/crops -> data/derived
   MONSOONLENS_DEMO=1 python -m pipeline.run_all --synthetic   # synthetic, into data/demo only
 
-Order: water (R5) -> slide zones (R6) -> validation (R9) -> timeline (R8) ->
+Order: water (R5) -> slide zones (R6) -> validation (R9) -> second-track and elevation-map checks ->
+timeline (R8) ->
 render overlays -> bounds.json + metrics.json (provenance for every number).
 """
 from __future__ import annotations
@@ -15,9 +16,9 @@ import time
 from . import common as K
 from . import config as C
 from . import nisar_io as io
-from . import crosstrack, render, slide_zones, timeline, validate, water
+from . import crosstrack, dem_check, render, slide_zones, timeline, validate, water
 
-VERSION = "0.4.0"
+VERSION = "0.5.0"
 
 
 def main(argv=None):
@@ -49,6 +50,8 @@ def main(argv=None):
     vsum, _ = validate.run()
     print("[run] second-track check (track 106)", flush=True)
     xt = crosstrack.run()
+    print("[run] elevation-map check (NASADEM)", flush=True)
+    dc = dem_check.run()
     print("[run] timeline", flush=True)
     tl = timeline.run()
     print("[run] render", flush=True)
@@ -89,6 +92,7 @@ def main(argv=None):
                                                               "real", "chance", "lift_confirmed", "p_value", "buffer_m",
                                                               "zones_track106", "valid_fraction",
                                                               "scene_shift_db", "water_reliable")},
+        "dem_check": None if not dc else {k: v for k, v in dc.items() if k != "generated"},
         **rend,
     }
     K.write_json(C.DERIVED / "bounds.json", {"bounds_latlon": rend["bounds_latlon"], "demo": C.IS_DEMO,

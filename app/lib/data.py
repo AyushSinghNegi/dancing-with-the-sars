@@ -144,7 +144,7 @@ def _downloads(v: str) -> list[tuple[str, str, int]]:
     d = Path(s["dir"])
     files = [d / rel for rel in metrics().get("downloads", {}).values()]
     files += [d / n for n in ("slide_zones.geojson", "new_water.geojson", "validation.csv", "water_stats.csv",
-                              "crosstrack.json", "metrics.json")]
+                              "crosstrack.json", "dem_check.json", "metrics.json")]
     dst = STATIC / s["key"] / "downloads"
     dst.mkdir(parents=True, exist_ok=True)
     out = []

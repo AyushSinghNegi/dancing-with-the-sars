@@ -60,10 +60,11 @@ open the link before the line goes on a slide, or drop the line.
 |---|---|
 | New water 8.888 km²; rise 8.523 km²; flood 0.365 km² in 30 patches | `metrics.json` → `water` |
 | 50 zones, 8 high, 15 medium | `metrics.json` → `slides` |
-| Data: NISAR GCOV and GUNW; GPM IMERG; JRC Global Surface Water v1.4; Copernicus GLO-30 DEM | `CONTEXT.md`, `data/reference/SOURCES.md` |
+| Data: NISAR GCOV and GUNW; GPM IMERG; JRC Global Surface Water v1.4; Copernicus GLO-30 DEM; NASADEM (check only) | `CONTEXT.md`, `data/reference/SOURCES.md` |
+| Elevation-map check: 35 of 50 zones, 7 of 8 high; landslide matches 2 → 0 of 4 | `metrics.json` → `dem_check` |
 
-Note for the project page: the game plan lists NASADEM for slope, but the pipeline uses the
-Copernicus GLO-30 DEM. List what was actually used.
+Note for the project page: slope comes from the Copernicus GLO-30 DEM (ESA). NASADEM (NASA) is used
+only for the elevation-map check. List both, and do not list Copernicus under NASA data.
 
 ## 4. Demo
 
@@ -82,7 +83,8 @@ The 3-minute script is written in U7 from the game plan's table, with the real c
 
 - 18 reported events, each with a linked source.
 - Floods: 4 of 10 that radar could observe had a detection nearby.
-- Landslides: 2 of 4.
+- Landslides: 2 of 4, both matched to one zone 1.6 and 1.9 km away; neither holds with NASA's NASADEM elevation map.
+- With NASADEM instead of Copernicus, 35 of 50 zones are found again (7 of 8 high confidence).
 - A second NISAR track (106, 3 to 15 July) found 2 of 12 zones again: about 8 times chance.
 
 `[IMG]` Validation table (event, date, detected, reason if missed).
