@@ -15,7 +15,6 @@ Last updated 14 Nov 2026 (Urvashi on `urvashi/content`; Claude for Ayush on `cla
 
 | # | Priority | Open point | Next step |
 |---|---|---|---|
-| P01 | High | **Slide 1 figures, half checked.** Punekar News (7 July 2026, `?p=239349`, opened 15 Nov) says "22 landslides of varying intensity have been reported across Pune district", four people died in two days and two are missing. It does **not** give "6,000+ evacuated": it gives about 5,000 residents shifted by Pimpri Chinchwad, 300 evacuated by Pune city, 568 rescued, and "thousands" shifted overall. | Use "22 landslides, 4 dead, 2 missing" with the link; replace "6,000+ evacuated" with "thousands moved to safety (about 5,000 in Pimpri Chinchwad alone)". |
 | P05 | Medium | **Other game-plan facts not yet opened:** "schools closed in seven talukas" and "500-600 mm of rain in a few days". | Open the source before either is used anywhere. |
 | P06 | Medium | **"Flood water had two days to drain" is an inference.** We know the rain stopped; we have no measurement of how much water drained. On 8 July a source said dam discharge might be increased, so river flooding did not simply follow the rain. | Keep the wording modest; do not write "most flood water had drained" (the video still does, see P24). |
 
@@ -24,7 +23,6 @@ Last updated 14 Nov 2026 (Urvashi on `urvashi/content`; Claude for Ayush on `cla
 | # | Priority | Open point | Next step |
 |---|---|---|---|
 | P07 | High | **E016 may not be a real hit.** It counts as detected on the Chakan town-centre point, 1,465 m from the detection with a 1,500 m tolerance. The source places the flooding near Waki Khurd village, which OpenStreetMap does not list. | Urvashi: find Waki Khurd on a map and move the point if needed. RSN: re-run validation. Floods would be 3 of 10 if it fails. |
-| P08 | High | **The Patan landslide is a miss, but the demo script points at it.** E001 (the house buried at Patan, the best-known event of the storm) is scored "not detected". The game plan's script says "Here's the Patan slide". | Rewrite that demo line, or find the exact slide location and re-run validation. |
 | P09 | High | **"22 reported landslides" versus 7 in our file.** The game plan promises a hit/miss table "against 22 reported landslides". We could locate 7, of which 4 were observable and 2 detected. | Say "the 7 we could locate" everywhere. |
 | P11 | Medium | **Small samples.** Floods 4 of 10, landslides 2 of 4, second track 2 of 12 zones (p = 0.026). | Always give counts, never percentages or "accuracy". |
 | P13 | Medium | **The second track covers little.** Track 106 sees 38% of the box; 38 of the 50 zones are not covered by it, and its water result is flagged unreliable in `metrics.json`. | Do not present it as confirming the whole map. |
@@ -32,7 +30,6 @@ Last updated 14 Nov 2026 (Urvashi on `urvashi/content`; Claude for Ayush on `cla
 | P17 | Low | **E006 date and place are loose.** The source gives no event date (7 July is the report date) and says "Velhe village"; the point is Pabe village, about 4 km away. | Accept, or find a better source. |
 | P18 | Low | **E018 is outside the storm window** (31 July). It is kept for context and not scored. | Decide whether to keep it. |
 | P19 | Low | **Regenerating the context layers gives a slightly different slope file** on another machine (1 pixel differs by 1 degree). | Do not commit regenerated `data/crops/aux_*.tif`. |
-| P40 | High | **Both landslide matches rest on one zone.** E002 and E003 are both matched to SZ030, 1.6 and 1.9 km away (inside the reports' 2 km location uncertainty). With NASADEM that zone falls in radar layover/shadow and the matches drop to 0 of 4. The Story and Method pages now say so. | Deck, video and project page: say "2 of 4, both to one zone, and not robust to the elevation map", or lead with the second-track result instead. |
 
 ## C. Rainfall
 
@@ -46,7 +43,6 @@ Last updated 14 Nov 2026 (Urvashi on `urvashi/content`; Claude for Ayush on `cla
 
 | # | Priority | Open point | Next step |
 |---|---|---|---|
-| P24 | High | **The video is out of date.** `video/make_video.py` labels the rain chart "(NASA POWER)", credits "Rain: NASA POWER", scales the chart to 160 mm/day (IMERG peaks near 180) and says "Most flood water drained before the radar came back". The rendered 30-second video was made with the old rainfall. | Ayush: update the four lines and re-render. |
 | P28 | Medium | **Legends do not name the NISAR file.** The design rule asks for unit, date and file ID on every layer; map legends show labels only, and the page footer shortens the file IDs. | Accept the Method page as the full list, or add IDs to the legends. |
 | P30 | Low | **Pitch line is not on the landing page.** The title is "What NISAR radar saw in the 2026 Pune monsoon", not "NISAR sees what monsoon clouds hide". | Ayush: decide. |
 | P31 | Low | **"What radar could not see" is 99 words**; the file's own limit is 90. | Trim. |
@@ -57,7 +53,6 @@ Last updated 14 Nov 2026 (Urvashi on `urvashi/content`; Claude for Ayush on `cla
 | # | Priority | Open point | Next step |
 |---|---|---|---|
 | P33 | High | **Submission Guide not read yet.** Video length limit, required fields and the rule on declaring AI tools are unknown. | Urvashi: read it before U7. |
-| P34 | Medium | **"Cameras saw only cloud" has limits.** Checked for NASA's four daily imagers only (not Sentinel-2 or Landsat). On 10 July, the day NISAR came back, they did see part of the ground. | Say "NASA's daily satellite images" and keep the claim to 3 to 8 July. |
 | P35 | Medium | **Marathi text is unchecked.** `content/story.mr.md` and the Marathi strings in `app/lib/ui.py` were drafted by an assistant. | A Marathi speaker reads them before submission. |
 | P37 | Low | **Slide links are placeholders.** `[LINK: live app]` and `[LINK: public repo]` in `content/slides.md`. | Ayush supplies them. |
 | P38 | Low | **Cloud contact sheet is low resolution**, and NASA's acknowledgement wording has not been checked. | Remake it for the slide; add the credit. |
@@ -86,3 +81,8 @@ Last updated 14 Nov 2026 (Urvashi on `urvashi/content`; Claude for Ayush on `cla
 | R17 | P02: seven events rested on unopened Punekar News links. | All five links opened on 15 Nov and they support the events: ?p=239157 (E001: landslide hit a house in Patan village near the Bhaja Caves, Maval, early on 6 July), ?p=238883 (E007: Varandha Ghat landslide in Shirgaon limits, Bhor, 3 July), ?p=239453 (E009: flooding in Bhimnagar, Shivane, 8 July; Khadakwasla releasing 27,203 cusecs), ?p=239170 (E010, E012, E013: Chikhli Defence Colony flooded, Ravet barrage overflowed, water entered houses in Akurdi, 6 July), ?p=239208 (E014: "Rahatani bridge closed due to flooding", 6 July). E001's place text now follows its source ("near the Bhaja Caves"; the article does not mention Lohagad). |
 | R18 | P03: "About 100 families shifted" (E010) had no opened source. | Punekar News ?p=239170: about 100 families from Chikhli Defence Colony and 10 from Keshavnagar were moved to municipal schools. |
 | R19 | P29: slope data is not NASA's. | Main run still uses Copernicus GLO-30 (credited as ESA everywhere). NASA's NASADEM (from RSN's branch, PR #9) now runs as a second-map check (`pipeline/dem_check.py`): 35 of 50 zones found again, 7 of 8 high confidence; 15 drop out because NASADEM puts them over 45°, under 15° or in radar layover/shadow; NASADEM adds 33 of its own. On the Method page, in the zone popups and in `dem_check.json`. |
+| R20 | P24: the video was out of date. | Re-rendered (`video/make_video.py`): rain chart is GPM IMERG Late Run with the scale set from the data (peak 180 mm on 5 July), end card credits IMERG, Worldview, JRC, Copernicus and NASADEM, and the "most flood water drained" line is gone (P06). New output is in the team's Submission folder. |
+| R21 | P34: "cameras saw only cloud" overreached. | Video, deck and project page now say "NASA's daily satellite images" and keep the claim to 3 to 8 July. The video draws the 3 to 8 July band from `cloud_check.json`. |
+| R22 | P01: slide 1 figures half checked. | Deck slide 2 and the project page use "22 landslides across Pune district, 4 dead and 2 missing" and "about 5,000 moved to safety in Pimpri Chinchwad alone", from Punekar News ?p=239349. "6,000+ evacuated" is not used anywhere. |
+| R23 | P40: both landslide matches rest on one zone. | The video, deck (validation slide and notes) and project page now lead with floods (4 of 10) and the second orbit, and say the 2 landslide matches point to one zone that NASADEM does not keep. |
+| R24 | P08: the demo script pointed at the Patan miss. | Our video and deck do not show Patan as a hit; the app lists it as a miss with its reason (ground gentler than 15°). |
