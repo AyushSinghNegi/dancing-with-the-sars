@@ -127,6 +127,48 @@ T = {
     "before": {"en": "Before", "mr": "आधी"},
     "after": {"en": "After", "mr": "नंतर"},
     "couldnt": {"en": "What radar could not see", "mr": "रडारला काय दिसले नाही"},
+    "lim_streets": {"en": "**Flooded streets between buildings.** Radar bounces off walls and back to the satellite, "
+                          "so a flooded street can look bright, not dark. {built_sentence}",
+                    "mr": "**इमारतींमधील पाण्याखालचे रस्ते.** रडार भिंतींवरून उपग्रहाकडे परत येते, त्यामुळे पाण्याखालचा "
+                          "रस्ता गडद न दिसता उजळ दिसू शकतो. {built_sentence}"},
+    "lim_built_all": {"en": "All {n} of the reported floods we missed were in built-up areas.",
+                      "mr": "आम्हाला न सापडलेले नोंदवलेले सर्व {n} पूर दाट वस्तीच्या भागात होते."},
+    "lim_built_some": {"en": "{k} of the {n} reported floods we missed were in built-up areas.",
+                       "mr": "आम्हाला न सापडलेल्या {n} नोंदवलेल्या पुरांपैकी {k} दाट वस्तीच्या भागात होते."},
+    "lim_timing": {"en": "**Water that came and went between passes.** The heaviest rain fell from {p1} to {p2}; "
+                         "NISAR looked on {b} and again on {a}. The map shows what was still standing on {a}, "
+                         "not the peak.",
+                   "mr": "**दोन निरीक्षणांच्या मधे आलेले आणि ओसरलेले पाणी.** सर्वात जास्त पाऊस {p1} ते {p2} दरम्यान "
+                         "पडला; निसारने {b} रोजी आणि पुन्हा {a} रोजी पाहिले. नकाशा {a} रोजी साचलेले पाणी दाखवतो, "
+                         "सर्वोच्च पातळी नाही."},
+    "lim_small": {"en": "**Small slides, and slides on gentle ground.** Our map has {res} m pixels and searches slopes "
+                        "of {smin}° to {smax}°. A slide the width of one house can slip through{gentle_part}.",
+                  "mr": "**लहान भूस्खलने आणि कमी उतारावरील भूस्खलने.** आमच्या नकाशातील प्रत्येक चौकोन {res} मीटरचा आहे "
+                        "आणि आम्ही {smin}° ते {smax}° उतार तपासतो. एका घराएवढ्या रुंदीचे भूस्खलन सुटू शकते{gentle_part}."},
+    "lim_gentle": {"en": ", and {n} reported landslides were on ground gentler than that",
+                   "mr": ", आणि नोंदवलेली {n} भूस्खलने याहून कमी उताराच्या जमिनीवर होती"},
+    "lim_hidden": {"en": "**Slopes hidden from the satellite.** About {pct}% of the steep ground faces away from the "
+                         "radar or folds over itself in the image. We leave those slopes out and do not guess.",
+                   "mr": "**उपग्रहापासून लपलेले उतार.** तीव्र उताराच्या जमिनीपैकी सुमारे {pct}% भाग रडारपासून दूर "
+                         "वळलेला आहे किंवा प्रतिमेत स्वतःवरच दुमडला जातो. असे उतार आम्ही वगळतो आणि अंदाज लावत नाही."},
+    "lim_early": {"en": "**Early data.** NASA has calibrated these NISAR products but validated them at only a "
+                        "limited number of sites so far. Our numbers will move as the data matures.",
+                  "mr": "**सुरुवातीचा डेटा.** नासाने ही निसार उत्पादने कॅलिब्रेट केली आहेत, पण आतापर्यंत मर्यादित "
+                        "ठिकाणीच त्यांची पडताळणी झाली आहे. डेटा परिपक्व होईल तसे आमचे आकडे बदलतील."},
+    "lim_lead": {"en": "Every likely slide zone is a lead to check on the ground, not a verdict: {u} of the {z} zones "
+                       "have no reported event within 2 km.",
+                 "mr": "प्रत्येक संभाव्य भूस्खलन क्षेत्र हा जमिनीवर तपासण्याचा संकेत आहे, निर्णय नाही: {z} पैकी {u} "
+                       "क्षेत्रांच्या 2 किमी परिसरात कोणतीही घटना नोंदवलेली नाही."},
+    "cloud_sentence": {"en": "From {f} to {t}, all {n} of NASA's daily satellite photos of the area showed only cloud.",
+                       "mr": "{f} ते {t} दरम्यान या भागाची नासाची रोजची सर्व {n} उपग्रह छायाचित्रे फक्त ढगांनी भरलेली होती."},
+    "cloud_caption": {"en": "NASA's daily satellite photos of our study area. Rows: {sensors}; columns: dates "
+                            "(month-day). From {f} to {t}, all {n} available photos show only cloud; on the radar "
+                            "days, {p1} and {p2}, the cloud was broken. Black: no photo of the area that day. "
+                            "Source: [NASA Worldview]({url}) (GIBS).",
+                      "mr": "आमच्या अभ्यास क्षेत्राची नासाची रोजची उपग्रह छायाचित्रे. ओळी: {sensors}; स्तंभ: तारखा "
+                            "(महिना-दिवस). {f} ते {t} दरम्यान उपलब्ध सर्व {n} छायाचित्रांत फक्त ढग आहेत; रडारच्या "
+                            "दिवशी, {p1} आणि {p2}, ढग विरळ होते. काळे: त्या दिवशी या भागाचे छायाचित्र नाही. "
+                            "स्रोत: [नासा वर्ल्डव्ह्यू]({url}) (GIBS)."},
     "demo": {"en": "<b>Demo data.</b> The radar values on this page are synthetic, made in NISAR's file format so the "
                    "app could be built before the real Pune files were processed. Terrain, rivers and reservoirs are "
                    "real; floods and slide zones are not.",
@@ -165,6 +207,17 @@ def english_only_note():
     if lang() == "mr":
         st.info("हे तांत्रिक पान सध्या बहुतांश इंग्रजीत आहे. आकडे आणि कथा मराठीत पाहण्यासाठी "
                 "मुख्य पान आणि कथा पाहा.")
+
+
+MONTHS = {"en": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+                  "November", "December"],
+          "mr": ["जानेवारी", "फेब्रुवारी", "मार्च", "एप्रिल", "मे", "जून", "जुलै", "ऑगस्ट", "सप्टेंबर", "ऑक्टोबर",
+                 "नोव्हेंबर", "डिसेंबर"]}
+
+
+def day(iso: str) -> str:
+    """'5 July' or '5 जुलै', in the page language."""
+    return f"{int(iso[8:10])} {MONTHS.get(lang(), MONTHS['en'])[int(iso[5:7]) - 1]}"
 
 
 def lang() -> str:
@@ -231,10 +284,17 @@ def legend(items):
 
 
 def sources_line():
-    srcs = data.metrics().get("sources", [])
+    """One short credit line; the full file list with links is on the Method page."""
+    m = data.metrics()
+    srcs = m.get("sources", [])
     if not srcs:
         return
-    names = ", ".join(f'<a href="{s["url"]}">{s["granule_id"][:31]}…{s["granule_id"][-31:-24]}</a>' for s in srcs)
-    st.markdown(f'<p class="ml-source">Radar: NISAR L2 provisional products {names} (NASA/JPL-Caltech, ISRO, via ASF DAAC). '
-                f'Built {data.metrics().get("generated", "")[:16].replace("T", " ")} UTC, pipeline '
-                f'v{data.metrics().get("pipeline_version", "")}.</p>', unsafe_allow_html=True)
+    tracks = sorted({s["granule_id"].split("_")[5] for s in srcs if s["granule_id"].count("_") > 5})
+    days = sorted({s["granule_id"].split("_A_")[-1][:8] if "_A_" in s["granule_id"] else "" for s in srcs} - {""})
+    when = f"{day(f'{days[0][:4]}-{days[0][4:6]}-{days[0][6:8]}')} to {day(f'{days[-1][:4]}-{days[-1][4:6]}-{days[-1][6:8]}')} {days[-1][:4]}" \
+        if days else ""
+    tr = ("track " if len(tracks) == 1 else "tracks ") + " and ".join(t.lstrip("0") or "0" for t in tracks)
+    st.markdown(f'<p class="ml-source">Radar: {len(srcs)} NISAR L2 provisional files, {tr}, {when} '
+                f'(NASA/JPL-Caltech and ISRO, via ASF DAAC); every file is linked on the Method page. '
+                f'Results built {m.get("generated", "")[:10]}, pipeline v{m.get("pipeline_version", "")}.</p>',
+                unsafe_allow_html=True)

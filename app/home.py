@@ -51,15 +51,26 @@ if (fo or 0) + (so or 0) > 0:
 st.markdown("".join(rows), unsafe_allow_html=True)
 
 st.markdown(f"## {ui.t('couldnt')}")
-st.markdown(
-    "- **Streets between tall buildings.** Radar bounces off walls and back to the satellite, so flooded city "
-    "streets can look bright, not dark. We mark those places as *possible water*, and never count them as flood.\n"
-    "- **Water that drained early.** The heaviest rain fell on 5 to 8 July, between NISAR passes on 4 and 10 July, "
-    "and had all but stopped by 9 July. Flood water had two days to drain before the radar came "
-    "back, so the map shows reservoirs filling and the flooding that was still standing.\n"
-    "- **Small slides.** Our map has 40 m pixels. A slide narrower than that can slip through.\n"
-    "- **Every detection is a lead, not a verdict.** Slide zones are places to check on the ground or in "
-    "local reports.")
+lim = data.limits()
+b_iso, a_iso = data.dates()
+bullets = []
+if lim["flood_miss"]:
+    built = ui.t("lim_built_all", n=lim["flood_miss"]) if lim["flood_miss_built"] == lim["flood_miss"] else \
+        ui.t("lim_built_some", k=lim["flood_miss_built"], n=lim["flood_miss"])
+    bullets.append(ui.t("lim_streets", built_sentence=built))
+if lim["peak"]:
+    bullets.append(ui.t("lim_timing", p1=ui.day(lim["peak"][0]), p2=ui.day(lim["peak"][1]), b=ui.day(b_iso),
+                        a=ui.day(a_iso)))
+if lim["res_m"]:
+    gentle = ui.t("lim_gentle", n=lim["slide_miss_gentle"]) if lim["slide_miss_gentle"] else ""
+    bullets.append(ui.t("lim_small", res=ui.fmt_num(lim["res_m"], 0), smin=ui.fmt_num(lim["slope_min"], 0),
+                        smax=ui.fmt_num(lim["slope_max"], 0), gentle_part=gentle))
+if lim["hidden_share"] is not None:
+    bullets.append(ui.t("lim_hidden", pct=ui.fmt_num(lim["hidden_share"] * 100, 0 if lim["hidden_share"] >= 0.1 else 1)))
+bullets.append(ui.t("lim_early"))
+st.markdown("\n".join(f"- {x}" for x in bullets))
+if lim["zones"]:
+    st.markdown(ui.t("lim_lead", u=lim["unreported"], z=lim["zones"]))
 st.page_link("views/3_Method.py", label="See how each number was made, and the full validation table",
              icon=":material/fact_check:")
 ui.sources_line()
