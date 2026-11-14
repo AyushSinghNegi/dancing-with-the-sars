@@ -218,3 +218,20 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ---- MonsoonLens ----
+# Never commit raw NISAR files, credentials or big intermediates
+data/raw/
+data/ancillary/
+data/demo/raw/
+data/demo/truth.npz
+**/_layers/
+*.h5
+*.he5
+*.part
+.netrc
+_netrc
+*.token
+.streamlit/secrets.toml
+app/static/layers/
+data/demo/crops/

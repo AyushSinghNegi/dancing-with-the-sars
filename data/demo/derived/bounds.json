@@ -1,0 +1,65 @@
+{
+  "bounds_latlon": [
+    [
+      18.144398141709033,
+      73.29252243906029
+    ],
+    [
+      18.905749508882934,
+      74.10422674600683
+    ]
+  ],
+  "demo": true,
+  "overlays": {
+    "hh_before": {
+      "file": "overlays/hh_before.png",
+      "legend": "Radar HH, 28 Jun (dark = smooth/water, bright = rough/buildings)",
+      "color": null
+    },
+    "hh_after": {
+      "file": "overlays/hh_after.png",
+      "legend": "Radar HH, 10 Jul",
+      "color": null
+    },
+    "rgb_before": {
+      "file": "overlays/rgb_before.png",
+      "legend": "Radar colour, 28 Jun (red HH, green HV, blue HH/HV)",
+      "color": null
+    },
+    "rgb_after": {
+      "file": "overlays/rgb_after.png",
+      "legend": "Radar colour, 10 Jul",
+      "color": null
+    },
+    "change": {
+      "file": "overlays/change.png",
+      "legend": "Change in HH, 28 Jun to 10 Jul (blue darker, red brighter)",
+      "color": null
+    },
+    "new_water": {
+      "file": "overlays/new_water.png",
+      "legend": "New open water on 10 Jul",
+      "color": "#2a78d6"
+    },
+    "brighter": {
+      "file": "overlays/brighter.png",
+      "legend": "Possible water under trees or between buildings",
+      "color": "#1baf7a"
+    },
+    "permanent": {
+      "file": "overlays/permanent.png",
+      "legend": "Permanent water (JRC, rivers and reservoirs)",
+      "color": "#b7d3f6"
+    },
+    "coherence": {
+      "file": "overlays/coherence.png",
+      "legend": "Radar coherence, 28 Jun to 10 Jul (dark = surface changed)",
+      "color": null
+    },
+    "slide_raster": {
+      "file": "overlays/slide_raster.png",
+      "legend": "Likely slide zones",
+      "color": "#eb6834"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+metric,value,unit,meaning
+valid_fraction,1.0,fraction,share of the box with radar data on both dates
+threshold_before_db,-15.7787,dB,"HH water threshold, 28 Jun (otsu-balanced-jrc)"
+threshold_after_db,-15.5111,dB,"HH water threshold, 10 Jul (otsu-balanced-jrc)"
+permanent_water_km2,172.0656,km2,JRC occurrence >= 50%
+permanent_water_seen_dark,0.9939,fraction,share of JRC permanent water that radar sees as water on 28 Jun
+water_before_km2,171.0208,km2,"all dark-water pixels, 28 Jun"
+water_after_km2,209.1904,km2,"all dark-water pixels, 10 Jul"
+new_water_km2,39.4784,km2,"new open water on flat ground, outside permanent water"
+new_water_patches,1063,count,separate new-water patches
+receded_km2,0.0,km2,water on 28 Jun that is gone on 10 Jul (outside permanent water)
+brighter_flat_km2,1.4128,km2,possible water under trees or between buildings (not counted as flood)
