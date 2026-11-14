@@ -4,6 +4,7 @@ Rules: one "## " heading per step, in order. Keep each step under 90 words.
 Numbers ONLY as {placeholders}; the app fills them from data/derived/metrics.json.
 Available: {crosstrack_sentence} {cloud_sentence} (whole sentences, empty when that check is missing) {new_water_km2} {new_water_patches} {rise_km2} {flood_km2} {flood_patches} {slide_zones} {slide_high} {brighter_km2}
 {flood_hits} {flood_observable} {slide_hits} {slide_observable} {before} {after}
+{res_first} {res_first_date} {res_peak} {res_peak_date} {res_last_clause} (timeline; the step is dropped when there are fewer than 3 dates)
 -->
 
 ## The rain
@@ -29,6 +30,11 @@ their edges. Where no water was recorded between 1984 and 2021, {flood_km2} km²
 on {after}. On the steep slopes we found {slide_zones} likely slide zones, {slide_high} of them high confidence:
 places where the ground stopped matching itself between passes and the radar signal jumped. {crosstrack_sentence} White markers are
 events reported in the news; click one to see its source.
+
+## The weeks after
+NISAR kept passing over Pune every 12 days. Seen from the same orbit, in the same radar mode, the surface of the
+area's rivers and reservoirs grew from {res_first} km² on {res_first_date} to {res_peak} km² on {res_peak_date}{res_last_clause}.
+The July storm was the start of the monsoon, not its end: the reservoirs west of Pune kept filling for weeks.
 
 ## What radar could not see
 Radar is not magic, and we show where it falls short. The heaviest rain fell on 5 to 8 July, between NISAR

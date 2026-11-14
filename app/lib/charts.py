@@ -57,6 +57,8 @@ def timeline(df: pd.DataFrame):
     d = df.copy()
     d["date"] = pd.to_datetime(d["date"])
     d = d.sort_values("date")
+    col = "water_in_jrc_extent_km2" if "water_in_jrc_extent_km2" in d else "water_km2"
+    d["water_km2"] = d[col]
     same = d[d["same_mode_as_primary"].astype(str).str.lower() == "true"]
     other = d[d["same_mode_as_primary"].astype(str).str.lower() != "true"]
     fig = go.Figure()
@@ -70,6 +72,6 @@ def timeline(df: pd.DataFrame):
                                  marker=dict(size=9, color="white", line=dict(color="#2a78d6", width=2)),
                                  hovertemplate="%{x|%d %b}: %{y:.1f} km² (different radar mode)<extra></extra>"))
     lo = max(0, float(d["water_km2"].min()) * 0.85)
-    fig.update_yaxes(title_text="खुले पाणी, चौ. किमी" if mr else "open water, km²",
+    fig.update_yaxes(title_text="पाण्याचा पृष्ठभाग, चौ. किमी" if mr else "water surface, km²",
                      range=[lo, float(d["water_km2"].max()) * 1.12])
     return _layout(fig, 300)

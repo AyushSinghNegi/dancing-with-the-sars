@@ -84,10 +84,12 @@ with tab_t:
         st.info("Daily rainfall appears here once `data/reference/rainfall.csv` is added.")
     tl = data.table("timeline.csv")
     if tl is not None and len(tl) > 1:
-        st.markdown("**Open water in the study area on each NISAR pass of this orbit (rivers and reservoirs included)**")
+        st.markdown("**Surface area of Pune's rivers and reservoirs on each NISAR pass of this orbit**")
         st.plotly_chart(charts.timeline(tl), width="stretch", config={"displayModeBar": False})
-        st.caption("Hollow markers: radar mode or polarisation differs from the June pass, so brightness is not "
-                   "directly comparable.")
+        st.caption("Dark water on each date, counted inside the area where the JRC record has seen water at least "
+                   "once (1984 to 2021), so rain-soaked fields are left out. Every point is the same orbit and radar "
+                   "mode; NISAR used a different mode on this orbit from 27 August to 2 October, so those passes are "
+                   "not shown.")
     else:
         st.info("The monsoon timeline appears once more NISAR dates are cropped (`python -m pipeline.crop --timeline`).")
 with tab_e:

@@ -145,9 +145,10 @@ st.markdown(f"""
 - **Same-mode rule.** From 27 August to 2 October NISAR imaged this track in a different mode (2005, quad-pol);
   14 October is back in the July mode. Brightness is only compared between passes with the same track, mode and
   polarisation.
-- **Water areas are underestimates.** On {data.nice_date(before)} only {(m.get('water', {}).get('permanent_water_seen_dark') or 0):.0%} of
-  the permanent rivers and reservoirs looked dark enough to pass our water test (wind and rain roughen the surface), so
-  some real water is missed on every date, new water included.
+- **Water areas may be underestimates.** On {data.nice_date(before)} only {(m.get('water', {}).get('permanent_water_seen_dark') or 0):.0%} of
+  the area the JRC record marks as permanent water looked dark enough to pass our water test. Part of that is
+  reservoirs drawn down before the monsoon; part is water roughened by wind or rain, which our test misses. So some
+  real water may be missed on every date, new water included.
 - **Small samples.** Every check is counted, not turned into an "accuracy": floods
   {m.get('validation', {}).get('flood', {}).get('hits', 0)} of {m.get('validation', {}).get('flood', {}).get('observable', 0)},
   landslides {m.get('validation', {}).get('slide', {}).get('hits', 0)} of {m.get('validation', {}).get('slide', {}).get('observable', 0)},

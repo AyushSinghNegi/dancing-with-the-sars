@@ -12,12 +12,12 @@ steps = story.steps()
 n = len(steps)
 if "step" not in st.session_state:
     st.session_state.step = 0
-i = st.session_state.step
+i = st.session_state.step = min(st.session_state.step, n - 1)
 before, after = data.dates()
 
 st.markdown(f'<div class="ml-step">{ui.t("step", i=i + 1, n=n)}</div>', unsafe_allow_html=True)
 st.progress((i + 1) / n)
-head, body = steps[i]
+head, body, key = steps[i]
 text, visual = st.columns([0.9, 1.4], gap="large")
 with text:
     st.markdown(f"## {head}")
@@ -34,7 +34,7 @@ with text:
         nav_n.page_link("views/2_Explore.py", label=ui.t("explore"), icon=":material/map:")
 
 with visual:
-    if i == 0:
+    if key == "rain":
         rain = data.rainfall()
         if rain is not None:
             st.plotly_chart(charts.rainfall(rain, before, after, passes=data.passes()), width="stretch",
@@ -42,7 +42,7 @@ with visual:
             st.caption(ui.t("rain_caption", src=rain["source"].iloc[0] if "source" in rain else "see Method"))
         else:
             st.info("Rainfall chart appears here once `data/reference/rainfall.csv` is added.")
-    elif i == 1:
+    elif key == "cloud":
         c = data.cloud_check()
         if c and c.get("image_path"):
             st.image(c["image_path"], width="stretch")
@@ -54,12 +54,12 @@ with visual:
         st.caption("NISAR's L-band radar (wavelength about 24 cm) works day and night, through cloud and rain."
                    if ui.lang() == "en" else
                    "निसारचे एल-बँड रडार (तरंगलांबी सुमारे २४ सेंमी) दिवस-रात्र, ढग आणि पावसातूनही काम करते.")
-    elif i == 2:
+    elif key == "swipe":
         imgs = swipe.pair("hh")
         if imgs:
             swipe.render(imgs[0], imgs[1], f"{ui.t('before')}: {data.nice_date(before, False)}",
                          f"{ui.t('after')}: {data.nice_date(after, False)}", height=500, start=35)
-    elif i == 3:
+    elif key == "changed":
         ui.legend([(ui.COLORS["flood"], ui.t("legend_flood"), "fill"),
                    (ui.COLORS["rise"], ui.t("legend_rise"), "fill"),
                    (ui.COLORS["slide_zones"], ui.t("legend_slides"), "outline"),
@@ -68,6 +68,10 @@ with visual:
                    (ui.INK, ui.t("legend_events"), "dot")])
         m = maps.build(basemap="Light", zoom=10, collapsed=True)
         st_folium(m, height=470, use_container_width=True, returned_objects=[], key="story_map")
+    elif key == "weeks":
+        tl = story.timeline_rows()
+        st.plotly_chart(charts.timeline(tl), width="stretch", config={"displayModeBar": False})
+        st.caption(ui.t("timeline_caption"))
     else:
         val = data.table("validation.csv")
         summ = data.metrics().get("validation", {})

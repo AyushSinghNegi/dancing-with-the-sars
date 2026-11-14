@@ -163,6 +163,11 @@ T = {
                        "have no reported event within 2 km.",
                  "mr": "प्रत्येक संभाव्य भूस्खलन क्षेत्र हा जमिनीवर तपासण्याचा संकेत आहे, निर्णय नाही: {z} पैकी {u} "
                        "क्षेत्रांच्या 2 किमी परिसरात कोणतीही घटना नोंदवलेली नाही."},
+    "res_last_clause": {"en": ", and was {v} km² on {d}", "mr": ", आणि {d} रोजी {v} चौ. किमी होता"},
+    "timeline_caption": {"en": "Dark water on each NISAR pass of the same orbit and radar mode, counted inside the area "
+                               "where the JRC record has seen water at least once (1984 to 2021).",
+                         "mr": "एकाच कक्षेतून आणि एकाच रडार पद्धतीतील प्रत्येक निसार निरीक्षणातील गडद पाणी, JRC नोंदीत "
+                               "(१९८४ ते २०२१) किमान एकदा पाणी दिसलेल्या भागात मोजलेले."},
     "cloud_sentence": {"en": "From {f} to {t}, all {n} of NASA's daily satellite photos of the area showed only cloud.",
                        "mr": "{f} ते {t} दरम्यान या भागाची नासाची रोजची सर्व {n} उपग्रह छायाचित्रे फक्त ढगांनी भरलेली होती."},
     "cloud_caption": {"en": "NASA's daily satellite photos of our study area. Rows: {sensors}; columns: dates "
@@ -295,8 +300,8 @@ def sources_line():
         return
     tracks = sorted({s["granule_id"].split("_")[5] for s in srcs if s["granule_id"].count("_") > 5})
     days = sorted({s["granule_id"].split("_A_")[-1][:8] if "_A_" in s["granule_id"] else "" for s in srcs} - {""})
-    when = f"{day(f'{days[0][:4]}-{days[0][4:6]}-{days[0][6:8]}')} to {day(f'{days[-1][:4]}-{days[-1][4:6]}-{days[-1][6:8]}')} {days[-1][:4]}" \
-        if days else ""
+    iso = lambda d: f"{d[:4]}-{d[4:6]}-{d[6:8]}"
+    when = f"{data.nice_date(iso(days[0]), False)} to {data.nice_date(iso(days[-1]))}" if days else ""
     tr = ("track " if len(tracks) == 1 else "tracks ") + " and ".join(t.lstrip("0") or "0" for t in tracks)
     st.markdown(f'<p class="ml-source">Radar: {len(srcs)} NISAR L2 provisional files, {tr}, {when} '
                 f'(NASA/JPL-Caltech and ISRO, via ASF DAAC); every file is linked on the Method page. '
