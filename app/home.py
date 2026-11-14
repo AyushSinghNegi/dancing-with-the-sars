@@ -30,8 +30,11 @@ with right:
 
 st.markdown(f"## {ui.t('found')}")
 rows = []
-nw = v("water.new_water_km2")
-rows.append(ui.finding(ui.COLORS["new_water"], ui.fmt_num(nw), " km²", ui.t("new_water")))
+if v("water.flood_km2") is not None:
+    rows.append(ui.finding(ui.COLORS["rise"], ui.fmt_num(v("water.rise_km2")), " km²", ui.t("rise")))
+    rows.append(ui.finding(ui.COLORS["flood"], ui.fmt_num(v("water.flood_km2"), 2), " km²", ui.t("flood")))
+else:
+    rows.append(ui.finding(ui.COLORS["new_water"], ui.fmt_num(v("water.new_water_km2")), " km²", ui.t("new_water")))
 sz, hi = v("slides.zones"), v("slides.high")
 rows.append(ui.finding(ui.COLORS["slide_zones"], ui.fmt_num(sz, 0), "", ui.t("slides", high=ui.fmt_num(hi, 0))))
 br = v("water.brighter_flat_km2")
@@ -46,8 +49,9 @@ st.markdown(f"## {ui.t('couldnt')}")
 st.markdown(
     "- **Streets between tall buildings.** Radar bounces off walls and back to the satellite, so flooded city "
     "streets can look bright, not dark. We mark those places as *possible water*, and never count them as flood.\n"
-    f"- **Water that drained early.** The second pass was on {data.nice_date(after)}. Floods that came and went between the "
-    "passes leave no trace.\n"
+    "- **Water that drained early.** The heaviest rain fell on 5 to 7 July, between NISAR passes on 4 and 10 July, "
+    "and flood releases into the Mutha river stopped on 9 July. Most flood water had drained before the radar came "
+    "back, so the map shows reservoirs filling and the flooding that was still standing.\n"
     "- **Small slides.** Our map has 40 m pixels. A slide narrower than that can slip through.\n"
     "- **Every detection is a lead, not a verdict.** Slide zones are places to check on the ground or in "
     "local reports.")

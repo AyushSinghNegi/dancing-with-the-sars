@@ -152,6 +152,34 @@ def local_median(a, size_px=25, factor=5):
     return np.repeat(np.repeat(med, factor, 0), factor, 1)[:h, :w]
 
 
+# ------------------------------------------------------------------ radar viewing geometry
+def aspect_degrees(elev, res=C.GRID_RES):
+    """Downhill direction of each slope, degrees clockwise from north."""
+    gy, gx = np.gradient(np.nan_to_num(elev), res, res)   # rows run north to south
+    return (np.degrees(np.arctan2(-gx, gy)) + 360) % 360
+
+
+def radar_facing_azimuth(hh_db, slope, aspect):
+    """Which way slopes face when they look brightest: they face the radar.
+
+    Measured from the data (moderate slopes, 30-degree bins), so no assumption about the
+    satellite's heading or look side is needed. Returns degrees clockwise from north.
+    """
+    m = (slope >= 20) & (slope < 40) & np.isfinite(hh_db)
+    bins = np.arange(0, 360, 30)
+    means = [np.nanmean(hh_db[m & (aspect >= b) & (aspect < b + 30)]) for b in bins]
+    return float(bins[int(np.nanargmax(means))] + 15)
+
+
+def layover_shadow(slope, aspect, facing_az, incidence_deg=C.INCIDENCE_DEG, margin_deg=10.0):
+    """True where steep terrain is foreshortened into layover or hidden in radar shadow."""
+    look = np.radians((facing_az + 180) % 360)          # direction the radar beam travels over the ground
+    th, s, a = np.radians(incidence_deg), np.radians(slope), np.radians(aspect)
+    cos_local = np.cos(th) * np.cos(s) - np.sin(th) * np.sin(s) * np.cos(a - look)
+    local = np.degrees(np.arccos(np.clip(cos_local, -1, 1)))
+    return (local < margin_deg) | (local > 90 - margin_deg)
+
+
 # ------------------------------------------------------------------ geometry
 def grid_to_lonlat():
     return Transformer.from_crs(C.GRID_EPSG, 4326, always_xy=True).transform

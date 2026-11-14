@@ -12,7 +12,7 @@ MUTED = "#5d6b75"
 RADAR = "#7d878f"
 PAPER = "#f4f6f5"
 LINE = "#d9dedd"
-COLORS = {"new_water": "#2a78d6", "slide_zones": "#eb6834", "brighter": "#1baf7a", "permanent": "#b7d3f6"}
+COLORS = {"new_water": "#2a78d6", "flood": "#1c5cab", "rise": "#6da7ec", "slide_zones": "#eb6834", "brighter": "#1baf7a", "permanent": "#b7d3f6"}
 
 CSS = f"""
 <style>
@@ -82,6 +82,12 @@ T = {
     "found": {"en": "What the radar found", "mr": "रडारला काय सापडले"},
     "new_water": {"en": "of new open water on flat ground, outside rivers and reservoirs",
                   "mr": "नद्या आणि धरणांबाहेर, सपाट जमिनीवर नवीन साचलेले पाणी"},
+    "rise": {"en": "of new water as Pune's reservoirs and rivers rose and filled",
+             "mr": "पुण्याची धरणे आणि नद्या भरल्यामुळे वाढलेले नवीन पाणी"},
+    "flood": {"en": "of flood water still standing on 10 July where no water had been recorded since 1984",
+              "mr": "१९८४ पासून कधीही पाणी न नोंदवलेल्या ठिकाणी १० जुलैला अजूनही साचलेले पुराचे पाणी"},
+    "legend_flood": {"en": "Flooding (never water before)", "mr": "पूर (आधी कधीही पाणी नव्हते)"},
+    "legend_rise": {"en": "Reservoirs and rivers rising", "mr": "धरणे आणि नद्या वाढल्या"},
     "slides": {"en": "likely slide zones on slopes steeper than 15°, {high} of them high confidence",
                "mr": "१५° पेक्षा जास्त उताराच्या भागात संभाव्य भूस्खलन क्षेत्रे, त्यापैकी {high} उच्च खात्रीची"},
     "brighter": {"en": "where water may be hiding under trees or between buildings (not counted as flood)",

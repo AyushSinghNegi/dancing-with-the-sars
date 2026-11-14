@@ -21,6 +21,9 @@ def numbers() -> dict:
         return "not available" if x is None else ui.fmt_num(x, digits)
     return {
         "new_water_km2": n(v("water.new_water_km2")),
+        "rise_km2": n(v("water.rise_km2")),
+        "flood_km2": n(v("water.flood_km2"), 2),
+        "flood_patches": n(v("water.flood_patches"), 0),
         "new_water_patches": n(v("water.new_water_patches"), 0),
         "slide_zones": n(v("slides.zones"), 0),
         "slide_high": n(v("slides.high"), 0),

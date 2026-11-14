@@ -20,7 +20,7 @@ def _layout(fig, height=300, title=None):
     return fig
 
 
-def rainfall(df: pd.DataFrame, before: str, after: str, events=("2026-07-03", "2026-07-08")):
+def rainfall(df: pd.DataFrame, before: str, after: str, events=("2026-07-03", "2026-07-08"), passes=None):
     mr = ui.lang() == "mr"
     lab = {"events": "पूर आणि भूस्खलनाच्या घटना" if mr else "floods and landslides reported",
            "p1": "रडार निरीक्षण १" if mr else "radar pass 1", "p2": "रडार निरीक्षण २" if mr else "radar pass 2",
@@ -37,6 +37,14 @@ def rainfall(df: pd.DataFrame, before: str, after: str, events=("2026-07-03", "2
         # Labels point away from each other so they never overlap on a narrow phone screen.
         fig.add_annotation(x=pd.Timestamp(date), y=1.0, yref="paper", text=label, showarrow=False, yanchor="bottom",
                            xanchor=side, xshift=-3 if side == "right" else 3, font=dict(size=12, color=ui.INK))
+    if passes is not None and len(passes):
+        pp = passes[(passes["date"] >= pd.Timestamp("2026-06-15")) & (passes["date"] <= pd.Timestamp("2026-07-31"))]
+        fig.add_trace(go.Scatter(x=pp["date"], y=[-6] * len(pp), mode="markers", cliponaxis=False,
+                                 marker=dict(symbol="triangle-up", size=10, color=ui.INK),
+                                 customdata=pp["orbit"],
+                                 hovertemplate=("NISAR pass %{x|%d %b} (%{customdata})" if not mr else
+                                                "निसार निरीक्षण %{x|%d %b} (%{customdata})") + "<extra></extra>"))
+        fig.update_yaxes(range=[-10, None])
     fig.update_yaxes(title_text=lab["y"])
     _layout(fig, 330)
     fig.update_layout(margin=dict(t=34))

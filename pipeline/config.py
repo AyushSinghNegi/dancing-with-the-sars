@@ -48,9 +48,17 @@ WATER_TRAIN_OCCURRENCE = 90        # JRC occurrence % of the reservoir/river cor
 CHANGE_DB = 3.0                    # |after - before| in dB that counts as real change
 PERMANENT_WATER_OCCURRENCE = 50    # JRC occurrence % treated as permanent water
 FLOOD_MAX_SLOPE_DEG = 5.0          # floods are mapped only on near-flat ground
-SLIDE_MIN_SLOPE_DEG = 15.0         # slide zones only on steep ground
+SLIDE_MIN_SLOPE_DEG = 15.0         # slide zones only on steep ground...
+SLIDE_MAX_SLOPE_DEG = 45.0         # ...but not on cliffs (bare rock, radar layover)
+SLIDE_HH_RISE_DB = 3.0             # fresh debris: HH rises (about the scene's top 1% on steep ground)
+SLIDE_HV_DROP_DB = 2.0             # stripped vegetation: HV drops (about the scene's bottom 1%)
+INCIDENCE_DEG = 40.0               # approximate NISAR incidence over Pune, for the layover/shadow mask
 COHERENCE_LOW = 0.35               # coherence below this is "lost"
-MIN_PATCH_PIXELS = 4               # 4 px at 40 m = 0.64 ha; smaller blobs are dropped
+MIN_PATCH_PIXELS = 4               # new-water patches: 4 px at 40 m = 0.64 ha
+RISE_BUFFER_M = 120                # new water within this distance of water JRC has ever seen = reservoir/river rise
+MIN_SLIDE_PIXELS = 2               # slide zones: 2 px = 0.32 ha (a slide that buries a house can be this small)
+HIDDEN_WATER_RATIO_DB = 2.0        # possible water under cover: HH must rise this much more than HV (double bounce)
+HIDDEN_WATER_NEAR_M = 2000         # ...and lie within this distance of a river, reservoir or new water
 
 
 @dataclass(frozen=True)

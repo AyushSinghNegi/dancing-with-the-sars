@@ -37,7 +37,7 @@ with visual:
     if i == 0:
         rain = data.rainfall()
         if rain is not None:
-            st.plotly_chart(charts.rainfall(rain, before, after), use_container_width=True,
+            st.plotly_chart(charts.rainfall(rain, before, after, passes=data.passes()), use_container_width=True,
                             config={"displayModeBar": False})
             st.caption(ui.t("rain_caption", src=rain["source"].iloc[0] if "source" in rain else "GPM IMERG"))
         else:
@@ -65,7 +65,8 @@ with visual:
             swipe.render(imgs[0], imgs[1], f"{ui.t('before')}: {data.nice_date(before, False)}",
                          f"{ui.t('after')}: {data.nice_date(after, False)}", height=500, start=35)
     elif i == 3:
-        ui.legend([(ui.COLORS["new_water"], ui.t("legend_new_water"), "fill"),
+        ui.legend([(ui.COLORS["flood"], ui.t("legend_flood"), "fill"),
+                   (ui.COLORS["rise"], ui.t("legend_rise"), "fill"),
                    (ui.COLORS["slide_zones"], ui.t("legend_slides"), "outline"),
                    (ui.COLORS["brighter"], ui.t("legend_brighter"), "hatch"),
                    (ui.COLORS["permanent"], ui.t("legend_permanent"), "fill"),

@@ -135,3 +135,16 @@ def nice_date(iso: str, year=True) -> str:
               "November", "December"]
     d = f"{int(iso[8:10])} {months[int(iso[5:7]) - 1]}"
     return f"{d} {iso[:4]}" if year else d
+
+
+@st.cache_data(show_spinner=False)
+def passes() -> pd.DataFrame | None:
+    """Every NISAR GCOV pass over the study box (all tracks), from the CMR scene list."""
+    p = REFERENCE / "candidate_scenes.csv"
+    if not p.exists():
+        return None
+    df = pd.read_csv(p, dtype=str)
+    df = df[(df["aoi"] == "pune") & (df["product"] == "GCOV")].copy()
+    df["date"] = pd.to_datetime(df["date_reference"])
+    df["orbit"] = "track " + df["track"].str.lstrip("0") + " " + df["direction"]
+    return df[["date", "orbit", "track"]].drop_duplicates()

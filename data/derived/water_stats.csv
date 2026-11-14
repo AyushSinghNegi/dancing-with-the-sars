@@ -1,0 +1,15 @@
+metric,value,unit,meaning
+valid_fraction,0.96,fraction,share of the box with radar data on both dates
+threshold_before_db,-13.03,dB,"HH water threshold, 28 Jun (ki-jrc-cores)"
+threshold_after_db,-13.6438,dB,"HH water threshold, 10 Jul (ki-jrc-cores)"
+permanent_water_km2,172.0656,km2,JRC occurrence >= 50%
+permanent_water_seen_dark,0.7027,fraction,share of JRC permanent water that radar sees as water on 28 Jun
+water_before_km2,152.9968,km2,"all dark-water pixels, 28 Jun"
+water_after_km2,175.8256,km2,"all dark-water pixels, 10 Jul"
+new_water_km2,8.888,km2,"new open water on flat ground, outside permanent water"
+new_water_patches,411,count,separate new-water patches
+rise_km2,8.5232,km2,reservoirs and rivers rising into ground JRC has seen wet before
+flood_km2,0.3648,km2,new water where JRC never recorded water (1984-2021)
+flood_patches,30,count,separate flood patches
+receded_km2,0.2496,km2,water on 28 Jun that is gone on 10 Jul (outside permanent water)
+brighter_flat_km2,11.824,km2,possible water under trees or between buildings (not counted as flood)

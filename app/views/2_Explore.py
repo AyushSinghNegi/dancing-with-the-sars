@@ -21,7 +21,8 @@ opacity = c2.slider("Layer opacity", 0.2, 1.0, 0.85, 0.05)
 conf = c3.selectbox("Slide zones shown", ["high", "medium", "low"], index=1,
                     format_func=lambda x: {"high": "High confidence only", "medium": "Medium and high",
                                            "low": "All, including low"}[x])
-ui.legend([(ui.COLORS["new_water"], ui.t("legend_new_water"), "fill"),
+ui.legend([(ui.COLORS["flood"], ui.t("legend_flood"), "fill"),
+                   (ui.COLORS["rise"], ui.t("legend_rise"), "fill"),
            (ui.COLORS["slide_zones"], ui.t("legend_slides"), "outline"),
            (ui.COLORS["brighter"], ui.t("legend_brighter"), "hatch"),
            (ui.COLORS["permanent"], ui.t("legend_permanent"), "fill"),
@@ -74,7 +75,7 @@ with tab_w:
 with tab_t:
     rain = data.rainfall()
     if rain is not None:
-        st.plotly_chart(charts.rainfall(rain, before, after), use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(charts.rainfall(rain, before, after, passes=data.passes()), use_container_width=True, config={"displayModeBar": False})
     else:
         st.info("Daily rainfall (GPM IMERG) appears here once `data/reference/rainfall.csv` is added.")
     tl = data.table("timeline.csv")

@@ -21,6 +21,8 @@ from . import nisar_io as io
 
 COLORS = {
     "new_water": "#2a78d6",
+    "flood": "#1c5cab",
+    "rise": "#6da7ec",
     "slide_zones": "#eb6834",
     "brighter": "#1baf7a",
     "permanent": "#b7d3f6",
@@ -36,6 +38,8 @@ OVERLAYS = {
     "rgb_after": (None, "rgb_after", "Radar colour, 10 Jul"),
     "change": ("ratio", "diverging", "Change in HH, 28 Jun to 10 Jul (blue darker, red brighter)"),
     "new_water": ("new_water", "new_water", "New open water on 10 Jul"),
+    "flood": ("flood", "flood", "Flooding: new water where JRC never recorded water"),
+    "rise": ("rise", "rise", "Reservoirs and rivers rising"),
     "brighter": ("brighter", "brighter", "Possible water under trees or between buildings"),
     "permanent": ("permanent", "permanent", "Permanent water (JRC, rivers and reservoirs)"),
     "coherence": ("coherence", "coherence", "Radar coherence, 28 Jun to 10 Jul (dark = surface changed)"),
@@ -123,7 +127,7 @@ def rgba_for(style, a, layers=None):
 def run(demo_flag=False):
     out_dir = C.DERIVED / "overlays"
     out_dir.mkdir(parents=True, exist_ok=True)
-    names = ("hh_before", "hh_after", "hv_before", "hv_after", "ratio", "new_water", "brighter",
+    names = ("hh_before", "hh_after", "hv_before", "hv_after", "ratio", "new_water", "flood", "rise", "brighter",
              "permanent", "coherence", "slide_zones")
     grid = {k: K.load_layer(k) for k in names}
     merc = {}
@@ -155,6 +159,7 @@ def run(demo_flag=False):
     gt.mkdir(exist_ok=True)
     downloads = {}
     for name, arr, kind in (("new_water", grid["new_water"], "mask"),
+                            ("flooding", grid["flood"], "mask"),
                             ("possible_water_under_cover", grid["brighter"], "mask"),
                             ("slide_zones", grid["slide_zones"], "mask"),
                             ("hh_change_db", grid["ratio"], "db")):
