@@ -79,6 +79,9 @@ def run(write=True):
             row.update(result="not observable",
                        reason=f"happened {'before' if row['date'] <= before else 'after'} the radar pair "
                               f"({before} to {after})")
+        elif prec > 2000:
+            row.update(result="not scored",
+                       reason=f"location in the report is too vague to score (about {prec / 1000:.0f} km)")
         elif group == "other":
             row.update(result="not scored", reason="event type has no radar layer (e.g. road closure)")
         else:

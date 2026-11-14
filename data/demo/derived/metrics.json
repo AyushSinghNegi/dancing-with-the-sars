@@ -1,7 +1,7 @@
 {
   "demo": true,
   "demo_note": "SYNTHETIC radar values for development; not NISAR data",
-  "generated": "2026-11-14T10:16:54+00:00",
+  "generated": "2026-11-14T10:25:56+00:00",
   "pipeline_version": "0.3.0",
   "python": "3.13.18",
   "aoi": {
@@ -64,13 +64,13 @@
   "water": {
     "valid_fraction": 1.0,
     "threshold_before_db": -15.778708508688943,
-    "threshold_after_db": -15.511118193701304,
+    "threshold_after_db": -15.454756242099233,
     "permanent_water_km2": 172.06560000000002,
     "permanent_water_seen_dark": 0.9939278972670889,
     "water_before_km2": 171.0208,
-    "water_after_km2": 209.1904,
-    "new_water_km2": 39.4784,
-    "new_water_patches": 1063,
+    "water_after_km2": 209.3792,
+    "new_water_km2": 39.675200000000004,
+    "new_water_patches": 1067,
     "receded_km2": 0.0,
     "brighter_flat_km2": 1.4128
   },
@@ -83,20 +83,20 @@
     "steep_share": 0.235
   },
   "validation": {
-    "events": 0,
+    "events": 15,
     "flood": {
-      "reported": 0,
-      "observable": 0,
-      "hits": 0,
-      "hit_rate": null
+      "reported": 8,
+      "observable": 7,
+      "hits": 4,
+      "hit_rate": 0.571
     },
     "slide": {
-      "reported": 0,
-      "observable": 0,
-      "hits": 0,
-      "hit_rate": null
+      "reported": 7,
+      "observable": 7,
+      "hits": 6,
+      "hit_rate": 0.857
     },
-    "unreported_slide_zones": 46
+    "unreported_slide_zones": 38
   },
   "timeline_dates": 2,
   "bounds_latlon": [

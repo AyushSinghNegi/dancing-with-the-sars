@@ -74,7 +74,7 @@ Use news or official sources you can link. Coordinates from the place named in t
 `date,precip_mm,source` (one row per day, 2026-06-15 to 2026-10-31, box-average daily IMERG).
 
 ## App
-Streamlit, `app/streamlit_app.py` (landing) + `app/pages/1_Story.py`, `2_Explore.py`, `3_Method.py`.
+Streamlit, `app/streamlit_app.py` (landing) + `app/views/1_Story.py`, `2_Explore.py`, `3_Method.py`.
 The app reads only `data/derived/` (or `data/demo/derived/` with a banner). Run: `streamlit run app/streamlit_app.py`.
 
 ## How we work

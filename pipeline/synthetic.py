@@ -157,6 +157,36 @@ def write_gunw(path, t, x, y, pad, rng):
         h.create_dataset("unwrappedPhase", data=np.zeros((8, 8), np.float32))
 
 
+def write_demo_events(t, rng, n_each=6):
+    """SYNTHETIC test events at simulated floods/slides plus a few deliberate misses (demo only)."""
+    import json
+    from pyproj import Transformer
+    from scipy import ndimage as ndi
+    transform, _ = analysis_grid()
+    to_ll = Transformer.from_crs(C.GRID_EPSG, 4326, always_xy=True).transform
+    feats = []
+
+    def add(r, c, typ, date, place):
+        x, y = transform * (c + 0.5, r + 0.5)
+        lon, lat = to_ll(x, y)
+        feats.append({"type": "Feature", "geometry": {"type": "Point", "coordinates": [round(lon, 5), round(lat, 5)]},
+                      "properties": {"id": f"D{len(feats) + 1:03d}", "type": typ, "date": date, "place": place,
+                                     "precision_m": 500, "source_name": "SYNTHETIC test event",
+                                     "source_url": "", "note": "Demo only; not a real report"}})
+    for key, typ in (("slides", "landslide"), ("flood", "flood")):
+        lab, n = ndi.label(t[key])
+        centers = ndi.center_of_mass(t[key], lab, range(1, n + 1))
+        for i in rng.choice(len(centers), size=min(n_each, len(centers)), replace=False):
+            r, c = centers[i]
+            add(int(r), int(c), typ, "2026-07-06", f"Synthetic {typ} {len(feats) + 1}")
+    h, w = t["perm"].shape
+    for typ, date in (("flood", "2026-07-07"), ("landslide", "2026-07-05"), ("flood", "2026-07-20")):
+        add(int(rng.integers(50, h - 50)), int(rng.integers(50, w - 50)), typ, date, f"Synthetic miss ({typ})")
+    out = C.DEMO / "reference" / "events.geojson"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps({"type": "FeatureCollection", "features": feats}, indent=1))
+
+
 def build(seed=7):
     assert C.IS_DEMO, "Run with MONSOONLENS_DEMO=1 so synthetic files stay in data/demo/"
     rng = np.random.default_rng(seed)
@@ -169,6 +199,7 @@ def build(seed=7):
         write_gcov(DEMO_RAW / f"{C.PRIMARY[key]}.h5", hh, hv, x, y, pad, p["date"])
     write_gunw(DEMO_RAW / f"{C.PRIMARY['pair']}.h5", t, x, y, pad, rng)
     np.savez_compressed(C.DEMO / "truth.npz", **{k: t[k] for k in ("flood", "flooded_veg", "slides", "perm")})
+    write_demo_events(t, rng)
     print(f"[synthetic] wrote 3 files to {DEMO_RAW} (SYNTHETIC, not NISAR data)")
 
 

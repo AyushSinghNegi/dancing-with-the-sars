@@ -79,7 +79,10 @@ def otsu(values, bins=256):
     m0 = np.cumsum(hist * centers) / np.maximum(w0, 1)
     m1 = (np.sum(hist * centers) - np.cumsum(hist * centers)) / np.maximum(w1, 1)
     between = w0 * w1 * (m0 - m1) ** 2
-    return float(centers[np.argmax(between)])
+    # When the two populations are well separated the score is flat across the empty gap;
+    # take the middle of that plateau instead of its first bin.
+    best = between >= between.max() * (1 - 1e-6)
+    return float(centers[best].mean())
 
 
 def water_threshold(hh_db, permanent, rng_seed=0):

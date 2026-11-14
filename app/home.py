@@ -18,9 +18,9 @@ with left:
     st.markdown(f'<p class="ml-lede">{ui.t("lede")}</p>', unsafe_allow_html=True)
     b1, b2 = st.columns(2)
     if b1.button(ui.t("start_story"), type="primary", icon=":material/auto_stories:", use_container_width=True):
-        st.switch_page("pages/1_Story.py")
+        st.switch_page("views/1_Story.py")
     if b2.button(ui.t("explore"), icon=":material/map:", use_container_width=True):
-        st.switch_page("pages/2_Explore.py")
+        st.switch_page("views/2_Explore.py")
 with right:
     imgs = swipe.pair("hh")
     if imgs:
@@ -52,6 +52,6 @@ st.markdown(
     "- **Small slides.** Our map has 40 m pixels. A slide narrower than that can slip through.\n"
     "- **Every detection is a lead, not a verdict.** Slide zones are places to check on the ground or in "
     "local reports.")
-st.page_link("pages/3_Method.py", label="See how each number was made, and the full validation table",
+st.page_link("views/3_Method.py", label="See how each number was made, and the full validation table",
              icon=":material/fact_check:")
 ui.sources_line()

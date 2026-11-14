@@ -31,7 +31,7 @@ with text:
             st.session_state.step = i + 1
             st.rerun()
     else:
-        nav_n.page_link("pages/2_Explore.py", label=ui.t("explore"), icon=":material/map:")
+        nav_n.page_link("views/2_Explore.py", label=ui.t("explore"), icon=":material/map:")
 
 with visual:
     if i == 0:
@@ -77,12 +77,12 @@ with visual:
         summ = data.metrics().get("validation", {})
         if val is not None and len(val):
             obs = val[val["observable"] == "yes"]
-            c1, c2 = st.columns(2)
-            for col, key, label in ((c1, "flood", "Floods"), (c2, "slide", "Landslides")):
+            rows = []
+            for key, label in (("flood", "reported floods"), ("slide", "reported landslides")):
                 s = summ.get(key, {})
-                col.markdown(ui.finding(ui.INK, f"{s.get('hits', 0)} of {s.get('observable', 0)}", "",
-                                        f"{label.lower()} that radar could observe had a detection nearby"),
-                             unsafe_allow_html=True)
+                rows.append(ui.finding(ui.INK, f"{s.get('hits', 0)} of {s.get('observable', 0)}", "",
+                                       f"{label} that radar could observe had a detection nearby"))
+            st.markdown("".join(rows), unsafe_allow_html=True)
             misses = val[val["result"].isin(["miss", "not observable"])]
             if len(misses):
                 st.markdown("**Where radar fell short, and why**")

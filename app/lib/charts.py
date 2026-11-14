@@ -21,15 +21,15 @@ def _layout(fig, height=300, title=None):
 
 
 def rainfall(df: pd.DataFrame, before: str, after: str, events=("2026-07-03", "2026-07-08")):
-    d = df[(df["date"] >= "2026-06-15") & (df["date"] <= "2026-07-31")]
+    d = df[(df["date"] >= pd.Timestamp("2026-06-15")) & (df["date"] <= pd.Timestamp("2026-07-31"))]
     fig = go.Figure(go.Bar(x=d["date"], y=d["precip_mm"], marker=dict(color="#2a78d6", line=dict(width=0)),
                            hovertemplate="%{x|%d %b}: %{y:.1f} mm<extra></extra>"))
-    fig.add_vrect(x0=events[0], x1=pd.Timestamp(events[1]) + pd.Timedelta(days=1), fillcolor="#eb6834",
+    fig.add_vrect(x0=pd.Timestamp(events[0]), x1=pd.Timestamp(events[1]) + pd.Timedelta(days=1), fillcolor="#eb6834",
                   opacity=0.08, line_width=0, annotation_text="floods and landslides reported",
-                  annotation_position="top left", annotation_font=dict(size=12, color=ui.MUTED))
+                  annotation_position="bottom left", annotation_font=dict(size=12, color=ui.MUTED))
     for date, label in ((before, "radar pass 1"), (after, "radar pass 2")):
         fig.add_vline(x=pd.Timestamp(date).timestamp() * 1000, line=dict(color=ui.INK, width=2, dash="dot"))
-        fig.add_annotation(x=date, y=1.0, yref="paper", text=label, showarrow=False, yanchor="bottom",
+        fig.add_annotation(x=pd.Timestamp(date), y=1.0, yref="paper", text=label, showarrow=False, yanchor="bottom",
                            font=dict(size=12, color=ui.INK))
     fig.update_yaxes(title_text="mm per day")
     return _layout(fig, 320)

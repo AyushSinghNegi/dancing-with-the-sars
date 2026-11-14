@@ -1,0 +1,305 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.38707,
+     18.87979
+    ]
+   },
+   "properties": {
+    "id": "D001",
+    "type": "landslide",
+    "date": "2026-07-06",
+    "place": "Synthetic landslide 1",
+    "precision_m": 500,
+    "source_name": "SYNTHETIC test event",
+    "source_url": "",
+    "note": "Demo only; not a real report"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.32199,
+     18.66599
+    ]
+   },
+   "properties": {
+    "id": "D002",
+    "type": "landslide",
+    "date": "2026-07-06",
+    "place": "Synthetic landslide 2",
+    "precision_m": 500,
+    "source_name": "SYNTHETIC test event",
+    "source_url": "",
+    "note": "Demo only; not a real report"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.56846,
+     18.6214
+    ]
+   },
+   "properties": {
+    "id": "D003",
+    "type": "landslide",
+    "date": "2026-07-06",
+    "place": "Synthetic landslide 3",
+    "precision_m": 500,
+    "source_name": "SYNTHETIC test event",
+    "source_url": "",
+    "note": "Demo only; not a real report"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.44351,
+     18.26803
+    ]
+   },
+   "properties": {
+    "id": "D004",
+    "type": "landslide",
+    "date": "2026-07-06",
+    "place": "Synthetic landslide 4",
+    "precision_m": 500,
+    "source_name": "SYNTHETIC test event",
+    "source_url": "",
+    "note": "Demo only; not a real report"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.36184,
+     18.70176
+    ]
+   },
+   "properties": {
+    "id": "D005",
+    "type": "landslide",
+    "date": "2026-07-06",
+    "place": "Synthetic landslide 5",
+    "precision_m": 500,
+    "source_name": "SYNTHETIC test event",
+    "source_url": "",
+    "note": "Demo only; not a real report"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     74.03839,
+     18.24664
+    ]
+   },
+   "properties": {
+    "id": "D006",
+    "type": "landslide",
+    "date": "2026-07-06",
+    "place": "Synthetic landslide 6",
+    "precision_m": 500,
+    "source_name": "SYNTHETIC test event",
+    "source_url": "",
+    "note": "Demo only; not a real report"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.88141,
+     18.59388
+    ]
+   },
+   "properties": {
+    "id": "D007",
+    "type": "flood",
+    "date": "2026-07-06",
+    "place": "Synthetic flood 7",
+    "precision_m": 500,
+    "source_name": "SYNTHETIC test event",
+    "source_url": "",
+    "note": "Demo only; not a real report"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.76631,
+     18.73196
+    ]
+   },
+   "properties": {
+    "id": "D008",
+    "type": "flood",
+    "date": "2026-07-06",
+    "place": "Synthetic flood 8",
+    "precision_m": 500,
+    "source_name": "SYNTHETIC test event",
+    "source_url": "",
+    "note": "Demo only; not a real report"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.64333,
+     18.50088
+    ]
+   },
+   "properties": {
+    "id": "D009",
+    "type": "flood",
+    "date": "2026-07-06",
+    "place": "Synthetic flood 9",
+    "precision_m": 500,
+    "source_name": "SYNTHETIC test event",
+    "source_url": "",
+    "note": "Demo only; not a real report"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.66831,
+     18.40671
+    ]
+   },
+   "properties": {
+    "id": "D010",
+    "type": "flood",
+    "date": "2026-07-06",
+    "place": "Synthetic flood 10",
+    "precision_m": 500,
+    "source_name": "SYNTHETIC test event",
+    "source_url": "",
+    "note": "Demo only; not a real report"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.4839,
+     18.62363
+    ]
+   },
+   "properties": {
+    "id": "D011",
+    "type": "flood",
+    "date": "2026-07-06",
+    "place": "Synthetic flood 11",
+    "precision_m": 500,
+    "source_name": "SYNTHETIC test event",
+    "source_url": "",
+    "note": "Demo only; not a real report"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.80478,
+     18.81896
+    ]
+   },
+   "properties": {
+    "id": "D012",
+    "type": "flood",
+    "date": "2026-07-06",
+    "place": "Synthetic flood 12",
+    "precision_m": 500,
+    "source_name": "SYNTHETIC test event",
+    "source_url": "",
+    "note": "Demo only; not a real report"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.71417,
+     18.24654
+    ]
+   },
+   "properties": {
+    "id": "D013",
+    "type": "flood",
+    "date": "2026-07-07",
+    "place": "Synthetic miss (flood)",
+    "precision_m": 500,
+    "source_name": "SYNTHETIC test event",
+    "source_url": "",
+    "note": "Demo only; not a real report"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.64534,
+     18.58258
+    ]
+   },
+   "properties": {
+    "id": "D014",
+    "type": "landslide",
+    "date": "2026-07-05",
+    "place": "Synthetic miss (landslide)",
+    "precision_m": 500,
+    "source_name": "SYNTHETIC test event",
+    "source_url": "",
+    "note": "Demo only; not a real report"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.76676,
+     18.40629
+    ]
+   },
+   "properties": {
+    "id": "D015",
+    "type": "flood",
+    "date": "2026-07-20",
+    "place": "Synthetic miss (flood)",
+    "precision_m": 500,
+    "source_name": "SYNTHETIC test event",
+    "source_url": "",
+    "note": "Demo only; not a real report"
+   }
+  }
+ ]
+}
