@@ -58,8 +58,9 @@ NISAR file layout (confirmed from ASF docs, check with `pipeline.inspect_h5` on 
 Crops are stored as int16 GeoTIFF (dB x 100); coherence as uint8 (x 250).
 
 ### Method in one paragraph
-Lee-filtered HH in dB. Water threshold per date = Otsu on a balanced sample of JRC
-permanent-water pixels and land pixels (self-calibrating), clipped to -24..-14 dB. New water =
+Lee-filtered HH in dB. Water threshold per date = Kittler-Illingworth (minimum error) on a balanced sample of
+JRC reservoir/river cores (occurrence >= 90%) and never-water land, clipped to -20..-11 dB. In the real Pune
+crops open water sits near -16 dB, dry land near -5 dB, nothing darker than about -19 dB. New water =
 water on 10 Jul, not on 28 Jun, at least 3 dB darker, outside permanent water, slope <= 5 deg,
 patch >= 4 px. "Possible water under cover" = >= 3 dB brighter on flat vegetated or built ground
 (L-band double bounce); shown, never counted. Slide zones = slope >= 15 deg AND coherence < 0.35

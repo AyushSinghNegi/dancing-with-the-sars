@@ -85,23 +85,49 @@ def otsu(values, bins=256):
     return float(centers[best].mean())
 
 
-def water_threshold(hh_db, permanent, rng_seed=0):
-    """Otsu on a balanced sample: all permanent-water pixels plus as many land pixels.
+def kittler_illingworth(values, bins=256):
+    """Minimum-error threshold (Kittler & Illingworth, 1986): suited to a narrow water class next to a
+    broad land class, the usual case in radar flood mapping."""
+    v = values[np.isfinite(values)]
+    if v.size < 100:
+        return np.nan
+    hist, edges = np.histogram(v, bins=bins)
+    c = (edges[:-1] + edges[1:]) / 2
+    p = hist / hist.sum()
+    P1, M1, S1 = np.cumsum(p), np.cumsum(p * c), np.cumsum(p * c * c)
+    P2, M2, S2 = 1 - P1, M1[-1] - M1, S1[-1] - S1
+    with np.errstate(divide="ignore", invalid="ignore"):
+        mu1, mu2 = M1 / P1, M2 / P2
+        v1, v2 = S1 / P1 - mu1 ** 2, S2 / P2 - mu2 ** 2
+        J = 1 + P1 * np.log(v1) + P2 * np.log(v2) - 2 * (P1 * np.log(P1) + P2 * np.log(P2))
+    ok = (P1 > 1e-4) & (P2 > 1e-4) & (v1 > 0) & (v2 > 0) & np.isfinite(J)
+    if not ok.any():
+        return np.nan
+    return float(c[np.where(ok)[0][np.argmin(J[ok])]])
 
-    Using JRC permanent water as a reference makes the threshold calibrate
-    itself on each date instead of using a fixed number from the literature.
+
+def water_threshold(hh_db, occurrence, rng_seed=0):
+    """Per-date water threshold, trained on the radar itself.
+
+    Training sample: reservoir and river cores that JRC says are water at least 90% of the time, plus an
+    equal number of never-water land pixels. The minimum-error (Kittler-Illingworth) threshold of that
+    sample is kept inside WATER_DB_BOUNDS. Cores (not every >=50% pixel) because reservoir edges are
+    exposed bed before the monsoon refills them.
     """
     rng = np.random.default_rng(rng_seed)
-    w = hh_db[permanent & np.isfinite(hh_db)]
-    land_idx = np.flatnonzero(~permanent & np.isfinite(hh_db))
-    if w.size < 200 or land_idx.size < 200:
-        return float(np.mean(C.WATER_DB_BOUNDS)), "fallback-midpoint"
-    land = hh_db.ravel()[rng.choice(land_idx, size=min(land_idx.size, w.size), replace=False)]
-    t = otsu(np.concatenate([w, land]))
+    occ = np.nan_to_num(occurrence)
+    finite = np.isfinite(hh_db)
+    w = hh_db[(occ >= C.WATER_TRAIN_OCCURRENCE) & finite]
+    land_idx = np.flatnonzero((occ < 1) & finite)
     lo, hi = C.WATER_DB_BOUNDS
+    if w.size < 200 or land_idx.size < 200:
+        return float((lo + hi) / 2), "fallback-midpoint"
+    land = hh_db.ravel()[rng.choice(land_idx, size=min(land_idx.size, w.size), replace=False)]
+    t = kittler_illingworth(np.concatenate([w, land]))
     if not np.isfinite(t):
         return float((lo + hi) / 2), "fallback-midpoint"
-    return float(np.clip(t, lo, hi)), "otsu-balanced-jrc" if lo <= t <= hi else "otsu-clipped"
+    how = "ki-jrc-cores" if lo <= t <= hi else "ki-clipped"
+    return float(np.clip(t, lo, hi)), how
 
 
 def clean(mask, min_px=C.MIN_PATCH_PIXELS):

@@ -31,7 +31,7 @@ def run(write=True):
             continue
         hh = K.lee_db(io.load_db(C.CROPS / f"{m['name']}_HH.tif"))
         valid = np.isfinite(hh)
-        t, how = K.water_threshold(hh, perm)
+        t, how = K.water_threshold(hh, aux["jrc_occurrence"])
         water = valid & (hh < t)
         extra = K.clean(water & ~perm & flat)
         same = m["mode"] == primary["mode"] and m["pol"] == primary["pol"]

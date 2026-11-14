@@ -43,7 +43,8 @@ PRIMARY = {
 TIMELINE_DATES = ["2026-06-28", "2026-07-10", "2026-07-22", "2026-08-15", "2026-10-14"]
 
 # Thresholds (documented on the Method page; tune only with a written reason).
-WATER_DB_BOUNDS = (-24.0, -14.0)   # Otsu threshold on HH dB is clipped to this range
+WATER_DB_BOUNDS = (-20.0, -11.0)   # guard rails for the per-date HH water threshold (dB)
+WATER_TRAIN_OCCURRENCE = 90        # JRC occurrence % of the reservoir/river cores used to train it
 CHANGE_DB = 3.0                    # |after - before| in dB that counts as real change
 PERMANENT_WATER_OCCURRENCE = 50    # JRC occurrence % treated as permanent water
 FLOOD_MAX_SLOPE_DEG = 5.0          # floods are mapped only on near-flat ground

@@ -37,8 +37,8 @@ def run(write=True):
     hv_b, hv_a = K.lee_db(d["hv_before"]), K.lee_db(d["hv_after"])
     valid = np.isfinite(hh_b) & np.isfinite(hh_a)
 
-    t_b, how_b = K.water_threshold(hh_b, perm)
-    t_a, how_a = K.water_threshold(hh_a, perm)
+    t_b, how_b = K.water_threshold(hh_b, occ)
+    t_a, how_a = K.water_threshold(hh_a, occ)
     water_b = valid & (hh_b < t_b)
     water_a = valid & (hh_a < t_a)
     ratio = np.where(valid, hh_a - hh_b, np.nan)

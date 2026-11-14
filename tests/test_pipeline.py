@@ -32,13 +32,23 @@ def test_otsu_splits_two_populations():
 
 def test_water_threshold_is_clipped_and_reported():
     rng = np.random.default_rng(1)
-    hh = rng.normal(-9, 1, (200, 200))
-    perm = np.zeros_like(hh, bool)
-    perm[:40, :40] = True
-    hh[perm] = rng.normal(-22, 1, perm.sum())
-    t, how = K.water_threshold(hh, perm)
+    hh = rng.normal(-6, 3, (200, 200))
+    occ = np.zeros_like(hh)
+    occ[:40, :40] = 100
+    hh[occ == 100] = rng.normal(-16, 1, (occ == 100).sum())
+    t, how = K.water_threshold(hh, occ)
     lo, hi = C.WATER_DB_BOUNDS
-    assert lo <= t <= hi and how.startswith("otsu")
+    assert lo <= t <= hi and how.startswith("ki")
+
+
+def test_kittler_illingworth_beats_otsu_on_radar_like_classes():
+    # Narrow water (-16 +/- 1 dB) next to broad land (-6 +/- 3 dB), as in the real Pune NISAR crops:
+    # the valley is near -13 dB. KI finds it; Otsu splits the means and cuts into land.
+    rng = np.random.default_rng(3)
+    v = np.concatenate([rng.normal(-16, 1, 20000), rng.normal(-6, 3, 20000)])
+    t_ki, t_otsu = K.kittler_illingworth(v), K.otsu(v)
+    assert -14.5 < t_ki < -12, t_ki
+    assert t_otsu > t_ki + 1
 
 
 def test_clean_drops_small_patches():

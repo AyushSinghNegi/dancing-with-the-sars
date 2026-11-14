@@ -24,9 +24,11 @@ st.markdown(f"""
    and average 2 × 2 or more native pixels into a {m['grid']['res_m']:.0f} m grid (UTM zone 43N). Averaging also
    reduces radar speckle; a Lee filter removes more.
 2. **Find water on each date.** Smooth water reflects the radar away and looks dark in HH. The cut-off between
-   water and land is set separately for each date with Otsu's method, trained on pixels that the JRC Global
-   Surface Water record says are permanent water plus an equal number of land pixels, and kept between
-   {th.get('water_db_bounds', ['?', '?'])[0]} and {th.get('water_db_bounds', ['?', '?'])[1]} dB.
+   water and land is set separately for each date with the minimum-error method of Kittler and Illingworth, trained
+   on reservoir and river cores that the JRC Global Surface Water record says are water at least
+   {th.get('water_train_occurrence', 90)}% of the time, plus an equal number of land pixels, and kept between
+   {th.get('water_db_bounds', ['?', '?'])[0]} and {th.get('water_db_bounds', ['?', '?'])[1]} dB. In these NISAR
+   products open water sits near -16 dB and dry land near -5 dB.
 3. **Keep only new water.** A pixel is new water if it is water on {after} but not on {before}, at least
    {th.get('change_db')} dB darker, outside permanent water (JRC occurrence ≥ {th.get('permanent_water_occurrence')}%),
    on ground flatter than {th.get('flood_max_slope_deg')}°, and part of a patch of at least
