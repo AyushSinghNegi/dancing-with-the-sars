@@ -6,7 +6,7 @@ recheck them after each new pipeline run (`data/derived/metrics.json` generated 
 ## Panel text
 
 - **Flooded streets between buildings.** Radar bounces off walls and back to the satellite, so a
-  flooded street can look bright, not dark. All 6 of the reported floods we missed were in built-up areas.
+  flooded street can look bright, not dark. All 7 of the reported floods we missed were in or near towns.
 - **Water that came and went between passes.** The heaviest rain fell on 5 to 8 July; NISAR looked on
   28 June and again on 10 July. The map shows what was still standing on 10 July, not the peak.
 - **Small slides, and slides on gentle ground.** Our map has 40 m pixels and searches slopes of 15° to 45°.
@@ -23,7 +23,7 @@ reported event within 2 km.
 
 | Statement | Value | Source |
 |---|---|---|
-| Reported floods missed, all in built-up areas | 7 of 7 misses | `data/derived/validation.csv`, rows with result `miss` and a flood type; `reason` column |
+| Reported floods missed, all in or near towns | 7 of 7 misses | `data/derived/validation.csv`, rows with result `miss` and a flood type; `place` column. The `reason` column is a radar-brightness test, not a map of buildings (`plotholes.md` P53) |
 | Heaviest rain 5 to 8 July | about 180, 158, 109, 140 mm/day | `data/reference/rainfall.csv` (GPM IMERG Late Run) |
 | Radar pair dates | 28 Jun and 10 Jul 2026 | `data/derived/timeline.csv` |
 | Pixel size | 40 m | `metrics.json` → `grid.res_m` |

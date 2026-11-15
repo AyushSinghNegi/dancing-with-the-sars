@@ -31,7 +31,7 @@ def items() -> list[tuple[str, str, str]]:
                           c=xt["confirmed"], n=xt["scored"],
                           e=tr(", chance gives {x}", ", योगायोगाने {x}", x=ui.fmt_num(exp * xt["scored"], 2))
                           if exp is not None else "",
-                          p=f" (p ≈ {pv:.2f})" if pv is not None else "")))
+                          p=f" (p ≈ {ui.num(pv, 2)})" if pv is not None else "")))
     sh, so = v("validation.slide.hits"), v("validation.slide.observable")
     if so:
         rh = dc.get("reported_slide_hits") or {}

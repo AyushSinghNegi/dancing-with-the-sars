@@ -17,6 +17,7 @@ def _font():
 def _layout(fig, height=300, title=None):
     grid = ui.hairline()
     fig.update_layout(height=height, margin=dict(l=10, r=10, t=40 if title else 10, b=10), font=_font(),
+                      separators=",." if ui.lang() == "de" else ".,",     # decimal comma in German
                       title=dict(text=title, x=0, font=dict(size=15)) if title else None,
                       paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", showlegend=False,
                       hoverlabel=dict(bgcolor="#111c30" if ui.dark() else "white", font=_font(),

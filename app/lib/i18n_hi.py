@@ -5,6 +5,21 @@ English."""
 MONTHS = ["जनवरी", "फ़रवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"]
 
 HI = {
+    # reasons from pipeline/validate.py, shown by evidence.reason_text
+    "happened before the radar pair ({a} to {b})": "रडार जोड़ी से पहले हुआ ({a} से {b})",
+    "happened after the radar pair ({a} to {b})": "रडार जोड़ी के बाद हुआ ({a} से {b})",
+    "location in the report is too vague to score (about {k} km)": "रिपोर्ट में दी गई जगह आँकने के लिए बहुत अस्पष्ट है (लगभग {k} किमी)",
+    "water may have drained before the {d} pass": "{d} के पास से पहले पानी शायद उतर गया था",
+    "ground near the report is gentler than our {s}° slide search": "रिपोर्ट की जगह की ज़मीन हमारी {s}° से शुरू होने वाली भूस्खलन खोज से कम ढलान वाली है",
+    "dense buildings: radar bounces off walls, which hides street flooding": "घनी इमारतें: रडार दीवारों से टकराकर लौटता है, जिससे सड़कों की बाढ़ छिप जाती है",
+    "flooding smaller than our 40 m pixels or under thick canopy": "हमारे 40 मी पिक्सेल से छोटी बाढ़, या घने पेड़ों के नीचे का पानी",
+    "slide smaller than a few 40 m pixels, or coherence lost everywhere nearby": "कुछ 40 मी पिक्सेल से छोटा भूस्खलन, या आसपास हर जगह कोहेरेंस खो गया",
+    "outside the radar box": "रडार क्षेत्र से बाहर",
+    "no radar data at this spot (edge of swath)": "इस जगह रडार डेटा नहीं (पट्टी का किनारा)",
+    "event type has no radar layer (e.g. road closure)": "इस तरह की घटना के लिए रडार परत नहीं (जैसे सड़क बंद)",
+    "in or near a town, where buildings can hide flooded streets (a likely reason, not a measured one)":
+        "शहर में या उसके पास, जहाँ इमारतें बाढ़ वाली गलियों को छिपा सकती हैं (संभावित कारण, मापा नहीं गया)",
+    "Why": "क्यों",
     "Check a place":
         "कोई जगह जाँचें",
     "likely slide zones on slopes of {a}° to {b}°, {h} of them high confidence":
@@ -517,7 +532,7 @@ HI = {
         "निसार के नतीजों के साथ अध्ययन क्षेत्र का 3D मॉडल",
     "Where this is":
         "यह कहाँ है",
-    "Pune district, Maharashtra, India: an 85 km box from the Western Ghats hills (left) to Pune city (right). Heights are doubled so the hills read.":
+    "Pune district, Maharashtra, India: an 85 km box from the Western Ghats hills (left) to Pune city (right). Heights are doubled so the hills stand out.":
         "पुणे ज़िला, महाराष्ट्र, भारत: पश्चिमी घाट की पहाड़ियों (बाएँ) से पुणे शहर (दाएँ) तक 85 किमी का क्षेत्र। पहाड़ियाँ साफ़ दिखें, इसलिए ऊँचाई दोगुनी की गई है।",
     "The Western Ghats":
         "पश्चिमी घाट",

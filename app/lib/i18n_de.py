@@ -6,6 +6,21 @@ MONTHS = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August"
           "Dezember"]
 
 DE = {
+    # reasons from pipeline/validate.py, shown by evidence.reason_text
+    "happened before the radar pair ({a} to {b})": "geschah vor den beiden verglichenen Radarüberflügen ({a} bis {b})",
+    "happened after the radar pair ({a} to {b})": "geschah nach den beiden verglichenen Radarüberflügen ({a} bis {b})",
+    "location in the report is too vague to score (about {k} km)": "Ortsangabe im Bericht zu ungenau für eine Bewertung (etwa {k} km)",
+    "water may have drained before the {d} pass": "das Wasser ist vor dem Überflug am {d} vielleicht abgeflossen",
+    "ground near the report is gentler than our {s}° slide search": "das Gelände am gemeldeten Ort ist flacher als unsere Rutschungssuche ab {s}°",
+    "dense buildings: radar bounces off walls, which hides street flooding": "dichte Bebauung: Das Radar prallt an Wänden ab, was überflutete Straßen verbirgt",
+    "flooding smaller than our 40 m pixels or under thick canopy": "Überflutung kleiner als unsere 40-m-Pixel oder unter dichtem Blätterdach",
+    "slide smaller than a few 40 m pixels, or coherence lost everywhere nearby": "Rutschung kleiner als einige 40-m-Pixel, oder die Kohärenz ging ringsum überall verloren",
+    "outside the radar box": "außerhalb des Radarausschnitts",
+    "no radar data at this spot (edge of swath)": "an dieser Stelle keine Radardaten (Rand des Aufnahmestreifens)",
+    "event type has no radar layer (e.g. road closure)": "für diese Ereignisart gibt es keine Radarebene (z. B. Straßensperrung)",
+    "in or near a town, where buildings can hide flooded streets (a likely reason, not a measured one)":
+        "in oder nahe einer Stadt, wo Gebäude überflutete Straßen verbergen können (ein wahrscheinlicher Grund, kein gemessener)",
+    "Why": "Warum",
     # overview
     "Check a place": "Ort prüfen",
     "likely slide zones on slopes of {a}° to {b}°, {h} of them high confidence":
@@ -377,7 +392,7 @@ DE = {
     "3D model of the study area with NISAR's findings": "3D-Modell des Untersuchungsgebiets mit NISARs Ergebnissen",
     "Where this is": "Wo das ist",
     "Pune district, Maharashtra, India: an 85 km box from the Western Ghats hills (left) to Pune city (right). Heights "
-    "are doubled so the hills read.":
+    "are doubled so the hills stand out.":
         "Distrikt Pune, Maharashtra, Indien: ein 85 km großes Gebiet von den Hügeln der Westghats (links) bis zur Stadt "
         "Pune (rechts). Die Höhen sind verdoppelt, damit die Hügel gut zu sehen sind.",
     "The Western Ghats": "Die Westghats",

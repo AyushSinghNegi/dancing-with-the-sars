@@ -93,7 +93,7 @@ challenge), "Why radar" and "What we built" became one slide, "Demo" now carries
 **Headline:** We publish our hits and our misses
 
 - 18 reported events, each with a linked source.
-- Floods: 3 of 10 that radar could observe had a possible-water patch nearby, no better than chance (random places: 3.8 of 10). The 7 misses were all in built-up areas.
+- Floods: 3 of 10 that radar could observe had a possible-water patch nearby, no better than chance (random places: 3.8 of 10). All 7 misses were reported in or near towns, where buildings can hide flooded streets from radar: a likely reason, not a measured one.
 - A second NISAR orbit (3 to 15 July) found 2 of 12 zones again: about 8 times chance.
 - With NASA's NASADEM elevation map, 35 of 50 zones are found again, 7 of the 8 high-confidence ones.
 - Landslides: 2 of the 4 radar could observe, both matched to one zone; that match does not hold with NASADEM.
@@ -103,7 +103,7 @@ challenge), "Why radar" and "What we built" became one slide, "Demo" now carries
 | Fact | Source |
 |---|---|
 | 18 events; floods 11 reported, 10 observable, 4 hits; landslides 7 reported, 4 observable, 2 hits | `validation_summary.json` |
-| 6 flood misses: dense buildings hide street flooding | `validation.csv`, `reason` column |
+| 7 flood misses, all reported in or near towns | `validation.csv`, `place` column. The `reason` column ("dense buildings") is a radar-brightness test, not a map of buildings (plotholes.md P53) |
 | 2 landslide misses: ground near the report gentler than the 15° slide search (one is Patan) | `validation.csv` |
 | Second orbit: 12 zones scored, 16.7% confirmed, lift 7.9, p = 0.026 | `metrics.json` → `crosstrack` |
 | NASADEM check: 35 of 50 found, 7 of 8 high; landslide matches 2 → 0 of 4 | `data/derived/dem_check.json` |

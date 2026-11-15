@@ -67,7 +67,7 @@ for rank, p in enumerate(zones, start=1):
                                                 "not seen": tr("not seen", "दिसले नाही"),
                                                 "not covered": tr("outside view", "दृष्टीबाहेर")}.get(p.get("track106"), ""),
                  "dem": tr("kept", "टिकले") if p.get("nasadem") == "found" else tr("not kept", "टिकले नाही"),
-                 "report": (f'{p["nearest_event_km"]:.1f} km' if p.get("nearest_event_km") is not None else ""),
+                 "report": (f'{ui.num(p["nearest_event_km"])} km' if p.get("nearest_event_km") is not None else ""),
                  "slope": p["slope_deg"], "map": ev.maps_link(p["lat"], p["lon"])})
 df = pd.DataFrame(rows)
 
