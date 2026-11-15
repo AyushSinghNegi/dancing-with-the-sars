@@ -315,16 +315,17 @@ html { scroll-behavior: smooth; }
 
 # Marathi strings: drafted by the team's assistant, to be checked by a native speaker before submission.
 T = {
-    "title": {"en": "What NISAR radar saw in the 2026 Pune monsoon",
+    "title": {"en": "What NISAR Radar Saw in the 2026 Pune Monsoon",
               "mr": "२०२६ च्या पुणे पावसाळ्यात निसार रडारने काय पाहिले"},
-    "lede": {"en": "Monsoon cloud hides the ground exactly when people most need to see it. {cloud} NASA and ISRO's "
-                   "NISAR satellite sends radar through cloud and rain. We compared its passes over Pune before and "
-                   "after the floods and landslides of 3 to 8 July 2026.",
+    "lede": {"en": "Monsoon clouds hide the ground from satellites when people most need to see it. {cloud} NASA and "
+                   "ISRO's NISAR satellite sends radar through cloud and rain, which can reveal information that would "
+                   "otherwise be difficult to see. We compared its passes over Pune before and after the floods and "
+                   "landslides of 3 to 8 July 2026.",
              "mr": "पावसाळ्यातील ढग नेमके तेव्हाच जमीन झाकतात जेव्हा ती पाहण्याची सर्वात जास्त गरज असते. {cloud} नासा "
                    "आणि इस्रोचा निसार उपग्रह ढग आणि पावसातून रडार पाठवतो. ३ ते ८ जुलै २०२६ च्या पूर आणि भूस्खलनांच्या "
                    "आधी आणि नंतरच्या पुण्यावरील निरीक्षणांची आम्ही तुलना केली."},
-    "dates_line": {"en": "NISAR L-band radar passes on {b} and {a} {y}, Pune district, India",
-                   "mr": "{b} आणि {a} {y} रोजीची निसार एल-बँड रडार निरीक्षणे, पुणे जिल्हा, भारत"},
+    "dates_line": {"en": "Two NISAR L-band radar passes over Pune district, India: {b} and {a} {y}",
+                   "mr": "पुणे जिल्हा, भारत, यावरील दोन निसार एल-बँड रडार निरीक्षणे: {b} आणि {a} {y}"},
     "found": {"en": "What the radar found", "mr": "रडारला काय सापडले"},
     "new_water": {"en": "of new open water on flat ground, outside rivers and reservoirs",
                   "mr": "नद्या आणि धरणांबाहेर, सपाट जमिनीवर नवीन साचलेले पाणी"},
@@ -412,7 +413,7 @@ T = {
                                "where the JRC record has seen water at least once (1984 to 2021).",
                          "mr": "एकाच कक्षेतून आणि एकाच रडार पद्धतीतील प्रत्येक निसार निरीक्षणातील गडद पाणी, JRC नोंदीत "
                                "(१९८४ ते २०२१) किमान एकदा पाणी दिसलेल्या भागात मोजलेले."},
-    "cloud_sentence": {"en": "From {f} to {t}, all {n} of NASA's daily satellite photos of the area showed only cloud.",
+    "cloud_sentence": {"en": "From {f} to {t}, all {n} of NASA's daily satellite photos of the area showed only cloud cover.",
                        "mr": "{f} ते {t} दरम्यान या भागाची नासाची रोजची सर्व {n} उपग्रह छायाचित्रे फक्त ढगांनी भरलेली होती."},
     "cloud_caption": {"en": "NASA's daily satellite photos of our study area. Rows: {sensors}; columns: dates "
                             "(month-day). From {f} to {t}, all {n} available photos show only cloud; on the radar "

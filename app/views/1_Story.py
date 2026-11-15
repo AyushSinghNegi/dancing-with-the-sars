@@ -19,8 +19,8 @@ tr = ui.tr
 track = (data.metrics().get("sources") or [{}])[0].get("granule_id", "").split("_")[5:6]
 track = track[0] if track else ""
 
-SHORT = {"rain": tr("The rain", "पाऊस"), "cloud": tr("Cloud", "ढग"), "swipe": tr("Before and after", "आधी आणि नंतर"),
-         "changed": tr("What changed", "काय बदलले"), "weeks": tr("The weeks after", "नंतरचे आठवडे"),
+SHORT = {"rain": tr("The Rain", "पाऊस"), "cloud": tr("Cloud", "ढग"), "swipe": tr("Before and After", "आधी आणि नंतर"),
+         "changed": tr("What Changed", "काय बदलले"), "weeks": tr("The Weeks After", "नंतरचे आठवडे"),
          "limits": tr("Limits", "मर्यादा")}
 INSTR = {"rain": tr("Rain measured from space: NASA GPM IMERG, daily", "अवकाशातून मोजलेला पाऊस: नासा GPM IMERG, रोजचा"),
          "cloud": tr("What optical satellites saw: NASA Worldview", "प्रकाशीय उपग्रहांना काय दिसले: नासा वर्ल्डव्ह्यू"),

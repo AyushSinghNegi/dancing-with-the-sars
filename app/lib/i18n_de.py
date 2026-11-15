@@ -243,8 +243,8 @@ DE = {
     "Next expected NISAR pass over Pune": "Nächster erwarteter NISAR-Überflug über Pune",
     "tomorrow": "morgen", "in {n} days": "in {n} Tagen",
     "Every 12 days, cloud or not.": "Alle 12 Tage, mit oder ohne Wolken.",
-    "The rain": "Der Regen", "Cloud": "Wolken", "Before and after": "Vorher, nachher", "What changed": "Was sich änderte",
-    "The weeks after": "Die Wochen danach", "Limits": "Grenzen",
+    "The Rain": "Der Regen", "Cloud": "Wolken", "Before and After": "Vorher, nachher", "What Changed": "Was sich änderte",
+    "The Weeks After": "Die Wochen danach", "Limits": "Grenzen",
     "Rain measured from space: NASA GPM IMERG, daily": "Regen, aus dem All gemessen: NASA GPM IMERG, täglich",
     "What optical satellites saw: NASA Worldview": "Was optische Satelliten sahen: NASA Worldview",
     "NISAR L-band radar, HH, track {t}": "NISAR-L-Band-Radar, HH, Spur {t}",
@@ -284,10 +284,11 @@ DE = {
 
 DE_T = {
     "title": "Was das NISAR-Radar im Monsun 2026 über Pune sah",
-    "lede": "Monsunwolken verdecken den Boden genau dann, wenn Menschen ihn am dringendsten sehen müssen. {cloud} "
-            "Der Satellit NISAR von NASA und ISRO schickt Radar durch Wolken und Regen. Wir haben seine Überflüge über "
+    "lede": "Monsunwolken verdecken den Boden vor Satelliten genau dann, wenn Menschen ihn am dringendsten sehen "
+            "müssen. {cloud} Der Satellit NISAR von NASA und ISRO schickt Radar durch Wolken und Regen und kann so "
+            "zeigen, was sonst kaum zu sehen wäre. Wir haben seine Überflüge über "
             "Pune vor und nach den Überschwemmungen und Erdrutschen vom 3. bis 8. Juli 2026 verglichen.",
-    "dates_line": "NISAR-L-Band-Radarüberflüge am {b} und {a} {y}, Distrikt Pune, Indien",
+    "dates_line": "Zwei NISAR-L-Band-Radarüberflüge über dem Distrikt Pune, Indien: {b} und {a} {y}",
     "found": "Was das Radar fand",
     "new_water": "neue offene Wasserfläche auf flachem Gelände, außerhalb von Flüssen und Stauseen",
     "rise": "neues Wasser, weil Punes Stauseen und Flüsse stiegen und sich füllten",

@@ -5,8 +5,8 @@ Same rules as story.md: one "## " heading per step, in the same order, numbers o
 
 ## Der Regen
 In der ersten Juliwoche 2026 fiel in den Westghats oberhalb von Pune tagelang extremer Regen. Flüsse stiegen,
-tief gelegene Straßen liefen voll, und Hänge gaben nach. Zwischen dem 3. und 8. Juli wurden im ganzen Distrikt
-Pune Überschwemmungen und Erdrutsche gemeldet. Das Diagramm zeigt den täglichen Niederschlag über unserem
+tief gelegene Straßen liefen voll, und Hänge gaben nach. Zwischen dem 3. und 8. Juli 2026 wurden im ganzen Distrikt
+Pune in Indien Überschwemmungen und Erdrutsche gemeldet. Das Diagramm zeigt den täglichen Niederschlag über unserem
 Untersuchungsgebiet und die beiden Tage, an denen der Satellit NISAR darüber hinwegflog.
 
 ## Wolken verdecken den Boden. Radar nicht.
@@ -35,7 +35,7 @@ Wasserfläche der Flüsse und Stauseen von {res_first} km² am {res_first_date} 
 westlich von Pune füllten sich noch wochenlang.
 
 ## Was das Radar nicht sehen konnte
-Radar ist keine Zauberei, und wir zeigen, wo es an Grenzen stößt. Der stärkste Regen fiel vom 5. bis 8. Juli,
+Radar ist keine Zauberei, und wir zeigen, wo es an Grenzen stößt. Der stärkste Regen fiel vom 5. bis 8. Juli 2026,
 zwischen den NISAR-Überflügen am 3. und 10. Juli, und hatte am 9. Juli fast aufgehört: Das Hochwasser hatte zwei
 Tage Zeit abzulaufen, bevor das Radar zurückkam. Von den gemeldeten Überschwemmungen, die das Radar sehen konnte,
 hatten {flood_hits} von {flood_observable} einen Fund in der Nähe; bei Erdrutschen {slide_hits} von

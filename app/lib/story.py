@@ -7,19 +7,12 @@ from pathlib import Path
 from . import data, ui
 
 CONTENT = Path(__file__).resolve().parents[2] / "content"
-MONTHS = {"en": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-          "mr": ["जानेवारी", "फेब्रुवारी", "मार्च", "एप्रिल", "मे", "जून", "जुलै", "ऑगस्ट", "सप्टेंबर", "ऑक्टोबर",
-                 "नोव्हेंबर", "डिसेंबर"],
-          "de": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober",
-                 "November", "Dezember"]}
 
 
 def numbers() -> dict:
     v = data.value
     before, after = data.dates()
-    months = MONTHS.get(ui.lang(), MONTHS["en"])
-    dot = "." if ui.lang() == "de" else ""
-    fmt_date = lambda d: f"{int(d[8:10])}{dot} {months[int(d[5:7]) - 1]}"
+    fmt_date = ui.date      # one style everywhere: "28 June 2026", "28. Juni 2026", "28 जून 2026"
     def n(x, digits=1):
         return "not available" if x is None else ui.fmt_num(x, digits)
     return {
@@ -66,7 +59,7 @@ def cloud_sentence() -> str:
     c = data.cloud_check()
     if not c:
         return ""
-    return ui.t("cloud_sentence", f=ui.day(c["from"]), t=ui.day(c["to"]), n=c["all_cloud"])
+    return ui.t("cloud_sentence", f=ui.day(c["from"]), t=ui.date(c["to"]), n=c["all_cloud"])
 
 
 def _crosstrack_sentence(fmt_date) -> str:

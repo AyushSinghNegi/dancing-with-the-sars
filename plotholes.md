@@ -45,7 +45,7 @@ Last updated 14 Nov 2026 (Urvashi on `urvashi/content`; Claude for Ayush on `cla
 | # | Priority | Open point | Next step |
 |---|---|---|---|
 | P28 | Medium | **Legends do not name the NISAR file.** The design rule asks for unit, date and file ID on every layer; map legends show labels only, and the page footer shortens the file IDs. | Accept the Method page as the full list, or add IDs to the legends. |
-| P30 | Low | **Pitch line is not on the landing page.** The title is "What NISAR radar saw in the 2026 Pune monsoon", not "NISAR sees what monsoon clouds hide". | Ayush: decide. |
+| P30 | Low | **Pitch line is not on the landing page.** The title is "What NISAR Radar Saw in the 2026 Pune Monsoon", not "NISAR sees what monsoon clouds hide". | Ayush: decide. |
 | P31 | Low | **"What radar could not see" is 99 words**; the file's own limit is 90. | Trim. |
 | P32 | Low | **Three pale map colours have low contrast** against the page, and one colour pair separates poorly for blue-yellow colour blindness. Outline, hatch and legend cover it. | Keep those encodings; see `content/style.md`. |
 
