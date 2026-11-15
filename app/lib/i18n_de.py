@@ -85,11 +85,20 @@ DE = {
     "to it and see the radar before and after.":
         "{n} Überschwemmungsflächen: neues Wasser am {a}, wo zwischen 1984 und 2021 nie Wasser verzeichnet wurde. "
         "Wählen Sie eine, um die Karte dorthin zu zoomen und das Radar vorher und nachher zu sehen.",
-    "Open water on every NISAR pass of the same orbit and radar mode. Drag the slider to watch the reservoirs fill "
-    "after the July storm.":
-        "Offenes Wasser bei jedem NISAR-Überflug mit gleichem Orbit und Radarmodus. Ziehen Sie den Regler und sehen "
-        "Sie, wie sich die Stauseen nach dem Juli-Sturm füllen.",
+    "Open water on every NISAR pass of the same orbit and radar mode. Press play, or drag the slider inside the "
+    "map, to watch the reservoirs fill after the July storm. The map keeps its zoom while the date changes.":
+        "Offenes Wasser bei jedem NISAR-Überflug mit gleichem Orbit und Radarmodus. Drücken Sie auf Abspielen oder "
+        "ziehen Sie den Regler in der Karte und sehen Sie, wie sich die Stauseen nach dem Juli-Sturm füllen. Die Karte "
+        "behält ihren Zoom, während das Datum wechselt.",
     "Open water on this pass": "Offenes Wasser bei diesem Überflug",
+    "Since the pass on {p}: {r:.0f} mm of rain, open water {s}{v:.0f} km².":
+        "Seit dem Überflug am {p}: {r:.0f} mm Regen, offenes Wasser {s}{v:.0f} km².",
+    "Rain: NASA GPM IMERG Late Run daily totals, averaged over the whole study box, in UTC days from the day after "
+    "the previous pass to the day of this pass. An average over the box is far lower than totals at single rain "
+    "gauges, and Late Run values may change slightly in the Final Run.":
+        "Regen: Tagessummen aus NASA GPM IMERG Late Run, gemittelt über das ganze Untersuchungsgebiet, in UTC-Tagen vom "
+        "Tag nach dem vorigen Überflug bis zum Tag dieses Überflugs. Ein Gebietsmittel liegt weit unter den Summen "
+        "einzelner Regenmesser, und Late-Run-Werte können sich im Final Run leicht ändern.",
     "Field check list: print it, KML for phones, CSV": "Feld-Checkliste: drucken, KML fürs Handy, CSV",
     "All water numbers and thresholds": "Alle Wasserzahlen und Schwellenwerte",
     "of open water inside the area where water has ever been recorded (JRC, 1984 to 2021) on {d}":
@@ -119,6 +128,45 @@ DE = {
     "{n} of {t} zones. Select a row to see its radar evidence.":
         "{n} von {t} Zonen. Wählen Sie eine Zeile, um die Radarbelege zu sehen.",
     "No slide zones in this run.": "In diesem Lauf gibt es keine Rutschungszonen.",
+    "The flood matches are no more than chance gives: places nobody reported match {e} of {n}.":
+        "Die Hochwasser-Treffer sind nicht mehr, als der Zufall liefert: Orte, die niemand gemeldet hat, treffen "
+        "{e} von {n}.",
+    "Map shows": "Die Karte zeigt",
+    "What changed, {b} to {a}": "Was sich änderte, {b} bis {a}",
+    "Pass by pass, {f} to {l}": "Überflug für Überflug, {f} bis {l}",
+    "Drag the slider on the map, or press play, to step through NISAR's passes; the view stays where you "
+    "put it. Same orbit and radar mode on every date. Red is HH, green HV, blue HH/HV: water is dark, "
+    "forest green, buildings bright. Blue overlay: open water mapped on that date. NISAR used a different "
+    "mode on this orbit from 27 August to 2 October, so those passes are not shown. Click the map to check "
+    "any other point.":
+        "Ziehen Sie den Regler auf der Karte oder drücken Sie Abspielen, um die NISAR-Überflüge durchzugehen; der "
+        "Kartenausschnitt bleibt, wo Sie ihn hingelegt haben. An jedem Datum dieselbe Umlaufbahn und derselbe "
+        "Radarmodus. Rot ist HH, Grün HV, Blau HH/HV: Wasser ist dunkel, Wald grün, Gebäude hell. Blaue Ebene: an "
+        "diesem Datum kartiertes offenes Wasser. Vom 27. August bis 2. Oktober nutzte NISAR auf dieser Umlaufbahn "
+        "einen anderen Modus, daher fehlen diese Überflüge. Klicken Sie auf die Karte, um einen anderen Punkt zu "
+        "prüfen.",
+    "Play": "Abspielen",
+    "Open water": "Offenes Wasser",
+    "What is nearby (CSV)": "Was in der Nähe liegt (CSV)",
+    "Road nearby": "Straße in der Nähe",
+    "Settlement nearby": "Siedlung in der Nähe",
+    "Nearest mapped road within {km} km of the zone's edge (OpenStreetMap)":
+        "Nächste kartierte Straße im Umkreis von {km} km um den Rand der Zone (OpenStreetMap)",
+    "Nearest village, town or suburb within {km} km of the zone's edge (OpenStreetMap)":
+        "Nächstes Dorf, nächste Stadt oder nächster Vorort im Umkreis von {km} km um den Rand der Zone (OpenStreetMap)",
+    "**What is nearby.** Of the {t} zones, {r} have a mapped road within {rk} km, {w} a railway line within "
+    "{rk} km and {p} a village, town or suburb within {pk} km; {x} have none of these that close. Distances are "
+    "straight lines from the edge of the zone. Near does not mean at risk: it tells whoever looks after that "
+    "road, line or village which leads concern them.":
+        "**Was in der Nähe liegt.** Von den {t} Zonen haben {r} eine kartierte Straße im Umkreis von {rk} km, {w} eine "
+        "Bahnstrecke im Umkreis von {rk} km und {p} ein Dorf, eine Stadt oder einen Vorort im Umkreis von {pk} km; "
+        "{x} haben nichts davon so nah. Die Entfernungen sind Luftlinien vom Rand der Zone. Nähe bedeutet nicht "
+        "Gefährdung: Sie zeigt denen, die für diese Straße, Strecke oder dieses Dorf zuständig sind, welche Hinweise "
+        "sie betreffen.",
+    "Roads, railway lines and settlements © OpenStreetMap contributors (expressways down to tertiary roads; "
+    "smaller roads, tracks and hamlets are not counted).":
+        "Straßen, Bahnstrecken und Siedlungen © OpenStreetMap-Mitwirkende (Autobahnen bis Straßen dritter Ordnung; "
+        "kleinere Straßen, Wege und Weiler werden nicht gezählt).",
     "Found again by the second NISAR orbit, kept with NASADEM, or a reported event within 2 km.":
         "Vom zweiten NISAR-Orbit erneut gefunden, mit NASADEM bestätigt oder ein gemeldetes Ereignis im Umkreis von 2 km.",
     "e.g. Mulshi": "z. B. Mulshi",
@@ -242,8 +290,8 @@ DE = {
     "Next expected NISAR pass over Pune": "Nächster erwarteter NISAR-Überflug über Pune",
     "tomorrow": "morgen", "in {n} days": "in {n} Tagen",
     "Every 12 days, cloud or not.": "Alle 12 Tage, mit oder ohne Wolken.",
-    "The rain": "Der Regen", "Cloud": "Wolken", "Before and after": "Vorher, nachher", "What changed": "Was sich änderte",
-    "The weeks after": "Die Wochen danach", "Limits": "Grenzen",
+    "The Rain": "Der Regen", "Cloud": "Wolken", "Before and After": "Vorher, nachher", "What Changed": "Was sich änderte",
+    "The Weeks After": "Die Wochen danach", "Limits": "Grenzen",
     "Rain measured from space: NASA GPM IMERG, daily": "Regen, aus dem All gemessen: NASA GPM IMERG, täglich",
     "What optical satellites saw: NASA Worldview": "Was optische Satelliten sahen: NASA Worldview",
     "NISAR L-band radar, HH, track {t}": "NISAR-L-Band-Radar, HH, Spur {t}",
@@ -371,6 +419,13 @@ DE = {
     "slide zones found again, {l}× more than chance{p}.": "Rutschungszonen erneut gefunden, {l}× häufiger als per Zufall{p}.",
     "slide zones kept with NASA's NASADEM elevation map.": "Rutschungszonen bestätigt mit NASAs Höhenmodell NASADEM.",
     "Reservoir rise: {a} to {b} km². Flooding: {c} to {d} km².": "Anstieg der Stauseen: {a} bis {b} km². Hochwasser: {c} bis {d} km².",
+    "White pins are floods and landslides people reported. Radar sees water between buildings poorly, so the city "
+    "reports were mostly missed: {h} of {o} reported floods had something nearby, no better than chance.":
+        "Weiße Nadeln sind gemeldete Überschwemmungen und Erdrutsche. Wasser zwischen Gebäuden sieht das Radar schlecht, "
+        "daher wurden die Meldungen aus der Stadt meist nicht erfasst: Bei {h} von {o} gemeldeten Überschwemmungen gab es "
+        "etwas in der Nähe, nicht mehr als per Zufall.",
+    "No better than chance: places nobody reported match {e} of {n}.":
+        "Nicht besser als Zufall: Orte ohne Meldung kommen auf {e} von {n}.",
     "HV change (dB)": "HV-Änderung (dB)", "HH change (dB)": "HH-Änderung (dB)",
     "Coherence": "Kohärenz", "Coherence vs 1 km": "Kohärenz ggü. 1 km",
     "Place names: © OpenStreetMap contributors (Nominatim). Zones are leads to check, not confirmed landslides.":
@@ -400,9 +455,10 @@ DE = {
 
 DE_T = {
     "title": "Was das NISAR-Radar im Monsun 2026 über Pune sah",
-    "lede": "{cloud} Der Satellit NISAR von NASA und ISRO blickt mit Radar durch die Wolken. Wir haben seine Überflüge "
-            "vor und nach den Überschwemmungen und Erdrutschen vom 3. bis 8. Juli verglichen.",
-    "dates_line": "NISAR-L-Band-Radarüberflüge am {b} und {a} {y}, Distrikt Pune, Indien",
+    "lede": "Monsunwolken verdecken den Boden vor Satelliten genau dann, wenn Menschen ihn am dringendsten sehen "
+            "müssen. {cloud} Der Satellit NISAR von NASA und ISRO blickt mit Radar durch die Wolken. Wir haben seine "
+            "Überflüge vor und nach den Überschwemmungen und Erdrutschen vom 3. bis 8. Juli 2026 verglichen.",
+    "dates_line": "Zwei NISAR-L-Band-Radarüberflüge über dem Distrikt Pune, Indien: {b} und {a} {y}",
     "found": "Was das Radar fand",
     "new_water": "neue offene Wasserfläche auf flachem Gelände, außerhalb von Flüssen und Stauseen",
     "rise": "neues Wasser, weil Punes Stauseen und Flüsse stiegen und sich füllten",
@@ -519,6 +575,15 @@ DE_E = {
                   "verzeichnet wurde.",
     "flood_rep": "Nächste gemeldete Überschwemmung: {place}, {km} km.",
     "lead": "Ein Hinweis zum Prüfen vor Ort, kein bestätigter Erdrutsch.",
+    "near_h": "Was in der Nähe liegt",
+    "near_road": "Straße im Umkreis von {km} km",
+    "near_rail": "Bahnstrecke im Umkreis von {km} km",
+    "near_place": "Siedlung im Umkreis von {km} km",
+    "near_none": "keine (nächste: {x}, {d})",
+    "near_nothing": "keine",
+    "near_rail_line": "Bahnstrecke",
+    "near_unnamed": "unbenannte Straße",
+    "near_note": "Luftlinie vom Rand der Zone, aus OpenStreetMap. Nähe bedeutet nicht Gefährdung.",
 }
 
 REASON = {"steeper than 45°": "steiler als 45°", "gentler than 15°": "flacher als 15°",

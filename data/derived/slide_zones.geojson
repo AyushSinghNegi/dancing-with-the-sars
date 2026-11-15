@@ -1343,7 +1343,7 @@
         "nearest_event": "E016",
         "nearest_event_type": "waterlogging",
         "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
-        "nearest_event_km": 14.95,
+        "nearest_event_km": 12.5,
         "checks_passed": 1,
         "checks_possible": 3
       },
@@ -2410,7 +2410,7 @@
         "nearest_event": "E016",
         "nearest_event_type": "waterlogging",
         "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
-        "nearest_event_km": 12.79,
+        "nearest_event_km": 10.91,
         "checks_passed": 1,
         "checks_possible": 3
       },
@@ -2744,7 +2744,7 @@
         "nearest_event": "E016",
         "nearest_event_type": "waterlogging",
         "nearest_event_place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
-        "nearest_event_km": 17.36,
+        "nearest_event_km": 15.12,
         "checks_passed": 0,
         "checks_possible": 3
       },

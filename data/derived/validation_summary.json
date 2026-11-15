@@ -3,8 +3,8 @@
   "flood": {
     "reported": 11,
     "observable": 10,
-    "hits": 4,
-    "hit_rate": 0.4
+    "hits": 3,
+    "hit_rate": 0.3
   },
   "slide": {
     "reported": 7,

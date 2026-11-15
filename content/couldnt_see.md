@@ -23,7 +23,7 @@ reported event within 2 km.
 
 | Statement | Value | Source |
 |---|---|---|
-| Reported floods missed, all in built-up areas | 6 of 6 misses | `data/derived/validation.csv`, rows with result `miss` and a flood type; `reason` column |
+| Reported floods missed, all in built-up areas | 7 of 7 misses | `data/derived/validation.csv`, rows with result `miss` and a flood type; `reason` column |
 | Heaviest rain 5 to 8 July | about 180, 158, 109, 140 mm/day | `data/reference/rainfall.csv` (GPM IMERG Late Run) |
 | Radar pair dates | 28 Jun and 10 Jul 2026 | `data/derived/timeline.csv` |
 | Pixel size | 40 m | `metrics.json` → `grid.res_m` |

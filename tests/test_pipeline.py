@@ -210,6 +210,83 @@ def test_field_list_matches_zones():
     assert all(r["map_link"].startswith("https://www.google.com/maps/") for r in rows)
 
 
+def test_flood_chance_maths():
+    from pipeline import flood_baseline as F
+    assert F.chance_of_match([100, 600, 900, 2000], 800) == 0.5
+    assert F.prob_at_least([0.5, 0.5], 0) == 1.0
+    assert F.prob_at_least([0.5, 0.5], 1) == pytest.approx(0.75)
+    assert F.prob_at_least([0.5, 0.5], 2) == pytest.approx(0.25)
+    assert F.prob_at_least([0.2, 0.9], 2) == pytest.approx(0.18)
+    assert F.prob_at_least([1.0, 1.0, 0.0], 3) == 0.0
+
+
+def test_flood_chance_output_adds_up():
+    import json
+    p = C.DERIVED / "flood_baseline.json"
+    if not p.exists():
+        pytest.skip("no flood chance level in this output")
+    d = json.loads(p.read_text())
+    ev = d["events"]
+    assert d["observed"] == {"matched": sum(e["matched"] for e in ev), "of": len(ev),
+                             "matched_to_new_water": sum(e["matched"] and e["nearest_layer"] == "new_water" for e in ev)}
+    assert all(e["matched"] == (e["distance_m"] <= e["tolerance_m"]) for e in ev)
+    assert all(e["distance_m"] == min(e["nearest_new_water_m"], e["nearest_possible_water_m"]) for e in ev)
+    for k, ref in d["reference"].items():
+        assert ref["expected_matches"] == pytest.approx(sum(e["chance"][k] for e in ev), abs=0.02)
+        shares = [s for _, s in ref["curve"]]
+        assert shares == sorted(shares) and 0 <= shares[0] and shares[-1] <= 1
+        assert 0 <= ref["prob_at_least_observed"] <= 1
+
+
+def test_nearby_lists_what_is_in_range():
+    from shapely.geometry import LineString, Point
+    from pipeline import nearby as N
+    zone = Point(0, 0).buffer(40)
+    ways = [("road", "trunk", "Big Road", "NH1", LineString([(-500, 340), (500, 340)])),      # 300 m from the edge
+            ("road", "trunk", "Big Road", "NH1", LineString([(-500, 2000), (500, 2000)])),    # same road, further
+            ("road", "tertiary", "", "", LineString([(-500, -3040), (500, -3040)])),          # 3 km: out of range
+            ("rail", "rail", "Main Line", "", LineString([(1540, -500), (1540, 500)]))]       # 1.5 km: out of range
+    places = [{"name": "Near", "name_mr": "", "type": "village", "pt": Point(0, 1040)},
+              {"name": "Far", "name_mr": "", "type": "town", "pt": Point(5040, 0)}]
+    d = N.describe(zone, ways, places)
+    assert [(r["ref"], r["distance_m"]) for r in d["roads"]] == [("NH1", 300)]
+    assert d["railways"] == [] and d["nearest_railway"]["distance_m"] == 1500
+    assert [p["name"] for p in d["places"]] == ["Near"] and d["nearest_place"]["distance_m"] == 1000
+    assert N.line_label(d["nearest_road"]) == "NH1 Big Road"
+    assert N.line_label({"ref": "", "name": "", "class": "tertiary"}) == "unnamed tertiary road"
+
+
+def test_nearby_output_matches_zones():
+    import json
+    z, n = C.DERIVED / "slide_zones.geojson", C.DERIVED / "nearby.json"
+    if not (z.exists() and n.exists()):
+        pytest.skip("no nearby list in this output")
+    zones = {f["properties"]["id"]: f["properties"] for f in json.loads(z.read_text())["features"]}
+    d = json.loads(n.read_text())
+    assert set(d["zones"]) == set(zones)
+    assert all((v["lat"], v["lon"]) == (zones[k]["lat"], zones[k]["lon"]) for k, v in d["zones"].items())
+    s = d["summary"]
+    assert s["zones"] == len(zones)
+    assert s["road_within"] == sum(bool(v["roads"]) for v in d["zones"].values())
+    assert all(r["distance_m"] <= d["road_m"] for v in d["zones"].values() for r in v["roads"] + v["railways"])
+    assert all(p["distance_m"] <= d["place_m"] for v in d["zones"].values() for p in v["places"])
+
+
+def test_pass_images_are_same_mode_and_exist():
+    import json
+    p = C.DERIVED / "pass_images.json"
+    if not p.exists():
+        pytest.skip("no pass images in this output")
+    d = json.loads(p.read_text())
+    main = C.parse_granule_id(C.PRIMARY["before"])
+    dates = [x["date"] for x in d["passes"]]
+    assert dates == sorted(set(dates)) and main["date"] in dates
+    for x in d["passes"]:
+        g = C.parse_granule_id(x["granule_id"])
+        assert (g["track"], g["mode"], g["pol"], g["date"]) == (main["track"], main["mode"], main["pol"], x["date"])
+        assert (C.DERIVED / x["file"]).exists()
+
+
 def test_gazetteer_inside_box():
     import csv
     p = C.REFERENCE / "places_osm.csv"

@@ -308,8 +308,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     73.8625,
-     18.7623
+     73.8725,
+     18.7824
     ]
    },
    "properties": {
@@ -320,7 +320,7 @@
     "precision_m": 1500,
     "source_name": "Free Press Journal",
     "source_url": "https://www.freepressjournal.in/pune/videos-chakan-midc-hit-by-flooding-companies-shut-as-pune-nashik-highway-goes-under-water",
-    "note": "Highway flooded near Waki Khurd village; parts of Chakan MIDC flooded. Point is Chakan town centre: Waki Khurd was not found in OpenStreetMap."
+    "note": "Highway flooded near Waki Khurd village; parts of Chakan MIDC flooded. Point is Waki Kh. village as placed by Google Maps (OpenStreetMap does not list it), about 2.5 km north-north-east of Chakan town centre."
    }
   },
   {

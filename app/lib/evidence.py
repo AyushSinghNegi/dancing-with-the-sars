@@ -47,6 +47,17 @@ E = {
     "flood_rep": {"en": "Nearest reported flood: {place}, {km} km.", "mr": "सर्वात जवळचा नोंदवलेला पूर: {place}, {km} किमी."},
     "lead": {"en": "A lead to check on the ground, not a confirmed landslide.",
              "mr": "जमिनीवर तपासण्याचा संकेत, निश्चित भूस्खलन नाही."},
+    "near_h": {"en": "What is nearby", "mr": "जवळ काय आहे"},
+    "near_road": {"en": "Road within {km} km", "mr": "{km} किमीच्या आत रस्ता"},
+    "near_rail": {"en": "Railway within {km} km", "mr": "{km} किमीच्या आत रेल्वे मार्ग"},
+    "near_place": {"en": "Settlement within {km} km", "mr": "{km} किमीच्या आत वस्ती"},
+    "near_none": {"en": "none (nearest: {x}, {d})", "mr": "नाही (सर्वात जवळ: {x}, {d})"},
+    "near_nothing": {"en": "none", "mr": "नाही"},
+    "near_rail_line": {"en": "railway line", "mr": "रेल्वे मार्ग"},
+    "near_unnamed": {"en": "unnamed road", "mr": "नाव नसलेला रस्ता"},
+    "near_note": {"en": "Straight-line distances from the edge of the zone, from OpenStreetMap. Near does not mean "
+                        "at risk.",
+                  "mr": "क्षेत्राच्या कडेपासून सरळ रेषेतील अंतरे, OpenStreetMap वरून. जवळ असणे म्हणजे धोका असणे नव्हे."},
 }
 
 REASON_MR = {"steeper than 45°": "४५° पेक्षा जास्त उतार", "gentler than 15°": "१५° पेक्षा कमी उतार",
@@ -110,6 +121,41 @@ def checks(p: dict) -> list[tuple[str, bool | None, str]]:
     return out
 
 
+def dist(m: float) -> str:
+    """'480 m' (to the nearest 10 m, a quarter of a pixel) or '1.3 km'."""
+    return f"{int(round(m / 10) * 10)} m" if m < 995 else f"{m / 1000:.1f} km"
+
+
+def _line_name(r: dict) -> str:
+    return " ".join(x for x in (r.get("ref"), r.get("name")) if x) or e("near_unnamed")
+
+
+def _place_name(r: dict) -> str:
+    return (r.get("name_mr") if ui.lang() == "mr" else "") or r["name"]
+
+
+def nearby(p: dict) -> list[tuple[str, str]]:
+    """(label, text) for the roads, railway lines and settlements near a zone; [] when not computed."""
+    nb = data.nearby()
+    z = nb.get("zones", {}).get(p.get("id")) if nb else None
+    if not z:
+        return []
+
+    def row(key, within, nearest, name, km):
+        if within:
+            txt = "; ".join(f"{name(r)}, {dist(r['distance_m'])}" for r in within)
+        elif nearest:
+            txt = e("near_none", x=name(nearest), d=dist(nearest["distance_m"]))
+        else:
+            txt = e("near_nothing")
+        return e(key, km=f"{km:g}"), txt
+
+    rail = lambda r: r.get("name") or e("near_rail_line")
+    return [row("near_road", z["roads"], z["nearest_road"], _line_name, nb["road_m"] / 1000),
+            row("near_rail", z["railways"], z["nearest_railway"], rail, nb["road_m"] / 1000),
+            row("near_place", z["places"], z["nearest_place"], _place_name, nb["place_m"] / 1000)]
+
+
 def _badge(ok):
     if ok is True:
         return '<span class="ml-ck ok" aria-label="yes">✓</span>'
@@ -140,16 +186,19 @@ def zone_card(p: dict, open_note=True) -> str:
     ck = "".join(f'<li>{_badge(ok)}<span><b>{html.escape(lbl)}</b>: {html.escape(det)}</span></li>'
                  for lbl, ok, det in checks(p))
     place = html.escape(p.get("near") or "")
+    nb = "".join(f"<li><b>{html.escape(lbl)}</b>: {html.escape(txt)}</li>" for lbl, txt in nearby(p))
+    near = (f'<p class="ml-facts-h">{html.escape(e("near_h"))}</p><ul class="ml-why">{nb}</ul>') if nb else ""
     return (
         f'<article class="ml-card">'
         f'<header class="ml-card-head"><span class="ml-id">{p["id"]}</span><span class="ml-place">{place}</span>'
         f'<span class="ml-pill {conf}">{html.escape(e("conf_" + conf))} · {p["score"]:.2f}</span></header>'
         f'<div class="ml-card-body">{_chips(p["id"], ("before", "after", "coh"))}'
         f'<div class="ml-facts"><p class="ml-facts-h">{html.escape(e("why_h"))}</p><ul class="ml-why">{why}</ul>'
-        f'<p class="ml-facts-h">{html.escape(e("checks_h"))}</p><ul class="ml-checks">{ck}</ul>'
+        f'<p class="ml-facts-h">{html.escape(e("checks_h"))}</p><ul class="ml-checks">{ck}</ul>{near}'
         f'<p class="ml-links"><a href="{maps_link(p["lat"], p["lon"])}" target="_blank" rel="noopener">'
         f'{html.escape(e("maps"))}</a> · {p["lat"]:.5f}, {p["lon"]:.5f}</p></div></div>'
-        + (f'<p class="ml-card-note">{html.escape(e("lead"))} {html.escape(e("chip_note"))}</p>' if open_note else "")
+        + (f'<p class="ml-card-note">{html.escape(e("lead"))} {html.escape(e("chip_note"))}'
+           f'{" " + html.escape(e("near_note")) if nb else ""}</p>' if open_note else "")
         + "</article>")
 
 

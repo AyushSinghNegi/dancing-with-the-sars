@@ -1,0 +1,51 @@
+zone,confidence,lat,lon,nearest_road,road_class,road_distance_m,nearest_railway,railway_distance_m,nearest_settlement,settlement_type,settlement_distance_m,roads_within_1000m,railways_within_1000m,settlements_within_2000m
+SZ001,high,18.89501,73.39186,unnamed tertiary road,tertiary,3357,Mumbai-Pune Railway,5703,Mangaon,village,2345,,,
+SZ002,high,18.19757,73.56288,unnamed tertiary road,tertiary,1596,Konkan Railway,26750,Dhangarwadi,village,1408,,,Dhangarwadi (1408 m)
+SZ003,high,18.17851,73.52673,SH101,primary,1827,Konkan Railway,22600,Waki Budruk,village,2445,,,
+SZ004,high,18.47321,73.40928,NH753F,primary,476,railway line,29907,Dongerwadi,village,897,NH753F (476 m),,Dongerwadi (897 m)
+SZ005,high,18.17594,73.52241,SH101,primary,1307,Konkan Railway,22084,Jholichakond,village,1898,,,Jholichakond (1898 m)
+SZ006,high,18.15528,73.72455,unnamed tertiary road,tertiary,2374,railway line,42643,Mahuda,village,3772,,,
+SZ007,high,18.77902,73.33264,NH48 Khopoli Road,trunk,248,railway line,1688,Khopoli,town,1484,NH48 Khopoli Road (248 m); MPE Mumbai - Pune Expressway Missing Link (695 m); MPE;NH48 Mumbai - Pune Expressway (696 m),,Khopoli (1484 m)
+SZ008,high,18.17485,73.52147,SH101,primary,1164,Konkan Railway,21988,Jholichakond,village,1781,,,Jholichakond (1781 m)
+SZ009,medium,18.73059,73.48086,MPE Mumbai - Pune Expressway,motorway,1346,railway line,1462,Malavli,town,1833,,,Malavli (1833 m)
+SZ010,medium,18.3003,73.37,unnamed tertiary road,tertiary,1793,Konkan Railway,16446,Manjurne,village,1454,,,Manjurne (1454 m)
+SZ011,medium,18.69449,73.3365,unnamed tertiary road,tertiary,2895,Tunnel 51,7209,Mangaon Budruk,village,1629,,,Mangaon Budruk (1629 m); Phalyan (1861 m)
+SZ012,medium,18.18665,73.52837,unnamed tertiary road,tertiary,2334,Konkan Railway,22913,Waki Budruk,village,2269,,,
+SZ013,medium,18.71126,73.35302,unnamed tertiary road,tertiary,2740,catch siding,4803,Phalyan,village,2209,,,
+SZ014,medium,18.66867,73.40159,Tung Road,tertiary,207,railway line,8750,Bheliv,village,4809,Tung Road (207 m); Ambi Valley Road (344 m); unnamed tertiary road (457 m),,
+SZ015,medium,18.54269,73.37719,unnamed tertiary road,tertiary,725,railway line,22910,Adgaon,village,2114,unnamed tertiary road (725 m); Dare ghat (738 m),,
+SZ016,medium,18.44397,73.39137,NH753F,primary,930,Konkan Railway,32082,Patnus,village,1837,NH753F (930 m),,Patnus (1837 m)
+SZ017,medium,18.15088,73.73245,unnamed tertiary road,tertiary,1423,railway line,42599,Mahuda,village,2894,,,
+SZ018,medium,18.34649,73.40401,Kadape Jite Road,tertiary,1193,Konkan Railway,22646,Boravali,village,870,,,Boravali (870 m); Sakalyachiwadi (1042 m); Jite (1255 m)
+SZ019,medium,18.14907,73.73228,unnamed tertiary road,tertiary,1416,railway line,42755,Mahuda,village,2935,,,
+SZ020,medium,18.67871,73.41306,Tung Road,tertiary,779,railway line,7418,Bheliv,village,5783,Tung Road (779 m),,
+SZ021,medium,18.5287,73.41104,unnamed tertiary road,tertiary,1375,railway line,23810,Adgaon,village,2254,,,
+SZ022,medium,18.29102,73.47168,SH101,primary,4265,Konkan Railway,22670,Khanu,village,1190,,,Khanu (1190 m)
+SZ023,medium,18.50819,73.65559,NH753F Pirangut Paud Road,primary,763,Mumbai–Pune Railway,19255,Sutarwadi,village,748,NH753F Pirangut Paud Road (763 m); unnamed tertiary road (784 m),,Sutarwadi (748 m)
+SZ024,low,18.88936,73.90851,Pune Nashik Road,primary,218,railway line,27910,Rajgurunagar,suburb,4370,Pune Nashik Road (218 m); NH60 Pune Nashik Road (637 m),,
+SZ025,low,18.629,73.54545,unnamed tertiary road,tertiary,848,railway line,13839,Andhalegaon,village,2258,unnamed tertiary road (848 m),,
+SZ026,low,18.1623,73.73804,unnamed tertiary road,tertiary,1805,railway line,41224,Mahuda,village,2635,,,
+SZ027,low,18.78626,73.3847,unnamed tertiary road,tertiary,451,Tunnel 43,1538,Tungarli,village,3245,unnamed tertiary road (451 m),,
+SZ028,low,18.2286,73.55487,unnamed tertiary road,tertiary,1134,Konkan Railway,26880,Dhangarwadi,village,4900,,,
+SZ029,low,18.17433,73.75365,unnamed tertiary road,tertiary,2391,railway line,39163,Mahuda,village,2658,,,
+SZ030,low,18.77122,73.37012,MPE;NH48 Mumbai - Pune Expressway,motorway,239,Tunnel 47 + 49,574,खंडाला,village,1696,MPE;NH48 Mumbai - Pune Expressway (239 m); MPE Khandala Tunnel (265 m); NH48 (307 m),Tunnel 47 + 49 (574 m); railway line (610 m); Tunnel 46 (681 m),खंडाला (1696 m)
+SZ031,low,18.66906,73.40519,Tung Road,tertiary,203,railway line,8617,Bheliv,village,5152,Tung Road (203 m); Ambi Valley Road (704 m); unnamed tertiary road (748 m),,
+SZ032,low,18.23993,73.6989,Sangamner Bhramhangar Bhandravali Road,tertiary,1642,Mumbai–Pune Railway,35966,Gunjavane,village,1642,,,Gunjavane (1642 m)
+SZ033,low,18.16262,73.7318,unnamed tertiary road,tertiary,2213,railway line,41552,Mahuda,village,3260,,,
+SZ034,low,18.4724,73.37703,unnamed tertiary road,tertiary,1697,railway line,30533,Patnus,village,2831,,,
+SZ035,low,18.17262,73.75451,unnamed tertiary road,tertiary,2414,railway line,39287,Mahuda,village,2474,,,
+SZ036,low,18.29076,73.46109,unnamed secondary road,secondary,3968,Konkan Railway,21803,Khanu,village,2310,,,
+SZ037,low,18.45403,73.54031,unnamed tertiary road,tertiary,250,Mumbai–Pune Railway,31764,Kharwade,village,5346,unnamed tertiary road (250 m); SH57 Temghar Lavasa Road (264 m),,
+SZ038,low,18.39224,73.40757,NH753F,primary,1189,Konkan Railway,27331,Umbardi,village,2029,,,
+SZ039,low,18.71234,73.35244,unnamed tertiary road,tertiary,2667,catch siding,4708,Phalyan,village,2331,,,
+SZ040,low,18.77298,73.3929,MPE Mumbai - Pune Expressway,motorway,399,Mumbai-Pune Railway,1492,Tungarli,village,1680,MPE Mumbai - Pune Expressway (399 m); unnamed tertiary road (495 m),,Tungarli (1680 m)
+SZ041,low,18.81615,73.96972,unnamed tertiary road,tertiary,323,railway line,26994,Gosasi,village,2211,unnamed tertiary road (323 m); SH54 (803 m),,
+SZ042,low,18.8644,73.56818,unnamed tertiary road,tertiary,1441,railway line,10735,Wadeshwar,village,2035,,,
+SZ043,low,18.50523,73.39851,Ghutake to Hirdi,tertiary,475,railway line,26527,Pimpri,village,2913,Ghutake to Hirdi (475 m),,
+SZ044,low,18.46957,73.4382,NH753F,primary,26,railway line,29994,Sarole,village,692,NH753F (26 m),,Sarole (692 m); Chachivali (904 m)
+SZ045,low,18.17205,73.7652,unnamed tertiary road,tertiary,1887,railway line,38775,Mahuda,village,2429,,,
+SZ046,low,18.8654,73.98613,Rajgurunagar Wafgaon Road,tertiary,1259,railway line,31937,Chichbaiwadi,village,1740,,,Chichbaiwadi (1740 m); Wafgaon (1818 m); Gulani (1980 m)
+SZ047,low,18.8442,73.63699,unnamed tertiary road,tertiary,95,Mumbai–Pune Railway,9993,Deshmukhwadi,village,2986,unnamed tertiary road (95 m),,
+SZ048,low,18.46226,73.39632,NH753F,primary,1046,railway line,31299,Dongerwadi,village,1336,,,Dongerwadi (1336 m)
+SZ049,low,18.39984,73.69278,SH59,primary,158,railway line,22189,Malkhed,village,1129,SH59 (158 m),,Malkhed (1129 m); Sangrun (1647 m); Wasavewadi (1666 m)
+SZ050,low,18.42663,73.9643,unnamed tertiary road,tertiary,1464,Pune - Miraj Railway Line,4414,Wadki,village,1715,,,Wadki (1715 m)

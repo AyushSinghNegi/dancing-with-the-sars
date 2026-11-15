@@ -61,6 +61,17 @@ Fetched by `pipeline/ancillary.py` (Copernicus) or prepared by RSN (NASADEM); st
 | Raw download, unedited | `osm_places_raw.json` |
 | Used for | the app's "Check a place" search |
 
+## Roads and railways: `osm_roads_raw.json.gz`
+
+| | |
+|---|---|
+| Source | OpenStreetMap (© OpenStreetMap contributors, ODbL) |
+| What | every way tagged `highway` = motorway, trunk, primary, secondary or tertiary, or `railway` = rail, inside the study box: 10,578 ways (134 motorway, 1,600 trunk, 2,214 primary, 1,633 secondary, 4,202 tertiary, 795 rail) |
+| Fetched | 15 Nov 2026, Overpass API (OSM data as of 2026-11-15T00:45:00Z), query in `pipeline/nearby.py` |
+| Raw download, unedited | `osm_roads_raw.json.gz` (gzipped; 12.1 MB unpacked) |
+| Used for | "What is nearby" for each likely slide zone: `data/derived/nearby.json`, `nearby.csv` |
+| Limits | smaller roads, tracks and hamlets are not included; many rural roads have no name or number |
+
 ## Reported events: `events.geojson`
 
 Each event carries its own `source_name` and `source_url`.

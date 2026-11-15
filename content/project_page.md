@@ -11,8 +11,10 @@ Rules from the guide that affect this page:
 - Submit before Sunday 15 November, 11:59 p.m. in the time zone of the Local Event (GDG Ahlen).
   The page can be edited and resubmitted until then; judges see the last saved version.
 
-Numbers are from `data/derived/` (metrics.json generated 2026-11-14T19:01Z). Recheck them after any
+Numbers are from `data/derived/` (metrics.json generated 2026-11-15T06:12Z, after the E016 correction). Recheck them after any
 new pipeline run. Items in `[SQUARE BRACKETS]` still need a person to fill or confirm them.
+
+**Corrected (plotholes.md P07, P46):** the pipeline was re-run on 15 November with E016 at its real location. Floods are **3 of 10** (7 misses). Every match is to a "possible water under cover" patch, and places nobody reported match about as often (3.8 of 10), so the flood count is a limit, not evidence: say "no better than chance", never "flood detected".
 
 ---
 
@@ -78,9 +80,10 @@ A Python pipeline reads only the Pune box from each NISAR file, on a 40 m grid.
 
 **How we checked it**
 
-- Against reports: 18 events from news sources, each linked. Of 10 floods radar could observe, 4 had
-  a detection nearby; the 6 misses were all in built-up areas, where radar echoes off walls hide
-  street flooding. Of 7 landslides we could locate, radar could observe 4; we matched 2, both to the
+- Against reports: 18 events from news sources, each linked. Of 10 floods radar could observe, 3 had
+  a "possible water" patch nearby, which is no better than chance: places nobody reported match about
+  3.8 of 10 under the same rule. The 7 misses were all in built-up areas, where radar echoes off walls
+  hide street flooding. Of 7 landslides we could locate, radar could observe 4; we matched 2, both to the
   same zone.
 - Against a second orbit: NISAR track 106 (3 to 15 July) saw 12 of the zones and found 2 again,
   about 8 times what chance gives (p = 0.026).
@@ -116,12 +119,12 @@ Yes.
 - Claude was also used to check each reported event against its news source, to draft the style
   guide, the slide outline, the validation table text and this page, and to keep the list of open
   points (`plotholes.md`).
-- `[CONFIRM with RSN: ChatGPT Plus use for data analysis, as planned]`
+- ChatGPT (OpenAI) was used by one team member for data analysis.
 - No measurement is SI-generated. Every number is computed by our code from the NISAR files listed
   below, or comes from a linked source.
 - No image, video or audio is SI-generated. Map images and the demo video are rendered by our code
   from the radar data.
-- `[CONFIRM with Ayush: the idea and the choice of place and event were the team's own]`
+- The idea and the choice of place and event were the team's own.
 - The repository's README has a "Use of AI" section stating this.
 
 ## NASA Data
@@ -186,6 +189,6 @@ Second-orbit check, track 106:
 - [ ] Demo is 30 seconds or less (or 7 slides or fewer).
 - [ ] Live app and repository links open in a private window.
 - [ ] Every number above still matches `data/derived/metrics.json`.
-- [ ] The three `[SQUARE BRACKET]` items are filled (demo link, RSN's tools, whose idea).
+- [ ] The one remaining `[SQUARE BRACKET]` item is filled: the demo link.
 - [ ] Nothing shows a person under 18.
 - [ ] Ayush has given the final OK.

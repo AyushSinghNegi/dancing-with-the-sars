@@ -2,8 +2,10 @@
 from __future__ import annotations
 
 import html
+import json
 
 import folium
+from branca.element import MacroElement, Template
 from folium.plugins import Fullscreen, MiniMap, MousePosition
 
 from . import data, ui
@@ -263,24 +265,214 @@ def add_events(m):
     fg.add_to(m)
 
 
-def season(date: str, basemap=None, opacity=0.9):
-    """Open water on one NISAR pass (season slider), on a plain base map."""
+PASS_CSS = """<style>
+.leaflet-image-layer { transition: opacity .45s ease; }
+.ml-passes { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 1000; display: flex;
+  align-items: center; gap: 10px; padding: 8px 14px; border-radius: 12px; background: rgba(10,18,34,.9); color: #e6edf6;
+  font: 13px/1.3 'IBM Plex Sans', system-ui, sans-serif; box-shadow: 0 6px 24px rgba(0,0,0,.3); max-width: 92%;
+  flex-wrap: wrap; justify-content: center; }
+.ml-passes button { width: 30px; height: 30px; border-radius: 50%; border: 1px solid rgba(160,190,230,.4);
+  background: #3d8ef0; color: #fff; font-size: 13px; cursor: pointer; padding: 0; }
+.ml-passes input[type=range] { width: 190px; accent-color: #3d8ef0; cursor: pointer; }
+.ml-passes output { font-weight: 600; min-width: 9.5em; }
+.ml-passes label { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .leaflet-image-layer { transition: none; } }
+</style>"""
+
+
+class _PassControl(MacroElement):
+    """Slider, play button and water switch inside the map: dates change in the browser, so the view never
+    reloads and zoom and position stay put. Images are stacked oldest first and revealed one on top of the
+    other, so a fade never shows the base map through."""
+    _template = Template("""{% macro script(this, kwargs) %}
+(function () {
+  var map = {{ this._parent.get_name() }};
+  var radar = [{{ this.radar }}], water = [{{ this.water }}], labels = {{ this.labels }};
+  var box = L.DomUtil.create('div', 'ml-passes', map.getContainer());
+  box.innerHTML = '<button type="button" aria-label="{{ this.play }}" title="{{ this.play }}">&#9654;</button>' +
+    '<input type="range" min="0" max="' + (labels.length - 1) + '" step="1" aria-label="{{ this.slider }}">' +
+    '<output></output><label><input type="checkbox" checked> {{ this.water_label }}</label>';
+  L.DomEvent.disableClickPropagation(box); L.DomEvent.disableScrollPropagation(box);
+  var btn = box.querySelector('button'), range = box.querySelector('input[type=range]'),
+      out = box.querySelector('output'), cb = box.querySelector('input[type=checkbox]'), timer = null;
+  function show(i) {
+    radar.forEach(function (l, k) { if (l) l.setOpacity(k <= i ? 1 : 0); });
+    water.forEach(function (l, k) { if (l) l.setOpacity(k === i && cb.checked ? 0.9 : 0); });
+    out.textContent = labels[i]; range.value = i;
+    try { sessionStorage.setItem('ml_pass', String(i)); } catch (e) {}
+  }
+  function stop() { clearInterval(timer); timer = null; btn.innerHTML = '&#9654;'; }
+  range.addEventListener('input', function () { stop(); show(+range.value); });
+  cb.addEventListener('change', function () { show(+range.value); });
+  btn.addEventListener('click', function () {
+    if (timer) { stop(); return; }
+    btn.innerHTML = '&#10074;&#10074;';
+    timer = setInterval(function () { show((+range.value + 1) % labels.length); }, 1600);
+  });
+  var start = {{ this.start }};
+  try { var s = sessionStorage.getItem('ml_pass'); if (s !== null && +s < labels.length) start = +s; } catch (e) {}
+  show(start);
+})();
+{% endmacro %}""")
+
+    def __init__(self, radar, water, labels, start):
+        super().__init__()
+        self._name = "PassControl"
+        self.radar, self.water = ", ".join(radar), ", ".join(water)
+        self.labels, self.start = json.dumps(labels), start
+        self.play = ui.tr("Play", "चालू करा")
+        self.slider = ui.tr("NISAR pass", "निसार निरीक्षण")
+        self.water_label = ui.tr("Open water", "खुले पाणी")
+
+
+def passes(start_date=None, location=None, zoom=10, basemap=None):
+    """What NISAR saw on each same-orbit, same-mode pass: every radar colour image and that date's open
+    water in one map, switched by a slider inside the map."""
+    basemap = basemap or default_basemap()
+    m = folium.Map(location=location or center(), zoom_start=zoom, tiles=None, control_scale=True,
+                   prefer_canvas=True, zoom_snap=0.25, zoom_delta=0.5)
+    b = data.bounds().get("bounds_latlon")
+    if location is None and b:
+        m.fit_bounds(b, padding=(6, 6))
+    m.get_root().header.add_child(folium.Element(map_css(basemap) + PASS_CSS))
+    folium.map.CustomPane("labels", z_index=650, pointer_events=False).add_to(m)
+    url, attr = BASEMAPS[basemap]
+    folium.TileLayer(url, attr=attr, name=basemap, max_zoom=18).add_to(m)
+    images = data.pass_images()
+    dates = list(images)
+
+    def overlay(ov_url, zindex):
+        if not ov_url or not b:
+            return "null"
+        ov = folium.raster_layers.ImageOverlay(image="data:image/png;base64,", bounds=b, opacity=0,
+                                               interactive=False, cross_origin=False, zindex=zindex)
+        ov.url = ov_url
+        ov.add_to(m)
+        return ov.get_name()
+
+    radar = [overlay(images[d], 2 + i) for i, d in enumerate(dates)]
+    water = [overlay(data.overlay_url(f"water_d{d}"), 50) for d in dates]
+    lab = _labels(basemap)
+    folium.TileLayer(lab[0], attr=lab[1], name="Place names", overlay=True, pane="labels", max_zoom=18).add_to(m)
+    if b:
+        folium.Rectangle(b, color=_ink(basemap), weight=1.2, fill=False, dash_array="4 4",
+                         tooltip="Study box (NISAR crop)").add_to(m)
+    Fullscreen(position="topleft").add_to(m)
+    MousePosition(position="bottomleft", separator=", ", num_digits=5, prefix="", empty_string="",
+                  lat_formatter="function(n){return n.toFixed(5)+'° N'}",
+                  lng_formatter="function(n){return n.toFixed(5)+'° E'}").add_to(m)
+    if dates:
+        _PassControl(radar, water, [ui.date(d) for d in dates],
+                     dates.index(start_date) if start_date in dates else 0).add_to(m)
+    return m
+
+
+def _season_css() -> str:
+    dk = ui.dark()
+    panel, text, line, muted = ("rgba(10,18,34,.92)", "#e6edf6", "rgba(160,190,230,.22)", "#9fb3c8") if dk else \
+        ("rgba(255,255,255,.95)", "#1d3346", "rgba(29,51,70,.14)", "#5b6b7a")
+    return f"""<style>
+.ml-season {{ position: absolute; left: 50%; bottom: 58px; transform: translateX(-50%); z-index: 800;
+  width: min(560px, calc(100% - 24px)); box-sizing: border-box; padding: 10px 14px 8px; border-radius: 14px;
+  background: {panel}; color: {text}; border: 1px solid {line}; box-shadow: 0 6px 24px rgba(0,0,0,.18);
+  backdrop-filter: blur(6px); font: 13px/1.4 'IBM Plex Sans', system-ui, sans-serif; }}
+.ml-season .row {{ display: flex; align-items: center; gap: 10px; }}
+.ml-season button {{ flex: none; width: 34px; height: 34px; border-radius: 50%; border: 0; background: #3d8ef0;
+  color: #fff; font-size: 13px; cursor: pointer; padding: 0; }}
+.ml-season button:focus-visible, .ml-season input:focus-visible {{ outline: 2px solid #3d8ef0; outline-offset: 2px; }}
+.ml-season .track {{ flex: 1; min-width: 0; }}
+.ml-season input[type=range] {{ width: 100%; margin: 0; accent-color: #3d8ef0; cursor: pointer; }}
+.ml-season .ticks {{ display: flex; justify-content: space-between; font-size: 11px; color: {muted};
+  margin: 1px 2px 0; }}
+.ml-season .ticks span {{ cursor: pointer; white-space: nowrap; }}
+.ml-season .ticks span.on {{ color: {text}; font-weight: 600; }}
+.ml-season .note {{ margin-top: 6px; min-height: 1.4em; }}
+.ml-season .note b {{ font-size: 15px; }}
+.ml-season .ml-rain {{ margin-top: 2px; color: {muted}; }}
+@media (max-width: 520px) {{ .ml-season {{ bottom: 54px; padding: 8px 10px 6px; }} .ml-season .ticks {{ font-size: 10px; }} }}
+</style>"""
+
+
+class _SeasonControl(MacroElement):
+    """Play button and date slider inside the season map. Dates change in the browser, so the map never reloads
+    and keeps its zoom and position. Each date shows its own water at once, with no fade, so the map always shows
+    exactly the water on that date."""
+    _template = Template("""{% macro script(this, kwargs) %}
+(function () {
+  var map = {{ this._parent.get_name() }};
+  var water = [{{ this.water }}], ticks = {{ this.ticks }}, notes = {{ this.notes }};
+  var n = ticks.length, op = {{ this.opacity }}, cur = -1, timer = null;
+  var box = L.DomUtil.create('div', 'ml-season', map.getContainer());
+  box.innerHTML = '<div class="row"><button type="button"></button><div class="track">' +
+    '<input type="range" min="0" max="' + (n - 1) + '" step="1" aria-label="{{ this.slider }}">' +
+    '<div class="ticks">' + ticks.map(function (t, k) { return '<span data-k="' + k + '">' + t + '</span>'; }).join('') +
+    '</div></div></div><div class="note" aria-live="polite"></div>';
+  L.DomEvent.disableClickPropagation(box); L.DomEvent.disableScrollPropagation(box);
+  var btn = box.querySelector('button'), range = box.querySelector('input'), note = box.querySelector('.note'),
+      spans = box.querySelectorAll('.ticks span');
+  function label(playing) {
+    btn.innerHTML = playing ? '&#10074;&#10074;' : '&#9654;';
+    btn.title = playing ? '{{ this.pause }}' : '{{ this.play }}';
+    btn.setAttribute('aria-label', btn.title);
+  }
+  function show(i) {
+    if (i === cur) return;
+    cur = i;
+    water.forEach(function (w, k) { if (w) w.setOpacity(k === i ? op : 0); });
+    range.value = i; note.innerHTML = notes[i];
+    spans.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+    try { sessionStorage.setItem('ml_season', String(i)); } catch (e) {}
+  }
+  function stop() { clearInterval(timer); timer = null; label(false); }
+  function step() { show(cur >= n - 1 ? 0 : cur + 1); }
+  range.addEventListener('input', function () { stop(); show(+range.value); });
+  spans.forEach(function (s) { s.addEventListener('click', function () { stop(); show(+s.dataset.k); }); });
+  btn.addEventListener('click', function () {
+    if (timer) { stop(); return; }
+    label(true);
+    if (cur >= n - 1) show(0); else step();
+    timer = setInterval(function () { if (cur >= n - 1) { stop(); return; } step(); }, 1800);
+  });
+  var start = {{ this.start }};
+  try { var s = sessionStorage.getItem('ml_season'); if (s !== null && +s < n) start = +s; } catch (e) {}
+  label(false); show(start);
+})();
+{% endmacro %}""")
+
+    def __init__(self, water, ticks, notes, start, opacity):
+        super().__init__()
+        self._name = "SeasonControl"
+        self.water = ", ".join(water)
+        self.ticks, self.notes = json.dumps(ticks), json.dumps(notes)
+        self.start, self.opacity = start, opacity
+        self.play, self.pause = ui.tr("Play animation", "ॲनिमेशन सुरू करा"), ui.tr("Pause animation", "ॲनिमेशन थांबवा")
+        self.slider = ui.tr("NISAR pass", "निसार निरीक्षण")
+
+
+def season(dates: list[str], notes: list[str], start: int = 0, basemap=None, opacity=0.9):
+    """Open water on every NISAR pass of the season in one map, switched by a play button and slider inside the
+    map. `notes` is the HTML line shown under the slider for each date."""
     basemap = basemap or default_basemap()
     m = folium.Map(location=center(), zoom_start=10, tiles=None, control_scale=True, prefer_canvas=True,
                    zoom_snap=0.25, zoom_delta=0.5)
     b = data.bounds().get("bounds_latlon")
     if b:
         m.fit_bounds(b, padding=(6, 6))
-    m.get_root().header.add_child(folium.Element(map_css(basemap)))
+    m.get_root().header.add_child(folium.Element(map_css(basemap) + _season_css()))
     folium.map.CustomPane("labels", z_index=650, pointer_events=False).add_to(m)
     url, attr = BASEMAPS[basemap]
     folium.TileLayer(url, attr=attr, name=basemap, max_zoom=18).add_to(m)
-    ov_url = data.overlay_url(f"water_d{date}")
-    if ov_url and b:
-        ov = folium.raster_layers.ImageOverlay(image="data:image/png;base64,", bounds=b, name=f"Open water, {date}",
-                                               opacity=opacity, interactive=False, cross_origin=False, zindex=2)
+    water = []
+    for d in dates:
+        ov_url = data.overlay_url(f"water_d{d}")
+        if not ov_url or not b:
+            water.append("null")
+            continue
+        ov = folium.raster_layers.ImageOverlay(image="data:image/png;base64,", bounds=b, opacity=0,
+                                               interactive=False, cross_origin=False, zindex=2)
         ov.url = ov_url
         ov.add_to(m)
+        water.append(ov.get_name())
     lab = _labels(basemap)
     folium.TileLayer(lab[0], attr=lab[1], name="Place names", overlay=True, pane="labels",
                      max_zoom=18).add_to(m)
@@ -288,5 +480,10 @@ def season(date: str, basemap=None, opacity=0.9):
         folium.Rectangle(b, color=_ink(basemap), weight=1.2, fill=False, dash_array="4 4",
                          tooltip="Study box (NISAR crop)").add_to(m)
     Fullscreen(position="topleft").add_to(m)
-    _extras(m, basemap)
+    MousePosition(position="topright", separator=", ", num_digits=5, prefix="", empty_string="",
+                  lat_formatter="function(n){return n.toFixed(5)+'° N'}",
+                  lng_formatter="function(n){return n.toFixed(5)+'° E'}").add_to(m)
+    if dates:
+        _SeasonControl(water, [ui.day_short(d) for d in dates], notes, min(max(start, 0), len(dates) - 1),
+                       opacity).add_to(m)
     return m

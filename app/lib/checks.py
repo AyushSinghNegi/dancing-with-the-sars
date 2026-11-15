@@ -19,11 +19,17 @@ def items() -> list[tuple[str, str, str]]:
     if fo:
         rh = dc.get("reported_slide_hits") or {}
         weak = rh and rh.get("nasadem", 0) < rh.get("main", 0)
+        fb = data.flood_baseline()
+        luck = fb and min(fb["flat"]["prob_at_least_observed"], fb["settlements"]["prob_at_least_observed"]) >= 0.05
         checks.append((ui.t("x_of_y", x=fh, y=fo), tr("Reported floods", "नोंदवलेले पूर"),
                        tr("that radar could see had a detection nearby. Landslides: {h} of {o}",
                           "जे रडारला दिसू शकत होते त्यांच्याजवळ शोध लागला. भूस्खलने: {o} पैकी {h}",
                           h=sh, o=so)
-                       + (tr(", weak support.", ", कमकुवत आधार.") if weak else ".")))
+                       + (tr(", weak support.", ", कमकुवत आधार.") if weak else ".")
+                       + (" " + tr("No better than chance: places nobody reported match {e} of {n}.",
+                                   "योगायोगापेक्षा जास्त नाही: कोणीही न नोंदवलेली ठिकाणे {n} पैकी {e} वेळा जुळतात.",
+                                   e=ui.fmt_num(fb["flat"]["expected_matches"], 1), n=fb["of"])
+                          if luck else "")))
     xt = data.crosstrack()
     if xt:
         pv = xt.get("p_value")

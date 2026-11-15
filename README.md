@@ -1,4 +1,4 @@
-# MonsoonLens: what NISAR radar saw in the 2026 Pune monsoon
+# MonsoonLens: What NISAR Radar Saw in the 2026 Pune Monsoon
 
 NASA Space Apps Challenge 2026 · **Dancing with the SARs** · GDG Ahlen (virtual) · Team iGenfinity
 
@@ -78,6 +78,7 @@ Following the Space Apps rules on AI disclosure:
   The commits on the `urvashi/content` branch (reference data, event checks, story, style, slide outline and
   validation text) were made with Claude and carry no such line. The commit history therefore understates the
   AI use; this section is the full statement.
+- **ChatGPT (OpenAI)** was used by one team member for data analysis.
 - No measurement is AI-generated. Every number in the app is computed by `pipeline/` from the NISAR files listed on
   the Method page, or comes from a linked source. Map images are rendered from radar data by our code.
 - `data/demo/` holds **synthetic** radar data in NISAR's file format, used only for development and tests; the app

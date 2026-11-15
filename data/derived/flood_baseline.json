@@ -1,0 +1,432 @@
+{
+  "generated": "2026-11-15T06:12:06+00:00",
+  "rule": "a reported flood is matched when new water or a possible-water patch lies within max(precision_m, 500 m) of the reported place",
+  "layers": {
+    "new_water": {
+      "file": "geotiff/new_water.tif",
+      "km2": 8.888
+    },
+    "possible_water": {
+      "file": "geotiff/possible_water_under_cover.tif",
+      "km2": 11.824
+    }
+  },
+  "observed": {
+    "matched": 3,
+    "of": 10,
+    "matched_to_new_water": 0
+  },
+  "validation_csv": {
+    "hits": 3,
+    "of": 10
+  },
+  "events": [
+    {
+      "id": "E008",
+      "place": "Ekta Nagar, Sinhagad Road (Mutha river)",
+      "tolerance_m": 800,
+      "distance_m": 1737,
+      "matched": false,
+      "nearest_layer": "possible_water",
+      "nearest_new_water_m": 15408,
+      "nearest_possible_water_m": 1737,
+      "chance": {
+        "flat_ground": 0.339,
+        "settlements": 0.301
+      }
+    },
+    {
+      "id": "E009",
+      "place": "Shivane (Mutha river)",
+      "tolerance_m": 1000,
+      "distance_m": 1682,
+      "matched": false,
+      "nearest_layer": "possible_water",
+      "nearest_new_water_m": 12581,
+      "nearest_possible_water_m": 1682,
+      "chance": {
+        "flat_ground": 0.421,
+        "settlements": 0.383
+      }
+    },
+    {
+      "id": "E010",
+      "place": "Chikhli Defence Colony (Indrayani river)",
+      "tolerance_m": 1000,
+      "distance_m": 1217,
+      "matched": false,
+      "nearest_layer": "possible_water",
+      "nearest_new_water_m": 14367,
+      "nearest_possible_water_m": 1217,
+      "chance": {
+        "flat_ground": 0.421,
+        "settlements": 0.383
+      }
+    },
+    {
+      "id": "E011",
+      "place": "Morya Gosavi Temple, Chinchwad (Pavana river)",
+      "tolerance_m": 500,
+      "distance_m": 1083,
+      "matched": false,
+      "nearest_layer": "possible_water",
+      "nearest_new_water_m": 12485,
+      "nearest_possible_water_m": 1083,
+      "chance": {
+        "flat_ground": 0.199,
+        "settlements": 0.176
+      }
+    },
+    {
+      "id": "E012",
+      "place": "Ravet barrage (Pavana river)",
+      "tolerance_m": 1000,
+      "distance_m": 126,
+      "matched": true,
+      "nearest_layer": "possible_water",
+      "nearest_new_water_m": 9246,
+      "nearest_possible_water_m": 126,
+      "chance": {
+        "flat_ground": 0.421,
+        "settlements": 0.383
+      }
+    },
+    {
+      "id": "E013",
+      "place": "Akurdi",
+      "tolerance_m": 1500,
+      "distance_m": 1271,
+      "matched": true,
+      "nearest_layer": "possible_water",
+      "nearest_new_water_m": 11399,
+      "nearest_possible_water_m": 1271,
+      "chance": {
+        "flat_ground": 0.584,
+        "settlements": 0.511
+      }
+    },
+    {
+      "id": "E014",
+      "place": "Rahatani bridge",
+      "tolerance_m": 800,
+      "distance_m": 2094,
+      "matched": false,
+      "nearest_layer": "possible_water",
+      "nearest_new_water_m": 14500,
+      "nearest_possible_water_m": 2094,
+      "chance": {
+        "flat_ground": 0.339,
+        "settlements": 0.301
+      }
+    },
+    {
+      "id": "E015",
+      "place": "Alandi bridges (Indrayani river)",
+      "tolerance_m": 800,
+      "distance_m": 656,
+      "matched": true,
+      "nearest_layer": "possible_water",
+      "nearest_new_water_m": 15561,
+      "nearest_possible_water_m": 656,
+      "chance": {
+        "flat_ground": 0.339,
+        "settlements": 0.301
+      }
+    },
+    {
+      "id": "E016",
+      "place": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan)",
+      "tolerance_m": 1500,
+      "distance_m": 2400,
+      "matched": false,
+      "nearest_layer": "possible_water",
+      "nearest_new_water_m": 12159,
+      "nearest_possible_water_m": 2400,
+      "chance": {
+        "flat_ground": 0.584,
+        "settlements": 0.511
+      }
+    },
+    {
+      "id": "E017",
+      "place": "Near Ghorawadi railway station, Talegaon",
+      "tolerance_m": 500,
+      "distance_m": 566,
+      "matched": false,
+      "nearest_layer": "possible_water",
+      "nearest_new_water_m": 7146,
+      "nearest_possible_water_m": 566,
+      "chance": {
+        "flat_ground": 0.199,
+        "settlements": 0.176
+      }
+    }
+  ],
+  "reference": {
+    "flat_ground": {
+      "what": "every 40 m pixel with radar data on both dates, outside permanent water, slope <= 5 deg",
+      "places": 2234385,
+      "expected_matches": 3.84,
+      "prob_at_least_observed": 0.816,
+      "curve": [
+        [
+          0,
+          0.006
+        ],
+        [
+          100,
+          0.028
+        ],
+        [
+          200,
+          0.065
+        ],
+        [
+          300,
+          0.105
+        ],
+        [
+          400,
+          0.153
+        ],
+        [
+          500,
+          0.199
+        ],
+        [
+          600,
+          0.248
+        ],
+        [
+          700,
+          0.296
+        ],
+        [
+          800,
+          0.339
+        ],
+        [
+          900,
+          0.382
+        ],
+        [
+          1000,
+          0.421
+        ],
+        [
+          1100,
+          0.458
+        ],
+        [
+          1200,
+          0.492
+        ],
+        [
+          1300,
+          0.524
+        ],
+        [
+          1400,
+          0.555
+        ],
+        [
+          1500,
+          0.584
+        ],
+        [
+          1600,
+          0.611
+        ],
+        [
+          1700,
+          0.636
+        ],
+        [
+          1800,
+          0.659
+        ],
+        [
+          1900,
+          0.681
+        ],
+        [
+          2000,
+          0.701
+        ],
+        [
+          2100,
+          0.721
+        ],
+        [
+          2200,
+          0.737
+        ],
+        [
+          2300,
+          0.753
+        ],
+        [
+          2400,
+          0.766
+        ],
+        [
+          2500,
+          0.78
+        ],
+        [
+          2600,
+          0.792
+        ],
+        [
+          2700,
+          0.803
+        ],
+        [
+          2800,
+          0.813
+        ],
+        [
+          2900,
+          0.824
+        ],
+        [
+          3000,
+          0.833
+        ]
+      ],
+      "km2": 3575.0
+    },
+    "settlements": {
+      "what": "every city, town, suburb and village in the box with radar data (OpenStreetMap, data/reference/places_osm.csv)",
+      "places": 415,
+      "expected_matches": 3.43,
+      "prob_at_least_observed": 0.73,
+      "curve": [
+        [
+          0,
+          0.0
+        ],
+        [
+          100,
+          0.01
+        ],
+        [
+          200,
+          0.031
+        ],
+        [
+          300,
+          0.07
+        ],
+        [
+          400,
+          0.123
+        ],
+        [
+          500,
+          0.176
+        ],
+        [
+          600,
+          0.21
+        ],
+        [
+          700,
+          0.258
+        ],
+        [
+          800,
+          0.301
+        ],
+        [
+          900,
+          0.347
+        ],
+        [
+          1000,
+          0.383
+        ],
+        [
+          1100,
+          0.427
+        ],
+        [
+          1200,
+          0.448
+        ],
+        [
+          1300,
+          0.482
+        ],
+        [
+          1400,
+          0.494
+        ],
+        [
+          1500,
+          0.511
+        ],
+        [
+          1600,
+          0.53
+        ],
+        [
+          1700,
+          0.545
+        ],
+        [
+          1800,
+          0.566
+        ],
+        [
+          1900,
+          0.588
+        ],
+        [
+          2000,
+          0.617
+        ],
+        [
+          2100,
+          0.639
+        ],
+        [
+          2200,
+          0.651
+        ],
+        [
+          2300,
+          0.67
+        ],
+        [
+          2400,
+          0.687
+        ],
+        [
+          2500,
+          0.689
+        ],
+        [
+          2600,
+          0.704
+        ],
+        [
+          2700,
+          0.716
+        ],
+        [
+          2800,
+          0.725
+        ],
+        [
+          2900,
+          0.737
+        ],
+        [
+          3000,
+          0.747
+        ]
+      ]
+    }
+  }
+}
