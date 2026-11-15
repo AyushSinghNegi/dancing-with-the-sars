@@ -143,13 +143,15 @@ with visual, st.container(key="viz"):
                 tr = ui.tr
                 shown = misses[["place", "type", "date", "result", "reason"]].copy()
                 shown["type"] = shown["type"].astype(str).map(evidence.type_word)
+                shown["date"] = shown["date"].astype(str).map(lambda d: ui.date(d) if len(d) == 10 else d)
+                shown["reason"] = shown["reason"].fillna("").astype(str).map(evidence.reason_text)
                 shown["result"] = shown["result"].map({"miss": tr("radar missed it", "रडारला दिसले नाही"),
                                                        "not observable": tr("radar could not observe it",
                                                                             "रडारला पाहता आले नाही")}).fillna(shown["result"])
                 st.dataframe(shown, hide_index=True, width="stretch",
                              column_config={"place": tr("Place", "ठिकाण"), "type": tr("Event", "घटना"),
                                             "date": tr("Date", "तारीख"), "result": tr("Result", "निकाल"),
-                                            "reason": tr("Why (in English)", "कारण (इंग्रजीत)")})
+                                            "reason": tr("Why", "कारण")})
         else:
             st.info("The validation table appears here once reported events (`data/reference/events.geojson`) "
                     "are added and the pipeline is re-run.")

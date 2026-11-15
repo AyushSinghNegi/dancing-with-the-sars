@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import html
+import re
 
 import streamlit as st
 
@@ -238,3 +239,31 @@ def type_word(t: str) -> str:
         from .i18n_hi import TYPE as TYPE_HI
         return TYPE_HI.get(t) or t.replace("_", " ")
     return TYPE_WORD.get(t, {}).get(ui.lang()) or t.replace("_", " ")
+
+
+def reason_text(why: str) -> str:
+    """The pipeline's reason for a miss (validation.csv, written in English by pipeline/validate.py) in the page
+    language. Unknown reasons are shown as they are."""
+    why = (why or "").strip()
+    if not why:
+        return ""
+    tr = ui.tr
+    m = re.fullmatch(r"happened (before|after) the radar pair \((\d{4}-\d\d-\d\d) to (\d{4}-\d\d-\d\d)\)", why)
+    if m:
+        a, b = ui.date(m[2]), ui.date(m[3])
+        return (tr("happened before the radar pair ({a} to {b})", "रडार निरीक्षणांच्या जोडीच्या आधी घडले ({a} ते {b})", a=a, b=b) if m[1] == "before" else tr("happened after the radar pair ({a} to {b})", "रडार निरीक्षणांच्या जोडीनंतर घडले ({a} ते {b})", a=a, b=b))
+    m = re.fullmatch(r"location in the report is too vague to score \(about (\d+) km\)", why)
+    if m:
+        return tr("location in the report is too vague to score (about {k} km)", "बातमीतील ठिकाण मोजण्यासाठी फार अस्पष्ट आहे (सुमारे {k} किमी)", k=m[1])
+    if re.fullmatch(r"water may have drained before the .+ pass", why):
+        return tr("water may have drained before the {d} pass", "{d} च्या निरीक्षणापूर्वी पाणी ओसरले असावे", d=ui.day(data.dates()[1]))
+    m = re.fullmatch(r"ground near the report is gentler than our (\d+) deg slide search", why)
+    if m:
+        return tr("ground near the report is gentler than our {s}° slide search", "नोंदीजवळची जमीन आमच्या {s}° पासूनच्या भूस्खलन शोधापेक्षा कमी उताराची आहे", s=m[1])
+    fixed = {"dense buildings: radar bounces off walls, which hides street flooding": tr("dense buildings: radar bounces off walls, which hides street flooding", "दाट इमारती: रडार भिंतींवरून परत येते, त्यामुळे रस्त्यावरील पूर लपतो"),
+             "flooding smaller than our 40 m pixels or under thick canopy": tr("flooding smaller than our 40 m pixels or under thick canopy", "आमच्या 40 मी पिक्सेलपेक्षा लहान पूर, किंवा दाट झाडांखालील पाणी"),
+             "slide smaller than a few 40 m pixels, or coherence lost everywhere nearby": tr("slide smaller than a few 40 m pixels, or coherence lost everywhere nearby", "काही 40 मी पिक्सेलपेक्षा लहान भूस्खलन, किंवा आसपास सगळीकडेच कोहेरन्स कमी झाला"),
+             "outside the radar box": tr("outside the radar box", "रडार क्षेत्राबाहेर"),
+             "no radar data at this spot (edge of swath)": tr("no radar data at this spot (edge of swath)", "या ठिकाणी रडार डेटा नाही (पट्ट्याची कड)"),
+             "event type has no radar layer (e.g. road closure)": tr("event type has no radar layer (e.g. road closure)", "या प्रकारच्या घटनेसाठी रडार स्तर नाही (उदा. रस्ता बंद)")}
+    return fixed.get(why, why)

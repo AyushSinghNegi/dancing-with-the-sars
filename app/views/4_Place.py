@@ -218,8 +218,8 @@ if pt and south <= pt["lat"] <= north and west <= pt["lon"] <= east:
             src = p.get("source_url", "")
             link = f' · <a href="{html.escape(src)}" target="_blank" rel="noopener">{html.escape(p.get("source_name") or "source")}</a>' if src else ""
             rows.append(f'<li><b>{html.escape(str(p.get("place", "")))}</b>: {html.escape(ev.type_word(p.get("type", "")))}, '
-                        f'{html.escape(str(p.get("date", "")))}, {ui.num(d)} km{link}<br><span class="ml-muted">'
-                        f'{html.escape(res_txt)}{(": " + html.escape(why)) if why else ""}</span></li>')
+                        f'{html.escape(ui.date(str(p["date"])) if p.get("date") else "")}, {ui.num(d)} km{link}<br><span class="ml-muted">'
+                        f'{html.escape(res_txt)}{(": " + html.escape(ev.reason_text(why))) if why else ""}</span></li>')
         st.markdown(f'<ul>{"".join(rows)}</ul>', unsafe_allow_html=True)
 
 np_ = data.next_pass()

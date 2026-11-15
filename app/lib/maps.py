@@ -252,16 +252,21 @@ def add_events(m):
                                                                           "river_overflow") else OTHER_SVG
         rid = str(p.get("id", ""))
         res = result.get(rid, "")
-        res_txt = {"hit": "Radar detection nearby", "miss": "No radar detection nearby",
-                   "not observable": "Radar could not observe this"}.get(res, res)
+        from .evidence import reason_text, type_word
+        tr = ui.tr
+        res_txt = {"hit": tr("radar found something within range", "रडारला जवळपास काहीतरी सापडले"),
+                   "miss": tr("radar missed it", "रडारला दिसले नाही"),
+                   "not observable": tr("radar could not observe it", "रडार हे पाहू शकले नाही")}.get(res, res)
+        why = reason_text(reason.get(rid, ""))
+        day = ui.date(str(p["date"])) if len(str(p.get("date", ""))) == 10 else str(p.get("date", ""))
         src = p.get("source_url", "")
-        body = (f"<b>{html.escape(str(p.get('place', '')))}</b><br>{html.escape(typ.replace('_', ' '))}, "
-                f"{html.escape(str(p.get('date', '')))}<br>{html.escape(res_txt)}"
-                + (f"<br><i>{html.escape(reason.get(rid, ''))}</i>" if reason.get(rid) else "")
+        body = (f"<b>{html.escape(str(p.get('place', '')))}</b><br>{html.escape(type_word(typ))}, "
+                f"{html.escape(day)}<br>{html.escape(res_txt)}"
+                + (f"<br><i>{html.escape(why)}</i>" if why else "")
                 + (f'<br><a href="{html.escape(src)}" target="_blank">{html.escape(str(p.get("source_name") or "source"))}</a>'
                    if src else ""))
         folium.Marker([lat, lon], icon=folium.DivIcon(html=svg, icon_size=(18, 18), icon_anchor=(9, 9)),
-                      tooltip=f"{p.get('place', '')} ({typ.replace('_', ' ')})",
+                      tooltip=f"{p.get('place', '')} ({type_word(typ)})",
                       popup=folium.Popup(body, max_width=280)).add_to(fg)
     fg.add_to(m)
 

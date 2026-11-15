@@ -64,7 +64,8 @@ def scene():
     events = [{"id": f["properties"]["id"], "p": [*f["geometry"]["coordinates"][:2],
                                                   z(f["geometry"]["coordinates"][1], f["geometry"]["coordinates"][0])],
                "t": f["properties"].get("type", ""), "place": f["properties"].get("place", ""),
-               "d": f["properties"].get("date", "")} for f in ev if f.get("geometry")
+               "d": ui.date(f["properties"]["date"]) if len(str(f["properties"].get("date", ""))) == 10
+               else f["properties"].get("date", "")} for f in ev if f.get("geometry")
               and m["bounds"][0] <= f["geometry"]["coordinates"][0] <= m["bounds"][2]
               and m["bounds"][1] <= f["geometry"]["coordinates"][1] <= m["bounds"][3]]
     pl = data.places()
