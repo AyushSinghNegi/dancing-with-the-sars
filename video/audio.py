@@ -1,11 +1,9 @@
-"""Music and sound effects for the MonsoonLens demo videos, synthesised from scratch (no samples, no licences needed):
-a soft, slow space pad with a few bell notes, and sound effects timed to what happens on screen.
+"""Sound for the MonsoonLens demo videos: the team's voice-over (cleaned and timed by vo.py), a soft, slow space
+pad with a few bell notes, and sound effects timed to what happens on screen. The music and effects are synthesised
+from scratch (no samples, no licences needed), and the music dips whenever the voice speaks.
 
-  python video/audio.py short    # -> video/out/audio/short_{music,sfx,mix}.wav and monsoonlens_demo_30s.mp4 with sound
+  python video/audio.py short    # -> video/out/audio/short_{vo,music,sfx,mix}.wav, muxed into monsoonlens_demo_30s.mp4
   python video/audio.py long     # -> the same for the walkthrough
-
-The 30-second cut is mixed quieter so a voice-over sits on top; the music and effects are also written as separate
-stems so they can be balanced against the voice in any editor.
 """
 from __future__ import annotations
 
@@ -235,10 +233,11 @@ def chime(level=0.12):
 
 # ------------------------------------------------------------------ cues from the video timeline
 def cues(scenes):
-    """(time, sound) pairs that follow the animation timings in make_demo.py."""
+    """(time, sound) pairs that follow the animation timings (and voice cues) in make_demo.py."""
     tl, total = V.timeline(scenes)
     c = []
     for i, (name, fn, t0, dur) in enumerate(tl):
+        q = getattr(fn, "keywords", {}).get("cues") or {}
         if i > 0 and name != "radar":
             c.append((t0 - V.XF - 0.15, whoosh(0.75, direction=1 if i % 2 else -1, level=0.12)))
         if name == "cloud":
@@ -248,42 +247,45 @@ def cues(scenes):
                 c.append((t0 + 0.25 + k * 0.07, tick(1500 + 90 * ((k * 5) % 9), 0.05, -0.6 + cc * 0.24)))
             c.append((t0 + dur - 0.9, riser(0.9)))
         elif name == "radar":
+            w0, r0, z0 = q.get("wipe", 0.9), q.get("rise", 2.1), q.get("zones", 2.6)
             c.append((t0 - 0.02, boom()))
-            c.append((t0 + 0.9, whoosh(1.3, 300, 2600, direction=1, level=0.16, rise=0.5)))
-            c.append((t0 + 2.1, ding(hz(81), 0.06, -0.3, 2.4)))
-            c.append((t0 + 2.3, ding(hz(76), 0.07, -0.2)))
-            c.append((t0 + 2.75, ding(hz(79), 0.07, -0.2)))
+            c.append((t0 + w0, whoosh(1.3, 300, 2600, direction=1, level=0.16, rise=0.5)))
+            c.append((t0 + r0, ding(hz(81), 0.06, -0.3, 2.4)))
+            c.append((t0 + r0 + 0.2, ding(hz(76), 0.07, -0.2)))
+            c.append((t0 + z0 + 0.15, ding(hz(79), 0.07, -0.2)))
             for k in range(50):
                 if k % 2 == 0:
-                    c.append((t0 + 2.6 + k * 0.022, sparkle(0.028)))
+                    c.append((t0 + z0 + k * 0.022, sparkle(0.028)))
         elif name == "app":
+            ck = q.get("click", 2.0)
             c.append((t0 + 0.05, whoosh(0.7, 200, 2200, direction=-1, level=0.14, rise=0.4)))
-            c.append((t0 + 1.4, tick(2200, 0.04, 0.2)))
-            c.append((t0 + 2.0, click()))
-            c.append((t0 + 2.15, whoosh(0.5, 900, 5000, level=0.05)))
+            c.append((t0 + ck - 0.6, tick(2200, 0.04, 0.2)))
+            c.append((t0 + ck, click()))
+            c.append((t0 + ck + 0.15, whoosh(0.5, 900, 5000, level=0.05)))
         elif name == "map":
-            c.append((t0 + dur * 0.52, whoosh(0.8, 250, 3000, direction=1, level=0.13)))
+            c.append((t0 + q.get("switch", dur * 0.52), whoosh(0.8, 250, 3000, direction=1, level=0.13)))
         elif name == "checks":
-            for k in range(4):
-                c.append((t0 + 0.6 + k * 0.28, tick(900 + 180 * k, 0.07, -0.6 + 0.4 * k, 0.14)))
+            for k, ct in enumerate(q.get("cards", [0.6 + i * 0.28 for i in range(4)])):
+                c.append((t0 + ct, tick(900 + 180 * k, 0.07, -0.6 + 0.4 * k, 0.14)))
         elif name == "field":
+            ck, ph, chp = q.get("click", 1.4), q.get("phones", 2.3), q.get("chips", 2.9)
             c.append((t0 + 0.05, whoosh(0.7, 200, 2200, direction=-1, level=0.13, rise=0.4)))
-            c.append((t0 + 0.45, tick(2400, 0.035, -0.2)))
-            c.append((t0 + 1.4, click(p=-0.1)))
-            c.append((t0 + 1.55, whoosh(0.5, 900, 5000, level=0.05)))
+            c.append((t0 + ck - 0.95, tick(2400, 0.035, -0.2)))
+            c.append((t0 + ck, click(p=-0.1)))
+            c.append((t0 + ck + 0.15, whoosh(0.5, 900, 5000, level=0.05)))
             for k in range(2):
-                c.append((t0 + 2.3 + k * 0.25, whoosh(0.55, 400, 3500, direction=-1, level=0.09, rise=0.35)))
+                c.append((t0 + ph + k * 0.25, whoosh(0.55, 400, 3500, direction=-1, level=0.09, rise=0.35)))
             for k in range(4):
-                c.append((t0 + 2.9 + k * 0.12, tick(1700 + 140 * k, 0.04, -0.6 + 0.3 * k)))
+                c.append((t0 + chp + k * 0.12, tick(1700 + 140 * k, 0.04, -0.6 + 0.3 * k)))
         elif name == "end":
             c.append((t0 + 0.0, chime()))
             c.append((t0 + 0.6, ding(hz(84), 0.05, 0.1, 1.8)))
         elif name in ("story", "place", "method"):
             c.append((t0 + 0.05, whoosh(0.7, 200, 2200, direction=-1, level=0.13, rise=0.4)))
             if name == "place":
-                c.append((t0 + dur * 0.45, whoosh(0.55, 400, 3500, direction=-1, level=0.09, rise=0.35)))
+                c.append((t0 + q.get("phone", dur * 0.45), whoosh(0.55, 400, 3500, direction=-1, level=0.09, rise=0.35)))
             if name == "method":
-                c.append((t0 + dur * 0.55, whoosh(0.6, 900, 5000, level=0.06)))
+                c.append((t0 + q.get("mix", dur * 0.55), whoosh(0.6, 900, 5000, level=0.06)))
     return c, total
 
 
@@ -317,9 +319,39 @@ def write_wav(path, x):
         w.writeframes((x.T * 32767).astype("<i2").tobytes())
 
 
+def voice(places, tempo, total):
+    """The cleaned voice-over sentences at their places in the video, sped up by `tempo` if needed."""
+    buf = np.zeros(int(total * SR) + SR)
+    for f, t in places:
+        src = V.VO_DIR / f
+        raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", str(src), "-af", f"atempo={tempo}", "-ac", "1",
+                              "-ar", str(SR), "-f", "f32le", "-"], capture_output=True, check=True).stdout
+        y = np.frombuffer(raw, np.float32)
+        i = int(round(t * SR))
+        n = min(len(y), len(buf) - i)
+        buf[i:i + n] += y[:n]
+    return buf[:int(total * SR)]
+
+
+def duck(vo, depth_db, attack=0.06, release=0.45):
+    """Gain curve that dips by depth_db while the voice is speaking."""
+    hop = SR // 100
+    env_ = np.abs(vo[:len(vo) // hop * hop]).reshape(-1, hop).max(1)
+    on = (env_ > 0.02).astype(float)
+    g = np.zeros_like(on)
+    a, r = 1 - np.exp(-1 / (attack * 100)), 1 - np.exp(-1 / (release * 100))
+    for i in range(1, len(on)):
+        k = a if on[i] > g[i - 1] else r
+        g[i] = g[i - 1] + (on[i] - g[i - 1]) * k
+    g = np.repeat(g, hop)
+    g = np.pad(g, (0, len(vo) - len(g)), mode="edge")
+    return 10 ** (-depth_db * g / 20)
+
+
 def render(which):
-    scenes = V.SHORT if which == "short" else V.LONG
-    video = OUT / ("monsoonlens_demo_30s.mp4" if which == "short" else "monsoonlens_walkthrough.mp4")
+    scenes, words, places, chunks, tempo, D = V.vo_plan(which)
+    name = "monsoonlens_demo_30s" if which == "short" else "monsoonlens_walkthrough"
+    video = OUT / f"{name}.mp4"
     secs, total = sections_for(scenes)
     mus = music(secs, total)
     sfx = np.zeros_like(mus)
@@ -327,19 +359,28 @@ def render(which):
     for t, s in c:
         place(sfx, s, t)
     sfx = reverb(sfx, 1.6, 0.18, 7000)
+    vo = voice(places, tempo, total)
     AUD.mkdir(parents=True, exist_ok=True)
-    # stems peak-normalised to -6 dBFS; the mix leaves room for a voice in the short cut
-    mus *= 0.5 / np.abs(mus).max()
-    sfx *= 0.5 / np.abs(sfx).max()
-    m_gain, s_gain = (0.55, 0.85) if which == "short" else (0.8, 0.9)
-    mix = mus * m_gain + sfx * s_gain
+    # levels: voice normalised on its own to -16 LUFS; music sits about 18 dB under it and dips a further 8 dB
+    # while the voice speaks; effects dip 4 dB
+    write_wav(AUD / f"{which}_vo_raw.wav", np.stack([vo, vo]) * 0.9 / (np.abs(vo).max() + 1e-9))
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(AUD / f"{which}_vo_raw.wav"), "-af",
+                    "loudnorm=I=-16:TP=-2:LRA=9", "-ar", str(SR), str(AUD / f"{which}_vo.wav")], check=True)
+    import wave as _w
+    w = _w.open(str(AUD / f"{which}_vo.wav"))
+    vo_n = np.frombuffer(w.readframes(w.getnframes()), "<i2").reshape(-1, 2).T / 32768
+    n = min(vo_n.shape[1], mus.shape[1])
+    vo_n, mus, sfx = vo_n[:, :n], mus[:, :n], sfx[:, :n]
+    mus *= 10 ** (-24 / 20) / (np.sqrt((mus ** 2).mean()) + 1e-9)     # music bed about -24 dBFS RMS
+    sfx *= 10 ** (-9 / 20) / (np.abs(sfx).max() + 1e-9)               # effects peak about -9 dBFS
+    g = duck(vo_n[0], 8.0)
+    mix = vo_n + mus * g + sfx * duck(vo_n[0], 4.0)
     write_wav(AUD / f"{which}_music.wav", mus)
     write_wav(AUD / f"{which}_sfx.wav", sfx)
-    write_wav(AUD / f"{which}_mix_raw.wav", mix * 0.9 / np.abs(mix).max())
-    target = -23 if which == "short" else -16   # LUFS: the short cut sits under a voice-over
+    write_wav(AUD / f"{which}_mix_raw.wav", mix * 0.95 / max(1.0, np.abs(mix).max()))
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(AUD / f"{which}_mix_raw.wav"), "-af",
-                    f"loudnorm=I={target}:TP=-1.5:LRA=11", "-ar", str(SR), str(AUD / f"{which}_mix.wav")], check=True)
-    silent = OUT / f"{video.stem}_silent.mp4"
+                    "loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", str(SR), str(AUD / f"{which}_mix.wav")], check=True)
+    silent = OUT / f"{name}_silent.mp4"
     tmp = video.with_suffix(".part.mp4")
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(silent), "-i", str(AUD / f"{which}_mix.wav"),
                     "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest",
