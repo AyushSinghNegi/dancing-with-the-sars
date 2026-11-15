@@ -197,6 +197,11 @@ iframe[title="streamlit_folium.st_folium"] { border-radius: 14px; box-shadow: va
 .st-key-tourctl { position: absolute !important; width: 1px !important; height: 1px !important; overflow: hidden !important;
   opacity: 0; pointer-events: none; }
 .st-key-lang_choice [role="radiogroup"] { column-gap: .7rem !important; row-gap: .2rem !important; }
+.ml-sideteam { display: flex; gap: 10px; align-items: center; margin-top: .4rem; font-size: .8rem; color: var(--ml-muted, #8a9bb0); }
+.ml-sideteam img { width: 46px; height: 46px; border-radius: 10px; object-fit: cover; flex: none; }
+.ml-team { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+.ml-team .ml-cardgrid { flex: 1 1 420px; }
+.ml-teamlogo { width: 150px; height: 150px; border-radius: 18px; object-fit: cover; box-shadow: 0 8px 26px rgba(0,0,0,.25); }
 .st-key-tour_start_side button { border-radius: 99px; border-color: rgba(111,227,255,.45) !important; }
 
 /* overview: how it works, in three steps */
@@ -649,7 +654,11 @@ def setup(page_title: str):
         st.session_state["lang"] = list(LANGS)[names.index(choice)]
         orbit_widget()
         st.caption(tr("Light or dark: ⋮ menu (top right) › Settings.", "फिका किंवा गडद रंग: ⋮ मेनू (वर उजवीकडे) › Settings."))
-        st.caption(tr("Built by team iGenfinity for NASA Space Apps 2026", "नासा स्पेस ॲप्स २०२६ साठी iGenfinity टीमने बनवले"))
+        b64 = _logo_b64()
+        st.markdown('<div class="ml-sideteam">' + (f'<img src="data:image/jpeg;base64,{b64}" alt="">' if b64 else "")
+                    + "<span>" + html.escape(tr("Built by team iGenfinity for NASA Space Apps 2026",
+                                                "नासा स्पेस ॲप्स २०२६ साठी iGenfinity टीमने बनवले")) + "</span></div>",
+                    unsafe_allow_html=True)
     # Keep the language in the address, so a shared link opens in the language it was sent in.
     if lang() != "en":
         st.query_params["lang"] = lang()
@@ -709,9 +718,33 @@ def sources_line():
     tracks = sorted({s["granule_id"].split("_")[5] for s in srcs if s["granule_id"].count("_") > 5})
     days = sorted({s["granule_id"].split("_A_")[-1][:8] if "_A_" in s["granule_id"] else "" for s in srcs} - {""})
     iso = lambda d: f"{d[:4]}-{d[4:6]}-{d[6:8]}"
-    when = f"{data.nice_date(iso(days[0]), False)} to {data.nice_date(iso(days[-1]))}" if days else ""
-    tr = ("track " if len(tracks) == 1 else "tracks ") + " and ".join(t.lstrip("0") or "0" for t in tracks)
-    st.markdown(f'<p class="ml-source">Radar: {len(srcs)} NISAR L2 provisional files, {tr}, {when} '
-                f'(NASA/JPL-Caltech and ISRO, via ASF DAAC); every file is linked on the Method page. '
-                f'Results built {m.get("generated", "")[:10]}, pipeline v{m.get("pipeline_version", "")}.</p>',
-                unsafe_allow_html=True)
+    when = tr("{a} to {b}", "{a} ते {b}", a=day(iso(days[0])), b=date(iso(days[-1]))) if days else ""
+    trk = tr(" and ", " आणि ").join(t.lstrip("0") or "0" for t in tracks)
+    st.markdown('<p class="ml-source">' + html.escape(tr(
+        "Radar: {n} NISAR L2 provisional files, tracks {t}, {w} (NASA/JPL-Caltech and ISRO, via ASF DAAC); every file "
+        "is linked on the Method page. Results built {g}, pipeline v{v}.",
+        "रडार: {n} निसार L2 तात्पुरत्या फाइल्स, मार्ग {t}, {w} (नासा/JPL-Caltech आणि इस्रो, ASF DAAC मार्फत); प्रत्येक "
+        "फाइलचा दुवा पद्धत पानावर आहे. निकाल तयार {g}, पाइपलाइन v{v}.",
+        n=len(srcs), t=trk, w=when, g=m.get("generated", "")[:10], v=m.get("pipeline_version", ""))) + "</p>",
+        unsafe_allow_html=True)
+
+
+def _logo_b64(name="igenfinity_logo_420.jpg"):
+    import base64
+    p = ASSETS / name
+    return base64.b64encode(p.read_bytes()).decode() if p.exists() else ""
+
+
+def team_cards():
+    """The team, with the iGenfinity logo (Method page)."""
+    b64 = _logo_b64()
+    logo = (f'<img src="data:image/jpeg;base64,{b64}" alt="{html.escape(tr("iGenfinity team logo", "iGenfinity टीमचा लोगो"))}" '
+            'class="ml-teamlogo">') if b64 else ""
+    people = [("Ayush Singh Negi", tr("App and integration", "ॲप आणि एकत्रीकरण")),
+              ("Rajendra Singh Negi", tr("Data and science", "डेटा आणि विज्ञान")),
+              ("Urvashi", tr("Validation, story and pitch", "पडताळणी, कथा आणि सादरीकरण"))]
+    st.markdown('<div class="ml-team">' + logo + '<div class="ml-cardgrid">' + "".join(
+        f"<div><b>{html.escape(n)}</b><p>{html.escape(r)}</p></div>" for n, r in people) + "</div></div>",
+        unsafe_allow_html=True)
+    st.caption(tr("Team iGenfinity, NASA Space Apps Challenge 2026, GDG Ahlen.",
+                  "टीम iGenfinity, नासा स्पेस ॲप्स चॅलेंज २०२६, GDG आलेन."))

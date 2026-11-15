@@ -241,3 +241,4 @@ data/demo/crops/
 
 # rendered video (re-make with: python video/make_video.py)
 video/out/
+deliverables/out/

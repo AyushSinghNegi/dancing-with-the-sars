@@ -232,24 +232,30 @@ with tab_w:
 with tab_e:
     val = data.table("validation.csv")
     if val is not None and len(val):
-        st.dataframe(val[["id", "type", "date", "place", "observable", "result", "distance_m", "reason",
-                          "source_name", "source_url"]], hide_index=True, width="stretch",
-                     column_config={"source_url": st.column_config.LinkColumn("source")})
+        from lib import evidence as _ev
+        _df, _cc = _ev.events_table(val)
+        st.dataframe(_df, hide_index=True, width="stretch", column_config=_cc)
     else:
         st.info("Reported events appear here once `data/reference/events.geojson` is added.")
 with tab_d:
-    st.markdown(tr("GeoTIFFs are on the analysis grid (UTM zone 43N, 40 m). GeoJSON is in WGS84. File descriptions are "
-                   "in English.", "GeoTIFF विश्लेषण ग्रिडवर आहेत (UTM झोन 43N, 40 मी). GeoJSON WGS84 मध्ये आहे. "
-                   "फाइल वर्णने इंग्रजीत आहेत."))
-    what = {"new_water.tif": "all new water (GeoTIFF)", "flooding.tif": "flooding only, never water before (GeoTIFF)",
-            "possible_water_under_cover.tif": "possible water under trees or buildings (GeoTIFF)",
-            "slide_zones.tif": "likely slide zones (GeoTIFF)", "hh_change_db.tif": "HH radar change in dB (GeoTIFF)",
-            "slide_zones.geojson": "slide zones with scores and nearest place (GeoJSON)",
-            "new_water.geojson": "new-water patches, flood and reservoir rise (GeoJSON)",
-            "validation.csv": "reported events, matched or missed, with reasons (CSV)",
-            "water_stats.csv": "water areas and thresholds (CSV)",
-            "crosstrack.json": "second-track check results (JSON)",
-            "dem_check.json": "elevation-map check results (JSON)", "metrics.json": "every number in this app (JSON)"}
+    st.markdown(tr("GeoTIFFs are on the analysis grid (UTM zone 43N, 40 m). GeoJSON is in WGS84.",
+                   "GeoTIFF विश्लेषण ग्रिडवर आहेत (UTM झोन 43N, 40 मी). GeoJSON WGS84 मध्ये आहे."))
+    what = {"new_water.tif": tr("all new water (GeoTIFF)", "सर्व नवीन पाणी (GeoTIFF)"),
+            "flooding.tif": tr("flooding only, never water before (GeoTIFF)", "फक्त पूर, आधी कधी पाणी नव्हते (GeoTIFF)"),
+            "possible_water_under_cover.tif": tr("possible water under trees or buildings (GeoTIFF)",
+                                                 "झाडे किंवा इमारतींखाली संभाव्य पाणी (GeoTIFF)"),
+            "slide_zones.tif": tr("likely slide zones (GeoTIFF)", "संभाव्य भूस्खलन क्षेत्रे (GeoTIFF)"),
+            "hh_change_db.tif": tr("HH radar change in dB (GeoTIFF)", "HH रडार बदल, dB मध्ये (GeoTIFF)"),
+            "slide_zones.geojson": tr("slide zones with scores and nearest place (GeoJSON)",
+                                      "गुण आणि जवळच्या ठिकाणासह भूस्खलन क्षेत्रे (GeoJSON)"),
+            "new_water.geojson": tr("new-water patches, flood and reservoir rise (GeoJSON)",
+                                    "नवीन पाण्याचे भाग, पूर आणि धरणांची वाढ (GeoJSON)"),
+            "validation.csv": tr("reported events, matched or missed, with reasons (CSV)",
+                                 "नोंदवलेल्या घटना, जुळलेल्या किंवा सुटलेल्या, कारणांसह (CSV)"),
+            "water_stats.csv": tr("water areas and thresholds (CSV)", "पाण्याचे क्षेत्रफळ आणि मर्यादा (CSV)"),
+            "crosstrack.json": tr("second-track check results (JSON)", "दुसऱ्या मार्गाच्या तपासणीचे निकाल (JSON)"),
+            "dem_check.json": tr("elevation-map check results (JSON)", "उंची नकाशा तपासणीचे निकाल (JSON)"),
+            "metrics.json": tr("every number in this app (JSON)", "या ॲपमधील प्रत्येक आकडा (JSON)")}
     links = [f'<li><a href="{url}" download="monsoonlens_{name}">{what.get(name, name)}</a> '
              f'<span class="ml-muted">{size / 1e6:.1f} MB</span></li>' if size >= 1e5 else
              f'<li><a href="{url}" download="monsoonlens_{name}">{what.get(name, name)}</a> '

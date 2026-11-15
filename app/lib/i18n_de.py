@@ -502,7 +502,477 @@ DE = {
     "You are ready": "Los geht’s",
     "Start with the story, or check your own village. You can take this tour again from the menu.":
         "Beginnen Sie mit der Geschichte oder prüfen Sie Ihr eigenes Dorf. Diese Tour können Sie im Menü jederzeit "
-        "wiederholen."
+        "wiederholen.",
+    # method page, maps, downloads, credits
+    "Radar could see it": "Das Radar konnte es sehen",
+    "Every number in this app comes from the pipeline in our public repository, run on the NISAR files listed below. Nothing is estimated by hand, and every check is reported, including the ones that came out weak.":
+        "Jede Zahl in dieser App stammt aus der Pipeline in unserem öffentlichen Repository, angewandt auf die unten aufgeführten NISAR-Dateien. Nichts ist von Hand geschätzt, und jede Prüfung wird berichtet, auch die schwach ausgefallenen.",
+    "Mission facts: [ISRO, NISAR launch page](https://www.isro.gov.in/Mission_GSLVF16_NISAR.html) and [eoPortal, NISAR](https://www.eoportal.org/satellite-missions/nisar). Tracks and times: the NISAR file names in the Data table.":
+        "Missionsdaten: [ISRO, NISAR-Startseite](https://www.isro.gov.in/Mission_GSLVF16_NISAR.html) und [eoPortal, NISAR](https://www.eoportal.org/satellite-missions/nisar). Bahnen und Zeiten: die NISAR-Dateinamen in der Datentabelle.",
+    "How radar sees through cloud":
+        "Wie Radar durch Wolken sieht",
+    "NISAR's L-band radar has a wavelength of about 24 cm: it passes through cloud and rain, and partly through forest canopy. It sends two polarisations: HH (horizontal out, horizontal back) responds to surfaces and structures, HV (horizontal out, vertical back) mostly to vegetation.":
+        "NISARs L-Band-Radar hat eine Wellenlänge von etwa 24 cm: Es durchdringt Wolken und Regen und teilweise auch das Kronendach. Es sendet zwei Polarisationen: HH (horizontal hin, horizontal zurück) reagiert auf Oberflächen und Bauten, HV (horizontal hin, vertikal zurück) vor allem auf Vegetation.",
+    "yes":
+        "ja",
+    "no":
+        "nein",
+    "before, track 034":
+        "vorher, Bahn 034",
+    "after, track 034":
+        "nachher, Bahn 034",
+    "coherence, track 034":
+        "Kohärenz, Bahn 034",
+    "second-track check, before, track 106":
+        "Prüfung mit zweiter Bahn, vorher, Bahn 106",
+    "second-track check, after, track 106":
+        "Prüfung mit zweiter Bahn, nachher, Bahn 106",
+    "second-track check, coherence, track 106":
+        "Prüfung mit zweiter Bahn, Kohärenz, Bahn 106",
+    "Data":
+        "Daten",
+    "File":
+        "Datei",
+    "Valid share of box":
+        "Gültiger Anteil des Gebiets",
+    "Link":
+        "Link",
+    "File names and data sources are kept as published, in English.":
+        "Dateinamen und Datenquellen bleiben wie veröffentlicht auf Englisch.",
+    "The code is public, and the Pune crops of every NISAR file above are in the repository (a few MB each), so one command rebuilds every number, map and list in this app from them. Fetching the crops again from NASA's archive needs a free Earthdata login. The whole pipeline runs in about two minutes on a two-core computer.":
+        "Der Code ist öffentlich, und die Pune-Ausschnitte jeder oben genannten NISAR-Datei liegen im Repository (je einige MB). Ein Befehl erzeugt daraus jede Zahl, Karte und Liste dieser App neu. Um die Ausschnitte erneut aus NASAs Archiv zu laden, braucht man ein kostenloses Earthdata-Konto. Die ganze Pipeline läuft auf einem Rechner mit zwei Kernen in etwa zwei Minuten.",
+    "To point it at another place, change the study box and the NISAR files in `pipeline/config.py`.":
+        "Für einen anderen Ort ändern Sie das Untersuchungsgebiet und die NISAR-Dateien in `pipeline/config.py`.",
+    "NISAR in brief":
+        "NISAR in Kürze",
+    "How radar sees":
+        "Wie Radar sieht",
+    "Reproduce it":
+        "Nachvollziehen",
+    "Team":
+        "Team",
+    " and ":
+        " und ",
+    "Launched":
+        "Start",
+    "30 July 2025 on ISRO's GSLV-F16, from Sriharikota, India":
+        "30. Juli 2025 mit ISROs GSLV-F16 von Sriharikota, Indien",
+    "Orbit":
+        "Umlaufbahn",
+    "Sun-synchronous, about 747 km up, inclined 98.4°":
+        "Sonnensynchron, etwa 747 km hoch, 98,4° geneigt",
+    "Repeat":
+        "Wiederholung",
+    "The same ground track every 12 days":
+        "Dieselbe Bodenspur alle 12 Tage",
+    "Radars":
+        "Radare",
+    "L-band (NASA/JPL, 24 cm wavelength) and S-band (ISRO), sharing one 12 m mesh reflector":
+        "L-Band (NASA/JPL, 24 cm Wellenlänge) und S-Band (ISRO), mit einem gemeinsamen 12-m-Gitterreflektor",
+    "Swath":
+        "Streifenbreite",
+    "242 km wide on the ground":
+        "242 km breit am Boden",
+    "What this app uses":
+        "Was diese App nutzt",
+    "L-band, tracks {t}, southbound evening passes ({u} UTC), level-2 GCOV and GUNW products":
+        "L-Band, Bahnen {t}, südwärts gerichtete Abendüberflüge ({u} UTC), Level-2-Produkte GCOV und GUNW",
+    "Read the radar":
+        "Radar lesen",
+    "Find the change":
+        "Die Änderung finden",
+    "Check it":
+        "Prüfen",
+    "Hand it over":
+        "Übergeben",
+    "Water threshold":
+        "Wasserschwelle",
+    "Results table":
+        "Ergebnistabelle",
+    "Sanity check: on {d} the radar saw **{p}** of the JRC permanent-water pixels as water. A low value would mean the threshold or the data is off.":
+        "Plausibilitätsprüfung: Am {d} sah das Radar **{p}** der JRC-Pixel mit Dauerwasser als Wasser. Ein niedriger Wert würde bedeuten, dass Schwelle oder Daten nicht stimmen.",
+    "Permanent water":
+        "Dauerhaftes Wasser",
+    "Elevation and slope":
+        "Höhe und Neigung",
+    "Place names":
+        "Ortsnamen",
+    "Provisional data":
+        "Vorläufige Daten",
+    "These are NISAR provisional products (released from June 2026); calibration may still change.":
+        "Dies sind vorläufige NISAR-Produkte (veröffentlicht ab Juni 2026); die Kalibrierung kann sich noch ändern.",
+    "Two snapshots, twelve days apart":
+        "Zwei Momentaufnahmen, zwölf Tage auseinander",
+    "Anything that flooded and drained between {b} and {a} is invisible.":
+        "Was zwischen {b} und {a} überflutet war und wieder ablief, ist unsichtbar.",
+    "Cities":
+        "Städte",
+    "Buildings make flooded streets bright, not dark. Our new-water map under-counts urban flooding.":
+        "Gebäude lassen überflutete Straßen hell statt dunkel erscheinen. Unsere Karte des neuen Wassers unterschätzt städtisches Hochwasser.",
+    "Pixel size":
+        "Pixelgröße",
+    "{r} m pixels. Slides narrower than about two pixels are easily missed.":
+        "{r}-m-Pixel. Rutschungen schmaler als etwa zwei Pixel werden leicht übersehen.",
+    "Same-mode rule":
+        "Gleicher-Modus-Regel",
+    "From 27 August to 2 October NISAR imaged this track in a different mode (2005, quad-pol); 14 October is back in the July mode. Brightness is only compared between passes with the same track, mode and polarisation.":
+        "Vom 27. August bis 2. Oktober nahm NISAR diese Bahn in einem anderen Modus auf (2005, Quad-Pol); am 14. Oktober wieder im Juli-Modus. Helligkeit wird nur zwischen Überflügen mit gleicher Bahn, gleichem Modus und gleicher Polarisation verglichen.",
+    "Water areas may be underestimates":
+        "Wasserflächen können unterschätzt sein",
+    "On {d} only {p} of the area the JRC record marks as permanent water looked dark enough to pass our water test. Part of that is reservoirs drawn down before the monsoon; part is water roughened by wind or rain, which our test misses.":
+        "Am {d} sahen nur {p} der Fläche, die die JRC-Aufzeichnung als Dauerwasser führt, dunkel genug aus, um unseren Wassertest zu bestehen. Teils sind Stauseen vor dem Monsun abgesenkt, teils ist das Wasser durch Wind oder Regen aufgeraut, was unser Test übersieht.",
+    "Small samples":
+        "Kleine Stichproben",
+    "Every check is counted, not turned into an accuracy: floods {fh} of {fo}, landslides {sh} of {so}, and the second-track check covers only part of the area.":
+        "Jede Prüfung wird gezählt, nicht in eine Genauigkeit umgerechnet: Überschwemmungen {fh} von {fo}, Erdrutsche {sh} von {so}, und die Prüfung mit zweiter Bahn deckt nur einen Teil des Gebiets ab.",
+    "Flood area is threshold-sensitive":
+        "Hochwasserfläche hängt von der Schwelle ab",
+    "The flood figure can move several-fold with a 1 dB change in the water threshold; the reservoir rise much less (see the water-threshold check).":
+        "Die Hochwasserzahl kann sich bei 1 dB Änderung der Wasserschwelle vervielfachen; der Anstieg der Stauseen viel weniger (siehe Prüfung der Wasserschwelle).",
+    "Slope near the limits":
+        "Neigung nahe den Grenzen",
+    "Many zones sit close to the {a}° or {b}° limits, so a different elevation map moves some of them in or out (see the elevation-map check).":
+        "Viele Zonen liegen nahe den Grenzen von {a}° oder {b}°, daher schiebt ein anderes Höhenmodell einige hinein oder hinaus (siehe Prüfung mit dem Höhenmodell).",
+    "Leads, not verdicts":
+        "Hinweise, keine Urteile",
+    "Slide zones are places to check, not confirmed landslides: {u} of {z} have no reported event within 2 km.":
+        "Rutschungszonen sind Orte zum Prüfen, keine bestätigten Erdrutsche: {u} von {z} haben kein gemeldetes Ereignis im Umkreis von 2 km.",
+    "Rainfall":
+        "Niederschlag",
+    "GPM IMERG Late Run, averaged over the whole study area per UTC day. It is lower than the single-station totals quoted in the news, and may shift slightly when the Final Run is released.":
+        "GPM IMERG Late Run, gemittelt über das ganze Untersuchungsgebiet je UTC-Tag. Das liegt unter den Einzelstationswerten aus den Nachrichten und kann sich mit dem Final Run leicht ändern.",
+    ". Landslides: {h} of {o}.":
+        ". Erdrutsche: {h} von {o}.",
+    "Floods: **{fh} of {fo}** reports that radar could observe had a detection nearby. Landslides: **{sh} of {so}**. Counts, not an accuracy: the samples are small.":
+        "Überschwemmungen: Bei **{fh} von {fo}** Meldungen, die das Radar sehen konnte, gab es einen Fund in der Nähe. Erdrutsche: **{sh} von {so}**. Zählungen, keine Genauigkeit: Die Stichproben sind klein.",
+    "Runs once reported events are added.":
+        "Läuft, sobald gemeldete Ereignisse vorliegen.",
+    "an independent NISAR orbit re-found {c} of the {n} zones it could see, {l}× more often than chance. A small sample, so support, not proof.":
+        "ein unabhängiger NISAR-Orbit fand {c} der {n} Zonen in seinem Blickfeld wieder, {l}× häufiger als Zufall. Eine kleine Stichprobe: Unterstützung, kein Beweis.",
+    "Same slide rule, run on NISAR track {t} ({b} to {a}). A track-034 zone counts as **found again** when a track-{t} zone lies within {m} m (allowing for small position differences between orbits). **Partial** means only one piece of the evidence is there (coherence loss or the backscatter jump): that alone is common in the monsoon, so we do not count it.":
+        "Dieselbe Rutschungsregel, angewandt auf NISAR-Bahn {t} ({b} bis {a}). Eine Zone von Bahn 034 gilt als **wiedergefunden**, wenn eine Zone von Bahn {t} innerhalb von {m} m liegt (für kleine Lageunterschiede zwischen Orbits). **Teilweise** heißt, nur ein Beleg ist da (Kohärenzverlust oder Rückstreusprung): Das allein ist im Monsun häufig, daher zählen wir es nicht.",
+    "Runs once the track-106 files are cropped.":
+        "Läuft, sobald die Dateien von Bahn 106 zugeschnitten sind.",
+    "{f} of {z} zones survive when slope comes from NASA's NASADEM, including {hf} of {hz} high-confidence ones.":
+        "{f} von {z} Zonen bleiben, wenn die Neigung aus NASAs NASADEM stammt, darunter {hf} von {hz} mit hoher Sicherheit.",
+    "Slope and slope direction decide where the slide rule looks, so we ran it again on the same radar pair with NASA's NASADEM elevation map instead of Copernicus. Overall the two slope maps agree closely (median difference {d}°). Near the {a}° and {b}° limits they do not: of the ground that either map puts inside that band, the other map puts {p} outside it.":
+        "Neigung und Hangrichtung bestimmen, wo die Rutschungsregel sucht. Daher haben wir sie für dasselbe Radarpaar mit NASAs NASADEM statt Copernicus wiederholt. Insgesamt stimmen beide Neigungskarten gut überein (Median-Unterschied {d}°). Nahe den Grenzen von {a}° und {b}° nicht: Von dem Gelände, das eine Karte in diesem Bereich sieht, legt die andere {p} außerhalb.",
+    "**{f} of {z}** zones are found again within {m} m, including **{hf} of {hz}** high-confidence zones. NASADEM also finds {nw} zones of its own.":
+        "**{f} von {z}** Zonen werden innerhalb von {m} m wiedergefunden, darunter **{hf} von {hz}** mit hoher Sicherheit. NASADEM findet außerdem {nw} eigene Zonen.",
+    "Steeper than 45°":
+        "Steiler als 45°",
+    "Gentler than 15°":
+        "Flacher als 15°",
+    "Radar layover or shadow":
+        "Radar-Überlagerung oder -Schatten",
+    "Near the edge of the slope band":
+        "Nahe am Rand des Neigungsbereichs",
+    "the reservoir rise holds up ({a} to {b} km²); the flood area does not ({c} to {d} km²), so read it as an order of magnitude.":
+        "der Anstieg der Stauseen hält ({a} bis {b} km²); die Hochwasserfläche nicht ({c} bis {d} km²), daher als Größenordnung lesen.",
+    "The water threshold is set from the radar itself on each date. Moving both dates' thresholds 1 dB down or up, and changing nothing else, keeps reservoir and river rise between **{a} and {b} km²** (we report {r}). Flooding on ground that was never wet swings from **{c} to {d} km²** (we report {f}): that figure depends heavily on the threshold, so read it as the order of magnitude, not a precise area.":
+        "Die Wasserschwelle wird an jedem Datum aus dem Radar selbst bestimmt. Verschiebt man beide Schwellen um 1 dB nach unten oder oben und ändert sonst nichts, bleibt der Anstieg von Stauseen und Flüssen zwischen **{a} und {b} km²** (wir berichten {r}). Hochwasser auf nie nassem Boden schwankt zwischen **{c} und {d} km²** (wir berichten {f}): Dieser Wert hängt stark von der Schwelle ab, also als Größenordnung lesen, nicht als genaue Fläche.",
+    "Roads and railways near each zone":
+        "Straßen und Bahnlinien nahe jeder Zone",
+    "Elevation, second-map check":
+        "Höhe, Prüfung mit zweiter Karte",
+    "Daily rainfall":
+        "Täglicher Niederschlag",
+    "Cut the radar to Pune":
+        "Radar auf Pune zuschneiden",
+    "NISAR's level-2 GCOV files hold radar brightness (gamma-nought, already corrected for terrain) on a map grid. A full frame is about 5 GB per layer, so we stream only the study box (lon {w} to {e}, lat {s} to {n}) and average 2 × 2 or more native pixels into a {r} m grid. Averaging reduces radar speckle; a Lee filter removes more.":
+        "NISARs Level-2-GCOV-Dateien enthalten die Radarhelligkeit (Gamma-Null, bereits geländekorrigiert) auf einem Kartenraster. Ein ganzer Rahmen hat etwa 5 GB pro Ebene, daher streamen wir nur das Untersuchungsgebiet (Länge {w} bis {e}, Breite {s} bis {n}) und mitteln 2 × 2 oder mehr Originalpixel zu einem {r}-m-Raster. Das Mitteln mindert das Radar-Speckle; ein Lee-Filter entfernt weiteres.",
+    "Find water on each date":
+        "Wasser an jedem Datum finden",
+    "Smooth water reflects the radar away and looks dark in HH. The cut-off between water and land is set separately for each date with the minimum-error method of Kittler and Illingworth, trained on reservoir and river cores that the JRC Global Surface Water record says are water at least {o}% of the time, plus an equal number of land pixels. In these NISAR products open water sits near −16 dB and dry land near −5 dB.":
+        "Glattes Wasser lenkt das Radar weg und wirkt in HH dunkel. Die Grenze zwischen Wasser und Land wird für jedes Datum getrennt mit der Minimum-Error-Methode von Kittler und Illingworth bestimmt, trainiert an Kernen von Stauseen und Flüssen, die laut JRC Global Surface Water mindestens {o}% der Zeit Wasser sind, plus gleich vielen Landpixeln. In diesen NISAR-Produkten liegt offenes Wasser bei etwa −16 dB und trockenes Land bei etwa −5 dB.",
+    "Keep only new water":
+        "Nur neues Wasser behalten",
+    "A pixel is new water if it is water on {a} but not on {b}, clearly darker, outside permanent water, on flat ground, and part of a patch big enough not to be speckle.":
+        "Ein Pixel ist neues Wasser, wenn es am {a} Wasser ist, am {b} aber nicht, deutlich dunkler, außerhalb von Dauerwasser, auf flachem Boden und Teil einer Fläche, die groß genug ist, um kein Speckle zu sein.",
+    "Flag possible hidden water":
+        "Mögliches verborgenes Wasser markieren",
+    "At L-band, water under trees or between buildings makes the radar bounce twice and come back brighter. Flat ground that got brighter is shown as possible water, and never added to flood totals.":
+        "Im L-Band lässt Wasser unter Bäumen oder zwischen Gebäuden das Radar zweimal abprallen und heller zurückkommen. Flacher Boden, der heller wurde, wird als mögliches Wasser gezeigt und nie zur Hochwasserfläche addiert.",
+    "Find likely slide zones":
+        "Wahrscheinliche Rutschungszonen finden",
+    "Outside the radar's layover and shadow, a zone needs all three: the ground stopped matching itself between passes (coherence, from the NISAR GUNW product); it lost much more coherence than its own 1 km neighbourhood, because monsoon vegetation lowers coherence everywhere; and the radar brightness jumped, from rough debris (HH up) or stripped vegetation (HV down), measured against the scene's own median change on dry land. Each zone gets a 0 to 1 score from slope, radar change and coherence loss.":
+        "Außerhalb von Radar-Überlagerung und -Schatten braucht eine Zone alle drei: Der Boden stimmte zwischen den Überflügen nicht mehr mit sich überein (Kohärenz, aus dem NISAR-GUNW-Produkt); sie verlor deutlich mehr Kohärenz als ihre eigene 1-km-Umgebung, weil Monsunvegetation die Kohärenz überall senkt; und die Radarhelligkeit sprang, durch rauen Schutt (HH hoch) oder entfernte Vegetation (HV runter), gemessen an der Median-Änderung der Szene auf trockenem Land. Jede Zone erhält eine Punktzahl von 0 bis 1 aus Neigung, Radaränderung und Kohärenzverlust.",
+    "Check against reports":
+        "Mit Meldungen abgleichen",
+    "Reported floods and landslides, from the news and official sources, each linked, are matched to detections nearby, or within the report's own location precision if that is larger.":
+        "Gemeldete Überschwemmungen und Erdrutsche aus Nachrichten und amtlichen Quellen, jeweils verlinkt, werden mit Funden in der Nähe abgeglichen, oder innerhalb der eigenen Ortsgenauigkeit der Meldung, falls diese größer ist.",
+    "Check with a second track":
+        "Mit einer zweiten Bahn prüfen",
+    "The same slide rule runs on an independent NISAR pair from another orbit, which also spans the rain peak. A real slope failure changes the ground for good, so it should show in both; speckle or a geometry artefact of one orbit usually does not. Chance level comes from moving every zone to random steep, dry places and repeating the test.":
+        "Dieselbe Rutschungsregel läuft auf einem unabhängigen NISAR-Paar aus einem anderen Orbit, das ebenfalls den Regenhöhepunkt umfasst. Ein echter Hangrutsch verändert den Boden dauerhaft und sollte in beiden erscheinen; Speckle oder ein Geometriefehler eines Orbits meist nicht. Das Zufallsniveau ergibt sich, indem jede Zone an zufällige steile, trockene Orte verschoben und der Test wiederholt wird.",
+    "Check with a second elevation map":
+        "Mit einem zweiten Höhenmodell prüfen",
+    "Slope and slope direction come from the Copernicus GLO-30 elevation map. We run the same slide rule again with NASA's NASADEM elevation map and record which zones it keeps.":
+        "Neigung und Hangrichtung stammen aus dem Copernicus-GLO-30-Höhenmodell. Wir wiederholen dieselbe Rutschungsregel mit NASAs NASADEM und halten fest, welche Zonen bleiben.",
+    "Test the water threshold":
+        "Die Wasserschwelle testen",
+    "Both dates' water thresholds are moved 1 dB down and up and the water numbers are recomputed, to show how much they depend on that one choice.":
+        "Die Wasserschwellen beider Daten werden um 1 dB nach unten und oben verschoben und die Wasserzahlen neu berechnet, um zu zeigen, wie stark sie von dieser einen Wahl abhängen.",
+    "Package the evidence":
+        "Die Belege packen",
+    "For every slide zone and flood patch the pipeline cuts small image chips of that spot from the NISAR data (radar colour before and after, and coherence), notes the nearest reported event, and writes the field check list as a printable page, KML, CSV and GeoJSON.":
+        "Für jede Rutschungszone und Überschwemmungsfläche schneidet die Pipeline kleine Bildausschnitte dieser Stelle aus den NISAR-Daten (Radarfarbe vorher und nachher sowie Kohärenz), vermerkt das nächste gemeldete Ereignis und schreibt die Feld-Checkliste als druckbare Seite, KML, CSV und GeoJSON.",
+    "radar found something near {h} of {o} reported floods it could see":
+        "das Radar fand etwas nahe {h} von {o} gemeldeten Überschwemmungen, die es sehen konnte",
+    "How the chance level is worked out: a report counts as matched when new water or a possible-water patch lies within its tolerance (the larger of the report's location precision and 500 m). For each report we take the share of a reference set that has a detection within that same tolerance, and add the shares up. Flat ground: every 40 m pixel with radar data on both dates, outside permanent water, slope ≤ 5° ({km} km²). Settlements: {p} OpenStreetMap villages, towns and suburbs with radar data. Getting {k} or more by chance has a probability of {pf} on flat ground and {ps} at settlements (exact, no random draws).":
+        "So wird das Zufallsniveau berechnet: Eine Meldung gilt als getroffen, wenn neues Wasser oder eine Fläche möglichen Wassers innerhalb ihrer Toleranz liegt (dem Größeren aus Ortsgenauigkeit der Meldung und 500 m). Für jede Meldung nehmen wir den Anteil einer Referenzmenge mit einem Fund innerhalb derselben Toleranz und addieren die Anteile. Flaches Land: jedes 40-m-Pixel mit Radardaten an beiden Daten, außerhalb von Dauerwasser, Neigung ≤ 5° ({km} km²). Siedlungen: {p} OpenStreetMap-Dörfer, -Städte und -Vororte mit Radardaten. {k} oder mehr Treffer durch Zufall haben eine Wahrscheinlichkeit von {pf} auf flachem Land und {ps} bei Siedlungen (exakt, ohne Zufallsziehungen).",
+    "Track {t} sees only {c} of the study area, so only {n} of our zones could be checked. That is a small sample: treat it as support, not proof.":
+        "Bahn {t} sieht nur {c} des Untersuchungsgebiets, daher konnten nur {n} unserer Zonen geprüft werden. Das ist eine kleine Stichprobe: Unterstützung, kein Beweis.",
+    "Between {b} and {a} the whole scene got about {h} dB darker in HH and {v} dB in HV, on flat and steep ground alike: ground and plants drying after the storm, or calibration of these provisional products. A landslide is a local change, so on both tracks we measure change against the scene's own median change on dry land.":
+        "Zwischen {b} und {a} wurde die ganze Szene in HH um etwa {h} dB und in HV um {v} dB dunkler, auf flachem wie steilem Gelände: trocknender Boden und Pflanzen nach dem Sturm oder die Kalibrierung dieser vorläufigen Produkte. Ein Erdrutsch ist eine lokale Änderung, daher messen wir auf beiden Bahnen die Änderung relativ zur Median-Änderung der Szene auf trockenem Land.",
+    "Water areas from track {t} are not used: on {b}, in heavy rain, the radar saw less than half of the permanent reservoirs as dark water, because rain roughens the surface.":
+        "Wasserflächen von Bahn {t} werden nicht verwendet: Am {b}, bei starkem Regen, sah das Radar weniger als die Hälfte der dauerhaften Stauseen als dunkles Wasser, weil Regen die Oberfläche aufraut.",
+    "Passing both extra checks (found again by the second NISAR track and with NASADEM): **{z}**.":
+        "Bestehen beide Zusatzprüfungen (von der zweiten NISAR-Bahn und mit NASADEM wiedergefunden): **{z}**.",
+    "{r} m grid":
+        "{r}-m-Raster",
+    "Lee filter":
+        "Lee-Filter",
+    "threshold kept within {a} to {b} dB":
+        "Schwelle zwischen {a} und {b} dB",
+    "one threshold per date":
+        "eine Schwelle pro Datum",
+    "≥ {d} dB darker":
+        "≥ {d} dB dunkler",
+    "JRC occurrence < {o}%":
+        "JRC-Häufigkeit < {o}%",
+    "slope < {s}°":
+        "Neigung < {s}°",
+    "≥ {p} pixels":
+        "≥ {p} Pixel",
+    "≥ {d} dB brighter":
+        "≥ {d} dB heller",
+    "shown hatched, never counted":
+        "schraffiert gezeigt, nie gezählt",
+    "slope {a}° to {b}°":
+        "Neigung {a}° bis {b}°",
+    "coherence < {c}":
+        "Kohärenz < {c}",
+    "< 0.6 × its 1 km surroundings":
+        "< 0,6 × ihre 1-km-Umgebung",
+    "floods: 500 m":
+        "Überschwemmungen: 500 m",
+    "slides: 750 m":
+        "Rutschungen: 750 m",
+    "{n} reports":
+        "{n} Meldungen",
+    "track 106":
+        "Bahn 106",
+    "3 to 15 July":
+        "3. bis 15. Juli",
+    "random-placement baseline":
+        "Basis mit zufälliger Platzierung",
+    "1.9 km image chips":
+        "1,9-km-Bildausschnitte",
+    "In short:":
+        "Kurz gesagt:",
+    ", but places nobody reported score {e}: no better than chance":
+        ", doch Orte ohne Meldung erreichen {e}: nicht besser als Zufall",
+    "Are the flood matches better than chance?":
+        "Sind die Hochwasser-Treffer besser als Zufall?",
+    "the nearest mapped new open water is {lo} to {hi} km from every reported flood.":
+        "das nächste kartierte neue offene Wasser liegt {lo} bis {hi} km von jeder gemeldeten Überschwemmung entfernt.",
+    "The count above differs from the {h} of {o} in the headline and the table below: a report's location was corrected after the last full pipeline run. The two will agree after the next run.":
+        "Die Zahl oben weicht von {h} von {o} in der Übersicht und der Tabelle unten ab: Der Ort einer Meldung wurde nach dem letzten vollständigen Pipeline-Lauf korrigiert. Nach dem nächsten Lauf stimmen beide überein.",
+    "Every reported event":
+        "Jedes gemeldete Ereignis",
+    "The chance of doing this well by luck alone is about {p} (one-sided binomial test).":
+        "Die Wahrscheinlichkeit, allein durch Glück so gut abzuschneiden, liegt bei etwa {p} (einseitiger Binomialtest).",
+    "Our zones were found again about as often as chance ({l}×), so single-track zones need ground checks before anyone relies on them.":
+        "Unsere Zonen wurden etwa so oft wiedergefunden wie durch Zufall ({l}×), daher brauchen Zonen aus nur einer Bahn eine Prüfung vor Ort, bevor man sich darauf verlässt.",
+    "With NASADEM, {k} of {n} reports have a zone within range. So treat the landslide matches as weak support.":
+        "Mit NASADEM haben {k} von {n} Meldungen eine Zone in Reichweite. Die Erdrutsch-Treffer sind daher nur schwache Unterstützung.",
+    "On this page":
+        "Auf dieser Seite",
+    "source":
+        "Quelle",
+    "Found again":
+        "Wiedergefunden",
+    "Partial":
+        "Teilweise",
+    "Not seen":
+        "Nicht gesehen",
+    "Not covered by track 106":
+        "Nicht von Bahn 106 erfasst",
+    "Found-again rate":
+        "Wiederfundrate",
+    "Our zones":
+        "Unsere Zonen",
+    "Same zones moved to random steep places ({n} trials)":
+        "Dieselben Zonen an zufällige steile Orte verschoben ({n} Versuche)",
+    "The chance of doing this well by luck alone is under 1%.":
+        "Die Wahrscheinlichkeit, allein durch Glück so gut abzuschneiden, liegt unter 1 %.",
+    "Our zones were found again **{l}× more often than chance**.":
+        "Unsere Zonen wurden **{l}× häufiger als durch Zufall** wiedergefunden.",
+    "By confidence:":
+        "Nach Sicherheit:",
+    "Not found with NASADEM because":
+        "Mit NASADEM nicht gefunden, weil",
+    "Zones":
+        "Zonen",
+    "Threshold shift":
+        "Schwellenverschiebung",
+    "Threshold {d} (dB)":
+        "Schwelle {d} (dB)",
+    "New water (km²)":
+        "Neues Wasser (km²)",
+    "Reservoir and river rise (km²)":
+        "Anstieg Stauseen und Flüsse (km²)",
+    "Flooding (km²)":
+        "Hochwasser (km²)",
+    "Flood patches":
+        "Überschwemmungsflächen",
+    "Permanent water seen dark":
+        "Dauerwasser dunkel gesehen",
+    "Report":
+        "Meldung",
+    "Tolerance (m)":
+        "Toleranz (m)",
+    "Nearest detection (m)":
+        "Nächster Fund (m)",
+    "Matched":
+        "Getroffen",
+    "Nearest new open water (km)":
+        "Nächstes neues offenes Wasser (km)",
+    "Flat ground within tolerance of a detection":
+        "Flaches Land in Toleranz zu einem Fund",
+    "Settlements within tolerance of a detection":
+        "Siedlungen in Toleranz zu einem Fund",
+    "{c}: {f} of {n} found again":
+        "{c}: {f} von {n} wiedergefunden",
+    "The {n} reported landslides we matched ({ids}) are all matched to the same zone, {z}, {d} away.":
+        "Die {n} gemeldeten Erdrutsche, die wir trafen ({ids}), passen alle zur selben Zone, {z}, {d} entfernt.",
+    "The {n} reported landslides we matched are {d} from their nearest zone.":
+        "Die {n} gemeldeten Erdrutsche, die wir trafen, liegen {d} von ihrer nächsten Zone entfernt.",
+    "as chosen":
+        "wie gewählt",
+    "With the reports as they stand now, **{k} of {n}** reported floods have a detection within their tolerance. The same rule applied to places nobody reported gives **{a} of {n}** on random flat ground and **{b} of {n}** at a random village, town or suburb.":
+        "Nach den Meldungen in ihrem jetzigen Stand haben **{k} von {n}** gemeldeten Überschwemmungen einen Fund innerhalb ihrer Toleranz. Dieselbe Regel an Orten ohne Meldung ergibt **{a} von {n}** auf zufälligem flachem Land und **{b} von {n}** in einem zufälligen Dorf, einer Stadt oder einem Vorort.",
+    "All {k} matches are to \"possible water under cover\" patches, which we show but never count as flood;":
+        "Alle {k} Treffer betreffen Flächen „mögliches verdecktes Wasser“, die wir zeigen, aber nie als Hochwasser zählen;",
+    "So the flood count is what chance alone would give: it is not evidence that the map finds reported floods.":
+        "Die Hochwasser-Zahl entspricht also dem, was Zufall allein ergäbe: Sie belegt nicht, dass die Karte gemeldete Überschwemmungen findet.",
+    "**Yes.**":
+        "**Ja.**",
+    "**No.**":
+        "**Nein.**",
+    "GeoTIFFs are on the analysis grid (UTM zone 43N, 40 m). GeoJSON is in WGS84.":
+        "GeoTIFFs liegen auf dem Analyseraster (UTM-Zone 43N, 40 m). GeoJSON ist in WGS84.",
+    "all new water (GeoTIFF)":
+        "gesamtes neues Wasser (GeoTIFF)",
+    "flooding only, never water before (GeoTIFF)":
+        "nur Hochwasser, nie zuvor Wasser (GeoTIFF)",
+    "possible water under trees or buildings (GeoTIFF)":
+        "mögliches Wasser unter Bäumen oder Gebäuden (GeoTIFF)",
+    "likely slide zones (GeoTIFF)":
+        "wahrscheinliche Rutschungszonen (GeoTIFF)",
+    "HH radar change in dB (GeoTIFF)":
+        "HH-Radaränderung in dB (GeoTIFF)",
+    "slide zones with scores and nearest place (GeoJSON)":
+        "Rutschungszonen mit Punktzahl und nächstem Ort (GeoJSON)",
+    "new-water patches, flood and reservoir rise (GeoJSON)":
+        "Flächen neuen Wassers, Hochwasser und Anstieg der Stauseen (GeoJSON)",
+    "reported events, matched or missed, with reasons (CSV)":
+        "gemeldete Ereignisse, getroffen oder verfehlt, mit Gründen (CSV)",
+    "water areas and thresholds (CSV)":
+        "Wasserflächen und Schwellen (CSV)",
+    "second-track check results (JSON)":
+        "Ergebnisse der Prüfung mit zweiter Bahn (JSON)",
+    "elevation-map check results (JSON)":
+        "Ergebnisse der Höhenmodell-Prüfung (JSON)",
+    "every number in this app (JSON)":
+        "jede Zahl dieser App (JSON)",
+    "not checked":
+        "nicht geprüft",
+    "NISAR radar image of {f}":
+        "NISAR-Radarbild von {f}",
+    "Radar image":
+        "Radarbild",
+    "Compare {a} and {b}":
+        "{a} und {b} vergleichen",
+    "{id}: likely slide zone ({c}), {n}":
+        "{id}: wahrscheinliche Rutschungszone ({c}), {n}",
+    "Radar colour, 28 Jun":
+        "Radarfarbe, 28. Juni",
+    "Radar colour, 10 Jul":
+        "Radarfarbe, 10. Juli",
+    "Radar HH, 28 Jun":
+        "Radar HH, 28. Juni",
+    "Radar HH, 10 Jul":
+        "Radar HH, 10. Juli",
+    "Change in HH (blue darker, red brighter)":
+        "Änderung in HH (blau dunkler, rot heller)",
+    "Coherence 28 Jun to 10 Jul (dark = changed)":
+        "Kohärenz 28. Juni bis 10. Juli (dunkel = verändert)",
+    "Rivers and reservoirs (JRC)":
+        "Flüsse und Stauseen (JRC)",
+    "Possible water under cover":
+        "Mögliches verdecktes Wasser",
+    "Reservoirs and rivers rising":
+        "Steigende Stauseen und Flüsse",
+    "Flooding (no water recorded here 1984 to 2021)":
+        "Hochwasser (hier 1984 bis 2021 nie Wasser verzeichnet)",
+    "Likely slide zones ({n})":
+        "Wahrscheinliche Rutschungszonen ({n})",
+    "; also found by a second NISAR track":
+        "; auch von einer zweiten NISAR-Bahn gefunden",
+    "Flood patches ({n})":
+        "Überschwemmungsflächen ({n})",
+    "Reported events ({n})":
+        "Gemeldete Ereignisse ({n})",
+    "Score (0-1)":
+        "Punktzahl (0–1)",
+    "Mean slope (°)":
+        "Mittlere Neigung (°)",
+    "Coherence vs 1 km area":
+        "Kohärenz relativ zur 1-km-Umgebung",
+    "With NASA's NASADEM elevation map":
+        "Mit NASAs NASADEM-Höhenmodell",
+    "Second NISAR track (3-15 Jul)":
+        "Zweite NISAR-Bahn (3.–15. Juli)",
+    "Radar detection nearby":
+        "Radarfund in der Nähe",
+    "No radar detection nearby":
+        "Kein Radarfund in der Nähe",
+    "Radar could not observe this":
+        "Für das Radar nicht beobachtbar",
+    "Study box":
+        "Untersuchungsgebiet",
+    "Study box (NISAR crop)":
+        "Untersuchungsgebiet (NISAR-Ausschnitt)",
+    "Flood water on 10 July: {a} ha, {d} dB darker":
+        "Hochwasser am 10. Juli: {a} ha, {d} dB dunkler",
+    ", near {n}":
+        ", nahe {n}",
+    "{a} to {b}":
+        "{a} bis {b}",
+    "Team iGenfinity, NASA Space Apps Challenge 2026, GDG Ahlen.":
+        "Team iGenfinity, NASA Space Apps Challenge 2026, GDG Ahlen.",
+    "App and integration":
+        "App und Integration",
+    "Data and science":
+        "Daten und Wissenschaft",
+    "Validation, story and pitch":
+        "Validierung, Geschichte und Pitch",
+    "Radar: {n} NISAR L2 provisional files, tracks {t}, {w} (NASA/JPL-Caltech and ISRO, via ASF DAAC); every file is linked on the Method page. Results built {g}, pipeline v{v}.":
+        "Radar: {n} vorläufige NISAR-L2-Dateien, Bahnen {t}, {w} (NASA/JPL-Caltech und ISRO, über ASF DAAC); jede Datei ist auf der Methoden-Seite verlinkt. Ergebnisse erzeugt am {g}, Pipeline v{v}.",
+    "iGenfinity team logo":
+        "Logo des Teams iGenfinity",
+    "matched to a detection":
+        "einem Fund zugeordnet",
+    "Random flat ground":
+        "Zufälliges flaches Land",
+    "expected by chance":
+        "durch Zufall erwartet",
+    "Random settlements":
+        "Zufällige Siedlungen",
+    "matches out of {n} reported floods":
+        "Treffer von {n} gemeldeten Überschwemmungen",
 }
 
 DE_T = {

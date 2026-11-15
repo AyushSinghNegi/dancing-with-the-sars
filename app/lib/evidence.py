@@ -108,15 +108,7 @@ def checks(p: dict) -> list[tuple[str, bool | None, str]]:
                     e(f"orbit_{t}") if f"orbit_{t}" in E else t))
     if "nasadem" in p:
         ok = p["nasadem"] == "found"
-        reason = (p.get("nasadem_reason") or "").replace(" in NASADEM", "")
-        if ui.lang() == "mr":
-            reason = REASON_MR.get(reason, reason)
-        elif ui.lang() == "de":
-            from .i18n_de import REASON
-            reason = REASON.get(reason, reason)
-        elif ui.lang() == "hi":
-            from .i18n_hi import REASON as REASON_HI
-            reason = REASON_HI.get(reason, reason)
+        reason = reason_text(p.get("nasadem_reason") or "")
         out.append((e("dem"), ok, e("dem_found") if ok else e("dem_not", r=reason)))
     k = p.get("nearest_event_km")
     if k is not None:
@@ -125,6 +117,20 @@ def checks(p: dict) -> list[tuple[str, bool | None, str]]:
         out.append((e("rep"), near, e("rep_yes", place=p.get("nearest_event_place", ""), km=kd) if near
                     else e("rep_no", km=kd)))
     return out
+
+
+def reason_text(reason: str) -> str:
+    """Why NASADEM did not keep a zone, in the page language."""
+    reason = reason.replace(" in NASADEM", "")
+    if ui.lang() == "mr":
+        return REASON_MR.get(reason, reason)
+    if ui.lang() == "de":
+        from .i18n_de import REASON
+        return REASON.get(reason, reason)
+    if ui.lang() == "hi":
+        from .i18n_hi import REASON as REASON_HI
+        return REASON_HI.get(reason, reason)
+    return reason
 
 
 def dist(m: float) -> str:
@@ -164,10 +170,10 @@ def nearby(p: dict) -> list[tuple[str, str]]:
 
 def _badge(ok):
     if ok is True:
-        return '<span class="ml-ck ok" aria-label="yes">✓</span>'
+        return '<span class="ml-ck ok" aria-label="' + ui.tr("yes", "हो") + '">✓</span>'
     if ok is False:
-        return '<span class="ml-ck no" aria-label="no">✕</span>'
-    return '<span class="ml-ck na" aria-label="not checked">–</span>'
+        return '<span class="ml-ck no" aria-label="' + ui.tr("no", "नाही") + '">✕</span>'
+    return '<span class="ml-ck na" aria-label="' + ui.tr("not checked", "तपासले नाही") + '">–</span>'
 
 
 def _chips(fid: str, kinds) -> str:
@@ -177,7 +183,7 @@ def _chips(fid: str, kinds) -> str:
         if not url:
             continue
         lbl = e(f"chip_{k}")
-        figs.append(f'<figure><img src="{url}" alt="{html.escape(lbl)}: NISAR radar image of {fid}" loading="lazy" '
+        figs.append(f'<figure><img src="{url}" alt="{html.escape(lbl)}: {html.escape(ui.tr('NISAR radar image of {f}', '{f} ची निसार रडार प्रतिमा', f=fid))}" loading="lazy" '
                     f'width="160" height="160"><figcaption>{html.escape(lbl)}</figcaption></figure>')
     return f'<div class="ml-chips">{"".join(figs)}</div>' if figs else ""
 
@@ -238,3 +244,27 @@ def type_word(t: str) -> str:
         from .i18n_hi import TYPE as TYPE_HI
         return TYPE_HI.get(t) or t.replace("_", " ")
     return TYPE_WORD.get(t, {}).get(ui.lang()) or t.replace("_", " ")
+
+
+def events_table(val):
+    """The validation table with headers and values in the page language (place names, reasons and sources stay
+    as published). Returns (DataFrame, column_config)."""
+    import pandas as pd
+    tr = ui.tr
+    res = {"hit": tr("radar found something within range", "रडारला टप्प्यात काहीतरी सापडले"),
+           "miss": tr("radar missed it", "रडारला सापडले नाही"),
+           "not observable": tr("radar could not observe it", "रडार ते पाहू शकले नाही"),
+           "not scored": tr("not scored", "मोजले नाही")}
+    yn = {"yes": tr("yes", "हो"), "no": tr("no", "नाही")}
+    c = {"id": tr("Report", "नोंद"), "type": tr("Event", "घटना"), "date": tr("Date", "तारीख"), "place": tr("Place", "ठिकाण"),
+         "observable": tr("Radar could see it", "रडारला दिसू शकत होते"), "result": tr("Result", "निकाल"),
+         "distance_m": tr("Nearest detection (m)", "सर्वात जवळचा शोध (मी)"), "reason": tr("Why (in English)", "का (इंग्रजीत)"),
+         "source_url": tr("source", "स्रोत")}
+    df = pd.DataFrame({
+        c["id"]: val["id"], c["type"]: [type_word(str(t)) for t in val["type"]],
+        c["date"]: [ui.date(str(d)) for d in val["date"]], c["place"]: val["place"],
+        c["observable"]: [yn.get(str(v), v) for v in val["observable"]],
+        c["result"]: [res.get(str(v), v) for v in val["result"]],
+        c["distance_m"]: val["distance_m"], c["reason"]: val["reason"].fillna(""),
+        c["source_url"]: val["source_url"]})
+    return df, {c["source_url"]: st.column_config.LinkColumn(c["source_url"], display_text=tr("Open", "उघडा"))}

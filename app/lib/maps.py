@@ -100,17 +100,22 @@ def _extras(m, basemap: str):
 
 # name -> (label key or text, shown by default)
 RASTERS = [
-    ("rgb_before", "Radar colour, 28 Jun", False),
-    ("rgb_after", "Radar colour, 10 Jul", False),
-    ("hh_before", "Radar HH, 28 Jun", False),
-    ("hh_after", "Radar HH, 10 Jul", False),
-    ("change", "Change in HH (blue darker, red brighter)", False),
-    ("coherence", "Coherence 28 Jun to 10 Jul (dark = changed)", False),
-    ("permanent", "Rivers and reservoirs (JRC)", True),
-    ("brighter", "Possible water under cover", True),
-    ("rise", "Reservoirs and rivers rising", True),
-    ("flood", "Flooding (no water recorded here 1984 to 2021)", True),
+    ("rgb_before", False), ("rgb_after", False), ("hh_before", False), ("hh_after", False), ("change", False),
+    ("coherence", False), ("permanent", True), ("brighter", True), ("rise", True), ("flood", True),
 ]
+
+
+def raster_label(name):
+    tr = ui.tr
+    return {"rgb_before": tr("Radar colour, 28 Jun", "रडार रंग, २८ जून"),
+            "rgb_after": tr("Radar colour, 10 Jul", "रडार रंग, १० जुलै"),
+            "hh_before": tr("Radar HH, 28 Jun", "रडार HH, २८ जून"), "hh_after": tr("Radar HH, 10 Jul", "रडार HH, १० जुलै"),
+            "change": tr("Change in HH (blue darker, red brighter)", "HH मधील बदल (निळा गडद, लाल उजळ)"),
+            "coherence": tr("Coherence 28 Jun to 10 Jul (dark = changed)", "कोहेरन्स २८ जून ते १० जुलै (गडद = बदलले)"),
+            "permanent": tr("Rivers and reservoirs (JRC)", "नद्या आणि धरणे (JRC)"),
+            "brighter": tr("Possible water under cover", "झाकलेले संभाव्य पाणी"),
+            "rise": tr("Reservoirs and rivers rising", "धरणे आणि नद्या वाढल्या"),
+            "flood": tr("Flooding (no water recorded here 1984 to 2021)", "पूर (येथे १९८४ ते २०२१ पाणी नोंदवले नाही)")}[name]
 
 SLIDE_SVG = ('<svg width="18" height="18" viewBox="0 0 18 18"><path d="M9 2 L16.5 15.5 H1.5 Z" fill="#fff" '
              'stroke="#1d3346" stroke-width="2" stroke-linejoin="round"/></svg>')
@@ -143,8 +148,9 @@ def build(basemap=None, opacity=0.85, show=None, location=None, zoom=10, height=
         folium.TileLayer(url, attr=attr, name=name, overlay=False, control=True, show=(name == basemap),
                          max_zoom=18).add_to(m)
     b = data.bounds().get("bounds_latlon")
-    show = show if show is not None else {n for n, _, on in RASTERS if on}
-    for name, label, _ in RASTERS:
+    show = show if show is not None else {n for n, on in RASTERS if on}
+    for name, _ in RASTERS:
+        label = raster_label(name)
         url = data.overlay_url(name)
         if not url or not b:
             continue
@@ -155,16 +161,16 @@ def build(basemap=None, opacity=0.85, show=None, location=None, zoom=10, height=
         ov.url = url
         ov.add_to(m)
     lab = _labels(basemap)
-    folium.TileLayer(lab[0], attr=lab[1], name="Place names", overlay=True, control=True, show=True,
-                     pane="labels", max_zoom=18).add_to(m)
+    folium.TileLayer(lab[0], attr=lab[1], name=ui.tr("Place names", "ठिकाणांची नावे"), overlay=True, control=True,
+                     show=True, pane="labels", max_zoom=18).add_to(m)
     if zones:
         add_slide_zones(m, min_conf)
     add_flood_patches(m)
     if events:
         add_events(m)
     if b:
-        folium.Rectangle(b, color=_ink(basemap), weight=1.2, fill=False, dash_array="4 4", name="Study box",
-                         tooltip="Study box (NISAR crop)").add_to(m)
+        folium.Rectangle(b, color=_ink(basemap), weight=1.2, fill=False, dash_array="4 4", name=ui.tr("Study box", "अभ्यास क्षेत्र"),
+                         tooltip=ui.tr("Study box (NISAR crop)", "अभ्यास क्षेत्र (निसार तुकडा)")).add_to(m)
     folium.LayerControl(collapsed=collapsed, position="topright").add_to(m)
     Fullscreen(position="topleft").add_to(m)
     _extras(m, basemap)
@@ -179,35 +185,47 @@ def add_slide_zones(m, min_conf="medium"):
     feats = [f for f in gj["features"] if order[f["properties"]["confidence"]] >= order[min_conf]]
     if not feats:
         return
-    fg = folium.FeatureGroup(name=f"Likely slide zones ({len(feats)})", show=True)
+    tr = ui.tr
+    fg = folium.FeatureGroup(name=tr("Likely slide zones ({n})", "संभाव्य भूस्खलन क्षेत्रे ({n})", n=len(feats)), show=True)
+    CONF = {"high": tr("high confidence", "उच्च खात्री"), "medium": tr("medium confidence", "मध्यम खात्री"),
+            "low": tr("low confidence", "कमी खात्री")}
+    T106 = {"confirmed": tr("found again", "पुन्हा सापडले"), "partial": tr("partly", "अंशतः"),
+            "not seen": tr("not seen", "दिसले नाही"), "not covered": tr("outside view", "दृष्टीबाहेर")}
+    feats = [{**f, "properties": {**f["properties"], "conf_txt": CONF.get(f["properties"]["confidence"], ""),
+                                  "t106_txt": T106.get(f["properties"].get("track106"), "")}} for f in feats]
     xt = any("track106" in f["properties"] for f in feats)
     dem = any("nasadem" in f["properties"] for f in feats)
     if dem:   # one readable popup line: "found", or "not found: steeper than 45°"
-        feats = [{**f, "properties": {**f["properties"], "dem_txt": f["properties"].get("nasadem", "") + (
-            ": " + f["properties"]["nasadem_reason"].replace(" in NASADEM", "")
-            if f["properties"].get("nasadem_reason") else "")}} for f in feats]
-    pop_f = ["id", "confidence", "score", "area_ha", "slope_deg", "hv_change_db", "hh_change_db", "coherence",
-             "coherence_vs_local"] + (["track106"] if xt else []) + (["dem_txt"] if dem else [])
-    pop_a = ["Zone", "Confidence", "Score (0-1)", "Area (ha)", "Mean slope (°)", "HV change (dB)", "HH change (dB)",
-             "Coherence", "Coherence vs 1 km area"] + (["Second NISAR track (3-15 Jul)"] if xt else []) + \
-        (["With NASA's NASADEM elevation map"] if dem else [])
+        from . import evidence as _ev
+        feats = [{**f, "properties": {**f["properties"], "dem_txt": (
+            _ev.e("dem_found") if f["properties"].get("nasadem") == "found" else
+            _ev.e("dem_not", r=_ev.reason_text(f["properties"].get("nasadem_reason") or "")))}} for f in feats]
+    pop_f = ["id", "conf_txt", "score", "area_ha", "slope_deg", "hv_change_db", "hh_change_db", "coherence",
+             "coherence_vs_local"] + (["t106_txt"] if xt else []) + (["dem_txt"] if dem else [])
+    pop_a = [tr("Zone", "क्षेत्र"), tr("Confidence", "खात्री"), tr("Score (0-1)", "गुण (०-१)"), tr("Area (ha)", "क्षेत्रफळ (हे.)"),
+             tr("Mean slope (°)", "सरासरी उतार (°)"), tr("HV change (dB)", "HV बदल (dB)"), tr("HH change (dB)", "HH बदल (dB)"),
+             tr("Coherence", "कोहेरन्स"), tr("Coherence vs 1 km area", "१ किमी परिसराच्या तुलनेत कोहेरन्स")] + \
+        ([tr("Second NISAR track (3-15 Jul)", "दुसरा निसार मार्ग (३-१५ जुलै)")] if xt else []) + \
+        ([tr("With NASA's NASADEM elevation map", "नासाच्या NASADEM उंची नकाशासह")] if dem else [])
     folium.GeoJson(
         {"type": "FeatureCollection", "features": feats},
         style_function=lambda f: {"color": ui.COLORS["slide_zones"], "weight": 2.5,
                                   "fillColor": ui.COLORS["slide_zones"],
                                   "fillOpacity": 0.45 if f["properties"]["confidence"] == "high" else 0.2},
         highlight_function=lambda f: {"weight": 4, "fillOpacity": 0.6},
-        tooltip=folium.GeoJsonTooltip(fields=["id", "confidence", "area_ha", "slope_deg"],
-                                      aliases=["Zone", "Confidence", "Area (ha)", "Slope (°)"]),
+        tooltip=folium.GeoJsonTooltip(fields=["id", "conf_txt", "area_ha", "slope_deg"],
+                                      aliases=[tr("Zone", "क्षेत्र"), tr("Confidence", "खात्री"),
+                                               tr("Area (ha)", "क्षेत्रफळ (हे.)"), tr("Slope (°)", "उतार (°)")]),
         popup=folium.GeoJsonPopup(fields=pop_f, aliases=pop_a),
     ).add_to(fg)
     # Zones are often under half a hectare: a marker at each centre keeps them visible at any zoom.
     for f in feats:
         p = f["properties"]
         both = p.get("track106") == "confirmed"
-        tip = f"{p['id']}: likely slide zone ({p['confidence']}), {p.get('near') or ''}"
+        tip = tr("{id}: likely slide zone ({c}), {n}", "{id}: संभाव्य भूस्खलन क्षेत्र ({c}), {n}", id=p["id"],
+                 c=p["conf_txt"], n=p.get("near") or "")
         if both:
-            tip += "; also found by a second NISAR track"
+            tip += tr("; also found by a second NISAR track", "; दुसऱ्या निसार मार्गावरही सापडले")
         if p["confidence"] == "high":   # the few strongest leads pulse, so the eye finds them first
             folium.Marker([p["lat"], p["lon"]], tooltip=tip,
                           icon=folium.DivIcon(html='<div class="ml-pulse"><i></i></div>', icon_size=(18, 18),
@@ -226,13 +244,14 @@ def add_flood_patches(m):
     feats = [f for f in gj["features"] if f["properties"].get("kind") == "flood"]
     if not feats:
         return
-    fg = folium.FeatureGroup(name=f"Flood patches ({len(feats)})", show=True)
+    fg = folium.FeatureGroup(name=ui.tr("Flood patches ({n})", "पुराचे भाग ({n})", n=len(feats)), show=True)
     for f in feats:
         p = f["properties"]
         folium.CircleMarker([p["lat"], p["lon"]], radius=6, color=ui.COLORS["flood"], weight=2, fill=True,
                             fill_opacity=0.4,
-                            tooltip=f"Flood water on 10 July: {p['area_ha']} ha, {p.get('drop_db', '')} dB darker"
-                                    + (f", near {p['near']}" if p.get("near") else "")).add_to(fg)
+                            tooltip=ui.tr("Flood water on 10 July: {a} ha, {d} dB darker", "१० जुलैला पुराचे पाणी: {a} हे., "
+                                          "{d} dB गडद", a=p["area_ha"], d=p.get("drop_db", ""))
+                                    + (ui.tr(", near {n}", ", {n} जवळ", n=p["near"]) if p.get("near") else "")).add_to(fg)
     fg.add_to(m)
 
 
@@ -243,7 +262,9 @@ def add_events(m):
     val = data.table("validation.csv")
     result = {} if val is None else dict(zip(val["id"].astype(str), val["result"].astype(str)))
     reason = {} if val is None else dict(zip(val["id"].astype(str), val["reason"].fillna("").astype(str)))
-    fg = folium.FeatureGroup(name=f"Reported events ({len(ev['features'])})", show=True)
+    fg = folium.FeatureGroup(name=ui.tr("Reported events ({n})", "नोंदवलेल्या घटना ({n})", n=len(ev["features"])),
+                             show=True)
+    from . import evidence as _ev
     for f in ev["features"]:
         p = f["properties"]
         lon, lat = f["geometry"]["coordinates"][:2]
@@ -252,16 +273,17 @@ def add_events(m):
                                                                           "river_overflow") else OTHER_SVG
         rid = str(p.get("id", ""))
         res = result.get(rid, "")
-        res_txt = {"hit": "Radar detection nearby", "miss": "No radar detection nearby",
-                   "not observable": "Radar could not observe this"}.get(res, res)
+        res_txt = {"hit": ui.tr("Radar detection nearby", "जवळ रडार शोध"),
+                   "miss": ui.tr("No radar detection nearby", "जवळ रडार शोध नाही"),
+                   "not observable": ui.tr("Radar could not observe this", "रडार हे पाहू शकले नाही")}.get(res, res)
         src = p.get("source_url", "")
-        body = (f"<b>{html.escape(str(p.get('place', '')))}</b><br>{html.escape(typ.replace('_', ' '))}, "
+        body = (f"<b>{html.escape(str(p.get('place', '')))}</b><br>{html.escape(_ev.type_word(typ))}, "
                 f"{html.escape(str(p.get('date', '')))}<br>{html.escape(res_txt)}"
                 + (f"<br><i>{html.escape(reason.get(rid, ''))}</i>" if reason.get(rid) else "")
-                + (f'<br><a href="{html.escape(src)}" target="_blank">{html.escape(str(p.get("source_name") or "source"))}</a>'
+                + (f'<br><a href="{html.escape(src)}" target="_blank">{html.escape(str(p.get("source_name") or ui.tr("source", "स्रोत")))}</a>'
                    if src else ""))
         folium.Marker([lat, lon], icon=folium.DivIcon(html=svg, icon_size=(18, 18), icon_anchor=(9, 9)),
-                      tooltip=f"{p.get('place', '')} ({typ.replace('_', ' ')})",
+                      tooltip=f"{p.get('place', '')} ({_ev.type_word(typ)})",
                       popup=folium.Popup(body, max_width=280)).add_to(fg)
     fg.add_to(m)
 
@@ -354,10 +376,10 @@ def passes(start_date=None, location=None, zoom=10, basemap=None):
     radar = [overlay(images[d], 2 + i) for i, d in enumerate(dates)]
     water = [overlay(data.overlay_url(f"water_d{d}"), 50) for d in dates]
     lab = _labels(basemap)
-    folium.TileLayer(lab[0], attr=lab[1], name="Place names", overlay=True, pane="labels", max_zoom=18).add_to(m)
+    folium.TileLayer(lab[0], attr=lab[1], name=ui.tr("Place names", "ठिकाणांची नावे"), overlay=True, pane="labels", max_zoom=18).add_to(m)
     if b:
         folium.Rectangle(b, color=_ink(basemap), weight=1.2, fill=False, dash_array="4 4",
-                         tooltip="Study box (NISAR crop)").add_to(m)
+                         tooltip=ui.tr("Study box (NISAR crop)", "अभ्यास क्षेत्र (निसार तुकडा)")).add_to(m)
     Fullscreen(position="topleft").add_to(m)
     MousePosition(position="bottomleft", separator=", ", num_digits=5, prefix="", empty_string="",
                   lat_formatter="function(n){return n.toFixed(5)+'° N'}",
@@ -475,11 +497,11 @@ def season(dates: list[str], notes: list[str], start: int = 0, basemap=None, opa
         ov.add_to(m)
         water.append(ov.get_name())
     lab = _labels(basemap)
-    folium.TileLayer(lab[0], attr=lab[1], name="Place names", overlay=True, pane="labels",
+    folium.TileLayer(lab[0], attr=lab[1], name=ui.tr("Place names", "ठिकाणांची नावे"), overlay=True, pane="labels",
                      max_zoom=18).add_to(m)
     if b:
         folium.Rectangle(b, color=_ink(basemap), weight=1.2, fill=False, dash_array="4 4",
-                         tooltip="Study box (NISAR crop)").add_to(m)
+                         tooltip=ui.tr("Study box (NISAR crop)", "अभ्यास क्षेत्र (निसार तुकडा)")).add_to(m)
     Fullscreen(position="topleft").add_to(m)
     MousePosition(position="topright", separator=", ", num_digits=5, prefix="", empty_string="",
                   lat_formatter="function(n){return n.toFixed(5)+'° N'}",

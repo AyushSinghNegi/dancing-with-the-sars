@@ -5,7 +5,7 @@ import numpy as np
 import streamlit as st
 from PIL import Image
 
-from . import data
+from . import data, ui
 
 
 def hotspot(size=520):
@@ -77,11 +77,11 @@ def render(before_img, after_img, label_before, label_after, height=520, start=5
     a, b = _b64(before_img), _b64(after_img)
     html = f"""
 <div class="sw" id="sw" style="--pos:{start}%">
-  <img src="data:image/webp;base64,{a}" alt="Radar image, {label_before}">
-  <img class="top" src="data:image/webp;base64,{b}" alt="Radar image, {label_after}">
+  <img src="data:image/webp;base64,{a}" alt="{ui.tr('Radar image', 'रडार प्रतिमा')}, {label_before}">
+  <img class="top" src="data:image/webp;base64,{b}" alt="{ui.tr('Radar image', 'रडार प्रतिमा')}, {label_after}">
   <div class="bar"><div class="grip"></div></div>
   <span class="lab l">{label_before}</span><span class="lab r">{label_after}</span>
-  <input type="range" min="0" max="100" value="{start}" aria-label="Compare {label_before} and {label_after}">
+  <input type="range" min="0" max="100" value="{start}" aria-label="{ui.tr('Compare {a} and {b}', '{a} आणि {b} यांची तुलना करा', a=label_before, b=label_after)}">
 </div>
 <style>
   body {{ margin:0; font-family:'IBM Plex Sans',system-ui,sans-serif; }}
