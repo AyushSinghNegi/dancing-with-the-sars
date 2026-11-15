@@ -61,7 +61,8 @@ if "pt" not in ss:
 pt = ss.get("pt")
 opts = list(by_id)
 cur = pt.get("osm_id") if pt else None
-c1, c2 = st.columns([3, 1.3])
+with st.container(key="tour_place"):
+    c1, c2 = st.columns([3, 1.3])
 choice = c1.selectbox(tr("Village, town or suburb", "गाव, शहर किंवा उपनगर"), opts,
                       index=opts.index(cur) if cur in opts else None, format_func=lambda i: labels[i],
                       placeholder=tr("Type a name, for example Lonavala", "नाव टाइप करा, उदा. लोणावळा"))
@@ -99,24 +100,7 @@ def near(items, lat, lon, k):
     return sorted(out, key=lambda x: x[0])
 
 
-# Two views of the same map: what changed between the two storm passes, or what each pass saw.
-pass_dates = list(data.pass_images())
-view = "change"
-if len(pass_dates) >= 3:
-    view = st.segmented_control(
-        tr("Map shows", "नकाशा दाखवतो"), ["change", "passes"], default=ss.get("place_view", "change"),
-        format_func=lambda k: {"change": tr("What changed, {b} to {a}", "काय बदलले, {b} ते {a}",
-                                            b=ui.day(before), a=ui.day(after)),
-                               "passes": tr("Pass by pass, {f} to {l}", "प्रत्येक निरीक्षण, {f} ते {l}",
-                                            f=ui.day(pass_dates[0]), l=ui.day(pass_dates[-1]))}[k],
-        key="place_view_ctl") or "change"
-    ss.place_view = view
-by_pass = view == "passes"
-
-
 def _map(location=None, zoom=10, min_conf="medium"):
-    if by_pass:
-        return maps.passes(start_date=after, location=location, zoom=zoom)
     return maps.build(location=location, zoom=zoom, min_conf=min_conf, collapsed=True)
 
 
@@ -135,7 +119,7 @@ if pt:
         where = tr("the point you picked", "तुम्ही निवडलेला बिंदू")
     zoom = {2: 13, 5: 12, 10: 11}[r_km]
     m = _map(location=[lat, lon], zoom=zoom, min_conf="low")
-    pin = "#ffffff" if by_pass else maps.ink_for(maps.default_basemap())
+    pin = maps.ink_for(maps.default_basemap())
     folium.Circle([lat, lon], radius=r_km * 1000, color=pin, weight=2, fill=True, fill_opacity=0.05,
                   dash_array="6 6").add_to(m)
     folium.CircleMarker([lat, lon], radius=7, color="#fff", weight=2.5, fill=True, fill_color="#3d8ef0",
@@ -146,20 +130,8 @@ else:
 left, right = st.columns([1.35, 1], gap="large")
 with left:
     out = st_folium(m, height=520, use_container_width=True, returned_objects=["last_clicked"],
-                    key=f"place_map_{pt['lat'] if pt else 0}_{pt['lon'] if pt else 0}_{r_km}_{ui.dark()}_{view}")
-    if by_pass:
-        st.caption(tr(
-            "Drag the slider on the map, or press play, to step through NISAR's passes; the view stays where you "
-            "put it. Same orbit and radar mode on every date. Red is HH, green HV, blue HH/HV: water is dark, "
-            "forest green, buildings bright. Blue overlay: open water mapped on that date. NISAR used a different "
-            "mode on this orbit from 27 August to 2 October, so those passes are not shown. Click the map to check "
-            "any other point.",
-            "निसारची निरीक्षणे एकामागून एक पाहण्यासाठी नकाशावरील स्लायडर ओढा किंवा प्ले दाबा; नकाशा जिथे ठेवला तिथेच "
-            "राहतो. प्रत्येक तारखेला तीच कक्षा आणि तोच रडार मोड. लाल HH, हिरवा HV, निळा HH/HV: पाणी गडद, जंगल हिरवे, "
-            "इमारती चमकदार. निळा थर: त्या तारखेला नोंदलेले खुले पाणी. २७ ऑगस्ट ते २ ऑक्टोबर या कक्षेत निसारने वेगळा मोड "
-            "वापरला, म्हणून ती निरीक्षणे दाखवलेली नाहीत. दुसरा कोणताही बिंदू तपासण्यासाठी नकाशावर क्लिक करा."))
-    else:
-        st.caption(tr("Click the map to check any other point.", "दुसरा कोणताही बिंदू तपासण्यासाठी नकाशावर क्लिक करा."))
+                    key=f"place_map_{pt['lat'] if pt else 0}_{pt['lon'] if pt else 0}_{r_km}_{ui.dark()}")
+    st.caption(tr("Click the map to check any other point.", "दुसरा कोणताही बिंदू तपासण्यासाठी नकाशावर क्लिक करा."))
 clk = (out or {}).get("last_clicked")
 if clk and (not pt or abs(clk["lat"] - pt["lat"]) > 1e-6 or abs(clk["lng"] - pt["lon"]) > 1e-6):
     if clk != ss.get("last_click"):
@@ -175,6 +147,14 @@ with right:
             "the map. The result has its own link, so you can send it to someone.",
             "अभ्यास क्षेत्रातील {n} गावे, शहरे आणि उपनगरांपैकी एक निवडा (नावे OpenStreetMap वरून), किंवा नकाशावर "
             "क्लिक करा. निकालाची स्वतःची लिंक असते, ती तुम्ही कोणालाही पाठवू शकता.", n=len(places)))
+        ex = [i for n in ("Lonavala", "Tamhini", "Pune") for i, r in by_id.items() if r.name == n]
+        if ex:
+            st.markdown(f"**{tr('Try one of these', 'यापैकी एक वापरून पाहा')}**")
+            with st.container(horizontal=True, gap="small", key="place_examples"):
+                for i in ex:
+                    r = by_id[i]
+                    st.button(r.name_mr if ui.lang() == "mr" and r.name_mr else r.name, key=f"ex_{i}",
+                              icon=":material/location_on:", on_click=_set_place, args=(i,))
     elif not inside:
         st.warning(tr("This point is outside the area we processed NISAR data for. Pick a place inside the dashed box.",
                       "हा बिंदू आम्ही निसार डेटा तपासलेल्या भागाबाहेर आहे. ठिपक्यांच्या चौकटीतील ठिकाण निवडा."))

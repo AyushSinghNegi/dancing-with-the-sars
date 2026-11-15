@@ -21,8 +21,10 @@ And it turns them into things people can use:
   (open a page in a language with `?lang=mr` or `?lang=de`)
 - **Field check list**: every likely slide zone ranked, with NISAR image chips of the spot, why it was flagged and
   which independent checks it passed; as a printable page, KML for Google Earth and phones, CSV and GeoJSON
-- **3D tour**: the study area as a relief model (Copernicus elevation, heights ×2) with the findings painted on it
-  and 3D pins for slide zones, flood patches and reported events; a guided tour flies to each finding with a
+- **App tour**: "Take the tour" walks a first-time visitor through all six pages in twelve short steps, in any of
+  the three languages, on desktop and phone
+- **3D view**: the study area as a relief model (Copernicus elevation, heights ×2) with the findings painted on it
+  and 3D pins for slide zones, flood patches and reported events; "Fly over the findings" flies to each one with a
   one-line explanation (deck.gl, files made by `pipeline/terrain3d.py`)
 - **Season slider**: open water on five NISAR passes of the same orbit, 28 June to 14 October
 - **Animated overview**: NISAR passes over Pune and its radar clears the monsoon cloud to show the real 10 July

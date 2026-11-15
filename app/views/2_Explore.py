@@ -15,8 +15,8 @@ before, after = data.dates()
 tr = ui.tr
 ss = st.session_state
 ui.page_header(ui.t("explore"), tr(
-    "Everything NISAR found around Pune: take the 3D tour, or open the flat map for each zone's radar evidence.",
-    "निसारला पुण्याभोवती सापडलेले सर्व काही: ३D फेरफटका घ्या, किंवा प्रत्येक क्षेत्राच्या रडार पुराव्यासाठी सपाट नकाशा उघडा."),
+    "Everything NISAR found around Pune: fly over it in 3D, or open the flat map for each zone's radar evidence.",
+    "निसारला पुण्याभोवती सापडलेले सर्व काही: ३D मध्ये त्यावरून उडा, किंवा प्रत्येक क्षेत्राच्या रडार पुराव्यासाठी सपाट नकाशा उघडा."),
     tr("All findings on one map", "सर्व निष्कर्ष एकाच नकाशावर"))
 
 seasons = data.season_dates()
@@ -24,7 +24,7 @@ modes = (["3d"] if view3d.meta() else []) + ["change"] + (["season"] if len(seas
 mode = st.segmented_control(
     tr("What the map shows", "नकाशा काय दाखवतो"), modes, key="explore_mode",
     default=None if "explore_mode" in ss else modes[0],
-    format_func=lambda k: {"3d": tr("3D tour", "३D फेरफटका"),
+    format_func=lambda k: {"3d": tr("3D view", "३D दृश्य"),
                            "change": tr("Flat map: what changed, {b} to {a}", "सपाट नकाशा: काय बदलले, {b} ते {a}",
                                         b=ui.day(before), a=ui.day(after)),
                            "season": tr("Water through the season, {f} to {l}", "हंगामातील पाणी, {f} ते {l}",
@@ -105,11 +105,9 @@ st.markdown(f'<div class="ml-dates">' + tr(
     "स्तर: नकाशाच्या वर उजवीकडील बटण. तपशीलासाठी खुणेवर क्लिक करा किंवा खाली एक ओळ निवडा.") + "</div>",
     unsafe_allow_html=True)
 
-c1, c2, c3 = st.columns([1, 1.2, 1])
-bm_keys = list(maps.BASEMAPS)
-basemap = c1.selectbox(tr("Base map", "मूळ नकाशा"), bm_keys, index=bm_keys.index(maps.default_basemap()),
-                       format_func=maps.basemap_name)
-opacity = c2.slider(tr("Layer opacity", "स्तराची पारदर्शकता"), 0.2, 1.0, 0.85, 0.05)
+# Base maps are switched in the map's own layer button; one control stays above the map.
+basemap, opacity = maps.default_basemap(), 0.85
+c3, _ = st.columns([1, 2])
 conf = c3.selectbox(tr("Slide zones shown", "दाखवलेली भूस्खलन क्षेत्रे"), ["high", "medium", "low"], index=1,
                     format_func=lambda x: {"high": tr("High confidence only", "फक्त उच्च खात्री"),
                                            "medium": tr("Medium and high", "मध्यम आणि उच्च"),
@@ -144,9 +142,8 @@ if fprops:
     else:
         ev.show_flood(fprops)
 
-tab_z, tab_w, tab_t, tab_e, tab_d = st.tabs([tr("Slide zones", "भूस्खलन क्षेत्रे"), tr("Flood water", "पुराचे पाणी"),
-                                             tr("Rain and timeline", "पाऊस आणि कालरेषा"),
-                                             tr("Reported events", "नोंदवलेल्या घटना"), tr("Downloads", "डाउनलोड")])
+tab_z, tab_w, tab_e, tab_d = st.tabs([tr("Slide zones", "भूस्खलन क्षेत्रे"), tr("Flood water", "पुराचे पाणी"),
+                                      tr("Reported events", "नोंदवलेल्या घटना"), tr("Downloads", "डाउनलोड")])
 with tab_z:
     gj = data.geojson("slide_zones.geojson")
     if gj and gj["features"]:
@@ -232,27 +229,6 @@ with tab_w:
     if ws is not None:
         with st.expander(tr("All water numbers and thresholds", "पाण्याचे सर्व आकडे आणि मर्यादा")):
             st.dataframe(ws, hide_index=True, width="stretch")
-with tab_t:
-    rain = data.rainfall()
-    if rain is not None:
-        st.plotly_chart(charts.rainfall(rain, before, after, passes=data.passes()), width="stretch", config={"displayModeBar": False})
-    else:
-        st.info(tr("Rainfall chart appears here once `data/reference/rainfall.csv` is added.",
-                   "`data/reference/rainfall.csv` जोडल्यावर पावसाचा आलेख येथे दिसेल."))
-    tl = data.table("timeline.csv")
-    if tl is not None and len(tl) > 1:
-        st.markdown("**" + tr("Surface area of Pune's rivers and reservoirs on each NISAR pass of this orbit",
-                              "या कक्षेतील प्रत्येक निसार निरीक्षणात पुण्याच्या नद्या आणि धरणांचे पृष्ठफळ") + "**")
-        st.plotly_chart(charts.timeline(tl), width="stretch", config={"displayModeBar": False})
-        st.caption(tr("Dark water on each date, counted inside the area where the JRC record has seen water at least "
-                      "once (1984 to 2021), so rain-soaked fields are left out. Every point is the same orbit and radar "
-                      "mode; NISAR used a different mode on this orbit from 27 August to 2 October, so those passes are "
-                      "not shown.", "प्रत्येक तारखेचे गडद पाणी, JRC नोंदीत (१९८४ ते २०२१) किमान एकदा पाणी दिसलेल्या "
-                      "भागात मोजलेले, त्यामुळे पावसाने भिजलेली शेते वगळली आहेत. प्रत्येक बिंदू एकाच कक्षेचा आणि रडार "
-                      "पद्धतीचा आहे; २७ ऑगस्ट ते २ ऑक्टोबर दरम्यान निसारने या कक्षेत वेगळी पद्धत वापरली, म्हणून ती "
-                      "निरीक्षणे दाखवलेली नाहीत."))
-    else:
-        st.info("The monsoon timeline appears once more NISAR dates are cropped (`python -m pipeline.crop --timeline`).")
 with tab_e:
     val = data.table("validation.csv")
     if val is not None and len(val):

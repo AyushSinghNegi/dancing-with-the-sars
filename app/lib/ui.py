@@ -92,7 +92,8 @@ iframe[title="streamlit_folium.st_folium"] { border-radius: 14px; box-shadow: va
 @keyframes ml-blink { 50% { opacity: .35; } }
 .ml-hero { font-size: clamp(2.1rem, 3.4vw, 3.5rem); line-height: 1.02; font-weight: 700; margin: 0 0 .7rem 0;
   text-wrap: balance; color: #f2f6fc !important; }
-.st-key-herobtns { gap: .55rem !important; }
+.st-key-herobtns { gap: .45rem !important; }
+.st-key-herobtns button { padding-left: .8rem !important; padding-right: .8rem !important; }
 .st-key-hero .stButton > button { border-radius: 99px; padding: .3rem .85rem !important; min-height: 2.3rem !important; }
 .st-key-hero .stButton > button[kind="secondary"] { background: rgba(255,255,255,.06); color: #e8eef7;
   border-color: rgba(255,255,255,.28); }
@@ -115,7 +116,7 @@ iframe[title="streamlit_folium.st_folium"] { border-radius: 14px; box-shadow: va
 .ml-stat .lbl { margin: 0.45rem 0 0.6rem; font-size: 0.98rem; line-height: 1.45; overflow-wrap: break-word; }
 [lang="de"] .ml-stat .lbl, [lang="de"] .ml-stat .sure { hyphens: auto; }   /* long German compounds */
 .ml-stat .sure { font-size: 0.84rem; line-height: 1.45; border-top: 1px dashed var(--ml-line); padding-top: 0.5rem; margin: 0; }
-.ml-checkrow { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0; margin: 0.4rem 0 1.4rem;
+.ml-checkrow { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0; margin: 0.4rem 0 1.4rem;
   background: linear-gradient(135deg, #0b1630 0%, #13234a 100%); border-radius: 16px; overflow: hidden;
   border: 1px solid rgba(111, 227, 255, .18); box-shadow: 0 12px 40px rgba(4, 10, 25, .25); }
 .ml-check { padding: 18px 18px; color: #e8eef2; border-right: 1px solid rgba(160, 190, 230, .16); }
@@ -181,6 +182,9 @@ iframe[title="streamlit_folium.st_folium"] { border-radius: 14px; box-shadow: va
 
 /* downloads */
 .ml-dlrow { display: flex; flex-wrap: wrap; gap: 10px; margin: 0.2rem 0 1.2rem; }
+.st-key-tour_downloads .ml-dlrow { margin: 0; }
+.st-key-tour_downloads { margin: 0.2rem 0 1.2rem; }
+.ml-dlcol { flex-direction: column; margin: 0; }
 .ml-dl { display: inline-flex; flex-direction: column; gap: 1px; padding: 10px 15px; border-radius: 12px; border: 1px solid var(--ml-line);
   background: var(--ml-panel); color: inherit !important; text-decoration: none !important; font-weight: 600; font-size: 0.93rem;
   transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
@@ -188,6 +192,11 @@ iframe[title="streamlit_folium.st_folium"] { border-radius: 14px; box-shadow: va
 .ml-dl.primary { background: linear-gradient(135deg, #1f6fd1, #3d8ef0); border-color: transparent; color: #fff !important; }
 .ml-dl.primary small { color: #dbe9ff; }
 .ml-dl:hover { transform: translateY(-1px); box-shadow: var(--ml-shadow); border-color: var(--ml-water); }
+
+/* app tour: its controls are clicked by the tour card, never seen */
+.st-key-tourctl { position: absolute !important; width: 1px !important; height: 1px !important; overflow: hidden !important;
+  opacity: 0; pointer-events: none; }
+.st-key-tour_start_side button { border-radius: 99px; border-color: rgba(111,227,255,.45) !important; }
 
 /* overview: how it works, in three steps */
 .ml-how { list-style: none; counter-reset: how; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px;
@@ -619,10 +628,11 @@ def setup(page_title: str):
         q = st.query_params.get("lang")
         st.session_state["lang"] = q if q in LANGS else "en"
     st.logo(str(ASSETS / "logo.png"), icon_image=str(ASSETS / "logo_icon.png"), size="large")
+    from . import apptour
     with st.sidebar:
-        st.markdown(f'<p class="ml-brand-sub">{tr("What NASA-ISRO NISAR radar saw through the 2026 Pune monsoon",
-                                                  "२०२६ च्या पुणे पावसाळ्यात नासा-इस्रो निसार रडारने काय पाहिले")}</p>',
-                    unsafe_allow_html=True)
+        st.button(tr("Take the tour", "फेरफटका घ्या"), icon=":material/tour:", key="tour_start_side",
+                  on_click=apptour.start, width="stretch", help=tr("A one-minute guide to every page",
+                                                                   "प्रत्येक पानाची एका मिनिटाची ओळख"))
         names = list(LANGS.values())
         choice = st.radio(t("lang"), names, horizontal=True, index=list(LANGS).index(lang()), key="lang_choice")
         st.session_state["lang"] = list(LANGS)[names.index(choice)]
@@ -634,6 +644,7 @@ def setup(page_title: str):
         st.query_params["lang"] = lang()
     elif "lang" in st.query_params:
         del st.query_params["lang"]
+    apptour.run(st.session_state.get("_page", ""))
 
 
 def demo_banner():

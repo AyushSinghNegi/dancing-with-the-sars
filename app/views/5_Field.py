@@ -26,12 +26,20 @@ names = {"html": tr("Printable list with radar images", "रडार प्र�
          "nearby": tr("What is nearby (CSV)", "जवळ काय आहे (CSV)")}
 save_as = {"nearby": "monsoonlens_nearby.csv"}
 if files:
-    btns = "".join(
-        f'<a class="ml-dl{" primary" if k == "html" else ""}" href="{u}" '
-        f'{"target=_blank" if k == "html" else "download=" + save_as.get(k, f"monsoonlens_field_list.{k}")}>'
-        f'{html.escape(names[k])}<small>{max(sz // 1000, 1)} KB</small></a>'
-        for k, (u, sz) in files.items())
-    st.markdown(f'<div class="ml-dlrow">{btns}</div>', unsafe_allow_html=True)
+    def _btn(k, u, sz, primary=False):
+        tgt = "target=_blank" if k == "html" else "download=" + save_as.get(k, f"monsoonlens_field_list.{k}")
+        return (f'<a class="ml-dl{" primary" if primary else ""}" href="{u}" {tgt}>'
+                f'{html.escape(names[k])}<small>{max(sz // 1000, 1)} KB</small></a>')
+
+    main = [k for k in ("html", "kml") if k in files]
+    rest = [k for k in files if k not in main]
+    with st.container(key="tour_downloads", horizontal=True, vertical_alignment="center", gap="small"):
+        st.markdown('<div class="ml-dlrow">' + "".join(_btn(k, *files[k], primary=(k == "html")) for k in main)
+                    + "</div>", unsafe_allow_html=True, width="content")
+        if rest:
+            with st.popover(tr("Other formats", "इतर स्वरूपे"), icon=":material/download:"):
+                st.markdown('<div class="ml-dlrow ml-dlcol">' + "".join(_btn(k, *files[k]) for k in rest) + "</div>",
+                            unsafe_allow_html=True)
 
 zones = sorted(data.zones(), key=lambda p: (-p["score"], p["id"]))
 if not zones:
@@ -68,7 +76,7 @@ conf = c1.segmented_control(tr("Confidence", "खात्री"), ["high", "me
                             default=["high", "medium", "low"],
                             format_func=lambda c: {"high": tr("High", "उच्च"), "medium": tr("Medium", "मध्यम"),
                                                    "low": tr("Low", "कमी")}[c], key="field_conf")
-extra = c2.toggle(tr("Only zones an extra check backs", "फक्त अतिरिक्त तपासणीने पुष्टी झालेली"), value=False,
+extra = c2.toggle(tr("Backed by an extra check", "अतिरिक्त तपासणीचा आधार"), value=False,
                   help=tr("Found again by the second NISAR orbit, kept with NASADEM, or a reported event within 2 km.",
                           "दुसऱ्या निसार कक्षेत पुन्हा सापडलेली, NASADEM सह टिकलेली, किंवा २ किमीच्या आत नोंदवलेली घटना."))
 q = c3.text_input(tr("Near a place", "ठिकाणाजवळ"), placeholder=tr("e.g. Mulshi", "उदा. मुळशी"))
@@ -82,14 +90,11 @@ if q.strip():
 if nbz:
     s = nb["summary"]
     st.markdown(tr(
-        "**What is nearby.** Of the {t} zones, {r} have a mapped road within {rk} km, {w} a railway line within "
-        "{rk} km and {p} a village, town or suburb within {pk} km; {x} have none of these that close. Distances are "
-        "straight lines from the edge of the zone. Near does not mean at risk: it tells whoever looks after that "
-        "road, line or village which leads concern them.",
-        "**जवळ काय आहे.** {t} क्षेत्रांपैकी {r} क्षेत्रांच्या {rk} किमीच्या आत नकाशातील रस्ता आहे, {w} च्या {rk} किमीच्या "
-        "आत रेल्वे मार्ग आणि {p} च्या {pk} किमीच्या आत गाव, शहर किंवा उपनगर आहे; {x} क्षेत्रांजवळ यांपैकी काहीही इतक्या "
-        "जवळ नाही. अंतरे क्षेत्राच्या कडेपासून सरळ रेषेत मोजली आहेत. जवळ असणे म्हणजे धोका असणे नव्हे: तो रस्ता, मार्ग "
-        "किंवा गाव सांभाळणाऱ्यांना कोणते संकेत त्यांच्याशी संबंधित आहेत हे यावरून कळते.",
+        "**What is nearby.** {r} of {t} zones lie within {rk} km of a mapped road, {w} of a railway line, and {p} "
+        "within {pk} km of a village, town or suburb. Near does not mean at risk: it shows who should look at which lead.",
+        "**जवळ काय आहे.** {t} पैकी {r} क्षेत्रे नकाशातील रस्त्यापासून {rk} किमीच्या आत आहेत, {w} रेल्वे मार्गापासून, आणि "
+        "{p} गाव, शहर किंवा उपनगरापासून {pk} किमीच्या आत. जवळ असणे म्हणजे धोका असणे नव्हे: कोणता संकेत कोणी पाहावा हे "
+        "यावरून कळते.",
         t=s["zones"], r=s["road_within"], w=s["railway_within"], p=s["place_within"], x=s["nothing_within"],
         rk=f"{nb['road_m'] / 1000:g}", pk=f"{nb['place_m'] / 1000:g}"))
 st.markdown(tr("{n} of {t} zones. Select a row to see its radar evidence.",

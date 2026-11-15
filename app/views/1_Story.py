@@ -76,7 +76,8 @@ with visual, st.container(key="viz"):
         if rain is not None:
             st.plotly_chart(charts.rainfall(rain, before, after, passes=data.passes()), width="stretch",
                             config={"displayModeBar": False})
-            st.caption(ui.t("rain_caption", src=rain["source"].iloc[0] if "source" in rain else "see Method"))
+            st.caption(ui.t("rain_caption", src=str(rain["source"].iloc[0]).replace(", area-averaged over the study box", "")
+                            if "source" in rain else "see Method"))
         else:
             st.info("Rainfall chart appears here once `data/reference/rainfall.csv` is added.")
     elif key == "cloud":

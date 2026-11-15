@@ -164,7 +164,7 @@ def render(height=600, tour=True, key="v3d", start=None):
         "relief": tr("Relief", "उठाव"), "radar": tr("Radar", "रडार"),
         "zones": tr("Slide zones", "भूस्खलन क्षेत्रे"), "floods": tr("Flooding", "पूर"),
         "events": tr("Reported", "नोंदवलेले"), "names": tr("Names", "नावे"),
-        "next": tr("Next", "पुढे"), "back": tr("Back", "मागे"), "start": tr("Take the tour", "फेरफटका सुरू करा"),
+        "next": tr("Next", "पुढे"), "back": tr("Back", "मागे"), "start": tr("Fly over the findings", "निष्कर्षांवरून उडा"),
         "play": tr("Play", "चालू करा"), "pause": tr("Pause", "थांबवा"),
         "lg_old": tr("Water before the storm", "वादळापूर्वीचे पाणी"), "lg_new": tr("New water by {a}", "{a} पर्यंत नवीन पाणी"),
         "lg_flood": tr("Flooding on dry land", "कोरड्या जमिनीवरील पूर"), "lg_zone": tr("Likely slide zone", "संभाव्य भूस्खलन क्षेत्र"),
