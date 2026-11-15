@@ -4,7 +4,7 @@ from streamlit_folium import st_folium
 
 import html
 
-from lib import charts, data, evidence as ev, maps, ui
+from lib import view3d, charts, data, evidence as ev, maps, ui
 
 ui.setup("Explore the map")
 ui.demo_banner()
@@ -15,21 +15,28 @@ before, after = data.dates()
 tr = ui.tr
 ss = st.session_state
 ui.page_header(ui.t("explore"), tr(
-    "Everything NISAR found around Pune on one map: flood water, rising reservoirs, likely slide zones, and the events "
-    "people reported. Pick a zone or a flood patch below to see its radar evidence.",
-    "निसारला पुण्याभोवती सापडलेले सर्व काही एकाच नकाशावर: पुराचे पाणी, वाढलेली धरणे, संभाव्य भूस्खलन क्षेत्रे आणि लोकांनी "
-    "नोंदवलेल्या घटना. रडार पुरावा पाहण्यासाठी खाली एखादे क्षेत्र किंवा पुराची जागा निवडा."),
+    "Everything NISAR found around Pune: take the 3D tour, or open the flat map for each zone's radar evidence.",
+    "निसारला पुण्याभोवती सापडलेले सर्व काही: ३D फेरफटका घ्या, किंवा प्रत्येक क्षेत्राच्या रडार पुराव्यासाठी सपाट नकाशा उघडा."),
     tr("All findings on one map", "सर्व निष्कर्ष एकाच नकाशावर"))
 
 seasons = data.season_dates()
-modes = ["change"] + (["season"] if len(seasons) >= 3 else [])
+modes = (["3d"] if view3d.meta() else []) + ["change"] + (["season"] if len(seasons) >= 3 else [])
 mode = st.segmented_control(
-    tr("What the map shows", "नकाशा काय दाखवतो"), modes, key="explore_mode", default=None if "explore_mode" in ss else "change",
-    format_func=lambda k: {"change": tr("What changed, {b} to {a}", "काय बदलले, {b} ते {a}", b=ui.day(before),
-                                        a=ui.day(after)),
+    tr("What the map shows", "नकाशा काय दाखवतो"), modes, key="explore_mode",
+    default=None if "explore_mode" in ss else modes[0],
+    format_func=lambda k: {"3d": tr("3D tour", "३D फेरफटका"),
+                           "change": tr("Flat map: what changed, {b} to {a}", "सपाट नकाशा: काय बदलले, {b} ते {a}",
+                                        b=ui.day(before), a=ui.day(after)),
                            "season": tr("Water through the season, {f} to {l}", "हंगामातील पाणी, {f} ते {l}",
                                         f=ui.day(seasons[0]) if seasons else "", l=ui.day(seasons[-1]) if seasons else "")}[k]
-) or "change"
+) or modes[0]
+
+if mode == "3d":
+    view3d.render(height=640, key="explore3d")
+    st.caption(tr("For each zone's radar evidence and the tables, switch to the flat map above.",
+                  "प्रत्येक क्षेत्राचा रडार पुरावा आणि तक्त्यांसाठी वर सपाट नकाशा निवडा."))
+    ui.sources_line()
+    st.stop()
 
 if mode == "season":
     tl = data.table("timeline.csv")
@@ -59,11 +66,9 @@ if mode == "season":
     st.stop()
 
 st.markdown(f'<div class="ml-dates">' + tr(
-    "NISAR passes on {b} and {a}. Switch radar layers with the button at the top right of the map; click a zone or a "
-    "marker for details, or pick a zone below to see its radar evidence.",
-    "{b} आणि {a} रोजीची निसार निरीक्षणे. नकाशाच्या वरच्या उजव्या कोपऱ्यातील बटणाने रडार स्तर बदला; तपशीलासाठी "
-    "क्षेत्र किंवा खूण क्लिक करा, किंवा रडार पुरावा पाहण्यासाठी खाली एखादे क्षेत्र निवडा.",
-    b=ui.day(before), a=ui.date(after)) + "</div>", unsafe_allow_html=True)
+    "Layers: button at the top right of the map. Click a marker, or pick a row below, for details.",
+    "स्तर: नकाशाच्या वर उजवीकडील बटण. तपशीलासाठी खुणेवर क्लिक करा किंवा खाली एक ओळ निवडा.") + "</div>",
+    unsafe_allow_html=True)
 
 c1, c2, c3 = st.columns([1, 1.2, 1])
 bm_keys = list(maps.BASEMAPS)
@@ -124,12 +129,9 @@ with tab_z:
                                                  "not covered": tr("outside view", "दृष्टीबाहेर")}).fillna("")
         cols = ["id", "near", "confidence", "score", "track106", "area_ha", "slope_deg", "hv_change_db",
                 "hh_change_db", "coherence", "coherence_vs_local", "lat", "lon", "map"]
-        st.markdown(tr("{n} likely slide zones, sorted by score. Score adds three pieces of evidence: steepness, radar "
-                       "change, and coherence lost compared with the surrounding kilometre. Select a row to zoom the map "
-                       "to it and see its radar evidence.",
-                       "{n} संभाव्य भूस्खलन क्षेत्रे, गुणांनुसार. गुणांत तीन पुरावे आहेत: उतार, रडार बदल आणि आजूबाजूच्या "
-                       "किलोमीटरच्या तुलनेत कोहेरन्समधील घट. नकाशा केंद्रित करून रडार पुरावा पाहण्यासाठी एक ओळ निवडा.",
-                       n=len(df)))
+        st.markdown(tr("{n} likely slide zones, highest score first. Select a row to zoom to it and see its radar "
+                       "evidence.", "{n} संभाव्य भूस्खलन क्षेत्रे, सर्वाधिक गुण आधी. नकाशा केंद्रित करून रडार पुरावा "
+                       "पाहण्यासाठी एक ओळ निवडा.", n=len(df)))
         cc = st.column_config
         zev = st.dataframe(df[[c for c in cols if c in df]], hide_index=True, width="stretch", on_select="rerun",
                      selection_mode="single-row", key="explore_zone_table",
@@ -168,10 +170,9 @@ with tab_z:
 with tab_w:
     fl = data.flood_patches()
     if fl:
-        st.markdown(tr("{n} flood patches: new water on {a} where no water was recorded between 1984 and 2021. Select "
-                       "one to zoom the map to it and see the radar before and after.",
-                       "{n} पुराच्या जागा: {a} रोजी नवीन पाणी, जिथे १९८४ ते २०२१ दरम्यान पाणी नोंदवले नव्हते. नकाशा "
-                       "केंद्रित करून आधी-नंतरचे रडार पाहण्यासाठी एक निवडा.", n=len(fl), a=ui.day(after)))
+        st.markdown(tr("{n} flood patches: water on {a} where none was recorded from 1984 to 2021. Select one to see "
+                       "its radar before and after.", "{n} पुराच्या जागा: {a} रोजीचे पाणी, जिथे १९८४ ते २०२१ मध्ये पाणी "
+                       "नोंदवले नव्हते. आधी-नंतरचे रडार पाहण्यासाठी एक निवडा.", n=len(fl), a=ui.day(after)))
         fdf = pd.DataFrame([{"id": p["id"], "area_ha": p["area_ha"], "drop_db": p.get("drop_db"),
                              "near_report": p.get("nearest_event_place", ""), "report_km": p.get("nearest_event_km"),
                              "lat": p["lat"], "lon": p["lon"]} for p in sorted(fl, key=lambda p: p["id"])])

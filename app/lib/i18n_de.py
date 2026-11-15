@@ -254,6 +254,123 @@ DE = {
     "Everything on one map": "Alles auf einer Karte",
     "Every layer, the season slider and the radar evidence for each zone and flood patch.":
         "Alle Ebenen, der Jahreszeit-Regler und die Radarbelege für jede Zone und Überschwemmungsfläche.",
+    # overview, 3 steps, limits
+    "A satellite passes": "Ein Satellit fliegt vorbei",
+    "NISAR flies over Pune every 12 days, day or night.": "NISAR überfliegt Pune alle 12 Tage, bei Tag und Nacht.",
+    "Radar sees through cloud": "Radar sieht durch Wolken",
+    "Its radar passes through cloud and rain. Calm water looks dark.":
+        "Sein Radar dringt durch Wolken und Regen. Ruhiges Wasser wirkt dunkel.",
+    "We map the change": "Wir kartieren die Änderung",
+    "We compare passes before and after the storm and map what changed.":
+        "Wir vergleichen Überflüge vor und nach dem Sturm und kartieren, was sich änderte.",
+    "How it works": "So funktioniert es",
+    "See it in 3D": "In 3D ansehen",
+    "A one-minute tour of what NISAR found, on a model of the land.":
+        "Eine einminütige Tour durch NISARs Ergebnisse, auf einem Modell der Landschaft.",
+    "likely slide zones on steep slopes, {h} of them high confidence":
+        "wahrscheinliche Rutschungszonen an steilen Hängen, {h} davon mit hoher Sicherheit",
+    "Leads to check: {u} have no reported event within 2 km.":
+        "Hinweise zum Prüfen: Bei {u} gibt es im Umkreis von 2 km keine Meldung.",
+    "Could be {a} to {b} km², depending on the water threshold.": "Je nach Wasserschwelle {a} bis {b} km².",
+    "Could be {a} to {b} km²: very sensitive to the water threshold.":
+        "Könnten {a} bis {b} km² sein: stark abhängig von der Wasserschwelle.",
+    "{n} NISAR passes, same orbit.": "{n} NISAR-Überflüge, gleicher Orbit.",
+    "See what NISAR found near your village or town.": "Sehen Sie, was NISAR nahe Ihrem Dorf oder Ihrer Stadt fand.",
+    "A ranked list of slide zones to check, with radar images, for print and phones.":
+        "Eine gereihte Liste zu prüfender Rutschungszonen mit Radarbildern, zum Drucken und fürs Handy.",
+    "Every number traced to its NISAR file, with the checks and the data.":
+        "Jede Zahl bis zu ihrer NISAR-Datei zurückverfolgt, mit Prüfungen und Daten.",
+    "Water between buildings": "Wasser zwischen Gebäuden",
+    "Radar bounces off walls, so city flooding is under-counted.":
+        "Radar prallt von Wänden ab, daher wird Hochwasser in der Stadt unterschätzt.",
+    "Between passes": "Zwischen den Überflügen",
+    "Water that came and went between {b} and {a} is not seen.":
+        "Wasser, das zwischen {b} und {a} kam und ging, bleibt unsichtbar.",
+    "Small slides": "Kleine Rutschungen",
+    "Slides narrower than about {r} m can slip through.": "Rutschungen schmaler als etwa {r} m können fehlen.",
+    "Hidden slopes": "Verdeckte Hänge",
+    "{p}% of steep ground faces away from the radar and is left out.":
+        "{p} % des steilen Geländes sind vom Radar abgewandt und fehlen.",
+    "Early data": "Frühe Daten",
+    "These NISAR products are provisional; the numbers may shift.":
+        "Diese NISAR-Produkte sind vorläufig; die Zahlen können sich ändern.",
+    # explore, place, field
+    "Everything NISAR found around Pune: take the 3D tour, or open the flat map for each zone's radar evidence.":
+        "Alles, was NISAR rund um Pune fand: Machen Sie die 3D-Tour oder öffnen Sie die flache Karte für die Radarbelege "
+        "jeder Zone.",
+    "For each zone's radar evidence and the tables, switch to the flat map above.":
+        "Für die Radarbelege jeder Zone und die Tabellen oben zur flachen Karte wechseln.",
+    "Layers: button at the top right of the map. Click a marker, or pick a row below, for details.":
+        "Ebenen: Schaltfläche oben rechts auf der Karte. Für Details eine Markierung anklicken oder unten eine Zeile wählen.",
+    "{n} likely slide zones, highest score first. Select a row to zoom to it and see its radar evidence.":
+        "{n} wahrscheinliche Rutschungszonen, höchste Punktzahl zuerst. Eine Zeile wählen, um dorthin zu zoomen und die "
+        "Radarbelege zu sehen.",
+    "{n} flood patches: water on {a} where none was recorded from 1984 to 2021. Select one to see its radar before and "
+    "after.":
+        "{n} Überschwemmungsflächen: Wasser am {a}, wo von 1984 bis 2021 nie Wasser verzeichnet wurde. Eine wählen, um "
+        "das Radar vorher und nachher zu sehen.",
+    "3D tour": "3D-Tour",
+    "Flat map: what changed, {b} to {a}": "Flache Karte: was sich änderte, {b} bis {a}",
+    "Drag to turn the model; point at a pin for details.":
+        "Ziehen, um das Modell zu drehen; für Details auf eine Nadel zeigen.",
+    "Every likely slide zone from {b} to {a}, ranked, with its radar images. Print it or open it on a phone, then go and "
+    "check: these are leads, not confirmed landslides.":
+        "Jede wahrscheinliche Rutschungszone vom {b} bis {a}, gereiht, mit Radarbildern. Drucken oder aufs Handy laden und "
+        "vor Ort prüfen: Es sind Hinweise, keine bestätigten Erdrutsche.",
+    "Pick your village or town, or click the map, to see what NISAR found nearby between {b} and {a}.":
+        "Wählen Sie Ihr Dorf oder Ihre Stadt oder klicken Sie in die Karte, um zu sehen, was NISAR zwischen {b} und {a} "
+        "in der Nähe fand.",
+    # 3D view
+    "Relief": "Relief", "Radar": "Radar", "Flooding": "Hochwasser", "Reported": "Gemeldet", "Names": "Namen",
+    "Next": "Weiter", "Back": "Zurück", "Take the tour": "Tour starten", "Play": "Abspielen", "Pause": "Pause",
+    "Water before the storm": "Wasser vor dem Sturm", "New water by {a}": "Neues Wasser bis {a}",
+    "Flooding on dry land": "Hochwasser auf trockenem Land", "Likely slide zone": "Wahrscheinliche Rutschungszone",
+    "Reported flood or landslide": "Gemeldete Überschwemmung oder Erdrutsch",
+    "Heights ×2. Elevation: Copernicus GLO-30. Radar: NISAR.": "Höhen ×2. Höhenmodell: Copernicus GLO-30. Radar: NISAR.",
+    "Pune district, India": "Distrikt Pune, Indien",
+    "slope": "Neigung", "score": "Punktzahl", "high confidence": "hohe Sicherheit",
+    "medium confidence": "mittlere Sicherheit", "low confidence": "niedrige Sicherheit", "near": "nahe",
+    "Flood patch": "Überschwemmungsfläche", "ha of water": "ha Wasser", "landslide": "Erdrutsch", "flood": "Überschwemmung",
+    "The 3D view needs WebGL, which this browser has turned off. The flat map below shows the same findings.":
+        "Die 3D-Ansicht braucht WebGL, das in diesem Browser ausgeschaltet ist. Die flache Karte zeigt dieselben Ergebnisse.",
+    "Point north": "Nach Norden ausrichten",
+    "3D model of the study area with NISAR's findings": "3D-Modell des Untersuchungsgebiets mit NISARs Ergebnissen",
+    "Where this is": "Wo das ist",
+    "Pune district, Maharashtra, India: an 85 km box from the Western Ghats hills (left) to Pune city (right). Heights "
+    "are doubled so the hills read.":
+        "Distrikt Pune, Maharashtra, Indien: ein 85 km großes Gebiet von den Hügeln der Westghats (links) bis zur Stadt "
+        "Pune (rechts). Die Höhen sind verdoppelt, damit die Hügel gut zu sehen sind.",
+    "The Western Ghats": "Die Westghats",
+    "Steep, forested hills where the monsoon rain falls hardest. In early July the whole area averaged up to {r} mm of "
+    "rain in a day, and slopes gave way.":
+        "Steile, bewaldete Hügel, wo der Monsunregen am stärksten fällt. Anfang Juli fielen im Mittel über das ganze "
+        "Gebiet bis zu {r} mm Regen an einem Tag, und Hänge gaben nach.",
+    "Your turn": "Jetzt Sie",
+    "Drag to turn the model, scroll or pinch to zoom, and point at a pin for details.":
+        "Ziehen, um das Modell zu drehen, scrollen oder mit zwei Fingern zoomen, und für Details auf eine Nadel zeigen.",
+    "Reservoirs filled up": "Die Stauseen füllten sich",
+    "Blue edges are new water: between {b} and {a}, Pune's reservoirs and rivers grew by {k} km².":
+        "Blaue Ränder sind neues Wasser: Zwischen {b} und {a} wuchsen Punes Stauseen und Flüsse um {k} km².",
+    "Orange pins: {n} places on steep slopes where the ground changed between passes. Tall pins are the {h} "
+    "high-confidence ones. Leads to check, not confirmed landslides.":
+        "Orange Nadeln: {n} Stellen an steilen Hängen, an denen sich der Boden zwischen den Überflügen veränderte. Die "
+        "hohen Nadeln sind die {h} mit hoher Sicherheit. Hinweise zum Prüfen, keine bestätigten Erdrutsche.",
+    "Flooded land": "Überflutetes Land",
+    "Dark-blue pins: water still standing on {a} where no water was recorded from 1984 to 2021, {k} km² in all.":
+        "Dunkelblaue Nadeln: Wasser, das am {a} noch stand, wo von 1984 bis 2021 nie Wasser verzeichnet wurde, insgesamt "
+        "{k} km².",
+    "Pune city": "Stadt Pune",
+    "White pins are floods and landslides people reported. Radar sees water between buildings poorly, so many city "
+    "reports were missed. Overall, {h} of {o} reported floods it could observe had a detection nearby.":
+        "Weiße Nadeln sind gemeldete Überschwemmungen und Erdrutsche. Wasser zwischen Gebäuden sieht das Radar schlecht, "
+        "daher wurden viele Meldungen aus der Stadt nicht erfasst. Insgesamt hatten {h} von {o} sichtbaren gemeldeten "
+        "Überschwemmungen einen Fund in der Nähe.",
+    "that radar could see had a detection nearby. Landslides: {h} of {o}":
+        "die das Radar sehen konnte, hatten einen Fund in der Nähe. Erdrutsche: {h} von {o}",
+    ", weak support.": ", schwache Stütze.",
+    "slide zones found again, {l}× more than chance{p}.": "Rutschungszonen erneut gefunden, {l}× häufiger als per Zufall{p}.",
+    "slide zones kept with NASA's NASADEM elevation map.": "Rutschungszonen bestätigt mit NASAs Höhenmodell NASADEM.",
+    "Reservoir rise: {a} to {b} km². Flooding: {c} to {d} km².": "Anstieg der Stauseen: {a} bis {b} km². Hochwasser: {c} bis {d} km².",
     "HV change (dB)": "HV-Änderung (dB)", "HH change (dB)": "HH-Änderung (dB)",
     "Coherence": "Kohärenz", "Coherence vs 1 km": "Kohärenz ggü. 1 km",
     "Place names: © OpenStreetMap contributors (Nominatim). Zones are leads to check, not confirmed landslides.":
@@ -283,9 +400,8 @@ DE = {
 
 DE_T = {
     "title": "Was das NISAR-Radar im Monsun 2026 über Pune sah",
-    "lede": "Monsunwolken verdecken den Boden genau dann, wenn Menschen ihn am dringendsten sehen müssen. {cloud} "
-            "Der Satellit NISAR von NASA und ISRO schickt Radar durch Wolken und Regen. Wir haben seine Überflüge über "
-            "Pune vor und nach den Überschwemmungen und Erdrutschen vom 3. bis 8. Juli 2026 verglichen.",
+    "lede": "{cloud} Der Satellit NISAR von NASA und ISRO blickt mit Radar durch die Wolken. Wir haben seine Überflüge "
+            "vor und nach den Überschwemmungen und Erdrutschen vom 3. bis 8. Juli verglichen.",
     "dates_line": "NISAR-L-Band-Radarüberflüge am {b} und {a} {y}, Distrikt Pune, Indien",
     "found": "Was das Radar fand",
     "new_water": "neue offene Wasserfläche auf flachem Gelände, außerhalb von Flüssen und Stauseen",
@@ -299,15 +415,14 @@ DE_T = {
                "Zufall",
     "xt_good_small": "der Rutschungszonen, die eine zweite NISAR-Spur sehen konnte, fand auch sie: {lift}× häufiger als "
                      "per Zufall, bei kleiner Stichprobe, denn diese Spur deckt {cov} des Gebiets ab",
-    "xt_story_good_small": "Eine zweite NISAR-Spur, die am {b} und {a} aus einem anderen Orbit vorbeikam, sieht {cov} "
-                           "des Gebiets. Von den {n} Zonen in ihrem Blickfeld fand sie {c} unabhängig wieder: {lift}× "
-                           "häufiger als per Zufall, auch wenn {n} eine kleine Stichprobe ist.",
+    "xt_story_good_small": "Ein zweiter NISAR-Orbit fand {c} der {n} Zonen in seinem Blickfeld wieder: {lift}× häufiger "
+                           "als per Zufall, bei kleiner Stichprobe.",
     "xt_weak": "der Rutschungszonen, die eine zweite NISAR-Spur sehen konnte, fand auch sie, etwa so oft wie per "
                "Zufall: Zonen aus nur einer Spur besonders vorsichtig behandeln",
-    "xt_story_good": "Eine zweite NISAR-Spur, die am {b} und {a} aus einem anderen Orbit vorbeikam, fand {c} der {n} "
-                     "Zonen, die sie sehen konnte, unabhängig wieder: {lift}× häufiger als per Zufall.",
-    "xt_story_weak": "Eine zweite NISAR-Spur, die am {b} und {a} vorbeikam, fand nur {c} der {n} Zonen, die sie sehen "
-                     "konnte, etwa so oft wie per Zufall; jede Zone ist daher ein Hinweis zum Prüfen.",
+    "xt_story_good": "Ein zweiter NISAR-Orbit fand {c} der {n} Zonen in seinem Blickfeld wieder: {lift}× häufiger als per "
+                     "Zufall.",
+    "xt_story_weak": "Ein zweiter NISAR-Orbit fand nur {c} der {n} Zonen in seinem Blickfeld wieder, etwa so oft wie per "
+                     "Zufall; jede Zone ist daher ein Hinweis zum Prüfen.",
     "xt_col": "Zweite Spur",
     "brighter": "wo Wasser unter Bäumen oder zwischen Gebäuden verborgen sein könnte (nicht als Überschwemmung gezählt)",
     "matched": "der gemeldeten Ereignisse, die das Radar sehen konnte, hatten einen Fund",

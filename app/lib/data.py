@@ -44,7 +44,7 @@ def ver() -> str:
     """Changes whenever the pipeline output changes (a new deploy checks out new files), so cached
     reads below are refreshed instead of serving numbers from an older run."""
     d = _dir()
-    files = [d / "metrics.json"] if d else []
+    files = [d / "metrics.json", d / "bounds.json"] if d else []
     files += [REFERENCE / n for n in ("rainfall.csv", "events.geojson", "candidate_scenes.csv", "cloud_check.json")]
     return "|".join(f"{f.stat().st_mtime_ns}-{f.stat().st_size}" if f.exists() else "-" for f in files)
 

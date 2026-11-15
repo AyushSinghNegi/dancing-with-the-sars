@@ -189,6 +189,24 @@ iframe[title="streamlit_folium.st_folium"] { border-radius: 14px; box-shadow: va
 .ml-dl.primary small { color: #dbe9ff; }
 .ml-dl:hover { transform: translateY(-1px); box-shadow: var(--ml-shadow); border-color: var(--ml-water); }
 
+/* overview: how it works, in three steps */
+.ml-how { list-style: none; counter-reset: how; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px;
+  margin: .3rem 0 1.4rem; padding: 0; }
+.ml-how li { counter-increment: how; position: relative; padding: 1rem 1.1rem 1rem 4.2rem; border-radius: 16px; min-height: 84px;
+  background: var(--ml-panel); border: 1px solid var(--ml-line); max-width: none; }
+.ml-how li + li::before { content: ""; position: absolute; left: -14px; top: 50%; width: 14px; height: 2px;
+  background: linear-gradient(90deg, var(--ml-water), var(--ml-beam)); }
+.ml-how .ic { position: absolute; left: 1rem; top: 1rem; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+  color: #fff; background: linear-gradient(135deg, #123a6e, #1f6fd1); box-shadow: 0 0 0 3px rgba(111,227,255,.18); }
+.ml-how .ic::after { content: counter(how); position: absolute; right: -4px; top: -4px; width: 18px; height: 18px; border-radius: 50%;
+  font: 700 11px/18px 'IBM Plex Sans', sans-serif; text-align: center; background: var(--ml-beam); color: #06121f; }
+.ml-how b { display: block; font-size: 1.02rem; margin-bottom: .15rem; }
+.ml-how p { margin: 0; font-size: .93rem; line-height: 1.5; max-width: none; color: color-mix(in srgb, currentColor 80%, transparent); }
+.ml-sub { margin: -.4rem 0 .7rem; font-size: 1rem; color: color-mix(in srgb, currentColor 72%, transparent); }
+
+.ml-short { margin: .2rem 0 .9rem; padding: .7rem .95rem; border-radius: 12px; border-left: 3px solid var(--ml-beam);
+  background: var(--ml-panel); font-size: 1rem; line-height: 1.55; max-width: none; }
+
 /* page header band: the same night sky as the Overview, with Earth's limb along the bottom */
 .ml-band { position: relative; overflow: hidden; isolation: isolate; border-radius: 20px; padding: 1.5rem 2rem 2.7rem;
   margin: 0 0 1.3rem; color: #e8eef7;
@@ -299,6 +317,8 @@ html { scroll-behavior: smooth; }
   .st-key-rail button p { display: none; }
   .st-key-rail button[kind="primary"] p, .st-key-rail [data-testid="stBaseButton-primary"] p { display: block; font-size: .75rem !important; }
   .ml-facts-card { grid-template-columns: 1fr; }
+  .ml-how { grid-template-columns: 1fr; gap: 10px; }
+  .ml-how li + li::before { display: none; }
   .ml-flow div { flex-basis: 45%; border-left: 1px solid var(--ml-line) !important; border-radius: 0 !important; }
   .ml-finding { grid-template-columns: 16px 6rem 1fr; }
   .ml-num { font-size: 1.3rem; }
@@ -317,12 +337,10 @@ html { scroll-behavior: smooth; }
 T = {
     "title": {"en": "What NISAR radar saw in the 2026 Pune monsoon",
               "mr": "२०२६ च्या पुणे पावसाळ्यात निसार रडारने काय पाहिले"},
-    "lede": {"en": "Monsoon cloud hides the ground exactly when people most need to see it. {cloud} NASA and ISRO's "
-                   "NISAR satellite sends radar through cloud and rain. We compared its passes over Pune before and "
-                   "after the floods and landslides of 3 to 8 July 2026.",
-             "mr": "पावसाळ्यातील ढग नेमके तेव्हाच जमीन झाकतात जेव्हा ती पाहण्याची सर्वात जास्त गरज असते. {cloud} नासा "
-                   "आणि इस्रोचा निसार उपग्रह ढग आणि पावसातून रडार पाठवतो. ३ ते ८ जुलै २०२६ च्या पूर आणि भूस्खलनांच्या "
-                   "आधी आणि नंतरच्या पुण्यावरील निरीक्षणांची आम्ही तुलना केली."},
+    "lede": {"en": "{cloud} NASA and ISRO's NISAR satellite sees through cloud with radar. We compared its passes "
+                   "before and after the floods and landslides of 3 to 8 July.",
+             "mr": "{cloud} नासा आणि इस्रोचा निसार उपग्रह रडारने ढगांच्या पलीकडे पाहतो. ३ ते ८ जुलैच्या पूर आणि "
+                   "भूस्खलनांच्या आधीची आणि नंतरची त्याची निरीक्षणे आम्ही ताडून पाहिली."},
     "dates_line": {"en": "NISAR L-band radar passes on {b} and {a} {y}, Pune district, India",
                    "mr": "{b} आणि {a} {y} रोजीची निसार एल-बँड रडार निरीक्षणे, पुणे जिल्हा, भारत"},
     "found": {"en": "What the radar found", "mr": "रडारला काय सापडले"},
@@ -346,22 +364,16 @@ T = {
                             "than chance, from a small sample, as that track covers {cov} of the area",
                       "mr": "दुसऱ्या निसार मार्गाला दिसू शकलेल्या भूस्खलन क्षेत्रांपैकी तिथेही सापडलेली क्षेत्रे: योगायोगापेक्षा "
                             "{lift}× जास्त वेळा; पण नमुना लहान आहे, कारण तो मार्ग क्षेत्राचा फक्त {cov} भाग पाहतो"},
-    "xt_story_good_small": {"en": "A second NISAR track, passing on {b} and {a} from a different orbit, sees {cov} of the "
-                                  "area. Of the {n} zones inside its view, it found {c} again on its own: {lift}× more "
-                                  "often than chance, though {n} is a small sample.",
-                            "mr": "{b} आणि {a} रोजी वेगळ्या कक्षेतून गेलेला दुसरा निसार मार्ग क्षेत्राचा {cov} भाग पाहतो. "
-                                  "त्याच्या दृष्टीतील {n} क्षेत्रांपैकी {c} त्याने स्वतंत्रपणे पुन्हा शोधली: योगायोगापेक्षा "
-                                  "{lift}× जास्त वेळा, पण {n} हा लहान नमुना आहे."},
-    "xt_weak": {"en": "of the slide zones that a second NISAR track could see were found by it too, about what "
-                      "chance would give: treat single-track zones with extra care",
-                "mr": "दुसऱ्या निसार मार्गाला दिसू शकलेल्या भूस्खलन क्षेत्रांपैकी तिथेही सापडलेली क्षेत्रे, साधारण "
-                      "योगायोगाइतकी: एकाच मार्गावरील क्षेत्रे काळजीपूर्वक तपासा"},
-    "xt_story_good": {"en": "A second NISAR track, passing on {b} and {a} from a different orbit, found {c} of the {n} "
-                            "zones it could see on its own: {lift}× more often than chance.",
-                      "mr": "{b} आणि {a} रोजी वेगळ्या कक्षेतून गेलेल्या दुसऱ्या निसार मार्गाने, त्याला दिसू शकलेल्या "
-                            "{n} पैकी {c} क्षेत्रे स्वतंत्रपणे शोधली: योगायोगापेक्षा {lift}× जास्त वेळा."},
-    "xt_story_weak": {"en": "A second NISAR track, passing on {b} and {a}, found only {c} of the {n} zones it could see, "
-                            "about what chance would give, so treat each zone as a lead to check.",
+    "xt_story_good_small": {"en": "A second NISAR orbit re-found {c} of the {n} zones it could see: {lift}× more often "
+                                  "than chance, though from a small sample.",
+                            "mr": "दुसऱ्या निसार कक्षेने त्याला दिसू शकलेल्या {n} पैकी {c} क्षेत्रे पुन्हा शोधली: योगायोगापेक्षा "
+                                  "{lift}× जास्त वेळा, पण नमुना लहान आहे."},
+    "xt_story_good": {"en": "A second NISAR orbit re-found {c} of the {n} zones it could see: {lift}× more often than "
+                            "chance.",
+                      "mr": "दुसऱ्या निसार कक्षेने त्याला दिसू शकलेल्या {n} पैकी {c} क्षेत्रे पुन्हा शोधली: योगायोगापेक्षा "
+                            "{lift}× जास्त वेळा."},
+    "xt_story_weak": {"en": "A second NISAR orbit re-found only {c} of the {n} zones it could see, about what chance "
+                            "would give, so treat each zone as a lead to check.",
                       "mr": "{b} आणि {a} रोजी गेलेल्या दुसऱ्या निसार मार्गाने त्याला दिसू शकलेल्या {n} पैकी फक्त {c} "
                             "क्षेत्रे शोधली, साधारण योगायोगाइतकी; म्हणून प्रत्येक क्षेत्र तपासण्याजोगे समजा."},
     "xt_col": {"en": "Second track", "mr": "दुसरा मार्ग"},

@@ -140,7 +140,16 @@ st.markdown("## How we checked it")
 checks.render()
 xt, dc, sens = data.crosstrack(), m.get("dem_check"), m.get("sensitivity")
 tabs = st.tabs(["Reported events", "Second NISAR orbit", "Second elevation map", "Water threshold", "Results table"])
+
+
+def short(text):
+    st.markdown(f'<p class="ml-short"><b>In short:</b> {text}</p>', unsafe_allow_html=True)
+
+
 with tabs[0]:
+    short(f"radar found something near {val_s.get('flood', {}).get('hits', 0)} of "
+          f"{val_s.get('flood', {}).get('observable', 0)} reported floods and {val_s.get('slide', {}).get('hits', 0)} of "
+          f"{val_s.get('slide', {}).get('observable', 0)} landslides that it could see.")
     val = data.table("validation.csv")
     if val is not None and len(val):
         st.markdown(
@@ -154,6 +163,8 @@ with tabs[0]:
         st.info("Runs once `data/reference/events.geojson` exists.")
 with tabs[1]:
     if xt:
+        short(f"an independent NISAR orbit re-found {xt['confirmed']} of the {xt['scored']} zones it could see, "
+              f"{ui.fmt_num(xt['lift'] or 0, 0)}× more often than chance. A small sample, so support, not proof.")
         c, ch = xt["status_counts"], xt.get("chance", {})
         pb, pa = (data.nice_date(xt["pair"][k_], False) for k_ in ("before", "after"))
         st.markdown(
@@ -201,6 +212,9 @@ with tabs[1]:
         st.info("Runs once the track-106 files are cropped.")
 with tabs[2]:
     if dc:
+        short(f"{dc['found']} of {dc['zones_main']} zones survive when slope comes from NASA's NASADEM, including "
+              f"{dc['by_confidence'].get('high', {}).get('found', 0)} of {dc['by_confidence'].get('high', {}).get('zones', 0)} "
+              "high-confidence ones.")
         rs = dc["not_found_reasons"]
         hi = dc["by_confidence"].get("high", {})
         st.markdown(
@@ -237,6 +251,8 @@ with tabs[2]:
 with tabs[3]:
     if sens and sens.get("rows"):
         r0 = sens["range"]
+        short(f"the reservoir rise holds up ({r0['rise_km2'][0]:.1f} to {r0['rise_km2'][1]:.1f} km²); the flood area "
+              f"does not ({r0['flood_km2'][0]:.2f} to {r0['flood_km2'][1]:.1f} km²), so read it as an order of magnitude.")
         st.markdown(
             "The water threshold is set from the radar itself on each date. Moving both dates' thresholds 1 dB down or "
             f"up, and changing nothing else, keeps reservoir and river rise between **{r0['rise_km2'][0]:.1f} and "

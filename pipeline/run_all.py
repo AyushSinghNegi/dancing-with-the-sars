@@ -6,7 +6,7 @@
 Order: water (R5) -> slide zones (R6) -> validation (R9) -> second-track and elevation-map checks ->
 threshold sensitivity -> evidence chips and field list ->
 timeline (R8) ->
-render overlays -> bounds.json + metrics.json (provenance for every number).
+render overlays -> terrain3d (3D model files) -> bounds.json + metrics.json (provenance for every number).
 """
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ import time
 from . import common as K
 from . import config as C
 from . import nisar_io as io
-from . import crosstrack, dem_check, evidence, render, sensitivity, slide_zones, timeline, validate, water
+from . import crosstrack, dem_check, evidence, render, sensitivity, slide_zones, terrain3d, timeline, validate, water
 
 VERSION = "0.6.0"
 
@@ -61,6 +61,9 @@ def main(argv=None):
     tl = timeline.run()
     print("[run] render", flush=True)
     rend = render.run()
+    if (C.AUX / "aux_elevation.tif").exists():
+        print("[run] terrain3d", flush=True)
+        terrain3d.run()
 
     man = {m["name"]: m for m in K.manifest()}
     sources = []
