@@ -6,7 +6,8 @@
 Order: water (R5) -> slide zones (R6) -> validation (R9) -> second-track and elevation-map checks ->
 threshold sensitivity -> evidence chips and field list ->
 timeline (R8) ->
-render overlays -> bounds.json + metrics.json (provenance for every number).
+render overlays -> flood chance level, what is near each zone (own files: flood_baseline.json, nearby.json) ->
+bounds.json + metrics.json (provenance for every number).
 """
 from __future__ import annotations
 
@@ -61,6 +62,14 @@ def main(argv=None):
     tl = timeline.run()
     print("[run] render", flush=True)
     rend = render.run()
+    # Two add-ons with their own output files. They read what the steps above wrote, and never block the science.
+    for label, mod in (("chance level for the flood matches", "flood_baseline"),
+                       ("roads, railways and settlements near each zone (OpenStreetMap)", "nearby")):
+        print(f"[run] {label}", flush=True)
+        try:
+            __import__(f"{__package__}.{mod}", fromlist=["run"]).run()
+        except Exception as e:
+            print(f"      skipped: {e}")
 
     man = {m["name"]: m for m in K.manifest()}
     sources = []
