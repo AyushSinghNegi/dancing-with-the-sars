@@ -91,6 +91,14 @@ DE = {
         "ziehen Sie den Regler in der Karte und sehen Sie, wie sich die Stauseen nach dem Juli-Sturm füllen. Die Karte "
         "behält ihren Zoom, während das Datum wechselt.",
     "Open water on this pass": "Offenes Wasser bei diesem Überflug",
+    "Since the pass on {p}: {r:.0f} mm of rain, open water {s}{v:.0f} km².":
+        "Seit dem Überflug am {p}: {r:.0f} mm Regen, offenes Wasser {s}{v:.0f} km².",
+    "Rain: NASA GPM IMERG Late Run daily totals, averaged over the whole study box, in UTC days from the day after "
+    "the previous pass to the day of this pass. An average over the box is far lower than totals at single rain "
+    "gauges, and Late Run values may change slightly in the Final Run.":
+        "Regen: Tagessummen aus NASA GPM IMERG Late Run, gemittelt über das ganze Untersuchungsgebiet, in UTC-Tagen vom "
+        "Tag nach dem vorigen Überflug bis zum Tag dieses Überflugs. Ein Gebietsmittel liegt weit unter den Summen "
+        "einzelner Regenmesser, und Late-Run-Werte können sich im Final Run leicht ändern.",
     "Field check list: print it, KML for phones, CSV": "Feld-Checkliste: drucken, KML fürs Handy, CSV",
     "All water numbers and thresholds": "Alle Wasserzahlen und Schwellenwerte",
     "of open water inside the area where water has ever been recorded (JRC, 1984 to 2021) on {d}":

@@ -39,6 +39,7 @@ Last updated 14 Nov 2026 (Urvashi on `urvashi/content`; Claude for Ayush on `cla
 | P20 | Medium | **Late Run, not Final.** The Final Run did not cover 2026 on the download date, so values may shift when it is released. | Say "IMERG Late Run" wherever rainfall is credited. |
 | P21 | Medium | **Days are UTC days.** "5 to 8 July" is in UTC; India is 5.5 hours ahead, so local-day totals differ. | Avoid exact day-by-day claims; "5 to 8 July" is safe. |
 | P22 | Medium | **Box average versus station totals.** Our peak is about 180 mm/day averaged over the box; news reports quote single stations (for example 670 mm in 24 hours at Lonavla). | Never put the two side by side without saying which is which. |
+| P52 | Low | **Rain between passes is a description, not a link.** The season map on Explore now shows, for each pass, the IMERG rain since the previous pass next to the change in open water (871 mm and +36 km², 208 mm and +10, 459 mm and +7, 231 mm and +3). Four intervals of different length; reservoirs are also filled and released by dam operators. Rain is the box average in UTC days from the day after one pass to the day of the next (P20 to P22 apply). | Say "the reservoirs rose most after the July storm and little after", never that rain "explains" or "predicts" the water. |
 
 ## D. App, video and README out of step
 

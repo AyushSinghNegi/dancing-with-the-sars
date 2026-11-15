@@ -41,22 +41,52 @@ if mode == "season":
         unsafe_allow_html=True)
     col = "water_in_jrc_extent_km2" if tl is not None and "water_in_jrc_extent_km2" in tl else "water_km2"
     first = tl[tl["date"] == seasons[0]].iloc[0] if tl is not None and (tl["date"] == seasons[0]).any() else None
+    rain = data.rainfall()
+
+    def rain_between(a: str, b: str):
+        """IMERG rain (box average, UTC days) from the day after pass a to the day of pass b; None unless every
+        day in between is in rainfall.csv, so a gap never shows as a smaller total."""
+        if rain is None:
+            return None
+        days = pd.date_range(pd.Timestamp(a) + pd.Timedelta(days=1), pd.Timestamp(b))
+        r = rain[rain["date"].isin(days)]
+        return float(r["precip_mm"].sum()) if r["date"].nunique() == len(days) else None
+
     notes = []
-    for d in seasons:
+    for k, d in enumerate(seasons):
         row = tl[tl["date"] == d].iloc[0] if tl is not None and (tl["date"] == d).any() else None
         if row is None:     # no area figure for this pass: show the date only, never a made-up number
             notes.append(f"<b>{html.escape(ui.date(d))}</b>")
             continue
+        since = ""
+        if k:
+            p = seasons[k - 1]
+            prow = tl[tl["date"] == p].iloc[0] if (tl["date"] == p).any() else None
+            mm = rain_between(p, d)
+            if mm is not None and prow is not None:
+                dv = round(row[col]) - round(prow[col])     # from the rounded figures, so the shown numbers add up
+                since = '<div class="ml-rain">' + html.escape(tr(
+                    "Since the pass on {p}: {r:.0f} mm of rain, open water {s}{v:.0f} km².",
+                    "{p} च्या निरीक्षणापासून: {r:.0f} मिमी पाऊस, उघडे पाणी {s}{v:.0f} चौ. किमी.",
+                    p=ui.day(p), r=mm, s="+" if dv >= 0 else "−", v=abs(dv))) + "</div>"
         delta = "" if first is None or d == seasons[0] else tr(" ({s}{v:.0f} km² since {f})", " ({f} पासून {s}{v:.0f} चौ. किमी)",
                                                               s="+" if row[col] >= first[col] else "−",
-                                                              v=abs(row[col] - first[col]), f=ui.day(seasons[0]))
+                                                              v=abs(round(row[col]) - round(first[col])),
+                                                              f=ui.day(seasons[0]))
         notes.append(f"<b>{row[col]:.0f} km²</b> " + html.escape(tr(
             "of open water inside the area where water has ever been recorded (JRC, 1984 to 2021) on {d}",
             "{d} रोजी, जिथे कधी ना कधी पाणी नोंदवले गेले आहे (JRC, १९८४ ते २०२१) अशा भागात उघडे पाणी", d=ui.date(d)))
-            + html.escape(delta) + ".")
+            + html.escape(delta) + "." + since)
     ui.legend([(ui.COLORS["new_water"], tr("Open water on this pass", "या निरीक्षणातील उघडे पाणी"), "fill")])
     st_folium(maps.season(seasons, notes), height=640, use_container_width=True, returned_objects=[],
               key=f"season_{ui.lang()}_{ui.dark()}")
+    if rain is not None:
+        st.caption(tr("Rain: NASA GPM IMERG Late Run daily totals, averaged over the whole study box, in UTC days from "
+                      "the day after the previous pass to the day of this pass. An average over the box is far lower "
+                      "than totals at single rain gauges, and Late Run values may change slightly in the Final Run.",
+                      "पाऊस: नासा GPM IMERG Late Run दैनिक एकूण, संपूर्ण अभ्यास क्षेत्राची सरासरी, मागील निरीक्षणानंतरच्या "
+                      "दिवसापासून या निरीक्षणाच्या दिवसापर्यंत (UTC दिवस). क्षेत्राची सरासरी एका पर्जन्यमापकावरील "
+                      "एकूणापेक्षा खूप कमी असते, आणि Final Run मध्ये Late Run चे आकडे थोडे बदलू शकतात."))
     if tl is not None and len(tl) > 1:
         st.plotly_chart(charts.timeline(tl), width="stretch", config={"displayModeBar": False})
         st.caption(ui.t("timeline_caption"))

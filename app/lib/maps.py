@@ -286,6 +286,7 @@ def _season_css() -> str:
 .ml-season .ticks span.on {{ color: {text}; font-weight: 600; }}
 .ml-season .note {{ margin-top: 6px; min-height: 1.4em; }}
 .ml-season .note b {{ font-size: 15px; }}
+.ml-season .ml-rain {{ margin-top: 2px; color: {muted}; }}
 @media (max-width: 520px) {{ .ml-season {{ bottom: 54px; padding: 8px 10px 6px; }} .ml-season .ticks {{ font-size: 10px; }} }}
 </style>"""
 
