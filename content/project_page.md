@@ -73,8 +73,8 @@ The Method page lists every NISAR file, every threshold, every check and every l
   recorded between 1984 and 2021.
 - 50 likely slide zones on steep slopes, 8 of them high confidence. They are leads to check, not
   confirmed landslides: 46 have no reported event within 2 km.
-- Over the season, open water grew from 153 km² on 28 June to 191 km² on 14 October as the
-  reservoirs filled (five NISAR passes on the same track and mode).
+- Over the season, open water in rivers and reservoirs grew from 130 km² on 28 June to 186 km² on
+  14 October as the reservoirs filled (five NISAR passes on the same track and mode).
 
 **How it works**
 
@@ -118,7 +118,7 @@ step is to run it automatically for each new pass over the Western Ghats.
 **Tools**
 
 Python (h5py, rasterio, pyproj, shapely, SciPy, NumPy, pandas, earthaccess), Streamlit, folium,
-Plotly, Pillow, pytest, GitHub, Streamlit Community Cloud. Code licence: MIT.
+deck.gl (3D view), Plotly, Pillow, pytest, GitHub, Streamlit Community Cloud. Code licence: MIT.
 
 ## Use of Super Intelligence (SI)
 
