@@ -25,12 +25,14 @@ ui.page_header(tr('Field check list', 'क्षेत्रीय तपास�
 files = data.field_files()
 names = {"html": tr("Printable list with radar images", "रडार प्रतिमांसह छापण्याजोगी यादी"),
          "kml": tr("KML for Google Earth and phone maps", "गूगल अर्थ आणि फोन नकाशांसाठी KML"),
-         "csv": tr("Spreadsheet (CSV)", "स्प्रेडशीट (CSV)"), "geojson": "GeoJSON (GIS)"}
+         "csv": tr("Spreadsheet (CSV)", "स्प्रेडशीट (CSV)"), "geojson": "GeoJSON (GIS)",
+         "nearby": tr("What is nearby (CSV)", "जवळ काय आहे (CSV)")}
+save_as = {"nearby": "monsoonlens_nearby.csv"}
 if files:
     btns = "".join(
         f'<a class="ml-dl{" primary" if k == "html" else ""}" href="{u}" '
-        f'{"target=_blank" if k == "html" else f"download=monsoonlens_field_list.{k}"}>{html.escape(names[k])}'
-        f'<small>{max(sz // 1000, 1)} KB</small></a>'
+        f'{"target=_blank" if k == "html" else "download=" + save_as.get(k, f"monsoonlens_field_list.{k}")}>'
+        f'{html.escape(names[k])}<small>{max(sz // 1000, 1)} KB</small></a>'
         for k, (u, sz) in files.items())
     st.markdown(f'<div class="ml-dlrow">{btns}</div>', unsafe_allow_html=True)
 
@@ -39,9 +41,20 @@ if not zones:
     st.info(tr("No slide zones in this run.", "या निकालात भूस्खलन क्षेत्रे नाहीत."))
     st.stop()
 
+nb = data.nearby()
+nbz = nb.get("zones", {})
+
+
+def _first(z, key, name):
+    """Nearest road or settlement within range, as 'name, distance'; empty when there is none that close."""
+    return f"{name(z[key][0])}, {ev.dist(z[key][0]['distance_m'])}" if z and z[key] else ""
+
+
 rows = []
 for rank, p in enumerate(zones, start=1):
     rows.append({"rank": rank, "id": p["id"], "near": p.get("near") or "", "confidence": p["confidence"],
+                 "road": _first(nbz.get(p["id"]), "roads", ev._line_name),
+                 "place": _first(nbz.get(p["id"]), "places", ev._place_name),
                  "conf_txt": {"high": tr("High", "उच्च"), "medium": tr("Medium", "मध्यम"),
                               "low": tr("Low", "कमी")}.get(p["confidence"], p["confidence"]),
                  "score": p["score"], "orbit": {"confirmed": tr("found again", "पुन्हा सापडले"),
@@ -69,13 +82,27 @@ if extra:
 if q.strip():
     sel = sel[sel["near"].str.contains(q.strip(), case=False, regex=False)]
 
+if nbz:
+    s = nb["summary"]
+    st.markdown(tr(
+        "**What is nearby.** Of the {t} zones, {r} have a mapped road within {rk} km, {w} a railway line within "
+        "{rk} km and {p} a village, town or suburb within {pk} km; {x} have none of these that close. Distances are "
+        "straight lines from the edge of the zone. Near does not mean at risk: it tells whoever looks after that "
+        "road, line or village which leads concern them.",
+        "**जवळ काय आहे.** {t} क्षेत्रांपैकी {r} क्षेत्रांच्या {rk} किमीच्या आत नकाशातील रस्ता आहे, {w} च्या {rk} किमीच्या "
+        "आत रेल्वे मार्ग आणि {p} च्या {pk} किमीच्या आत गाव, शहर किंवा उपनगर आहे; {x} क्षेत्रांजवळ यांपैकी काहीही इतक्या "
+        "जवळ नाही. अंतरे क्षेत्राच्या कडेपासून सरळ रेषेत मोजली आहेत. जवळ असणे म्हणजे धोका असणे नव्हे: तो रस्ता, मार्ग "
+        "किंवा गाव सांभाळणाऱ्यांना कोणते संकेत त्यांच्याशी संबंधित आहेत हे यावरून कळते.",
+        t=s["zones"], r=s["road_within"], w=s["railway_within"], p=s["place_within"], x=s["nothing_within"],
+        rk=f"{nb['road_m'] / 1000:g}", pk=f"{nb['place_m'] / 1000:g}"))
 st.markdown(tr("{n} of {t} zones. Select a row to see its radar evidence.",
                "{t} पैकी {n} क्षेत्रे. रडार पुरावा पाहण्यासाठी एक ओळ निवडा.", n=len(sel), t=len(df)))
 cc = st.column_config
 evt = st.dataframe(
     sel, hide_index=True, width="stretch", height=min(420, 38 + 35 * max(len(sel), 1)), on_select="rerun",
     selection_mode="single-row", key="field_table",
-    column_order=["rank", "id", "near", "conf_txt", "score", "orbit", "dem", "report", "slope", "map"],
+    column_order=["rank", "id", "near", "conf_txt", "score", "orbit", "dem", "report"]
+    + (["road", "place"] if nbz else []) + ["slope", "map"],
     column_config={"rank": cc.NumberColumn("#", width="small"), "id": tr("Zone", "क्षेत्र"),
                    "near": tr("Nearest place", "जवळचे ठिकाण"), "conf_txt": tr("Confidence", "खात्री"),
                    "score": cc.ProgressColumn(tr("Score", "गुण"), min_value=0, max_value=1, format="%.2f"),
@@ -86,6 +113,15 @@ evt = st.dataframe(
                    "report": cc.TextColumn(tr("Nearest report", "जवळची नोंद"),
                                            help=tr("Distance to the nearest reported flood or landslide",
                                                    "सर्वात जवळच्या नोंदवलेल्या पूर किंवा भूस्खलनाचे अंतर")),
+                   "road": cc.TextColumn(tr("Road nearby", "जवळचा रस्ता"),
+                                         help=tr("Nearest mapped road within {km} km of the zone's edge (OpenStreetMap)",
+                                                 "क्षेत्राच्या कडेपासून {km} किमीच्या आत सर्वात जवळचा नकाशातील रस्ता "
+                                                 "(OpenStreetMap)", km=f"{nb.get('road_m', 0) / 1000:g}")),
+                   "place": cc.TextColumn(tr("Settlement nearby", "जवळची वस्ती"),
+                                          help=tr("Nearest village, town or suburb within {km} km of the zone's edge "
+                                                  "(OpenStreetMap)",
+                                                  "क्षेत्राच्या कडेपासून {km} किमीच्या आत सर्वात जवळचे गाव, शहर किंवा "
+                                                  "उपनगर (OpenStreetMap)", km=f"{nb.get('place_m', 0) / 1000:g}")),
                    "slope": cc.NumberColumn(tr("Slope (°)", "उतार (°)"), format="%.0f"),
                    "map": cc.LinkColumn(tr("Map", "नकाशा"), display_text=tr("Open", "उघडा"))})
 rows_sel = (evt.selection.rows if evt and hasattr(evt, "selection") else []) or []
@@ -107,5 +143,9 @@ if np_:
 st.markdown('<p class="ml-source">' + tr(
     "Nearest place names © OpenStreetMap contributors (Nominatim). Score: steepness, radar change and coherence loss, "
     "each up to a third.", "जवळच्या ठिकाणांची नावे © OpenStreetMap योगदानकर्ते. गुण: उतार, रडार बदल आणि कोहेरन्समधील घट, "
-    "प्रत्येकी एक तृतीयांशपर्यंत.") + "</p>", unsafe_allow_html=True)
+    "प्रत्येकी एक तृतीयांशपर्यंत.") + (" " + tr(
+        "Roads, railway lines and settlements © OpenStreetMap contributors (expressways down to tertiary roads; "
+        "smaller roads, tracks and hamlets are not counted).",
+        "रस्ते, रेल्वे मार्ग आणि वस्त्या © OpenStreetMap योगदानकर्ते (द्रुतगती मार्गांपासून तृतीय श्रेणीच्या रस्त्यांपर्यंत; "
+        "लहान रस्ते, पायवाटा आणि वाड्या मोजलेल्या नाहीत).") if nbz else "") + "</p>", unsafe_allow_html=True)
 ui.sources_line()

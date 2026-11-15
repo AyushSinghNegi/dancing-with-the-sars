@@ -128,6 +128,45 @@ DE = {
     "{n} of {t} zones. Select a row to see its radar evidence.":
         "{n} von {t} Zonen. Wählen Sie eine Zeile, um die Radarbelege zu sehen.",
     "No slide zones in this run.": "In diesem Lauf gibt es keine Rutschungszonen.",
+    "The flood matches are no more than chance gives: places nobody reported match {e} of {n}.":
+        "Die Hochwasser-Treffer sind nicht mehr, als der Zufall liefert: Orte, die niemand gemeldet hat, treffen "
+        "{e} von {n}.",
+    "Map shows": "Die Karte zeigt",
+    "What changed, {b} to {a}": "Was sich änderte, {b} bis {a}",
+    "Pass by pass, {f} to {l}": "Überflug für Überflug, {f} bis {l}",
+    "Drag the slider on the map, or press play, to step through NISAR's passes; the view stays where you "
+    "put it. Same orbit and radar mode on every date. Red is HH, green HV, blue HH/HV: water is dark, "
+    "forest green, buildings bright. Blue overlay: open water mapped on that date. NISAR used a different "
+    "mode on this orbit from 27 August to 2 October, so those passes are not shown. Click the map to check "
+    "any other point.":
+        "Ziehen Sie den Regler auf der Karte oder drücken Sie Abspielen, um die NISAR-Überflüge durchzugehen; der "
+        "Kartenausschnitt bleibt, wo Sie ihn hingelegt haben. An jedem Datum dieselbe Umlaufbahn und derselbe "
+        "Radarmodus. Rot ist HH, Grün HV, Blau HH/HV: Wasser ist dunkel, Wald grün, Gebäude hell. Blaue Ebene: an "
+        "diesem Datum kartiertes offenes Wasser. Vom 27. August bis 2. Oktober nutzte NISAR auf dieser Umlaufbahn "
+        "einen anderen Modus, daher fehlen diese Überflüge. Klicken Sie auf die Karte, um einen anderen Punkt zu "
+        "prüfen.",
+    "Play": "Abspielen",
+    "Open water": "Offenes Wasser",
+    "What is nearby (CSV)": "Was in der Nähe liegt (CSV)",
+    "Road nearby": "Straße in der Nähe",
+    "Settlement nearby": "Siedlung in der Nähe",
+    "Nearest mapped road within {km} km of the zone's edge (OpenStreetMap)":
+        "Nächste kartierte Straße im Umkreis von {km} km um den Rand der Zone (OpenStreetMap)",
+    "Nearest village, town or suburb within {km} km of the zone's edge (OpenStreetMap)":
+        "Nächstes Dorf, nächste Stadt oder nächster Vorort im Umkreis von {km} km um den Rand der Zone (OpenStreetMap)",
+    "**What is nearby.** Of the {t} zones, {r} have a mapped road within {rk} km, {w} a railway line within "
+    "{rk} km and {p} a village, town or suburb within {pk} km; {x} have none of these that close. Distances are "
+    "straight lines from the edge of the zone. Near does not mean at risk: it tells whoever looks after that "
+    "road, line or village which leads concern them.":
+        "**Was in der Nähe liegt.** Von den {t} Zonen haben {r} eine kartierte Straße im Umkreis von {rk} km, {w} eine "
+        "Bahnstrecke im Umkreis von {rk} km und {p} ein Dorf, eine Stadt oder einen Vorort im Umkreis von {pk} km; "
+        "{x} haben nichts davon so nah. Die Entfernungen sind Luftlinien vom Rand der Zone. Nähe bedeutet nicht "
+        "Gefährdung: Sie zeigt denen, die für diese Straße, Strecke oder dieses Dorf zuständig sind, welche Hinweise "
+        "sie betreffen.",
+    "Roads, railway lines and settlements © OpenStreetMap contributors (expressways down to tertiary roads; "
+    "smaller roads, tracks and hamlets are not counted).":
+        "Straßen, Bahnstrecken und Siedlungen © OpenStreetMap-Mitwirkende (Autobahnen bis Straßen dritter Ordnung; "
+        "kleinere Straßen, Wege und Weiler werden nicht gezählt).",
     "Found again by the second NISAR orbit, kept with NASADEM, or a reported event within 2 km.":
         "Vom zweiten NISAR-Orbit erneut gefunden, mit NASADEM bestätigt oder ein gemeldetes Ereignis im Umkreis von 2 km.",
     "e.g. Mulshi": "z. B. Mulshi",
@@ -413,6 +452,15 @@ DE_E = {
                   "verzeichnet wurde.",
     "flood_rep": "Nächste gemeldete Überschwemmung: {place}, {km} km.",
     "lead": "Ein Hinweis zum Prüfen vor Ort, kein bestätigter Erdrutsch.",
+    "near_h": "Was in der Nähe liegt",
+    "near_road": "Straße im Umkreis von {km} km",
+    "near_rail": "Bahnstrecke im Umkreis von {km} km",
+    "near_place": "Siedlung im Umkreis von {km} km",
+    "near_none": "keine (nächste: {x}, {d})",
+    "near_nothing": "keine",
+    "near_rail_line": "Bahnstrecke",
+    "near_unnamed": "unbenannte Straße",
+    "near_note": "Luftlinie vom Rand der Zone, aus OpenStreetMap. Nähe bedeutet nicht Gefährdung.",
 }
 
 REASON = {"steeper than 45°": "steiler als 45°", "gentler than 15°": "flacher als 15°",

@@ -265,6 +265,108 @@ def add_events(m):
     fg.add_to(m)
 
 
+PASS_CSS = """<style>
+.leaflet-image-layer { transition: opacity .45s ease; }
+.ml-passes { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 1000; display: flex;
+  align-items: center; gap: 10px; padding: 8px 14px; border-radius: 12px; background: rgba(10,18,34,.9); color: #e6edf6;
+  font: 13px/1.3 'IBM Plex Sans', system-ui, sans-serif; box-shadow: 0 6px 24px rgba(0,0,0,.3); max-width: 92%;
+  flex-wrap: wrap; justify-content: center; }
+.ml-passes button { width: 30px; height: 30px; border-radius: 50%; border: 1px solid rgba(160,190,230,.4);
+  background: #3d8ef0; color: #fff; font-size: 13px; cursor: pointer; padding: 0; }
+.ml-passes input[type=range] { width: 190px; accent-color: #3d8ef0; cursor: pointer; }
+.ml-passes output { font-weight: 600; min-width: 9.5em; }
+.ml-passes label { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .leaflet-image-layer { transition: none; } }
+</style>"""
+
+
+class _PassControl(MacroElement):
+    """Slider, play button and water switch inside the map: dates change in the browser, so the view never
+    reloads and zoom and position stay put. Images are stacked oldest first and revealed one on top of the
+    other, so a fade never shows the base map through."""
+    _template = Template("""{% macro script(this, kwargs) %}
+(function () {
+  var map = {{ this._parent.get_name() }};
+  var radar = [{{ this.radar }}], water = [{{ this.water }}], labels = {{ this.labels }};
+  var box = L.DomUtil.create('div', 'ml-passes', map.getContainer());
+  box.innerHTML = '<button type="button" aria-label="{{ this.play }}" title="{{ this.play }}">&#9654;</button>' +
+    '<input type="range" min="0" max="' + (labels.length - 1) + '" step="1" aria-label="{{ this.slider }}">' +
+    '<output></output><label><input type="checkbox" checked> {{ this.water_label }}</label>';
+  L.DomEvent.disableClickPropagation(box); L.DomEvent.disableScrollPropagation(box);
+  var btn = box.querySelector('button'), range = box.querySelector('input[type=range]'),
+      out = box.querySelector('output'), cb = box.querySelector('input[type=checkbox]'), timer = null;
+  function show(i) {
+    radar.forEach(function (l, k) { if (l) l.setOpacity(k <= i ? 1 : 0); });
+    water.forEach(function (l, k) { if (l) l.setOpacity(k === i && cb.checked ? 0.9 : 0); });
+    out.textContent = labels[i]; range.value = i;
+    try { sessionStorage.setItem('ml_pass', String(i)); } catch (e) {}
+  }
+  function stop() { clearInterval(timer); timer = null; btn.innerHTML = '&#9654;'; }
+  range.addEventListener('input', function () { stop(); show(+range.value); });
+  cb.addEventListener('change', function () { show(+range.value); });
+  btn.addEventListener('click', function () {
+    if (timer) { stop(); return; }
+    btn.innerHTML = '&#10074;&#10074;';
+    timer = setInterval(function () { show((+range.value + 1) % labels.length); }, 1600);
+  });
+  var start = {{ this.start }};
+  try { var s = sessionStorage.getItem('ml_pass'); if (s !== null && +s < labels.length) start = +s; } catch (e) {}
+  show(start);
+})();
+{% endmacro %}""")
+
+    def __init__(self, radar, water, labels, start):
+        super().__init__()
+        self._name = "PassControl"
+        self.radar, self.water = ", ".join(radar), ", ".join(water)
+        self.labels, self.start = json.dumps(labels), start
+        self.play = ui.tr("Play", "चालू करा")
+        self.slider = ui.tr("NISAR pass", "निसार निरीक्षण")
+        self.water_label = ui.tr("Open water", "खुले पाणी")
+
+
+def passes(start_date=None, location=None, zoom=10, basemap=None):
+    """What NISAR saw on each same-orbit, same-mode pass: every radar colour image and that date's open
+    water in one map, switched by a slider inside the map."""
+    basemap = basemap or default_basemap()
+    m = folium.Map(location=location or center(), zoom_start=zoom, tiles=None, control_scale=True,
+                   prefer_canvas=True, zoom_snap=0.25, zoom_delta=0.5)
+    b = data.bounds().get("bounds_latlon")
+    if location is None and b:
+        m.fit_bounds(b, padding=(6, 6))
+    m.get_root().header.add_child(folium.Element(map_css(basemap) + PASS_CSS))
+    folium.map.CustomPane("labels", z_index=650, pointer_events=False).add_to(m)
+    url, attr = BASEMAPS[basemap]
+    folium.TileLayer(url, attr=attr, name=basemap, max_zoom=18).add_to(m)
+    images = data.pass_images()
+    dates = list(images)
+
+    def overlay(ov_url, zindex):
+        if not ov_url or not b:
+            return "null"
+        ov = folium.raster_layers.ImageOverlay(image="data:image/png;base64,", bounds=b, opacity=0,
+                                               interactive=False, cross_origin=False, zindex=zindex)
+        ov.url = ov_url
+        ov.add_to(m)
+        return ov.get_name()
+
+    radar = [overlay(images[d], 2 + i) for i, d in enumerate(dates)]
+    water = [overlay(data.overlay_url(f"water_d{d}"), 50) for d in dates]
+    lab = _labels(basemap)
+    folium.TileLayer(lab[0], attr=lab[1], name="Place names", overlay=True, pane="labels", max_zoom=18).add_to(m)
+    if b:
+        folium.Rectangle(b, color=_ink(basemap), weight=1.2, fill=False, dash_array="4 4",
+                         tooltip="Study box (NISAR crop)").add_to(m)
+    Fullscreen(position="topleft").add_to(m)
+    MousePosition(position="bottomleft", separator=", ", num_digits=5, prefix="", empty_string="",
+                  lat_formatter="function(n){return n.toFixed(5)+'° N'}",
+                  lng_formatter="function(n){return n.toFixed(5)+'° E'}").add_to(m)
+    if dates:
+        _PassControl(radar, water, [ui.date(d) for d in dates],
+                     dates.index(start_date) if start_date in dates else 0).add_to(m)
+    return m
+
+
 def _season_css() -> str:
     dk = ui.dark()
     panel, text, line, muted = ("rgba(10,18,34,.92)", "#e6edf6", "rgba(160,190,230,.22)", "#9fb3c8") if dk else \
