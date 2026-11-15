@@ -135,8 +135,9 @@ Yes.
 - ChatGPT (OpenAI) was used by one team member for data analysis.
 - No measurement is SI-generated. Every number is computed by our code from the NISAR files listed
   below, or comes from a linked source.
-- No image, video or audio is SI-generated. Map images and the demo video are rendered by our code
-  from the radar data.
+- No image, video or audio is SI-generated. Map images and the demo videos are rendered by our code
+  from the radar data and screenshots of the app; the videos' music and sound effects are synthesised
+  by our code (`video/audio.py`, written with Claude), with no AI audio model and no samples.
 - The idea and the choice of place and event were the team's own.
 - The repository's README has a "Use of AI" section stating this.
 
