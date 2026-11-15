@@ -122,6 +122,17 @@ DE = {
     "The flood matches are no more than chance gives: places nobody reported match {e} of {n}.":
         "Die Hochwasser-Treffer sind nicht mehr, als der Zufall liefert: Orte, die niemand gemeldet hat, treffen "
         "{e} von {n}.",
+    "Map shows": "Die Karte zeigt",
+    "What changed, {b} to {a}": "Was sich änderte, {b} bis {a}",
+    "Pass by pass, {f} to {l}": "Überflug für Überflug, {f} bis {l}",
+    "NISAR radar on {d}, same orbit and radar mode on every date. Red is HH, green HV, blue HH/HV: water is "
+    "dark, forest green, buildings bright. Blue overlay: open water mapped on that date. NISAR used a "
+    "different mode on this orbit from 27 August to 2 October, so those passes are not shown. Click the map "
+    "to check any other point.":
+        "NISAR-Radar am {d}, an jedem Datum dieselbe Umlaufbahn und derselbe Radarmodus. Rot ist HH, Grün HV, Blau "
+        "HH/HV: Wasser ist dunkel, Wald grün, Gebäude hell. Blaue Ebene: an diesem Datum kartiertes offenes Wasser. "
+        "Vom 27. August bis 2. Oktober nutzte NISAR auf dieser Umlaufbahn einen anderen Modus, daher fehlen diese "
+        "Überflüge. Klicken Sie auf die Karte, um einen anderen Punkt zu prüfen.",
     "What is nearby (CSV)": "Was in der Nähe liegt (CSV)",
     "Road nearby": "Straße in der Nähe",
     "Settlement nearby": "Siedlung in der Nähe",

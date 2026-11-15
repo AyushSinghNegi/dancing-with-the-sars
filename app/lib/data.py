@@ -44,7 +44,7 @@ def ver() -> str:
     """Changes whenever the pipeline output changes (a new deploy checks out new files), so cached
     reads below are refreshed instead of serving numbers from an older run."""
     d = _dir()
-    files = [d / n for n in ("metrics.json", "flood_baseline.json", "nearby.json")] if d else []
+    files = [d / n for n in ("metrics.json", "flood_baseline.json", "nearby.json", "pass_images.json")] if d else []
     files += [REFERENCE / n for n in ("rainfall.csv", "events.geojson", "candidate_scenes.csv", "cloud_check.json")]
     return "|".join(f"{f.stat().st_mtime_ns}-{f.stat().st_size}" if f.exists() else "-" for f in files)
 
@@ -395,6 +395,16 @@ def season_dates() -> list[str]:
     """Dates with an open-water overlay for the season slider, oldest first."""
     ov = bounds().get("overlays", {})
     return sorted(o["date"] for k, o in ov.items() if k.startswith("water_d") and o.get("date"))
+
+
+def pass_images() -> dict[str, str]:
+    """{date: map-iframe URL} of the radar colour image of every same-orbit, same-mode NISAR pass
+    (pipeline/pass_images.py), oldest first. Empty when that step has not run."""
+    pj, base, d = geojson("pass_images.json"), publish_overlays(), _dir()
+    if not pj or not base or not d:
+        return {}
+    return {p["date"]: f"{COMPONENT_UP}{base}/{Path(p['file']).name}"
+            for p in sorted(pj.get("passes", []), key=lambda p: p["date"]) if (d / p["file"]).exists()}
 
 
 def field_files() -> dict[str, tuple[str, int]]:

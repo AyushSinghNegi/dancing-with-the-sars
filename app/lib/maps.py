@@ -263,6 +263,39 @@ def add_events(m):
     fg.add_to(m)
 
 
+def one_pass(date: str, location=None, zoom=10, basemap=None, water=True, collapsed=True):
+    """What NISAR saw on one pass: its radar colour image, and the open water mapped on that date."""
+    basemap = basemap or default_basemap()
+    m = folium.Map(location=location or center(), zoom_start=zoom, tiles=None, control_scale=True,
+                   prefer_canvas=True, zoom_snap=0.25, zoom_delta=0.5)
+    b = data.bounds().get("bounds_latlon")
+    if location is None and b:
+        m.fit_bounds(b, padding=(6, 6))
+    m.get_root().header.add_child(folium.Element(map_css(basemap)))
+    folium.map.CustomPane("labels", z_index=650, pointer_events=False).add_to(m)
+    url, attr = BASEMAPS[basemap]
+    folium.TileLayer(url, attr=attr, name=basemap, max_zoom=18, control=False).add_to(m)
+    layers = [(data.pass_images().get(date), f"Radar colour, {date}", 1.0, True),
+              (data.overlay_url(f"water_d{date}"), f"Open water, {date}", 0.9, water)]
+    for ov_url, name, opacity, show in layers:
+        if not ov_url or not b:
+            continue
+        ov = folium.raster_layers.ImageOverlay(image="data:image/png;base64,", bounds=b, name=name, opacity=opacity,
+                                               interactive=False, cross_origin=False, zindex=2, show=show)
+        ov.url = ov_url
+        ov.add_to(m)
+    lab = _labels(basemap)
+    folium.TileLayer(lab[0], attr=lab[1], name="Place names", overlay=True, control=True, show=True, pane="labels",
+                     max_zoom=18).add_to(m)
+    if b:
+        folium.Rectangle(b, color=_ink(basemap), weight=1.2, fill=False, dash_array="4 4", control=False,
+                         tooltip="Study box (NISAR crop)").add_to(m)
+    folium.LayerControl(collapsed=collapsed, position="topright").add_to(m)
+    Fullscreen(position="topleft").add_to(m)
+    _extras(m, basemap)
+    return m
+
+
 def season(date: str, basemap=None, opacity=0.9):
     """Open water on one NISAR pass (season slider), on a plain base map."""
     basemap = basemap or default_basemap()
