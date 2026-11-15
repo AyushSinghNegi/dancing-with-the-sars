@@ -34,24 +34,29 @@ mode = st.segmented_control(
 if mode == "season":
     tl = data.table("timeline.csv")
     st.markdown(f'<div class="ml-dates">' + tr(
-        "Open water on every NISAR pass of the same orbit and radar mode. Drag the slider to watch the reservoirs "
-        "fill after the July storm.", "एकाच कक्षेतील आणि रडार पद्धतीतील प्रत्येक निसार निरीक्षणातील उघडे पाणी. जुलैच्या "
-        "वादळानंतर धरणे भरताना पाहण्यासाठी स्लायडर ओढा.") + "</div>", unsafe_allow_html=True)
-    d = st.select_slider(tr("NISAR pass", "निसार निरीक्षण"), options=seasons, value=seasons[0] if
-                         ss.get("season_pick") not in seasons else ss["season_pick"], format_func=ui.date, key="season_pick")
-    row = tl[tl["date"] == d].iloc[0] if tl is not None and (tl["date"] == d).any() else None
-    first = tl[tl["date"] == seasons[0]].iloc[0] if tl is not None and (tl["date"] == seasons[0]).any() else None
+        "Open water on every NISAR pass of the same orbit and radar mode. Press play, or drag the slider inside the "
+        "map, to watch the reservoirs fill after the July storm. The map keeps its zoom while the date changes.",
+        "एकाच कक्षेतील आणि रडार पद्धतीतील प्रत्येक निसार निरीक्षणातील उघडे पाणी. जुलैच्या वादळानंतर धरणे भरताना "
+        "पाहण्यासाठी नकाशातील प्ले बटण दाबा किंवा स्लायडर ओढा. तारीख बदलताना नकाशाचा झूम तसाच राहतो.") + "</div>",
+        unsafe_allow_html=True)
     col = "water_in_jrc_extent_km2" if tl is not None and "water_in_jrc_extent_km2" in tl else "water_km2"
-    if row is not None:
+    first = tl[tl["date"] == seasons[0]].iloc[0] if tl is not None and (tl["date"] == seasons[0]).any() else None
+    notes = []
+    for d in seasons:
+        row = tl[tl["date"] == d].iloc[0] if tl is not None and (tl["date"] == d).any() else None
+        if row is None:     # no area figure for this pass: show the date only, never a made-up number
+            notes.append(f"<b>{html.escape(ui.date(d))}</b>")
+            continue
         delta = "" if first is None or d == seasons[0] else tr(" ({s}{v:.0f} km² since {f})", " ({f} पासून {s}{v:.0f} चौ. किमी)",
                                                               s="+" if row[col] >= first[col] else "−",
                                                               v=abs(row[col] - first[col]), f=ui.day(seasons[0]))
-        st.markdown(f'<p class="ml-lede"><b>{row[col]:.0f} km²</b> ' + tr(
+        notes.append(f"<b>{row[col]:.0f} km²</b> " + html.escape(tr(
             "of open water inside the area where water has ever been recorded (JRC, 1984 to 2021) on {d}",
-            "{d} रोजी, जिथे कधी ना कधी पाणी नोंदवले गेले आहे (JRC, १९८४ ते २०२१) अशा भागात उघडे पाणी", d=ui.date(d))
-            + f"{delta}.</p>", unsafe_allow_html=True)
+            "{d} रोजी, जिथे कधी ना कधी पाणी नोंदवले गेले आहे (JRC, १९८४ ते २०२१) अशा भागात उघडे पाणी", d=ui.date(d)))
+            + html.escape(delta) + ".")
     ui.legend([(ui.COLORS["new_water"], tr("Open water on this pass", "या निरीक्षणातील उघडे पाणी"), "fill")])
-    st_folium(maps.season(d), height=600, use_container_width=True, returned_objects=[], key=f"season_{d}_{ui.dark()}")
+    st_folium(maps.season(seasons, notes), height=640, use_container_width=True, returned_objects=[],
+              key=f"season_{ui.lang()}_{ui.dark()}")
     if tl is not None and len(tl) > 1:
         st.plotly_chart(charts.timeline(tl), width="stretch", config={"displayModeBar": False})
         st.caption(ui.t("timeline_caption"))

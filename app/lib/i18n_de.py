@@ -85,10 +85,11 @@ DE = {
     "to it and see the radar before and after.":
         "{n} Überschwemmungsflächen: neues Wasser am {a}, wo zwischen 1984 und 2021 nie Wasser verzeichnet wurde. "
         "Wählen Sie eine, um die Karte dorthin zu zoomen und das Radar vorher und nachher zu sehen.",
-    "Open water on every NISAR pass of the same orbit and radar mode. Drag the slider to watch the reservoirs fill "
-    "after the July storm.":
-        "Offenes Wasser bei jedem NISAR-Überflug mit gleichem Orbit und Radarmodus. Ziehen Sie den Regler und sehen "
-        "Sie, wie sich die Stauseen nach dem Juli-Sturm füllen.",
+    "Open water on every NISAR pass of the same orbit and radar mode. Press play, or drag the slider inside the "
+    "map, to watch the reservoirs fill after the July storm. The map keeps its zoom while the date changes.":
+        "Offenes Wasser bei jedem NISAR-Überflug mit gleichem Orbit und Radarmodus. Drücken Sie auf Abspielen oder "
+        "ziehen Sie den Regler in der Karte und sehen Sie, wie sich die Stauseen nach dem Juli-Sturm füllen. Die Karte "
+        "behält ihren Zoom, während das Datum wechselt.",
     "Open water on this pass": "Offenes Wasser bei diesem Überflug",
     "Field check list: print it, KML for phones, CSV": "Feld-Checkliste: drucken, KML fürs Handy, CSV",
     "All water numbers and thresholds": "Alle Wasserzahlen und Schwellenwerte",
