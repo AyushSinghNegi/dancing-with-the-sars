@@ -82,8 +82,8 @@ A Python pipeline reads only the Pune box from each NISAR file, on a 40 m grid.
 
 - Against reports: 18 events from news sources, each linked. Of 10 floods radar could observe, 3 had
   a "possible water" patch nearby, which is no better than chance: places nobody reported match about
-  3.8 of 10 under the same rule. The 7 misses were all in built-up areas, where radar echoes off walls
-  hide street flooding. Of 7 landslides we could locate, radar could observe 4; we matched 2, both to the
+  3.8 of 10 under the same rule. The 7 misses were all reported in or near towns, where radar echoes off
+  walls can hide street flooding; that is a likely reason, not one we measured. Of 7 landslides we could locate, radar could observe 4; we matched 2, both to the
   same zone.
 - Against a second orbit: NISAR track 106 (3 to 15 July) saw 12 of the zones and found 2 again,
   about 8 times what chance gives (p = 0.026).
