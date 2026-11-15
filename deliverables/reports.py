@@ -189,11 +189,12 @@ def business_plan():
             ["Likely landslide zones", f"{S['zones']} ({S['high']} high confidence)",
              f"Second orbit {XT['lift_confirmed']:.0f}× chance; NASADEM keeps {DC['found']} of {DC['zones_main']}"],
             ["Reported floods with a detection nearby", f"{V['flood']['hits']} of {V['flood']['observable']}",
-             f"No better than chance ({FB['reference']['flat_ground']['expected_matches']:.1f} at random places): city "
-             "flooding hides from radar"],
+             f"No better than chance ({FB['reference']['flat_ground']['expected_matches']:.1f} at random places); the "
+             "misses were in or near towns"],
         ], widths=[38, 20, 42]),
         p("We publish the weak results as plainly as the strong ones. Radar finds landslide scars and rising reservoirs "
-          "well; it does not find water between buildings, so city flood reports are mostly missed. That limit shapes "
+          "well. Every reported flood it missed was in or near a town, where buildings can hide flooded streets: a likely "
+          "reason, not a measured one. That limit shapes "
           "the product: MonsoonLens is a landslide and water-rise lead generator first, and an urban flood map only "
           "once the science supports it (Section 9)."),
         h2("4. Why now: NISAR changes the economics"),
@@ -318,7 +319,7 @@ def business_plan():
         table(["Risk", "What we do about it"], [
             ["False leads waste crews' time", "Rank by evidence and independent checks; show every check; publish the "
                                              "field-verified hit rate each season"],
-            ["Urban floods are missed", "Say so on every page; treat urban flooding as research until it validates"],
+            ["Floods between buildings are likely missed", "Say so on every page; treat urban flooding as research until it validates"],
             ["NISAR products are provisional", "Track calibration updates; re-run history when products are reprocessed"],
             ["Mission lifetime (3-year prime mission)", "Add Sentinel-1 and S-band so the service outlives one satellite"],
             ["Leads read as warnings and cause alarm", "Call them leads, not landslides; send them to officials first; the "
@@ -327,7 +328,7 @@ def business_plan():
         ], widths=[35, 65]),
         h2("13. Team"),
         p("<b>Team iGenfinity</b>, NASA Space Apps Challenge 2026 (GDG Ahlen): <b>Ayush Singh Negi</b> (app and "
-          "integration, team lead), <b>Rajendra Singh Negi</b> (data and science), <b>Urvashi</b> (validation, story and "
+          "integration, team lead), <b>Rajendra Singh Negi</b> (data and science), <b>Urvashi Negi</b> (validation, story and "
           "pitch)."),
         p("<i>Use of AI:</i> parts of the code, text and translations were drafted with an AI assistant and checked by "
           "the team. Every number comes from the pipeline output or a cited source. No NASA logos are used."),
@@ -358,7 +359,8 @@ def technical():
               (f"{V['slide']['hits']}/{V['slide']['observable']}", "reported landslides with a zone nearby"),
               (f"{V['flood']['hits']}/{V['flood']['observable']}", "reported floods matched: no better than chance")]),
         p("The landslide and reservoir results hold up under independent checks. The flood matches do not beat chance: "
-          "the reported floods were mostly in built-up areas, where radar sees flooded streets as bright, not dark."),
+          "every reported flood we missed was in or near a town, where buildings can hide flooded streets (a likely reason, "
+          "not a measured one)."),
         h2("2. Event and study area"),
         p(f"The study box spans longitude {M['aoi']['west']}–{M['aoi']['east']}° E and latitude {M['aoi']['south']}–"
           f"{M['aoi']['north']}° N ({F.TILE_KM2:,} km²): the Western Ghats hills in the west, Pune city in the east. Rain "

@@ -587,8 +587,8 @@ def s_checks(t, dur, captions=False):
          DC["found"] / DC["zones_main"], None),
         (f"{V['slide']['hits']} of {V['slide']['observable']}", "reported landslides", "had a zone nearby: weak support",
          CYAN, V["slide"]["hits"] / V["slide"]["observable"], None),
-        (f"{V['flood']['hits']} of {V['flood']['observable']}", "reported floods", "no better than chance: city flooding "
-         "hides from radar", MUTED, V["flood"]["hits"] / V["flood"]["observable"], None)]
+        (f"{V['flood']['hits']} of {V['flood']['observable']}", "reported floods", "no better than chance; the misses were "
+         "in or near towns", MUTED, V["flood"]["hits"] / V["flood"]["observable"], None)]
     cw, ch, gap = 404, 420, 24
     for i, (big, unit, desc, col, frac, chance) in enumerate(cards):
         st = 0.6 + i * 0.28
@@ -778,7 +778,7 @@ CAPTIONS = {   # what each scene says in the walkthrough; split into timed lines
               "see what was found within 2, 5 or 10 km, and share the link. Here, Lonavala in Marathi."],
     "checks": ["Every result is checked. An independent NISAR orbit re-found zones 8 times better than chance,",
                "and 35 of 50 zones held with NASA's NASADEM elevation map.",
-               "Reported floods matched no better than chance: radar misses water between buildings, and the app says so."],
+               "Reported floods matched no better than chance. The misses were in or near towns, where buildings can hide flooded streets."],
     "field": ["District teams get a ranked field check list with radar evidence for each zone,",
               "nearby roads, railways and villages, a printable list and KML for phones,",
               "in English, Hindi, Marathi and German."],

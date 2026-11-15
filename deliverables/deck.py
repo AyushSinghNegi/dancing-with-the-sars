@@ -66,7 +66,33 @@ def pill(x, y, w, label, url, fill=BLUE, color=WHITE, line=None):
     return [button(x, y, w, 28, label, url, fill=fill, color=color, line=line)]
 
 
+MINOR = {"a", "an", "the", "and", "but", "or", "nor", "for", "so", "yet", "as", "at", "by", "in", "of", "off", "on",
+         "per", "to", "up", "via", "vs"}
+
+
+def title_case(s):
+    """Title case, APA style: major words and words of four letters or more capitalized; short articles, conjunctions
+    and prepositions lower case unless first, last or after a colon or full stop. Names like NISAR, MonsoonLens and
+    iGenfinity are kept as written."""
+    words = s.split(" ")
+    out = []
+    for i, w in enumerate(words):
+        core = w.strip("()\"'“”,.:;!?")
+        lead = w[:len(w) - len(w.lstrip("(\"'“”"))]
+        rest = w[len(lead):]
+        first = i == 0 or words[i - 1].endswith((":", ".", "?", "!"))
+        last = i == len(words) - 1
+        if any(ch.isupper() for ch in core[1:]) or any(ch.isdigit() for ch in core) or not core:
+            out.append(w)
+        elif core.lower() in MINOR and not first and not last:
+            out.append(lead + rest.lower())
+        else:
+            out.append(lead + "-".join(p[:1].upper() + p[1:] for p in rest.split("-")))
+    return " ".join(out)
+
+
 def frame(title, kicker, n, total=7, appendix=False):
+    title, kicker = title_case(title), title_case(kicker)
     els = [rect(0, 0, 960, 540, fill=NAVY, round_=False),
            text(48, 30, 700, 20, kicker, size=12, color=CYAN, font=BODY, bold=True),
            text(48, 50, 864, 48, title, size=28, color=WHITE, font=HEAD, bold=True),
@@ -101,7 +127,7 @@ def main_deck():
                                    "check lists for the people who respond.", size=17, color=INK, line=1.25),
            text(48, 336, 400, 54, [[("Ayush Singh Negi", {"bold": True, "color": WHITE}), (": team lead, app and integration", {})],
                                    [("Rajendra Singh Negi", {"bold": True, "color": WHITE}), (": data and science", {})],
-                                   [("Urvashi", {"bold": True, "color": WHITE}), (": validation, story and pitch", {})]],
+                                   [("Urvashi Negi", {"bold": True, "color": WHITE}), (": validation, story and pitch", {})]],
                 size=10.5, color=MUTED)]
     els += pill(48, 404, 150, "Open the live app", APP)
     els += pill(206, 404, 128, "Watch the demo", L("video", APP), fill=ORANGE)
@@ -178,8 +204,8 @@ def main_deck():
               f"{DC['by_confidence']['high']['found']} of {DC['by_confidence']['high']['zones']} high-confidence.", ORANGE),
              (f"{V['slide']['hits']} of {V['slide']['observable']}", "reported landslides had a zone nearby, both near "
               "one zone: weak support.", CYAN),
-             (f"{V['flood']['hits']} of {V['flood']['observable']}", "reported floods matched: no better than chance. City "
-              "flooding hides from radar, and we say so.", DEEP)]
+             (f"{V['flood']['hits']} of {V['flood']['observable']}", "reported floods matched: no better than chance. The "
+              "misses were in or near towns, where buildings can hide flooded streets.", DEEP)]
     for i, (b, l, a) in enumerate(cards):
         els += [rect(48 + i * 218, 404, 206, 90, fill=PANEL, line=LINE), rect(48 + i * 218, 404, 206, 4, fill=a, round_=False),
                 text(60 + i * 218, 412, 186, 26, b, size=18, color=WHITE, font=HEAD, bold=True),
@@ -239,7 +265,7 @@ REFS_MAIN = ["froude", "ndma_lrms", "malin", "nisar_overview", "aws", "cia_land"
 def appendix_deck():
     s = []
     els = [rect(0, 0, 960, 540, fill=NAVY, round_=False), img(48, 48, 64, 64, "igenfinity_logo_420.jpg"),
-           text(48, 170, 860, 60, "MonsoonLens: appendix", size=44, color=WHITE, font=HEAD, bold=True),
+           text(48, 170, 860, 60, title_case("MonsoonLens: appendix"), size=44, color=WHITE, font=HEAD, bold=True),
            text(48, 236, 760, 60, "Data, method, every check, the business model and all sources behind the 7-slide deck.",
                 size=17, color=INK),
            text(48, 330, 860, 120, [f"Live app: {APP}", f"Code and data: {REPO}",
@@ -341,7 +367,7 @@ def appendix_deck():
     s.append(dict(id="a5", els=els))
     # A6 risks
     els = frame("Limits and risks, and what we do about them", "Honesty", "A7", appendix=True)
-    rows = [["Urban floods are missed (radar bounces off walls)", "Say so everywhere; research double bounce before claiming it"],
+    rows = [["Floods between buildings are likely missed (radar bounces off walls)", "Say so everywhere; research double bounce before claiming it"],
             ["Water between passes is invisible", "Both orbit directions: a look about every 6 days"],
             ["40 m pixels miss narrow slides", "Leads, not verdicts; field checks; finer products later"],
             ["Provisional NISAR products", "Re-run history when products are reprocessed"],
@@ -355,7 +381,7 @@ def appendix_deck():
     els += [img(48, 110, 150, 150, "igenfinity_logo_420.jpg")]
     people = [("Ayush Singh Negi", "Team lead: app and integration"),
               ("Rajendra Singh Negi", "Data and science"),
-              ("Urvashi", "Validation, story and pitch")]
+              ("Urvashi Negi", "Validation, story and pitch")]
     for i, (n, r) in enumerate(people):
         els += [rect(222, 110 + i * 54, 690, 46, fill=PANEL, line=LINE),
                 text(238, 116 + i * 54, 220, 34, n, size=13, color=WHITE, bold=True, valign="MIDDLE"),
