@@ -70,7 +70,7 @@ def frame(title, kicker, n, total=7, appendix=False):
     els = [rect(0, 0, 960, 540, fill=NAVY, round_=False),
            text(48, 30, 700, 20, kicker, size=12, color=CYAN, font=BODY, bold=True),
            text(48, 50, 864, 48, title, size=28, color=WHITE, font=HEAD, bold=True),
-           img(44, 504, 22, 22, "igenfinity_logo.jpg"),
+           img(44, 504, 22, 22, "igenfinity_logo_420.jpg"),
            text(72, 506, 500, 18, "MonsoonLens, Team iGenfinity, NASA Space Apps Challenge 2026", size=9, color=MUTED),
            text(780, 506, 132, 18, (f"Appendix {n}" if appendix else f"{n} / {total}"), size=9, color=MUTED, align="END")]
     return els
@@ -93,7 +93,7 @@ def main_deck():
     s = []
     # 1. title
     els = [rect(0, 0, 960, 540, fill=NAVY, round_=False), img(456, 0, 504, 540, "title_3d.jpg", fit="cover", link=APP),
-           img(48, 40, 74, 74, "igenfinity_logo.jpg"),
+           img(48, 40, 74, 74, "igenfinity_logo_420.jpg"),
            text(134, 52, 320, 52, [[("Team iGenfinity", {"bold": True, "color": WHITE})],
                                    "NASA Space Apps Challenge 2026: Dancing with the SARs"], size=11, color=MUTED),
            text(48, 150, 400, 70, "MonsoonLens", size=54, color=WHITE, font=HEAD, bold=True),
@@ -238,7 +238,7 @@ REFS_MAIN = ["froude", "ndma_lrms", "malin", "nisar_overview", "aws", "cia_land"
 # ---------------------------------------------------------------- appendix
 def appendix_deck():
     s = []
-    els = [rect(0, 0, 960, 540, fill=NAVY, round_=False), img(48, 48, 64, 64, "igenfinity_logo.jpg"),
+    els = [rect(0, 0, 960, 540, fill=NAVY, round_=False), img(48, 48, 64, 64, "igenfinity_logo_420.jpg"),
            text(48, 170, 860, 60, "MonsoonLens: appendix", size=44, color=WHITE, font=HEAD, bold=True),
            text(48, 236, 760, 60, "Data, method, every check, the business model and all sources behind the 7-slide deck.",
                 size=17, color=INK),
@@ -352,7 +352,7 @@ def appendix_deck():
     s.append(dict(id="a6", els=els))
     # A8 team and use of AI
     els = frame("Team iGenfinity, and how we used AI", "Team", "A8", appendix=True)
-    els += [img(48, 110, 150, 150, "igenfinity_logo.jpg")]
+    els += [img(48, 110, 150, 150, "igenfinity_logo_420.jpg")]
     people = [("Ayush Singh Negi", "Team lead: app and integration"),
               ("Rajendra Singh Negi", "Data and science"),
               ("Urvashi", "Validation, story and pitch")]
@@ -387,7 +387,29 @@ def appendix_deck():
 
 
 # ---------------------------------------------------------------- backend 1: python-pptx
-def to_pptx(slides, path):
+EMBED_KB = 90   # in the Google Slides upload, bigger pictures are placeholders that Slides fills from the public URL
+
+
+def cover_crop(name, w, h):
+    """Crop an asset to the box's aspect ratio (centre), saved as its own file; returns the new name."""
+    from PIL import Image
+    src = ASSETS / name
+    out = ASSETS / f"{Path(name).stem}_crop{int(w)}x{int(h)}.jpg"
+    if not out.exists() or out.stat().st_mtime < src.stat().st_mtime:
+        im = Image.open(src).convert("RGB")
+        ar, br = im.width / im.height, w / h
+        if ar > br:
+            nw = int(im.height * br)
+            im = im.crop(((im.width - nw) // 2, 0, (im.width - nw) // 2 + nw, im.height))
+        else:
+            nh = int(im.width / br)
+            im = im.crop((0, (im.height - nh) // 2, im.width, (im.height - nh) // 2 + nh))
+        im.save(out, quality=88)
+    return out.name
+
+
+def to_pptx(slides, path, placeholders=None):
+    """placeholders: a list to collect (token, file) for pictures left out of the file (Google Slides upload)."""
     from pptx import Presentation
     from pptx.dml.color import RGBColor
     from pptx.enum.shapes import MSO_SHAPE
@@ -423,22 +445,24 @@ def to_pptx(slides, path):
                 if e.get("link"):
                     shp.click_action.hyperlink.address = e["link"]
             elif e["k"] == "img":
-                f = ASSETS / e["name"]
+                name = cover_crop(e["name"], e["w"], e["h"]) if e.get("fit") == "cover" else e["name"]
+                f = ASSETS / name
                 if not f.exists():
                     raise FileNotFoundError(f)
+                if placeholders is not None and f.stat().st_size > EMBED_KB * 1024:
+                    token = f"{{{{IMG:{len(placeholders):02d}}}}}"
+                    placeholders.append((token, name))
+                    shp = sl.shapes.add_shape(MSO_SHAPE.RECTANGLE, Pt(e["x"]), Pt(e["y"]), Pt(e["w"]), Pt(e["h"]))
+                    shp.fill.background()
+                    shp.line.fill.background()
+                    shp.text_frame.text = token
+                    shp.text_frame.paragraphs[0].runs[0].font.size = Pt(6)
+                    continue
                 iw, ih = Image.open(f).size
                 bw, bh = e["w"], e["h"]
-                if e.get("fit") == "cover":
-                    pic = sl.shapes.add_picture(str(f), Pt(e["x"]), Pt(e["y"]), Pt(bw), Pt(bh))
-                    over = (iw / ih) / (bw / bh)
-                    if over > 1:   # picture wider than the box: crop left and right
-                        pic.crop_left = pic.crop_right = (1 - 1 / over) / 2
-                    else:
-                        pic.crop_top = pic.crop_bottom = (1 - over) / 2
-                else:
-                    r = min(bw / iw, bh / ih)
-                    w_, h_ = iw * r, ih * r
-                    pic = sl.shapes.add_picture(str(f), Pt(e["x"] + (bw - w_) / 2), Pt(e["y"] + (bh - h_) / 2), Pt(w_), Pt(h_))
+                r = min(bw / iw, bh / ih)
+                w_, h_ = iw * r, ih * r
+                pic = sl.shapes.add_picture(str(f), Pt(e["x"] + (bw - w_) / 2), Pt(e["y"] + (bh - h_) / 2), Pt(w_), Pt(h_))
                 if e.get("link"):
                     pic.click_action.hyperlink.address = e["link"]
             elif e["k"] == "button":
@@ -528,10 +552,20 @@ def to_pptx(slides, path):
 
 
 if __name__ == "__main__":
-    for name, fn, prefix in (("MonsoonLens_Deck", main_deck, "m"), ("MonsoonLens_Appendix", appendix_deck, "a")):
+    which = sys.argv[1:] or ["MonsoonLens_Appendix", "MonsoonLens_Deck"]
+    sha = os.environ.get("ASSET_SHA", "claude/deliverables")
+    base = f"https://raw.githubusercontent.com/AyushSinghNegi/dancing-with-the-sars/{sha}/deliverables/assets"
+    for name, fn in (("MonsoonLens_Deck", main_deck), ("MonsoonLens_Appendix", appendix_deck)):
+        if name not in which:
+            continue
         slides = fn()
         p = OUT / f"{name}.pptx"
         to_pptx(slides, p)
         subprocess.run(["soffice", "--headless", "--convert-to", "pdf", "--outdir", str(OUT), str(p)],
-                       check=False, capture_output=True, timeout=240)
-        print(name, len(slides), "slides")
+                       check=False, capture_output=True, timeout=300)
+        ph = []
+        to_pptx(slides, OUT / f"{name}_gslides.pptx", placeholders=ph)
+        reqs = [{"replaceAllShapesWithImage": {"imageUrl": f"{base}/{f}", "imageReplaceMethod": "CENTER_INSIDE",
+                                               "containsText": {"text": tok, "matchCase": True}}} for tok, f in ph]
+        (OUT / f"{name}_gslides_images.json").write_text(json.dumps(reqs, separators=(",", ":")))
+        print(name, len(slides), "slides,", len(ph), "pictures by URL")
