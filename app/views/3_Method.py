@@ -402,6 +402,6 @@ st.markdown("## Team")
 st.markdown('<div class="ml-cardgrid">'
             '<div><b>Ayush Singh Negi</b><p>App and integration</p></div>'
             '<div><b>Rajendra Singh Negi</b><p>Data and science</p></div>'
-            '<div><b>Urvashi</b><p>Validation, story and pitch</p></div></div>', unsafe_allow_html=True)
+            '<div><b>Urvashi Negi</b><p>Validation, story and pitch</p></div></div>', unsafe_allow_html=True)
 st.caption("Team iGenfinity, NASA Space Apps Challenge 2026, GDG Ahlen.")
 ui.sources_line()
