@@ -1,12 +1,10 @@
-"""The MonsoonLens deck (7 slides) and its appendix, from one layout spec, in two forms:
-
-  * a PowerPoint file (python-pptx), also turned into a PDF for the repository;
-  * Google Slides API batchUpdate requests (JSON), used to build the shared Google Slides deck.
+"""The MonsoonLens deck (7 slides) and its appendix, from one layout spec, as PowerPoint files (python-pptx) and PDFs.
+The .pptx files are uploaded to Google Drive, which converts them to Google Slides.
 
 Numbers come from data/derived (pipeline) and deliverables/facts.py (sources). Positions are in points on a
 960 x 540 pt (16:9) page.
 
-  python deliverables/deck.py                 # -> deliverables/out/deck/*.pptx, *.pdf, *_requests.json
+  python deliverables/deck.py                 # -> deliverables/out/deck/*.pptx, *.pdf
 """
 from __future__ import annotations
 
@@ -52,13 +50,20 @@ def rect(x, y, w, h, fill=PANEL, line=None, round_=True, alpha=1.0, link=None):
     return dict(k="rect", x=x, y=y, w=w, h=h, fill=fill, line=line, round=round_, alpha=alpha, link=link)
 
 
-def img(x, y, w, h, name, link=None):
-    return dict(k="img", x=x, y=y, w=w, h=h, name=name, link=link)
+def img(x, y, w, h, name, link=None, fit="contain"):
+    """fit="contain" keeps the whole picture inside the box; "cover" fills the box and crops the overflow."""
+    return dict(k="img", x=x, y=y, w=w, h=h, name=name, link=link, fit=fit)
 
 
-def pill(x, y, w, label, url, fill=BLUE, color=WHITE):
-    return [rect(x, y, w, 26, fill=fill, link=url), text(x, y + 1, w, 24, label, size=11.5, color=color, bold=True,
-                                                            align="CENTER", valign="MIDDLE", link=url)]
+def button(x, y, w, h, label, url, fill=BLUE, color=WHITE, size=11.5, line=None, align="CENTER", bold=True, sub=None):
+    """A clickable shape with its label inside, so the whole shape is the link and the label keeps its colour.
+    sub: a quieter second part of the label."""
+    return dict(k="button", x=x, y=y, w=w, h=h, label=label, link=url, fill=fill, color=color, size=size, line=line,
+                align=align, bold=bold, sub=sub)
+
+
+def pill(x, y, w, label, url, fill=BLUE, color=WHITE, line=None):
+    return [button(x, y, w, 28, label, url, fill=fill, color=color, line=line)]
 
 
 def frame(title, kicker, n, total=7, appendix=False):
@@ -87,22 +92,24 @@ def main_deck():
     rise_lo, rise_hi = SE["range"]["rise_km2"]
     s = []
     # 1. title
-    els = [rect(0, 0, 960, 540, fill=NAVY, round_=False), img(430, 0, 530, 540, "view3d.jpg"),
-           rect(430, 0, 530, 540, fill=NAVY, alpha=0.18, round_=False), rect(0, 0, 470, 540, fill=NAVY, round_=False),
+    els = [rect(0, 0, 960, 540, fill=NAVY, round_=False), img(456, 0, 504, 540, "title_3d.jpg", fit="cover", link=APP),
            img(48, 40, 74, 74, "igenfinity_logo.jpg"),
            text(134, 52, 320, 52, [[("Team iGenfinity", {"bold": True, "color": WHITE})],
                                    "NASA Space Apps Challenge 2026: Dancing with the SARs"], size=11, color=MUTED),
            text(48, 150, 400, 70, "MonsoonLens", size=54, color=WHITE, font=HEAD, bold=True),
            text(48, 222, 390, 110, "What NASA–ISRO's NISAR radar saw through the 2026 Pune monsoon, turned into field "
                                    "check lists for the people who respond.", size=17, color=INK, line=1.25),
-           text(48, 340, 400, 40, [[("Ayush Singh Negi", {"bold": True}), (", app   ", {}), ("Rajendra Singh Negi",
-                                    {"bold": True}), (", data and science   ", {}), ("Urvashi", {"bold": True}),
-                                    (", validation and story", {})]], size=10.5, color=MUTED)]
-    els += pill(48, 400, 150, "Open the live app", APP)
-    els += pill(206, 400, 120, "Watch the demo", L("video", APP), fill=ORANGE)
-    els += pill(334, 400, 110, "Code and data", REPO, fill=PANEL)
-    els += [text(48, 446, 400, 40, "Every number in this deck comes from our open pipeline or a cited source. "
-                                   "Sources: appendix and linked reports.", size=9, color=MUTED)]
+           text(48, 336, 400, 54, [[("Ayush Singh Negi", {"bold": True, "color": WHITE}), (": team lead, app and integration", {})],
+                                   [("Rajendra Singh Negi", {"bold": True, "color": WHITE}), (": data and science", {})],
+                                   [("Urvashi", {"bold": True, "color": WHITE}), (": validation, story and pitch", {})]],
+                size=10.5, color=MUTED)]
+    els += pill(48, 404, 150, "Open the live app", APP)
+    els += pill(206, 404, 128, "Watch the demo", L("video", APP), fill=ORANGE)
+    els += pill(342, 404, 106, "Code and data", REPO, fill=PANEL, line=LINE)
+    els += [text(48, 448, 400, 40, "Every number in this deck comes from our open pipeline or a cited source: see the "
+                                   "appendix and the linked reports.", size=9, color=MUTED),
+            text(470, 514, 476, 18, "3D view from the app: NISAR results over Copernicus GLO-30 elevation, heights ×2",
+                 size=8, color=MUTED, align="END")]
     s.append(dict(id="s1", els=els))
     # 2. problem
     els = frame("Cloud hides the ground exactly when it matters", "The problem", 2)
@@ -140,10 +147,10 @@ def main_deck():
     chips = ["6 pages", "4 languages", "Guided tour", "Phone-ready", "Open source"]
     x = 48
     for c in chips:
-        w = 18 + len(c) * 6.8
-        els += [rect(x, 438, w, 24, fill=NAVY2, line=CYAN), text(x, 439, w, 22, c, size=10, color=CYAN, align="CENTER",
+        w = 16 + len(c) * 5.9
+        els += [rect(x, 438, w, 24, fill=NAVY2, line=CYAN), text(x, 439, w, 22, c, size=9.5, color=CYAN, align="CENTER",
                                                                    valign="MIDDLE", bold=True)]
-        x += w + 8
+        x += w + 7
     els += [img(450, 112, 462, 260, "hero.jpg", link=APP), img(450, 382, 226, 110, "tour.jpg", link=APP),
             img(686, 382, 226, 110, "hindi.jpg", link=APP + "/?lang=hi")]
     s.append(dict(id="s3", els=els))
@@ -159,8 +166,8 @@ def main_deck():
          (f"{W['flood_km2']:.2f} km²", "flood water still standing on dry land on 10 July: an order of magnitude, "
           "very threshold-sensitive", DEEP)]
     for i, (b, l, a) in enumerate(k):
-        els += kpi(462 + (i % 2) * 228, 104 + (i // 2) * 128, 216, 116, b, l, accent=a)
-    els += [img(462, 368, 444, 124, "before_after_dark.png")]
+        els += kpi(462 + (i % 2) * 228, 104 + (i // 2) * 106, 216, 98, b, l, accent=a)
+    els += [img(462, 318, 450, 176, "before_after_dark.png")]
     s.append(dict(id="s4", els=els))
     # 5. validity
     els = frame("Every result is checked, and the weak ones are shown too", "Validity", 5)
@@ -196,30 +203,31 @@ def main_deck():
     s.append(dict(id="s6", els=els))
     # 7. scale and business
     els = frame("From one district to every NISAR pass on Earth", "Scale and business", 7)
-    els += [img(48, 104, 470, 210, "cost_to_cover_dark.png"),
-            text(48, 322, 470, 60, [[(f"${F.yearly_cost(F.EARTH_LAND_KM2):,.0f} a year ", {"bold": True, "color": WHITE}),
-                                     ("of cloud compute would run MonsoonLens on every NISAR pass over all land. Measured "
+    els += [img(48, 104, 440, 196, "cost_to_cover_dark.png"),
+            text(48, 308, 440, 60, [[(f"${F.yearly_cost(F.EARTH_LAND_KM2):,.0f} a year ", {"bold": True, "color": WHITE}),
+                                     ("of cloud compute would run MonsoonLens on every NISAR pass over all land: measured "
                                       "runtime, published prices, 3× allowance for data access [5][6].", {})]],
-                 size=11.5, color=INK, line=1.25),
-            text(48, 384, 470, 110, [[("Open core. ", {"bold": True, "color": WHITE}),
-                                      ("The app, maps and code stay free. District, state and infrastructure teams pay "
-                                       "for their own area, alerts after every pass, a field app and support.", {})],
+                 size=11, color=INK, line=1.2),
+            text(48, 372, 440, 124, [[("Open core. ", {"bold": True, "color": WHITE}),
+                                      ("The app, maps and code stay free for everyone. District, state and infrastructure "
+                                       "teams pay for their own area, alerts after every pass, a field app and support.", {})],
                                      [("The ask. ", {"bold": True, "color": ORANGE}),
                                       ("A 2027 monsoon pilot with three Western Ghats district teams, and seed funding to "
-                                       "run on every new pass.", {})]], size=11.5, color=INK, line=1.25),
-            img(540, 104, 372, 150, "roadmap_dark.png")]
-    docs = [("Business plan and global scale-up", L("business_plan")), ("Technical and validation report", L("technical")),
-            ("Field operations guide", L("field_guide")), ("Appendix: data, method, checks, references", L("appendix")),
-            ("Extended demo video", L("video_long"))]
-    y = 272
-    els += [text(540, y - 6, 372, 20, "Read more", size=12, color=CYAN, bold=True)]
-    for label, url in docs:
-        y += 26
-        els += [rect(540, y, 372, 22, fill=PANEL, line=LINE, link=url or APP),
-                text(552, y + 1, 360, 20, ("↗  " if url else "") + label, size=10.5, color=WHITE, valign="MIDDLE",
-                     link=url or APP)]
-    els += [text(540, y + 32, 372, 40, "Use of AI: code, text and translations were drafted with an AI assistant and "
-                                       "checked by the team. No NASA logos are used.", size=8.5, color=MUTED)]
+                                       "run on every new pass.", {})]], size=11, color=INK, line=1.2),
+            img(508, 104, 404, 196, "revenue_dark.png")]
+    docs = [("Business plan and global scale-up", "13 pages: market, model, costs, five-year plan", L("business_plan")),
+            ("Technical and validation report", "data, method, every check, all 50 zones", L("technical")),
+            ("Field operations guide", "how a district team uses the leads", L("field_guide")),
+            ("Appendix slides", "data, method, checks, business, risks, sources", L("appendix")),
+            ("Full demo video", "every feature, one by one", L("video_long", L("video")))]
+    els += [text(508, 306, 404, 20, "Read more", size=12, color=CYAN, bold=True)]
+    y = 328
+    for label, sub, url in docs:
+        els += [button(508, y, 404, 26, label, url or APP, fill=PANEL, color=WHITE, size=10.5, line=LINE, align="LEFT",
+                       sub=sub)]
+        y += 31
+    els += [text(508, y + 2, 404, 30, "AI use: code, text and translations were drafted with an AI assistant and checked "
+                                      "by the team. No NASA logos are used.", size=8.5, color=MUTED)]
     s.append(dict(id="s7", els=els))
     return s
 
@@ -269,8 +277,23 @@ def appendix_deck():
             ["11. Package", f"{M['evidence']['chips']} image chips; field list as HTML, KML, CSV, GeoJSON"]]
     els += [dict(k="table", x=48, y=104, w=864, h=380, head=["Step", "What happens"], rows=rows, widths=[18, 82])]
     s.append(dict(id="a2", els=els))
+    # A3 the app, page by page
+    els = frame("The app, page by page", "The app", "A3", appendix=True)
+    shots = [("hero.jpg", "Overview", "What happened, the key numbers, the 3D view and a guided tour", ""),
+             ("story.jpg", "Story", "Five steps from cloud to radar to field list, with a before/after slider", "/story"),
+             ("explore_flat.jpg", "Explore the map", "Every layer, every zone and flood patch, downloads", "/explore"),
+             ("place.jpg", "Check a place", "431 villages and towns; what was found within 2, 5 or 10 km", "/place"),
+             ("field.jpg", "Field check list", "Ranked leads, radar evidence, printable list and KML", "/field"),
+             ("method.jpg", "Method and limits", "Every step, check, limit and NISAR file, in four languages", "/method")]
+    for i, (f, t, d, u) in enumerate(shots):
+        x, y = 48 + (i % 3) * 292, 104 + (i // 3) * 200
+        els += [img(x, y, 280, 140, f, fit="cover", link=APP + u),
+                rect(x, y, 280, 140, fill=NAVY, alpha=0.0, line=LINE, round_=False, link=APP + u),
+                text(x, y + 146, 280, 18, t, size=11.5, color=WHITE, bold=True, link=None),
+                text(x, y + 164, 280, 30, d, size=9, color=MUTED)]
+    s.append(dict(id="a3", els=els))
     # A3 checks detail
-    els = frame("Checks in detail", "Validity", "A3", appendix=True)
+    els = frame("Checks in detail", "Validity", "A4", appendix=True)
     rows = [["Second NISAR orbit", f"{XT['status_counts']['confirmed']} of {XT['real']['zones_scored']} re-found "
              f"({XT['real']['confirmed'] * 100:.1f}%) vs {XT['chance']['confirmed'] * 100:.1f}% at random steep places "
              f"({XT['chance']['trials']} trials); {XT['lift_confirmed']:.0f}×, p ≈ {XT['p_value']:.3f}; covers "
@@ -290,7 +313,7 @@ def appendix_deck():
     els += [img(48, 362, 430, 136, "season_dark.png"), img(490, 362, 422, 136, "chips_dark.png")]
     s.append(dict(id="a3", els=els))
     # A4 business model
-    els = frame("Business model and five-year plan (planning assumptions)", "Business", "A4", appendix=True)
+    els = frame("Business model and five-year plan (planning assumptions)", "Business", "A5", appendix=True)
     rows = [[k, "Free" if v[0] == 0 else f"${v[0]:,}", v[1]] for k, v in F.PRICES.items()]
     els += [dict(k="table", x=48, y=104, w=430, h=230, head=["Tier", "Per year", "Includes"], rows=rows, widths=[22, 18, 60],
                  size=8.5)]
@@ -298,7 +321,7 @@ def appendix_deck():
             img(490, 304, 422, 190, "coverage_dark.png")]
     s.append(dict(id="a4", els=els))
     # A5 global architecture
-    els = frame("How it scales to every NISAR pass on Earth", "Global scale-up", "A5", appendix=True)
+    els = frame("How it scales to every NISAR pass on Earth", "Global scale-up", "A6", appendix=True)
     boxes = [("New NISAR pass published", "NASA catalogue watcher"), ("Tile job starts", f"{F.EARTH_LAND_KM2 / F.TILE_KM2:,.0f} "
              "land tiles of 7,116 km²"), ("Runs next to the data", "AWS us-west-2, Earthdata Cloud [7]"),
              ("Checks and evidence", "second orbit, DEM, thresholds"), ("Outputs", "COG, STAC, CAP alerts, field lists")]
@@ -309,15 +332,15 @@ def appendix_deck():
                 text(x + 10, 172, 140, 40, d, size=9.5, color=MUTED)]
         if i < 4:
             els += [text(x + 160, 150, 16, 30, "→", size=16, color=CYAN, align="CENTER")]
-    els += [text(48, 240, 420, 250, ["Self-calibrating: water thresholds trained per date from the global JRC record.",
+    els += [text(48, 240, 416, 250, ["Self-calibrating: water thresholds trained per date from the global JRC record.",
                                      "Global inputs: Copernicus GLO-30 and NASADEM, OpenStreetMap places and roads.",
                                      "Local by design: four languages today, more per region.",
                                      "Science next: both orbit directions, InSAR motion, S-band and Sentinel-1, urban "
                                      "floods from double bounce."], size=12, color=INK, bullets=True, line=1.3),
-            img(490, 236, 422, 160, "roadmap_dark.png")]
+            img(480, 232, 432, 262, "roadmap_dark.png")]
     s.append(dict(id="a5", els=els))
     # A6 risks
-    els = frame("Limits and risks, and what we do about them", "Honesty", "A6", appendix=True)
+    els = frame("Limits and risks, and what we do about them", "Honesty", "A7", appendix=True)
     rows = [["Urban floods are missed (radar bounces off walls)", "Say so everywhere; research double bounce before claiming it"],
             ["Water between passes is invisible", "Both orbit directions: a look about every 6 days"],
             ["40 m pixels miss narrow slides", "Leads, not verdicts; field checks; finer products later"],
@@ -327,16 +350,39 @@ def appendix_deck():
             ["Mission lifetime", "Add Sentinel-1 and S-band so the service outlives one satellite"]]
     els += [dict(k="table", x=48, y=104, w=864, h=360, head=["Limit or risk", "What we do"], rows=rows, widths=[45, 55])]
     s.append(dict(id="a6", els=els))
+    # A8 team and use of AI
+    els = frame("Team iGenfinity, and how we used AI", "Team", "A8", appendix=True)
+    els += [img(48, 110, 150, 150, "igenfinity_logo.jpg")]
+    people = [("Ayush Singh Negi", "Team lead: app and integration"),
+              ("Rajendra Singh Negi", "Data and science"),
+              ("Urvashi", "Validation, story and pitch")]
+    for i, (n, r) in enumerate(people):
+        els += [rect(222, 110 + i * 54, 690, 46, fill=PANEL, line=LINE),
+                text(238, 116 + i * 54, 220, 34, n, size=13, color=WHITE, bold=True, valign="MIDDLE"),
+                text(452, 116 + i * 54, 450, 34, r, size=10.5, color=INK, valign="MIDDLE")]
+    els += [text(48, 290, 864, 20, "Use of AI", size=13, color=CYAN, bold=True),
+            text(48, 312, 864, 120, ["An AI coding assistant (Claude) helped write code, text, figures and the Hindi, "
+                                     "Marathi and German translations. The team reviewed every result, and every number "
+                                     "comes from our open pipeline or a cited source.",
+                                     "No AI-generated images or video are used as evidence: radar images are NISAR data, maps "
+                                     "are drawn from data, and screenshots and the demo video show the real app.",
+                                     "No NASA logos or mission identifiers are used. NISAR data courtesy of NASA/JPL-Caltech "
+                                     "and ISRO, via ASF DAAC."], size=11, color=INK, bullets=True, line=1.25)]
+    els += pill(48, 448, 150, "Open the live app", APP) + pill(206, 448, 120, "Code and data", REPO, fill=PANEL, line=LINE)
+    s.append(dict(id="a8", els=els))
     # A7 references
-    els = frame("References and sources", "Sources", "A7", appendix=True)
+    els = frame("References and sources", "Sources", "A9", appendix=True)
     keys = REFS_MAIN + ["nisar_s3", "nisar_asf", "nisar_open", "rentschler", "gsi_wghats", "wayanad", "fc15", "sdmf",
                         "sdrf", "wef", "gca", "ew4all", "wmo_15", "pekel", "copdem", "nasadem", "imerg", "osm", "worldview"]
     lines = []
     for i, k_ in enumerate(keys, 1):
         t, u = F.SOURCES[k_]
-        lines.append([(f"[{i}] ", {"bold": True, "color": CYAN}), (t + " ", {}), (u, {"link": u, "color": BLUE})])
-    els += [text(48, 100, 864, 400, lines, size=7.6, color=INK, line=1.1)]
-    s.append(dict(id="a7", els=els))
+        lines.append([(f"[{i}]  ", {"bold": True, "color": CYAN}), (t + "  ", {"color": INK}),
+                      ("open", {"link": u, "color": CYAN, "bold": True})])
+    els += [text(48, 104, 420, 380, lines[:13], size=8.6, color=INK, line=1.12),
+            text(492, 104, 420, 380, lines[13:], size=8.6, color=INK, line=1.12),
+            text(48, 486, 864, 16, "Each “open” links to the source.", size=8.5, color=MUTED)]
+    s.append(dict(id="a9", els=els))
     return s
 
 
@@ -379,14 +425,53 @@ def to_pptx(slides, path):
             elif e["k"] == "img":
                 f = ASSETS / e["name"]
                 if not f.exists():
-                    continue
+                    raise FileNotFoundError(f)
                 iw, ih = Image.open(f).size
                 bw, bh = e["w"], e["h"]
-                r = min(bw / iw, bh / ih)
-                w_, h_ = iw * r, ih * r
-                pic = sl.shapes.add_picture(str(f), Pt(e["x"] + (bw - w_) / 2), Pt(e["y"] + (bh - h_) / 2), Pt(w_), Pt(h_))
+                if e.get("fit") == "cover":
+                    pic = sl.shapes.add_picture(str(f), Pt(e["x"]), Pt(e["y"]), Pt(bw), Pt(bh))
+                    over = (iw / ih) / (bw / bh)
+                    if over > 1:   # picture wider than the box: crop left and right
+                        pic.crop_left = pic.crop_right = (1 - 1 / over) / 2
+                    else:
+                        pic.crop_top = pic.crop_bottom = (1 - over) / 2
+                else:
+                    r = min(bw / iw, bh / ih)
+                    w_, h_ = iw * r, ih * r
+                    pic = sl.shapes.add_picture(str(f), Pt(e["x"] + (bw - w_) / 2), Pt(e["y"] + (bh - h_) / 2), Pt(w_), Pt(h_))
                 if e.get("link"):
                     pic.click_action.hyperlink.address = e["link"]
+            elif e["k"] == "button":
+                shp = sl.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Pt(e["x"]), Pt(e["y"]), Pt(e["w"]), Pt(e["h"]))
+                shp.adjustments[0] = min(0.3, 6 / e["h"])
+                shp.fill.solid()
+                shp.fill.fore_color.rgb = rgb(e["fill"])
+                if e["line"]:
+                    shp.line.color.rgb = rgb(e["line"])
+                    shp.line.width = Pt(0.75)
+                else:
+                    shp.line.fill.background()
+                shp.shadow.inherit = False
+                tf = shp.text_frame
+                tf.word_wrap = True
+                tf.margin_left = tf.margin_right = Pt(10)
+                tf.margin_top = tf.margin_bottom = Pt(2)
+                tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+                pp = tf.paragraphs[0]
+                pp.alignment = {"LEFT": PP_ALIGN.LEFT, "CENTER": PP_ALIGN.CENTER}[e["align"]]
+                rr = pp.add_run()
+                rr.text = e["label"]
+                rr.font.size = Pt(e["size"])
+                rr.font.name = BODY
+                rr.font.bold = e["bold"]
+                rr.font.color.rgb = rgb(e["color"])
+                if e.get("sub"):
+                    r2 = pp.add_run()
+                    r2.text = "    " + e["sub"]
+                    r2.font.size = Pt(e["size"] - 2)
+                    r2.font.name = BODY
+                    r2.font.color.rgb = rgb(MUTED)
+                shp.click_action.hyperlink.address = e["link"]
             elif e["k"] == "text":
                 tb = sl.shapes.add_textbox(Pt(e["x"]), Pt(e["y"]), Pt(e["w"]), Pt(e["h"]))
                 tf = tb.text_frame
@@ -422,144 +507,24 @@ def to_pptx(slides, path):
                         c.text = e["head"][j] if i == 0 else str(e["rows"][i - 1][j])
                         c.fill.solid()
                         c.fill.fore_color.rgb = rgb(DEEP if i == 0 else (PANEL if i % 2 else NAVY2))
+                        c.vertical_anchor = MSO_ANCHOR.MIDDLE
+                        c.margin_top = c.margin_bottom = Pt(3)
                         for pp in c.text_frame.paragraphs:
                             for rr in pp.runs:
                                 rr.font.size = Pt(e.get("size", 10))
                                 rr.font.name = BODY
                                 rr.font.bold = i == 0
                                 rr.font.color.rgb = rgb(WHITE if i == 0 else INK)
+    # links in text use the theme's link colour: make it readable on the navy background
+    from pptx.opc.constants import RELATIONSHIP_TYPE as RT
+    theme = prs.slide_masters[0].part.part_related_by(RT.THEME)
+    xml = theme.blob.decode("utf-8")
+    import re as _re
+    for tag in ("hlink", "folHlink"):
+        xml = _re.sub(rf"<a:{tag}>.*?</a:{tag}>", f'<a:{tag}><a:srgbClr val="{CYAN[1:].upper()}"/></a:{tag}>', xml, flags=_re.S)
+    theme._blob = xml.encode("utf-8")
     prs.save(str(path))
     print(path)
-
-
-# ---------------------------------------------------------------- backend 2: Google Slides requests
-def _c(h):
-    h = h.lstrip("#")
-    return {"red": int(h[0:2], 16) / 255, "green": int(h[2:4], 16) / 255, "blue": int(h[4:6], 16) / 255}
-
-
-def _pt(v):
-    return {"magnitude": v, "unit": "PT"}
-
-
-def to_requests(slides, prefix):
-    from PIL import Image
-    reqs = []
-    for si, sd in enumerate(slides):
-        sid = f"{prefix}_{sd['id']}"
-        reqs.append({"createSlide": {"objectId": sid, "insertionIndex": si, "slideLayoutReference": {"predefinedLayout": "BLANK"}}})
-        reqs.append({"updatePageProperties": {"objectId": sid, "pageProperties": {"pageBackgroundFill": {"solidFill": {
-            "color": {"rgbColor": _c(NAVY)}}}}, "fields": "pageBackgroundFill"}})
-        for ei, e in enumerate(sd["els"]):
-            oid = f"{sid}_e{ei}"
-            props = {"pageObjectId": sid, "size": {"width": _pt(e["w"]), "height": _pt(e["h"])},
-                     "transform": {"scaleX": 1, "scaleY": 1, "translateX": e["x"], "translateY": e["y"], "unit": "PT"}}
-            if e["k"] == "rect":
-                if ei == 0 and e["w"] == 960:
-                    continue
-                reqs.append({"createShape": {"objectId": oid, "shapeType": "ROUND_RECTANGLE" if e["round"] else "RECTANGLE",
-                                             "elementProperties": props}})
-                sp = {"shapeBackgroundFill": {"solidFill": {"color": {"rgbColor": _c(e["fill"])}, "alpha": e["alpha"]}},
-                      "outline": ({"outlineFill": {"solidFill": {"color": {"rgbColor": _c(e["line"])}}}, "weight": _pt(0.75)}
-                                  if e["line"] else {"propertyState": "NOT_RENDERED"})}
-                fields = "shapeBackgroundFill,outline"
-                if e.get("link"):
-                    sp["link"] = {"url": e["link"]}
-                    fields += ",link"
-                reqs.append({"updateShapeProperties": {"objectId": oid, "shapeProperties": sp, "fields": fields}})
-            elif e["k"] == "img":
-                f = ASSETS / e["name"]
-                if not f.exists():
-                    continue
-                iw, ih = Image.open(f).size
-                r = min(e["w"] / iw, e["h"] / ih)
-                w_, h_ = iw * r, ih * r
-                props = {"pageObjectId": sid, "size": {"width": _pt(w_), "height": _pt(h_)},
-                         "transform": {"scaleX": 1, "scaleY": 1, "translateX": e["x"] + (e["w"] - w_) / 2,
-                                       "translateY": e["y"] + (e["h"] - h_) / 2, "unit": "PT"}}
-                reqs.append({"createImage": {"objectId": oid, "url": f"{ASSET_URL}/{e['name']}", "elementProperties": props}})
-                if e.get("link"):
-                    reqs.append({"updateImageProperties": {"objectId": oid, "imageProperties": {"link": {"url": e["link"]}},
-                                                           "fields": "link"}})
-            elif e["k"] == "text":
-                paras = e["runs"] if isinstance(e["runs"], list) else [e["runs"]]
-                flat, spans = [], []
-                pos = 0
-                for i, para in enumerate(paras):
-                    runs = para if isinstance(para, list) else [(para, {})]
-                    for t, st in runs:
-                        spans.append((pos, pos + len(t), st))
-                        flat.append(t)
-                        pos += len(t)
-                    if i < len(paras) - 1:
-                        flat.append("\n")
-                        pos += 1
-                full = "".join(flat)
-                if not full:
-                    continue
-                reqs.append({"createShape": {"objectId": oid, "shapeType": "TEXT_BOX", "elementProperties": props}})
-                reqs.append({"insertText": {"objectId": oid, "text": full, "insertionIndex": 0}})
-                base = {"fontFamily": e["font"], "fontSize": _pt(e["size"]), "bold": e["bold"],
-                        "foregroundColor": {"opaqueColor": {"rgbColor": _c(e["color"])}}}
-                if e.get("link"):
-                    base["link"] = {"url": e["link"]}
-                reqs.append({"updateTextStyle": {"objectId": oid, "textRange": {"type": "ALL"}, "style": base,
-                                                 "fields": "fontFamily,fontSize,bold,foregroundColor" + (",link" if e.get("link") else "")}})
-                for a, b, st in spans:
-                    if not st or a == b:
-                        continue
-                    sty, fl = {}, []
-                    if "bold" in st:
-                        sty["bold"] = st["bold"]
-                        fl.append("bold")
-                    if "color" in st:
-                        sty["foregroundColor"] = {"opaqueColor": {"rgbColor": _c(st["color"])}}
-                        fl.append("foregroundColor")
-                    if "link" in st:
-                        sty["link"] = {"url": st["link"]}
-                        fl.append("link")
-                    reqs.append({"updateTextStyle": {"objectId": oid, "textRange": {"type": "FIXED_RANGE", "startIndex": a,
-                                                                                    "endIndex": b},
-                                                     "style": sty, "fields": ",".join(fl)}})
-                reqs.append({"updateParagraphStyle": {"objectId": oid, "textRange": {"type": "ALL"},
-                                                      "style": {"alignment": {"LEFT": "START", "CENTER": "CENTER",
-                                                                              "END": "END"}[e["align"]],
-                                                                "lineSpacing": e["line"] * 100, "spaceBelow": _pt(3)},
-                                                      "fields": "alignment,lineSpacing,spaceBelow"}})
-                reqs.append({"updateShapeProperties": {"objectId": oid, "shapeProperties": {
-                    "contentAlignment": {"TOP": "TOP", "MIDDLE": "MIDDLE"}[e["valign"]]}, "fields": "contentAlignment"}})
-                if e["bullets"]:
-                    reqs.append({"createParagraphBullets": {"objectId": oid, "textRange": {"type": "ALL"},
-                                                            "bulletPreset": "BULLET_DISC_CIRCLE_SQUARE"}})
-            elif e["k"] == "table":
-                rows, cols = len(e["rows"]) + 1, len(e["head"])
-                reqs.append({"createTable": {"objectId": oid, "rows": rows, "columns": cols, "elementProperties": props}})
-                for i in range(rows):
-                    for j in range(cols):
-                        t = e["head"][j] if i == 0 else str(e["rows"][i - 1][j])
-                        if not t:
-                            continue
-                        reqs.append({"insertText": {"objectId": oid, "cellLocation": {"rowIndex": i, "columnIndex": j},
-                                                    "text": t, "insertionIndex": 0}})
-                        reqs.append({"updateTextStyle": {"objectId": oid, "cellLocation": {"rowIndex": i, "columnIndex": j},
-                                                         "textRange": {"type": "ALL"},
-                                                         "style": {"fontFamily": BODY, "fontSize": _pt(e.get("size", 10)),
-                                                                   "bold": i == 0, "foregroundColor": {"opaqueColor": {
-                                                                       "rgbColor": _c(WHITE if i == 0 else INK)}}},
-                                                         "fields": "fontFamily,fontSize,bold,foregroundColor"}})
-                reqs.append({"updateTableCellProperties": {"objectId": oid, "tableRange": {"location": {"rowIndex": 0,
-                             "columnIndex": 0}, "rowSpan": 1, "columnSpan": cols}, "tableCellProperties": {
-                             "tableCellBackgroundFill": {"solidFill": {"color": {"rgbColor": _c(DEEP)}}}},
-                             "fields": "tableCellBackgroundFill"}})
-                for i in range(1, rows):
-                    reqs.append({"updateTableCellProperties": {"objectId": oid, "tableRange": {"location": {"rowIndex": i,
-                                 "columnIndex": 0}, "rowSpan": 1, "columnSpan": cols}, "tableCellProperties": {
-                                 "tableCellBackgroundFill": {"solidFill": {"color": {"rgbColor": _c(PANEL if i % 2 else NAVY2)}}}},
-                                 "fields": "tableCellBackgroundFill"}})
-                for j, wpc in enumerate(e["widths"]):
-                    reqs.append({"updateTableColumnProperties": {"objectId": oid, "columnIndices": [j],
-                                 "tableColumnProperties": {"columnWidth": _pt(e["w"] * wpc / 100)}, "fields": "columnWidth"}})
-    return reqs
 
 
 if __name__ == "__main__":
@@ -569,5 +534,4 @@ if __name__ == "__main__":
         to_pptx(slides, p)
         subprocess.run(["soffice", "--headless", "--convert-to", "pdf", "--outdir", str(OUT), str(p)],
                        check=False, capture_output=True, timeout=240)
-        (OUT / f"{name}_requests.json").write_text(json.dumps(to_requests(slides, prefix), ensure_ascii=False))
         print(name, len(slides), "slides")

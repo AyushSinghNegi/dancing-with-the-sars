@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import asyncio
 import html
+import re
 import json
 import os
 import sys
@@ -575,6 +576,24 @@ ol.refs li { margin-bottom: 4pt; } ol.refs a { word-break: break-all; }
 """
 
 
+SECTION_RULE = "<hr>"   # Google Docs ignores page breaks in imported HTML, so sections are divided by a rule
+
+
+def minify_docs(text):
+    """Inline styles to classes: Google Docs keeps class styles from a <style> block, and the file gets much smaller."""
+    styles = {}
+
+    def rep(m):
+        st = m.group(1).strip().rstrip(";")
+        styles.setdefault(st, f"s{len(styles)}")
+        return f' class="{styles[st]}"'
+
+    body = re.sub(r' style="([^"]*)"', rep, text)
+    css = "".join(f".{c}{{{st}}}" for st, c in styles.items())
+    body = body.replace('<head><meta charset="utf-8"></head>', f'<head><meta charset="utf-8"><style>{css}</style></head>', 1)
+    return re.sub(r">\s+<", "><", body)
+
+
 def _img_src(b, mode):
     if mode == "docs":
         return f"{ASSET_URL}/{b['file'].replace('.png', '.jpg') if b['folder'] == 'screens' else b['file']}"
@@ -586,6 +605,8 @@ def render(rep, mode="print"):
     for b in rep["blocks"]:
         t = b["t"]
         if t == "h2":
+            if mode == "docs":
+                out.append(SECTION_RULE)
             out.append(f"<h2>{html.escape(b['text'])}</h2>")
         elif t == "h3":
             out.append(f"<h3>{html.escape(b['text'])}</h3>")
@@ -594,7 +615,7 @@ def render(rep, mode="print"):
         elif t == "ul":
             out.append("<ul>" + "".join(f"<li>{x}</li>" for x in b["items"]) + "</ul>")
         elif t == "pb":
-            out.append('<div class="pb"></div>' if mode == "print" else "")
+            out.append('<div class="pb"></div>' if mode == "print" else "")   # docs: sections already start pages
         elif t == "fig":
             src = _img_src(b, mode)
             if mode == "print":
@@ -602,9 +623,10 @@ def render(rep, mode="print"):
                 out.append(f'<figure style="width:{b["width"]}%"><img{cls} src="file://{src}"><div class="cap">'
                            f'{html.escape(b["caption"])}</div></figure>')
             else:
-                w = int(6.3 * 96 * b["width"] / 100)
-                out.append(f'<p style="text-align:center"><img src="{src}" width="{w}"></p>'
-                           f'<p style="font-size:9pt;color:#5d6b75"><i>{html.escape(b["caption"])}</i></p>')
+                w = min(int(6.3 * 96 * b["width"] / 100), 470 if b["folder"] == "screens" else 600)
+                # image and caption in one paragraph, so a page break never separates them
+                out.append(f'<p style="text-align:center"><img src="{src}" width="{w}"><br>'
+                           f'<span style="font-size:9pt;color:#5d6b75"><i>{html.escape(b["caption"])}</i></span></p>')
         elif t == "kpis":
             if mode == "print":
                 out.append('<div class="kpis">' + "".join(
@@ -640,7 +662,7 @@ def render(rep, mode="print"):
                                                 for c in r) + "</tr>" for r in b["rows"])
                 out.append(f'<table style="border-collapse:collapse;width:100%;font-size:9pt"><tr>{head}</tr>{rows}'
                            f'</table><p></p>')
-    body = "\n".join(out) + (rep["refs"] or "")
+    body = "\n".join(out) + ((SECTION_RULE if mode == "docs" and rep["refs"] else "") + (rep["refs"] or ""))
     meta = (f'Team iGenfinity · NASA Space Apps Challenge 2026 · GDG Ahlen<br>15 November 2026<br>'
             f'App: <a href="{APP}">{APP}</a><br>Code and data: <a href="{REPO}">{REPO}</a>')
     if mode == "print":
@@ -657,7 +679,7 @@ def render(rep, mode="print"):
             f'<h1 style="font-size:26pt;color:#0b1630">{html.escape(rep["title"])}</h1>'
             f'<p style="font-size:13pt;color:#3c4b5c">{html.escape(rep["subtitle"])}</p><p style="font-size:9.5pt;color:#5d6b75">'
             f'{meta}</p><p style="font-size:9pt;color:#5d6b75"><i>A typeset PDF of this document is in the code repository.'
-            f'</i></p><hr>{body}</body></html>')
+            f'</i></p>{body}</body></html>')
 
 
 async def to_pdf(html_text, path):
@@ -691,4 +713,4 @@ if __name__ == "__main__":
         rep = fn()
         asyncio.run(to_pdf(render(rep, "print"), OUT / f"{name}.pdf"))
         rep = fn()
-        (OUT / f"{name}_docs.html").write_text(render(rep, "docs"), encoding="utf-8")
+        (OUT / f"{name}_docs.html").write_text(minify_docs(render(rep, "docs")), encoding="utf-8")
