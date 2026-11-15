@@ -35,7 +35,7 @@ ground exactly when people need to see it.
 
 ## Link to Project Demo
 
-`[LINK: 30-second video, public, no login]`
+https://youtu.be/gMXD7zp72yY (29.9 s, YouTube, unlisted: opens with no login)
 
 The script is in `content/demo_script.md`. The guide allows a video of 30 seconds or less, or a
 deck of at most 7 slides; anything longer is not eligible for Global Judging.
@@ -49,7 +49,7 @@ deck of at most 7 slides; anything longer is not eligible for Global Judging.
 - Business plan and global scale-up: https://docs.google.com/document/d/1DScRRLFX0MUlZeXZapZGP1U-N0dGmdZiMqDdRX-EudQ/edit?usp=sharing
 - Technical and validation report: https://docs.google.com/document/d/1oxQSBnIQKd3hy4tiM3YgYng6VkXmFPsn9TbB6NuJqpI/edit?usp=sharing
 - Field operations guide: https://docs.google.com/document/d/10gSMM83O0t-ox3mwgSeH6OlVahQl4a0r7GLOxuKpSfs/edit?usp=sharing
-- Full walkthrough video (84 s, captions): `[LINK: walkthrough video, public, no login]`
+- Full walkthrough video (2 min 7 s, captions): https://youtu.be/GY2MDmud-Q4
 - PDFs of the deck and reports: `deliverables/deck/` and `deliverables/reports/` in the repository
 
 ## Detailed Project Description
@@ -203,6 +203,6 @@ Second-orbit check, track 106:
 - [ ] Demo is 30 seconds or less (or 7 slides or fewer).
 - [ ] Live app and repository links open in a private window.
 - [ ] Every number above still matches `data/derived/metrics.json`.
-- [ ] The one remaining `[SQUARE BRACKET]` item is filled: the demo link.
+- [x] The one remaining `[SQUARE BRACKET]` item is filled: the demo link.
 - [ ] Nothing shows a person under 18.
 - [ ] Ayush has given the final OK.

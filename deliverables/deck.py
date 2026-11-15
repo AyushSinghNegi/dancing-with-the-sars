@@ -245,7 +245,7 @@ def main_deck():
             ("Technical and validation report", "data, method, every check, all 50 zones", L("technical")),
             ("Field operations guide", "how a district team uses the leads", L("field_guide")),
             ("Appendix slides", "data, method, checks, business, risks, sources", L("appendix")),
-            ("Full demo video", "every feature, one by one", L("video_long", L("video")))]
+            ("Full demo video", "2 minutes, every feature, with captions", L("video_long", L("video")))]
     els += [text(508, 306, 404, 20, "Read more", size=12, color=CYAN, bold=True)]
     y = 328
     for label, sub, url in docs:
