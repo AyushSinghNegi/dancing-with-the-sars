@@ -64,7 +64,8 @@ def main(argv=None):
     rend = render.run()
     # Two add-ons with their own output files. They read what the steps above wrote, and never block the science.
     for label, mod in (("chance level for the flood matches", "flood_baseline"),
-                       ("roads, railways and settlements near each zone (OpenStreetMap)", "nearby")):
+                       ("roads, railways and settlements near each zone (OpenStreetMap)", "nearby"),
+                       ("one radar image per same-mode pass", "pass_images")):
         print(f"[run] {label}", flush=True)
         try:
             __import__(f"{__package__}.{mod}", fromlist=["run"]).run()

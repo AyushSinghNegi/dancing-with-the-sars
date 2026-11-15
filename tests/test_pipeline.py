@@ -272,6 +272,21 @@ def test_nearby_output_matches_zones():
     assert all(p["distance_m"] <= d["place_m"] for v in d["zones"].values() for p in v["places"])
 
 
+def test_pass_images_are_same_mode_and_exist():
+    import json
+    p = C.DERIVED / "pass_images.json"
+    if not p.exists():
+        pytest.skip("no pass images in this output")
+    d = json.loads(p.read_text())
+    main = C.parse_granule_id(C.PRIMARY["before"])
+    dates = [x["date"] for x in d["passes"]]
+    assert dates == sorted(set(dates)) and main["date"] in dates
+    for x in d["passes"]:
+        g = C.parse_granule_id(x["granule_id"])
+        assert (g["track"], g["mode"], g["pol"], g["date"]) == (main["track"], main["mode"], main["pol"], x["date"])
+        assert (C.DERIVED / x["file"]).exists()
+
+
 def test_gazetteer_inside_box():
     import csv
     p = C.REFERENCE / "places_osm.csv"

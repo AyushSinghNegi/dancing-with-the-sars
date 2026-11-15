@@ -1,0 +1,37 @@
+{
+  "generated": "2026-11-15T01:02:30+00:00",
+  "track": "034",
+  "legend": "Radar colour: red HH, green HV, blue HH/HV; same stretch on every date",
+  "passes": [
+    {
+      "date": "2026-06-28",
+      "file": "overlays/radar_d2026-06-28.webp",
+      "granule_id": "NISAR_L2_PR_GCOV_024_034_D_079_4005_DHDH_A_20260628T134239_20260628T134314_P05023_N_F_J_001",
+      "valid_fraction": 0.946
+    },
+    {
+      "date": "2026-07-10",
+      "file": "overlays/radar_d2026-07-10.webp",
+      "granule_id": "NISAR_L2_PR_GCOV_025_034_D_079_4005_DHDH_A_20260710T134239_20260710T134313_P05023_N_F_J_001",
+      "valid_fraction": 0.947
+    },
+    {
+      "date": "2026-07-22",
+      "file": "overlays/radar_d2026-07-22.webp",
+      "granule_id": "NISAR_L2_PR_GCOV_026_034_D_079_4005_DHDH_A_20260722T134238_20260722T134313_P05023_N_F_J_001",
+      "valid_fraction": 0.947
+    },
+    {
+      "date": "2026-08-15",
+      "file": "overlays/radar_d2026-08-15.webp",
+      "granule_id": "NISAR_L2_PR_GCOV_028_034_D_079_4005_DHDH_A_20260815T134237_20260815T134311_P05023_N_F_J_001",
+      "valid_fraction": 0.946
+    },
+    {
+      "date": "2026-10-14",
+      "file": "overlays/radar_d2026-10-14.webp",
+      "granule_id": "NISAR_L2_PR_GCOV_033_034_D_079_4005_DHDH_A_20261014T134237_20261014T134311_P05023_N_F_J_001",
+      "valid_fraction": 0.945
+    }
+  ]
+}
