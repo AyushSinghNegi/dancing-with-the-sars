@@ -33,9 +33,28 @@ And it turns them into things people can use:
   the water threshold moved by 1 dB either way
 
 > Live app: **https://monsoonlens.streamlit.app** (real NISAR results for Pune).
+> Demo video (30 s): https://youtu.be/gMXD7zp72yY. Full walkthrough (2 min): https://youtu.be/GY2MDmud-Q4.
 > Results: 8.5 km² of reservoirs and rivers rising, 0.36 km² of flood water still standing on 10 July,
 > 50 likely slide zones, checked against 18 reported events and a second NISAR orbit. Every number is
 > explained on the app's Method page.
+
+## Team iGenfinity
+
+What each of us decided, led or did. The tools we used, AI included, are listed under [Use of AI](#use-of-ai).
+
+- **Ayush Singh Negi**, team lead (app and integration). Set the project's direction with the team: the
+  challenge, Pune and the July 2026 event. Decided what the app shows and how, reviewed and merged every pull
+  request, recorded the voice-over for both demo videos, and published the videos, deck and reports.
+- **Rajendra Singh Negi (RSN)**, data and science. Built his own NISAR pipeline on the `rsn/pipeline` branch
+  (draft PR #9): verified raw downloads, NISAR's native quality masks, and a scientific check that showed a
+  single global water threshold fails on this scene. His 14 October crop feeds the season timeline, and his
+  NASADEM elevation feeds the second-elevation-map check.
+- **Urvashi Negi**, validation, story and pitch. Replaced NASA POWER rainfall with GPM IMERG; checked the
+  reported events against their sources and moved one (E016) to where its source places the flooding; added the
+  chance-level test that shows the flood matches are no better than chance, and the roads, railways and
+  settlements near each slide zone; built the season and pass-by-pass map controls; kept the list of open points
+  (`plotholes.md`); read the Submission Guide and cut the deck to its 7-slide limit; wrote the project page text
+  and demo scripts; corrected the German.
 
 ## Quick start
 ```bash
@@ -68,23 +87,11 @@ python -m pytest -q
 | `data/reference/` | Scene list, rainfall, reported events |
 | `data/crops/` | Pune-box crops of NISAR files and public context layers |
 | `data/derived/` | Everything the app shows (small files, each traceable to a NISAR file ID) |
-| `content/` | Story text and style |
-
-## Use of AI
-Following the Space Apps rules on AI disclosure:
-- Most of the pipeline and app code, the tests, the first drafts of the story text (English, Marathi and German) and the
-  first pass of the reported-events research were written with **Claude (Anthropic)**, directed and reviewed by the
-  team. So were the source checks on the reported events, the style guide, the slide outline, the validation
-  table, the "couldn't see" text and `plotholes.md`.
-- Many of these commits carry a `Co-Authored-By: Claude` line or a "Claude" author name, but not all of them.
-  The commits on the `urvashi/content` branch (reference data, event checks, story, style, slide outline and
-  validation text) were made with Claude and carry no such line. The commit history therefore understates the
-  AI use; this section is the full statement.
-- **ChatGPT (OpenAI)** was used by one team member for data analysis.
-- No measurement is AI-generated. Every number in the app is computed by `pipeline/` from the NISAR files listed on
-  the Method page, or comes from a linked source. Map images are rendered from radar data by our code.
-- `data/demo/` holds **synthetic** radar data in NISAR's file format, used only for development and tests; the app
-  labels it and never mixes it with real results.
+| `data/demo/` | **Synthetic** radar data in NISAR's file format, for development and tests only; the app labels it and never mixes it with real results |
+| `content/` | Story text in four languages, style guide, validation table, cloud check, project page, demo script |
+| `deliverables/` | Code that builds the deck and reports from the pipeline outputs, and their PowerPoint and PDF files |
+| `video/` | Code that renders the demo videos from the app and the NISAR layers, and mixes the voice-over |
+| `tests/` | pytest suite (pipeline, outputs, translations) |
 
 ## Data and credits
 NISAR L2 GCOV and GUNW provisional products, NASA/JPL-Caltech and ISRO, via ASF DAAC.
@@ -92,6 +99,21 @@ JRC Global Surface Water (Pekel et al., 2016). Copernicus GLO-30 DEM (ESA); NASA
 `data/reference/SOURCES.md`). NASA Worldview / GIBS daily true-colour imagery for the cloud check
 (`content/cloud_check.md`).
 Method, limits and validation: see the app's Method page and `CONTEXT.md`.
+
+## Use of AI
+We used AI tools, and the Space Apps rules ask us to say how:
+- **Claude (Anthropic)** wrote most of the pipeline and app code, the tests, and the first drafts of the story
+  text and its translations (Hindi, Marathi, German) and the first pass of the reported-events research, directed
+  and reviewed by the team. It also helped build the deck, reports, figures and video code, check the reported
+  events against their sources, and draft the style
+  guide, slide outline, validation table, "couldn't see" text and `plotholes.md`.
+- **ChatGPT (OpenAI)** was used by one team member for data analysis.
+- Commits made with Claude carry a `Co-Authored-By: Claude` line or a "Claude" author name. Some on the
+  `urvashi/content` branch do not, so the commit history understates the AI use; this section is the full statement.
+- No measurement is AI-generated: every number in the app is computed by `pipeline/` from the NISAR files listed
+  on the Method page, or comes from a linked source. No image, video or audio is AI-generated: map images and the
+  videos are rendered by our code, the voice-over is our own recording, and the music and sound effects are
+  synthesised by our code (`video/audio.py`).
 
 ## Licence
 Code: see `LICENSE`. Data products keep their providers' terms.
