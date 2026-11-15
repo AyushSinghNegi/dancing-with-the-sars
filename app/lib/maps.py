@@ -265,12 +265,15 @@ def add_events(m):
     fg.add_to(m)
 
 
-def _season_css() -> str:
+def _season_css(opacity: float) -> str:
     dk = ui.dark()
     panel, text, line, muted = ("rgba(10,18,34,.92)", "#e6edf6", "rgba(160,190,230,.22)", "#9fb3c8") if dk else \
         ("rgba(255,255,255,.95)", "#1d3346", "rgba(29,51,70,.14)", "#5b6b7a")
     return f"""<style>
-.ml-season-water {{ transition: opacity .7s ease; }}
+/* Each water image is made fully solid (#ml-solid), then the whole pane is see-through once, so water shown
+   on two dates at the same moment of a fade looks exactly like water on one date. */
+.ml-season-water {{ transition: opacity .7s ease; filter: url(#ml-solid); }}
+.leaflet-seasonwater-pane {{ opacity: {opacity}; }}
 .ml-season {{ position: absolute; left: 50%; bottom: 58px; transform: translateX(-50%); z-index: 800;
   width: min(560px, calc(100% - 24px)); box-sizing: border-box; padding: 10px 14px 8px; border-radius: 14px;
   background: {panel}; color: {text}; border: 1px solid {line}; box-shadow: 0 6px 24px rgba(0,0,0,.18);
@@ -294,13 +297,14 @@ def _season_css() -> str:
 
 class _SeasonControl(MacroElement):
     """Play button and date slider inside the season map. Dates change in the browser, so the map never reloads
-    and keeps its zoom and position. The new date's water fades in on top; the old one fades out only once the
-    new one is fully shown, so water that is there on both dates never flickers."""
+    and keeps its zoom and position. The new date's water fades in on top of the old one, then the old one fades
+    out underneath. Every image is drawn solid inside one see-through pane, so water that is there on both dates
+    keeps exactly the same colour throughout; only water that appears or goes away fades."""
     _template = Template("""{% macro script(this, kwargs) %}
 (function () {
   var map = {{ this._parent.get_name() }};
   var water = [{{ this.water }}], ticks = {{ this.ticks }}, notes = {{ this.notes }};
-  var n = ticks.length, op = {{ this.opacity }}, cur = -1, timer = null, fade = null;
+  var n = ticks.length, cur = -1, timer = null, fade = null;
   water.forEach(function (l) { if (l && l.getElement && l.getElement()) L.DomUtil.addClass(l.getElement(), 'ml-season-water'); });
   var box = L.DomUtil.create('div', 'ml-season', map.getContainer());
   box.innerHTML = '<div class="row"><button type="button"></button><div class="track">' +
@@ -319,7 +323,7 @@ class _SeasonControl(MacroElement):
     if (i === cur) return;
     var prev = cur; cur = i;
     var l = water[i];
-    if (l) { l.bringToFront(); l.setOpacity(op); }
+    if (l) { l.bringToFront(); l.setOpacity(1); }
     clearTimeout(fade);
     fade = setTimeout(function () {
       water.forEach(function (w, k) { if (w && k !== cur) w.setOpacity(0); });
@@ -344,27 +348,33 @@ class _SeasonControl(MacroElement):
 })();
 {% endmacro %}""")
 
-    def __init__(self, water, ticks, notes, start, opacity):
+    def __init__(self, water, ticks, notes, start):
         super().__init__()
         self._name = "SeasonControl"
         self.water = ", ".join(water)
         self.ticks, self.notes = json.dumps(ticks), json.dumps(notes)
-        self.start, self.opacity = start, opacity
+        self.start = start
         self.play, self.pause = ui.tr("Play animation", "ॲनिमेशन सुरू करा"), ui.tr("Pause animation", "ॲनिमेशन थांबवा")
         self.slider = ui.tr("NISAR pass", "निसार निरीक्षण")
 
 
-def season(dates: list[str], notes: list[str], start: int = 0, basemap=None, opacity=0.9):
+def season(dates: list[str], notes: list[str], start: int = 0, basemap=None, opacity=0.83):
     """Open water on every NISAR pass of the season in one map, switched by a play button and slider inside the
-    map. `notes` is the HTML line shown under the slider for each date."""
+    map. `notes` is the HTML line shown under the slider for each date. `opacity` is for the water as a whole
+    (0.83 matches the earlier look: images at 92% shown at 90%)."""
     basemap = basemap or default_basemap()
     m = folium.Map(location=center(), zoom_start=10, tiles=None, control_scale=True, prefer_canvas=True,
                    zoom_snap=0.25, zoom_delta=0.5)
     b = data.bounds().get("bounds_latlon")
     if b:
         m.fit_bounds(b, padding=(6, 6))
-    m.get_root().header.add_child(folium.Element(map_css(basemap) + _season_css()))
+    m.get_root().header.add_child(folium.Element(map_css(basemap) + _season_css(opacity)))
+    m.get_root().html.add_child(folium.Element(
+        '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="ml-solid" '
+        'color-interpolation-filters="sRGB"><feComponentTransfer><feFuncA type="linear" slope="100"/>'
+        '</feComponentTransfer></filter></svg>'))
     folium.map.CustomPane("labels", z_index=650, pointer_events=False).add_to(m)
+    folium.map.CustomPane("seasonwater", z_index=400, pointer_events=False).add_to(m)
     url, attr = BASEMAPS[basemap]
     folium.TileLayer(url, attr=attr, name=basemap, max_zoom=18).add_to(m)
     water = []
@@ -374,7 +384,7 @@ def season(dates: list[str], notes: list[str], start: int = 0, basemap=None, opa
             water.append("null")
             continue
         ov = folium.raster_layers.ImageOverlay(image="data:image/png;base64,", bounds=b, opacity=0,
-                                               interactive=False, cross_origin=False, zindex=2)
+                                               interactive=False, cross_origin=False, zindex=2, pane="seasonwater")
         ov.url = ov_url
         ov.add_to(m)
         water.append(ov.get_name())
@@ -389,6 +399,6 @@ def season(dates: list[str], notes: list[str], start: int = 0, basemap=None, opa
                   lat_formatter="function(n){return n.toFixed(5)+'° N'}",
                   lng_formatter="function(n){return n.toFixed(5)+'° E'}").add_to(m)
     if dates:
-        _SeasonControl(water, [ui.day_short(d) for d in dates], notes, min(max(start, 0), len(dates) - 1),
-                       opacity).add_to(m)
+        _SeasonControl(water, [ui.day_short(d) for d in dates], notes,
+                       min(max(start, 0), len(dates) - 1)).add_to(m)
     return m
