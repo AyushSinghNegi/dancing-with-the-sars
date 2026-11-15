@@ -5,6 +5,8 @@ Every number is from `data/derived/` (metrics.json generated 2026-11-14T19:01Z, 
 `dem_check.json`) or from a source the team opened. Recheck them after any new pipeline run.
 Open points are in `plotholes.md`; the "Do not say" list at the end comes from it.
 
+**Pending correction (plotholes.md P07, P46):** the E016 flood report has been moved to its real location, and validation has not been re-run yet. Floods are expected to become **3 of 10** (7 misses), not 4 of 10. Do not publish "4 of 10" until the pipeline is re-run. All flood matches are to "possible water under cover" patches, not to mapped new water, so say "matched to a possible-water patch", not "flood detected".
+
 ## What the 2026 Project Submission Guide allows
 
 Read on spaceappschallenge.org/resources/project-submission-guide (dated 13 Nov 2026):
@@ -71,6 +73,7 @@ Ayush drives the live app; one person speaks. About 330 words, which leaves time
 - "Here's the Patan slide." We did not detect it (P08).
 - "22 reported landslides" as the number we checked. We could locate 7 (P09).
 - "6,000 evacuated." The source gives about 5,000 moved in Pimpri Chinchwad and "thousands" overall (P01).
+- "We detected 4 of 10 floods." Pending the re-run it is expected to be 3 of 10, and each match is to a possible-water patch, not to mapped flood water (P07, P46).
 - Percentages or "accuracy". Say "4 of 10" and "2 of 4" (P11).
 - "Most flood water had drained." We know the rain stopped, not how much water drained (P06).
 - "Satellites could not see." Say "NASA's daily satellite images", and only for 3 to 8 July (P34).
