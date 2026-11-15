@@ -251,7 +251,7 @@ with tab_d:
             "crosstrack.json": "second-track check results (JSON)",
             "dem_check.json": "elevation-map check results (JSON)", "metrics.json": "every number in this app (JSON)"}
     links = [f'<li><a href="{url}" download="monsoonlens_{name}">{what.get(name, name)}</a> '
-             f'<span class="ml-muted">{size / 1e6:.1f} MB</span></li>' if size >= 1e5 else
+             f'<span class="ml-muted">{ui.num(size / 1e6)} MB</span></li>' if size >= 1e5 else
              f'<li><a href="{url}" download="monsoonlens_{name}">{what.get(name, name)}</a> '
              f'<span class="ml-muted">{max(size // 1000, 1)} KB</span></li>' for name, url, size in data.downloads()]
     st.markdown("<ul class='ml-downloads'>" + "".join(links) + "</ul>", unsafe_allow_html=True)

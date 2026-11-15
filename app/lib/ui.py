@@ -670,12 +670,19 @@ def require_results() -> bool:
     return True
 
 
+def num(v, digits=1) -> str:
+    """A number for the screen with a fixed number of decimals, in the page language's style: '1,234.5' in
+    English, Marathi and Hindi; '1.234,5' in German. Never use it for links, files or anything a program reads."""
+    s = f"{v:,.{digits}f}"
+    return s.translate(str.maketrans(",.", ".,")) if lang() == "de" else s
+
+
 def fmt_num(v, digits=1):
     if v is None:
         return "not available"
     if isinstance(v, (int,)) or float(v).is_integer() and abs(v) >= 10:
-        return f"{int(round(v)):,}"
-    return f"{v:,.{digits}f}"
+        return num(round(v), 0)
+    return num(v, digits)
 
 
 def finding(color: str, number: str, unit: str, text: str, hatch=False):

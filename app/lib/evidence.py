@@ -129,7 +129,7 @@ def checks(p: dict) -> list[tuple[str, bool | None, str]]:
 
 def dist(m: float) -> str:
     """'480 m' (to the nearest 10 m, a quarter of a pixel) or '1.3 km'."""
-    return f"{int(round(m / 10) * 10)} m" if m < 995 else f"{m / 1000:.1f} km"
+    return f"{int(round(m / 10) * 10)} m" if m < 995 else f"{ui.num(m / 1000)} km"
 
 
 def _line_name(r: dict) -> str:
@@ -197,7 +197,7 @@ def zone_card(p: dict, open_note=True) -> str:
     return (
         f'<article class="ml-card">'
         f'<header class="ml-card-head"><span class="ml-id">{p["id"]}</span><span class="ml-place">{place}</span>'
-        f'<span class="ml-pill {conf}">{html.escape(e("conf_" + conf))} · {p["score"]:.2f}</span></header>'
+        f'<span class="ml-pill {conf}">{html.escape(e("conf_" + conf))} · {ui.num(p["score"], 2)}</span></header>'
         f'<div class="ml-card-body">{_chips(p["id"], ("before", "after", "coh"))}'
         f'<div class="ml-facts"><p class="ml-facts-h">{html.escape(e("why_h"))}</p><ul class="ml-why">{why}</ul>'
         f'<p class="ml-facts-h">{html.escape(e("checks_h"))}</p><ul class="ml-checks">{ck}</ul>{near}'

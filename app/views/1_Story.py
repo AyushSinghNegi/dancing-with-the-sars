@@ -132,9 +132,9 @@ with visual, st.container(key="viz"):
             rh = dc.get("reported_slide_hits") or {}
             if rh and rh.get("nasadem", 0) < rh.get("main", 0):
                 hits = [s for s in dc["reported_slides"] if s["main"] == "hit"]
-                d = ui.t("and_join", a=f"{hits[0]['main_distance_m'] / 1000:.1f}",
-                         b=f"{hits[-1]['main_distance_m'] / 1000:.1f}") if len(hits) > 1 else \
-                    f"{hits[0]['main_distance_m'] / 1000:.1f}"
+                d = ui.t("and_join", a=ui.num(hits[0]['main_distance_m'] / 1000),
+                         b=ui.num(hits[-1]['main_distance_m'] / 1000)) if len(hits) > 1 else \
+                    ui.num(hits[0]['main_distance_m'] / 1000)
                 st.caption(ui.t("slide_fragile_one", d=d) if len(rh["main_hit_zones"]) == 1 and len(hits) == 2
                            else ui.t("slide_fragile", k=rh["nasadem"], n=rh["main"]))
             misses = val[val["result"].isin(["miss", "not observable"])]
