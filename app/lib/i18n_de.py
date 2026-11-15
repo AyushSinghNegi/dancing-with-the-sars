@@ -476,7 +476,7 @@ DE = {
     "Move between pages here. On a phone, open this menu with the arrow at the top left.":
         "Hier wechseln Sie die Seiten. Auf dem Handy öffnen Sie dieses Menü mit dem Pfeil oben links.",
     "Your language": "Ihre Sprache",
-    "Read everything in English, Marathi or German.": "Alles auf Englisch, Marathi oder Deutsch lesen.",
+    "Read everything in English, Hindi, Marathi or German.": "Alles auf Englisch, Hindi, Marathi oder Deutsch lesen.",
     "Drag to turn the land. Press “Fly over the findings” for a one-minute flight to each one.":
         "Ziehen, um die Landschaft zu drehen. „Über die Ergebnisse fliegen“ startet einen einminütigen Flug zu jedem Fund.",
     "The headline numbers": "Die wichtigsten Zahlen",

@@ -30,7 +30,7 @@ def steps():
          tr("Move between pages here. On a phone, open this menu with the arrow at the top left.",
             "इथून पानांमध्ये जा. फोनवर हा मेनू वर डावीकडील बाणाने उघडा.")),
         ("", ".st-key-lang_choice", tr("Your language", "तुमची भाषा"),
-         tr("Read everything in English, Marathi or German.", "सर्व काही इंग्रजी, मराठी किंवा जर्मनमध्ये वाचा.")),
+         tr("Read everything in English, Hindi, Marathi or German.", "सर्व काही इंग्रजी, हिंदी, मराठी किंवा जर्मनमध्ये वाचा.")),
         ("", ".st-key-tour_3d", tr("See it in 3D", "३D मध्ये पाहा"),
          tr("Drag to turn the land. Press “Fly over the findings” for a one-minute flight to each one.",
             "जमीन फिरवण्यासाठी ओढा. प्रत्येक निष्कर्षावरून एका मिनिटाच्या उड्डाणासाठी “निष्कर्षांवरून उडा” दाबा.")),

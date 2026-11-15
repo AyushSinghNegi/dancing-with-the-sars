@@ -31,7 +31,7 @@ if places is None or not b:
 def _label(row) -> str:
     kind = {"city": tr("city", "शहर"), "town": tr("town", "शहर"), "suburb": tr("suburb", "उपनगर"),
             "village": tr("village", "गाव")}.get(row["place"], row["place"])
-    if ui.lang() == "mr" and row["name_mr"]:
+    if ui.lang() in ("mr", "hi") and row["name_mr"]:
         return f"{row['name_mr']} ({row['name']}) · {kind}"
     return f"{row['name']}" + (f" ({row['name_mr']})" if row["name_mr"] else "") + f" · {kind}"
 
@@ -114,7 +114,7 @@ if pt:
               for f in events]
     e_near = near(ev_pts, lat, lon, r_km)
     if pt.get("name"):
-        where = (pt["name_mr"] or pt["name"]) if ui.lang() == "mr" else pt["name"]
+        where = (pt["name_mr"] or pt["name"]) if ui.lang() in ("mr", "hi") else pt["name"]
     else:
         where = tr("the point you picked", "तुम्ही निवडलेला बिंदू")
     zoom = {2: 13, 5: 12, 10: 11}[r_km]
@@ -153,7 +153,7 @@ with right:
             with st.container(horizontal=True, gap="small", key="place_examples"):
                 for i in ex:
                     r = by_id[i]
-                    st.button(r.name_mr if ui.lang() == "mr" and r.name_mr else r.name, key=f"ex_{i}",
+                    st.button(r.name_mr if ui.lang() in ("mr", "hi") and r.name_mr else r.name, key=f"ex_{i}",
                               icon=":material/location_on:", on_click=_set_place, args=(i,))
     elif not inside:
         st.warning(tr("This point is outside the area we processed NISAR data for. Pick a place inside the dashed box.",
