@@ -113,16 +113,12 @@ if len(pass_dates) >= 3:
                                             f=ui.day(pass_dates[0]), l=ui.day(pass_dates[-1]))}[k],
         key="place_view_ctl") or "change"
     ss.place_view = view
-pass_date = None
-if view == "passes":
-    pass_date = st.select_slider(tr("NISAR pass", "निसार निरीक्षण"), options=pass_dates,
-                                 value=ss.get("place_pass") if ss.get("place_pass") in pass_dates else after
-                                 if after in pass_dates else pass_dates[0], format_func=ui.date, key="place_pass")
+by_pass = view == "passes"
 
 
 def _map(location=None, zoom=10, min_conf="medium"):
-    if pass_date:
-        return maps.one_pass(pass_date, location=location, zoom=zoom)
+    if by_pass:
+        return maps.passes(start_date=after, location=location, zoom=zoom)
     return maps.build(location=location, zoom=zoom, min_conf=min_conf, collapsed=True)
 
 
@@ -141,7 +137,7 @@ if pt:
         where = tr("the point you picked", "तुम्ही निवडलेला बिंदू")
     zoom = {2: 13, 5: 12, 10: 11}[r_km]
     m = _map(location=[lat, lon], zoom=zoom, min_conf="low")
-    pin = "#ffffff" if pass_date else maps.ink_for(maps.default_basemap())
+    pin = "#ffffff" if by_pass else maps.ink_for(maps.default_basemap())
     folium.Circle([lat, lon], radius=r_km * 1000, color=pin, weight=2, fill=True, fill_opacity=0.05,
                   dash_array="6 6").add_to(m)
     folium.CircleMarker([lat, lon], radius=7, color="#fff", weight=2.5, fill=True, fill_color="#3d8ef0",
@@ -152,17 +148,18 @@ else:
 left, right = st.columns([1.35, 1], gap="large")
 with left:
     out = st_folium(m, height=520, use_container_width=True, returned_objects=["last_clicked"],
-                    key=f"place_map_{pt['lat'] if pt else 0}_{pt['lon'] if pt else 0}_{r_km}_{ui.dark()}_{pass_date}")
-    if pass_date:
+                    key=f"place_map_{pt['lat'] if pt else 0}_{pt['lon'] if pt else 0}_{r_km}_{ui.dark()}_{view}")
+    if by_pass:
         st.caption(tr(
-            "NISAR radar on {d}, same orbit and radar mode on every date. Red is HH, green HV, blue HH/HV: water is "
-            "dark, forest green, buildings bright. Blue overlay: open water mapped on that date. NISAR used a "
-            "different mode on this orbit from 27 August to 2 October, so those passes are not shown. Click the map "
-            "to check any other point.",
-            "{d} रोजीचे निसार रडार, प्रत्येक तारखेला तीच कक्षा आणि तोच रडार मोड. लाल HH, हिरवा HV, निळा HH/HV: पाणी गडद, "
-            "जंगल हिरवे, इमारती चमकदार. निळा थर: त्या तारखेला नोंदलेले खुले पाणी. २७ ऑगस्ट ते २ ऑक्टोबर या कक्षेत निसारने "
-            "वेगळा मोड वापरला, म्हणून ती निरीक्षणे दाखवलेली नाहीत. दुसरा कोणताही बिंदू तपासण्यासाठी नकाशावर क्लिक करा.",
-            d=ui.date(pass_date)))
+            "Drag the slider on the map, or press play, to step through NISAR's passes; the view stays where you "
+            "put it. Same orbit and radar mode on every date. Red is HH, green HV, blue HH/HV: water is dark, "
+            "forest green, buildings bright. Blue overlay: open water mapped on that date. NISAR used a different "
+            "mode on this orbit from 27 August to 2 October, so those passes are not shown. Click the map to check "
+            "any other point.",
+            "निसारची निरीक्षणे एकामागून एक पाहण्यासाठी नकाशावरील स्लायडर ओढा किंवा प्ले दाबा; नकाशा जिथे ठेवला तिथेच "
+            "राहतो. प्रत्येक तारखेला तीच कक्षा आणि तोच रडार मोड. लाल HH, हिरवा HV, निळा HH/HV: पाणी गडद, जंगल हिरवे, "
+            "इमारती चमकदार. निळा थर: त्या तारखेला नोंदलेले खुले पाणी. २७ ऑगस्ट ते २ ऑक्टोबर या कक्षेत निसारने वेगळा मोड "
+            "वापरला, म्हणून ती निरीक्षणे दाखवलेली नाहीत. दुसरा कोणताही बिंदू तपासण्यासाठी नकाशावर क्लिक करा."))
     else:
         st.caption(tr("Click the map to check any other point.", "दुसरा कोणताही बिंदू तपासण्यासाठी नकाशावर क्लिक करा."))
 clk = (out or {}).get("last_clicked")
