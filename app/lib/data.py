@@ -44,7 +44,7 @@ def ver() -> str:
     """Changes whenever the pipeline output changes (a new deploy checks out new files), so cached
     reads below are refreshed instead of serving numbers from an older run."""
     d = _dir()
-    files = [d / "metrics.json"] if d else []
+    files = [d / n for n in ("metrics.json", "flood_baseline.json", "nearby.json")] if d else []
     files += [REFERENCE / n for n in ("rainfall.csv", "events.geojson", "candidate_scenes.csv", "cloud_check.json")]
     return "|".join(f"{f.stat().st_mtime_ns}-{f.stat().st_size}" if f.exists() else "-" for f in files)
 
@@ -150,7 +150,8 @@ def _downloads(v: str) -> list[tuple[str, str, int]]:
     d = Path(s["dir"])
     files = [d / rel for rel in metrics().get("downloads", {}).values()]
     files += [d / n for n in ("slide_zones.geojson", "new_water.geojson", "validation.csv", "water_stats.csv",
-                              "crosstrack.json", "dem_check.json", "metrics.json")]
+                              "crosstrack.json", "dem_check.json", "flood_baseline.json", "nearby.csv",
+                              "metrics.json")]
     dst = STATIC / s["key"] / "downloads"
     dst.mkdir(parents=True, exist_ok=True)
     out = []
@@ -246,6 +247,35 @@ def crosstrack() -> dict | None:
     return {**xt, "confirmed": c.get("confirmed", 0), "scored": scored, "lift": lift,
             "good": lift is not None and lift >= XT_LIFT_MIN, "small": scored < XT_SMALL_SAMPLE,
             "coverage": f"{cov:.0%}" if cov is not None else "part"}
+
+
+def flood_baseline() -> dict | None:
+    """Chance level for the reported-flood matches (pipeline/flood_baseline.py), or None if it has not run."""
+    fb = geojson("flood_baseline.json")
+    if not fb or not fb.get("events") or not fb.get("reference"):
+        return None
+    ev = fb["events"]
+    km = [e["nearest_new_water_m"] / 1000 for e in ev]
+    return {**fb, "matched": fb["observed"]["matched"], "of": fb["observed"]["of"],
+            "flat": fb["reference"]["flat_ground"], "settlements": fb["reference"]["settlements"],
+            "new_water_km": (min(km), max(km)),
+            # The last full validation run and the events file can be out of step (an event moved since).
+            "in_step": not fb.get("validation_csv") or (fb["validation_csv"]["hits"], fb["validation_csv"]["of"])
+            == (fb["observed"]["matched"], fb["observed"]["of"])}
+
+
+def nearby() -> dict:
+    """What is near each slide zone (pipeline/nearby.py): {"zones": {id: ...}, "summary": ..., ...}.
+
+    Empty when the file is missing or was made for a different set of zones: a zone's roads are never
+    shown against another zone's id."""
+    nb = geojson("nearby.json")
+    if not nb or not nb.get("zones"):
+        return {}
+    cur = {z["id"]: (z["lat"], z["lon"]) for z in zones()}
+    if set(cur) != set(nb["zones"]) or any(cur[k] != (v["lat"], v["lon"]) for k, v in nb["zones"].items()):
+        return {}
+    return nb
 
 
 def cloud_check() -> dict | None:
@@ -388,6 +418,12 @@ def _field_files(v: str) -> dict[str, tuple[str, int]]:
         if not t.exists() or t.stat().st_size != f.stat().st_size or t.stat().st_mtime < f.stat().st_mtime:
             shutil.copy2(f, t)
         out[ext] = (f"{STATIC_URL}/{s['key']}/downloads/{f.name}", f.stat().st_size)
+    f = Path(s["dir"]) / "nearby.csv"
+    if f.exists():
+        t = dst / f.name
+        if not t.exists() or t.stat().st_size != f.stat().st_size or t.stat().st_mtime < f.stat().st_mtime:
+            shutil.copy2(f, t)
+        out["nearby"] = (f"{STATIC_URL}/{s['key']}/downloads/{f.name}", f.stat().st_size)
     return out
 
 

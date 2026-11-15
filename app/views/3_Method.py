@@ -148,6 +148,48 @@ with tabs[0]:
             f"reports that radar could observe had a detection nearby. Landslides: "
             f"**{val_s.get('slide', {}).get('hits', 0)} of {val_s.get('slide', {}).get('observable', 0)}**. "
             "Counts, not an accuracy: the samples are small.")
+        fb = data.flood_baseline()
+        if fb:
+            n, k = fb["of"], fb["matched"]
+            lo, hi = fb["new_water_km"]
+            better = fb["flat"]["prob_at_least_observed"] < 0.05 and fb["settlements"]["prob_at_least_observed"] < 0.05
+            st.markdown("#### Are the flood matches better than chance?")
+            st.markdown(
+                (f"**Yes.** " if better else "**No.** ")
+                + f"With the reports as they stand now, **{k} of {n}** reported floods have a detection within their "
+                "tolerance. The same rule applied to places nobody reported gives "
+                f"**{fb['flat']['expected_matches']:.1f} of {n}** on random flat ground and "
+                f"**{fb['settlements']['expected_matches']:.1f} of {n}** at a random village, town or suburb. "
+                + ("" if better else
+                   "So the flood count is what chance alone would give: it is not evidence that the map finds "
+                   "reported floods. ")
+                + (f"All {k} matches are to \"possible water under cover\" patches, which we show but never count as "
+                   "flood; " if k and not fb["observed"]["matched_to_new_water"] else "")
+                + f"the nearest mapped new open water is {lo:.0f} to {hi:.0f} km from every reported flood.")
+            if not fb["in_step"]:
+                v = fb["validation_csv"]
+                st.markdown(
+                    f"The count above differs from the {v['hits']} of {v['of']} in the headline and the table below: "
+                    "a report's location was corrected after the last full pipeline run. The two will agree after "
+                    "the next run.")
+            from lib import charts
+            st.plotly_chart(charts.flood_chance(fb), width="stretch", config={"displayModeBar": False})
+            st.markdown(
+                "How the chance level is worked out: a report counts as matched when new water or a possible-water "
+                f"patch lies within its tolerance (the larger of the report's location precision and 500 m). For each "
+                "report we take the share of a reference set that has a detection within that same tolerance, and add "
+                f"the shares up. Flat ground: {fb['flat']['what']} ({fb['flat']['km2']:,.0f} km²). Settlements: "
+                f"{fb['settlements']['places']} OpenStreetMap villages, towns and suburbs with radar data. Getting "
+                f"{k} or more by chance has a probability of {fb['flat']['prob_at_least_observed']:.2f} on flat ground "
+                f"and {fb['settlements']['prob_at_least_observed']:.2f} at settlements (exact, no random draws).")
+            st.dataframe(pd.DataFrame([{
+                "Report": e["id"], "Place": e["place"], "Tolerance (m)": e["tolerance_m"],
+                "Nearest detection (m)": e["distance_m"], "Matched": "yes" if e["matched"] else "no",
+                "Nearest new open water (km)": round(e["nearest_new_water_m"] / 1000, 1),
+                "Flat ground within tolerance of a detection": f"{e['chance']['flat_ground']:.0%}",
+                "Settlements within tolerance of a detection": f"{e['chance']['settlements']:.0%}"}
+                for e in fb["events"]]), hide_index=True, width="stretch")
+            st.markdown("#### Every reported event")
         st.dataframe(val, hide_index=True, width="stretch",
                      column_config={"source_url": st.column_config.LinkColumn("source")})
     else:
@@ -276,6 +318,10 @@ rows += [
     {"Data": "Place names", "File": "OpenStreetMap villages, towns and suburbs (ODbL), via Overpass and Nominatim",
      "Valid share of box": "", "Link": "https://www.openstreetmap.org/copyright"},
 ]
+if data.nearby():
+    rows.append({"Data": "Roads and railways near each zone",
+                 "File": "OpenStreetMap ways: motorway to tertiary roads, and railway lines (ODbL), via Overpass",
+                 "Valid share of box": "", "Link": "https://www.openstreetmap.org/copyright"})
 if dc:
     rows.append({"Data": "Elevation, second-map check", "File": "NASADEM_HGT v001 (NASA / USGS)",
                  "Valid share of box": "", "Link": dc["check_dem_url"]})
