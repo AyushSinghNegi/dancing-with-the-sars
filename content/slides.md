@@ -12,7 +12,7 @@ generated 2026-11-14T19:01Z, `timeline.csv`, `dem_check.json`, `validation.csv`)
 team opened. Recheck each number against the files after any new pipeline run. Open points are in
 `plotholes.md`.
 
-**Pending correction (plotholes.md P07, P46):** the E016 flood report has been moved to its real location, and validation has not been re-run yet. Floods are expected to become **3 of 10** (7 misses), not 4 of 10. Do not publish "4 of 10" until the pipeline is re-run. All flood matches are to "possible water under cover" patches, not to mapped new water, so say "matched to a possible-water patch", not "flood detected".
+**Corrected (plotholes.md P07, P46):** the pipeline was re-run on 15 November with E016 at its real location. Floods are **3 of 10** (7 misses). Every match is to a "possible water under cover" patch, and places nobody reported match about as often (3.8 of 10), so the flood count is a limit, not evidence: say "no better than chance", never "flood detected".
 
 What changed from the 8-slide version: a title slide was added (the guide requires team and
 challenge), "Why radar" and "What we built" became one slide, "Demo" now carries the findings, and
@@ -93,7 +93,7 @@ challenge), "Why radar" and "What we built" became one slide, "Demo" now carries
 **Headline:** We publish our hits and our misses
 
 - 18 reported events, each with a linked source.
-- Floods: 4 of 10 that radar could observe had a detection nearby. The 6 misses were all in built-up areas.
+- Floods: 3 of 10 that radar could observe had a possible-water patch nearby, no better than chance (random places: 3.8 of 10). The 7 misses were all in built-up areas.
 - A second NISAR orbit (3 to 15 July) found 2 of 12 zones again: about 8 times chance.
 - With NASA's NASADEM elevation map, 35 of 50 zones are found again, 7 of the 8 high-confidence ones.
 - Landslides: 2 of the 4 radar could observe, both matched to one zone; that match does not hold with NASADEM.
@@ -112,7 +112,7 @@ Keep in mind for this slide:
 
 - Lead with floods and the second orbit; the landslide match is the weakest result (`plotholes.md` R23).
 - E016 (Pune-Nashik highway) counts as a flood hit on a town-centre point; its true location is unconfirmed (P07). Floods would be 3 of 10 without it.
-- Small samples: say "4 of 10" and "2 of 4", never percentages (P11).
+- Small samples: say "3 of 10" and "2 of 4", never percentages (P11).
 - We located 7 of the 22 reported landslides; do not say we checked all 22 (P09).
 
 ## 6. Impact, and what radar could not see

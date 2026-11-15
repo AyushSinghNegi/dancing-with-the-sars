@@ -596,7 +596,7 @@
         "why": "Steep ground: 25\u00b0 on average. The ground stopped matching itself between passes: coherence 0.24, 0.6\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 4.4 dB (vegetation stripped).",
         "second_nisar_orbit": "no",
         "nasadem_check": "kept",
-        "nearest_report": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan) (waterlogging), 14.9 km",
+        "nearest_report": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan) (waterlogging), 12.5 km",
         "checks_passed": 1,
         "map_link": "https://www.google.com/maps/search/?api=1&query=18.88936,73.90851"
       }
@@ -1021,7 +1021,7 @@
         "why": "Steep ground: 18\u00b0 on average. The ground stopped matching itself between passes: coherence 0.26, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 3.1 dB (vegetation stripped).",
         "second_nisar_orbit": "no",
         "nasadem_check": "kept",
-        "nearest_report": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan) (waterlogging), 12.8 km",
+        "nearest_report": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan) (waterlogging), 10.9 km",
         "checks_passed": 1,
         "map_link": "https://www.google.com/maps/search/?api=1&query=18.81615,73.96972"
       }
@@ -1146,7 +1146,7 @@
         "why": "Steep ground: 16\u00b0 on average. The ground stopped matching itself between passes: coherence 0.26, 0.5\u00d7 its surrounding kilometre. Radar brightness changed: HV fell 2.8 dB (vegetation stripped).",
         "second_nisar_orbit": "no",
         "nasadem_check": "not kept (gentler than 15\u00b0 in NASADEM)",
-        "nearest_report": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan) (waterlogging), 17.4 km",
+        "nearest_report": "Pune-Nashik highway near Waki Khurd, Khed (near Chakan) (waterlogging), 15.1 km",
         "checks_passed": 0,
         "map_link": "https://www.google.com/maps/search/?api=1&query=18.86540,73.98613"
       }

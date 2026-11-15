@@ -4,9 +4,9 @@ Same rules as story.md: one "## " heading per step, in the same order, numbers o
 -->
 
 ## Der Regen
-Anfang Juli 2026 fiel tagelang extremer Regen über den Westghats oberhalb von Pune. Flüsse stiegen, Straßen liefen
-voll, Hänge rutschten. Die Balken zeigen den Regen pro Tag; Dreiecke markieren jeden NISAR-Überflug, die
-gestrichelten Linien die beiden, die wir vergleichen.
+Anfang Juli 2026 fiel tagelang extremer Regen über den Westghats oberhalb von Pune. Flüsse stiegen, tief gelegene
+Straßen liefen voll, Hänge gaben nach. Die Balken zeigen den Regen pro Tag; Dreiecke markieren jeden
+NISAR-Überflug, die gestrichelten Linien die beiden, die wir vergleichen.
 
 ## Wolken verdecken den Boden. Radar nicht.
 {cloud_sentence} NISARs Radar sendet eigene Mikrowellenimpulse, die Wolken und Regen durchdringen. Ruhiges Wasser
@@ -27,7 +27,7 @@ NISAR kam weiter alle 12 Tage zurück. Die Wasserfläche von Punes Flüssen und 
 Monsuns, nicht sein Ende.
 
 ## Was das Radar nicht sehen konnte
-Der stärkste Regen fiel vom 5. bis 8. Juli, zwischen den Überflügen am 3. und 10. Juli; manches Hochwasser lief ab,
-bevor das Radar zurückkam. Das Radar fand etwas nahe {flood_hits} von {flood_observable} sichtbaren gemeldeten
-Überschwemmungen und {slide_hits} von {slide_observable} Erdrutschen. Wasser zwischen Gebäuden und Rutschungen
-schmaler als 40 m können fehlen.
+Der stärkste Regen fiel vom 5. bis 8. Juli 2026, zwischen den Überflügen am 3. und 10. Juli; manches Hochwasser lief
+ab, bevor das Radar zurückkam. Das Radar fand etwas nahe {flood_hits} von {flood_observable} sichtbaren gemeldeten
+Überschwemmungen, doch Orte ohne Meldung kommen auf etwa {flood_chance}: nicht besser als Zufall. Bei Erdrutschen
+waren es {slide_hits} von {slide_observable}. Wasser zwischen Gebäuden und Rutschungen schmaler als 40 m können fehlen.

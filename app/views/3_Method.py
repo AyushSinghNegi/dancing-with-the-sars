@@ -147,9 +147,12 @@ def short(text):
 
 
 with tabs[0]:
+    _fb = data.flood_baseline()
     short(f"radar found something near {val_s.get('flood', {}).get('hits', 0)} of "
-          f"{val_s.get('flood', {}).get('observable', 0)} reported floods and {val_s.get('slide', {}).get('hits', 0)} of "
-          f"{val_s.get('slide', {}).get('observable', 0)} landslides that it could see.")
+          f"{val_s.get('flood', {}).get('observable', 0)} reported floods it could see"
+          + (f", but places nobody reported score {_fb['flat']['expected_matches']:.1f}: no better than chance"
+             if _fb else "")
+          + f". Landslides: {val_s.get('slide', {}).get('hits', 0)} of {val_s.get('slide', {}).get('observable', 0)}.")
     val = data.table("validation.csv")
     if val is not None and len(val):
         st.markdown(

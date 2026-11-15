@@ -127,11 +127,11 @@ def _tour(sc):
         val = met.get("validation", {}).get("flood", {})
         stops.append(dict(t=tr("Pune city", "पुणे शहर"),
                           x=tr("White pins are floods and landslides people reported. Radar sees water between buildings "
-                               "poorly, so many city reports were missed. Overall, {h} of {o} reported floods it could "
-                               "observe had a detection nearby.",
+                               "poorly, so the city reports were mostly missed: {h} of {o} reported floods had something "
+                               "nearby, no better than chance.",
                                "पांढऱ्या खुणा म्हणजे लोकांनी नोंदवलेले पूर आणि भूस्खलने. इमारतींमधले पाणी रडारला नीट दिसत "
-                               "नाही, म्हणून शहरातील अनेक नोंदी सुटल्या. एकूण, रडारला दिसू शकणाऱ्या {o} पैकी {h} पुरांजवळ "
-                               "काहीतरी सापडले.", h=val.get("hits", 0), o=val.get("observable", 0)),
+                               "नाही, म्हणून शहरातील बहुतेक नोंदी सुटल्या: {o} पैकी {h} नोंदवलेल्या पुरांजवळ काहीतरी सापडले, "
+                               "योगायोगापेक्षा जास्त नाही.", h=val.get("hits", 0), o=val.get("observable", 0)),
                           v=dict(longitude=pune[0]["p"][0], latitude=pune[0]["p"][1] - 0.07, zoom=10.9, pitch=55,
                                  bearing=15)))
     stops.append(dict(t=tr("Your turn", "आता तुम्ही पाहा"),

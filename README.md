@@ -1,4 +1,4 @@
-# MonsoonLens: what NISAR radar saw in the 2026 Pune monsoon
+# MonsoonLens: What NISAR Radar Saw in the 2026 Pune Monsoon
 
 NASA Space Apps Challenge 2026 · **Dancing with the SARs** · GDG Ahlen (virtual) · Team iGenfinity
 

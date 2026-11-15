@@ -11,10 +11,10 @@ Rules from the guide that affect this page:
 - Submit before Sunday 15 November, 11:59 p.m. in the time zone of the Local Event (GDG Ahlen).
   The page can be edited and resubmitted until then; judges see the last saved version.
 
-Numbers are from `data/derived/` (metrics.json generated 2026-11-14T19:01Z). Recheck them after any
+Numbers are from `data/derived/` (metrics.json generated 2026-11-15T06:12Z, after the E016 correction). Recheck them after any
 new pipeline run. Items in `[SQUARE BRACKETS]` still need a person to fill or confirm them.
 
-**Pending correction (plotholes.md P07, P46):** the E016 flood report has been moved to its real location, and validation has not been re-run yet. Floods are expected to become **3 of 10** (7 misses), not 4 of 10. Do not publish "4 of 10" until the pipeline is re-run. All flood matches are to "possible water under cover" patches, not to mapped new water, so say "matched to a possible-water patch", not "flood detected".
+**Corrected (plotholes.md P07, P46):** the pipeline was re-run on 15 November with E016 at its real location. Floods are **3 of 10** (7 misses). Every match is to a "possible water under cover" patch, and places nobody reported match about as often (3.8 of 10), so the flood count is a limit, not evidence: say "no better than chance", never "flood detected".
 
 ---
 
@@ -80,9 +80,10 @@ A Python pipeline reads only the Pune box from each NISAR file, on a 40 m grid.
 
 **How we checked it**
 
-- Against reports: 18 events from news sources, each linked. Of 10 floods radar could observe, 4 had
-  a detection nearby; the 6 misses were all in built-up areas, where radar echoes off walls hide
-  street flooding. Of 7 landslides we could locate, radar could observe 4; we matched 2, both to the
+- Against reports: 18 events from news sources, each linked. Of 10 floods radar could observe, 3 had
+  a "possible water" patch nearby, which is no better than chance: places nobody reported match about
+  3.8 of 10 under the same rule. The 7 misses were all in built-up areas, where radar echoes off walls
+  hide street flooding. Of 7 landslides we could locate, radar could observe 4; we matched 2, both to the
   same zone.
 - Against a second orbit: NISAR track 106 (3 to 15 July) saw 12 of the zones and found 2 again,
   about 8 times what chance gives (p = 0.026).

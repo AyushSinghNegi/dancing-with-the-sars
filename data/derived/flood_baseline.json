@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-15T00:45:37+00:00",
+  "generated": "2026-11-15T06:12:06+00:00",
   "rule": "a reported flood is matched when new water or a possible-water patch lies within max(precision_m, 500 m) of the reported place",
   "layers": {
     "new_water": {
@@ -17,7 +17,7 @@
     "matched_to_new_water": 0
   },
   "validation_csv": {
-    "hits": 4,
+    "hits": 3,
     "of": 10
   },
   "events": [

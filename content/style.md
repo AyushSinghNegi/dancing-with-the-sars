@@ -7,7 +7,7 @@ The colour values are copied from `app/lib/ui.py`; change them there first, then
 
 | Where | Text | In the app now? |
 |---|---|---|
-| One-line pitch | NISAR sees what monsoon clouds hide | No. The landing title is "What NISAR radar saw in the 2026 Pune monsoon". Use the pitch on slide 1 and the project page. |
+| One-line pitch | NISAR sees what monsoon clouds hide | No. The landing title is "What NISAR Radar Saw in the 2026 Pune Monsoon". Use the pitch on slide 1 and the project page. |
 | Button 1 | Start the story | Yes |
 | Button 2 | Explore the map | Yes |
 
