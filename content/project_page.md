@@ -14,6 +14,8 @@ Rules from the guide that affect this page:
 Numbers are from `data/derived/` (metrics.json generated 2026-11-14T19:01Z). Recheck them after any
 new pipeline run. Items in `[SQUARE BRACKETS]` still need a person to fill or confirm them.
 
+**Pending correction (plotholes.md P07, P46):** the E016 flood report has been moved to its real location, and validation has not been re-run yet. Floods are expected to become **3 of 10** (7 misses), not 4 of 10. Do not publish "4 of 10" until the pipeline is re-run. All flood matches are to "possible water under cover" patches, not to mapped new water, so say "matched to a possible-water patch", not "flood detected".
+
 ---
 
 ## Project Name
@@ -116,12 +118,12 @@ Yes.
 - Claude was also used to check each reported event against its news source, to draft the style
   guide, the slide outline, the validation table text and this page, and to keep the list of open
   points (`plotholes.md`).
-- `[CONFIRM with RSN: ChatGPT Plus use for data analysis, as planned]`
+- ChatGPT (OpenAI) was used by one team member for data analysis.
 - No measurement is SI-generated. Every number is computed by our code from the NISAR files listed
   below, or comes from a linked source.
 - No image, video or audio is SI-generated. Map images and the demo video are rendered by our code
   from the radar data.
-- `[CONFIRM with Ayush: the idea and the choice of place and event were the team's own]`
+- The idea and the choice of place and event were the team's own.
 - The repository's README has a "Use of AI" section stating this.
 
 ## NASA Data
@@ -186,6 +188,6 @@ Second-orbit check, track 106:
 - [ ] Demo is 30 seconds or less (or 7 slides or fewer).
 - [ ] Live app and repository links open in a private window.
 - [ ] Every number above still matches `data/derived/metrics.json`.
-- [ ] The three `[SQUARE BRACKET]` items are filled (demo link, RSN's tools, whose idea).
+- [ ] The one remaining `[SQUARE BRACKET]` item is filled: the demo link.
 - [ ] Nothing shows a person under 18.
 - [ ] Ayush has given the final OK.

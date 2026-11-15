@@ -1,0 +1,1798 @@
+{
+  "generated": "2026-11-15T00:47:36+00:00",
+  "road_m": 1000,
+  "place_m": 2000,
+  "source": "OpenStreetMap contributors (ODbL): roads and railways via Overpass, data as of 2026-11-15T00:45:00Z; settlements from data/reference/places_osm.csv",
+  "road_classes": [
+    "motorway",
+    "trunk",
+    "primary",
+    "secondary",
+    "tertiary"
+  ],
+  "ways": 10578,
+  "places": 431,
+  "summary": {
+    "zones": 50,
+    "road_within": 19,
+    "railway_within": 1,
+    "place_within": 20,
+    "nothing_within": 19
+  },
+  "zones": {
+    "SZ001": {
+      "lat": 18.89501,
+      "lon": 73.39186,
+      "confidence": "high",
+      "score": 0.86,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 3357
+      },
+      "nearest_railway": {
+        "name": "Mumbai-Pune Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 5703
+      },
+      "nearest_place": {
+        "name": "Mangaon",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 2345
+      }
+    },
+    "SZ002": {
+      "lat": 18.19757,
+      "lon": 73.56288,
+      "confidence": "high",
+      "score": 0.86,
+      "roads": [],
+      "railways": [],
+      "places": [
+        {
+          "name": "Dhangarwadi",
+          "name_mr": "",
+          "type": "village",
+          "distance_m": 1408
+        }
+      ],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 1596
+      },
+      "nearest_railway": {
+        "name": "Konkan Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 26750
+      },
+      "nearest_place": {
+        "name": "Dhangarwadi",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 1408
+      }
+    },
+    "SZ003": {
+      "lat": 18.17851,
+      "lon": 73.52673,
+      "confidence": "high",
+      "score": 0.86,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "SH101",
+        "class": "primary",
+        "distance_m": 1827
+      },
+      "nearest_railway": {
+        "name": "Konkan Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 22600
+      },
+      "nearest_place": {
+        "name": "Waki Budruk",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 2445
+      }
+    },
+    "SZ004": {
+      "lat": 18.47321,
+      "lon": 73.40928,
+      "confidence": "high",
+      "score": 0.85,
+      "roads": [
+        {
+          "name": "",
+          "ref": "NH753F",
+          "class": "primary",
+          "distance_m": 476
+        }
+      ],
+      "railways": [],
+      "places": [
+        {
+          "name": "Dongerwadi",
+          "name_mr": "\u0921\u094b\u0902\u0917\u0930\u0935\u093e\u0921\u0940",
+          "type": "village",
+          "distance_m": 897
+        }
+      ],
+      "nearest_road": {
+        "name": "",
+        "ref": "NH753F",
+        "class": "primary",
+        "distance_m": 476
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 29907
+      },
+      "nearest_place": {
+        "name": "Dongerwadi",
+        "name_mr": "\u0921\u094b\u0902\u0917\u0930\u0935\u093e\u0921\u0940",
+        "type": "village",
+        "distance_m": 897
+      }
+    },
+    "SZ005": {
+      "lat": 18.17594,
+      "lon": 73.52241,
+      "confidence": "high",
+      "score": 0.85,
+      "roads": [],
+      "railways": [],
+      "places": [
+        {
+          "name": "Jholichakond",
+          "name_mr": "",
+          "type": "village",
+          "distance_m": 1898
+        }
+      ],
+      "nearest_road": {
+        "name": "",
+        "ref": "SH101",
+        "class": "primary",
+        "distance_m": 1307
+      },
+      "nearest_railway": {
+        "name": "Konkan Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 22084
+      },
+      "nearest_place": {
+        "name": "Jholichakond",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 1898
+      }
+    },
+    "SZ006": {
+      "lat": 18.15528,
+      "lon": 73.72455,
+      "confidence": "high",
+      "score": 0.85,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 2374
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 42643
+      },
+      "nearest_place": {
+        "name": "Mahuda",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 3772
+      }
+    },
+    "SZ007": {
+      "lat": 18.77902,
+      "lon": 73.33264,
+      "confidence": "high",
+      "score": 0.84,
+      "roads": [
+        {
+          "name": "Khopoli Road",
+          "ref": "NH48",
+          "class": "trunk",
+          "distance_m": 248
+        },
+        {
+          "name": "Mumbai - Pune Expressway Missing Link",
+          "ref": "MPE",
+          "class": "motorway",
+          "distance_m": 695
+        },
+        {
+          "name": "Mumbai - Pune Expressway",
+          "ref": "MPE;NH48",
+          "class": "motorway",
+          "distance_m": 696
+        }
+      ],
+      "railways": [],
+      "places": [
+        {
+          "name": "Khopoli",
+          "name_mr": "\u0916\u094b\u092a\u094b\u0932\u0940",
+          "type": "town",
+          "distance_m": 1484
+        }
+      ],
+      "nearest_road": {
+        "name": "Khopoli Road",
+        "ref": "NH48",
+        "class": "trunk",
+        "distance_m": 248
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 1688
+      },
+      "nearest_place": {
+        "name": "Khopoli",
+        "name_mr": "\u0916\u094b\u092a\u094b\u0932\u0940",
+        "type": "town",
+        "distance_m": 1484
+      }
+    },
+    "SZ008": {
+      "lat": 18.17485,
+      "lon": 73.52147,
+      "confidence": "high",
+      "score": 0.84,
+      "roads": [],
+      "railways": [],
+      "places": [
+        {
+          "name": "Jholichakond",
+          "name_mr": "",
+          "type": "village",
+          "distance_m": 1781
+        }
+      ],
+      "nearest_road": {
+        "name": "",
+        "ref": "SH101",
+        "class": "primary",
+        "distance_m": 1164
+      },
+      "nearest_railway": {
+        "name": "Konkan Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 21988
+      },
+      "nearest_place": {
+        "name": "Jholichakond",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 1781
+      }
+    },
+    "SZ009": {
+      "lat": 18.73059,
+      "lon": 73.48086,
+      "confidence": "medium",
+      "score": 0.73,
+      "roads": [],
+      "railways": [],
+      "places": [
+        {
+          "name": "Malavli",
+          "name_mr": "\u092e\u0933\u0935\u0932\u0940",
+          "type": "town",
+          "distance_m": 1833
+        }
+      ],
+      "nearest_road": {
+        "name": "Mumbai - Pune Expressway",
+        "ref": "MPE",
+        "class": "motorway",
+        "distance_m": 1346
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 1462
+      },
+      "nearest_place": {
+        "name": "Malavli",
+        "name_mr": "\u092e\u0933\u0935\u0932\u0940",
+        "type": "town",
+        "distance_m": 1833
+      }
+    },
+    "SZ010": {
+      "lat": 18.3003,
+      "lon": 73.37,
+      "confidence": "medium",
+      "score": 0.72,
+      "roads": [],
+      "railways": [],
+      "places": [
+        {
+          "name": "Manjurne",
+          "name_mr": "",
+          "type": "village",
+          "distance_m": 1454
+        }
+      ],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 1793
+      },
+      "nearest_railway": {
+        "name": "Konkan Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 16446
+      },
+      "nearest_place": {
+        "name": "Manjurne",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 1454
+      }
+    },
+    "SZ011": {
+      "lat": 18.69449,
+      "lon": 73.3365,
+      "confidence": "medium",
+      "score": 0.7,
+      "roads": [],
+      "railways": [],
+      "places": [
+        {
+          "name": "Mangaon Budruk",
+          "name_mr": "",
+          "type": "village",
+          "distance_m": 1629
+        },
+        {
+          "name": "Phalyan",
+          "name_mr": "",
+          "type": "village",
+          "distance_m": 1861
+        }
+      ],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 2895
+      },
+      "nearest_railway": {
+        "name": "Tunnel 51",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 7209
+      },
+      "nearest_place": {
+        "name": "Mangaon Budruk",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 1629
+      }
+    },
+    "SZ012": {
+      "lat": 18.18665,
+      "lon": 73.52837,
+      "confidence": "medium",
+      "score": 0.7,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 2334
+      },
+      "nearest_railway": {
+        "name": "Konkan Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 22913
+      },
+      "nearest_place": {
+        "name": "Waki Budruk",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 2269
+      }
+    },
+    "SZ013": {
+      "lat": 18.71126,
+      "lon": 73.35302,
+      "confidence": "medium",
+      "score": 0.69,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 2740
+      },
+      "nearest_railway": {
+        "name": "catch siding",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 4803
+      },
+      "nearest_place": {
+        "name": "Phalyan",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 2209
+      }
+    },
+    "SZ014": {
+      "lat": 18.66867,
+      "lon": 73.40159,
+      "confidence": "medium",
+      "score": 0.69,
+      "roads": [
+        {
+          "name": "Tung Road",
+          "ref": "",
+          "class": "tertiary",
+          "distance_m": 207
+        },
+        {
+          "name": "Ambi Valley Road",
+          "ref": "",
+          "class": "secondary",
+          "distance_m": 344
+        },
+        {
+          "name": "",
+          "ref": "",
+          "class": "tertiary",
+          "distance_m": 457
+        }
+      ],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "Tung Road",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 207
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 8750
+      },
+      "nearest_place": {
+        "name": "Bheliv",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 4809
+      }
+    },
+    "SZ015": {
+      "lat": 18.54269,
+      "lon": 73.37719,
+      "confidence": "medium",
+      "score": 0.68,
+      "roads": [
+        {
+          "name": "",
+          "ref": "",
+          "class": "tertiary",
+          "distance_m": 725
+        },
+        {
+          "name": "Dare ghat",
+          "ref": "",
+          "class": "tertiary",
+          "distance_m": 738
+        }
+      ],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 725
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 22910
+      },
+      "nearest_place": {
+        "name": "Adgaon",
+        "name_mr": "\u0906\u0921\u0917\u093e\u0935",
+        "type": "village",
+        "distance_m": 2114
+      }
+    },
+    "SZ016": {
+      "lat": 18.44397,
+      "lon": 73.39137,
+      "confidence": "medium",
+      "score": 0.68,
+      "roads": [
+        {
+          "name": "",
+          "ref": "NH753F",
+          "class": "primary",
+          "distance_m": 930
+        }
+      ],
+      "railways": [],
+      "places": [
+        {
+          "name": "Patnus",
+          "name_mr": "",
+          "type": "village",
+          "distance_m": 1837
+        }
+      ],
+      "nearest_road": {
+        "name": "",
+        "ref": "NH753F",
+        "class": "primary",
+        "distance_m": 930
+      },
+      "nearest_railway": {
+        "name": "Konkan Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 32082
+      },
+      "nearest_place": {
+        "name": "Patnus",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 1837
+      }
+    },
+    "SZ017": {
+      "lat": 18.15088,
+      "lon": 73.73245,
+      "confidence": "medium",
+      "score": 0.67,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 1423
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 42599
+      },
+      "nearest_place": {
+        "name": "Mahuda",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 2894
+      }
+    },
+    "SZ018": {
+      "lat": 18.34649,
+      "lon": 73.40401,
+      "confidence": "medium",
+      "score": 0.64,
+      "roads": [],
+      "railways": [],
+      "places": [
+        {
+          "name": "Boravali",
+          "name_mr": "",
+          "type": "village",
+          "distance_m": 870
+        },
+        {
+          "name": "Sakalyachiwadi",
+          "name_mr": "",
+          "type": "village",
+          "distance_m": 1042
+        },
+        {
+          "name": "Jite",
+          "name_mr": "",
+          "type": "village",
+          "distance_m": 1255
+        }
+      ],
+      "nearest_road": {
+        "name": "Kadape Jite Road",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 1193
+      },
+      "nearest_railway": {
+        "name": "Konkan Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 22646
+      },
+      "nearest_place": {
+        "name": "Boravali",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 870
+      }
+    },
+    "SZ019": {
+      "lat": 18.14907,
+      "lon": 73.73228,
+      "confidence": "medium",
+      "score": 0.64,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 1416
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 42755
+      },
+      "nearest_place": {
+        "name": "Mahuda",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 2935
+      }
+    },
+    "SZ020": {
+      "lat": 18.67871,
+      "lon": 73.41306,
+      "confidence": "medium",
+      "score": 0.63,
+      "roads": [
+        {
+          "name": "Tung Road",
+          "ref": "",
+          "class": "tertiary",
+          "distance_m": 779
+        }
+      ],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "Tung Road",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 779
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 7418
+      },
+      "nearest_place": {
+        "name": "Bheliv",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 5783
+      }
+    },
+    "SZ021": {
+      "lat": 18.5287,
+      "lon": 73.41104,
+      "confidence": "medium",
+      "score": 0.63,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 1375
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 23810
+      },
+      "nearest_place": {
+        "name": "Adgaon",
+        "name_mr": "\u0906\u0921\u0917\u093e\u0935",
+        "type": "village",
+        "distance_m": 2254
+      }
+    },
+    "SZ022": {
+      "lat": 18.29102,
+      "lon": 73.47168,
+      "confidence": "medium",
+      "score": 0.63,
+      "roads": [],
+      "railways": [],
+      "places": [
+        {
+          "name": "Khanu",
+          "name_mr": "",
+          "type": "village",
+          "distance_m": 1190
+        }
+      ],
+      "nearest_road": {
+        "name": "",
+        "ref": "SH101",
+        "class": "primary",
+        "distance_m": 4265
+      },
+      "nearest_railway": {
+        "name": "Konkan Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 22670
+      },
+      "nearest_place": {
+        "name": "Khanu",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 1190
+      }
+    },
+    "SZ023": {
+      "lat": 18.50819,
+      "lon": 73.65559,
+      "confidence": "medium",
+      "score": 0.61,
+      "roads": [
+        {
+          "name": "Pirangut Paud Road",
+          "ref": "NH753F",
+          "class": "primary",
+          "distance_m": 763
+        },
+        {
+          "name": "",
+          "ref": "",
+          "class": "tertiary",
+          "distance_m": 784
+        }
+      ],
+      "railways": [],
+      "places": [
+        {
+          "name": "Sutarwadi",
+          "name_mr": "\u0938\u0941\u0924\u093e\u0930\u0935\u093e\u0921\u0940",
+          "type": "village",
+          "distance_m": 748
+        }
+      ],
+      "nearest_road": {
+        "name": "Pirangut Paud Road",
+        "ref": "NH753F",
+        "class": "primary",
+        "distance_m": 763
+      },
+      "nearest_railway": {
+        "name": "Mumbai\u2013Pune Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 19255
+      },
+      "nearest_place": {
+        "name": "Sutarwadi",
+        "name_mr": "\u0938\u0941\u0924\u093e\u0930\u0935\u093e\u0921\u0940",
+        "type": "village",
+        "distance_m": 748
+      }
+    },
+    "SZ024": {
+      "lat": 18.88936,
+      "lon": 73.90851,
+      "confidence": "low",
+      "score": 0.59,
+      "roads": [
+        {
+          "name": "Pune Nashik Road",
+          "ref": "",
+          "class": "primary",
+          "distance_m": 218
+        },
+        {
+          "name": "Pune Nashik Road",
+          "ref": "NH60",
+          "class": "trunk",
+          "distance_m": 637
+        }
+      ],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "Pune Nashik Road",
+        "ref": "",
+        "class": "primary",
+        "distance_m": 218
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 27910
+      },
+      "nearest_place": {
+        "name": "Rajgurunagar",
+        "name_mr": "\u0930\u093e\u091c\u0917\u0941\u0930\u0942\u0928\u0917\u0930",
+        "type": "suburb",
+        "distance_m": 4370
+      }
+    },
+    "SZ025": {
+      "lat": 18.629,
+      "lon": 73.54545,
+      "confidence": "low",
+      "score": 0.59,
+      "roads": [
+        {
+          "name": "",
+          "ref": "",
+          "class": "tertiary",
+          "distance_m": 848
+        }
+      ],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 848
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 13839
+      },
+      "nearest_place": {
+        "name": "Andhalegaon",
+        "name_mr": "\u0905\u0902\u0927\u093e\u0933\u0947\u0917\u093e\u0935",
+        "type": "village",
+        "distance_m": 2258
+      }
+    },
+    "SZ026": {
+      "lat": 18.1623,
+      "lon": 73.73804,
+      "confidence": "low",
+      "score": 0.59,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 1805
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 41224
+      },
+      "nearest_place": {
+        "name": "Mahuda",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 2635
+      }
+    },
+    "SZ027": {
+      "lat": 18.78626,
+      "lon": 73.3847,
+      "confidence": "low",
+      "score": 0.58,
+      "roads": [
+        {
+          "name": "",
+          "ref": "",
+          "class": "tertiary",
+          "distance_m": 451
+        }
+      ],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 451
+      },
+      "nearest_railway": {
+        "name": "Tunnel 43",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 1538
+      },
+      "nearest_place": {
+        "name": "Tungarli",
+        "name_mr": "\u0924\u0941\u0902\u0917\u0930\u0932\u0940",
+        "type": "village",
+        "distance_m": 3245
+      }
+    },
+    "SZ028": {
+      "lat": 18.2286,
+      "lon": 73.55487,
+      "confidence": "low",
+      "score": 0.57,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 1134
+      },
+      "nearest_railway": {
+        "name": "Konkan Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 26880
+      },
+      "nearest_place": {
+        "name": "Dhangarwadi",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 4900
+      }
+    },
+    "SZ029": {
+      "lat": 18.17433,
+      "lon": 73.75365,
+      "confidence": "low",
+      "score": 0.56,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 2391
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 39163
+      },
+      "nearest_place": {
+        "name": "Mahuda",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 2658
+      }
+    },
+    "SZ030": {
+      "lat": 18.77122,
+      "lon": 73.37012,
+      "confidence": "low",
+      "score": 0.53,
+      "roads": [
+        {
+          "name": "Mumbai - Pune Expressway",
+          "ref": "MPE;NH48",
+          "class": "motorway",
+          "distance_m": 239
+        },
+        {
+          "name": "Khandala Tunnel",
+          "ref": "MPE",
+          "class": "motorway",
+          "distance_m": 265
+        },
+        {
+          "name": "",
+          "ref": "NH48",
+          "class": "trunk",
+          "distance_m": 307
+        }
+      ],
+      "railways": [
+        {
+          "name": "Tunnel 47 + 49",
+          "ref": "",
+          "class": "rail",
+          "distance_m": 574
+        },
+        {
+          "name": "",
+          "ref": "",
+          "class": "rail",
+          "distance_m": 610
+        },
+        {
+          "name": "Tunnel 46",
+          "ref": "",
+          "class": "rail",
+          "distance_m": 681
+        }
+      ],
+      "places": [
+        {
+          "name": "\u0916\u0902\u0921\u093e\u0932\u093e",
+          "name_mr": "\u0916\u0902\u0921\u093e\u0933\u093e",
+          "type": "village",
+          "distance_m": 1696
+        }
+      ],
+      "nearest_road": {
+        "name": "Mumbai - Pune Expressway",
+        "ref": "MPE;NH48",
+        "class": "motorway",
+        "distance_m": 239
+      },
+      "nearest_railway": {
+        "name": "Tunnel 47 + 49",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 574
+      },
+      "nearest_place": {
+        "name": "\u0916\u0902\u0921\u093e\u0932\u093e",
+        "name_mr": "\u0916\u0902\u0921\u093e\u0933\u093e",
+        "type": "village",
+        "distance_m": 1696
+      }
+    },
+    "SZ031": {
+      "lat": 18.66906,
+      "lon": 73.40519,
+      "confidence": "low",
+      "score": 0.53,
+      "roads": [
+        {
+          "name": "Tung Road",
+          "ref": "",
+          "class": "tertiary",
+          "distance_m": 203
+        },
+        {
+          "name": "Ambi Valley Road",
+          "ref": "",
+          "class": "secondary",
+          "distance_m": 704
+        },
+        {
+          "name": "",
+          "ref": "",
+          "class": "tertiary",
+          "distance_m": 748
+        }
+      ],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "Tung Road",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 203
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 8617
+      },
+      "nearest_place": {
+        "name": "Bheliv",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 5152
+      }
+    },
+    "SZ032": {
+      "lat": 18.23993,
+      "lon": 73.6989,
+      "confidence": "low",
+      "score": 0.53,
+      "roads": [],
+      "railways": [],
+      "places": [
+        {
+          "name": "Gunjavane",
+          "name_mr": "",
+          "type": "village",
+          "distance_m": 1642
+        }
+      ],
+      "nearest_road": {
+        "name": "Sangamner Bhramhangar Bhandravali Road",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 1642
+      },
+      "nearest_railway": {
+        "name": "Mumbai\u2013Pune Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 35966
+      },
+      "nearest_place": {
+        "name": "Gunjavane",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 1642
+      }
+    },
+    "SZ033": {
+      "lat": 18.16262,
+      "lon": 73.7318,
+      "confidence": "low",
+      "score": 0.52,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 2213
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 41552
+      },
+      "nearest_place": {
+        "name": "Mahuda",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 3260
+      }
+    },
+    "SZ034": {
+      "lat": 18.4724,
+      "lon": 73.37703,
+      "confidence": "low",
+      "score": 0.51,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 1697
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 30533
+      },
+      "nearest_place": {
+        "name": "Patnus",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 2831
+      }
+    },
+    "SZ035": {
+      "lat": 18.17262,
+      "lon": 73.75451,
+      "confidence": "low",
+      "score": 0.5,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 2414
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 39287
+      },
+      "nearest_place": {
+        "name": "Mahuda",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 2474
+      }
+    },
+    "SZ036": {
+      "lat": 18.29076,
+      "lon": 73.46109,
+      "confidence": "low",
+      "score": 0.49,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "secondary",
+        "distance_m": 3968
+      },
+      "nearest_railway": {
+        "name": "Konkan Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 21803
+      },
+      "nearest_place": {
+        "name": "Khanu",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 2310
+      }
+    },
+    "SZ037": {
+      "lat": 18.45403,
+      "lon": 73.54031,
+      "confidence": "low",
+      "score": 0.47,
+      "roads": [
+        {
+          "name": "",
+          "ref": "",
+          "class": "tertiary",
+          "distance_m": 250
+        },
+        {
+          "name": "Temghar Lavasa Road",
+          "ref": "SH57",
+          "class": "primary",
+          "distance_m": 264
+        }
+      ],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 250
+      },
+      "nearest_railway": {
+        "name": "Mumbai\u2013Pune Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 31764
+      },
+      "nearest_place": {
+        "name": "Kharwade",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 5346
+      }
+    },
+    "SZ038": {
+      "lat": 18.39224,
+      "lon": 73.40757,
+      "confidence": "low",
+      "score": 0.47,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "NH753F",
+        "class": "primary",
+        "distance_m": 1189
+      },
+      "nearest_railway": {
+        "name": "Konkan Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 27331
+      },
+      "nearest_place": {
+        "name": "Umbardi",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 2029
+      }
+    },
+    "SZ039": {
+      "lat": 18.71234,
+      "lon": 73.35244,
+      "confidence": "low",
+      "score": 0.46,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 2667
+      },
+      "nearest_railway": {
+        "name": "catch siding",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 4708
+      },
+      "nearest_place": {
+        "name": "Phalyan",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 2331
+      }
+    },
+    "SZ040": {
+      "lat": 18.77298,
+      "lon": 73.3929,
+      "confidence": "low",
+      "score": 0.42,
+      "roads": [
+        {
+          "name": "Mumbai - Pune Expressway",
+          "ref": "MPE",
+          "class": "motorway",
+          "distance_m": 399
+        },
+        {
+          "name": "",
+          "ref": "",
+          "class": "tertiary",
+          "distance_m": 495
+        }
+      ],
+      "railways": [],
+      "places": [
+        {
+          "name": "Tungarli",
+          "name_mr": "\u0924\u0941\u0902\u0917\u0930\u0932\u0940",
+          "type": "village",
+          "distance_m": 1680
+        }
+      ],
+      "nearest_road": {
+        "name": "Mumbai - Pune Expressway",
+        "ref": "MPE",
+        "class": "motorway",
+        "distance_m": 399
+      },
+      "nearest_railway": {
+        "name": "Mumbai-Pune Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 1492
+      },
+      "nearest_place": {
+        "name": "Tungarli",
+        "name_mr": "\u0924\u0941\u0902\u0917\u0930\u0932\u0940",
+        "type": "village",
+        "distance_m": 1680
+      }
+    },
+    "SZ041": {
+      "lat": 18.81615,
+      "lon": 73.96972,
+      "confidence": "low",
+      "score": 0.41,
+      "roads": [
+        {
+          "name": "",
+          "ref": "",
+          "class": "tertiary",
+          "distance_m": 323
+        },
+        {
+          "name": "",
+          "ref": "SH54",
+          "class": "primary",
+          "distance_m": 803
+        }
+      ],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 323
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 26994
+      },
+      "nearest_place": {
+        "name": "Gosasi",
+        "name_mr": "\u0917\u094b\u0938\u093e\u0938\u0940",
+        "type": "village",
+        "distance_m": 2211
+      }
+    },
+    "SZ042": {
+      "lat": 18.8644,
+      "lon": 73.56818,
+      "confidence": "low",
+      "score": 0.38,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 1441
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 10735
+      },
+      "nearest_place": {
+        "name": "Wadeshwar",
+        "name_mr": "\u0935\u093e\u0921\u0947\u0936\u094d\u0935\u0930",
+        "type": "village",
+        "distance_m": 2035
+      }
+    },
+    "SZ043": {
+      "lat": 18.50523,
+      "lon": 73.39851,
+      "confidence": "low",
+      "score": 0.38,
+      "roads": [
+        {
+          "name": "Ghutake to Hirdi",
+          "ref": "",
+          "class": "tertiary",
+          "distance_m": 475
+        }
+      ],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "Ghutake to Hirdi",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 475
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 26527
+      },
+      "nearest_place": {
+        "name": "Pimpri",
+        "name_mr": "\u092a\u093f\u0902\u092a\u0930\u0940",
+        "type": "village",
+        "distance_m": 2913
+      }
+    },
+    "SZ044": {
+      "lat": 18.46957,
+      "lon": 73.4382,
+      "confidence": "low",
+      "score": 0.38,
+      "roads": [
+        {
+          "name": "",
+          "ref": "NH753F",
+          "class": "primary",
+          "distance_m": 26
+        }
+      ],
+      "railways": [],
+      "places": [
+        {
+          "name": "Sarole",
+          "name_mr": "\u0938\u0930\u094b\u0933\u0947",
+          "type": "village",
+          "distance_m": 692
+        },
+        {
+          "name": "Chachivali",
+          "name_mr": "\u091a\u093e\u091a\u093f\u0935\u0933\u0940",
+          "type": "village",
+          "distance_m": 904
+        }
+      ],
+      "nearest_road": {
+        "name": "",
+        "ref": "NH753F",
+        "class": "primary",
+        "distance_m": 26
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 29994
+      },
+      "nearest_place": {
+        "name": "Sarole",
+        "name_mr": "\u0938\u0930\u094b\u0933\u0947",
+        "type": "village",
+        "distance_m": 692
+      }
+    },
+    "SZ045": {
+      "lat": 18.17205,
+      "lon": 73.7652,
+      "confidence": "low",
+      "score": 0.37,
+      "roads": [],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 1887
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 38775
+      },
+      "nearest_place": {
+        "name": "Mahuda",
+        "name_mr": "",
+        "type": "village",
+        "distance_m": 2429
+      }
+    },
+    "SZ046": {
+      "lat": 18.8654,
+      "lon": 73.98613,
+      "confidence": "low",
+      "score": 0.34,
+      "roads": [],
+      "railways": [],
+      "places": [
+        {
+          "name": "Chichbaiwadi",
+          "name_mr": "\u091a\u093f\u091a\u092c\u093e\u0908\u0935\u093e\u0921\u0940",
+          "type": "village",
+          "distance_m": 1740
+        },
+        {
+          "name": "Wafgaon",
+          "name_mr": "\u0935\u093e\u092b\u0917\u093e\u0935",
+          "type": "village",
+          "distance_m": 1818
+        },
+        {
+          "name": "Gulani",
+          "name_mr": "\u0917\u0941\u0932\u093e\u0928\u0940",
+          "type": "village",
+          "distance_m": 1980
+        }
+      ],
+      "nearest_road": {
+        "name": "Rajgurunagar Wafgaon Road",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 1259
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 31937
+      },
+      "nearest_place": {
+        "name": "Chichbaiwadi",
+        "name_mr": "\u091a\u093f\u091a\u092c\u093e\u0908\u0935\u093e\u0921\u0940",
+        "type": "village",
+        "distance_m": 1740
+      }
+    },
+    "SZ047": {
+      "lat": 18.8442,
+      "lon": 73.63699,
+      "confidence": "low",
+      "score": 0.31,
+      "roads": [
+        {
+          "name": "",
+          "ref": "",
+          "class": "tertiary",
+          "distance_m": 95
+        }
+      ],
+      "railways": [],
+      "places": [],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 95
+      },
+      "nearest_railway": {
+        "name": "Mumbai\u2013Pune Railway",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 9993
+      },
+      "nearest_place": {
+        "name": "Deshmukhwadi",
+        "name_mr": "\u0926\u0947\u0936\u092e\u0941\u0916\u0935\u093e\u0921\u0940",
+        "type": "village",
+        "distance_m": 2986
+      }
+    },
+    "SZ048": {
+      "lat": 18.46226,
+      "lon": 73.39632,
+      "confidence": "low",
+      "score": 0.31,
+      "roads": [],
+      "railways": [],
+      "places": [
+        {
+          "name": "Dongerwadi",
+          "name_mr": "\u0921\u094b\u0902\u0917\u0930\u0935\u093e\u0921\u0940",
+          "type": "village",
+          "distance_m": 1336
+        }
+      ],
+      "nearest_road": {
+        "name": "",
+        "ref": "NH753F",
+        "class": "primary",
+        "distance_m": 1046
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 31299
+      },
+      "nearest_place": {
+        "name": "Dongerwadi",
+        "name_mr": "\u0921\u094b\u0902\u0917\u0930\u0935\u093e\u0921\u0940",
+        "type": "village",
+        "distance_m": 1336
+      }
+    },
+    "SZ049": {
+      "lat": 18.39984,
+      "lon": 73.69278,
+      "confidence": "low",
+      "score": 0.28,
+      "roads": [
+        {
+          "name": "",
+          "ref": "SH59",
+          "class": "primary",
+          "distance_m": 158
+        }
+      ],
+      "railways": [],
+      "places": [
+        {
+          "name": "Malkhed",
+          "name_mr": "\u092e\u0932\u0916\u0947\u0921",
+          "type": "village",
+          "distance_m": 1129
+        },
+        {
+          "name": "Sangrun",
+          "name_mr": "\u0938\u0902\u0917\u0930\u0942\u0923",
+          "type": "village",
+          "distance_m": 1647
+        },
+        {
+          "name": "Wasavewadi",
+          "name_mr": "",
+          "type": "village",
+          "distance_m": 1666
+        }
+      ],
+      "nearest_road": {
+        "name": "",
+        "ref": "SH59",
+        "class": "primary",
+        "distance_m": 158
+      },
+      "nearest_railway": {
+        "name": "",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 22189
+      },
+      "nearest_place": {
+        "name": "Malkhed",
+        "name_mr": "\u092e\u0932\u0916\u0947\u0921",
+        "type": "village",
+        "distance_m": 1129
+      }
+    },
+    "SZ050": {
+      "lat": 18.42663,
+      "lon": 73.9643,
+      "confidence": "low",
+      "score": 0.25,
+      "roads": [],
+      "railways": [],
+      "places": [
+        {
+          "name": "Wadki",
+          "name_mr": "\u0935\u0921\u0915\u0940",
+          "type": "village",
+          "distance_m": 1715
+        }
+      ],
+      "nearest_road": {
+        "name": "",
+        "ref": "",
+        "class": "tertiary",
+        "distance_m": 1464
+      },
+      "nearest_railway": {
+        "name": "Pune - Miraj Railway Line",
+        "ref": "",
+        "class": "rail",
+        "distance_m": 4414
+      },
+      "nearest_place": {
+        "name": "Wadki",
+        "name_mr": "\u0935\u0921\u0915\u0940",
+        "type": "village",
+        "distance_m": 1715
+      }
+    }
+  }
+}

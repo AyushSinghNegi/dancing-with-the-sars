@@ -61,6 +61,32 @@ def rainfall(df: pd.DataFrame, before: str, after: str, events=("2026-07-03", "2
     return fig
 
 
+CHANCE = "#8794a6"   # neutral: what chance alone gives
+
+
+def flood_chance(fb: dict):
+    """Reported floods matched, next to the matches the same rule gives at places nobody reported.
+    One axis (matches out of the reports scored); every bar is named on the axis and labelled with its value."""
+    n = fb["of"]
+    rows = [("Reported floods", fb["matched"], WATER, "matched to a detection"),
+            ("Random flat ground", fb["flat"]["expected_matches"], CHANCE, "expected by chance"),
+            ("Random settlements", fb["settlements"]["expected_matches"], CHANCE, "expected by chance")]
+    fig = go.Figure(go.Bar(
+        y=[r[0] for r in rows], x=[r[1] for r in rows], orientation="h", width=0.5,
+        marker=dict(color=[r[2] for r in rows], line=dict(width=0)),
+        text=[f"{r[1]:.3g} of {n}" if isinstance(r[1], int) else f"{r[1]:.1f} of {n}" for r in rows],
+        textposition="outside", textfont=dict(size=13, color=ui.ink()),
+        cliponaxis=False, customdata=[r[3] for r in rows],
+        hovertemplate="%{y}: %{text} %{customdata}<extra></extra>"))
+    try:
+        fig.update_traces(marker_cornerradius=4)
+    except ValueError:      # older Plotly: square ends
+        pass
+    fig.update_xaxes(range=[0, n], dtick=1, title_text=f"matches out of {n} reported floods")
+    fig.update_yaxes(autorange="reversed", showgrid=False)
+    return _layout(fig, 210)
+
+
 def timeline(df: pd.DataFrame):
     """Open water on every same-orbit NISAR pass: one line, one axis (km²), each point labelled."""
     d = df.copy()

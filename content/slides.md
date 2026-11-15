@@ -12,6 +12,8 @@ generated 2026-11-14T19:01Z, `timeline.csv`, `dem_check.json`, `validation.csv`)
 team opened. Recheck each number against the files after any new pipeline run. Open points are in
 `plotholes.md`.
 
+**Pending correction (plotholes.md P07, P46):** the E016 flood report has been moved to its real location, and validation has not been re-run yet. Floods are expected to become **3 of 10** (7 misses), not 4 of 10. Do not publish "4 of 10" until the pipeline is re-run. All flood matches are to "possible water under cover" patches, not to mapped new water, so say "matched to a possible-water patch", not "flood detected".
+
 What changed from the 8-slide version: a title slide was added (the guide requires team and
 challenge), "Why radar" and "What we built" became one slide, "Demo" now carries the findings, and
 "Business model" and "Roadmap and team" became one slide.
@@ -24,7 +26,7 @@ challenge), "Why radar" and "What we built" became one slide, "Demo" now carries
 
 - NASA Space Apps Challenge 2026, challenge "Dancing with the SARs"
 - Team iGenfinity, GDG Ahlen (virtual)
-- Ayush, RSN, Urvashi `[FULL NAMES as on the team page]`
+- Ayush Singh Negi, Urvashi Negi, Rajendra Singh Negi
 
 `[IMG]` Before/after radar swipe, full width, behind the title.
 
