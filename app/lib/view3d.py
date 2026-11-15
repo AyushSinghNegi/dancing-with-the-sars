@@ -85,7 +85,7 @@ def _tour(sc):
     before, after = data.dates()
     stops = [dict(t=tr("Where this is", "हे कुठे आहे"),
                   x=tr("Pune district, Maharashtra, India: an 85 km box from the Western Ghats hills (left) to Pune "
-                       "city (right). Heights are doubled so the hills read.",
+                       "city (right). Heights are doubled so the hills stand out.",
                        "पुणे जिल्हा, महाराष्ट्र, भारत: पश्चिम घाटाच्या डोंगरांपासून (डावीकडे) पुणे शहरापर्यंत (उजवीकडे) ८५ "
                        "किमीचा भाग. डोंगर स्पष्ट दिसावेत म्हणून उंची दुप्पट दाखवली आहे."),
                   v=dict(longitude=cx, latitude=cy - 0.1, zoom=8.95, pitch=50, bearing=-12))]

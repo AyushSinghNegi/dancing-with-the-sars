@@ -530,7 +530,7 @@ HI = {
         "निसार के नतीजों के साथ अध्ययन क्षेत्र का 3D मॉडल",
     "Where this is":
         "यह कहाँ है",
-    "Pune district, Maharashtra, India: an 85 km box from the Western Ghats hills (left) to Pune city (right). Heights are doubled so the hills read.":
+    "Pune district, Maharashtra, India: an 85 km box from the Western Ghats hills (left) to Pune city (right). Heights are doubled so the hills stand out.":
         "पुणे ज़िला, महाराष्ट्र, भारत: पश्चिमी घाट की पहाड़ियों (बाएँ) से पुणे शहर (दाएँ) तक 85 किमी का क्षेत्र। पहाड़ियाँ साफ़ दिखें, इसलिए ऊँचाई दोगुनी की गई है।",
     "The Western Ghats":
         "पश्चिमी घाट",

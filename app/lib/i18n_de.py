@@ -390,7 +390,7 @@ DE = {
     "3D model of the study area with NISAR's findings": "3D-Modell des Untersuchungsgebiets mit NISARs Ergebnissen",
     "Where this is": "Wo das ist",
     "Pune district, Maharashtra, India: an 85 km box from the Western Ghats hills (left) to Pune city (right). Heights "
-    "are doubled so the hills read.":
+    "are doubled so the hills stand out.":
         "Distrikt Pune, Maharashtra, Indien: ein 85 km großes Gebiet von den Hügeln der Westghats (links) bis zur Stadt "
         "Pune (rechts). Die Höhen sind verdoppelt, damit die Hügel gut zu sehen sind.",
     "The Western Ghats": "Die Westghats",
