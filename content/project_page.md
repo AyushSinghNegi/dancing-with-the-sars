@@ -35,7 +35,7 @@ ground exactly when people need to see it.
 
 ## Link to Project Demo
 
-`[LINK: 30-second video, public, no login]`
+https://youtu.be/gMXD7zp72yY (29.9 s, YouTube, unlisted: opens with no login)
 
 The script is in `content/demo_script.md`. The guide allows a video of 30 seconds or less, or a
 deck of at most 7 slides; anything longer is not eligible for Global Judging.
@@ -49,7 +49,7 @@ deck of at most 7 slides; anything longer is not eligible for Global Judging.
 - Business plan and global scale-up: https://docs.google.com/document/d/1DScRRLFX0MUlZeXZapZGP1U-N0dGmdZiMqDdRX-EudQ/edit?usp=sharing
 - Technical and validation report: https://docs.google.com/document/d/1oxQSBnIQKd3hy4tiM3YgYng6VkXmFPsn9TbB6NuJqpI/edit?usp=sharing
 - Field operations guide: https://docs.google.com/document/d/10gSMM83O0t-ox3mwgSeH6OlVahQl4a0r7GLOxuKpSfs/edit?usp=sharing
-- Full walkthrough video (84 s, captions): `[LINK: walkthrough video, public, no login]`
+- Full walkthrough video (2 min 7 s, captions): https://youtu.be/GY2MDmud-Q4
 - PDFs of the deck and reports: `deliverables/deck/` and `deliverables/reports/` in the repository
 
 ## Detailed Project Description
@@ -73,8 +73,8 @@ The Method page lists every NISAR file, every threshold, every check and every l
   recorded between 1984 and 2021.
 - 50 likely slide zones on steep slopes, 8 of them high confidence. They are leads to check, not
   confirmed landslides: 46 have no reported event within 2 km.
-- Over the season, open water grew from 153 km² on 28 June to 191 km² on 14 October as the
-  reservoirs filled (five NISAR passes on the same track and mode).
+- Over the season, open water in rivers and reservoirs grew from 130 km² on 28 June to 186 km² on
+  14 October as the reservoirs filled (five NISAR passes on the same track and mode).
 
 **How it works**
 
@@ -118,7 +118,7 @@ step is to run it automatically for each new pass over the Western Ghats.
 **Tools**
 
 Python (h5py, rasterio, pyproj, shapely, SciPy, NumPy, pandas, earthaccess), Streamlit, folium,
-Plotly, Pillow, pytest, GitHub, Streamlit Community Cloud. Code licence: MIT.
+deck.gl (3D view), Plotly, Pillow, pytest, GitHub, Streamlit Community Cloud. Code licence: MIT.
 
 ## Use of Super Intelligence (SI)
 
@@ -203,6 +203,6 @@ Second-orbit check, track 106:
 - [ ] Demo is 30 seconds or less (or 7 slides or fewer).
 - [ ] Live app and repository links open in a private window.
 - [ ] Every number above still matches `data/derived/metrics.json`.
-- [ ] The one remaining `[SQUARE BRACKET]` item is filled: the demo link.
+- [x] The one remaining `[SQUARE BRACKET]` item is filled: the demo link.
 - [ ] Nothing shows a person under 18.
 - [ ] Ayush has given the final OK.
