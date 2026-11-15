@@ -63,9 +63,10 @@ def main(argv=None):
     tl = timeline.run()
     print("[run] render", flush=True)
     rend = render.run()
+    terr = None
     if (C.AUX / "aux_elevation.tif").exists():
         print("[run] terrain3d", flush=True)
-        terrain3d.run()
+        terr = terrain3d.run()
     # Add-ons with their own output files. They read what the steps above wrote, and never block the science.
     for label, mod in (("chance level for the flood matches", "flood_baseline"),
                        ("roads, railways and settlements near each zone (OpenStreetMap)", "nearby"),
@@ -116,7 +117,7 @@ def main(argv=None):
         **rend,
     }
     K.write_json(C.DERIVED / "bounds.json", {"bounds_latlon": rend["bounds_latlon"], "demo": C.IS_DEMO,
-                                             "overlays": rend["overlays"]})
+                                             "overlays": rend["overlays"], **({"terrain": terr} if terr else {})})
     K.write_json(C.DERIVED / "metrics.json", meta)
     print(f"[run] done in {time.time() - t0:.0f}s -> {C.DERIVED}")
     print(f"      new water {wstats['new_water_km2']:.1f} km2 | slide zones {sz['zones']} "
