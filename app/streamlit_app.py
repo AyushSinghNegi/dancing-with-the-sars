@@ -16,10 +16,11 @@ if getattr(sys, "_monsoonlens_lib_stamp", None) != _stamp:
 
 # Page names in the visitor's language. The sidebar language switch has already updated its state when this runs.
 _ss, _q = st.session_state, st.query_params.get("lang")
-_lang = {"English": "en", "मराठी": "mr", "Deutsch": "de"}.get(_ss.get("lang_choice")) or _ss.get("lang") or \
-    (_q if _q in ("en", "mr", "de") else "en")
+_lang = {"English": "en", "हिन्दी": "hi", "मराठी": "mr", "Deutsch": "de"}.get(_ss.get("lang_choice")) or _ss.get("lang") or \
+    (_q if _q in ("en", "hi", "mr", "de") else "en")
 _T = {"en": ("Overview", "Story", "Explore the map", "Check a place", "Field check list", "Method and limits"),
       "mr": ("आढावा", "कथा", "नकाशा पाहा", "एखादे ठिकाण तपासा", "क्षेत्रीय तपासणी यादी", "पद्धत आणि मर्यादा"),
+      "hi": ("सारांश", "कहानी", "नक्शा देखें", "कोई जगह जाँचें", "फ़ील्ड जाँच सूची", "पद्धति और सीमाएँ"),
       "de": ("Überblick", "Geschichte", "Karte erkunden", "Ort prüfen", "Feld-Checkliste", "Methode und Grenzen")}[_lang]
 pages = [
     st.Page("home.py", title=_T[0], icon=":material/satellite_alt:", default=True),

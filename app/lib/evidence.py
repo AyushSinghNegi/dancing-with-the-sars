@@ -73,6 +73,9 @@ def e(key: str, **kw) -> str:
     if ui.lang() == "de":
         from .i18n_de import DE_E
         s = DE_E.get(key) or E[key]["en"]
+    elif ui.lang() == "hi":
+        from .i18n_hi import HI_E
+        s = HI_E.get(key) or E[key]["en"]
     else:
         s = E[key].get(ui.lang()) or E[key]["en"]
     return s.format(**kw) if kw else s
@@ -111,6 +114,9 @@ def checks(p: dict) -> list[tuple[str, bool | None, str]]:
         elif ui.lang() == "de":
             from .i18n_de import REASON
             reason = REASON.get(reason, reason)
+        elif ui.lang() == "hi":
+            from .i18n_hi import REASON as REASON_HI
+            reason = REASON_HI.get(reason, reason)
         out.append((e("dem"), ok, e("dem_found") if ok else e("dem_not", r=reason)))
     k = p.get("nearest_event_km")
     if k is not None:
@@ -131,7 +137,7 @@ def _line_name(r: dict) -> str:
 
 
 def _place_name(r: dict) -> str:
-    return (r.get("name_mr") if ui.lang() == "mr" else "") or r["name"]
+    return (r.get("name_mr") if ui.lang() in ("mr", "hi") else "") or r["name"]
 
 
 def nearby(p: dict) -> list[tuple[str, str]]:
@@ -228,4 +234,7 @@ def type_word(t: str) -> str:
     if ui.lang() == "de":
         from .i18n_de import TYPE
         return TYPE.get(t) or t.replace("_", " ")
+    if ui.lang() == "hi":
+        from .i18n_hi import TYPE as TYPE_HI
+        return TYPE_HI.get(t) or t.replace("_", " ")
     return TYPE_WORD.get(t, {}).get(ui.lang()) or t.replace("_", " ")

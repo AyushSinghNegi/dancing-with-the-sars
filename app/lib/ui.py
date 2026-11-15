@@ -196,6 +196,7 @@ iframe[title="streamlit_folium.st_folium"] { border-radius: 14px; box-shadow: va
 /* app tour: its controls are clicked by the tour card, never seen */
 .st-key-tourctl { position: absolute !important; width: 1px !important; height: 1px !important; overflow: hidden !important;
   opacity: 0; pointer-events: none; }
+.st-key-lang_choice [role="radiogroup"] { column-gap: .7rem !important; row-gap: .2rem !important; }
 .st-key-tour_start_side button { border-radius: 99px; border-color: rgba(111,227,255,.45) !important; }
 
 /* overview: how it works, in three steps */
@@ -491,6 +492,8 @@ def english_only_note():
     if lang() == "mr":
         st.info("हे तांत्रिक पान सध्या बहुतांश इंग्रजीत आहे. आकडे आणि कथा मराठीत पाहण्यासाठी "
                 "मुख्य पान आणि कथा पाहा.")
+    elif lang() == "hi":
+        st.info("यह तकनीकी पेज अंग्रेज़ी में है। आँकड़े और कहानी बाक़ी पेजों पर हिन्दी में हैं।")
     elif lang() == "de":
         st.info("Diese technische Seite ist auf Englisch. Zahlen und Geschichte gibt es auf den anderen Seiten auf "
                 "Deutsch.")
@@ -501,7 +504,9 @@ MONTHS = {"en": ["January", "February", "March", "April", "May", "June", "July",
           "mr": ["जानेवारी", "फेब्रुवारी", "मार्च", "एप्रिल", "मे", "जून", "जुलै", "ऑगस्ट", "सप्टेंबर", "ऑक्टोबर",
                  "नोव्हेंबर", "डिसेंबर"],
           "de": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober",
-                 "November", "Dezember"]}
+                 "November", "Dezember"],
+          "hi": ["जनवरी", "फ़रवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर",
+                 "दिसंबर"]}
 
 
 def day(iso: str) -> str:
@@ -535,6 +540,9 @@ def tr(en: str, mr: str, **kw) -> str:
     if lang() == "de":
         from .i18n_de import DE
         s = DE.get(en, en)
+    elif lang() == "hi":
+        from .i18n_hi import HI
+        s = HI.get(en, en)
     else:
         s = mr if lang() == "mr" and mr else en
     return s.format(**kw) if kw else s
@@ -544,12 +552,15 @@ def t(key: str, **kw) -> str:
     if lang() == "de":
         from .i18n_de import DE_T
         s = DE_T.get(key) or T.get(key, {}).get("en", key)
+    elif lang() == "hi":
+        from .i18n_hi import HI_T
+        s = HI_T.get(key) or T.get(key, {}).get("en", key)
     else:
         s = T.get(key, {}).get(lang()) or T.get(key, {}).get("en", key)
     return s.format(**kw) if kw else s
 
 
-LANGS = {"en": "English", "mr": "मराठी", "de": "Deutsch"}
+LANGS = {"en": "English", "hi": "हिन्दी", "mr": "मराठी", "de": "Deutsch"}
 ASSETS = __import__("pathlib").Path(__file__).resolve().parents[1] / "assets"
 
 
@@ -624,7 +635,7 @@ def setup(page_title: str):
                        layout="wide", initial_sidebar_state="auto")
     st.markdown(CSS, unsafe_allow_html=True)
     data.publish_overlays()
-    if "lang" not in st.session_state:                    # ?lang=de or ?lang=mr opens the app in that language
+    if "lang" not in st.session_state:                    # ?lang=de, ?lang=hi or ?lang=mr opens the app in that language
         q = st.query_params.get("lang")
         st.session_state["lang"] = q if q in LANGS else "en"
     st.logo(str(ASSETS / "logo.png"), icon_image=str(ASSETS / "logo_icon.png"), size="large")

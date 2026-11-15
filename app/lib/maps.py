@@ -24,13 +24,14 @@ BASEMAPS = {
 }
 LABELS = (f"{ESRI}/Canvas/World_Light_Gray_Reference/MapServer/tile/{{z}}/{{y}}/{{x}}", "Labels &copy; Esri")
 LABELS_DARK = (f"{ESRI}/Canvas/World_Dark_Gray_Reference/MapServer/tile/{{z}}/{{y}}/{{x}}", "Labels &copy; Esri")
-NAMES = {"Light": ("Light", "फिका", "Hell"), "Dark": ("Dark", "गडद", "Dunkel"), "Satellite": ("Satellite", "उपग्रह", "Satellit"),
-         "Topographic": ("Topographic", "भूरचना", "Topografisch"), "Streets": ("Streets", "रस्ते", "Straßen")}
+NAMES = {"Light": ("Light", "फिका", "Hell", "हल्का"), "Dark": ("Dark", "गडद", "Dunkel", "गहरा"),
+         "Satellite": ("Satellite", "उपग्रह", "Satellit", "उपग्रह"),
+         "Topographic": ("Topographic", "भूरचना", "Topografisch", "स्थलाकृति"), "Streets": ("Streets", "रस्ते", "Straßen", "सड़कें")}
 
 
 def basemap_name(key: str) -> str:
-    n = NAMES.get(key, (key, key, key))
-    return {"en": n[0], "mr": n[1], "de": n[2]}.get(ui.lang(), n[0])
+    n = NAMES.get(key, (key, key, key, key))
+    return {"en": n[0], "mr": n[1], "de": n[2], "hi": n[3]}.get(ui.lang(), n[0])
 
 
 def default_basemap() -> str:

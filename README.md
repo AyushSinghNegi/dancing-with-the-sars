@@ -17,12 +17,12 @@ And it turns them into things people can use:
 
 - **Check a place**: pick any of 431 villages, towns and suburbs (or click the map) and see what NISAR found
   within 2, 5 or 10 km, with a link you can share
-- **Three languages, light and dark**: English, Marathi (मराठी) and German (Deutsch), in light or dark mode
-  (open a page in a language with `?lang=mr` or `?lang=de`)
+- **Four languages, light and dark**: English, Hindi (हिन्दी), Marathi (मराठी) and German (Deutsch), in light or
+  dark mode (open a page in a language with `?lang=hi`, `?lang=mr` or `?lang=de`)
 - **Field check list**: every likely slide zone ranked, with NISAR image chips of the spot, why it was flagged and
   which independent checks it passed; as a printable page, KML for Google Earth and phones, CSV and GeoJSON
 - **App tour**: "Take the tour" walks a first-time visitor through all six pages in twelve short steps, in any of
-  the three languages, on desktop and phone
+  the four languages, on desktop and phone
 - **3D view**: the study area as a relief model (Copernicus elevation, heights ×2) with the findings painted on it
   and 3D pins for slide zones, flood patches and reported events; "Fly over the findings" flies to each one with a
   one-line explanation (deck.gl, files made by `pipeline/terrain3d.py`)
