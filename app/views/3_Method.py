@@ -121,9 +121,6 @@ STEPS = [
          ["1.9 km image chips", "HTML", "KML", "CSV", "GeoJSON"]),
     ]),
 ]
-st.markdown('<div class="ml-flow">' + "".join(
-    f"<div><b>{html.escape(ph)}</b>{html.escape(', '.join(t.lower() if j else t for j, (t, _, _) in enumerate(st_)))}</div>"
-    for ph, st_ in STEPS) + "</div>", unsafe_allow_html=True)
 k = 0
 for phase, steps in STEPS:
     st.markdown(f'<p class="ml-phase">{html.escape(phase)}</p>', unsafe_allow_html=True)

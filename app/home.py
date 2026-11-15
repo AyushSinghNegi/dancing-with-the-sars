@@ -2,7 +2,7 @@ import html
 
 import streamlit as st
 
-from lib import checks, data, hero, story, swipe, ui, view3d
+from lib import apptour, checks, data, hero, story, swipe, ui, view3d
 
 ui.setup("Overview")
 ui.demo_banner()
@@ -30,10 +30,8 @@ with st.container(key="hero"):
         with st.container(horizontal=True, gap="small", key="herobtns"):
             if st.button(ui.t("start_story"), type="primary", icon=":material/auto_stories:", width="content"):
                 st.switch_page("views/1_Story.py")
-            if st.button(tr("Explore the map", "नकाशा पाहा"), icon=":material/map:", width="content"):
-                st.switch_page("views/2_Explore.py")
-            if st.button(tr("Check a place", "एखादे ठिकाण तपासा"), icon=":material/location_on:", width="content"):
-                st.switch_page("views/4_Place.py")
+            st.button(tr("Take the tour", "फेरफटका घ्या"), icon=":material/tour:", width="content",
+                      key="tour_start_hero", on_click=apptour.start)
     with right:
         if not hero.render(after, height=440):
             imgs = swipe.pair("hh")
@@ -83,10 +81,11 @@ st.markdown('<ol class="ml-how">' + "".join(
 # ---------------------------------------------------------------- 3D tour
 if view3d.meta():
     st.markdown(f"## {tr('See it in 3D', '३D मध्ये पाहा')}")
-    st.markdown('<p class="ml-sub">' + tr("A one-minute tour of what NISAR found, on a model of the land.",
-                                          "जमिनीच्या मॉडेलवर निसारला काय सापडले याचा एका मिनिटाचा फेरफटका.") + "</p>",
+    st.markdown('<p class="ml-sub">' + tr("A one-minute flight over what NISAR found, on a model of the land.",
+                                          "जमिनीच्या मॉडेलवर निसारला जे सापडले त्यावरून एका मिनिटाचे उड्डाण.") + "</p>",
                 unsafe_allow_html=True)
-    view3d.render(height=560, key="home3d")
+    with st.container(key="tour_3d"):
+        view3d.render(height=560, key="home3d")
 
 # ---------------------------------------------------------------- what the radar found
 st.markdown(f"## {ui.t('found')}")
@@ -121,13 +120,13 @@ if tl is not None:
                          "{d} रोजी नद्या आणि धरणांतील उघडे पाणी, {f} रोजी {v} चौ. किमी होते", d=ui.day(last["date"]),
                          v=ui.fmt_num(first["water_in_jrc_extent_km2"], 0), f=ui.day(first["date"])),
                       tr("{n} NISAR passes, same orbit.", "{n} निसार निरीक्षणे, एकच कक्षा.", n=len(tl))))
-cards.append(card(ui.COLORS["brighter"], ui.fmt_num(v("water.brighter_flat_km2")), "km²", ui.t("brighter"), "",
-                  hatch=True))
-st.markdown(f'<div lang="{ui.lang()}" class="ml-grid">{"".join(cards)}</div>', unsafe_allow_html=True)
+with st.container(key="tour_found"):
+    st.markdown(f'<div lang="{ui.lang()}" class="ml-grid">{"".join(cards)}</div>', unsafe_allow_html=True)
 
 # ---------------------------------------------------------------- how we checked it
 st.markdown(f"## {tr('How we checked it', 'आम्ही कसे तपासले')}")
-checks.render()
+with st.container(key="tour_checks"):
+    checks.render()
 
 # ---------------------------------------------------------------- who it is for
 st.markdown(f"## {tr('Who it is for', 'हे कोणासाठी')}")

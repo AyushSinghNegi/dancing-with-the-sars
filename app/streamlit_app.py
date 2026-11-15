@@ -29,4 +29,6 @@ pages = [
     st.Page("views/5_Field.py", title=_T[4], url_path="field", icon=":material/checklist:"),
     st.Page("views/3_Method.py", title=_T[5], url_path="method", icon=":material/science:"),
 ]
-st.navigation(pages).run()
+_pg = st.navigation(pages)
+st.session_state["_page"] = _pg.url_path or ""      # which page is showing (the app tour needs it)
+_pg.run()

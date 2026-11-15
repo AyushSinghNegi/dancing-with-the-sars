@@ -123,7 +123,7 @@ DE = {
     "KML for Google Earth and phone maps": "KML für Google Earth und Handy-Karten",
     "Spreadsheet (CSV)": "Tabelle (CSV)",
     "Confidence": "Sicherheit",
-    "Only zones an extra check backs": "Nur Zonen mit zusätzlicher Bestätigung",
+    "Backed by an extra check": "Von einer Zusatzprüfung gestützt",
     "Near a place": "In der Nähe von",
     "{n} of {t} zones. Select a row to see its radar evidence.":
         "{n} von {t} Zonen. Wählen Sie eine Zeile, um die Radarbelege zu sehen.",
@@ -154,15 +154,11 @@ DE = {
         "Nächste kartierte Straße im Umkreis von {km} km um den Rand der Zone (OpenStreetMap)",
     "Nearest village, town or suburb within {km} km of the zone's edge (OpenStreetMap)":
         "Nächstes Dorf, nächste Stadt oder nächster Vorort im Umkreis von {km} km um den Rand der Zone (OpenStreetMap)",
-    "**What is nearby.** Of the {t} zones, {r} have a mapped road within {rk} km, {w} a railway line within "
-    "{rk} km and {p} a village, town or suburb within {pk} km; {x} have none of these that close. Distances are "
-    "straight lines from the edge of the zone. Near does not mean at risk: it tells whoever looks after that "
-    "road, line or village which leads concern them.":
-        "**Was in der Nähe liegt.** Von den {t} Zonen haben {r} eine kartierte Straße im Umkreis von {rk} km, {w} eine "
-        "Bahnstrecke im Umkreis von {rk} km und {p} ein Dorf, eine Stadt oder einen Vorort im Umkreis von {pk} km; "
-        "{x} haben nichts davon so nah. Die Entfernungen sind Luftlinien vom Rand der Zone. Nähe bedeutet nicht "
-        "Gefährdung: Sie zeigt denen, die für diese Straße, Strecke oder dieses Dorf zuständig sind, welche Hinweise "
-        "sie betreffen.",
+    "**What is nearby.** {r} of {t} zones lie within {rk} km of a mapped road, {w} of a railway line, and {p} "
+    "within {pk} km of a village, town or suburb. Near does not mean at risk: it shows who should look at which lead.":
+        "**Was in der Nähe liegt.** {r} von {t} Zonen liegen höchstens {rk} km von einer kartierten Straße entfernt, "
+        "{w} von einer Bahnstrecke und {p} höchstens {pk} km von einem Dorf, einer Stadt oder einem Vorort. Nähe "
+        "bedeutet nicht Gefährdung: Sie zeigt, wer welchen Hinweis prüfen sollte.",
     "Roads, railway lines and settlements © OpenStreetMap contributors (expressways down to tertiary roads; "
     "smaller roads, tracks and hamlets are not counted).":
         "Straßen, Bahnstrecken und Siedlungen © OpenStreetMap-Mitwirkende (Autobahnen bis Straßen dritter Ordnung; "
@@ -343,9 +339,6 @@ DE = {
     "These NISAR products are provisional; the numbers may shift.":
         "Diese NISAR-Produkte sind vorläufig; die Zahlen können sich ändern.",
     # explore, place, field
-    "Everything NISAR found around Pune: take the 3D tour, or open the flat map for each zone's radar evidence.":
-        "Alles, was NISAR rund um Pune fand: Machen Sie die 3D-Tour oder öffnen Sie die flache Karte für die Radarbelege "
-        "jeder Zone.",
     "For each zone's radar evidence and the tables, switch to the flat map above.":
         "Für die Radarbelege jeder Zone und die Tabellen oben zur flachen Karte wechseln.",
     "Layers: button at the top right of the map. Click a marker, or pick a row below, for details.":
@@ -357,7 +350,6 @@ DE = {
     "after.":
         "{n} Überschwemmungsflächen: Wasser am {a}, wo von 1984 bis 2021 nie Wasser verzeichnet wurde. Eine wählen, um "
         "das Radar vorher und nachher zu sehen.",
-    "3D tour": "3D-Tour",
     "Flat map: what changed, {b} to {a}": "Flache Karte: was sich änderte, {b} bis {a}",
     "Drag to turn the model; point at a pin for details.":
         "Ziehen, um das Modell zu drehen; für Details auf eine Nadel zeigen.",
@@ -451,6 +443,66 @@ DE = {
     "Surface area of Pune's rivers and reservoirs on each NISAR pass of this orbit":
         "Wasserfläche von Punes Flüssen und Stauseen bei jedem NISAR-Überflug dieses Orbits",
     "Score adds three pieces of evidence": "Die Punktzahl vereint drei Belege",
+    # check band
+    "slide zones kept when the rule is re-run on NASA's NASADEM{h}.":
+        "Rutschungszonen, die bleiben, wenn die Regel mit NASAs NASADEM wiederholt wird{h}.",
+    ", including {a} of {b} high-confidence ones": ", darunter {a} von {b} mit hoher Sicherheit",
+    "better than chance: {c} of the {n} zones it covers were found again{e}{p}.":
+        "besser als Zufall: {c} der {n} Zonen in seinem Blickfeld wurden wiedergefunden{e}{p}.",
+    ", chance gives {x}": ", der Zufall ergibt {x}",
+    "Reported landslides": "Gemeldete Erdrutsche",
+    "radar could see had a slide zone nearby": "die das Radar sehen konnte, hatten eine Rutschungszone in der Nähe",
+    "both near one zone, {z}": "beide nahe einer Zone, {z}", "none with NASADEM": "mit NASADEM keine",
+    "{n} with NASADEM": "mit NASADEM {n}",
+    "No better than chance ({e} of {n}): flooding between buildings hides from radar.":
+        "Nicht besser als Zufall ({e} von {n}): Hochwasser zwischen Gebäuden bleibt dem Radar verborgen.",
+    "that radar could see had a detection nearby.": "die das Radar sehen konnte, hatten einen Fund in der Nähe.",
+    "Try one of these": "Probieren Sie eines davon",
+    # app tour
+    "A one-minute flight over what NISAR found, on a model of the land.":
+        "Ein einminütiger Flug über das, was NISAR fand, auf einem Modell der Landschaft.",
+    "Everything NISAR found around Pune: fly over it in 3D, or open the flat map for each zone's radar evidence.":
+        "Alles, was NISAR rund um Pune fand: in 3D darüberfliegen oder die flache Karte mit den Radarbelegen jeder "
+        "Zone öffnen.",
+    "3D view": "3D-Ansicht", "Other formats": "Weitere Formate", "Fly over the findings": "Über die Ergebnisse fliegen",
+    "A one-minute guide to every page": "Eine einminütige Anleitung zu jeder Seite",
+    "Finish": "Fertig", "Close the tour": "Tour schließen", "{i} of {n}": "{i} von {n}",
+    "Welcome to MonsoonLens": "Willkommen bei MonsoonLens",
+    "In July 2026 cloud hid Pune from ordinary satellites. This app shows what NISAR's radar saw through it: new water, "
+    "flooding and likely landslide zones.":
+        "Im Juli 2026 verbargen Wolken Pune vor gewöhnlichen Satelliten. Diese App zeigt, was NISARs Radar durch sie "
+        "hindurch sah: neues Wasser, Überschwemmungen und wahrscheinliche Erdrutschzonen.",
+    "Six pages": "Sechs Seiten",
+    "Move between pages here. On a phone, open this menu with the arrow at the top left.":
+        "Hier wechseln Sie die Seiten. Auf dem Handy öffnen Sie dieses Menü mit dem Pfeil oben links.",
+    "Your language": "Ihre Sprache",
+    "Read everything in English, Marathi or German.": "Alles auf Englisch, Marathi oder Deutsch lesen.",
+    "Drag to turn the land. Press “Fly over the findings” for a one-minute flight to each one.":
+        "Ziehen, um die Landschaft zu drehen. „Über die Ergebnisse fliegen“ startet einen einminütigen Flug zu jedem Fund.",
+    "The headline numbers": "Die wichtigsten Zahlen",
+    "What the radar found. Each card says how sure we are.": "Was das Radar fand. Jede Karte sagt, wie sicher wir sind.",
+    "Every result is tested, and we show the tests that came out weak too.":
+        "Jedes Ergebnis wird geprüft, und wir zeigen auch die Prüfungen, die schwach ausfielen.",
+    "The story": "Die Geschichte",
+    "Six short chapters, from the rain to what radar could not see. Click a stop, or use the ← and → keys.":
+        "Sechs kurze Kapitel, vom Regen bis zu dem, was das Radar nicht sehen konnte. Klicken Sie auf eine Station oder "
+        "nutzen Sie die Tasten ← und →.",
+    "Choose the 3D view, the flat map with radar evidence for each zone, or water through the season.":
+        "Wählen Sie die 3D-Ansicht, die flache Karte mit Radarbelegen für jede Zone oder das Wasser im Lauf der Saison.",
+    "Type your village or town to see what was found within 2, 5 or 10 km. Share the page link with others.":
+        "Geben Sie Ihr Dorf oder Ihre Stadt ein, um zu sehen, was im Umkreis von 2, 5 oder 10 km gefunden wurde. Den "
+        "Link der Seite können Sie teilen.",
+    "For district teams": "Für Distriktteams",
+    "Print the ranked list with radar images, or open it on a phone in Google Earth (KML), and go and check.":
+        "Drucken Sie die gereihte Liste mit Radarbildern oder öffnen Sie sie auf dem Handy in Google Earth (KML), und "
+        "prüfen Sie vor Ort.",
+    "How every number was made": "Wie jede Zahl entstand",
+    "The NISAR files, each step of the method, every check and the limits, for researchers and journalists.":
+        "Die NISAR-Dateien, jeder Schritt der Methode, jede Prüfung und die Grenzen, für Forschende und Journalisten.",
+    "You are ready": "Los geht’s",
+    "Start with the story, or check your own village. You can take this tour again from the menu.":
+        "Beginnen Sie mit der Geschichte oder prüfen Sie Ihr eigenes Dorf. Diese Tour können Sie im Menü jederzeit "
+        "wiederholen."
 }
 
 DE_T = {
