@@ -44,17 +44,27 @@ deck of at most 7 slides; anything longer is not eligible for Global Judging.
 
 - Live app: https://monsoonlens.streamlit.app
 - Code and data: https://github.com/AyushSinghNegi/dancing-with-the-sars
+- Deck, 7 slides: https://docs.google.com/presentation/d/11K2aK4sSJ06zdtdgaLwk6eT_DAQxki_FIBRZ0UvzuS4/edit?usp=sharing
+- Appendix slides (data, method, checks, business, risks, sources): https://docs.google.com/presentation/d/1VKYELFHWinr-5r4WxW0iZY3I1ETU7Ex7iu2_WnkUFzU/edit?usp=sharing
+- Business plan and global scale-up: https://docs.google.com/document/d/1DScRRLFX0MUlZeXZapZGP1U-N0dGmdZiMqDdRX-EudQ/edit?usp=sharing
+- Technical and validation report: https://docs.google.com/document/d/1oxQSBnIQKd3hy4tiM3YgYng6VkXmFPsn9TbB6NuJqpI/edit?usp=sharing
+- Field operations guide: https://docs.google.com/document/d/10gSMM83O0t-ox3mwgSeH6OlVahQl4a0r7GLOxuKpSfs/edit?usp=sharing
+- Full walkthrough video (84 s, captions): `[LINK: walkthrough video, public, no login]`
+- PDFs of the deck and reports: `deliverables/deck/` and `deliverables/reports/` in the repository
 
 ## Detailed Project Description
 
 **What it does**
 
-MonsoonLens has four pages. The Overview gives the findings and the limits. The Story walks through
-six steps: the rain, why radar, before and after, what changed, the weeks after, and what radar
-could not see, with a before-and-after slider on the radar images. The Explore map lets you switch
-layers and base maps, filter slide zones by confidence, click any zone or reported event to see its
-details and source, and download the results. The Method page lists every NISAR file, every
-threshold and the full validation table.
+MonsoonLens has six pages, a one-minute guided tour, and works in English, Hindi, Marathi and
+German, on a phone or a computer. The Overview gives the findings, the checks and a 3D view. The
+Story walks through six steps: the rain, why radar, before and after, what changed, the weeks after,
+and what radar could not see, with a before-and-after slider on the radar images. The Explore map
+lets you switch layers and base maps, filter slide zones by confidence, click any zone or reported
+event to see its details and source, and download the results. Check a place lets anyone pick one of
+431 villages and towns and see what was found within 2, 5 or 10 km. The Field check list ranks every
+likely slide zone with its radar evidence and what is nearby, as a printable list and KML for phones.
+The Method page lists every NISAR file, every threshold, every check and every limit.
 
 **What we found**
 
@@ -114,8 +124,11 @@ Plotly, Pillow, pytest, GitHub, Streamlit Community Cloud. Code licence: MIT.
 
 Yes.
 
-- Most of the pipeline and app code, the tests, and the first drafts of the story text (English,
-  Marathi and German) were written with Claude (Anthropic), directed and reviewed by the team.
+- Most of the pipeline and app code, the tests, and the first drafts of the story text and its
+  translations (Hindi, Marathi and German) were written with Claude (Anthropic), directed and
+  reviewed by the team.
+- Claude also helped build the deck, the reports, the figures and the demo videos; every figure is
+  drawn by our code from the pipeline outputs, and the videos show the real app and NISAR layers.
 - Claude was also used to check each reported event against its news source, to draft the style
   guide, the slide outline, the validation table text and this page, and to keep the list of open
   points (`plotholes.md`).
