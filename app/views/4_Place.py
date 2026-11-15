@@ -185,7 +185,7 @@ with right:
                 "पाणी, ४० मीटरपेक्षा अरुंद भूस्खलने आणि दोन निरीक्षणांच्या मधे आलेले-गेलेले पाणी रडारला दिसत नाही."))
             if nz:
                 st.caption(tr("Nearest likely slide zone: {id}, {k} km away.", "सर्वात जवळचे संभाव्य भूस्खलन क्षेत्र: "
-                              "{id}, {k} किमी दूर.", id=nz[1]["id"], k=f"{nz[0]:.1f}"))
+                              "{id}, {k} किमी दूर.", id=nz[1]["id"], k=ui.num(nz[0])))
         st.caption(tr("Copy the address bar to share this result.",
                       "हा निकाल पाठवण्यासाठी ब्राउझरमधील पत्ता कॉपी करा."))
 
@@ -194,7 +194,7 @@ if pt and south <= pt["lat"] <= north and west <= pt["lon"] <= east:
         st.markdown(f"## {tr('Likely slide zones', 'संभाव्य भूस्खलन क्षेत्रे')}")
         z_sorted = sorted(z_near, key=lambda x: -x[1]["score"])
         for d, p in z_sorted[:3]:
-            st.markdown(f'<p class="ml-kicker">{html.escape(tr("{k} km away", "{k} किमी दूर", k=f"{d:.1f}"))}</p>',
+            st.markdown(f'<p class="ml-kicker">{html.escape(tr("{k} km away", "{k} किमी दूर", k=ui.num(d)))}</p>',
                         unsafe_allow_html=True)
             ev.show_zone(p, open_note=False)
         if len(z_sorted) > 3:
@@ -218,8 +218,8 @@ if pt and south <= pt["lat"] <= north and west <= pt["lon"] <= east:
             src = p.get("source_url", "")
             link = f' · <a href="{html.escape(src)}" target="_blank" rel="noopener">{html.escape(p.get("source_name") or "source")}</a>' if src else ""
             rows.append(f'<li><b>{html.escape(str(p.get("place", "")))}</b>: {html.escape(ev.type_word(p.get("type", "")))}, '
-                        f'{html.escape(str(p.get("date", "")))}, {d:.1f} km{link}<br><span class="ml-muted">'
-                        f'{html.escape(res_txt)}{(": " + html.escape(why)) if why else ""}</span></li>')
+                        f'{html.escape(ui.date(str(p["date"])) if p.get("date") else "")}, {ui.num(d)} km{link}<br><span class="ml-muted">'
+                        f'{html.escape(res_txt)}{(": " + html.escape(ev.reason_text(why))) if why else ""}</span></li>')
         st.markdown(f'<ul>{"".join(rows)}</ul>', unsafe_allow_html=True)
 
 np_ = data.next_pass()

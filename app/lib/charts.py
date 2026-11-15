@@ -17,6 +17,7 @@ def _font():
 def _layout(fig, height=300, title=None):
     grid = ui.hairline()
     fig.update_layout(height=height, margin=dict(l=10, r=10, t=40 if title else 10, b=10), font=_font(),
+                      separators=",." if ui.lang() == "de" else ".,",     # decimal comma in German
                       title=dict(text=title, x=0, font=dict(size=15)) if title else None,
                       paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", showlegend=False,
                       hoverlabel=dict(bgcolor="#111c30" if ui.dark() else "white", font=_font(),
@@ -68,13 +69,16 @@ def flood_chance(fb: dict):
     """Reported floods matched, next to the matches the same rule gives at places nobody reported.
     One axis (matches out of the reports scored); every bar is named on the axis and labelled with its value."""
     n = fb["of"]
-    rows = [("Reported floods", fb["matched"], WATER, "matched to a detection"),
-            ("Random flat ground", fb["flat"]["expected_matches"], CHANCE, "expected by chance"),
-            ("Random settlements", fb["settlements"]["expected_matches"], CHANCE, "expected by chance")]
+    tr = ui.tr
+    rows = [(tr("Reported floods", "नोंदवलेले पूर"), fb["matched"], WATER, tr("matched to a detection", "शोधाशी जुळले")),
+            (tr("Random flat ground", "यादृच्छिक सपाट जमीन"), fb["flat"]["expected_matches"], CHANCE,
+             tr("expected by chance", "योगायोगाने अपेक्षित")),
+            (tr("Random settlements", "यादृच्छिक वस्त्या"), fb["settlements"]["expected_matches"], CHANCE,
+             tr("expected by chance", "योगायोगाने अपेक्षित"))]
     fig = go.Figure(go.Bar(
         y=[r[0] for r in rows], x=[r[1] for r in rows], orientation="h", width=0.5,
         marker=dict(color=[r[2] for r in rows], line=dict(width=0)),
-        text=[f"{r[1]:.3g} of {n}" if isinstance(r[1], int) else f"{r[1]:.1f} of {n}" for r in rows],
+        text=[ui.t("x_of_y", x=f"{r[1]:.3g}" if isinstance(r[1], int) else f"{r[1]:.1f}", y=n) for r in rows],
         textposition="outside", textfont=dict(size=13, color=ui.ink()),
         cliponaxis=False, customdata=[r[3] for r in rows],
         hovertemplate="%{y}: %{text} %{customdata}<extra></extra>"))
@@ -82,7 +86,8 @@ def flood_chance(fb: dict):
         fig.update_traces(marker_cornerradius=4)
     except ValueError:      # older Plotly: square ends
         pass
-    fig.update_xaxes(range=[0, n], dtick=1, title_text=f"matches out of {n} reported floods")
+    fig.update_xaxes(range=[0, n], dtick=1, title_text=tr("matches out of {n} reported floods",
+                                                          "{n} नोंदवलेल्या पुरांपैकी जुळण्या", n=n))
     fig.update_yaxes(autorange="reversed", showgrid=False)
     return _layout(fig, 210)
 

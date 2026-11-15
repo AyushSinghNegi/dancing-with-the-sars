@@ -132,9 +132,9 @@ with visual, st.container(key="viz"):
             rh = dc.get("reported_slide_hits") or {}
             if rh and rh.get("nasadem", 0) < rh.get("main", 0):
                 hits = [s for s in dc["reported_slides"] if s["main"] == "hit"]
-                d = ui.t("and_join", a=f"{hits[0]['main_distance_m'] / 1000:.1f}",
-                         b=f"{hits[-1]['main_distance_m'] / 1000:.1f}") if len(hits) > 1 else \
-                    f"{hits[0]['main_distance_m'] / 1000:.1f}"
+                d = ui.t("and_join", a=ui.num(hits[0]['main_distance_m'] / 1000),
+                         b=ui.num(hits[-1]['main_distance_m'] / 1000)) if len(hits) > 1 else \
+                    ui.num(hits[0]['main_distance_m'] / 1000)
                 st.caption(ui.t("slide_fragile_one", d=d) if len(rh["main_hit_zones"]) == 1 and len(hits) == 2
                            else ui.t("slide_fragile", k=rh["nasadem"], n=rh["main"]))
             misses = val[val["result"].isin(["miss", "not observable"])]
@@ -143,13 +143,15 @@ with visual, st.container(key="viz"):
                 tr = ui.tr
                 shown = misses[["place", "type", "date", "result", "reason"]].copy()
                 shown["type"] = shown["type"].astype(str).map(evidence.type_word)
+                shown["date"] = shown["date"].astype(str).map(lambda d: ui.date(d) if len(d) == 10 else d)
+                shown["reason"] = shown["reason"].fillna("").astype(str).map(evidence.reason_text)
                 shown["result"] = shown["result"].map({"miss": tr("radar missed it", "रडारला दिसले नाही"),
                                                        "not observable": tr("radar could not observe it",
                                                                             "रडारला पाहता आले नाही")}).fillna(shown["result"])
                 st.dataframe(shown, hide_index=True, width="stretch",
                              column_config={"place": tr("Place", "ठिकाण"), "type": tr("Event", "घटना"),
                                             "date": tr("Date", "तारीख"), "result": tr("Result", "निकाल"),
-                                            "reason": tr("Why (in English)", "कारण (इंग्रजीत)")})
+                                            "reason": tr("Why", "कारण")})
         else:
             st.info("The validation table appears here once reported events (`data/reference/events.geojson`) "
                     "are added and the pipeline is re-run.")

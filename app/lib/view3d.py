@@ -64,7 +64,8 @@ def scene():
     events = [{"id": f["properties"]["id"], "p": [*f["geometry"]["coordinates"][:2],
                                                   z(f["geometry"]["coordinates"][1], f["geometry"]["coordinates"][0])],
                "t": f["properties"].get("type", ""), "place": f["properties"].get("place", ""),
-               "d": f["properties"].get("date", "")} for f in ev if f.get("geometry")
+               "d": ui.date(f["properties"]["date"]) if len(str(f["properties"].get("date", ""))) == 10
+               else f["properties"].get("date", "")} for f in ev if f.get("geometry")
               and m["bounds"][0] <= f["geometry"]["coordinates"][0] <= m["bounds"][2]
               and m["bounds"][1] <= f["geometry"]["coordinates"][1] <= m["bounds"][3]]
     pl = data.places()
@@ -84,7 +85,7 @@ def _tour(sc):
     before, after = data.dates()
     stops = [dict(t=tr("Where this is", "हे कुठे आहे"),
                   x=tr("Pune district, Maharashtra, India: an 85 km box from the Western Ghats hills (left) to Pune "
-                       "city (right). Heights are doubled so the hills read.",
+                       "city (right). Heights are doubled so the hills stand out.",
                        "पुणे जिल्हा, महाराष्ट्र, भारत: पश्चिम घाटाच्या डोंगरांपासून (डावीकडे) पुणे शहरापर्यंत (उजवीकडे) ८५ "
                        "किमीचा भाग. डोंगर स्पष्ट दिसावेत म्हणून उंची दुप्पट दाखवली आहे."),
                   v=dict(longitude=cx, latitude=cy - 0.1, zoom=8.95, pitch=50, bearing=-12))]
@@ -325,10 +326,41 @@ _PAGE = r"""
   const zf = Math.log2(Math.min(1, ($('wrap').clientWidth || 980) / 980));
   for (const s of C.stops) s.v.zoom += zf;
   let vs = Object.assign({}, C.stops[0].v);
+
+  // Gentler handling: the map moves less than the finger or mouse (least on phones), does not keep sliding after a
+  // flick, and the camera cannot leave the study area or zoom far out.
+  const SLOW = {touch: 0.45, mouse: 0.7};
+  class Gentle extends deck.MapController {
+    _onPanStart(e) { this._p0 = e && e.offsetCenter ? {x: e.offsetCenter.x, y: e.offsetCenter.y} : null; return super._onPanStart(e); }
+    _onMultiPanStart(e) { this._p0 = null; return super._onMultiPanStart(e); }
+    _onPanEnd(e) { const r = super._onPanEnd(e); this._p0 = null; return r; }
+    _slow(e) {
+      if (this._p0 && e && e.offsetCenter) {
+        const k = e.pointerType === 'touch' ? SLOW.touch : SLOW.mouse, c = e.offsetCenter;
+        e.offsetCenter = {x: this._p0.x + (c.x - this._p0.x) * k, y: this._p0.y + (c.y - this._p0.y) * k};
+      }
+      return e;
+    }
+    _onPanMove(e) { return super._onPanMove(this._slow(e)); }
+    _onPanRotate(e) { return super._onPanRotate(this._slow(e)); }
+    _onPinch(e) {
+      if (e && typeof e.scale === 'number') e.scale = Math.pow(e.scale, 0.65);
+      if (e && typeof e.rotation === 'number') e.rotation *= 0.5;
+      return super._onPinch(e);
+    }
+  }
+  const PAD = 0.06, ZMIN = Math.min(...C.stops.map(s => s.v.zoom)) - 0.8, ZMAX = 14;
+  const clampView = v => Object.assign({}, v, {
+    longitude: Math.min(B[2] + PAD, Math.max(B[0] - PAD, v.longitude)),
+    latitude: Math.min(B[3] + PAD, Math.max(B[1] - PAD, v.latitude)),
+    zoom: Math.min(ZMAX, Math.max(ZMIN, v.zoom)), pitch: Math.min(72, Math.max(0, v.pitch))});
+
   const map = new Deck({
-    parent: $('map'), initialViewState: vs, controller: {touchRotate: true, inertia: 300},
+    parent: $('map'), initialViewState: vs,
+    controller: {type: Gentle, touchRotate: true, inertia: false, scrollZoom: {speed: 0.006, smooth: true}},
     layers: [], useDevicePixels: Math.min(2, window.devicePixelRatio || 1),
     onViewStateChange: ({viewState, interactionState}) => {
+      viewState = clampView(viewState);
       vs = viewState;
       $('compass').firstChild.style.transform = 'rotate(' + (-viewState.bearing) + 'deg)';
       if (interactionState && (interactionState.isDragging || interactionState.isZooming || interactionState.isRotating || interactionState.isPanning)) stopAuto();

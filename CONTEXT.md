@@ -11,7 +11,7 @@ around **Pune, India** during the **July 2026 monsoon**: new flood water, likely
 landslide zones on the Western Ghats slopes, and what radar could *not* see,
 checked against reported events. NASA Space Apps Challenge 2026, challenge
 "Dancing with the SARs", local event GDG Ahlen (virtual). Team: Ayush
-(app, integration, lead), RSN (data and science), Urvashi (validation, story, pitch).
+(app, integration, lead), RSN (data and science), Urvashi Negi (validation, story, pitch).
 
 ## Non-negotiable rules
 1. **Every number on screen comes from our pipeline output or a cited source.** No invented,

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import html
+import re
 
 import streamlit as st
 
@@ -108,15 +109,7 @@ def checks(p: dict) -> list[tuple[str, bool | None, str]]:
                     e(f"orbit_{t}") if f"orbit_{t}" in E else t))
     if "nasadem" in p:
         ok = p["nasadem"] == "found"
-        reason = (p.get("nasadem_reason") or "").replace(" in NASADEM", "")
-        if ui.lang() == "mr":
-            reason = REASON_MR.get(reason, reason)
-        elif ui.lang() == "de":
-            from .i18n_de import REASON
-            reason = REASON.get(reason, reason)
-        elif ui.lang() == "hi":
-            from .i18n_hi import REASON as REASON_HI
-            reason = REASON_HI.get(reason, reason)
+        reason = dem_reason_text(p.get("nasadem_reason") or "")
         out.append((e("dem"), ok, e("dem_found") if ok else e("dem_not", r=reason)))
     k = p.get("nearest_event_km")
     if k is not None:
@@ -127,9 +120,23 @@ def checks(p: dict) -> list[tuple[str, bool | None, str]]:
     return out
 
 
+def dem_reason_text(reason: str) -> str:
+    """Why NASADEM did not keep a zone, in the page language."""
+    reason = reason.replace(" in NASADEM", "")
+    if ui.lang() == "mr":
+        return REASON_MR.get(reason, reason)
+    if ui.lang() == "de":
+        from .i18n_de import REASON
+        return REASON.get(reason, reason)
+    if ui.lang() == "hi":
+        from .i18n_hi import REASON as REASON_HI
+        return REASON_HI.get(reason, reason)
+    return reason
+
+
 def dist(m: float) -> str:
     """'480 m' (to the nearest 10 m, a quarter of a pixel) or '1.3 km'."""
-    return f"{int(round(m / 10) * 10)} m" if m < 995 else f"{m / 1000:.1f} km"
+    return f"{int(round(m / 10) * 10)} m" if m < 995 else f"{ui.num(m / 1000)} km"
 
 
 def _line_name(r: dict) -> str:
@@ -164,10 +171,10 @@ def nearby(p: dict) -> list[tuple[str, str]]:
 
 def _badge(ok):
     if ok is True:
-        return '<span class="ml-ck ok" aria-label="yes">✓</span>'
+        return '<span class="ml-ck ok" aria-label="' + ui.tr("yes", "हो") + '">✓</span>'
     if ok is False:
-        return '<span class="ml-ck no" aria-label="no">✕</span>'
-    return '<span class="ml-ck na" aria-label="not checked">–</span>'
+        return '<span class="ml-ck no" aria-label="' + ui.tr("no", "नाही") + '">✕</span>'
+    return '<span class="ml-ck na" aria-label="' + ui.tr("not checked", "तपासले नाही") + '">–</span>'
 
 
 def _chips(fid: str, kinds) -> str:
@@ -177,7 +184,7 @@ def _chips(fid: str, kinds) -> str:
         if not url:
             continue
         lbl = e(f"chip_{k}")
-        figs.append(f'<figure><img src="{url}" alt="{html.escape(lbl)}: NISAR radar image of {fid}" loading="lazy" '
+        figs.append(f'<figure><img src="{url}" alt="{html.escape(lbl)}: {html.escape(ui.tr('NISAR radar image of {f}', '{f} ची निसार रडार प्रतिमा', f=fid))}" loading="lazy" '
                     f'width="160" height="160"><figcaption>{html.escape(lbl)}</figcaption></figure>')
     return f'<div class="ml-chips">{"".join(figs)}</div>' if figs else ""
 
@@ -197,7 +204,7 @@ def zone_card(p: dict, open_note=True) -> str:
     return (
         f'<article class="ml-card">'
         f'<header class="ml-card-head"><span class="ml-id">{p["id"]}</span><span class="ml-place">{place}</span>'
-        f'<span class="ml-pill {conf}">{html.escape(e("conf_" + conf))} · {p["score"]:.2f}</span></header>'
+        f'<span class="ml-pill {conf}">{html.escape(e("conf_" + conf))} · {ui.num(p["score"], 2)}</span></header>'
         f'<div class="ml-card-body">{_chips(p["id"], ("before", "after", "coh"))}'
         f'<div class="ml-facts"><p class="ml-facts-h">{html.escape(e("why_h"))}</p><ul class="ml-why">{why}</ul>'
         f'<p class="ml-facts-h">{html.escape(e("checks_h"))}</p><ul class="ml-checks">{ck}</ul>{near}'
@@ -238,3 +245,59 @@ def type_word(t: str) -> str:
         from .i18n_hi import TYPE as TYPE_HI
         return TYPE_HI.get(t) or t.replace("_", " ")
     return TYPE_WORD.get(t, {}).get(ui.lang()) or t.replace("_", " ")
+
+
+def events_table(val):
+    """The validation table with headers and values in the page language (place names, reasons and sources stay
+    as published). Returns (DataFrame, column_config)."""
+    import pandas as pd
+    tr = ui.tr
+    res = {"hit": tr("radar found something within range", "रडारला टप्प्यात काहीतरी सापडले"),
+           "miss": tr("radar missed it", "रडारला सापडले नाही"),
+           "not observable": tr("radar could not observe it", "रडार ते पाहू शकले नाही"),
+           "not scored": tr("not scored", "मोजले नाही")}
+    yn = {"yes": tr("yes", "हो"), "no": tr("no", "नाही")}
+    c = {"id": tr("Report", "नोंद"), "type": tr("Event", "घटना"), "date": tr("Date", "तारीख"), "place": tr("Place", "ठिकाण"),
+         "observable": tr("Radar could see it", "रडारला दिसू शकत होते"), "result": tr("Result", "निकाल"),
+         "distance_m": tr("Nearest detection (m)", "सर्वात जवळचा शोध (मी)"), "reason": tr("Why", "का"),
+         "source_url": tr("source", "स्रोत")}
+    df = pd.DataFrame({
+        c["id"]: val["id"], c["type"]: [type_word(str(t)) for t in val["type"]],
+        c["date"]: [ui.date(str(d)) for d in val["date"]], c["place"]: val["place"],
+        c["observable"]: [yn.get(str(v), v) for v in val["observable"]],
+        c["result"]: [res.get(str(v), v) for v in val["result"]],
+        c["distance_m"]: val["distance_m"], c["reason"]: [reason_text(str(r)) for r in val["reason"].fillna("")],
+        c["source_url"]: val["source_url"]})
+    return df, {c["source_url"]: st.column_config.LinkColumn(c["source_url"], display_text=tr("Open", "उघडा"))}
+
+
+def reason_text(why: str) -> str:
+    """The pipeline's reason for a miss (validation.csv, written in English by pipeline/validate.py) in the page
+    language. Unknown reasons are shown as they are."""
+    why = (why or "").strip()
+    if not why:
+        return ""
+    tr = ui.tr
+    m = re.fullmatch(r"happened (before|after) the radar pair \((\d{4}-\d\d-\d\d) to (\d{4}-\d\d-\d\d)\)", why)
+    if m:
+        a, b = ui.date(m[2]), ui.date(m[3])
+        return (tr("happened before the radar pair ({a} to {b})", "रडार निरीक्षणांच्या जोडीच्या आधी घडले ({a} ते {b})", a=a, b=b) if m[1] == "before" else tr("happened after the radar pair ({a} to {b})", "रडार निरीक्षणांच्या जोडीनंतर घडले ({a} ते {b})", a=a, b=b))
+    m = re.fullmatch(r"location in the report is too vague to score \(about (\d+) km\)", why)
+    if m:
+        return tr("location in the report is too vague to score (about {k} km)", "बातमीतील ठिकाण मोजण्यासाठी फार अस्पष्ट आहे (सुमारे {k} किमी)", k=m[1])
+    if re.fullmatch(r"water may have drained before the .+ pass", why):
+        return tr("water may have drained before the {d} pass", "{d} च्या निरीक्षणापूर्वी पाणी ओसरले असावे", d=ui.day(data.dates()[1]))
+    m = re.fullmatch(r"ground near the report is gentler than our (\d+) deg slide search", why)
+    if m:
+        return tr("ground near the report is gentler than our {s}° slide search", "नोंदीजवळची जमीन आमच्या {s}° पासूनच्या भूस्खलन शोधापेक्षा कमी उताराची आहे", s=m[1])
+    # P53: the pipeline's "dense buildings" label marks radar-bright surroundings, not measured buildings; every report
+    # with it was in or near a town, so say that, and say the reason is likely, not measured.
+    fixed = {"dense buildings: radar bounces off walls, which hides street flooding": tr(
+                 "in or near a town, where buildings can hide flooded streets (a likely reason, not a measured one)",
+                 "शहरात किंवा शहराजवळ, जिथे इमारतींमुळे पुराचे पाणी असलेले रस्ते लपू शकतात (संभाव्य कारण, मोजलेले नाही)"),
+             "flooding smaller than our 40 m pixels or under thick canopy": tr("flooding smaller than our 40 m pixels or under thick canopy", "आमच्या 40 मी पिक्सेलपेक्षा लहान पूर, किंवा दाट झाडांखालील पाणी"),
+             "slide smaller than a few 40 m pixels, or coherence lost everywhere nearby": tr("slide smaller than a few 40 m pixels, or coherence lost everywhere nearby", "काही 40 मी पिक्सेलपेक्षा लहान भूस्खलन, किंवा आसपास सगळीकडेच कोहेरन्स कमी झाला"),
+             "outside the radar box": tr("outside the radar box", "रडार क्षेत्राबाहेर"),
+             "no radar data at this spot (edge of swath)": tr("no radar data at this spot (edge of swath)", "या ठिकाणी रडार डेटा नाही (पट्ट्याची कड)"),
+             "event type has no radar layer (e.g. road closure)": tr("event type has no radar layer (e.g. road closure)", "या प्रकारच्या घटनेसाठी रडार स्तर नाही (उदा. रस्ता बंद)")}
+    return fixed.get(why, why)

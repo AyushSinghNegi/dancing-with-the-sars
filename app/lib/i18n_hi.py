@@ -5,6 +5,21 @@ English."""
 MONTHS = ["जनवरी", "फ़रवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"]
 
 HI = {
+    # reasons from pipeline/validate.py, shown by evidence.reason_text
+    "happened before the radar pair ({a} to {b})": "रडार जोड़ी से पहले हुआ ({a} से {b})",
+    "happened after the radar pair ({a} to {b})": "रडार जोड़ी के बाद हुआ ({a} से {b})",
+    "location in the report is too vague to score (about {k} km)": "रिपोर्ट में दी गई जगह आँकने के लिए बहुत अस्पष्ट है (लगभग {k} किमी)",
+    "water may have drained before the {d} pass": "{d} के पास से पहले पानी शायद उतर गया था",
+    "ground near the report is gentler than our {s}° slide search": "रिपोर्ट की जगह की ज़मीन हमारी {s}° से शुरू होने वाली भूस्खलन खोज से कम ढलान वाली है",
+    "dense buildings: radar bounces off walls, which hides street flooding": "घनी इमारतें: रडार दीवारों से टकराकर लौटता है, जिससे सड़कों की बाढ़ छिप जाती है",
+    "flooding smaller than our 40 m pixels or under thick canopy": "हमारे 40 मी पिक्सेल से छोटी बाढ़, या घने पेड़ों के नीचे का पानी",
+    "slide smaller than a few 40 m pixels, or coherence lost everywhere nearby": "कुछ 40 मी पिक्सेल से छोटा भूस्खलन, या आसपास हर जगह कोहेरेंस खो गया",
+    "outside the radar box": "रडार क्षेत्र से बाहर",
+    "no radar data at this spot (edge of swath)": "इस जगह रडार डेटा नहीं (पट्टी का किनारा)",
+    "event type has no radar layer (e.g. road closure)": "इस तरह की घटना के लिए रडार परत नहीं (जैसे सड़क बंद)",
+    "in or near a town, where buildings can hide flooded streets (a likely reason, not a measured one)":
+        "शहर में या उसके पास, जहाँ इमारतें बाढ़ वाली गलियों को छिपा सकती हैं (संभावित कारण, मापा नहीं गया)",
+    "Why": "क्यों",
     "Check a place":
         "कोई जगह जाँचें",
     "likely slide zones on slopes of {a}° to {b}°, {h} of them high confidence":
@@ -517,7 +532,7 @@ HI = {
         "निसार के नतीजों के साथ अध्ययन क्षेत्र का 3D मॉडल",
     "Where this is":
         "यह कहाँ है",
-    "Pune district, Maharashtra, India: an 85 km box from the Western Ghats hills (left) to Pune city (right). Heights are doubled so the hills read.":
+    "Pune district, Maharashtra, India: an 85 km box from the Western Ghats hills (left) to Pune city (right). Heights are doubled so the hills stand out.":
         "पुणे ज़िला, महाराष्ट्र, भारत: पश्चिमी घाट की पहाड़ियों (बाएँ) से पुणे शहर (दाएँ) तक 85 किमी का क्षेत्र। पहाड़ियाँ साफ़ दिखें, इसलिए ऊँचाई दोगुनी की गई है।",
     "The Western Ghats":
         "पश्चिमी घाट",
@@ -671,6 +686,476 @@ HI = {
         "आप तैयार हैं",
     "Start with the story, or check your own village. You can take this tour again from the menu.":
         "कहानी से शुरू करें, या अपना गाँव जाँचें। यह टूर मेन्यू से फिर ले सकते हैं।",
+    # method page, maps, downloads, credits
+    "Radar could see it": "रडार इसे देख सकता था",
+    "Every number in this app comes from the pipeline in our public repository, run on the NISAR files listed below. Nothing is estimated by hand, and every check is reported, including the ones that came out weak.":
+        "इस ऐप का हर आँकड़ा हमारी सार्वजनिक रिपॉज़िटरी की पाइपलाइन से आता है, नीचे दी गई निसार फ़ाइलों पर चलाई गई। कुछ भी हाथ से अनुमानित नहीं है, और हर जाँच बताई गई है, कमज़ोर निकलीं वे भी।",
+    "Mission facts: [ISRO, NISAR launch page](https://www.isro.gov.in/Mission_GSLVF16_NISAR.html) and [eoPortal, NISAR](https://www.eoportal.org/satellite-missions/nisar). Tracks and times: the NISAR file names in the Data table.":
+        "मिशन की जानकारी: [इसरो, निसार प्रक्षेपण पेज](https://www.isro.gov.in/Mission_GSLVF16_NISAR.html) और [eoPortal, NISAR](https://www.eoportal.org/satellite-missions/nisar)। ट्रैक और समय: डेटा तालिका में निसार फ़ाइलों के नाम।",
+    "How radar sees through cloud":
+        "रडार बादलों के पार कैसे देखता है",
+    "NISAR's L-band radar has a wavelength of about 24 cm: it passes through cloud and rain, and partly through forest canopy. It sends two polarisations: HH (horizontal out, horizontal back) responds to surfaces and structures, HV (horizontal out, vertical back) mostly to vegetation.":
+        "निसार के L-बैंड रडार की तरंगदैर्ध्य लगभग 24 सेमी है: यह बादल और बारिश के पार, और कुछ हद तक जंगल की छतरी के पार भी जाता है। यह दो ध्रुवीकरण भेजता है: HH (क्षैतिज जाकर, क्षैतिज लौटकर) सतहों और ढाँचों पर प्रतिक्रिया देता है, HV (क्षैतिज जाकर, ऊर्ध्वाधर लौटकर) मुख्यतः वनस्पति पर।",
+    "yes":
+        "हाँ",
+    "no":
+        "नहीं",
+    "before, track 034":
+        "पहले, ट्रैक 034",
+    "after, track 034":
+        "बाद में, ट्रैक 034",
+    "coherence, track 034":
+        "कोहेरेंस, ट्रैक 034",
+    "second-track check, before, track 106":
+        "दूसरे ट्रैक की जाँच, पहले, ट्रैक 106",
+    "second-track check, after, track 106":
+        "दूसरे ट्रैक की जाँच, बाद में, ट्रैक 106",
+    "second-track check, coherence, track 106":
+        "दूसरे ट्रैक की जाँच, कोहेरेंस, ट्रैक 106",
+    "Data":
+        "डेटा",
+    "File":
+        "फ़ाइल",
+    "Valid share of box":
+        "क्षेत्र का मान्य हिस्सा",
+    "Link":
+        "लिंक",
+    "File names and data sources are kept as published, in English.":
+        "फ़ाइलों के नाम और डेटा स्रोत प्रकाशित रूप में, अंग्रेज़ी में रखे गए हैं।",
+    "The code is public, and the Pune crops of every NISAR file above are in the repository (a few MB each), so one command rebuilds every number, map and list in this app from them. Fetching the crops again from NASA's archive needs a free Earthdata login. The whole pipeline runs in about two minutes on a two-core computer.":
+        "कोड सार्वजनिक है, और ऊपर की हर निसार फ़ाइल के पुणे वाले टुकड़े रिपॉज़िटरी में हैं (हर एक कुछ MB), इसलिए एक ही कमांड इस ऐप का हर आँकड़ा, नक्शा और सूची फिर से बना देती है। नासा के संग्रह से टुकड़े दोबारा लाने के लिए मुफ़्त Earthdata लॉगिन चाहिए। पूरी पाइपलाइन दो-कोर कंप्यूटर पर लगभग दो मिनट में चलती है।",
+    "To point it at another place, change the study box and the NISAR files in `pipeline/config.py`.":
+        "किसी और जगह के लिए `pipeline/config.py` में अध्ययन क्षेत्र और निसार फ़ाइलें बदलें।",
+    "NISAR in brief":
+        "निसार संक्षेप में",
+    "How radar sees":
+        "रडार कैसे देखता है",
+    "Reproduce it":
+        "दोबारा बनाएँ",
+    "Team":
+        "टीम",
+    " and ":
+        " और ",
+    "Launched":
+        "प्रक्षेपण",
+    "30 July 2025 on ISRO's GSLV-F16, from Sriharikota, India":
+        "30 जुलाई 2025, इसरो के GSLV-F16 से, श्रीहरिकोटा, भारत",
+    "Orbit":
+        "कक्षा",
+    "Sun-synchronous, about 747 km up, inclined 98.4°":
+        "सूर्य-समकालिक, लगभग 747 किमी ऊँचाई, 98.4° झुकी",
+    "Repeat":
+        "पुनरावृत्ति",
+    "The same ground track every 12 days":
+        "हर 12 दिन में वही ज़मीनी पथ",
+    "Radars":
+        "रडार",
+    "L-band (NASA/JPL, 24 cm wavelength) and S-band (ISRO), sharing one 12 m mesh reflector":
+        "L-बैंड (नासा/JPL, 24 सेमी तरंगदैर्ध्य) और S-बैंड (इसरो), एक ही 12 मीटर जालीदार परावर्तक साझा करते हुए",
+    "Swath":
+        "पट्टी की चौड़ाई",
+    "242 km wide on the ground":
+        "ज़मीन पर 242 किमी चौड़ी",
+    "What this app uses":
+        "यह ऐप क्या इस्तेमाल करता है",
+    "L-band, tracks {t}, southbound evening passes ({u} UTC), level-2 GCOV and GUNW products":
+        "L-बैंड, ट्रैक {t}, दक्षिण की ओर जाते शाम के अवलोकन ({u} UTC), लेवल-2 GCOV और GUNW उत्पाद",
+    "Read the radar":
+        "रडार पढ़ें",
+    "Find the change":
+        "बदलाव खोजें",
+    "Check it":
+        "जाँचें",
+    "Hand it over":
+        "सौंपें",
+    "Water threshold":
+        "पानी की सीमा",
+    "Results table":
+        "नतीजों की तालिका",
+    "Sanity check: on {d} the radar saw **{p}** of the JRC permanent-water pixels as water. A low value would mean the threshold or the data is off.":
+        "जाँच: {d} को रडार ने JRC के स्थायी-पानी वाले पिक्सलों में से **{p}** को पानी के रूप में देखा। कम मान का मतलब होता कि सीमा या डेटा में गड़बड़ है।",
+    "Permanent water":
+        "स्थायी पानी",
+    "Elevation and slope":
+        "ऊँचाई और ढलान",
+    "Place names":
+        "जगहों के नाम",
+    "Provisional data":
+        "अस्थायी डेटा",
+    "These are NISAR provisional products (released from June 2026); calibration may still change.":
+        "ये निसार के अस्थायी उत्पाद हैं (जून 2026 से जारी); कैलिब्रेशन अभी बदल सकता है।",
+    "Two snapshots, twelve days apart":
+        "बारह दिन के अंतर पर दो तस्वीरें",
+    "Anything that flooded and drained between {b} and {a} is invisible.":
+        "{b} और {a} के बीच जो पानी भरा और उतर गया, वह नहीं दिखता।",
+    "Cities":
+        "शहर",
+    "Buildings make flooded streets bright, not dark. Our new-water map under-counts urban flooding.":
+        "इमारतों के कारण बाढ़ वाली गलियाँ गहरी नहीं, चमकीली दिखती हैं। हमारा नए पानी का नक्शा शहरी बाढ़ कम गिनता है।",
+    "Pixel size":
+        "पिक्सल का आकार",
+    "{r} m pixels. Slides narrower than about two pixels are easily missed.":
+        "{r} मीटर के पिक्सल। लगभग दो पिक्सल से संकरे भूस्खलन आसानी से छूट जाते हैं।",
+    "Same-mode rule":
+        "एक ही मोड का नियम",
+    "From 27 August to 2 October NISAR imaged this track in a different mode (2005, quad-pol); 14 October is back in the July mode. Brightness is only compared between passes with the same track, mode and polarisation.":
+        "27 अगस्त से 2 अक्टूबर तक निसार ने इस ट्रैक को अलग मोड (2005, क्वाड-पोल) में देखा; 14 अक्टूबर को फिर जुलाई वाला मोड। चमक की तुलना केवल एक ही ट्रैक, मोड और ध्रुवीकरण वाले अवलोकनों के बीच होती है।",
+    "Water areas may be underestimates":
+        "पानी का क्षेत्रफल कम आँका गया हो सकता है",
+    "On {d} only {p} of the area the JRC record marks as permanent water looked dark enough to pass our water test. Part of that is reservoirs drawn down before the monsoon; part is water roughened by wind or rain, which our test misses.":
+        "{d} को JRC रिकॉर्ड में स्थायी पानी वाले क्षेत्र का केवल {p} हिस्सा हमारी पानी की जाँच पास करने लायक गहरा दिखा। इसका कुछ हिस्सा मानसून से पहले खाली हुए जलाशय हैं; कुछ हवा या बारिश से खुरदरा हुआ पानी, जिसे हमारी जाँच नहीं पकड़ती।",
+    "Small samples":
+        "छोटे नमूने",
+    "Every check is counted, not turned into an accuracy: floods {fh} of {fo}, landslides {sh} of {so}, and the second-track check covers only part of the area.":
+        "हर जाँच गिनी गई है, सटीकता में नहीं बदली गई: बाढ़ {fo} में से {fh}, भूस्खलन {so} में से {sh}, और दूसरे ट्रैक की जाँच क्षेत्र का केवल कुछ हिस्सा ही देखती है।",
+    "Flood area is threshold-sensitive":
+        "बाढ़ का क्षेत्रफल सीमा पर निर्भर",
+    "The flood figure can move several-fold with a 1 dB change in the water threshold; the reservoir rise much less (see the water-threshold check).":
+        "पानी की सीमा में 1 dB बदलाव से बाढ़ का आँकड़ा कई गुना बदल सकता है; जलाशयों की बढ़त बहुत कम (पानी की सीमा वाली जाँच देखें)।",
+    "Slope near the limits":
+        "सीमाओं के पास ढलान",
+    "Many zones sit close to the {a}° or {b}° limits, so a different elevation map moves some of them in or out (see the elevation-map check).":
+        "कई क्षेत्र {a}° या {b}° की सीमाओं के पास हैं, इसलिए अलग ऊँचाई नक्शा उनमें से कुछ को अंदर या बाहर कर देता है (ऊँचाई नक्शे वाली जाँच देखें)।",
+    "Leads, not verdicts":
+        "संकेत, फ़ैसले नहीं",
+    "Slide zones are places to check, not confirmed landslides: {u} of {z} have no reported event within 2 km.":
+        "भूस्खलन क्षेत्र जाँचने की जगहें हैं, पुष्ट भूस्खलन नहीं: {z} में से {u} के 2 किमी के भीतर कोई दर्ज घटना नहीं है।",
+    "Rainfall":
+        "बारिश",
+    "GPM IMERG Late Run, averaged over the whole study area per UTC day. It is lower than the single-station totals quoted in the news, and may shift slightly when the Final Run is released.":
+        "GPM IMERG Late Run, हर UTC दिन के लिए पूरे अध्ययन क्षेत्र का औसत। यह ख़बरों में बताए किसी एक केंद्र के आँकड़ों से कम है, और Final Run आने पर थोड़ा बदल सकता है।",
+    ". Landslides: {h} of {o}.":
+        "। भूस्खलन: {o} में से {h}।",
+    "Floods: **{fh} of {fo}** reports that radar could observe had a detection nearby. Landslides: **{sh} of {so}**. Counts, not an accuracy: the samples are small.":
+        "बाढ़: रडार जिन्हें देख सकता था, उन **{fo} में से {fh}** रिपोर्टों के पास कोई पहचान मिली। भूस्खलन: **{so} में से {sh}**। ये गिनतियाँ हैं, सटीकता नहीं: नमूने छोटे हैं।",
+    "Runs once reported events are added.":
+        "दर्ज घटनाएँ जुड़ने पर चलता है।",
+    "an independent NISAR orbit re-found {c} of the {n} zones it could see, {l}× more often than chance. A small sample, so support, not proof.":
+        "एक स्वतंत्र निसार कक्षा ने अपनी दृष्टि के {n} क्षेत्रों में से {c} फिर पाए, संयोग से {l}× अधिक बार। नमूना छोटा है, इसलिए यह समर्थन है, प्रमाण नहीं।",
+    "Same slide rule, run on NISAR track {t} ({b} to {a}). A track-034 zone counts as **found again** when a track-{t} zone lies within {m} m (allowing for small position differences between orbits). **Partial** means only one piece of the evidence is there (coherence loss or the backscatter jump): that alone is common in the monsoon, so we do not count it.":
+        "वही भूस्खलन नियम, निसार ट्रैक {t} पर चलाया गया ({b} से {a})। ट्रैक-034 का कोई क्षेत्र तब **फिर मिला** माना जाता है जब ट्रैक-{t} का कोई क्षेत्र {m} मीटर के भीतर हो (कक्षाओं के बीच छोटे स्थान-अंतर की छूट)। **आंशिक** का मतलब है कि प्रमाण का केवल एक हिस्सा है (कोहेरेंस में गिरावट या परावर्तन में उछाल): मानसून में यह अकेले आम है, इसलिए हम इसे नहीं गिनते।",
+    "Runs once the track-106 files are cropped.":
+        "ट्रैक-106 की फ़ाइलें काटने के बाद चलता है।",
+    "{f} of {z} zones survive when slope comes from NASA's NASADEM, including {hf} of {hz} high-confidence ones.":
+        "ढलान नासा के NASADEM से लेने पर {z} में से {f} क्षेत्र बने रहते हैं, इनमें {hz} में से {hf} उच्च भरोसे वाले।",
+    "Slope and slope direction decide where the slide rule looks, so we ran it again on the same radar pair with NASA's NASADEM elevation map instead of Copernicus. Overall the two slope maps agree closely (median difference {d}°). Near the {a}° and {b}° limits they do not: of the ground that either map puts inside that band, the other map puts {p} outside it.":
+        "ढलान और ढलान की दिशा तय करती हैं कि भूस्खलन नियम कहाँ देखे, इसलिए हमने इसे उसी रडार जोड़ी पर Copernicus की जगह नासा के NASADEM ऊँचाई नक्शे के साथ दोबारा चलाया। कुल मिलाकर दोनों ढलान नक्शे काफ़ी मेल खाते हैं (माध्यिका अंतर {d}°)। {a}° और {b}° की सीमाओं के पास नहीं: जो ज़मीन कोई एक नक्शा उस पट्टी में रखता है, उसका {p} हिस्सा दूसरा नक्शा बाहर रखता है।",
+    "**{f} of {z}** zones are found again within {m} m, including **{hf} of {hz}** high-confidence zones. NASADEM also finds {nw} zones of its own.":
+        "**{z} में से {f}** क्षेत्र {m} मीटर के भीतर फिर मिलते हैं, इनमें **{hz} में से {hf}** उच्च भरोसे वाले। NASADEM अपने {nw} क्षेत्र भी खोजता है।",
+    "Steeper than 45°":
+        "45° से ज़्यादा खड़ी",
+    "Gentler than 15°":
+        "15° से हल्की",
+    "Radar layover or shadow":
+        "रडार लेओवर या छाया",
+    "Near the edge of the slope band":
+        "ढलान सीमा के किनारे के पास",
+    "the reservoir rise holds up ({a} to {b} km²); the flood area does not ({c} to {d} km²), so read it as an order of magnitude.":
+        "जलाशयों की बढ़त टिकती है ({a} से {b} वर्ग किमी); बाढ़ का क्षेत्रफल नहीं ({c} से {d} वर्ग किमी), इसलिए इसे केवल परिमाण का अंदाज़ा मानें।",
+    "The water threshold is set from the radar itself on each date. Moving both dates' thresholds 1 dB down or up, and changing nothing else, keeps reservoir and river rise between **{a} and {b} km²** (we report {r}). Flooding on ground that was never wet swings from **{c} to {d} km²** (we report {f}): that figure depends heavily on the threshold, so read it as the order of magnitude, not a precise area.":
+        "पानी की सीमा हर तारीख़ पर रडार से ही तय होती है। दोनों तारीख़ों की सीमा 1 dB नीचे या ऊपर करने पर, और कुछ न बदलने पर, जलाशयों और नदियों की बढ़त **{a} से {b} वर्ग किमी** के बीच रहती है (हम {r} बताते हैं)। कभी न भीगी ज़मीन पर बाढ़ **{c} से {d} वर्ग किमी** तक बदलती है (हम {f} बताते हैं): यह आँकड़ा सीमा पर बहुत निर्भर है, इसलिए इसे सटीक क्षेत्रफल नहीं, परिमाण का अंदाज़ा मानें।",
+    "Roads and railways near each zone":
+        "हर क्षेत्र के पास सड़कें और रेल लाइनें",
+    "Elevation, second-map check":
+        "ऊँचाई, दूसरे नक्शे की जाँच",
+    "Daily rainfall":
+        "दैनिक बारिश",
+    "Cut the radar to Pune":
+        "रडार को पुणे तक काटें",
+    "NISAR's level-2 GCOV files hold radar brightness (gamma-nought, already corrected for terrain) on a map grid. A full frame is about 5 GB per layer, so we stream only the study box (lon {w} to {e}, lat {s} to {n}) and average 2 × 2 or more native pixels into a {r} m grid. Averaging reduces radar speckle; a Lee filter removes more.":
+        "निसार की लेवल-2 GCOV फ़ाइलों में नक्शा-ग्रिड पर रडार की चमक (गामा-नॉट, भू-भाग के लिए पहले से सुधारी गई) होती है। एक पूरा फ़्रेम हर परत के लिए लगभग 5 GB का होता है, इसलिए हम केवल अध्ययन क्षेत्र (देशांतर {w} से {e}, अक्षांश {s} से {n}) स्ट्रीम करते हैं और 2 × 2 या अधिक मूल पिक्सलों का औसत लेकर {r} मीटर का ग्रिड बनाते हैं। औसत से रडार का धब्बापन घटता है; ली फ़िल्टर और कम करता है।",
+    "Find water on each date":
+        "हर तारीख़ पर पानी खोजें",
+    "Smooth water reflects the radar away and looks dark in HH. The cut-off between water and land is set separately for each date with the minimum-error method of Kittler and Illingworth, trained on reservoir and river cores that the JRC Global Surface Water record says are water at least {o}% of the time, plus an equal number of land pixels. In these NISAR products open water sits near −16 dB and dry land near −5 dB.":
+        "चिकना पानी रडार को दूर परावर्तित करता है और HH में गहरा दिखता है। पानी और ज़मीन के बीच की सीमा हर तारीख़ के लिए अलग से किटलर और इलिंगवर्थ की न्यूनतम-त्रुटि पद्धति से तय होती है, जलाशयों और नदियों के उन मध्य हिस्सों पर प्रशिक्षित जो JRC ग्लोबल सरफ़ेस वॉटर के अनुसार कम से कम {o}% समय पानी रहते हैं, उतने ही ज़मीन के पिक्सलों के साथ। इन निसार उत्पादों में खुला पानी लगभग −16 dB और सूखी ज़मीन लगभग −5 dB पर होती है।",
+    "Keep only new water":
+        "केवल नया पानी रखें",
+    "A pixel is new water if it is water on {a} but not on {b}, clearly darker, outside permanent water, on flat ground, and part of a patch big enough not to be speckle.":
+        "कोई पिक्सल नया पानी है अगर वह {a} को पानी है पर {b} को नहीं, साफ़ तौर पर गहरा है, स्थायी पानी से बाहर है, समतल ज़मीन पर है, और इतने बड़े हिस्से का भाग है कि धब्बा न हो।",
+    "Flag possible hidden water":
+        "छिपे संभावित पानी को चिह्नित करें",
+    "At L-band, water under trees or between buildings makes the radar bounce twice and come back brighter. Flat ground that got brighter is shown as possible water, and never added to flood totals.":
+        "L-बैंड पर पेड़ों के नीचे या इमारतों के बीच का पानी रडार को दो बार उछालता है और वह ज़्यादा चमकीला लौटता है। जो समतल ज़मीन चमकीली हुई, उसे संभावित पानी के रूप में दिखाया जाता है, और बाढ़ के कुल आँकड़े में कभी नहीं जोड़ा जाता।",
+    "Find likely slide zones":
+        "संभावित भूस्खलन क्षेत्र खोजें",
+    "Outside the radar's layover and shadow, a zone needs all three: the ground stopped matching itself between passes (coherence, from the NISAR GUNW product); it lost much more coherence than its own 1 km neighbourhood, because monsoon vegetation lowers coherence everywhere; and the radar brightness jumped, from rough debris (HH up) or stripped vegetation (HV down), measured against the scene's own median change on dry land. Each zone gets a 0 to 1 score from slope, radar change and coherence loss.":
+        "रडार के लेओवर और छाया से बाहर, किसी क्षेत्र को तीनों चाहिए: दो अवलोकनों के बीच ज़मीन पहले जैसी नहीं रही (कोहेरेंस, निसार GUNW उत्पाद से); उसने अपने 1 किमी के आसपास से कहीं ज़्यादा कोहेरेंस खोया, क्योंकि मानसून की वनस्पति हर जगह कोहेरेंस घटाती है; और रडार की चमक उछली, खुरदरे मलबे से (HH ऊपर) या हटी वनस्पति से (HV नीचे), सूखी ज़मीन पर दृश्य के अपने माध्यिका बदलाव की तुलना में। हर क्षेत्र को ढलान, रडार बदलाव और कोहेरेंस में गिरावट से 0 से 1 तक अंक मिलता है।",
+    "Check against reports":
+        "रिपोर्टों से मिलान करें",
+    "Reported floods and landslides, from the news and official sources, each linked, are matched to detections nearby, or within the report's own location precision if that is larger.":
+        "ख़बरों और आधिकारिक स्रोतों से दर्ज बाढ़ और भूस्खलन, हर एक का लिंक दिया गया, पास की पहचानों से मिलाए जाते हैं, या रिपोर्ट की अपनी स्थान-सटीकता के भीतर, अगर वह बड़ी हो।",
+    "Check with a second track":
+        "दूसरे ट्रैक से जाँचें",
+    "The same slide rule runs on an independent NISAR pair from another orbit, which also spans the rain peak. A real slope failure changes the ground for good, so it should show in both; speckle or a geometry artefact of one orbit usually does not. Chance level comes from moving every zone to random steep, dry places and repeating the test.":
+        "वही भूस्खलन नियम दूसरी कक्षा की एक स्वतंत्र निसार जोड़ी पर चलता है, जो बारिश के चरम को भी घेरती है। असली ढलान खिसकना ज़मीन को हमेशा के लिए बदल देता है, इसलिए वह दोनों में दिखना चाहिए; किसी एक कक्षा का धब्बापन या ज्यामिति की गड़बड़ी आमतौर पर नहीं दिखती। संयोग का स्तर हर क्षेत्र को बेतरतीब खड़ी, सूखी जगहों पर खिसकाकर और जाँच दोहराकर मिलता है।",
+    "Check with a second elevation map":
+        "दूसरे ऊँचाई नक्शे से जाँचें",
+    "Slope and slope direction come from the Copernicus GLO-30 elevation map. We run the same slide rule again with NASA's NASADEM elevation map and record which zones it keeps.":
+        "ढलान और ढलान की दिशा Copernicus GLO-30 ऊँचाई नक्शे से आती हैं। हम वही भूस्खलन नियम नासा के NASADEM ऊँचाई नक्शे के साथ दोबारा चलाते हैं और दर्ज करते हैं कि कौन से क्षेत्र बने रहे।",
+    "Test the water threshold":
+        "पानी की सीमा परखें",
+    "Both dates' water thresholds are moved 1 dB down and up and the water numbers are recomputed, to show how much they depend on that one choice.":
+        "दोनों तारीख़ों की पानी की सीमाएँ 1 dB नीचे और ऊपर की जाती हैं और पानी के आँकड़े दोबारा निकाले जाते हैं, यह दिखाने के लिए कि वे उस एक चुनाव पर कितने निर्भर हैं।",
+    "Package the evidence":
+        "प्रमाण तैयार करें",
+    "For every slide zone and flood patch the pipeline cuts small image chips of that spot from the NISAR data (radar colour before and after, and coherence), notes the nearest reported event, and writes the field check list as a printable page, KML, CSV and GeoJSON.":
+        "हर भूस्खलन क्षेत्र और बाढ़ वाले हिस्से के लिए पाइपलाइन निसार डेटा से उस जगह की छोटी तस्वीरें काटती है (पहले और बाद का रडार रंग, और कोहेरेंस), सबसे नज़दीकी दर्ज घटना लिखती है, और फ़ील्ड जाँच सूची को छापने लायक पेज, KML, CSV और GeoJSON के रूप में लिखती है।",
+    "radar found something near {h} of {o} reported floods it could see":
+        "रडार जिन दर्ज बाढ़ों को देख सकता था, उनमें से {o} में से {h} के पास उसे कुछ मिला",
+    "How the chance level is worked out: a report counts as matched when new water or a possible-water patch lies within its tolerance (the larger of the report's location precision and 500 m). For each report we take the share of a reference set that has a detection within that same tolerance, and add the shares up. Flat ground: every 40 m pixel with radar data on both dates, outside permanent water, slope ≤ 5° ({km} km²). Settlements: {p} OpenStreetMap villages, towns and suburbs with radar data. Getting {k} or more by chance has a probability of {pf} on flat ground and {ps} at settlements (exact, no random draws).":
+        "संयोग का स्तर ऐसे निकाला गया: कोई रिपोर्ट तब मिलान वाली मानी जाती है जब नया पानी या संभावित-पानी का हिस्सा उसकी सहन-सीमा के भीतर हो (रिपोर्ट की स्थान-सटीकता और 500 मीटर में से बड़ा)। हर रिपोर्ट के लिए हम संदर्भ समूह का वह हिस्सा लेते हैं जिसके उसी सहन-सीमा के भीतर कोई पहचान है, और उन हिस्सों को जोड़ते हैं। समतल ज़मीन: दोनों तारीख़ों पर रडार डेटा वाला हर 40 मीटर पिक्सल, स्थायी पानी से बाहर, ढलान ≤ 5° ({km} वर्ग किमी)। बस्तियाँ: रडार डेटा वाले {p} OpenStreetMap गाँव, शहर और उपनगर। संयोग से {k} या अधिक मिलने की संभावना समतल ज़मीन पर {pf} और बस्तियों पर {ps} है (सटीक, कोई बेतरतीब चयन नहीं)।",
+    "Track {t} sees only {c} of the study area, so only {n} of our zones could be checked. That is a small sample: treat it as support, not proof.":
+        "ट्रैक {t} अध्ययन क्षेत्र का केवल {c} देखता है, इसलिए हमारे केवल {n} क्षेत्र जाँचे जा सके। यह छोटा नमूना है: इसे समर्थन मानें, प्रमाण नहीं।",
+    "Between {b} and {a} the whole scene got about {h} dB darker in HH and {v} dB in HV, on flat and steep ground alike: ground and plants drying after the storm, or calibration of these provisional products. A landslide is a local change, so on both tracks we measure change against the scene's own median change on dry land.":
+        "{b} और {a} के बीच पूरा दृश्य HH में लगभग {h} dB और HV में {v} dB गहरा हुआ, समतल और खड़ी ज़मीन पर एक जैसा: तूफ़ान के बाद ज़मीन और पौधों का सूखना, या इन अस्थायी उत्पादों का कैलिब्रेशन। भूस्खलन एक स्थानीय बदलाव है, इसलिए दोनों ट्रैकों पर हम बदलाव को सूखी ज़मीन पर दृश्य के अपने माध्यिका बदलाव से तुलना करके नापते हैं।",
+    "Water areas from track {t} are not used: on {b}, in heavy rain, the radar saw less than half of the permanent reservoirs as dark water, because rain roughens the surface.":
+        "ट्रैक {t} से पानी का क्षेत्रफल इस्तेमाल नहीं किया गया: {b} को, भारी बारिश में, रडार ने स्थायी जलाशयों के आधे से भी कम हिस्से को गहरे पानी के रूप में देखा, क्योंकि बारिश सतह को खुरदरा कर देती है।",
+    "Passing both extra checks (found again by the second NISAR track and with NASADEM): **{z}**.":
+        "दोनों अतिरिक्त जाँचें पास करने वाले (दूसरे निसार ट्रैक और NASADEM, दोनों से फिर मिले): **{z}**।",
+    "{r} m grid":
+        "{r} मीटर ग्रिड",
+    "Lee filter":
+        "ली फ़िल्टर",
+    "threshold kept within {a} to {b} dB":
+        "सीमा {a} से {b} dB के भीतर",
+    "one threshold per date":
+        "हर तारीख़ की एक सीमा",
+    "≥ {d} dB darker":
+        "≥ {d} dB गहरा",
+    "JRC occurrence < {o}%":
+        "JRC आवृत्ति < {o}%",
+    "slope < {s}°":
+        "ढलान < {s}°",
+    "≥ {p} pixels":
+        "≥ {p} पिक्सल",
+    "≥ {d} dB brighter":
+        "≥ {d} dB चमकीला",
+    "shown hatched, never counted":
+        "धारियों में दिखाया, कभी नहीं गिना",
+    "slope {a}° to {b}°":
+        "ढलान {a}° से {b}°",
+    "coherence < {c}":
+        "कोहेरेंस < {c}",
+    "< 0.6 × its 1 km surroundings":
+        "< अपने 1 किमी आसपास का 0.6 ×",
+    "floods: 500 m":
+        "बाढ़: 500 मीटर",
+    "slides: 750 m":
+        "भूस्खलन: 750 मीटर",
+    "{n} reports":
+        "{n} रिपोर्टें",
+    "track 106":
+        "ट्रैक 106",
+    "3 to 15 July":
+        "3 से 15 जुलाई",
+    "random-placement baseline":
+        "बेतरतीब स्थान वाला आधार",
+    "1.9 km image chips":
+        "1.9 किमी की तस्वीरें",
+    "In short:":
+        "संक्षेप में:",
+    ", but places nobody reported score {e}: no better than chance":
+        ", पर जिन जगहों पर किसी ने कुछ दर्ज नहीं किया, वे {e} पर आती हैं: संयोग से बेहतर नहीं",
+    "Are the flood matches better than chance?":
+        "क्या बाढ़ के मिलान संयोग से बेहतर हैं?",
+    "the nearest mapped new open water is {lo} to {hi} km from every reported flood.":
+        "हर दर्ज बाढ़ से सबसे नज़दीकी नक्शे पर आया नया खुला पानी {lo} से {hi} किमी दूर है।",
+    "The count above differs from the {h} of {o} in the headline and the table below: a report's location was corrected after the last full pipeline run. The two will agree after the next run.":
+        "ऊपर की गिनती शीर्ष और नीचे की तालिका के {o} में से {h} से अलग है: आख़िरी पूरे पाइपलाइन रन के बाद एक रिपोर्ट का स्थान सुधारा गया। अगले रन के बाद दोनों मेल खाएँगी।",
+    "Every reported event":
+        "हर दर्ज घटना",
+    "The chance of doing this well by luck alone is about {p} (one-sided binomial test).":
+        "केवल किस्मत से इतना अच्छा होने की संभावना लगभग {p} है (एकतरफ़ा द्विपद परीक्षण)।",
+    "Our zones were found again about as often as chance ({l}×), so single-track zones need ground checks before anyone relies on them.":
+        "हमारे क्षेत्र लगभग संयोग जितनी ही बार फिर मिले ({l}×), इसलिए एक ट्रैक वाले क्षेत्रों पर भरोसा करने से पहले ज़मीन पर जाँच ज़रूरी है।",
+    "With NASADEM, {k} of {n} reports have a zone within range. So treat the landslide matches as weak support.":
+        "NASADEM के साथ {n} में से {k} रिपोर्टों के दायरे में कोई क्षेत्र है। इसलिए भूस्खलन के मिलानों को कमज़ोर समर्थन मानें।",
+    "On this page":
+        "इस पेज पर",
+    "source":
+        "स्रोत",
+    "Found again":
+        "फिर मिले",
+    "Partial":
+        "आंशिक",
+    "Not seen":
+        "नहीं दिखे",
+    "Not covered by track 106":
+        "ट्रैक 106 से बाहर",
+    "Found-again rate":
+        "फिर मिलने की दर",
+    "Our zones":
+        "हमारे क्षेत्र",
+    "Same zones moved to random steep places ({n} trials)":
+        "वही क्षेत्र बेतरतीब खड़ी जगहों पर खिसकाए गए ({n} प्रयास)",
+    "The chance of doing this well by luck alone is under 1%.":
+        "केवल किस्मत से इतना अच्छा होने की संभावना 1% से कम है।",
+    "Our zones were found again **{l}× more often than chance**.":
+        "हमारे क्षेत्र **संयोग से {l}× अधिक बार** फिर मिले।",
+    "By confidence:":
+        "भरोसे के अनुसार:",
+    "Not found with NASADEM because":
+        "NASADEM के साथ न मिलने का कारण",
+    "Zones":
+        "क्षेत्र",
+    "Threshold shift":
+        "सीमा में बदलाव",
+    "Threshold {d} (dB)":
+        "सीमा {d} (dB)",
+    "New water (km²)":
+        "नया पानी (वर्ग किमी)",
+    "Reservoir and river rise (km²)":
+        "जलाशयों और नदियों की बढ़त (वर्ग किमी)",
+    "Flooding (km²)":
+        "बाढ़ (वर्ग किमी)",
+    "Flood patches":
+        "बाढ़ वाले हिस्से",
+    "Permanent water seen dark":
+        "गहरा दिखा स्थायी पानी",
+    "Report":
+        "रिपोर्ट",
+    "Tolerance (m)":
+        "सहन-सीमा (मीटर)",
+    "Nearest detection (m)":
+        "सबसे नज़दीकी पहचान (मीटर)",
+    "Matched":
+        "मिलान",
+    "Nearest new open water (km)":
+        "सबसे नज़दीकी नया खुला पानी (किमी)",
+    "Flat ground within tolerance of a detection":
+        "पहचान की सहन-सीमा में समतल ज़मीन",
+    "Settlements within tolerance of a detection":
+        "पहचान की सहन-सीमा में बस्तियाँ",
+    "{c}: {f} of {n} found again":
+        "{c}: {n} में से {f} फिर मिले",
+    "The {n} reported landslides we matched ({ids}) are all matched to the same zone, {z}, {d} away.":
+        "हमने जिन {n} दर्ज भूस्खलनों का मिलान किया ({ids}), वे सब एक ही क्षेत्र {z} से जुड़े हैं, {d} दूर।",
+    "The {n} reported landslides we matched are {d} from their nearest zone.":
+        "हमने जिन {n} दर्ज भूस्खलनों का मिलान किया, वे अपने सबसे नज़दीकी क्षेत्र से {d} दूर हैं।",
+    "as chosen":
+        "जैसा चुना",
+    "With the reports as they stand now, **{k} of {n}** reported floods have a detection within their tolerance. The same rule applied to places nobody reported gives **{a} of {n}** on random flat ground and **{b} of {n}** at a random village, town or suburb.":
+        "मौजूदा रिपोर्टों के अनुसार **{n} में से {k}** दर्ज बाढ़ों की सहन-सीमा में कोई पहचान है। वही नियम उन जगहों पर लगाने से, जहाँ किसी ने कुछ दर्ज नहीं किया, बेतरतीब समतल ज़मीन पर **{n} में से {a}** और किसी बेतरतीब गाँव, शहर या उपनगर में **{n} में से {b}** मिलता है।",
+    "All {k} matches are to \"possible water under cover\" patches, which we show but never count as flood;":
+        "सभी {k} मिलान \"ढके हुए संभावित पानी\" वाले हिस्सों से हैं, जिन्हें हम दिखाते हैं पर बाढ़ में कभी नहीं गिनते;",
+    "So the flood count is what chance alone would give: it is not evidence that the map finds reported floods.":
+        "इसलिए बाढ़ की गिनती उतनी ही है जितनी केवल संयोग से मिलती: यह इस बात का प्रमाण नहीं कि नक्शा दर्ज बाढ़ें खोजता है।",
+    "**Yes.**":
+        "**हाँ।**",
+    "**No.**":
+        "**नहीं।**",
+    "GeoTIFFs are on the analysis grid (UTM zone 43N, 40 m). GeoJSON is in WGS84.":
+        "GeoTIFF विश्लेषण ग्रिड पर हैं (UTM ज़ोन 43N, 40 मीटर)। GeoJSON WGS84 में है।",
+    "all new water (GeoTIFF)":
+        "सारा नया पानी (GeoTIFF)",
+    "flooding only, never water before (GeoTIFF)":
+        "केवल बाढ़, पहले कभी पानी नहीं (GeoTIFF)",
+    "possible water under trees or buildings (GeoTIFF)":
+        "पेड़ों या इमारतों के नीचे संभावित पानी (GeoTIFF)",
+    "likely slide zones (GeoTIFF)":
+        "संभावित भूस्खलन क्षेत्र (GeoTIFF)",
+    "HH radar change in dB (GeoTIFF)":
+        "HH रडार बदलाव, dB में (GeoTIFF)",
+    "slide zones with scores and nearest place (GeoJSON)":
+        "अंकों और सबसे नज़दीकी जगह के साथ भूस्खलन क्षेत्र (GeoJSON)",
+    "new-water patches, flood and reservoir rise (GeoJSON)":
+        "नए पानी के हिस्से, बाढ़ और जलाशयों की बढ़त (GeoJSON)",
+    "reported events, matched or missed, with reasons (CSV)":
+        "दर्ज घटनाएँ, मिलीं या छूटीं, कारणों सहित (CSV)",
+    "water areas and thresholds (CSV)":
+        "पानी के क्षेत्रफल और सीमाएँ (CSV)",
+    "second-track check results (JSON)":
+        "दूसरे ट्रैक की जाँच के नतीजे (JSON)",
+    "elevation-map check results (JSON)":
+        "ऊँचाई नक्शे की जाँच के नतीजे (JSON)",
+    "every number in this app (JSON)":
+        "इस ऐप का हर आँकड़ा (JSON)",
+    "not checked":
+        "जाँचा नहीं गया",
+    "NISAR radar image of {f}":
+        "{f} की निसार रडार तस्वीर",
+    "Radar image":
+        "रडार तस्वीर",
+    "Compare {a} and {b}":
+        "{a} और {b} की तुलना करें",
+    "{id}: likely slide zone ({c}), {n}":
+        "{id}: संभावित भूस्खलन क्षेत्र ({c}), {n}",
+    "Radar colour, 28 Jun":
+        "रडार रंग, 28 जून",
+    "Radar colour, 10 Jul":
+        "रडार रंग, 10 जुलाई",
+    "Radar HH, 28 Jun":
+        "रडार HH, 28 जून",
+    "Radar HH, 10 Jul":
+        "रडार HH, 10 जुलाई",
+    "Change in HH (blue darker, red brighter)":
+        "HH में बदलाव (नीला गहरा, लाल चमकीला)",
+    "Coherence 28 Jun to 10 Jul (dark = changed)":
+        "कोहेरेंस 28 जून से 10 जुलाई (गहरा = बदला)",
+    "Rivers and reservoirs (JRC)":
+        "नदियाँ और जलाशय (JRC)",
+    "Possible water under cover":
+        "ढका हुआ संभावित पानी",
+    "Reservoirs and rivers rising":
+        "बढ़ते जलाशय और नदियाँ",
+    "Flooding (no water recorded here 1984 to 2021)":
+        "बाढ़ (यहाँ 1984 से 2021 तक पानी दर्ज नहीं)",
+    "Likely slide zones ({n})":
+        "संभावित भूस्खलन क्षेत्र ({n})",
+    "; also found by a second NISAR track":
+        "; दूसरे निसार ट्रैक ने भी पाया",
+    "Flood patches ({n})":
+        "बाढ़ वाले हिस्से ({n})",
+    "Reported events ({n})":
+        "दर्ज घटनाएँ ({n})",
+    "Score (0-1)":
+        "अंक (0-1)",
+    "Mean slope (°)":
+        "औसत ढलान (°)",
+    "Coherence vs 1 km area":
+        "1 किमी आसपास की तुलना में कोहेरेंस",
+    "With NASA's NASADEM elevation map":
+        "नासा के NASADEM ऊँचाई नक्शे के साथ",
+    "Second NISAR track (3-15 Jul)":
+        "दूसरा निसार ट्रैक (3-15 जुलाई)",
+    "Radar detection nearby":
+        "पास में रडार पहचान",
+    "No radar detection nearby":
+        "पास में कोई रडार पहचान नहीं",
+    "Radar could not observe this":
+        "रडार इसे देख नहीं सकता था",
+    "Study box":
+        "अध्ययन क्षेत्र",
+    "Study box (NISAR crop)":
+        "अध्ययन क्षेत्र (निसार का टुकड़ा)",
+    "Flood water on 10 July: {a} ha, {d} dB darker":
+        "10 जुलाई को बाढ़ का पानी: {a} हेक्टेयर, {d} dB गहरा",
+    ", near {n}":
+        ", {n} के पास",
+    "{a} to {b}":
+        "{a} से {b}",
+    "Team iGenfinity, NASA Space Apps Challenge 2026, GDG Ahlen.":
+        "टीम iGenfinity, नासा स्पेस ऐप्स चैलेंज 2026, GDG आलेन।",
+    "App and integration":
+        "ऐप और एकीकरण",
+    "Data and science":
+        "डेटा और विज्ञान",
+    "Validation, story and pitch":
+        "सत्यापन, कहानी और पिच",
+    "Radar: {n} NISAR L2 provisional files, tracks {t}, {w} (NASA/JPL-Caltech and ISRO, via ASF DAAC); every file is linked on the Method page. Results built {g}, pipeline v{v}.":
+        "रडार: {n} अस्थायी निसार L2 फ़ाइलें, ट्रैक {t}, {w} (नासा/JPL-Caltech और इसरो, ASF DAAC के ज़रिए); हर फ़ाइल का लिंक पद्धति पेज पर है। नतीजे बने {g}, पाइपलाइन v{v}।",
+    "iGenfinity team logo":
+        "टीम iGenfinity का लोगो",
+    "matched to a detection":
+        "पहचान से मिलान हुआ",
+    "Random flat ground":
+        "बेतरतीब समतल ज़मीन",
+    "expected by chance":
+        "संयोग से अपेक्षित",
+    "Random settlements":
+        "बेतरतीब बस्तियाँ",
+    "matches out of {n} reported floods":
+        "{n} दर्ज बाढ़ों में से मिलान",
 }
 
 HI_T = {
