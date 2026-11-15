@@ -1,8 +1,10 @@
+import re
+
 import streamlit as st
 import streamlit.components.v1 as components
 from streamlit_folium import st_folium
 
-from lib import charts, data, evidence, maps, story, swipe, ui
+from lib import charts, data, evidence, maps, story, swipe, ui, view3d
 
 ui.setup("Story")
 ui.demo_banner()
@@ -52,7 +54,7 @@ with st.container(key=f"chapter{i}"):
 with text:
     st.markdown(f'<p class="ml-kicker">{ui.t("step", i=i + 1, n=n)}</p>', unsafe_allow_html=True)
     st.markdown(f"## {head}")
-    st.markdown(f'<p class="ml-lede">{body}</p>', unsafe_allow_html=True)
+    st.markdown('<p class="ml-lede">' + re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", body) + "</p>", unsafe_allow_html=True)
     nav_b, nav_n = st.columns(2)
     nav_b.button(ui.t("back"), disabled=i == 0, width="stretch", key="story_back", icon=":material/arrow_back:",
                  on_click=go, args=(max(0, i - 1),))
@@ -93,6 +95,9 @@ with visual, st.container(key="viz"):
         if imgs:
             swipe.render(imgs[0], imgs[1], f"{ui.t('before')}: {ui.day(before)}",
                          f"{ui.t('after')}: {ui.day(after)}", height=500, start=35)
+    elif key == "changed" and view3d.render(height=520, tour=False, key="story3d"):
+        st.caption(ui.tr("Drag to turn the model; point at a pin for details.",
+                         "मॉडेल फिरवण्यासाठी ओढा; तपशीलासाठी खुणेवर पॉइंटर न्या."))
     elif key == "changed":
         ui.legend([(ui.COLORS["flood"], ui.t("legend_flood"), "fill"),
                    (ui.COLORS["rise"], ui.t("legend_rise"), "fill"),
